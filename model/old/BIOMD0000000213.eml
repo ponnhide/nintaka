@@ -1,0 +1,934 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="V_NE">
+<property name="Name">
+<value>[THF] -&gt; [_5_10_CH2THF]; { HCOOH };</value>
+</property>
+<property name="Expression">
+<value>HCOOH.NumberConc * NE_k1.Value * THF.NumberConc - NE_k2.Value * _5_10_CH2THF.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_5_10_CH2THF</value>
+<value>Variable:/compartment:_5_10_CH2THF</value>
+<value>1</value>
+</value>
+<value>
+<value>HCOOH</value>
+<value>Variable:/compartment:HCOOH</value>
+<value>0</value>
+</value>
+<value>
+<value>NE_k1</value>
+<value>Variable:/SBMLParameter:NE_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>NE_k2</value>
+<value>Variable:/SBMLParameter:NE_k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_MS">
+<property name="Name">
+<value>[_5mTHF] -&gt; [THF]; { Hcy };</value>
+</property>
+<property name="Expression">
+<value>MS_Vmax.Value * (_5mTHF.NumberConc / MS_Km_5mTHF.Value) * (Hcy.NumberConc / MS_Km_Hcy.Value) / (MS_Kd.Value / MS_Km_5mTHF.Value + _5mTHF.NumberConc / MS_Km_5mTHF.Value + Hcy.NumberConc / MS_Km_Hcy.Value + _5mTHF.NumberConc * Hcy.NumberConc / (MS_Km_5mTHF.Value * MS_Km_Hcy.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_5mTHF</value>
+<value>Variable:/compartment:_5mTHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>1</value>
+</value>
+<value>
+<value>Hcy</value>
+<value>Variable:/compartment:Hcy</value>
+<value>0</value>
+</value>
+<value>
+<value>MS_Vmax</value>
+<value>Variable:/SBMLParameter:MS_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>MS_Km_5mTHF</value>
+<value>Variable:/SBMLParameter:MS_Km_5mTHF</value>
+<value>0</value>
+</value>
+<value>
+<value>MS_Km_Hcy</value>
+<value>Variable:/SBMLParameter:MS_Km_Hcy</value>
+<value>0</value>
+</value>
+<value>
+<value>MS_Kd</value>
+<value>Variable:/SBMLParameter:MS_Kd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_MTHFR">
+<property name="Name">
+<value>[_5_10_CH2THF] -&gt; [_5mTHF]; { NADPH };</value>
+</property>
+<property name="Expression">
+<value>MTHFR_Vmax.Value * (NADPH.NumberConc / (MTHFR_Km_NADPH.Value + NADPH.NumberConc)) * (_5_10_CH2THF.NumberConc / (MTHFR_Km_5_10_CH2THF.Value + _5_10_CH2THF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_5_10_CH2THF</value>
+<value>Variable:/compartment:_5_10_CH2THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_5mTHF</value>
+<value>Variable:/compartment:_5mTHF</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/compartment:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>MTHFR_Vmax</value>
+<value>Variable:/SBMLParameter:MTHFR_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>MTHFR_Km_NADPH</value>
+<value>Variable:/SBMLParameter:MTHFR_Km_NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>MTHFR_Km_5_10_CH2THF</value>
+<value>Variable:/SBMLParameter:MTHFR_Km_5_10_CH2THF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_FTD">
+<property name="Name">
+<value>[_10fTHF] -&gt; [THF];</value>
+</property>
+<property name="Expression">
+<value>FTD_Vmax.Value * (_10fTHF.NumberConc / (FTD_Km_10fTHF.Value + _10fTHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_10fTHF</value>
+<value>Variable:/compartment:_10fTHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>1</value>
+</value>
+<value>
+<value>FTD_Vmax</value>
+<value>Variable:/SBMLParameter:FTD_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>FTD_Km_10fTHF</value>
+<value>Variable:/SBMLParameter:FTD_Km_10fTHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_FTS">
+<property name="Name">
+<value>[THF] -&gt; [_10fTHF]; { HCOOH };</value>
+</property>
+<property name="Expression">
+<value>FTS_Vmax.Value * (HCOOH.NumberConc / (FTS_Km_HCOOH.Value + HCOOH.NumberConc)) * (THF.NumberConc / (FTS_Km_THF.Value + THF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_10fTHF</value>
+<value>Variable:/compartment:_10fTHF</value>
+<value>1</value>
+</value>
+<value>
+<value>HCOOH</value>
+<value>Variable:/compartment:HCOOH</value>
+<value>0</value>
+</value>
+<value>
+<value>FTS_Vmax</value>
+<value>Variable:/SBMLParameter:FTS_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>FTS_Km_HCOOH</value>
+<value>Variable:/SBMLParameter:FTS_Km_HCOOH</value>
+<value>0</value>
+</value>
+<value>
+<value>FTS_Km_THF</value>
+<value>Variable:/SBMLParameter:FTS_Km_THF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_AICART">
+<property name="Name">
+<value>[_10fTHF] -&gt; [THF]; { AICAR };</value>
+</property>
+<property name="Expression">
+<value>AICART_Vmax.Value * (AICAR.NumberConc / (AICART_Km_AICAR.Value + AICAR.NumberConc)) * (_10fTHF.NumberConc / (AICART_Km_10fTHF.Value + _10fTHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_10fTHF</value>
+<value>Variable:/compartment:_10fTHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>1</value>
+</value>
+<value>
+<value>AICAR</value>
+<value>Variable:/compartment:AICAR</value>
+<value>0</value>
+</value>
+<value>
+<value>AICART_Vmax</value>
+<value>Variable:/SBMLParameter:AICART_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>AICART_Km_AICAR</value>
+<value>Variable:/SBMLParameter:AICART_Km_AICAR</value>
+<value>0</value>
+</value>
+<value>
+<value>AICART_Km_10fTHF</value>
+<value>Variable:/SBMLParameter:AICART_Km_10fTHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_PGT">
+<property name="Name">
+<value>[_10fTHF] -&gt; [THF]; { GAR };</value>
+</property>
+<property name="Expression">
+<value>PGT_Vmax.Value * (GAR.NumberConc / (PGT_Km_GAR.Value + GAR.NumberConc)) * (_10fTHF.NumberConc / (PGT_Km_10fTHF.Value + _10fTHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_10fTHF</value>
+<value>Variable:/compartment:_10fTHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>1</value>
+</value>
+<value>
+<value>GAR</value>
+<value>Variable:/compartment:GAR</value>
+<value>0</value>
+</value>
+<value>
+<value>PGT_Vmax</value>
+<value>Variable:/SBMLParameter:PGT_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>PGT_Km_GAR</value>
+<value>Variable:/SBMLParameter:PGT_Km_GAR</value>
+<value>0</value>
+</value>
+<value>
+<value>PGT_Km_10fTHF</value>
+<value>Variable:/SBMLParameter:PGT_Km_10fTHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_TS">
+<property name="Name">
+<value>[_5_10_CH2THF] -&gt; [DHF]; { dUMP };</value>
+</property>
+<property name="Expression">
+<value>TS_Vmax.Value * (dUMP.NumberConc / (TS_Km_dUMP.Value + dUMP.NumberConc)) * (_5_10_CH2THF.NumberConc / (TS_Km_5_10_CH2THF.Value + _5_10_CH2THF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_5_10_CH2THF</value>
+<value>Variable:/compartment:_5_10_CH2THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHF</value>
+<value>Variable:/compartment:DHF</value>
+<value>1</value>
+</value>
+<value>
+<value>dUMP</value>
+<value>Variable:/compartment:dUMP</value>
+<value>0</value>
+</value>
+<value>
+<value>TS_Vmax</value>
+<value>Variable:/SBMLParameter:TS_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>TS_Km_dUMP</value>
+<value>Variable:/SBMLParameter:TS_Km_dUMP</value>
+<value>0</value>
+</value>
+<value>
+<value>TS_Km_5_10_CH2THF</value>
+<value>Variable:/SBMLParameter:TS_Km_5_10_CH2THF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_DHFR">
+<property name="Name">
+<value>[DHF] -&gt; [THF]; { NADPH };</value>
+</property>
+<property name="Expression">
+<value>DHFR_Vmax.Value * (NADPH.NumberConc / (DHFR_Km_NADPH.Value + NADPH.NumberConc)) * (DHF.NumberConc / (DHFR_Km_DHF.Value + DHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHF</value>
+<value>Variable:/compartment:DHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/compartment:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>DHFR_Vmax</value>
+<value>Variable:/SBMLParameter:DHFR_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>DHFR_Km_NADPH</value>
+<value>Variable:/SBMLParameter:DHFR_Km_NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>DHFR_Km_DHF</value>
+<value>Variable:/SBMLParameter:DHFR_Km_DHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_MTCH">
+<property name="Name">
+<value>[_5_10_CHTHF] -&gt; [_10fTHF];</value>
+</property>
+<property name="Expression">
+<value>MTCH_VmaxF.Value * (_5_10_CHTHF.NumberConc / (MTCH_Km_5_10_CHTHF.Value + _5_10_CHTHF.NumberConc)) - MTCH_VmaxR.Value * (_10fTHF.NumberConc / (MTCH_Km_10fTHF.Value + _10fTHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_5_10_CHTHF</value>
+<value>Variable:/compartment:_5_10_CHTHF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_10fTHF</value>
+<value>Variable:/compartment:_10fTHF</value>
+<value>1</value>
+</value>
+<value>
+<value>MTCH_VmaxF</value>
+<value>Variable:/SBMLParameter:MTCH_VmaxF</value>
+<value>0</value>
+</value>
+<value>
+<value>MTCH_Km_5_10_CHTHF</value>
+<value>Variable:/SBMLParameter:MTCH_Km_5_10_CHTHF</value>
+<value>0</value>
+</value>
+<value>
+<value>MTCH_VmaxR</value>
+<value>Variable:/SBMLParameter:MTCH_VmaxR</value>
+<value>0</value>
+</value>
+<value>
+<value>MTCH_Km_10fTHF</value>
+<value>Variable:/SBMLParameter:MTCH_Km_10fTHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_SHMT">
+<property name="Name">
+<value>[THF] -&gt; [_5_10_CH2THF]; { Ser, Gly };</value>
+</property>
+<property name="Expression">
+<value>SHMT_VmaxF.Value * (Ser.NumberConc / (SHMT_Km_Ser.Value + Ser.NumberConc)) * (THF.NumberConc / (SHMT_Km_THF.Value + THF.NumberConc)) - SHMT_VmaxR.Value * (Gly.NumberConc / (SHMT_Km_Ser.Value + Gly.NumberConc)) * (_5_10_CH2THF.NumberConc / (SHMT_Km_THF.Value + _5_10_CH2THF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>THF</value>
+<value>Variable:/compartment:THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_5_10_CH2THF</value>
+<value>Variable:/compartment:_5_10_CH2THF</value>
+<value>1</value>
+</value>
+<value>
+<value>Ser</value>
+<value>Variable:/compartment:Ser</value>
+<value>0</value>
+</value>
+<value>
+<value>Gly</value>
+<value>Variable:/compartment:Gly</value>
+<value>0</value>
+</value>
+<value>
+<value>SHMT_VmaxF</value>
+<value>Variable:/SBMLParameter:SHMT_VmaxF</value>
+<value>0</value>
+</value>
+<value>
+<value>SHMT_Km_Ser</value>
+<value>Variable:/SBMLParameter:SHMT_Km_Ser</value>
+<value>0</value>
+</value>
+<value>
+<value>SHMT_Km_THF</value>
+<value>Variable:/SBMLParameter:SHMT_Km_THF</value>
+<value>0</value>
+</value>
+<value>
+<value>SHMT_VmaxR</value>
+<value>Variable:/SBMLParameter:SHMT_VmaxR</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_MTD">
+<property name="Name">
+<value>[_5_10_CH2THF] -&gt; [_5_10_CHTHF];</value>
+</property>
+<property name="Expression">
+<value>MTD_VmaxF.Value * (_5_10_CH2THF.NumberConc / (MTD_Km_5_10_CH2THF.Value + _5_10_CH2THF.NumberConc)) - MTD_VmaxR.Value * (_5_10_CHTHF.NumberConc / (MTD_Km_5_10_CHTHF.Value + _5_10_CHTHF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_5_10_CH2THF</value>
+<value>Variable:/compartment:_5_10_CH2THF</value>
+<value>-1</value>
+</value>
+<value>
+<value>_5_10_CHTHF</value>
+<value>Variable:/compartment:_5_10_CHTHF</value>
+<value>1</value>
+</value>
+<value>
+<value>MTD_VmaxF</value>
+<value>Variable:/SBMLParameter:MTD_VmaxF</value>
+<value>0</value>
+</value>
+<value>
+<value>MTD_Km_5_10_CH2THF</value>
+<value>Variable:/SBMLParameter:MTD_Km_5_10_CH2THF</value>
+<value>0</value>
+</value>
+<value>
+<value>MTD_VmaxR</value>
+<value>Variable:/SBMLParameter:MTD_VmaxR</value>
+<value>0</value>
+</value>
+<value>
+<value>MTD_Km_5_10_CHTHF</value>
+<value>Variable:/SBMLParameter:MTD_Km_5_10_CHTHF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="_5mTHF">
+<property name="NumberConc">
+<value>5.16</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="THF">
+<property name="NumberConc">
+<value>6.73</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHF">
+<property name="NumberConc">
+<value>0.027</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_5_10_CH2THF">
+<property name="NumberConc">
+<value>0.94</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_5_10_CHTHF">
+<property name="NumberConc">
+<value>1.153</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_10fTHF">
+<property name="NumberConc">
+<value>5.99</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ser">
+<property name="NumberConc">
+<value>468.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly">
+<property name="NumberConc">
+<value>1850.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dUMP">
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAR">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AICAR">
+<property name="NumberConc">
+<value>2.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HCOOH">
+<property name="NumberConc">
+<value>900.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Hcy">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="NE_k1">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NE_k2">
+<property name="Value">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MS_Vmax">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MS_Km_5mTHF">
+<property name="Value">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MS_Km_Hcy">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MS_Kd">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTHFR_Vmax">
+<property name="Value">
+<value>6000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTHFR_Km_NADPH">
+<property name="Value">
+<value>16.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTHFR_Km_5_10_CH2THF">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FTD_Vmax">
+<property name="Value">
+<value>14000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FTD_Km_10fTHF">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FTS_Vmax">
+<property name="Value">
+<value>2000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FTS_Km_HCOOH">
+<property name="Value">
+<value>43.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FTS_Km_THF">
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AICART_Vmax">
+<property name="Value">
+<value>45000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AICART_Km_AICAR">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AICART_Km_10fTHF">
+<property name="Value">
+<value>5.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PGT_Vmax">
+<property name="Value">
+<value>16200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PGT_Km_GAR">
+<property name="Value">
+<value>520.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PGT_Km_10fTHF">
+<property name="Value">
+<value>4.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TS_Vmax">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TS_Km_dUMP">
+<property name="Value">
+<value>6.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TS_Km_5_10_CH2THF">
+<property name="Value">
+<value>14.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="DHFR_Vmax">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="DHFR_Km_NADPH">
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="DHFR_Km_DHF">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTCH_VmaxF">
+<property name="Value">
+<value>800000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTCH_Km_5_10_CHTHF">
+<property name="Value">
+<value>250.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTCH_VmaxR">
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTCH_Km_10fTHF">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHMT_VmaxF">
+<property name="Value">
+<value>40000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHMT_Km_Ser">
+<property name="Value">
+<value>600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHMT_Km_THF">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHMT_VmaxR">
+<property name="Value">
+<value>25000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTD_VmaxF">
+<property name="Value">
+<value>200000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTD_Km_5_10_CH2THF">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTD_VmaxR">
+<property name="Value">
+<value>594000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MTD_Km_5_10_CHTHF">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

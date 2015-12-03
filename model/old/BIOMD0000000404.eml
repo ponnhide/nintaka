@@ -1,0 +1,1868 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="phosphorylation_r1">
+<property name="Name">
+<value>A-&gt;Ap</value>
+</property>
+<property name="kcat">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kcat * parameter_2.Value * A.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ap</value>
+<value>Variable:/cell:Ap</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>parameter_2</value>
+<value>Variable:/SBMLParameter:parameter_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r2">
+<property name="Name">
+<value>TWA+A-&gt;TWA+Ap</value>
+</property>
+<property name="kcat">
+<value>75000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * TWA.NumberConc * A.NumberConc * kcat * parameter_2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ap</value>
+<value>Variable:/cell:Ap</value>
+<value>1</value>
+</value>
+<value>
+<value>TWA</value>
+<value>Variable:/cell:TWA</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>parameter_2</value>
+<value>Variable:/SBMLParameter:parameter_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r3">
+<property name="Name">
+<value>Tni_WA+A-&gt;Tni_WA+Ap</value>
+</property>
+<property name="kcat">
+<value>200000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Tni_WA.NumberConc * A.NumberConc * kcat * parameter_2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ap</value>
+<value>Variable:/cell:Ap</value>
+<value>1</value>
+</value>
+<value>
+<value>Tni_WA</value>
+<value>Variable:/cell:Tni_WA</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>parameter_2</value>
+<value>Variable:/SBMLParameter:parameter_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r4">
+<property name="Name">
+<value>Tasp_WA+Yp-&gt;Tasp_WA+Y</value>
+</property>
+<property name="k1">
+<value>100000000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Tasp_WA.NumberConc * Yp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp_WA</value>
+<value>Variable:/cell:Tasp_WA</value>
+<value>0</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/cell:Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r5">
+<property name="Name">
+<value>Ap+Y-&gt;A+Yp</value>
+</property>
+<property name="k1">
+<value>200000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Ap.NumberConc * Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ap</value>
+<value>Variable:/cell:Ap</value>
+<value>-1</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/cell:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r6">
+<property name="Name">
+<value>Y -&gt;Yp</value>
+</property>
+<property name="kcat">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kcat * parameter_2.Value * Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y</value>
+<value>Variable:/cell:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>parameter_2</value>
+<value>Variable:/SBMLParameter:parameter_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r7">
+<property name="Name">
+<value>Yp-&gt;Y</value>
+</property>
+<property name="k1">
+<value>0.037</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Yp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/cell:Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r8">
+<property name="Name">
+<value>Yp+Z-&gt;Y+Z</value>
+</property>
+<property name="k1">
+<value>500000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Yp.NumberConc * Z.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/cell:Z</value>
+<value>0</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/cell:Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r9">
+<property name="Name">
+<value>Ap+B-&gt;A+Bp</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Ap.NumberConc * B.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ap</value>
+<value>Variable:/cell:Ap</value>
+<value>-1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>1</value>
+</value>
+<value>
+<value>Bp</value>
+<value>Variable:/cell:Bp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation_r10">
+<property name="Name">
+<value>Bp-&gt;B</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1 * Bp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bp</value>
+<value>Variable:/cell:Bp</value>
+<value>-1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r1">
+<property name="Name">
+<value>T+asp&lt;-&gt;Tasp</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * T.NumberConc * asp.NumberConc - k2 * Tasp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/cell:T</value>
+<value>-1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp</value>
+<value>Variable:/cell:Tasp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r2">
+<property name="Name">
+<value>T+ni&lt;-&gt;Tni</value>
+</property>
+<property name="k1">
+<value>1000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * T.NumberConc * ni.NumberConc - k2 * Tni.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/cell:T</value>
+<value>-1</value>
+</value>
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>0</value>
+</value>
+<value>
+<value>Tni</value>
+<value>Variable:/cell:Tni</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r3">
+<property name="Name">
+<value>T+W&lt;-&gt;TW</value>
+</property>
+<property name="k1">
+<value>100000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * T.NumberConc * W.NumberConc - k2 * TW.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/cell:T</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>TW</value>
+<value>Variable:/cell:TW</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r4">
+<property name="Name">
+<value>T+A&lt;-&gt;TA</value>
+</property>
+<property name="k1">
+<value>10000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * T.NumberConc * A.NumberConc - k2 * TA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/cell:T</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>TA</value>
+<value>Variable:/cell:TA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r5">
+<property name="Name">
+<value>W+A&lt;-&gt;WA</value>
+</property>
+<property name="k1">
+<value>100000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * W.NumberConc * A.NumberConc - k2 * WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>WA</value>
+<value>Variable:/cell:WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r6">
+<property name="Name">
+<value>TW+A&lt;-&gt;TWA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * TW.NumberConc * A.NumberConc - k2 * TWA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TW</value>
+<value>Variable:/cell:TW</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>TWA</value>
+<value>Variable:/cell:TWA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r7">
+<property name="Name">
+<value>TA+W&lt;-&gt;TWA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * TA.NumberConc * W.NumberConc - k2 * TWA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TA</value>
+<value>Variable:/cell:TA</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>TWA</value>
+<value>Variable:/cell:TWA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r8">
+<property name="Name">
+<value>T+WA&lt;-&gt;TWA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * T.NumberConc * WA.NumberConc - k2 * TWA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/cell:T</value>
+<value>-1</value>
+</value>
+<value>
+<value>WA</value>
+<value>Variable:/cell:WA</value>
+<value>-1</value>
+</value>
+<value>
+<value>TWA</value>
+<value>Variable:/cell:TWA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r9">
+<property name="Name">
+<value>Tasp+W&lt;-&gt;Tasp_W</value>
+</property>
+<property name="k1">
+<value>100000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tasp.NumberConc * W.NumberConc - k2 * Tasp_W.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp</value>
+<value>Variable:/cell:Tasp</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_W</value>
+<value>Variable:/cell:Tasp_W</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r10">
+<property name="Name">
+<value>Tasp+A&lt;-&gt;Tasp_A</value>
+</property>
+<property name="k1">
+<value>10000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tasp.NumberConc * A.NumberConc - k2 * Tasp_A.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp</value>
+<value>Variable:/cell:Tasp</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_A</value>
+<value>Variable:/cell:Tasp_A</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r11">
+<property name="Name">
+<value>Tasp_W+A&lt;-&gt;Tasp_WA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tasp_W.NumberConc * A.NumberConc - k2 * Tasp_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp_W</value>
+<value>Variable:/cell:Tasp_W</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_WA</value>
+<value>Variable:/cell:Tasp_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r12">
+<property name="Name">
+<value>Tasp_A+W&lt;-&gt;Tasp_WA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tasp_A.NumberConc * W.NumberConc - k2 * Tasp_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp_A</value>
+<value>Variable:/cell:Tasp_A</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_WA</value>
+<value>Variable:/cell:Tasp_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r13">
+<property name="Name">
+<value>Tasp+WA&lt;-&gt;Tasp_WA</value>
+</property>
+<property name="k1">
+<value>400000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tasp.NumberConc * WA.NumberConc - k2 * Tasp_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tasp</value>
+<value>Variable:/cell:Tasp</value>
+<value>-1</value>
+</value>
+<value>
+<value>WA</value>
+<value>Variable:/cell:WA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_WA</value>
+<value>Variable:/cell:Tasp_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r14">
+<property name="Name">
+<value>Tni+W&lt;-&gt;Tni_W</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tni.NumberConc * W.NumberConc - k2 * Tni_W.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tni</value>
+<value>Variable:/cell:Tni</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tni_W</value>
+<value>Variable:/cell:Tni_W</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r15">
+<property name="Name">
+<value>Tni+A&lt;-&gt;Tni_A</value>
+</property>
+<property name="k1">
+<value>0.01</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tni.NumberConc * A.NumberConc - k2 * Tni_A.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tni</value>
+<value>Variable:/cell:Tni</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tni_A</value>
+<value>Variable:/cell:Tni_A</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r16">
+<property name="Name">
+<value>Tni_W+A&lt;-&gt;Tni_WA</value>
+</property>
+<property name="k1">
+<value>0.4</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tni_W.NumberConc * A.NumberConc - k2 * Tni_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tni_W</value>
+<value>Variable:/cell:Tni_W</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tni_WA</value>
+<value>Variable:/cell:Tni_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r17">
+<property name="Name">
+<value>Tni_A+W&lt;-&gt;Tni_WA</value>
+</property>
+<property name="k1">
+<value>0.4</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tni_A.NumberConc * W.NumberConc - k2 * Tni_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tni_A</value>
+<value>Variable:/cell:Tni_A</value>
+<value>-1</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/cell:W</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tni_WA</value>
+<value>Variable:/cell:Tni_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="regulatory_r18">
+<property name="Name">
+<value>Tni+WA&lt;-&gt;Tni_WA</value>
+</property>
+<property name="k1">
+<value>0.4</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * Tni.NumberConc * WA.NumberConc - k2 * Tni_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tni</value>
+<value>Variable:/cell:Tni</value>
+<value>-1</value>
+</value>
+<value>
+<value>WA</value>
+<value>Variable:/cell:WA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tni_WA</value>
+<value>Variable:/cell:Tni_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="motor_r1">
+<property name="Name">
+<value>M+Yp&lt;-&gt;MYp</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (ka.Value * (M.NumberConc * Yp.NumberConc - kappa.Value / 4 * MYp.NumberConc) / cell.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MYp</value>
+<value>Variable:/cell:MYp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="motor_r2">
+<property name="Name">
+<value>MYp+Yp&lt;-&gt;MYpYp</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (ka.Value * (MYp.NumberConc * Yp.NumberConc - 2 * alpha.Value * kappa.Value / 3 * MYpYp.NumberConc) / cell.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MYp</value>
+<value>Variable:/cell:MYp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MYpYp</value>
+<value>Variable:/cell:MYpYp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="motor_r3">
+<property name="Name">
+<value>MYpYp+Yp&lt;-&gt;MYpYpYp</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (ka.Value * (MYpYp.NumberConc * Yp.NumberConc - 3 * alpha.Value * alpha.Value * kappa.Value / 2 * MYpYpYp.NumberConc) / cell.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MYpYp</value>
+<value>Variable:/cell:MYpYp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MYpYpYp</value>
+<value>Variable:/cell:MYpYpYp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="motor_r4">
+<property name="Name">
+<value>MYpYpYp+Yp&lt;-&gt;MYpYpYpYp</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (ka.Value * (MYpYpYp.NumberConc * Yp.NumberConc - 4 * alpha.Value * alpha.Value * alpha.Value * kappa.Value * MYpYpYpYp.NumberConc) / cell.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MYpYpYp</value>
+<value>Variable:/cell:MYpYpYp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yp</value>
+<value>Variable:/cell:Yp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MYpYpYpYp</value>
+<value>Variable:/cell:MYpYpYpYp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>TA + asp &lt;-&gt; Tasp_A</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * TA.NumberConc * asp.NumberConc - k2 * Tasp_A.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TA</value>
+<value>Variable:/cell:TA</value>
+<value>-1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_A</value>
+<value>Variable:/cell:Tasp_A</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>TW+asp &lt;-&gt; Tasp_W</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * TW.NumberConc * asp.NumberConc - k2 * Tasp_W.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TW</value>
+<value>Variable:/cell:TW</value>
+<value>-1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_W</value>
+<value>Variable:/cell:Tasp_W</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>TWA+asp &lt;-&gt; Tasp_WA</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1 * TWA.NumberConc * asp.NumberConc - k2 * Tasp_WA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TWA</value>
+<value>Variable:/cell:TWA</value>
+<value>-1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tasp_WA</value>
+<value>Variable:/cell:Tasp_WA</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.41e-15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="asp">
+<property name="Name">
+<value>asp</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ni">
+<property name="Name">
+<value>ni</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="T">
+<property name="Name">
+<value>T</value>
+</property>
+<property name="NumberConc">
+<value>3.12e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tasp">
+<property name="Name">
+<value>Tasp</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tni">
+<property name="Name">
+<value>Tni</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="W">
+<property name="Name">
+<value>W</value>
+</property>
+<property name="NumberConc">
+<value>2.89e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TW">
+<property name="Name">
+<value>TW</value>
+</property>
+<property name="NumberConc">
+<value>5.91e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tasp_W">
+<property name="Name">
+<value>Tasp_W</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tni_W">
+<property name="Name">
+<value>Tni_W</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TA">
+<property name="Name">
+<value>TA</value>
+</property>
+<property name="NumberConc">
+<value>4.44e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tasp_A">
+<property name="Name">
+<value>Tasp_A</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tni_A">
+<property name="Name">
+<value>Tni_A</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="WA">
+<property name="Name">
+<value>WA</value>
+</property>
+<property name="NumberConc">
+<value>6.78e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TWA">
+<property name="Name">
+<value>TWA</value>
+</property>
+<property name="NumberConc">
+<value>8.47e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tasp_WA">
+<property name="Name">
+<value>Tasp_WA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tni_WA">
+<property name="Name">
+<value>Tni_WA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="Name">
+<value>A</value>
+</property>
+<property name="NumberConc">
+<value>3e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ap">
+<property name="Name">
+<value>Ap</value>
+</property>
+<property name="NumberConc">
+<value>3.48e-08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="B">
+<property name="Name">
+<value>B</value>
+</property>
+<property name="NumberConc">
+<value>1.93e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bp">
+<property name="Name">
+<value>Bp</value>
+</property>
+<property name="NumberConc">
+<value>6.87e-08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Z">
+<property name="Name">
+<value>Z</value>
+</property>
+<property name="NumberConc">
+<value>2e-05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Y">
+<property name="Name">
+<value>Y</value>
+</property>
+<property name="NumberConc">
+<value>9.9e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Yp">
+<property name="Name">
+<value>Yp</value>
+</property>
+<property name="NumberConc">
+<value>7e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>M</value>
+</property>
+<property name="NumberConc">
+<value>6.24e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MYp">
+<property name="Name">
+<value>MYp</value>
+</property>
+<property name="NumberConc">
+<value>7.77e-10</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MYpYp">
+<property name="Name">
+<value>MYpYp</value>
+</property>
+<property name="NumberConc">
+<value>2.99e-10</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MYpYpYp">
+<property name="Name">
+<value>MYpYpYp</value>
+</property>
+<property name="NumberConc">
+<value>3.78e-10</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MYpYpYpYp">
+<property name="Name">
+<value>MYpYpYpYp</value>
+</property>
+<property name="NumberConc">
+<value>2.31e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_1">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="alpha">
+<property name="Name">
+<value>alpha</value>
+</property>
+<property name="Value">
+<value>0.14</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kappa">
+<property name="Name">
+<value>kappa</value>
+</property>
+<property name="Value">
+<value>2.25e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Name">
+<value>ka</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Bias">
+<property name="Name">
+<value>Bias</value>
+</property>
+<property name="Value">
+<value>0.701419432227</value>
+</property>
+</variable>
+<variable class="Variable" id="parameter_1">
+<property name="Name">
+<value>asp_pulse</value>
+</property>
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="parameter_2">
+<property name="Name">
+<value>autoPhospho</value>
+</property>
+<property name="Value">
+<value>4.7e-13</value>
+</property>
+</variable>
+<variable class="Variable" id="parameter_3">
+<property name="Name">
+<value>KmATP</value>
+</property>
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Bias">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Bias'</value>
+</property>
+<property name="Expression">
+<value>(M.NumberConc + MYp.NumberConc) / (M.NumberConc + MYp.NumberConc + MYpYp.NumberConc + MYpYpYp.NumberConc + MYpYpYpYp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bias</value>
+<value>Variable:/SBMLParameter:Bias</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>0</value>
+</value>
+<value>
+<value>MYp</value>
+<value>Variable:/cell:MYp</value>
+<value>0</value>
+</value>
+<value>
+<value>MYpYp</value>
+<value>Variable:/cell:MYpYp</value>
+<value>0</value>
+</value>
+<value>
+<value>MYpYpYp</value>
+<value>Variable:/cell:MYpYpYp</value>
+<value>0</value>
+</value>
+<value>
+<value>MYpYpYpYp</value>
+<value>Variable:/cell:MYpYpYpYp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_parameter_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'parameter_2'</value>
+</property>
+<property name="Expression">
+<value>species_1.NumberConc / (species_1.NumberConc + parameter_3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>parameter_2</value>
+<value>Variable:/SBMLParameter:parameter_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_1</value>
+<value>Variable:/cell:species_1</value>
+<value>0</value>
+</value>
+<value>
+<value>parameter_3</value>
+<value>Variable:/SBMLParameter:parameter_3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="event_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_1</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>asp</value>
+<value>parameter_1.NumberConc</value>
+</value>
+</property>
+<property name="Trigger">
+<value>geq(&lt;t&gt;, 5)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>1</value>
+</value>
+<value>
+<value>parameter_1</value>
+<value>Variable:/SBMLParameter:parameter_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="event_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_2</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>asp</value>
+<value>0</value>
+</value>
+</property>
+<property name="Trigger">
+<value>geq(&lt;t&gt;, 10)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>asp</value>
+<value>Variable:/cell:asp</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

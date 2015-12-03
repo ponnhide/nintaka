@@ -1,0 +1,1184 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="l_dopa_absorption">
+<property name="Name">
+<value>L_Dopa absorption from gut</value>
+</property>
+<property name="Expression">
+<value>ka_c.Value * A_dopa.NumberConc * F_c.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_dopa</value>
+<value>Variable:/gut:A_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>1</value>
+</value>
+<value>
+<value>ka_c</value>
+<value>Variable:/SBMLParameter:ka_c</value>
+<value>0</value>
+</value>
+<value>
+<value>F_c</value>
+<value>Variable:/SBMLParameter:F_c</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ka_c &lt;/ci&gt;#x0A    &lt;ci&gt; A_dopa &lt;/ci&gt;#x0A    &lt;ci&gt; F_c &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="l_dopa_blood_hepa_clearance">
+<property name="Name">
+<value>hepatic and blood L-Dopa clearance</value>
+</property>
+<property name="Expression">
+<value>ka_c.Value * A_dopa.NumberConc * (1 - F_c.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_dopa</value>
+<value>Variable:/gut:A_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>ka_c</value>
+<value>Variable:/SBMLParameter:ka_c</value>
+<value>0</value>
+</value>
+<value>
+<value>F_c</value>
+<value>Variable:/SBMLParameter:F_c</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ka_c &lt;/ci&gt;#x0A    &lt;ci&gt; A_dopa &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; F_c &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ro_04_5127_absorption">
+<property name="Name">
+<value>ro 04-5127 absorption from gut</value>
+</property>
+<property name="Expression">
+<value>ka_M.Value * A_M.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_M</value>
+<value>Variable:/gut:A_M</value>
+<value>-1</value>
+</value>
+<value>
+<value>C1_M</value>
+<value>Variable:/V1_M:C1_M</value>
+<value>1</value>
+</value>
+<value>
+<value>ka_M</value>
+<value>Variable:/SBMLParameter:ka_M</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ka_M &lt;/ci&gt;#x0A    &lt;ci&gt; A_M &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="benserazide_absorption">
+<property name="Name">
+<value>benserazide absorption from gut</value>
+</property>
+<property name="Expression">
+<value>ka_B.Value * A_B.NumberConc * F_B.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_B</value>
+<value>Variable:/gut:A_B</value>
+<value>-1</value>
+</value>
+<value>
+<value>C1_B</value>
+<value>Variable:/V1_B:C1_B</value>
+<value>1</value>
+</value>
+<value>
+<value>ka_B</value>
+<value>Variable:/SBMLParameter:ka_B</value>
+<value>0</value>
+</value>
+<value>
+<value>F_B</value>
+<value>Variable:/SBMLParameter:F_B</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ka_B &lt;/ci&gt;#x0A    &lt;ci&gt; A_B &lt;/ci&gt;#x0A    &lt;ci&gt; F_B &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="benserazide_gut_clearance">
+<property name="Name">
+<value>benserazide clearance from gut</value>
+</property>
+<property name="Expression">
+<value>ka_B.Value * A_B.NumberConc * (1 - F_B.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_B</value>
+<value>Variable:/gut:A_B</value>
+<value>-1</value>
+</value>
+<value>
+<value>ka_B</value>
+<value>Variable:/SBMLParameter:ka_B</value>
+<value>0</value>
+</value>
+<value>
+<value>F_B</value>
+<value>Variable:/SBMLParameter:F_B</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ka_B &lt;/ci&gt;#x0A    &lt;ci&gt; A_B &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; F_B &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AADC_clearance">
+<property name="Name">
+<value>L-Dopa clearance via AADC </value>
+</property>
+<property name="Expression">
+<value>CL_AADC.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_AADC &lt;/ci&gt;#x0A    &lt;ci&gt; C_dopa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="COMT_clearance">
+<property name="Name">
+<value>L-Dopa clearance via COMT</value>
+</property>
+<property name="Expression">
+<value>CL_COMT.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>C_OMD</value>
+<value>Variable:/V_3_OMD:C_OMD</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_COMT &lt;/ci&gt;#x0A    &lt;ci&gt; C_dopa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="rest_clearance">
+<property name="Name">
+<value>rest clearance of L-Dopa</value>
+</property>
+<property name="Expression">
+<value>CL_rest.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_rest &lt;/ci&gt;#x0A    &lt;ci&gt; C_dopa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="_3_OMD_clearance">
+<property name="Name">
+<value>3-OMD clearance</value>
+</property>
+<property name="Expression">
+<value>CL_OMD.Value * C_OMD.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_OMD</value>
+<value>Variable:/V_3_OMD:C_OMD</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_OMD</value>
+<value>Variable:/SBMLParameter:CL_OMD</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_OMD &lt;/ci&gt;#x0A    &lt;ci&gt; C_OMD &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="bens_clearance">
+<property name="Name">
+<value>benserazide clearance</value>
+</property>
+<property name="Expression">
+<value>CL_B.Value * C1_B.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C1_B</value>
+<value>Variable:/V1_B:C1_B</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_B</value>
+<value>Variable:/SBMLParameter:CL_B</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_B &lt;/ci&gt;#x0A    &lt;ci&gt; C1_B &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="bens_metabolism">
+<property name="Name">
+<value>benserazide metabolism to ro 04-5127</value>
+</property>
+<property name="Expression">
+<value>fm.Value / (1 - fm.Value) * CL_B.Value * C1_B.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C1_B</value>
+<value>Variable:/V1_B:C1_B</value>
+<value>-1</value>
+</value>
+<value>
+<value>C1_M</value>
+<value>Variable:/V1_M:C1_M</value>
+<value>1</value>
+</value>
+<value>
+<value>fm</value>
+<value>Variable:/SBMLParameter:fm</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_B</value>
+<value>Variable:/SBMLParameter:CL_B</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; fm &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; fm &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; CL_B &lt;/ci&gt;#x0A    &lt;ci&gt; C1_B &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ro_clearance">
+<property name="Name">
+<value>ro 04-5127 clearance</value>
+</property>
+<property name="Expression">
+<value>CL_M.Value * C1_M.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C1_M</value>
+<value>Variable:/V1_M:C1_M</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_M</value>
+<value>Variable:/SBMLParameter:CL_M</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_M &lt;/ci&gt;#x0A    &lt;ci&gt; C1_M &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="bens_distribution">
+<property name="Name">
+<value>benserazide distribution</value>
+</property>
+<property name="Expression">
+<value>CL_dB.Value * (C1_B.NumberConc - C2_B.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C1_B</value>
+<value>Variable:/V1_B:C1_B</value>
+<value>-1</value>
+</value>
+<value>
+<value>C2_B</value>
+<value>Variable:/V2_B:C2_B</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dB</value>
+<value>Variable:/SBMLParameter:CL_dB</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_dB &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; C1_B &lt;/ci&gt;#x0A      &lt;ci&gt; C2_B &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ro_distribution">
+<property name="Name">
+<value>ro 04-5127 distribution</value>
+</property>
+<property name="Expression">
+<value>CL_dM.Value * (C1_M.NumberConc - C2_M.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C1_M</value>
+<value>Variable:/V1_M:C1_M</value>
+<value>-1</value>
+</value>
+<value>
+<value>C2_M</value>
+<value>Variable:/V2_M:C2_M</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dM</value>
+<value>Variable:/SBMLParameter:CL_dM</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_dM &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; C1_M &lt;/ci&gt;#x0A      &lt;ci&gt; C2_M &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/gut">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="A_dopa">
+<property name="Value">
+<value>101.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A_B">
+<property name="Value">
+<value>18.135</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A_M">
+<property name="Value">
+<value>1.365</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Vdopa">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>V_L_Dopa</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.496</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_dopa">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V_3_OMD">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.128</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_OMD">
+<property name="Name">
+<value>C_3-OMD</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V1_B">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.202</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C1_B">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V2_B">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.127</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C2_B">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V1_M">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.0691</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C1_M">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V2_M">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>3.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C2_M">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="F_c">
+<property name="Value">
+<value>0.870785024155</value>
+</property>
+</variable>
+<variable class="Variable" id="F_H">
+<property name="Value">
+<value>0.870785024155</value>
+</property>
+</variable>
+<variable class="Variable" id="F_G">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_H">
+<property name="Value">
+<value>0.10699</value>
+</property>
+</variable>
+<variable class="Variable" id="Q">
+<property name="Value">
+<value>0.828</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_H">
+<property name="Value">
+<value>0.13</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dopa">
+<property name="Value">
+<value>0.823</value>
+</property>
+</variable>
+<variable class="Variable" id="f_rest">
+<property name="Value">
+<value>0.21</value>
+</property>
+</variable>
+<variable class="Variable" id="f_AADC">
+<property name="Value">
+<value>0.69</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_COMT">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_AADC">
+<property name="Value">
+<value>0.56787</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_rest">
+<property name="Value">
+<value>0.17283</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_COMT">
+<property name="Value">
+<value>0.0823</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_AADC0">
+<property name="Value">
+<value>0.56787</value>
+</property>
+</variable>
+<variable class="Variable" id="ki">
+<property name="Value">
+<value>0.00246</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dopa0">
+<property name="Value">
+<value>0.823</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka_c">
+<property name="Value">
+<value>1.29</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka_M">
+<property name="Name">
+<value>ka_m</value>
+</property>
+<property name="Value">
+<value>2.47</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka_B">
+<property name="Name">
+<value>ka_b</value>
+</property>
+<property name="Value">
+<value>0.94</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F_B">
+<property name="Value">
+<value>0.022</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_OMD">
+<property name="Name">
+<value>CL_3_OMD</value>
+</property>
+<property name="Value">
+<value>0.00895</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_B">
+<property name="Value">
+<value>1.67</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fm">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_M">
+<property name="Value">
+<value>4.29</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dB">
+<property name="Value">
+<value>0.072</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dM">
+<property name="Value">
+<value>1.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L_Dopa_per_kg_rat">
+<property name="Value">
+<value>404.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Benserazide_per_kg_rat">
+<property name="Value">
+<value>78.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rat_body_mass">
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="A_bens_tot">
+<property name="Value">
+<value>19.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="B_M_frac">
+<property name="Name">
+<value>Bens_Ro04-5127_fraction_gut</value>
+</property>
+<property name="Value">
+<value>0.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F_c">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F_c'</value>
+</property>
+<property name="Expression">
+<value>F_H.NumberConc * F_G.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; F_H &lt;/ci&gt;#x0A    &lt;ci&gt; F_G &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F_c</value>
+<value>Variable:/SBMLParameter:F_c</value>
+<value>1</value>
+</value>
+<value>
+<value>F_H</value>
+<value>Variable:/SBMLParameter:F_H</value>
+<value>0</value>
+</value>
+<value>
+<value>F_G</value>
+<value>Variable:/SBMLParameter:F_G</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F_H">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F_H'</value>
+</property>
+<property name="Expression">
+<value>1 - CL_H.NumberConc / Q.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; CL_H &lt;/ci&gt;#x0A      &lt;ci&gt; Q &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F_H</value>
+<value>Variable:/SBMLParameter:F_H</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_H</value>
+<value>Variable:/SBMLParameter:CL_H</value>
+<value>0</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/SBMLParameter:Q</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_H">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_H'</value>
+</property>
+<property name="Expression">
+<value>f_H.NumberConc * CL_dopa.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; f_H &lt;/ci&gt;#x0A    &lt;ci&gt; CL_dopa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_H</value>
+<value>Variable:/SBMLParameter:CL_H</value>
+<value>1</value>
+</value>
+<value>
+<value>f_H</value>
+<value>Variable:/SBMLParameter:f_H</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_dopa</value>
+<value>Variable:/SBMLParameter:CL_dopa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_dopa">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_dopa'</value>
+</property>
+<property name="Expression">
+<value>CL_AADC.NumberConc + CL_rest.NumberConc + CL_COMT.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; CL_AADC &lt;/ci&gt;#x0A    &lt;ci&gt; CL_rest &lt;/ci&gt;#x0A    &lt;ci&gt; CL_COMT &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_dopa</value>
+<value>Variable:/SBMLParameter:CL_dopa</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_f_rest">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'f_rest'</value>
+</property>
+<property name="Expression">
+<value>1 - (f_AADC.NumberConc + f_COMT.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; f_AADC &lt;/ci&gt;#x0A      &lt;ci&gt; f_COMT &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>f_rest</value>
+<value>Variable:/SBMLParameter:f_rest</value>
+<value>1</value>
+</value>
+<value>
+<value>f_AADC</value>
+<value>Variable:/SBMLParameter:f_AADC</value>
+<value>0</value>
+</value>
+<value>
+<value>f_COMT</value>
+<value>Variable:/SBMLParameter:f_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_AADC">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_AADC'</value>
+</property>
+<property name="Expression">
+<value>CL_AADC0.NumberConc / (1 + C1_M.NumberConc / ki.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; CL_AADC0 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; C1_M &lt;/ci&gt;#x0A        &lt;ci&gt; ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_AADC0</value>
+<value>Variable:/SBMLParameter:CL_AADC0</value>
+<value>0</value>
+</value>
+<value>
+<value>C1_M</value>
+<value>Variable:/V1_M:C1_M</value>
+<value>0</value>
+</value>
+<value>
+<value>ki</value>
+<value>Variable:/SBMLParameter:ki</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_rest">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_rest'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_rest.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_dopa0 &lt;/ci&gt;#x0A    &lt;ci&gt; f_rest &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_rest</value>
+<value>Variable:/SBMLParameter:f_rest</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_COMT">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_COMT'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_COMT.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_dopa0 &lt;/ci&gt;#x0A    &lt;ci&gt; f_COMT &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_COMT</value>
+<value>Variable:/SBMLParameter:f_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CL_AADC0">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_AADC0'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_AADC.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CL_dopa0 &lt;/ci&gt;#x0A    &lt;ci&gt; f_AADC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_AADC0</value>
+<value>Variable:/SBMLParameter:CL_AADC0</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_AADC</value>
+<value>Variable:/SBMLParameter:f_AADC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

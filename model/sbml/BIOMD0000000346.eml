@@ -1,0 +1,204 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>x</value>
+</property>
+<property name="NumberConc">
+<value>-1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y">
+<property name="Name">
+<value>y</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="a">
+<property name="Name">
+<value>a</value>
+</property>
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b">
+<property name="Name">
+<value>b</value>
+</property>
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c">
+<property name="Name">
+<value>c</value>
+</property>
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="z">
+<property name="Name">
+<value>z</value>
+</property>
+<property name="Value">
+<value>-0.4</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_x">
+<property name="Name">
+<value>Rate rule for 'x'</value>
+</property>
+<property name="Expression">
+<value>c.NumberConc * (x.NumberConc + -(pow(x.NumberConc, 3) / 3) + y.NumberConc + z.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; c &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; x &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; x &lt;/ci&gt;#x0A            &lt;cn&gt; 3 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 3 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; y &lt;/ci&gt;#x0A      &lt;ci&gt; z &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>1</value>
+</value>
+<value>
+<value>c</value>
+<value>Variable:/SBMLParameter:c</value>
+<value>0</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>0</value>
+</value>
+<value>
+<value>z</value>
+<value>Variable:/SBMLParameter:z</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_y">
+<property name="Name">
+<value>Rate rule for 'y'</value>
+</property>
+<property name="Expression">
+<value>-(1 / c.NumberConc) * (x.NumberConc + -a.NumberConc + b.NumberConc * y.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; c &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; x &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; a &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; b &lt;/ci&gt;#x0A        &lt;ci&gt; y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>1</value>
+</value>
+<value>
+<value>c</value>
+<value>Variable:/SBMLParameter:c</value>
+<value>0</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>0</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>0</value>
+</value>
+<value>
+<value>b</value>
+<value>Variable:/SBMLParameter:b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

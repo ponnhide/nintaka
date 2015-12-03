@@ -1,0 +1,2577 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_0000001">
+<property name="Name">
+<value>[R] + [HRG] &lt;-&gt; [RHRG];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k1.Value * R.NumberConc * HRG.NumberConc - k_1.Value * RHRG.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment_0000001:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>HRG</value>
+<value>Variable:/compartment_0000001:HRG</value>
+<value>-1</value>
+</value>
+<value>
+<value>RHRG</value>
+<value>Variable:/compartment_0000001:RHRG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k_1</value>
+<value>Variable:/SBMLParameter:k_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000002">
+<property name="Name">
+<value>2 x [RHRG] &lt;-&gt; [RHRG2];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k2.Value * pow(RHRG.NumberConc, 2) - k_2.Value * RHRG2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RHRG</value>
+<value>Variable:/compartment_0000001:RHRG</value>
+<value>-2</value>
+</value>
+<value>
+<value>RHRG2</value>
+<value>Variable:/compartment_0000001:RHRG2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>k_2</value>
+<value>Variable:/SBMLParameter:k_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000003">
+<property name="Name">
+<value>[RHRG2] &lt;-&gt; [RP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k3.Value * RHRG2.NumberConc - k_3.Value * RP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RHRG2</value>
+<value>Variable:/compartment_0000001:RHRG2</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k_3</value>
+<value>Variable:/SBMLParameter:k_3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000004">
+<property name="Name">
+<value>[RP] -&gt; [RHRG2];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * V4.Value * RP.NumberConc / (K4.Value + RP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RHRG2</value>
+<value>Variable:/compartment_0000001:RHRG2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V4</value>
+<value>Variable:/SBMLParameter:V4</value>
+<value>0</value>
+</value>
+<value>
+<value>K4</value>
+<value>Variable:/SBMLParameter:K4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000005">
+<property name="Name">
+<value>[RP] + [Shc] &lt;-&gt; [RShc];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k5.Value * RP.NumberConc * Shc.NumberConc - k_5.Value * RShc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Shc</value>
+<value>Variable:/compartment_0000001:Shc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShc</value>
+<value>Variable:/compartment_0000001:RShc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+<value>
+<value>k_5</value>
+<value>Variable:/SBMLParameter:k_5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000006">
+<property name="Name">
+<value>[RShc] &lt;-&gt; [RShP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k6.Value * RShc.NumberConc - k_6.Value * RShP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShc</value>
+<value>Variable:/compartment_0000001:RShc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShP</value>
+<value>Variable:/compartment_0000001:RShP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>k_6</value>
+<value>Variable:/SBMLParameter:k_6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000007">
+<property name="Name">
+<value>[RShP] + [GS] &lt;-&gt; [RShGS];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k7.Value * RShP.NumberConc * GS.NumberConc - k_7.Value * RShGS.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShP</value>
+<value>Variable:/compartment_0000001:RShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GS</value>
+<value>Variable:/compartment_0000001:GS</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment_0000001:RShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>k_7</value>
+<value>Variable:/SBMLParameter:k_7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000008">
+<property name="Name">
+<value>[RShGS] &lt;-&gt; [ShGS] + [RP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k8.Value * RShGS.NumberConc - k_8.Value * ShGS.NumberConc * RP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment_0000001:RShGS</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment_0000001:ShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>k_8</value>
+<value>Variable:/SBMLParameter:k_8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000009">
+<property name="Name">
+<value>[ShGS] &lt;-&gt; [GS] + [ShP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k9.Value * ShGS.NumberConc - k_9.Value * GS.NumberConc * ShP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment_0000001:ShGS</value>
+<value>-1</value>
+</value>
+<value>
+<value>GS</value>
+<value>Variable:/compartment_0000001:GS</value>
+<value>1</value>
+</value>
+<value>
+<value>ShP</value>
+<value>Variable:/compartment_0000001:ShP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+<value>
+<value>k_9</value>
+<value>Variable:/SBMLParameter:k_9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000010">
+<property name="Name">
+<value>[ShP] -&gt; [Shc];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * V10.Value * ShP.NumberConc / (K10.Value + ShP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShP</value>
+<value>Variable:/compartment_0000001:ShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Shc</value>
+<value>Variable:/compartment_0000001:Shc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V10</value>
+<value>Variable:/SBMLParameter:V10</value>
+<value>0</value>
+</value>
+<value>
+<value>K10</value>
+<value>Variable:/SBMLParameter:K10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000011">
+<property name="Name">
+<value>[RasGDP] -&gt; [RasGTP]; { ShGS };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k11.Value * ShGS.NumberConc * RasGDP.NumberConc / (K11.Value + RasGDP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RasGDP</value>
+<value>Variable:/compartment_0000001:RasGDP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RasGTP</value>
+<value>Variable:/compartment_0000001:RasGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment_0000001:ShGS</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>K11</value>
+<value>Variable:/SBMLParameter:K11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000012">
+<property name="Name">
+<value>[RasGTP] -&gt; [RasGDP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (V12.Value * RasGTP.NumberConc / (K12.Value + RasGTP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RasGTP</value>
+<value>Variable:/compartment_0000001:RasGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RasGDP</value>
+<value>Variable:/compartment_0000001:RasGDP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V12</value>
+<value>Variable:/SBMLParameter:V12</value>
+<value>0</value>
+</value>
+<value>
+<value>K12</value>
+<value>Variable:/SBMLParameter:K12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000013">
+<property name="Name">
+<value>[Raf] -&gt; [Rafstar]; { RasGTP };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k13.Value * RasGTP.NumberConc * Raf.NumberConc / (K13.Value + Raf.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Raf</value>
+<value>Variable:/compartment_0000001:Raf</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rafstar</value>
+<value>Variable:/compartment_0000001:Rafstar</value>
+<value>1</value>
+</value>
+<value>
+<value>RasGTP</value>
+<value>Variable:/compartment_0000001:RasGTP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+<value>
+<value>K13</value>
+<value>Variable:/SBMLParameter:K13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000014">
+<property name="Name">
+<value>[Rafstar] -&gt; [Raf]; { AktPIPP, E };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k14.Value * (AktPIPP.NumberConc + E.NumberConc) * Rafstar.NumberConc / (K14.Value + Rafstar.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rafstar</value>
+<value>Variable:/compartment_0000001:Rafstar</value>
+<value>-1</value>
+</value>
+<value>
+<value>Raf</value>
+<value>Variable:/compartment_0000001:Raf</value>
+<value>1</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/compartment_0000001:E</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+<value>
+<value>K14</value>
+<value>Variable:/SBMLParameter:K14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000015">
+<property name="Name">
+<value>[MEK] -&gt; [MEKP]; { Rafstar };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k15.Value * Rafstar.NumberConc * MEK.NumberConc / (K15.Value * (1 + MEKP.NumberConc / K17.Value) + MEK.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEK</value>
+<value>Variable:/compartment_0000001:MEK</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>1</value>
+</value>
+<value>
+<value>Rafstar</value>
+<value>Variable:/compartment_0000001:Rafstar</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k15</value>
+<value>Variable:/SBMLParameter:k15</value>
+<value>0</value>
+</value>
+<value>
+<value>K15</value>
+<value>Variable:/SBMLParameter:K15</value>
+<value>0</value>
+</value>
+<value>
+<value>K17</value>
+<value>Variable:/SBMLParameter:K17</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000016">
+<property name="Name">
+<value>[MEKP] -&gt; [MEK]; { MEKPP, AktPIP, AktPIPP, PP2A };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k16.Value * PP2A.NumberConc * MEKP.NumberConc / (K16.Value * (1 + MEKPP.NumberConc / K18.Value + AktPIP.NumberConc / K31.Value + AktPIPP.NumberConc / K33.Value) + MEKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEK</value>
+<value>Variable:/compartment_0000001:MEK</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>0</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>0</value>
+</value>
+<value>
+<value>PP2A</value>
+<value>Variable:/compartment_0000001:PP2A</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+<value>
+<value>K16</value>
+<value>Variable:/SBMLParameter:K16</value>
+<value>0</value>
+</value>
+<value>
+<value>K18</value>
+<value>Variable:/SBMLParameter:K18</value>
+<value>0</value>
+</value>
+<value>
+<value>K31</value>
+<value>Variable:/SBMLParameter:K31</value>
+<value>0</value>
+</value>
+<value>
+<value>K33</value>
+<value>Variable:/SBMLParameter:K33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000017">
+<property name="Name">
+<value>[MEKP] -&gt; [MEKPP]; { MEK, Rafstar };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k17.Value * Rafstar.NumberConc * MEKP.NumberConc / (K17.Value * (1 + MEK.NumberConc / K15.Value) + MEKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>1</value>
+</value>
+<value>
+<value>MEK</value>
+<value>Variable:/compartment_0000001:MEK</value>
+<value>0</value>
+</value>
+<value>
+<value>Rafstar</value>
+<value>Variable:/compartment_0000001:Rafstar</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+<value>
+<value>K17</value>
+<value>Variable:/SBMLParameter:K17</value>
+<value>0</value>
+</value>
+<value>
+<value>K15</value>
+<value>Variable:/SBMLParameter:K15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000018">
+<property name="Name">
+<value>[MEKPP] -&gt; [MEKP]; { AktPIP, AktPIPP, PP2A };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k18.Value * PP2A.NumberConc * MEKPP.NumberConc / (K18.Value * (1 + MEKP.NumberConc / K16.Value + AktPIPP.NumberConc / K31.Value + AktPIPP.NumberConc / K33.Value) + MEKPP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>1</value>
+</value>
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>0</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>0</value>
+</value>
+<value>
+<value>PP2A</value>
+<value>Variable:/compartment_0000001:PP2A</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k18</value>
+<value>Variable:/SBMLParameter:k18</value>
+<value>0</value>
+</value>
+<value>
+<value>K18</value>
+<value>Variable:/SBMLParameter:K18</value>
+<value>0</value>
+</value>
+<value>
+<value>K16</value>
+<value>Variable:/SBMLParameter:K16</value>
+<value>0</value>
+</value>
+<value>
+<value>K31</value>
+<value>Variable:/SBMLParameter:K31</value>
+<value>0</value>
+</value>
+<value>
+<value>K33</value>
+<value>Variable:/SBMLParameter:K33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000019">
+<property name="Name">
+<value>[ERK] -&gt; [ERKP]; { MEKPP };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k19.Value * MEKPP.NumberConc * ERK.NumberConc / (K19.Value * (1 + ERKP.NumberConc / K21.Value) + ERK.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK</value>
+<value>Variable:/compartment_0000001:ERK</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKP</value>
+<value>Variable:/compartment_0000001:ERKP</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+<value>
+<value>K19</value>
+<value>Variable:/SBMLParameter:K19</value>
+<value>0</value>
+</value>
+<value>
+<value>K21</value>
+<value>Variable:/SBMLParameter:K21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000020">
+<property name="Name">
+<value>[ERKP] -&gt; [ERK]; { ERKPP, MKP3 };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k20.Value * MKP3.NumberConc * ERKP.NumberConc / (K20.Value * (1 + ERKPP.NumberConc / K22.Value) + ERKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKP</value>
+<value>Variable:/compartment_0000001:ERKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERK</value>
+<value>Variable:/compartment_0000001:ERK</value>
+<value>1</value>
+</value>
+<value>
+<value>ERKPP</value>
+<value>Variable:/compartment_0000001:ERKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>MKP3</value>
+<value>Variable:/compartment_0000001:MKP3</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k20</value>
+<value>Variable:/SBMLParameter:k20</value>
+<value>0</value>
+</value>
+<value>
+<value>K20</value>
+<value>Variable:/SBMLParameter:K20</value>
+<value>0</value>
+</value>
+<value>
+<value>K22</value>
+<value>Variable:/SBMLParameter:K22</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000021">
+<property name="Name">
+<value>[ERKP] -&gt; [ERKPP]; { MEKPP, ERK };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k21.Value * MEKPP.NumberConc * ERKP.NumberConc / (K21.Value * (1 + ERK.NumberConc / K19.Value) + ERKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKP</value>
+<value>Variable:/compartment_0000001:ERKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKPP</value>
+<value>Variable:/compartment_0000001:ERKPP</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>ERK</value>
+<value>Variable:/compartment_0000001:ERK</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k21</value>
+<value>Variable:/SBMLParameter:k21</value>
+<value>0</value>
+</value>
+<value>
+<value>K21</value>
+<value>Variable:/SBMLParameter:K21</value>
+<value>0</value>
+</value>
+<value>
+<value>K19</value>
+<value>Variable:/SBMLParameter:K19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000022">
+<property name="Name">
+<value>[ERKPP] -&gt; [ERKP]; { MKP3 };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k22.Value * MKP3.NumberConc * ERKPP.NumberConc / (K22.Value * (1 + ERKP.NumberConc / K20.Value) + ERKPP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKPP</value>
+<value>Variable:/compartment_0000001:ERKPP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKP</value>
+<value>Variable:/compartment_0000001:ERKP</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP3</value>
+<value>Variable:/compartment_0000001:MKP3</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k22</value>
+<value>Variable:/SBMLParameter:k22</value>
+<value>0</value>
+</value>
+<value>
+<value>K22</value>
+<value>Variable:/SBMLParameter:K22</value>
+<value>0</value>
+</value>
+<value>
+<value>K20</value>
+<value>Variable:/SBMLParameter:K20</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000023">
+<property name="Name">
+<value>[RP] + [PI3K] &lt;-&gt; [RPI3K];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k23.Value * RP.NumberConc * PI3K.NumberConc - k_23.Value * RPI3K.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PI3K</value>
+<value>Variable:/compartment_0000001:PI3K</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPI3K</value>
+<value>Variable:/compartment_0000001:RPI3K</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k23</value>
+<value>Variable:/SBMLParameter:k23</value>
+<value>0</value>
+</value>
+<value>
+<value>k_23</value>
+<value>Variable:/SBMLParameter:k_23</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000024">
+<property name="Name">
+<value>[RPI3K] &lt;-&gt; [RPI3Kstar];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k24.Value * RPI3K.NumberConc - k_24.Value * RPI3Kstar.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RPI3K</value>
+<value>Variable:/compartment_0000001:RPI3K</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPI3Kstar</value>
+<value>Variable:/compartment_0000001:RPI3Kstar</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k24</value>
+<value>Variable:/SBMLParameter:k24</value>
+<value>0</value>
+</value>
+<value>
+<value>k_24</value>
+<value>Variable:/SBMLParameter:k_24</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000025">
+<property name="Name">
+<value>[RPI3Kstar] &lt;-&gt; [RP] + [PI3Kstar];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k25.Value * RPI3Kstar.NumberConc - k_25.Value * RP.NumberConc * PI3Kstar.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RPI3Kstar</value>
+<value>Variable:/compartment_0000001:RPI3Kstar</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>PI3Kstar</value>
+<value>Variable:/compartment_0000001:PI3Kstar</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+<value>
+<value>k_25</value>
+<value>Variable:/SBMLParameter:k_25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000026">
+<property name="Name">
+<value>[PI3Kstar] -&gt; [PI3K];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * V26.Value * PI3Kstar.NumberConc / (K26.Value + PI3Kstar.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PI3Kstar</value>
+<value>Variable:/compartment_0000001:PI3Kstar</value>
+<value>-1</value>
+</value>
+<value>
+<value>PI3K</value>
+<value>Variable:/compartment_0000001:PI3K</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V26</value>
+<value>Variable:/SBMLParameter:V26</value>
+<value>0</value>
+</value>
+<value>
+<value>K26</value>
+<value>Variable:/SBMLParameter:K26</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000029">
+<property name="Name">
+<value>[PIP3] + [Akt] &lt;-&gt; [AktPIP3];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k29.Value * PIP3.NumberConc * Akt.NumberConc - k_29.Value * AktPIP3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PIP3</value>
+<value>Variable:/compartment_0000001:PIP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/compartment_0000001:Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>AktPIP3</value>
+<value>Variable:/compartment_0000001:AktPIP3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k29</value>
+<value>Variable:/SBMLParameter:k29</value>
+<value>0</value>
+</value>
+<value>
+<value>k_29</value>
+<value>Variable:/SBMLParameter:k_29</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000028">
+<property name="Name">
+<value>[PIP3] -&gt; [P_I];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (V28.Value * PIP3.NumberConc / (K28.Value + PIP3.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PIP3</value>
+<value>Variable:/compartment_0000001:PIP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>P_I</value>
+<value>Variable:/compartment_0000001:P_I</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V28</value>
+<value>Variable:/SBMLParameter:V28</value>
+<value>0</value>
+</value>
+<value>
+<value>K28</value>
+<value>Variable:/SBMLParameter:K28</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000027">
+<property name="Name">
+<value>[P_I] -&gt; [PIP3]; { PI3Kstar };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k27.Value * PI3Kstar.NumberConc * P_I.NumberConc / (K27.Value + P_I.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P_I</value>
+<value>Variable:/compartment_0000001:P_I</value>
+<value>-1</value>
+</value>
+<value>
+<value>PIP3</value>
+<value>Variable:/compartment_0000001:PIP3</value>
+<value>1</value>
+</value>
+<value>
+<value>PI3Kstar</value>
+<value>Variable:/compartment_0000001:PI3Kstar</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k27</value>
+<value>Variable:/SBMLParameter:k27</value>
+<value>0</value>
+</value>
+<value>
+<value>K27</value>
+<value>Variable:/SBMLParameter:K27</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000030">
+<property name="Name">
+<value>[AktPIP3] -&gt; [AktPIP];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * V30.Value * AktPIP3.NumberConc / (K30.Value * (1 + AktPIP.NumberConc / K32.Value) + AktPIP3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AktPIP3</value>
+<value>Variable:/compartment_0000001:AktPIP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V30</value>
+<value>Variable:/SBMLParameter:V30</value>
+<value>0</value>
+</value>
+<value>
+<value>K30</value>
+<value>Variable:/SBMLParameter:K30</value>
+<value>0</value>
+</value>
+<value>
+<value>K32</value>
+<value>Variable:/SBMLParameter:K32</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000031">
+<property name="Name">
+<value>[AktPIP] -&gt; [AktPIP3]; { MEKP, MEKPP, AktPIPP, PP2A };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k31.Value * PP2A.NumberConc * AktPIP.NumberConc / (K31.Value * (1 + MEKP.NumberConc / K16.Value + MEKPP.NumberConc / K18.Value + AktPIPP.NumberConc / K33.Value) + AktPIP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AktPIP3</value>
+<value>Variable:/compartment_0000001:AktPIP3</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>0</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>0</value>
+</value>
+<value>
+<value>PP2A</value>
+<value>Variable:/compartment_0000001:PP2A</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k31</value>
+<value>Variable:/SBMLParameter:k31</value>
+<value>0</value>
+</value>
+<value>
+<value>K31</value>
+<value>Variable:/SBMLParameter:K31</value>
+<value>0</value>
+</value>
+<value>
+<value>K16</value>
+<value>Variable:/SBMLParameter:K16</value>
+<value>0</value>
+</value>
+<value>
+<value>K18</value>
+<value>Variable:/SBMLParameter:K18</value>
+<value>0</value>
+</value>
+<value>
+<value>K33</value>
+<value>Variable:/SBMLParameter:K33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000032">
+<property name="Name">
+<value>[AktPIP] -&gt; [AktPIPP]; { AktPIP3 };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * V32.Value * AktPIP.NumberConc / (K32.Value * (1 + AktPIP3.NumberConc / K30.Value) + AktPIP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>1</value>
+</value>
+<value>
+<value>AktPIP3</value>
+<value>Variable:/compartment_0000001:AktPIP3</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V32</value>
+<value>Variable:/SBMLParameter:V32</value>
+<value>0</value>
+</value>
+<value>
+<value>K32</value>
+<value>Variable:/SBMLParameter:K32</value>
+<value>0</value>
+</value>
+<value>
+<value>K30</value>
+<value>Variable:/SBMLParameter:K30</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000033">
+<property name="Name">
+<value>[AktPIPP] -&gt; [AktPIP]; { MEKP, MEKPP, PP2A };</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * k33.Value * PP2A.NumberConc * AktPIPP.NumberConc / (K33.Value * (1 + MEKP.NumberConc / K16.Value + MEKPP.NumberConc / K18.Value + AktPIP.NumberConc / K31.Value) + AktPIPP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AktPIP</value>
+<value>Variable:/compartment_0000001:AktPIP</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKP</value>
+<value>Variable:/compartment_0000001:MEKP</value>
+<value>0</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+<value>
+<value>PP2A</value>
+<value>Variable:/compartment_0000001:PP2A</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k33</value>
+<value>Variable:/SBMLParameter:k33</value>
+<value>0</value>
+</value>
+<value>
+<value>K33</value>
+<value>Variable:/SBMLParameter:K33</value>
+<value>0</value>
+</value>
+<value>
+<value>K16</value>
+<value>Variable:/SBMLParameter:K16</value>
+<value>0</value>
+</value>
+<value>
+<value>K18</value>
+<value>Variable:/SBMLParameter:K18</value>
+<value>0</value>
+</value>
+<value>
+<value>K31</value>
+<value>Variable:/SBMLParameter:K31</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000034">
+<property name="Name">
+<value>[RP] &lt;-&gt; [internalization];</value>
+</property>
+<property name="Expression">
+<value>compartment_0000001.Value * (k34.Value * RP.NumberConc - k_34.Value * internalization.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>internalization</value>
+<value>Variable:/compartment_0000001:internalization</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000001</value>
+<value>Variable:/compartment_0000001:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k34</value>
+<value>Variable:/SBMLParameter:k34</value>
+<value>0</value>
+</value>
+<value>
+<value>k_34</value>
+<value>Variable:/SBMLParameter:k_34</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_0000001">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Akt">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AktPIP3">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AktPIP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AktPIPP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK">
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKPP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GS">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HRG">
+<property name="NumberConc">
+<value>330.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEK">
+<property name="NumberConc">
+<value>120.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKPP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PI3K">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PI3Kstar">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP3">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="NumberConc">
+<value>80.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RHRG">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RHRG2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPI3K">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPI3Kstar">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShGS">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShc">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Raf">
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rafstar">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RasGDP">
+<property name="NumberConc">
+<value>120.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RasGTP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShGS">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Shc">
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P_I">
+<property name="NumberConc">
+<value>800.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="internalization">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="NumberConc">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MKP3">
+<property name="NumberConc">
+<value>2.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PP2A">
+<property name="NumberConc">
+<value>11.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>0.0012</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Value">
+<value>2040.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Value">
+<value>40.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V10">
+<property name="Value">
+<value>0.0154</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Value">
+<value>0.222</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V12">
+<property name="Value">
+<value>0.289</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Value">
+<value>1.53</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Value">
+<value>0.00673</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15">
+<property name="Value">
+<value>3.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Value">
+<value>0.058</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Value">
+<value>2.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k20">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18">
+<property name="Value">
+<value>0.058</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Value">
+<value>9.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k21">
+<property name="Value">
+<value>16.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k22">
+<property name="Value">
+<value>0.27</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k23">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k24">
+<property name="Value">
+<value>9.85</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k25">
+<property name="Value">
+<value>45.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k27">
+<property name="Value">
+<value>16.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V26">
+<property name="Value">
+<value>2620.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V28">
+<property name="Value">
+<value>17000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k29">
+<property name="Value">
+<value>507.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V30">
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k31">
+<property name="Value">
+<value>0.107</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V32">
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k33">
+<property name="Value">
+<value>0.211</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k34">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_1">
+<property name="Value">
+<value>0.00076</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_2">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_3">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K4">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_5">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_6">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_7">
+<property name="Value">
+<value>546.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_8">
+<property name="Value">
+<value>15700.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_9">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K10">
+<property name="Value">
+<value>340.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K11">
+<property name="Value">
+<value>0.181</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K12">
+<property name="Value">
+<value>0.0571</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K13">
+<property name="Value">
+<value>11.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K14">
+<property name="Value">
+<value>8.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K15">
+<property name="Value">
+<value>317.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K18">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K19">
+<property name="Value">
+<value>146000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K20">
+<property name="Value">
+<value>160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K21">
+<property name="Value">
+<value>146000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K22">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_23">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_24">
+<property name="Value">
+<value>0.0985</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_25">
+<property name="Value">
+<value>0.047</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K26">
+<property name="Value">
+<value>3680.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K27">
+<property name="Value">
+<value>39.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K28">
+<property name="Value">
+<value>9.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K30">
+<property name="Value">
+<value>80000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K31">
+<property name="Value">
+<value>4.35</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K32">
+<property name="Value">
+<value>80000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K33">
+<property name="Value">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_34">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V4">
+<property name="Value">
+<value>62.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K17">
+<property name="Value">
+<value>317.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K16">
+<property name="Value">
+<value>2200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_29">
+<property name="Value">
+<value>234.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RP_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="AktPP_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKPP_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKPP_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rafstar_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShP_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="PI3Kstar_percent">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_RP_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'RP_percent'</value>
+</property>
+<property name="Expression">
+<value>(RP.NumberConc + RPI3K.NumberConc + RPI3Kstar.NumberConc + RShGS.NumberConc + RShP.NumberConc + RShc.NumberConc) * 200 / 80</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP_percent</value>
+<value>Variable:/SBMLParameter:RP_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment_0000001:RP</value>
+<value>0</value>
+</value>
+<value>
+<value>RPI3K</value>
+<value>Variable:/compartment_0000001:RPI3K</value>
+<value>0</value>
+</value>
+<value>
+<value>RPI3Kstar</value>
+<value>Variable:/compartment_0000001:RPI3Kstar</value>
+<value>0</value>
+</value>
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment_0000001:RShGS</value>
+<value>0</value>
+</value>
+<value>
+<value>RShP</value>
+<value>Variable:/compartment_0000001:RShP</value>
+<value>0</value>
+</value>
+<value>
+<value>RShc</value>
+<value>Variable:/compartment_0000001:RShc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_ERKPP_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ERKPP_percent'</value>
+</property>
+<property name="Expression">
+<value>ERKPP.NumberConc * 100 / 1000</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKPP_percent</value>
+<value>Variable:/SBMLParameter:ERKPP_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>ERKPP</value>
+<value>Variable:/compartment_0000001:ERKPP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_AktPP_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'AktPP_percent'</value>
+</property>
+<property name="Expression">
+<value>AktPIPP.NumberConc * 100 / 10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AktPP_percent</value>
+<value>Variable:/SBMLParameter:AktPP_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>AktPIPP</value>
+<value>Variable:/compartment_0000001:AktPIPP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_MEKPP_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'MEKPP_percent'</value>
+</property>
+<property name="Expression">
+<value>MEKPP.NumberConc * 100 / 120</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKPP_percent</value>
+<value>Variable:/SBMLParameter:MEKPP_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPP</value>
+<value>Variable:/compartment_0000001:MEKPP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_ShP_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ShP_percent'</value>
+</property>
+<property name="Expression">
+<value>ShP.NumberConc * 100 / 1000</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShP_percent</value>
+<value>Variable:/SBMLParameter:ShP_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>ShP</value>
+<value>Variable:/compartment_0000001:ShP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_PI3Kstar_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'PI3Kstar_percent'</value>
+</property>
+<property name="Expression">
+<value>PI3Kstar.NumberConc * 100 / 10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PI3Kstar_percent</value>
+<value>Variable:/SBMLParameter:PI3Kstar_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>PI3Kstar</value>
+<value>Variable:/compartment_0000001:PI3Kstar</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Rafstar_percent">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rafstar_percent'</value>
+</property>
+<property name="Expression">
+<value>Rafstar.NumberConc * 100 / 100</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rafstar_percent</value>
+<value>Variable:/SBMLParameter:Rafstar_percent</value>
+<value>1</value>
+</value>
+<value>
+<value>Rafstar</value>
+<value>Variable:/compartment_0000001:Rafstar</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

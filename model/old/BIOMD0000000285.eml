@@ -1,0 +1,3142 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="polyQSynthesis">
+<property name="Name">
+<value>[Source] -&gt; [PolyQ];</value>
+</property>
+<property name="Expression">
+<value>ksynPolyQ.Value * Source.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cytosol:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynPolyQ</value>
+<value>Variable:/SBMLParameter:ksynPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="polyqProteasomeBinding">
+<property name="Name">
+<value>[PolyQ] + [Proteasome] -&gt; [PolyQ_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kbinPolyQ.Value * PolyQ.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ_Proteasome</value>
+<value>Variable:/cytosol:PolyQ_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinPolyQ</value>
+<value>Variable:/SBMLParameter:kbinPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="polyqProteasomeRelease">
+<property name="Name">
+<value>[PolyQ_Proteasome] -&gt; [PolyQ] + [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>krelPolyQ.Value * PolyQ_Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ_Proteasome</value>
+<value>Variable:/cytosol:PolyQ_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>krelPolyQ</value>
+<value>Variable:/SBMLParameter:krelPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDegradation">
+<property name="Name">
+<value>[PolyQ_Proteasome] -&gt; [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kdegPolyQ.Value * PolyQ_Proteasome.NumberConc * kalive.Value * kproteff.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ_Proteasome</value>
+<value>Variable:/cytosol:PolyQ_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kdegPolyQ</value>
+<value>Variable:/SBMLParameter:kdegPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuSynthesis">
+<property name="Name">
+<value>[Source] -&gt; [mRFPu];</value>
+</property>
+<property name="Expression">
+<value>ksynmRFPu.Value * Source.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cytosol:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>mRFPu</value>
+<value>Variable:/cytosol:mRFPu</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynmRFPu</value>
+<value>Variable:/SBMLParameter:ksynmRFPu</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuProteasomeBinding">
+<property name="Name">
+<value>[mRFPu] + [Proteasome] -&gt; [mRFPu_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kbinmRFPu.Value * mRFPu.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRFPu</value>
+<value>Variable:/cytosol:mRFPu</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>mRFPu_Proteasome</value>
+<value>Variable:/cytosol:mRFPu_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinmRFPu</value>
+<value>Variable:/SBMLParameter:kbinmRFPu</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuProteasomeRelease">
+<property name="Name">
+<value>[mRFPu_Proteasome] -&gt; [mRFPu] + [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>krelmRFPu.Value * mRFPu_Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRFPu_Proteasome</value>
+<value>Variable:/cytosol:mRFPu_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>mRFPu</value>
+<value>Variable:/cytosol:mRFPu</value>
+<value>1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>krelmRFPu</value>
+<value>Variable:/SBMLParameter:krelmRFPu</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuDegradation">
+<property name="Name">
+<value>[mRFPu_Proteasome] -&gt; [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kdegmRFPu.Value * mRFPu_Proteasome.NumberConc * kalive.Value * kproteff.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRFPu_Proteasome</value>
+<value>Variable:/cytosol:mRFPu_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kdegmRFPu</value>
+<value>Variable:/SBMLParameter:kdegmRFPu</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQAggregation1">
+<property name="Name">
+<value>2 x [PolyQ] + [ROS] -&gt; [AggPolyQ1] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * (PolyQ.NumberConc - 1) * 0.5 * (pow(ROS.NumberConc, 2) / (pow(10, 2) + pow(ROS.NumberConc, 2))) * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-2</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQAggregation2">
+<property name="Name">
+<value>[PolyQ] + [AggPolyQ1] + [ROS] -&gt; [AggPolyQ2] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * AggPolyQ1.NumberConc * (pow(ROS.NumberConc, 2) / (pow(10, 2) + pow(ROS.NumberConc, 2))) * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQAggregation3">
+<property name="Name">
+<value>[PolyQ] + [AggPolyQ2] + [ROS] -&gt; [AggPolyQ3] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * AggPolyQ2.NumberConc * (pow(ROS.NumberConc, 2) / (pow(10, 2) + pow(ROS.NumberConc, 2))) * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQAggregation4">
+<property name="Name">
+<value>[PolyQ] + [AggPolyQ3] + [ROS] -&gt; [AggPolyQ4] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * AggPolyQ3.NumberConc * (pow(ROS.NumberConc, 2) / (pow(10, 2) + pow(ROS.NumberConc, 2))) * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQAggregation5">
+<property name="Name">
+<value>[PolyQ] + [AggPolyQ4] + [ROS] -&gt; [AggPolyQ5] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * AggPolyQ4.NumberConc * (pow(ROS.NumberConc, 2) / (pow(10, 2) + pow(ROS.NumberConc, 2))) * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDisaggregation5">
+<property name="Name">
+<value>[AggPolyQ5] -&gt; [PolyQ] + [AggPolyQ4];</value>
+</property>
+<property name="Expression">
+<value>kdisaggPolyQ5.Value * AggPolyQ5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggPolyQ5</value>
+<value>Variable:/SBMLParameter:kdisaggPolyQ5</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDisaggregation4">
+<property name="Name">
+<value>[AggPolyQ4] -&gt; [PolyQ] + [AggPolyQ3];</value>
+</property>
+<property name="Expression">
+<value>kdisaggPolyQ4.Value * AggPolyQ4.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggPolyQ4</value>
+<value>Variable:/SBMLParameter:kdisaggPolyQ4</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDisaggregation3">
+<property name="Name">
+<value>[AggPolyQ3] -&gt; [PolyQ] + [AggPolyQ2];</value>
+</property>
+<property name="Expression">
+<value>kdisaggPolyQ3.Value * AggPolyQ3.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggPolyQ3</value>
+<value>Variable:/SBMLParameter:kdisaggPolyQ3</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDisaggregation2">
+<property name="Name">
+<value>[AggPolyQ2] -&gt; [PolyQ] + [AggPolyQ1];</value>
+</property>
+<property name="Expression">
+<value>kdisaggPolyQ2.Value * AggPolyQ2.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>1</value>
+</value>
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggPolyQ2</value>
+<value>Variable:/SBMLParameter:kdisaggPolyQ2</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQDisaggregation1">
+<property name="Name">
+<value>[AggPolyQ1] -&gt; 2 x [PolyQ];</value>
+</property>
+<property name="Expression">
+<value>kdisaggPolyQ1.Value * AggPolyQ1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>-1</value>
+</value>
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>2</value>
+</value>
+<value>
+<value>kdisaggPolyQ1</value>
+<value>Variable:/SBMLParameter:kdisaggPolyQ1</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQInclusionFormation">
+<property name="Name">
+<value>[PolyQ] + [AggPolyQ5] -&gt; 7 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kaggPolyQ.Value * PolyQ.NumberConc * AggPolyQ5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>7</value>
+</value>
+<value>
+<value>kaggPolyQ</value>
+<value>Variable:/SBMLParameter:kaggPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQInclusionGrowth">
+<property name="Name">
+<value>[PolyQ] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqPolyQ.Value * PolyQ.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ</value>
+<value>Variable:/cytosol:PolyQ</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqPolyQ</value>
+<value>Variable:/SBMLParameter:kseqPolyQ</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibition1">
+<property name="Name">
+<value>[AggPolyQ1] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggPolyQ1.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibition2">
+<property name="Name">
+<value>[AggPolyQ2] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggPolyQ2.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibition3">
+<property name="Name">
+<value>[AggPolyQ3] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggPolyQ3.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibition4">
+<property name="Name">
+<value>[AggPolyQ4] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggPolyQ4.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibition5">
+<property name="Name">
+<value>[AggPolyQ5] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggPolyQ5.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuProteasomeSequestering">
+<property name="Name">
+<value>[mRFPu_Proteasome] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqmRFPuProt.Value * mRFPu_Proteasome.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRFPu_Proteasome</value>
+<value>Variable:/cytosol:mRFPu_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqmRFPuProt</value>
+<value>Variable:/SBMLParameter:kseqmRFPuProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRFPuSequestering">
+<property name="Name">
+<value>[mRFPu] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqmRFPu.Value * mRFPu.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRFPu</value>
+<value>Variable:/cytosol:mRFPu</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqmRFPu</value>
+<value>Variable:/SBMLParameter:kseqmRFPu</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationBasal">
+<property name="Name">
+<value>[Source] -&gt; [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROS.Value * Source.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cytosol:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROS</value>
+<value>Variable:/SBMLParameter:kgenROS</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggPolyQ1">
+<property name="Name">
+<value>[AggPolyQ1] -&gt; [AggPolyQ1] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggPolyQ1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggPolyQ2">
+<property name="Name">
+<value>[AggPolyQ2] -&gt; [AggPolyQ2] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggPolyQ2.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggPolyQ3">
+<property name="Name">
+<value>[AggPolyQ3] -&gt; [AggPolyQ3] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggPolyQ3.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggPolyQ4">
+<property name="Name">
+<value>[AggPolyQ4] -&gt; [AggPolyQ4] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggPolyQ4.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggPolyQ5">
+<property name="Name">
+<value>[AggPolyQ5] -&gt; [AggPolyQ5] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggPolyQ5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationAggPProteasome">
+<property name="Name">
+<value>[AggP_Proteasome] -&gt; [AggP_Proteasome] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP_Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSremoval">
+<property name="Name">
+<value>[ROS] -&gt; [Sink];</value>
+</property>
+<property name="Expression">
+<value>kremROS.Value * ROS.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cytosol:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kremROS</value>
+<value>Variable:/SBMLParameter:kremROS</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p38activation">
+<property name="Name">
+<value>[ROS] + [p38] -&gt; [ROS] + [p38_P];</value>
+</property>
+<property name="Expression">
+<value>kactp38.Value * ROS.NumberConc * p38.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>p38</value>
+<value>Variable:/cytosol:p38</value>
+<value>-1</value>
+</value>
+<value>
+<value>p38_P</value>
+<value>Variable:/cytosol:p38_P</value>
+<value>1</value>
+</value>
+<value>
+<value>kactp38</value>
+<value>Variable:/SBMLParameter:kactp38</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p38inactivation">
+<property name="Name">
+<value>[p38_P] -&gt; [p38];</value>
+</property>
+<property name="Expression">
+<value>kinactp38.Value * p38_P.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p38_P</value>
+<value>Variable:/cytosol:p38_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>p38</value>
+<value>Variable:/cytosol:p38</value>
+<value>1</value>
+</value>
+<value>
+<value>kinactp38</value>
+<value>Variable:/SBMLParameter:kinactp38</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AggP_ProteasomeSequestering">
+<property name="Name">
+<value>[AggP_Proteasome] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqAggPProt.Value * AggP_Proteasome.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqAggPProt</value>
+<value>Variable:/SBMLParameter:kseqAggPProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PolyQ_ProteasomeSequestering">
+<property name="Name">
+<value>[PolyQ_Proteasome] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqPolyQProt.Value * PolyQ_Proteasome.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PolyQ_Proteasome</value>
+<value>Variable:/cytosol:PolyQ_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqPolyQProt</value>
+<value>Variable:/SBMLParameter:kseqPolyQProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_ProteasomeSequestering">
+<property name="Name">
+<value>[MisP_Proteasome] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqMisPProt.Value * MisP_Proteasome.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP_Proteasome</value>
+<value>Variable:/cytosol:MisP_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqMisPProt</value>
+<value>Variable:/SBMLParameter:kseqMisPProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteinSynthesis">
+<property name="Name">
+<value>[Source] -&gt; [NatP];</value>
+</property>
+<property name="Expression">
+<value>ksynNatP.Value * Source.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cytosol:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>NatP</value>
+<value>Variable:/cytosol:NatP</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynNatP</value>
+<value>Variable:/SBMLParameter:ksynNatP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Misfolding">
+<property name="Name">
+<value>[NatP] + [ROS] -&gt; [MisP] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kmisfold.Value * NatP.NumberConc * ROS.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NatP</value>
+<value>Variable:/cytosol:NatP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>kmisfold</value>
+<value>Variable:/SBMLParameter:kmisfold</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Refolding">
+<property name="Name">
+<value>[MisP] -&gt; [NatP];</value>
+</property>
+<property name="Expression">
+<value>krefold.Value * MisP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NatP</value>
+<value>Variable:/cytosol:NatP</value>
+<value>1</value>
+</value>
+<value>
+<value>krefold</value>
+<value>Variable:/SBMLParameter:krefold</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_ProteasomeBinding">
+<property name="Name">
+<value>[MisP] + [Proteasome] -&gt; [MisP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kbinMisPProt.Value * MisP.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP_Proteasome</value>
+<value>Variable:/cytosol:MisP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinMisPProt</value>
+<value>Variable:/SBMLParameter:kbinMisPProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_ProteasomeRelease">
+<property name="Name">
+<value>[MisP_Proteasome] -&gt; [MisP] + [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>krelMisPProt.Value * MisP_Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP_Proteasome</value>
+<value>Variable:/cytosol:MisP_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>krelMisPProt</value>
+<value>Variable:/SBMLParameter:krelMisPProt</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Degradation">
+<property name="Name">
+<value>[MisP_Proteasome] -&gt; [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kdegMisP.Value * MisP_Proteasome.NumberConc * kalive.Value * kproteff.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP_Proteasome</value>
+<value>Variable:/cytosol:MisP_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kdegMisP</value>
+<value>Variable:/SBMLParameter:kdegMisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Aggregation1">
+<property name="Name">
+<value>2 x [MisP] -&gt; [AggP1];</value>
+</property>
+<property name="Expression">
+<value>kaggMisP.Value * MisP.NumberConc * (MisP.NumberConc - 1) * 0.5 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggMisP</value>
+<value>Variable:/SBMLParameter:kaggMisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Aggregation2">
+<property name="Name">
+<value>[MisP] + [AggP1] -&gt; [AggP2];</value>
+</property>
+<property name="Expression">
+<value>kagg2MisP.Value * MisP.NumberConc * AggP1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>1</value>
+</value>
+<value>
+<value>kagg2MisP</value>
+<value>Variable:/SBMLParameter:kagg2MisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Aggregation3">
+<property name="Name">
+<value>[MisP] + [AggP2] -&gt; [AggP3];</value>
+</property>
+<property name="Expression">
+<value>kagg2MisP.Value * MisP.NumberConc * AggP2.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>1</value>
+</value>
+<value>
+<value>kagg2MisP</value>
+<value>Variable:/SBMLParameter:kagg2MisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Aggregation4">
+<property name="Name">
+<value>[MisP] + [AggP3] -&gt; [AggP4];</value>
+</property>
+<property name="Expression">
+<value>kagg2MisP.Value * MisP.NumberConc * AggP3.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>1</value>
+</value>
+<value>
+<value>kagg2MisP</value>
+<value>Variable:/SBMLParameter:kagg2MisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Aggregation5">
+<property name="Name">
+<value>[MisP] + [AggP4] -&gt; [AggP5];</value>
+</property>
+<property name="Expression">
+<value>kagg2MisP.Value * MisP.NumberConc * AggP4.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP5</value>
+<value>Variable:/cytosol:AggP5</value>
+<value>1</value>
+</value>
+<value>
+<value>kagg2MisP</value>
+<value>Variable:/SBMLParameter:kagg2MisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Disaggregation1">
+<property name="Name">
+<value>[AggP1] -&gt; 2 x [MisP];</value>
+</property>
+<property name="Expression">
+<value>kdisaggMisP1.Value * AggP1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>2</value>
+</value>
+<value>
+<value>kdisaggMisP1</value>
+<value>Variable:/SBMLParameter:kdisaggMisP1</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Disaggregation2">
+<property name="Name">
+<value>[AggP2] -&gt; [MisP] + [AggP1];</value>
+</property>
+<property name="Expression">
+<value>kdisaggMisP2.Value * AggP2.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggMisP2</value>
+<value>Variable:/SBMLParameter:kdisaggMisP2</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Disaggregation3">
+<property name="Name">
+<value>[AggP3] -&gt; [MisP] + [AggP2];</value>
+</property>
+<property name="Expression">
+<value>kdisaggMisP3.Value * AggP3.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggMisP3</value>
+<value>Variable:/SBMLParameter:kdisaggMisP3</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Disaggregation4">
+<property name="Name">
+<value>[AggP4] -&gt; [MisP] + [AggP3];</value>
+</property>
+<property name="Expression">
+<value>kdisaggMisP4.Value * AggP4.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggMisP4</value>
+<value>Variable:/SBMLParameter:kdisaggMisP4</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_Disaggregation5">
+<property name="Name">
+<value>[AggP5] -&gt; [MisP] + [AggP4];</value>
+</property>
+<property name="Expression">
+<value>kdisaggMisP5.Value * AggP5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP5</value>
+<value>Variable:/cytosol:AggP5</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisaggMisP5</value>
+<value>Variable:/SBMLParameter:kdisaggMisP5</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisP_InclusionFormation">
+<property name="Name">
+<value>[MisP] + [AggP5] -&gt; 7 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kagg2MisP.Value * MisP.NumberConc * AggP5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP5</value>
+<value>Variable:/cytosol:AggP5</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>7</value>
+</value>
+<value>
+<value>kagg2MisP</value>
+<value>Variable:/SBMLParameter:kagg2MisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MisPInclusionGrowth">
+<property name="Name">
+<value>[MisP] + [SeqAggP] -&gt; 2 x [SeqAggP];</value>
+</property>
+<property name="Expression">
+<value>kseqMisP.Value * MisP.NumberConc * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/cytosol:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>1</value>
+</value>
+<value>
+<value>kseqMisP</value>
+<value>Variable:/SBMLParameter:kseqMisP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggP1">
+<property name="Name">
+<value>[AggP1] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggP1.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggP2">
+<property name="Name">
+<value>[AggP2] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggP2.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggP3">
+<property name="Name">
+<value>[AggP3] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggP3.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggP4">
+<property name="Name">
+<value>[AggP4] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggP4.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggP5">
+<property name="Name">
+<value>[AggP5] + [Proteasome] -&gt; [AggP_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhprot.Value * AggP5.NumberConc * Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP5</value>
+<value>Variable:/cytosol:AggP5</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cytosol:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhprot</value>
+<value>Variable:/SBMLParameter:kinhprot</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggP1">
+<property name="Name">
+<value>[AggP1] -&gt; [AggP1] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP1</value>
+<value>Variable:/cytosol:AggP1</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggP2">
+<property name="Name">
+<value>[AggP2] -&gt; [AggP2] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP2.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP2</value>
+<value>Variable:/cytosol:AggP2</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggP3">
+<property name="Name">
+<value>[AggP3] -&gt; [AggP3] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP3.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP3</value>
+<value>Variable:/cytosol:AggP3</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggP4">
+<property name="Name">
+<value>[AggP4] -&gt; [AggP4] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP4.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP4</value>
+<value>Variable:/cytosol:AggP4</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSmallAggP5">
+<property name="Name">
+<value>[AggP5] -&gt; [AggP5] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAggP.Value * AggP5.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP5</value>
+<value>Variable:/cytosol:AggP5</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAggP</value>
+<value>Variable:/SBMLParameter:kgenROSAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p38_P_ROS_Generation">
+<property name="Name">
+<value>[p38_P] -&gt; [p38_P] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSp38.Value * p38_P.NumberConc * kp38act.Value * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p38_P</value>
+<value>Variable:/cytosol:p38_P</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSp38</value>
+<value>Variable:/SBMLParameter:kgenROSp38</value>
+<value>0</value>
+</value>
+<value>
+<value>kp38act</value>
+<value>Variable:/SBMLParameter:kp38act</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSgenerationSeqAggP">
+<property name="Name">
+<value>[SeqAggP] -&gt; [SeqAggP] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSSeqAggP.Value * SeqAggP.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SeqAggP</value>
+<value>Variable:/cytosol:SeqAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cytosol:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSSeqAggP</value>
+<value>Variable:/SBMLParameter:kgenROSSeqAggP</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="P38DeathPathway">
+<property name="Name">
+<value>[p38_P] -&gt; [p38_P] + [p38death];</value>
+</property>
+<property name="Expression">
+<value>kp38death.Value * p38_P.NumberConc * kalive.Value * kp38act.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p38_P</value>
+<value>Variable:/cytosol:p38_P</value>
+<value>0</value>
+</value>
+<value>
+<value>p38death</value>
+<value>Variable:/cytosol:p38death</value>
+<value>1</value>
+</value>
+<value>
+<value>kp38death</value>
+<value>Variable:/SBMLParameter:kp38death</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+<value>
+<value>kp38act</value>
+<value>Variable:/SBMLParameter:kp38act</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PIDeathPathway">
+<property name="Name">
+<value>[AggP_Proteasome] -&gt; [AggP_Proteasome] + [PIdeath];</value>
+</property>
+<property name="Expression">
+<value>kPIdeath.Value * AggP_Proteasome.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggP_Proteasome</value>
+<value>Variable:/cytosol:AggP_Proteasome</value>
+<value>0</value>
+</value>
+<value>
+<value>PIdeath</value>
+<value>Variable:/cytosol:PIdeath</value>
+<value>1</value>
+</value>
+<value>
+<value>kPIdeath</value>
+<value>Variable:/SBMLParameter:kPIdeath</value>
+<value>0</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PolyQ">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Proteasome">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NatP">
+<property name="Value">
+<value>19500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MisP">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MisP_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP5">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggPolyQ1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggPolyQ2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggPolyQ3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggPolyQ4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggPolyQ5">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SeqAggP">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mRFPu">
+<property name="Value">
+<value>300.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mRFPu_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PolyQ_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ROS">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p38_P">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p38">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Source">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Sink">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p38death">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PIdeath">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kaggPolyQ">
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggPolyQ1">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggPolyQ2">
+<property name="Value">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggPolyQ3">
+<property name="Value">
+<value>3e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggPolyQ4">
+<property name="Value">
+<value>2e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggPolyQ5">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqPolyQ">
+<property name="Value">
+<value>8e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kinhprot">
+<property name="Value">
+<value>5e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kaggMisP">
+<property name="Value">
+<value>1e-11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kagg2MisP">
+<property name="Value">
+<value>1e-10</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggMisP1">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggMisP2">
+<property name="Value">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggMisP3">
+<property name="Value">
+<value>3e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggMisP4">
+<property name="Value">
+<value>2e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisaggMisP5">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynmRFPu">
+<property name="Value">
+<value>0.138</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinmRFPu">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelmRFPu">
+<property name="Value">
+<value>1e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegmRFPu">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynPolyQ">
+<property name="Value">
+<value>0.007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinPolyQ">
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelPolyQ">
+<property name="Value">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegPolyQ">
+<property name="Value">
+<value>0.0025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kgenROS">
+<property name="Value">
+<value>0.0017</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kremROS">
+<property name="Value">
+<value>0.0002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kgenROSAggP">
+<property name="Value">
+<value>5e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kgenROSSeqAggP">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kactp38">
+<property name="Value">
+<value>5e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kinactp38">
+<property name="Value">
+<value>0.002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqMisP">
+<property name="Value">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqAggPProt">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqPolyQProt">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqMisPProt">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqmRFPuProt">
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kseqmRFPu">
+<property name="Value">
+<value>1e-10</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynNatP">
+<property name="Value">
+<value>2.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kmisfold">
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krefold">
+<property name="Value">
+<value>8e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinMisPProt">
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelMisPProt">
+<property name="Value">
+<value>1e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegMisP">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kgenROSp38">
+<property name="Value">
+<value>0.0007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp38act">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kp38death">
+<property name="Value">
+<value>9e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kPIdeath">
+<property name="Value">
+<value>2.5e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kproteff">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kalive">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="oligomers">
+<property name="Name">
+<value>oligomers</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_oligomers">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'oligomers'</value>
+</property>
+<property name="Expression">
+<value>AggPolyQ1.NumberConc + AggPolyQ2.NumberConc + AggPolyQ3.NumberConc + AggPolyQ4.NumberConc + AggPolyQ5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>oligomers</value>
+<value>Variable:/SBMLParameter:oligomers</value>
+<value>1</value>
+</value>
+<value>
+<value>AggPolyQ1</value>
+<value>Variable:/cytosol:AggPolyQ1</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ2</value>
+<value>Variable:/cytosol:AggPolyQ2</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ3</value>
+<value>Variable:/cytosol:AggPolyQ3</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ4</value>
+<value>Variable:/cytosol:AggPolyQ4</value>
+<value>0</value>
+</value>
+<value>
+<value>AggPolyQ5</value>
+<value>Variable:/cytosol:AggPolyQ5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="PIcellDeath">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>PIcellDeath</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(PIdeath.NumberConc, 0)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>1</value>
+</value>
+<value>
+<value>PIdeath</value>
+<value>Variable:/cytosol:PIdeath</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="p38cellDeath">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>p38cellDeath</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(p38death.NumberConc, 0)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>1</value>
+</value>
+<value>
+<value>p38death</value>
+<value>Variable:/cytosol:p38death</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

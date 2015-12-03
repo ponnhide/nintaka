@@ -1,0 +1,1407 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="CycBt_synthesis">
+<property name="Name">
+<value>CycBt synthesis</value>
+</property>
+<property name="Expression">
+<value>k1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; k1 &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CycBdegradation">
+<property name="Name">
+<value>CycBt degradation</value>
+</property>
+<property name="Expression">
+<value>k2p.Value * CycBt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2p</value>
+<value>Variable:/SBMLParameter:k2p</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2p &lt;/ci&gt;#x0A    &lt;ci&gt; CycBt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CycBdegradationviaCdh1">
+<property name="Name">
+<value>CycBt degradation via Cdh1</value>
+</property>
+<property name="Expression">
+<value>k2pp.Value * Cdh1.NumberConc * CycBt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdh1</value>
+<value>Variable:/cell:Cdh1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2pp</value>
+<value>Variable:/SBMLParameter:k2pp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2pp &lt;/ci&gt;#x0A    &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A    &lt;ci&gt; CycBt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CycBtdegradationviaCdc20a">
+<property name="Name">
+<value>CycBt degradation via Cdc20a</value>
+</property>
+<property name="Expression">
+<value>k2ppp.Value * Cdc20a.NumberConc * CycBt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20a</value>
+<value>Variable:/cell:Cdc20a</value>
+<value>0</value>
+</value>
+<value>
+<value>k2ppp</value>
+<value>Variable:/SBMLParameter:k2ppp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2ppp &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A    &lt;ci&gt; CycBt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdh1synthesis">
+<property name="Name">
+<value>Cdh1 synthesis</value>
+</property>
+<property name="Expression">
+<value>(k3p.Value + k3pp.Value * Cdc20a.NumberConc) * (1 - Cdh1.NumberConc) / (J3.Value + 1 - Cdh1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdh1</value>
+<value>Variable:/cell:Cdh1</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc20a</value>
+<value>Variable:/cell:Cdc20a</value>
+<value>0</value>
+</value>
+<value>
+<value>k3p</value>
+<value>Variable:/SBMLParameter:k3p</value>
+<value>0</value>
+</value>
+<value>
+<value>k3pp</value>
+<value>Variable:/SBMLParameter:k3pp</value>
+<value>0</value>
+</value>
+<value>
+<value>J3</value>
+<value>Variable:/SBMLParameter:J3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; k3p &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k3pp &lt;/ci&gt;#x0A          &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; J3 &lt;/ci&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdh1degradation">
+<property name="Name">
+<value>Cdh1 degradation</value>
+</property>
+<property name="Expression">
+<value>(k4p.Value * SK.NumberConc * Cdh1.NumberConc + k4.Value * m.NumberConc * CycB.NumberConc * Cdh1.NumberConc) / (J4.Value + Cdh1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdh1</value>
+<value>Variable:/cell:Cdh1</value>
+<value>-1</value>
+</value>
+<value>
+<value>SK</value>
+<value>Variable:/cell:SK</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>0</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+<value>
+<value>k4p</value>
+<value>Variable:/SBMLParameter:k4p</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>J4</value>
+<value>Variable:/SBMLParameter:J4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k4p &lt;/ci&gt;#x0A        &lt;ci&gt; SK &lt;/ci&gt;#x0A        &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k4 &lt;/ci&gt;#x0A        &lt;ci&gt; m &lt;/ci&gt;#x0A        &lt;ci&gt; CycB &lt;/ci&gt;#x0A        &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; J4 &lt;/ci&gt;#x0A      &lt;ci&gt; Cdh1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdc20tsynthesis">
+<property name="Name">
+<value>Cdc20t synthesis</value>
+</property>
+<property name="Expression">
+<value>k5p.Value + k5pp.Value * pow(CycB.NumberConc * m.NumberConc / J5.Value, n.Value) / (1 + pow(CycB.NumberConc * m.NumberConc / J5.Value, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20t</value>
+<value>Variable:/cell:Cdc20t</value>
+<value>1</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>0</value>
+</value>
+<value>
+<value>k5p</value>
+<value>Variable:/SBMLParameter:k5p</value>
+<value>0</value>
+</value>
+<value>
+<value>k5pp</value>
+<value>Variable:/SBMLParameter:k5pp</value>
+<value>0</value>
+</value>
+<value>
+<value>J5</value>
+<value>Variable:/SBMLParameter:J5</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; k5p &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k5pp &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; CycB &lt;/ci&gt;#x0A              &lt;ci&gt; m &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; J5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; CycB &lt;/ci&gt;#x0A              &lt;ci&gt; m &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; J5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdc20t_deg">
+<property name="Name">
+<value>Cdc20t degradation</value>
+</property>
+<property name="Expression">
+<value>k6.Value * Cdc20t.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20t</value>
+<value>Variable:/cell:Cdc20t</value>
+<value>-1</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20t &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdc20activation">
+<property name="Name">
+<value>Cdc20 activation</value>
+</property>
+<property name="Expression">
+<value>k7.Value * IEP.NumberConc * (Cdc20t.NumberConc - Cdc20a.NumberConc) / (J7.Value + Cdc20t.NumberConc - Cdc20a.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20a</value>
+<value>Variable:/cell:Cdc20a</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc20t</value>
+<value>Variable:/cell:Cdc20t</value>
+<value>0</value>
+</value>
+<value>
+<value>IEP</value>
+<value>Variable:/cell:IEP</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>J7</value>
+<value>Variable:/SBMLParameter:J7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k7 &lt;/ci&gt;#x0A      &lt;ci&gt; IEP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; Cdc20t &lt;/ci&gt;#x0A        &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; J7 &lt;/ci&gt;#x0A        &lt;ci&gt; Cdc20t &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdc20ainhibition">
+<property name="Name">
+<value>Cdc20a inhibition</value>
+</property>
+<property name="Expression">
+<value>k8.Value * Mad.NumberConc * Cdc20a.NumberConc / (J8.Value + Cdc20a.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20a</value>
+<value>Variable:/cell:Cdc20a</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mad</value>
+<value>Variable:/cell:Mad</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>J8</value>
+<value>Variable:/SBMLParameter:J8</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k8 &lt;/ci&gt;#x0A      &lt;ci&gt; Mad &lt;/ci&gt;#x0A      &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; J8 &lt;/ci&gt;#x0A      &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cdc20adegradation">
+<property name="Name">
+<value>Cdc20a degradation</value>
+</property>
+<property name="Expression">
+<value>k6.Value * Cdc20a.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20a</value>
+<value>Variable:/cell:Cdc20a</value>
+<value>-1</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20a &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="IEPsynthesis">
+<property name="Name">
+<value>IEP synthesis</value>
+</property>
+<property name="Expression">
+<value>k9.Value * m.NumberConc * CycB.NumberConc * (1 - IEP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IEP</value>
+<value>Variable:/cell:IEP</value>
+<value>1</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>0</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A    &lt;ci&gt; m &lt;/ci&gt;#x0A    &lt;ci&gt; CycB &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; IEP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="IEPdegradation">
+<property name="Name">
+<value>IEP degradation</value>
+</property>
+<property name="Expression">
+<value>k10.Value * IEP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IEP</value>
+<value>Variable:/cell:IEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k10 &lt;/ci&gt;#x0A    &lt;ci&gt; IEP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="growth">
+<property name="Name">
+<value>growth</value>
+</property>
+<property name="Expression">
+<value>mu.Value * m.NumberConc * (1 - m.NumberConc / mmax.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+<value>
+<value>mmax</value>
+<value>Variable:/SBMLParameter:mmax</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; m &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; m &lt;/ci&gt;#x0A        &lt;ci&gt; mmax &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CKItsynthesis">
+<property name="Name">
+<value>CKIt synthesis</value>
+</property>
+<property name="Expression">
+<value>k11.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>1</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; k11 &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CKIdegradation">
+<property name="Name">
+<value>CKIt degradation</value>
+</property>
+<property name="Expression">
+<value>k12p.Value * CKIt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>-1</value>
+</value>
+<value>
+<value>k12p</value>
+<value>Variable:/SBMLParameter:k12p</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k12p &lt;/ci&gt;#x0A    &lt;ci&gt; CKIt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="CKItphosphorilationviaSK">
+<property name="Name">
+<value>CKIt phosphorilation via SK</value>
+</property>
+<property name="Expression">
+<value>k12pp.Value * SK.NumberConc * CKIt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>-1</value>
+</value>
+<value>
+<value>SK</value>
+<value>Variable:/cell:SK</value>
+<value>0</value>
+</value>
+<value>
+<value>k12pp</value>
+<value>Variable:/SBMLParameter:k12pp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k12pp &lt;/ci&gt;#x0A    &lt;ci&gt; SK &lt;/ci&gt;#x0A    &lt;ci&gt; CKIt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="eq_7">
+<property name="Name">
+<value>CKIt Trimer sequestred</value>
+</property>
+<property name="Expression">
+<value>k12ppp.Value * m.NumberConc * CycB.NumberConc * CKIt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>-1</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>0</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+<value>
+<value>k12ppp</value>
+<value>Variable:/SBMLParameter:k12ppp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k12ppp &lt;/ci&gt;#x0A    &lt;ci&gt; m &lt;/ci&gt;#x0A    &lt;ci&gt; CycB &lt;/ci&gt;#x0A    &lt;ci&gt; CKIt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SKsynthesis">
+<property name="Name">
+<value>SK synthesis</value>
+</property>
+<property name="Expression">
+<value>k13.Value * TF.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SK</value>
+<value>Variable:/cell:SK</value>
+<value>1</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/SBMLParameter:TF</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k13 &lt;/ci&gt;#x0A    &lt;ci&gt; TF &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SKdegradation">
+<property name="Name">
+<value>SK degradation</value>
+</property>
+<property name="Expression">
+<value>k14.Value * SK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SK</value>
+<value>Variable:/cell:SK</value>
+<value>-1</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k14 &lt;/ci&gt;#x0A    &lt;ci&gt; SK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CycBt">
+<property name="Name">
+<value>CycBt</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CycB">
+<property name="Name">
+<value>CycB</value>
+</property>
+<property name="Value">
+<value>0.00061803398875</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20a">
+<property name="Name">
+<value>Cdc20a</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Trimer">
+<property name="Name">
+<value>Trimer</value>
+</property>
+<property name="Value">
+<value>0.00038196601125</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdh1">
+<property name="Name">
+<value>Cdh1</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="m">
+<property name="Name">
+<value>m</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20t">
+<property name="Name">
+<value>Cdc20t</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IEP">
+<property name="Name">
+<value>IEP</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mad">
+<property name="Name">
+<value>Mad</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CKIt">
+<property name="Name">
+<value>CKIt</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SK">
+<property name="Name">
+<value>SK</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2p">
+<property name="Name">
+<value>k2p</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2pp">
+<property name="Name">
+<value>k2pp</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2ppp">
+<property name="Name">
+<value>k2ppp</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3p">
+<property name="Name">
+<value>k3p</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3pp">
+<property name="Name">
+<value>k3pp</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J3">
+<property name="Name">
+<value>J3</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>35.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5p">
+<property name="Name">
+<value>k5p</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5pp">
+<property name="Name">
+<value>k5pp</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J5">
+<property name="Name">
+<value>J5</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>n</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J7">
+<property name="Name">
+<value>J7</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J8">
+<property name="Name">
+<value>J8</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mu">
+<property name="Name">
+<value>mu</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12p">
+<property name="Name">
+<value>k12p</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12pp">
+<property name="Name">
+<value>k12pp</value>
+</property>
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mmax">
+<property name="Name">
+<value>mmax</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12ppp">
+<property name="Name">
+<value>k12ppp</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Keq">
+<property name="Name">
+<value>Keq</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Name">
+<value>k14</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15p">
+<property name="Name">
+<value>k15p</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15pp">
+<property name="Name">
+<value>k15pp</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16p">
+<property name="Name">
+<value>k16p</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16pp">
+<property name="Name">
+<value>k16pp</value>
+</property>
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J15">
+<property name="Name">
+<value>J15</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J16">
+<property name="Name">
+<value>J16</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4p">
+<property name="Name">
+<value>k4p</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J4">
+<property name="Name">
+<value>J4</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TF">
+<property name="Name">
+<value>TF</value>
+</property>
+<property name="Value">
+<value>3.23090410583e-07</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CycB">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CycB'</value>
+</property>
+<property name="Expression">
+<value>CycBt.NumberConc - 2 * CycBt.NumberConc * CKIt.NumberConc / (CycBt.NumberConc + CKIt.NumberConc + 1 / Keq.NumberConc + pow(pow(CycBt.NumberConc + CKIt.NumberConc + 1 / Keq.NumberConc, 2) - 4 * CycBt.NumberConc * CKIt.NumberConc, 1 / 2))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; CycBt &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;ci&gt; CycBt &lt;/ci&gt;#x0A        &lt;ci&gt; CKIt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; CycBt &lt;/ci&gt;#x0A        &lt;ci&gt; CKIt &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;ci&gt; Keq &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; CycBt &lt;/ci&gt;#x0A                &lt;ci&gt; CKIt &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;cn&gt; 1 &lt;/cn&gt;#x0A                  &lt;ci&gt; Keq &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 4 &lt;/cn&gt;#x0A              &lt;ci&gt; CycBt &lt;/ci&gt;#x0A              &lt;ci&gt; CKIt &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>1</value>
+</value>
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>0</value>
+</value>
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>0</value>
+</value>
+<value>
+<value>Keq</value>
+<value>Variable:/SBMLParameter:Keq</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Trimer">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Trimer'</value>
+</property>
+<property name="Expression">
+<value>2 * CycBt.NumberConc * CKIt.NumberConc / (CycBt.NumberConc + CKIt.NumberConc + 1 / Keq.NumberConc + pow(pow(CycBt.NumberConc + CKIt.NumberConc + 1 / Keq.NumberConc, 2) - 4 * CycBt.NumberConc * CKIt.NumberConc, 1 / 2))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A      &lt;ci&gt; CycBt &lt;/ci&gt;#x0A      &lt;ci&gt; CKIt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; CycBt &lt;/ci&gt;#x0A      &lt;ci&gt; CKIt &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; Keq &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; CycBt &lt;/ci&gt;#x0A              &lt;ci&gt; CKIt &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; Keq &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 4 &lt;/cn&gt;#x0A            &lt;ci&gt; CycBt &lt;/ci&gt;#x0A            &lt;ci&gt; CKIt &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Trimer</value>
+<value>Variable:/cell:Trimer</value>
+<value>1</value>
+</value>
+<value>
+<value>CycBt</value>
+<value>Variable:/cell:CycBt</value>
+<value>0</value>
+</value>
+<value>
+<value>CKIt</value>
+<value>Variable:/cell:CKIt</value>
+<value>0</value>
+</value>
+<value>
+<value>Keq</value>
+<value>Variable:/SBMLParameter:Keq</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_TF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'TF'</value>
+</property>
+<property name="Expression">
+<value>2 * J16.NumberConc * (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc) / (k16p.NumberConc + k16pp.NumberConc * m.NumberConc * CycB.NumberConc - (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc) + J15.NumberConc * (k16p.NumberConc + k16pp.NumberConc * m.NumberConc * CycB.NumberConc) + J16.NumberConc * (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc) + root(2, pow(k16p.NumberConc + k16pp.NumberConc * m.NumberConc * CycB.NumberConc - (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc) + J15.NumberConc * (k16p.NumberConc + k16pp.NumberConc * m.NumberConc * CycB.NumberConc) + J16.NumberConc * (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc), 2) - 4 * (k16p.NumberConc + k16pp.NumberConc * m.NumberConc * CycB.NumberConc - (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc)) * J16.NumberConc * (k15p.NumberConc * m.NumberConc + k15pp.NumberConc * SK.NumberConc)))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A      &lt;ci&gt; J16 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k15p &lt;/ci&gt;#x0A          &lt;ci&gt; m &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k15pp &lt;/ci&gt;#x0A          &lt;ci&gt; SK &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; k16p &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k16pp &lt;/ci&gt;#x0A            &lt;ci&gt; m &lt;/ci&gt;#x0A            &lt;ci&gt; CycB &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k15p &lt;/ci&gt;#x0A            &lt;ci&gt; m &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k15pp &lt;/ci&gt;#x0A            &lt;ci&gt; SK &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; J15 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; k16p &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k16pp &lt;/ci&gt;#x0A            &lt;ci&gt; m &lt;/ci&gt;#x0A            &lt;ci&gt; CycB &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; J16 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k15p &lt;/ci&gt;#x0A            &lt;ci&gt; m &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k15pp &lt;/ci&gt;#x0A            &lt;ci&gt; SK &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;root/&gt;#x0A        &lt;degree&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/degree&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; k16p &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k16pp &lt;/ci&gt;#x0A                    &lt;ci&gt; m &lt;/ci&gt;#x0A                    &lt;ci&gt; CycB &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k15p &lt;/ci&gt;#x0A                    &lt;ci&gt; m &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k15pp &lt;/ci&gt;#x0A                    &lt;ci&gt; SK &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; J15 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; k16p &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k16pp &lt;/ci&gt;#x0A                    &lt;ci&gt; m &lt;/ci&gt;#x0A                    &lt;ci&gt; CycB &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; J16 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k15p &lt;/ci&gt;#x0A                    &lt;ci&gt; m &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; k15pp &lt;/ci&gt;#x0A                    &lt;ci&gt; SK &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 4 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; k16p &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; k16pp &lt;/ci&gt;#x0A                  &lt;ci&gt; m &lt;/ci&gt;#x0A                  &lt;ci&gt; CycB &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; k15p &lt;/ci&gt;#x0A                  &lt;ci&gt; m &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; k15pp &lt;/ci&gt;#x0A                  &lt;ci&gt; SK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; J16 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; k15p &lt;/ci&gt;#x0A                &lt;ci&gt; m &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; k15pp &lt;/ci&gt;#x0A                &lt;ci&gt; SK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TF</value>
+<value>Variable:/SBMLParameter:TF</value>
+<value>1</value>
+</value>
+<value>
+<value>J16</value>
+<value>Variable:/SBMLParameter:J16</value>
+<value>0</value>
+</value>
+<value>
+<value>k15p</value>
+<value>Variable:/SBMLParameter:k15p</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>0</value>
+</value>
+<value>
+<value>k15pp</value>
+<value>Variable:/SBMLParameter:k15pp</value>
+<value>0</value>
+</value>
+<value>
+<value>SK</value>
+<value>Variable:/cell:SK</value>
+<value>0</value>
+</value>
+<value>
+<value>k16p</value>
+<value>Variable:/SBMLParameter:k16p</value>
+<value>0</value>
+</value>
+<value>
+<value>k16pp</value>
+<value>Variable:/SBMLParameter:k16pp</value>
+<value>0</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+<value>
+<value>J15</value>
+<value>Variable:/SBMLParameter:J15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Mad">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Mad'</value>
+</property>
+<property name="Expression">
+<value>1</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;cn&gt; 1 &lt;/cn&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mad</value>
+<value>Variable:/cell:Mad</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="event_0">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>m</value>
+<value>m.NumberConc / 2</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;lt/&gt;#x0A    &lt;ci&gt; CycB &lt;/ci&gt;#x0A    &lt;cn&gt; 0.1 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>lt(CycB.NumberConc, 0.1)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>m</value>
+<value>Variable:/cell:m</value>
+<value>1</value>
+</value>
+<value>
+<value>CycB</value>
+<value>Variable:/cell:CycB</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

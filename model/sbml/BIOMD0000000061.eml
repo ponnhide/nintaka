@@ -1,0 +1,1337 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vinGlc">
+<property name="Name">
+<value>Glucose Mixed flow to extracellular medium</value>
+</property>
+<property name="k0">
+<value>0.048</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k0 * (GlcX0.NumberConc - GlcX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GlcX0</value>
+<value>Variable:/extracellular:GlcX0</value>
+<value>-1</value>
+</value>
+<value>
+<value>GlcX</value>
+<value>Variable:/extracellular:GlcX</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k0 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; GlcX0 &lt;/ci&gt;#x0A      &lt;ci&gt; GlcX &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGlcTrans">
+<property name="Name">
+<value>Glucose uptake</value>
+</property>
+<property name="V2f">
+<value>1014.96</value>
+</property>
+<property name="Yvol">
+<value>59.0</value>
+</property>
+<property name="K2Glc">
+<value>1.7</value>
+</property>
+<property name="P2">
+<value>1.0</value>
+</property>
+<property name="K2IG6P">
+<value>1.2</value>
+</property>
+<property name="K2IIG6P">
+<value>7.2</value>
+</property>
+<property name="V2r">
+<value>1014.96</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * V2f / Yvol * (GlcX.NumberConc / K2Glc / (1 + GlcX.NumberConc / K2Glc + (P2 * (GlcX.NumberConc / K2Glc) + 1) / (P2 * (Glc.NumberConc / K2Glc) + 1) * (1 + Glc.NumberConc / K2Glc + G6P.NumberConc / K2IG6P + Glc.NumberConc * G6P.NumberConc / (K2Glc * K2IIG6P)))) - cytosol.Value * V2r / Yvol * (Glc.NumberConc / K2Glc / (1 + Glc.NumberConc / K2Glc + (P2 * (Glc.NumberConc / K2Glc) + 1) / (P2 * (GlcX.NumberConc / K2Glc) + 1) * (1 + GlcX.NumberConc / K2Glc) + G6P.NumberConc / K2IG6P + Glc.NumberConc * G6P.NumberConc / (K2Glc * K2IIG6P)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GlcX</value>
+<value>Variable:/extracellular:GlcX</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/extracellular/cytosol:Glc</value>
+<value>59</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytosol:G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; extracellular &lt;/ci&gt;#x0A          &lt;ci&gt; V2f &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Yvol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; GlcX &lt;/ci&gt;#x0A          &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GlcX &lt;/ci&gt;#x0A            &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; P2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; GlcX &lt;/ci&gt;#x0A                    &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; P2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; Glc &lt;/ci&gt;#x0A                    &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Glc &lt;/ci&gt;#x0A                &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; G6P &lt;/ci&gt;#x0A                &lt;ci&gt; K2IG6P &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Glc &lt;/ci&gt;#x0A                  &lt;ci&gt; G6P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A                  &lt;ci&gt; K2IIG6P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; cytosol &lt;/ci&gt;#x0A          &lt;ci&gt; V2r &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Yvol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Glc &lt;/ci&gt;#x0A          &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Glc &lt;/ci&gt;#x0A            &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; P2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; Glc &lt;/ci&gt;#x0A                    &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; P2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; GlcX &lt;/ci&gt;#x0A                    &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GlcX &lt;/ci&gt;#x0A                &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; G6P &lt;/ci&gt;#x0A            &lt;ci&gt; K2IG6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Glc &lt;/ci&gt;#x0A              &lt;ci&gt; G6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K2Glc &lt;/ci&gt;#x0A              &lt;ci&gt; K2IIG6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vHK">
+<property name="Name">
+<value>Hexokinase</value>
+</property>
+<property name="V3m">
+<value>51.7547</value>
+</property>
+<property name="K3DGlc">
+<value>0.37</value>
+</property>
+<property name="K3ATP">
+<value>0.1</value>
+</property>
+<property name="K3Glc">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * V3m * ATP.NumberConc * Glc.NumberConc / (K3DGlc * K3ATP + K3Glc * ATP.NumberConc + K3ATP * Glc.NumberConc + Glc.NumberConc * ATP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/extracellular/cytosol:Glc</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytosol:G6P</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A      &lt;ci&gt; V3m &lt;/ci&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;ci&gt; Glc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K3DGlc &lt;/ci&gt;#x0A        &lt;ci&gt; K3ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K3Glc &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K3ATP &lt;/ci&gt;#x0A        &lt;ci&gt; Glc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Glc &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGI">
+<property name="Name">
+<value>Phosphoglucoisomerase</value>
+</property>
+<property name="V4f">
+<value>496.042</value>
+</property>
+<property name="K4G6P">
+<value>0.8</value>
+</property>
+<property name="K4F6P">
+<value>0.15</value>
+</property>
+<property name="V4r">
+<value>496.042</value>
+</property>
+<property name="K4eq">
+<value>0.13</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V4f * G6P.NumberConc / (K4G6P + G6P.NumberConc + K4G6P / K4F6P * F6P.NumberConc) - V4r * (F6P.NumberConc / K4eq) / (K4G6P + G6P.NumberConc + K4G6P / K4F6P * F6P.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytosol:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytosol:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; V4f &lt;/ci&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K4G6P &lt;/ci&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; K4G6P &lt;/ci&gt;#x0A              &lt;ci&gt; K4F6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; V4r &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; K4eq &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K4G6P &lt;/ci&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; K4G6P &lt;/ci&gt;#x0A              &lt;ci&gt; K4F6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPFK">
+<property name="Name">
+<value>Phosphofructokinase</value>
+</property>
+<property name="V5m">
+<value>45.4327</value>
+</property>
+<property name="K5">
+<value>0.021</value>
+</property>
+<property name="kappa5">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V5m * pow(F6P.NumberConc, 2) / (K5 * (1 + kappa5 * (ATP.NumberConc / AMP.NumberConc) * (ATP.NumberConc / AMP.NumberConc)) + pow(F6P.NumberConc, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytosol:F6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/extracellular/cytosol:FBP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>AMP</value>
+<value>Variable:/extracellular/cytosol:AMP</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V5m &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K5 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; kappa5 &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ATP &lt;/ci&gt;#x0A                &lt;ci&gt; AMP &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ATP &lt;/ci&gt;#x0A                &lt;ci&gt; AMP &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vALD">
+<property name="Name">
+<value>Aldolase</value>
+</property>
+<property name="V6f">
+<value>2207.82</value>
+</property>
+<property name="K6FBP">
+<value>0.3</value>
+</property>
+<property name="K6DHAP">
+<value>2.0</value>
+</property>
+<property name="K6eq">
+<value>0.081</value>
+</property>
+<property name="ratio6">
+<value>5.0</value>
+</property>
+<property name="K6GAP">
+<value>4.0</value>
+</property>
+<property name="K6IGAP">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V6f * FBP.NumberConc / (K6FBP + FBP.NumberConc + GAP.NumberConc * K6DHAP * V6f / (K6eq * V6f * ratio6) + DHAP.NumberConc * K6GAP * V6f / (K6eq * V6f * ratio6) + FBP.NumberConc * GAP.NumberConc / K6IGAP + GAP.NumberConc * DHAP.NumberConc * V6f / (K6eq * V6f * ratio6)) - V6f * GAP.NumberConc * DHAP.NumberConc / K6eq / (K6FBP + FBP.NumberConc + GAP.NumberConc * K6DHAP * V6f / (K6eq * V6f * ratio6) + DHAP.NumberConc * K6GAP * V6f / (K6eq * V6f * ratio6) + FBP.NumberConc * GAP.NumberConc / K6IGAP + GAP.NumberConc * DHAP.NumberConc * V6f / (K6eq * V6f * ratio6)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FBP</value>
+<value>Variable:/extracellular/cytosol:FBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/extracellular/cytosol:GAP</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytosol:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; V6f &lt;/ci&gt;#x0A          &lt;ci&gt; FBP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K6FBP &lt;/ci&gt;#x0A          &lt;ci&gt; FBP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; K6DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; K6GAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; FBP &lt;/ci&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; K6IGAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; K6eq &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K6FBP &lt;/ci&gt;#x0A          &lt;ci&gt; FBP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; K6DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; K6GAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; FBP &lt;/ci&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; K6IGAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6eq &lt;/ci&gt;#x0A              &lt;ci&gt; V6f &lt;/ci&gt;#x0A              &lt;ci&gt; ratio6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTIM">
+<property name="Name">
+<value>Triosephosphate isomerase</value>
+</property>
+<property name="V7f">
+<value>116.365</value>
+</property>
+<property name="K7DHAP">
+<value>1.23</value>
+</property>
+<property name="K7GAP">
+<value>1.27</value>
+</property>
+<property name="V7r">
+<value>116.365</value>
+</property>
+<property name="K7eq">
+<value>0.055</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V7f * DHAP.NumberConc / (K7DHAP + DHAP.NumberConc + K7DHAP / K7GAP * GAP.NumberConc) - V7r * (GAP.NumberConc / K7eq) / (K7DHAP + DHAP.NumberConc + K7DHAP / K7GAP * GAP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytosol:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/extracellular/cytosol:GAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; V7f &lt;/ci&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K7DHAP &lt;/ci&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; K7DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; K7GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; V7r &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;ci&gt; K7eq &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K7DHAP &lt;/ci&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; K7DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; K7GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGAPDH">
+<property name="Name">
+<value>Glyceraldehyde 3-phosphate dehydrogenase</value>
+</property>
+<property name="V8f">
+<value>833.858</value>
+</property>
+<property name="K8GAP">
+<value>0.6</value>
+</property>
+<property name="K8NAD">
+<value>0.1</value>
+</property>
+<property name="K8BPG">
+<value>0.01</value>
+</property>
+<property name="K8NADH">
+<value>0.06</value>
+</property>
+<property name="V8r">
+<value>833.858</value>
+</property>
+<property name="K8eq">
+<value>0.0055</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V8f * GAP.NumberConc * NAD.NumberConc / K8GAP / K8NAD / ((1 + GAP.NumberConc / K8GAP + BPG.NumberConc / K8BPG) * (1 + NAD.NumberConc / K8NAD + NADH.NumberConc / K8NADH)) - V8r * BPG.NumberConc * NADH.NumberConc / K8eq / K8GAP / K8NAD / ((1 + GAP.NumberConc / K8GAP + BPG.NumberConc / K8BPG) * (1 + NAD.NumberConc / K8NAD + NADH.NumberConc / K8NADH)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GAP</value>
+<value>Variable:/extracellular/cytosol:GAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytosol:NAD</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytosol:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>BPG</value>
+<value>Variable:/extracellular/cytosol:BPG</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; V8f &lt;/ci&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; K8GAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; K8NAD &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; K8GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; BPG &lt;/ci&gt;#x0A              &lt;ci&gt; K8BPG &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; K8NAD &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;ci&gt; K8NADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; V8r &lt;/ci&gt;#x0A                &lt;ci&gt; BPG &lt;/ci&gt;#x0A                &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; K8eq &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; K8GAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; K8NAD &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GAP &lt;/ci&gt;#x0A              &lt;ci&gt; K8GAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; BPG &lt;/ci&gt;#x0A              &lt;ci&gt; K8BPG &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; K8NAD &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;ci&gt; K8NADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vlpPEP">
+<property name="Name">
+<value>Phosphoenolpyruvate synthesis</value>
+</property>
+<property name="k9f">
+<value>443866.0</value>
+</property>
+<property name="k9r">
+<value>1528.62</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k9f * BPG.NumberConc * ADP.NumberConc - k9r * PEP.NumberConc * ATP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>BPG</value>
+<value>Variable:/extracellular/cytosol:BPG</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/extracellular/cytosol:PEP</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k9f &lt;/ci&gt;#x0A        &lt;ci&gt; BPG &lt;/ci&gt;#x0A        &lt;ci&gt; ADP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k9r &lt;/ci&gt;#x0A        &lt;ci&gt; PEP &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPK">
+<property name="Name">
+<value>Pyruvate kinase</value>
+</property>
+<property name="V10m">
+<value>343.096</value>
+</property>
+<property name="K10PEP">
+<value>0.2</value>
+</property>
+<property name="K10ADP">
+<value>0.17</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V10m * ADP.NumberConc * PEP.NumberConc / ((K10PEP + PEP.NumberConc) * (K10ADP + ADP.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/extracellular/cytosol:PEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pyr</value>
+<value>Variable:/extracellular/cytosol:Pyr</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V10m &lt;/ci&gt;#x0A        &lt;ci&gt; ADP &lt;/ci&gt;#x0A        &lt;ci&gt; PEP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K10PEP &lt;/ci&gt;#x0A          &lt;ci&gt; PEP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K10ADP &lt;/ci&gt;#x0A          &lt;ci&gt; ADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPDC">
+<property name="Name">
+<value>Pyruvate decarboxylase</value>
+</property>
+<property name="V11m">
+<value>53.1328</value>
+</property>
+<property name="K11">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V11m * Pyr.NumberConc / (K11 + Pyr.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pyr</value>
+<value>Variable:/extracellular/cytosol:Pyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>ACA</value>
+<value>Variable:/extracellular/cytosol:ACA</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V11m &lt;/ci&gt;#x0A        &lt;ci&gt; Pyr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K11 &lt;/ci&gt;#x0A        &lt;ci&gt; Pyr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vADH">
+<property name="Name">
+<value>Alcohol dehydrogenase</value>
+</property>
+<property name="V12m">
+<value>89.8023</value>
+</property>
+<property name="K12NADH">
+<value>0.1</value>
+</property>
+<property name="K12ACA">
+<value>0.71</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V12m * ACA.NumberConc * NADH.NumberConc / ((K12NADH + NADH.NumberConc) * (K12ACA + ACA.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytosol:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>ACA</value>
+<value>Variable:/extracellular/cytosol:ACA</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytosol:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>EtOH</value>
+<value>Variable:/extracellular/cytosol:EtOH</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V12m &lt;/ci&gt;#x0A        &lt;ci&gt; ACA &lt;/ci&gt;#x0A        &lt;ci&gt; NADH &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K12NADH &lt;/ci&gt;#x0A          &lt;ci&gt; NADH &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K12ACA &lt;/ci&gt;#x0A          &lt;ci&gt; ACA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vdifEtOH">
+<property name="Name">
+<value>Ethanol out</value>
+</property>
+<property name="k13">
+<value>16.72</value>
+</property>
+<property name="Yvol">
+<value>59.0</value>
+</property>
+<property name="Expression">
+<value>k13 / Yvol * (cytosol.Value * EtOH.NumberConc - extracellular.Value * EtOHX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EtOH</value>
+<value>Variable:/extracellular/cytosol:EtOH</value>
+<value>-59</value>
+</value>
+<value>
+<value>EtOHX</value>
+<value>Variable:/extracellular:EtOHX</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; k13 &lt;/ci&gt;#x0A      &lt;ci&gt; Yvol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; cytosol &lt;/ci&gt;#x0A        &lt;ci&gt; EtOH &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; extracellular &lt;/ci&gt;#x0A        &lt;ci&gt; EtOHX &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="voutEtOH">
+<property name="Name">
+<value>Ethanol flow</value>
+</property>
+<property name="k0">
+<value>0.048</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k0 * EtOHX.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EtOHX</value>
+<value>Variable:/extracellular:EtOHX</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular:P</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k0 &lt;/ci&gt;#x0A    &lt;ci&gt; EtOHX &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vlpGlyc">
+<property name="Name">
+<value>Glycerol synthesis</value>
+</property>
+<property name="V15m">
+<value>81.4797</value>
+</property>
+<property name="K15DHAP">
+<value>25.0</value>
+</property>
+<property name="K15INADH">
+<value>0.034</value>
+</property>
+<property name="K15INAD">
+<value>0.13</value>
+</property>
+<property name="K15NADH">
+<value>0.13</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V15m * DHAP.NumberConc / (K15DHAP * (1 + K15INADH / NADH.NumberConc * (1 + NAD.NumberConc / K15INAD)) + DHAP.NumberConc * (1 + K15NADH / NADH.NumberConc * (1 + NAD.NumberConc / K15INAD))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytosol:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytosol:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glyc</value>
+<value>Variable:/extracellular/cytosol:Glyc</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytosol:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V15m &lt;/ci&gt;#x0A        &lt;ci&gt; DHAP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K15DHAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; K15INADH &lt;/ci&gt;#x0A                &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; NAD &lt;/ci&gt;#x0A                  &lt;ci&gt; K15INAD &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; K15NADH &lt;/ci&gt;#x0A                &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; NAD &lt;/ci&gt;#x0A                  &lt;ci&gt; K15INAD &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vdifGlyc">
+<property name="Name">
+<value>Glycerol out</value>
+</property>
+<property name="k16">
+<value>1.9</value>
+</property>
+<property name="Yvol">
+<value>59.0</value>
+</property>
+<property name="Expression">
+<value>k16 / Yvol * (cytosol.Value * Glyc.NumberConc - extracellular.Value * GlycX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glyc</value>
+<value>Variable:/extracellular/cytosol:Glyc</value>
+<value>-59</value>
+</value>
+<value>
+<value>GlycX</value>
+<value>Variable:/extracellular:GlycX</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; k16 &lt;/ci&gt;#x0A      &lt;ci&gt; Yvol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; cytosol &lt;/ci&gt;#x0A        &lt;ci&gt; Glyc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; extracellular &lt;/ci&gt;#x0A        &lt;ci&gt; GlycX &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="voutGlyc">
+<property name="Name">
+<value>Glycerol flow</value>
+</property>
+<property name="k0">
+<value>0.048</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k0 * GlycX.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GlycX</value>
+<value>Variable:/extracellular:GlycX</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular:P</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k0 &lt;/ci&gt;#x0A    &lt;ci&gt; GlycX &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vdifACA">
+<property name="Name">
+<value>Acetaldehyde out</value>
+</property>
+<property name="k18">
+<value>24.7</value>
+</property>
+<property name="Yvol">
+<value>59.0</value>
+</property>
+<property name="Expression">
+<value>k18 / Yvol * (cytosol.Value * ACA.NumberConc - extracellular.Value * ACAX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ACA</value>
+<value>Variable:/extracellular/cytosol:ACA</value>
+<value>-59</value>
+</value>
+<value>
+<value>ACAX</value>
+<value>Variable:/extracellular:ACAX</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; k18 &lt;/ci&gt;#x0A      &lt;ci&gt; Yvol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; cytosol &lt;/ci&gt;#x0A        &lt;ci&gt; ACA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; extracellular &lt;/ci&gt;#x0A        &lt;ci&gt; ACAX &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="voutACA">
+<property name="Name">
+<value>Acetaldehyde flow</value>
+</property>
+<property name="k0">
+<value>0.048</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k0 * ACAX.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ACAX</value>
+<value>Variable:/extracellular:ACAX</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular:P</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k0 &lt;/ci&gt;#x0A    &lt;ci&gt; ACAX &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vlacto">
+<property name="Name">
+<value>Cyanide-Acetaldehyde flow</value>
+</property>
+<property name="k20">
+<value>0.00283828</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k20 * ACAX.NumberConc * CNX.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CNX</value>
+<value>Variable:/extracellular:CNX</value>
+<value>-1</value>
+</value>
+<value>
+<value>ACAX</value>
+<value>Variable:/extracellular:ACAX</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular:P</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k20 &lt;/ci&gt;#x0A    &lt;ci&gt; ACAX &lt;/ci&gt;#x0A    &lt;ci&gt; CNX &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vinCN">
+<property name="Name">
+<value>Cyanide flow</value>
+</property>
+<property name="k0">
+<value>0.048</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * k0 * (CNX0.NumberConc - CNX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CNX0</value>
+<value>Variable:/extracellular:CNX0</value>
+<value>-1</value>
+</value>
+<value>
+<value>CNX</value>
+<value>Variable:/extracellular:CNX</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; k0 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; CNX0 &lt;/ci&gt;#x0A      &lt;ci&gt; CNX &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vstorage">
+<property name="Name">
+<value>Storage</value>
+</property>
+<property name="k22">
+<value>2.25932</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k22 * ATP.NumberConc * G6P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytosol:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; k22 &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A    &lt;ci&gt; G6P &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vconsum">
+<property name="Name">
+<value>ATP consumption</value>
+</property>
+<property name="k23">
+<value>3.2076</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k23 * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; k23 &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vAK">
+<property name="Name">
+<value>Adenylate kinase</value>
+</property>
+<property name="k24f">
+<value>432.9</value>
+</property>
+<property name="k24r">
+<value>133.333</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k24f * AMP.NumberConc * ATP.NumberConc - k24r * pow(ADP.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/extracellular/cytosol:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AMP</value>
+<value>Variable:/extracellular/cytosol:AMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/extracellular/cytosol:ADP</value>
+<value>2</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k24f &lt;/ci&gt;#x0A        &lt;ci&gt; AMP &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k24r &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ADP &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GlcX">
+<property name="Name">
+<value>Extracellular glucose</value>
+</property>
+<property name="NumberConc">
+<value>6.7</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EtOHX">
+<property name="Name">
+<value>Extracellular ethanol</value>
+</property>
+<property name="NumberConc">
+<value>16.4514</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GlycX">
+<property name="Name">
+<value>Extracellular glycerol</value>
+</property>
+<property name="NumberConc">
+<value>1.68478</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ACAX">
+<property name="Name">
+<value>Extracellular acetaldehyde</value>
+</property>
+<property name="NumberConc">
+<value>1.28836</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CNX">
+<property name="Name">
+<value>Extracellular cyanide</value>
+</property>
+<property name="NumberConc">
+<value>5.20358</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CNX0">
+<property name="Name">
+<value>Mixed flow cyanide</value>
+</property>
+<property name="NumberConc">
+<value>5.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GlcX0">
+<property name="Name">
+<value>Mixed flow glucose</value>
+</property>
+<property name="NumberConc">
+<value>24.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc">
+<property name="Name">
+<value>Cytosolic glucose</value>
+</property>
+<property name="NumberConc">
+<value>0.573074</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>2.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="Name">
+<value>Glucose-6-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>4.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="NumberConc">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6P">
+<property name="Name">
+<value>Fructose-6-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.49</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FBP">
+<property name="Name">
+<value>Fructose 1,6-bisphosphate</value>
+</property>
+<property name="NumberConc">
+<value>4.64</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAP">
+<property name="Name">
+<value>Glyceraldehyde 3-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.115</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="Name">
+<value>Dihydroxyacetone phosphate</value>
+</property>
+<property name="NumberConc">
+<value>2.95</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="Name">
+<value>NAD</value>
+</property>
+<property name="NumberConc">
+<value>0.65</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BPG">
+<property name="Name">
+<value>1,3-Bisphosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.00027</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="Name">
+<value>NADH</value>
+</property>
+<property name="NumberConc">
+<value>0.33</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP">
+<property name="Name">
+<value>Phosphoenolpyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyr">
+<property name="Name">
+<value>Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>8.7</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ACA">
+<property name="Name">
+<value>Acetaldehyde</value>
+</property>
+<property name="NumberConc">
+<value>1.48153</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EtOH">
+<property name="NumberConc">
+<value>19.2379</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glyc">
+<property name="Name">
+<value>Glycerol</value>
+</property>
+<property name="NumberConc">
+<value>4.196</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AMP">
+<property name="Name">
+<value>AMP</value>
+</property>
+<property name="NumberConc">
+<value>0.33</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

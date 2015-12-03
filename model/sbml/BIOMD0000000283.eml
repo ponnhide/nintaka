@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r1">
+<property name="Name">
+<value>r1</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (E.NumberConc * X.NumberConc - K2.Value * P.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/cell:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; E &lt;/ci&gt;#x0A        &lt;ci&gt; X &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K2 &lt;/ci&gt;#x0A        &lt;ci&gt; P &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2">
+<property name="Name">
+<value>r2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * K3.Value * P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>1</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/cell:Q</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>K3</value>
+<value>Variable:/SBMLParameter:K3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; K3 &lt;/ci&gt;#x0A    &lt;ci&gt; P &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="Name">
+<value>X</value>
+</property>
+<property name="NumberConc">
+<value>8.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Q">
+<property name="Name">
+<value>Q</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="K2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K3">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

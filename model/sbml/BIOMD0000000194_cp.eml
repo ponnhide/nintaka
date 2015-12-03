@@ -1,0 +1,358 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="R6">
+<property name="Name">
+<value>[Mad1_CMad2] + [OMad2] &lt;-&gt; [Mad1_CMad2_OMad2];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * (u.Value * alpha_T.Value * Mad1_CMad2.NumberConc * OMad2.NumberConc - beta_T.Value * Mad1_CMad2_OMad2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mad1_CMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mad1_CMad2_OMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2_OMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_T</value>
+<value>Variable:/SBMLParameter:alpha_T</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_T</value>
+<value>Variable:/SBMLParameter:beta_T</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A        &lt;ci&gt; alpha_T &lt;/ci&gt;#x0A        &lt;ci&gt; Mad1_CMad2 &lt;/ci&gt;#x0A        &lt;ci&gt; OMad2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; beta_T &lt;/ci&gt;#x0A        &lt;ci&gt; Mad1_CMad2_OMad2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R7">
+<property name="Name">
+<value>[Mad1_CMad2_OMad2] + [Cdc20] -&gt; [Mad1_CMad2] + [Cdc20_CMad2];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * u.Value * gamma_T.Value * Mad1_CMad2_OMad2.NumberConc * Cdc20.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mad1_CMad2_OMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2_OMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mad1_CMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_T</value>
+<value>Variable:/SBMLParameter:gamma_T</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;ci&gt; gamma_T &lt;/ci&gt;#x0A    &lt;ci&gt; Mad1_CMad2_OMad2 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R8">
+<property name="Name">
+<value>[Cdc20_CMad2] -&gt; [Cdc20] + [OMad2];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * eta_T.Value * Cdc20_CMad2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>1</value>
+</value>
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>eta_T</value>
+<value>Variable:/SBMLParameter:eta_T</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;ci&gt; eta_T &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20_CMad2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Mad1_CMad2">
+<property name="Name">
+<value>Mad1:C-Mad2</value>
+</property>
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="OMad2">
+<property name="Name">
+<value>O-Mad2</value>
+</property>
+<property name="Value">
+<value>1.5e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mad1_CMad2_OMad2">
+<property name="Name">
+<value>Mad1:C-Mad2:O-Mad2*</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20">
+<property name="Name">
+<value>Cdc20</value>
+</property>
+<property name="Value">
+<value>2.2e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20_CMad2">
+<property name="Name">
+<value>Cdc20:C-Mad2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="eta_T">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_T">
+<property name="Value">
+<value>1000000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_T">
+<property name="Value">
+<value>200000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_T">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="u">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="const_val_0">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="const_val_1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="mt_attachment">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>mt_attachment</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>u</value>
+<value>const_val_0.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;cn&gt; 2000 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>gt(time.Value, 2000)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>1</value>
+</value>
+<value>
+<value>const_val_0</value>
+<value>Variable:/SBMLParameter:const_val_0</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

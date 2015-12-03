@@ -1,0 +1,2038 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="vPTS">
+<property name="Name">
+<value>Phosphotransferase system</value>
+</property>
+<property name="rmaxPTS">
+<value>7829.78</value>
+</property>
+<property name="KPTSa1">
+<value>3082.3</value>
+</property>
+<property name="KPTSa2">
+<value>0.01</value>
+</property>
+<property name="KPTSa3">
+<value>245.3</value>
+</property>
+<property name="nPTSg6p">
+<value>3.66</value>
+</property>
+<property name="KPTSg6p">
+<value>2.15</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * rmaxPTS * cglcex.NumberConc * (cpep.NumberConc / cpyr.NumberConc) / ((KPTSa1 + KPTSa2 * (cpep.NumberConc / cpyr.NumberConc) + KPTSa3 * cglcex.NumberConc + cglcex.NumberConc * (cpep.NumberConc / cpyr.NumberConc)) * (1 + pow(cg6p.NumberConc, nPTSg6p) / KPTSg6p))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cglcex</value>
+<value>Variable:/extracellular:cglcex</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-65</value>
+</value>
+<value>
+<value>cg6p</value>
+<value>Variable:/extracellular/cytosol:cg6p</value>
+<value>65</value>
+</value>
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>65</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPGI">
+<property name="Name">
+<value>Glucose-6-phosphate isomerase</value>
+</property>
+<property name="rmaxPGI">
+<value>650.9878687</value>
+</property>
+<property name="KPGIeq">
+<value>0.1725</value>
+</property>
+<property name="KPGIg6p">
+<value>2.9</value>
+</property>
+<property name="KPGIf6p">
+<value>0.266</value>
+</property>
+<property name="KPGIf6ppginh">
+<value>0.2</value>
+</property>
+<property name="KPGIg6ppginh">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPGI * (cg6p.NumberConc - cf6p.NumberConc / KPGIeq) / (KPGIg6p * (1 + cf6p.NumberConc / (KPGIf6p * (1 + cpg.NumberConc / KPGIf6ppginh)) + cpg.NumberConc / KPGIg6ppginh) + cg6p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg6p</value>
+<value>Variable:/extracellular/cytosol:cg6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>1</value>
+</value>
+<value>
+<value>cpg</value>
+<value>Variable:/extracellular/cytosol:cpg</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPGM">
+<property name="Name">
+<value>Phosphoglucomutase</value>
+</property>
+<property name="rmaxPGM">
+<value>0.8398242773</value>
+</property>
+<property name="KPGMeq">
+<value>0.196</value>
+</property>
+<property name="KPGMg6p">
+<value>1.038</value>
+</property>
+<property name="KPGMg1p">
+<value>0.0136</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPGM * (cg6p.NumberConc - cg1p.NumberConc / KPGMeq) / (KPGMg6p * (1 + cg1p.NumberConc / KPGMg1p) + cg6p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg6p</value>
+<value>Variable:/extracellular/cytosol:cg6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cg1p</value>
+<value>Variable:/extracellular/cytosol:cg1p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vG6PDH">
+<property name="Name">
+<value>Glucose-6-phosphate dehydrogenase</value>
+</property>
+<property name="rmaxG6PDH">
+<value>1.380196955</value>
+</property>
+<property name="KG6PDHg6p">
+<value>14.4</value>
+</property>
+<property name="KG6PDHnadphg6pinh">
+<value>6.43</value>
+</property>
+<property name="KG6PDHnadp">
+<value>0.0246</value>
+</property>
+<property name="KG6PDHnadphnadpinh">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxG6PDH * cg6p.NumberConc * cnadp.Value / ((cg6p.NumberConc + KG6PDHg6p) * (1 + cnadph.Value / KG6PDHnadphg6pinh) * (KG6PDHnadp * (1 + cnadph.Value / KG6PDHnadphnadpinh) + cnadp.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg6p</value>
+<value>Variable:/extracellular/cytosol:cg6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpg</value>
+<value>Variable:/extracellular/cytosol:cpg</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cnadp</value>
+<value>Variable:/SBMLParameter:cnadp</value>
+<value>0</value>
+</value>
+<value>
+<value>cnadph</value>
+<value>Variable:/SBMLParameter:cnadph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPFK">
+<property name="Name">
+<value>Phosphofructokinase</value>
+</property>
+<property name="rmaxPFK">
+<value>1840.584747</value>
+</property>
+<property name="KPFKatps">
+<value>0.123</value>
+</property>
+<property name="KPFKadpc">
+<value>4.14</value>
+</property>
+<property name="KPFKf6ps">
+<value>0.325</value>
+</property>
+<property name="KPFKpep">
+<value>3.26</value>
+</property>
+<property name="KPFKadpb">
+<value>3.89</value>
+</property>
+<property name="KPFKampb">
+<value>3.2</value>
+</property>
+<property name="KPFKadpa">
+<value>128.0</value>
+</property>
+<property name="KPFKampa">
+<value>19.1</value>
+</property>
+<property name="LPFK">
+<value>5629067.0</value>
+</property>
+<property name="nPFK">
+<value>11.1</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPFK * catp.Value * cf6p.NumberConc / ((catp.Value + KPFKatps * (1 + cadp.Value / KPFKadpc)) * (cf6p.NumberConc + KPFKf6ps * (1 + cpep.NumberConc / KPFKpep + cadp.Value / KPFKadpb + camp.Value / KPFKampb) / (1 + cadp.Value / KPFKadpa + camp.Value / KPFKampa)) * (1 + LPFK / pow(1 + cf6p.NumberConc * (1 + cadp.Value / KPFKadpa + camp.Value / KPFKampa) / (KPFKf6ps * (1 + cpep.NumberConc / KPFKpep + cadp.Value / KPFKadpb + camp.Value / KPFKampb)), nPFK)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>1</value>
+</value>
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>0</value>
+</value>
+<value>
+<value>cadp</value>
+<value>Variable:/SBMLParameter:cadp</value>
+<value>0</value>
+</value>
+<value>
+<value>camp</value>
+<value>Variable:/SBMLParameter:camp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vTA">
+<property name="Name">
+<value>Transaldolase</value>
+</property>
+<property name="rmaxTA">
+<value>10.87164108</value>
+</property>
+<property name="KTAeq">
+<value>1.05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxTA * (cgap.NumberConc * csed7p.NumberConc - ce4p.NumberConc * cf6p.NumberConc / KTAeq)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>-1</value>
+</value>
+<value>
+<value>csed7p</value>
+<value>Variable:/extracellular/cytosol:csed7p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>1</value>
+</value>
+<value>
+<value>ce4p</value>
+<value>Variable:/extracellular/cytosol:ce4p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vTKA">
+<property name="Name">
+<value>Transketolase a</value>
+</property>
+<property name="rmaxTKa">
+<value>9.473384783</value>
+</property>
+<property name="KTKaeq">
+<value>1.2</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxTKa * (crib5p.NumberConc * cxyl5p.NumberConc - csed7p.NumberConc * cgap.NumberConc / KTKaeq)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>crib5p</value>
+<value>Variable:/extracellular/cytosol:crib5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cxyl5p</value>
+<value>Variable:/extracellular/cytosol:cxyl5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>1</value>
+</value>
+<value>
+<value>csed7p</value>
+<value>Variable:/extracellular/cytosol:csed7p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vTKB">
+<property name="Name">
+<value>Transketolase b</value>
+</property>
+<property name="rmaxTKb">
+<value>86.55855855</value>
+</property>
+<property name="KTKbeq">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxTKb * (cxyl5p.NumberConc * ce4p.NumberConc - cf6p.NumberConc * cgap.NumberConc / KTKbeq)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ce4p</value>
+<value>Variable:/extracellular/cytosol:ce4p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cxyl5p</value>
+<value>Variable:/extracellular/cytosol:cxyl5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>1</value>
+</value>
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vMURSyNTH">
+<property name="Name">
+<value>Mureine synthesis</value>
+</property>
+<property name="rmaxMurSynth">
+<value>0.00043711</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxMurSynth</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>-2</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vALDO">
+<property name="Name">
+<value>Aldolase</value>
+</property>
+<property name="rmaxALDO">
+<value>17.41464425</value>
+</property>
+<property name="kALDOeq">
+<value>0.144</value>
+</property>
+<property name="kALDOfdp">
+<value>1.75</value>
+</property>
+<property name="kALDOgap">
+<value>0.088</value>
+</property>
+<property name="VALDOblf">
+<value>2.0</value>
+</property>
+<property name="kALDOdhap">
+<value>0.088</value>
+</property>
+<property name="kALDOgapinh">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxALDO * (cfdp.NumberConc - cgap.NumberConc * cdhap.NumberConc / kALDOeq) / (kALDOfdp + cfdp.NumberConc + kALDOgap * cdhap.NumberConc / (kALDOeq * VALDOblf) + kALDOdhap * cgap.NumberConc / (kALDOeq * VALDOblf) + cfdp.NumberConc * cgap.NumberConc / kALDOgapinh + cgap.NumberConc * cdhap.NumberConc / (VALDOblf * kALDOeq))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cdhap</value>
+<value>Variable:/extracellular/cytosol:cdhap</value>
+<value>1</value>
+</value>
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vGAPDH">
+<property name="Name">
+<value>Glyceraldehyde-3-phosphate dehydrogenase</value>
+</property>
+<property name="rmaxGAPDH">
+<value>921.5942861</value>
+</property>
+<property name="KGAPDHeq">
+<value>0.63</value>
+</property>
+<property name="KGAPDHgap">
+<value>0.683</value>
+</property>
+<property name="KGAPDHpgp">
+<value>1.04e-05</value>
+</property>
+<property name="KGAPDHnad">
+<value>0.252</value>
+</property>
+<property name="KGAPDHnadh">
+<value>1.09</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxGAPDH * (cgap.NumberConc * cnad.Value - cpgp.NumberConc * cnadh.Value / KGAPDHeq) / ((KGAPDHgap * (1 + cpgp.NumberConc / KGAPDHpgp) + cgap.NumberConc) * (KGAPDHnad * (1 + cnadh.Value / KGAPDHnadh) + cnad.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpgp</value>
+<value>Variable:/extracellular/cytosol:cpgp</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cnad</value>
+<value>Variable:/SBMLParameter:cnad</value>
+<value>0</value>
+</value>
+<value>
+<value>cnadh</value>
+<value>Variable:/SBMLParameter:cnadh</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vTIS">
+<property name="Name">
+<value>Triosephosphate isomerase</value>
+</property>
+<property name="rmaxTIS">
+<value>68.67474392</value>
+</property>
+<property name="kTISeq">
+<value>1.39</value>
+</property>
+<property name="kTISdhap">
+<value>2.8</value>
+</property>
+<property name="kTISgap">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxTIS * (cdhap.NumberConc - cgap.NumberConc / kTISeq) / (kTISdhap * (1 + cgap.NumberConc / kTISgap) + cdhap.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdhap</value>
+<value>Variable:/extracellular/cytosol:cdhap</value>
+<value>-1</value>
+</value>
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vTRPSYNTH">
+<property name="Name">
+<value>Tryptophan synthesis</value>
+</property>
+<property name="rmaxTrpSynth">
+<value>0.001037</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxTrpSynth</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>1</value>
+</value>
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vG3PDH">
+<property name="Name">
+<value>Glycerol-3-phosphate dehydrogenase</value>
+</property>
+<property name="rmaxG3PDH">
+<value>0.01162042696</value>
+</property>
+<property name="KG3PDHdhap">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxG3PDH * cdhap.NumberConc / (KG3PDHdhap + cdhap.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdhap</value>
+<value>Variable:/extracellular/cytosol:cdhap</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPGK">
+<property name="Name">
+<value>Phosphoglycerate kinase</value>
+</property>
+<property name="rmaxPGK">
+<value>3021.773771</value>
+</property>
+<property name="KPGKeq">
+<value>1934.4</value>
+</property>
+<property name="KPGKadp">
+<value>0.185</value>
+</property>
+<property name="KPGKatp">
+<value>0.653</value>
+</property>
+<property name="KPGKpgp">
+<value>0.0468</value>
+</property>
+<property name="KPGKpg3">
+<value>0.473</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPGK * (cadp.Value * cpgp.NumberConc - catp.Value * cpg3.NumberConc / KPGKeq) / ((KPGKadp * (1 + catp.Value / KPGKatp) + cadp.Value) * (KPGKpgp * (1 + cpg3.NumberConc / KPGKpg3) + cpgp.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpgp</value>
+<value>Variable:/extracellular/cytosol:cpgp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpg3</value>
+<value>Variable:/extracellular/cytosol:cpg3</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cadp</value>
+<value>Variable:/SBMLParameter:cadp</value>
+<value>0</value>
+</value>
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vsersynth">
+<property name="Name">
+<value>Serine synthesis</value>
+</property>
+<property name="rmaxSerSynth">
+<value>0.025712107</value>
+</property>
+<property name="KSerSynthpg3">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxSerSynth * cpg3.NumberConc / (KSerSynthpg3 + cpg3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg3</value>
+<value>Variable:/extracellular/cytosol:cpg3</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vrpGluMu">
+<property name="Name">
+<value>Phosphoglycerate mutase</value>
+</property>
+<property name="rmaxPGluMu">
+<value>89.04965407</value>
+</property>
+<property name="KPGluMueq">
+<value>0.188</value>
+</property>
+<property name="KPGluMupg3">
+<value>0.2</value>
+</property>
+<property name="KPGluMupg2">
+<value>0.369</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPGluMu * (cpg3.NumberConc - cpg2.NumberConc / KPGluMueq) / (KPGluMupg3 * (1 + cpg2.NumberConc / KPGluMupg2) + cpg3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg3</value>
+<value>Variable:/extracellular/cytosol:cpg3</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpg2</value>
+<value>Variable:/extracellular/cytosol:cpg2</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vENO">
+<property name="Name">
+<value>Enolase</value>
+</property>
+<property name="rmaxENO">
+<value>330.4476151</value>
+</property>
+<property name="KENOeq">
+<value>6.73</value>
+</property>
+<property name="KENOpg2">
+<value>0.1</value>
+</property>
+<property name="KENOpep">
+<value>0.135</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxENO * (cpg2.NumberConc - cpep.NumberConc / KENOeq) / (KENOpg2 * (1 + cpep.NumberConc / KENOpep) + cpg2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg2</value>
+<value>Variable:/extracellular/cytosol:cpg2</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPK">
+<property name="Name">
+<value>Pyruvate kinase</value>
+</property>
+<property name="rmaxPK">
+<value>0.06113150238</value>
+</property>
+<property name="KPKpep">
+<value>0.31</value>
+</property>
+<property name="nPK">
+<value>4.0</value>
+</property>
+<property name="LPK">
+<value>1000.0</value>
+</property>
+<property name="KPKatp">
+<value>22.5</value>
+</property>
+<property name="KPKfdp">
+<value>0.19</value>
+</property>
+<property name="KPKamp">
+<value>0.2</value>
+</property>
+<property name="KPKadp">
+<value>0.26</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPK * cpep.NumberConc * pow(cpep.NumberConc / KPKpep + 1, nPK - 1) * cadp.Value / (KPKpep * (LPK * pow((1 + catp.Value / KPKatp) / (cfdp.NumberConc / KPKfdp + camp.Value / KPKamp + 1), nPK) + pow(cpep.NumberConc / KPKpep + 1, nPK)) * (cadp.Value + KPKadp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>1</value>
+</value>
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cadp</value>
+<value>Variable:/SBMLParameter:cadp</value>
+<value>0</value>
+</value>
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>0</value>
+</value>
+<value>
+<value>camp</value>
+<value>Variable:/SBMLParameter:camp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vpepCxylase">
+<property name="Name">
+<value>PEP carboxylase</value>
+</property>
+<property name="rmaxpepCxylase">
+<value>0.1070205858</value>
+</property>
+<property name="KpepCxylasefdp">
+<value>0.7</value>
+</property>
+<property name="npepCxylasefdp">
+<value>4.21</value>
+</property>
+<property name="KpepCxylasepep">
+<value>4.07</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxpepCxylase * cpep.NumberConc * (1 + pow(cfdp.NumberConc / KpepCxylasefdp, npepCxylasefdp)) / (KpepCxylasepep + cpep.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-1</value>
+</value>
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vSynth1">
+<property name="Name">
+<value>Synthesis 1</value>
+</property>
+<property name="rmaxSynth1">
+<value>0.01953897003</value>
+</property>
+<property name="KSynth1pep">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxSynth1 * cpep.NumberConc / (KSynth1pep + cpep.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vSynth2">
+<property name="Name">
+<value>Synthesis 2</value>
+</property>
+<property name="rmaxSynth2">
+<value>0.07361855055</value>
+</property>
+<property name="KSynth2pyr">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxSynth2 * cpyr.NumberConc / (KSynth2pyr + cpyr.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vDAHPS">
+<property name="Name">
+<value>DAHP synthesis</value>
+</property>
+<property name="rmaxDAHPS">
+<value>0.1079531227</value>
+</property>
+<property name="nDAHPSe4p">
+<value>2.6</value>
+</property>
+<property name="nDAHPSpep">
+<value>2.2</value>
+</property>
+<property name="KDAHPSe4p">
+<value>0.035</value>
+</property>
+<property name="KDAHPSpep">
+<value>0.0053</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxDAHPS * pow(ce4p.NumberConc, nDAHPSe4p) * pow(cpep.NumberConc, nDAHPSpep) / ((KDAHPSe4p + pow(ce4p.NumberConc, nDAHPSe4p)) * (KDAHPSpep + pow(cpep.NumberConc, nDAHPSpep)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ce4p</value>
+<value>Variable:/extracellular/cytosol:ce4p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPDH">
+<property name="Name">
+<value>Pyruvate dehydrogenase</value>
+</property>
+<property name="rmaxPDH">
+<value>6.059531017</value>
+</property>
+<property name="nPDH">
+<value>3.68</value>
+</property>
+<property name="KPDHpyr">
+<value>1159.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPDH * pow(cpyr.NumberConc, nPDH) / (KPDHpyr + pow(cpyr.NumberConc, nPDH))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vMethSynth">
+<property name="Name">
+<value>Methionine synthesis</value>
+</property>
+<property name="rmaxMetSynth">
+<value>0.0022627</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxMetSynth</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPGDH">
+<property name="Name">
+<value>6-Phosphogluconate dehydrogenase</value>
+</property>
+<property name="rmaxPGDH">
+<value>16.23235977</value>
+</property>
+<property name="KPGDHpg">
+<value>37.5</value>
+</property>
+<property name="KPGDHnadp">
+<value>0.0506</value>
+</property>
+<property name="KPGDHnadphinh">
+<value>0.0138</value>
+</property>
+<property name="KPGDHatpinh">
+<value>208.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxPGDH * cpg.NumberConc * cnadp.Value / ((cpg.NumberConc + KPGDHpg) * (cnadp.Value + KPGDHnadp * (1 + cnadph.Value / KPGDHnadphinh) * (1 + catp.Value / KPGDHatpinh)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg</value>
+<value>Variable:/extracellular/cytosol:cpg</value>
+<value>-1</value>
+</value>
+<value>
+<value>cribu5p</value>
+<value>Variable:/extracellular/cytosol:cribu5p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cnadp</value>
+<value>Variable:/SBMLParameter:cnadp</value>
+<value>0</value>
+</value>
+<value>
+<value>cnadph</value>
+<value>Variable:/SBMLParameter:cnadph</value>
+<value>0</value>
+</value>
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vR5PI">
+<property name="Name">
+<value>Ribose-phosphate isomerase</value>
+</property>
+<property name="rmaxR5PI">
+<value>4.83841193</value>
+</property>
+<property name="KR5PIeq">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxR5PI * (cribu5p.NumberConc - crib5p.NumberConc / KR5PIeq)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cribu5p</value>
+<value>Variable:/extracellular/cytosol:cribu5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>crib5p</value>
+<value>Variable:/extracellular/cytosol:crib5p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vRu5P">
+<property name="Name">
+<value>Ribulose-phosphate epimerase</value>
+</property>
+<property name="rmaxRu5P">
+<value>6.739029475</value>
+</property>
+<property name="KRu5Peq">
+<value>1.4</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxRu5P * (cribu5p.NumberConc - cxyl5p.NumberConc / KRu5Peq)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cribu5p</value>
+<value>Variable:/extracellular/cytosol:cribu5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cxyl5p</value>
+<value>Variable:/extracellular/cytosol:cxyl5p</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPPK">
+<property name="Name">
+<value>Ribose phosphate pyrophosphokinase</value>
+</property>
+<property name="rmaxRPPK">
+<value>0.01290045226</value>
+</property>
+<property name="KRPPKrib5p">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxRPPK * crib5p.NumberConc / (KRPPKrib5p + crib5p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>crib5p</value>
+<value>Variable:/extracellular/cytosol:crib5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vG1PAT">
+<property name="Name">
+<value>Glucose-1-phosphate adenyltransferase</value>
+</property>
+<property name="rmaxG1PAT">
+<value>0.007525458026</value>
+</property>
+<property name="KG1PATfdp">
+<value>0.119</value>
+</property>
+<property name="nG1PATfdp">
+<value>1.2</value>
+</property>
+<property name="KG1PATatp">
+<value>4.42</value>
+</property>
+<property name="KG1PATg1p">
+<value>3.2</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * rmaxG1PAT * cg1p.NumberConc * catp.Value * (1 + pow(cfdp.NumberConc / KG1PATfdp, nG1PATfdp)) / ((KG1PATatp + catp.Value) * (KG1PATg1p + cg1p.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg1p</value>
+<value>Variable:/extracellular/cytosol:cg1p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vG6P">
+<property name="Name">
+<value>G6P degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cg6p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg6p</value>
+<value>Variable:/extracellular/cytosol:cg6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vf6P">
+<property name="Name">
+<value>F6P degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cf6p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cf6p</value>
+<value>Variable:/extracellular/cytosol:cf6p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vfdP">
+<property name="Name">
+<value>FDP degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cfdp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cfdp</value>
+<value>Variable:/extracellular/cytosol:cfdp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vGAP">
+<property name="Name">
+<value>GAP degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cgap.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cgap</value>
+<value>Variable:/extracellular/cytosol:cgap</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vDHAP">
+<property name="Name">
+<value>DHAP degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cdhap.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdhap</value>
+<value>Variable:/extracellular/cytosol:cdhap</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPGP">
+<property name="Name">
+<value>PGP degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpgp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpgp</value>
+<value>Variable:/extracellular/cytosol:cpgp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPG3">
+<property name="Name">
+<value>PG3 degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpg3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg3</value>
+<value>Variable:/extracellular/cytosol:cpg3</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vpg2">
+<property name="Name">
+<value>PG2 degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpg2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg2</value>
+<value>Variable:/extracellular/cytosol:cpg2</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPEP">
+<property name="Name">
+<value>PEP degradation</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpep.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpep</value>
+<value>Variable:/extracellular/cytosol:cpep</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vRibu5p">
+<property name="Name">
+<value>Ribu5P dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cribu5p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cribu5p</value>
+<value>Variable:/extracellular/cytosol:cribu5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vRIB5P">
+<property name="Name">
+<value>Rib5P dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * crib5p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>crib5p</value>
+<value>Variable:/extracellular/cytosol:crib5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vXYL5P">
+<property name="Name">
+<value>XYL5P dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cxyl5p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cxyl5p</value>
+<value>Variable:/extracellular/cytosol:cxyl5p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vSED7P">
+<property name="Name">
+<value>SED7P dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * csed7p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>csed7p</value>
+<value>Variable:/extracellular/cytosol:csed7p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vpyr">
+<property name="Name">
+<value>Pyruvate dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpyr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpyr</value>
+<value>Variable:/extracellular/cytosol:cpyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vPG">
+<property name="Name">
+<value>PG dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cpg.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cpg</value>
+<value>Variable:/extracellular/cytosol:cpg</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vE4P">
+<property name="Name">
+<value>E4P dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * ce4p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ce4p</value>
+<value>Variable:/extracellular/cytosol:ce4p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vGLP">
+<property name="Name">
+<value>GLP dilution</value>
+</property>
+<property name="mu">
+<value>2.78e-05</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * mu * cg1p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cg1p</value>
+<value>Variable:/extracellular/cytosol:cg1p</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="vEXTER">
+<property name="Name">
+<value>Extracellular glucose kinetics</value>
+</property>
+<property name="Dil">
+<value>2.78e-05</value>
+</property>
+<property name="cfeed">
+<value>110.96</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * Dil * (cfeed - cglcex.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cglcex</value>
+<value>Variable:/extracellular:cglcex</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cglcex">
+<property name="Name">
+<value>Extracellular Glucose</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cpep">
+<property name="Name">
+<value>Phosphoenol pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>2.67</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cg6p">
+<property name="Name">
+<value>Glucose-6-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>3.48</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cpyr">
+<property name="Name">
+<value>Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>2.67</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cf6p">
+<property name="Name">
+<value>Fructose-6-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cg1p">
+<property name="Name">
+<value>Glucose-1-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.653</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cpg">
+<property name="Name">
+<value>6-Phosphogluconate</value>
+</property>
+<property name="NumberConc">
+<value>0.808</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cfdp">
+<property name="Name">
+<value>Fructose-1,6-bisphosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.272</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="csed7p">
+<property name="Name">
+<value>sedoheptulose-7-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.276</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cgap">
+<property name="Name">
+<value>Glyceraldehyde-3-Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.218</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ce4p">
+<property name="Name">
+<value>Erythrose-4-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.098</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cxyl5p">
+<property name="Name">
+<value>Xylulose-5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.138</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="crib5p">
+<property name="Name">
+<value>Ribose-5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.398</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cdhap">
+<property name="Name">
+<value>Dihydroxyacetonephosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.167</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cpgp">
+<property name="Name">
+<value>1,3-diphosphosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.008</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cpg3">
+<property name="Name">
+<value>3-Phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>2.13</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cpg2">
+<property name="Name">
+<value>2-Phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.399</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cribu5p">
+<property name="Name">
+<value>Ribulose-5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.111</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="catp">
+<property name="Value">
+<value>4.27</value>
+</property>
+</variable>
+<variable class="Variable" id="cadp">
+<property name="Value">
+<value>0.582</value>
+</property>
+</variable>
+<variable class="Variable" id="camp">
+<property name="Value">
+<value>0.954782945736</value>
+</property>
+</variable>
+<variable class="Variable" id="cnadp">
+<property name="Value">
+<value>0.1967593361</value>
+</property>
+</variable>
+<variable class="Variable" id="cnadph">
+<property name="Value">
+<value>0.062</value>
+</property>
+</variable>
+<variable class="Variable" id="cnad">
+<property name="Value">
+<value>1.46439931185</value>
+</property>
+</variable>
+<variable class="Variable" id="cnadh">
+<property name="Value">
+<value>0.0934</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_catp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'catp'</value>
+</property>
+<property name="Expression">
+<value>4.27 - 4.163 * (&lt;t&gt; / (0.657 + 1.43 * &lt;t&gt; + 0.0364 * pow(&lt;t&gt;, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>catp</value>
+<value>Variable:/SBMLParameter:catp</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cadp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cadp'</value>
+</property>
+<property name="Expression">
+<value>0.582 + 1.73 * pow(2.731, -0.15 * &lt;t&gt;) * (0.12 * &lt;t&gt; + 0.000214 * pow(&lt;t&gt;, 3))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cadp</value>
+<value>Variable:/SBMLParameter:cadp</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_camp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'camp'</value>
+</property>
+<property name="Expression">
+<value>0.123 + 7.25 * (&lt;t&gt; / (7.25 + 1.47 * &lt;t&gt; + 0.17 * pow(&lt;t&gt;, 2))) + 1.073 / (1.29 + 8.05 * &lt;t&gt;)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>camp</value>
+<value>Variable:/SBMLParameter:camp</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cnadph">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cnadph'</value>
+</property>
+<property name="Expression">
+<value>0.062 + 0.332 * pow(2.718, -0.464 * &lt;t&gt;) * (0.0166 * pow(&lt;t&gt;, 1.58) + 0.000166 * pow(&lt;t&gt;, 4.73) + 0.1312 * pow(10, -9) * pow(&lt;t&gt;, 7.89) + 0.1362 * pow(10, -12) * pow(&lt;t&gt;, 11) + 0.1233 * pow(10, -15) * pow(&lt;t&gt;, 14.2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cnadph</value>
+<value>Variable:/SBMLParameter:cnadph</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cnadp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cnadp'</value>
+</property>
+<property name="Expression">
+<value>0.159 - 0.00554 * (&lt;t&gt; / (2.8 - 0.271 * &lt;t&gt; + 0.01 * pow(&lt;t&gt;, 2))) + 0.182 / (4.82 + 0.526 * &lt;t&gt;)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cnadp</value>
+<value>Variable:/SBMLParameter:cnadp</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cnadh">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cnadh'</value>
+</property>
+<property name="Expression">
+<value>0.0934 + 0.00111 * pow(2.371, -0.123 * &lt;t&gt;) * (0.844 * &lt;t&gt; + 0.104 * pow(&lt;t&gt;, 3))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cnadh</value>
+<value>Variable:/SBMLParameter:cnadh</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cnad">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cnad'</value>
+</property>
+<property name="Expression">
+<value>1.314 + 1.314 * pow(2.73, -0.0435 * &lt;t&gt; - 0.342) - (&lt;t&gt; + 7.871) * (pow(2.73, -0.0218 * &lt;t&gt; - 0.171) / (8.481 + &lt;t&gt;))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cnad</value>
+<value>Variable:/SBMLParameter:cnad</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

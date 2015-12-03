@@ -1,0 +1,289 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r1">
+<property name="Name">
+<value>r1</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1.Value * e.NumberConc * x.NumberConc - k2.Value * p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>e</value>
+<value>Variable:/cell:e</value>
+<value>-1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/cell:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/cell:p</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; e &lt;/ci&gt;#x0A        &lt;ci&gt; x &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; p &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2">
+<property name="Name">
+<value>r2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k4_prime.Value * p.NumberConc * x.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p</value>
+<value>Variable:/cell:p</value>
+<value>-1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/cell:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>e</value>
+<value>Variable:/cell:e</value>
+<value>1</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/cell:p1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4_prime</value>
+<value>Variable:/SBMLParameter:k4_prime</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k4_prime &lt;/ci&gt;#x0A    &lt;ci&gt; p &lt;/ci&gt;#x0A    &lt;ci&gt; x &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3">
+<property name="Name">
+<value>r3</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k4.Value * p.NumberConc * a.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p</value>
+<value>Variable:/cell:p</value>
+<value>-1</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/cell:a</value>
+<value>0</value>
+</value>
+<value>
+<value>e</value>
+<value>Variable:/cell:e</value>
+<value>1</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/cell:p2</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; p &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e">
+<property name="Name">
+<value>enzyme E (catalase)</value>
+</property>
+<property name="NumberConc">
+<value>1.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>substrate S (hydrogen peroxide)</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p">
+<property name="Name">
+<value>enzyme-substrate complex ES (catalase - hydrogen peroxide)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p1">
+<property name="Name">
+<value>product 1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="a">
+<property name="Name">
+<value>donor AH2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Name">
+<value>product 2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4_prime">
+<property name="Value">
+<value>16.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>0.72</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,301 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="___r1">
+<property name="Name">
+<value>-&gt; [P];</value>
+</property>
+<property name="Expression">
+<value>ks.Value * (k0.Value + pow(dspspkd.Value / ka.Value, h.Value)) / (1 + pow(dspspkd.Value / ka.Value, h.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/univ:P</value>
+<value>1</value>
+</value>
+<value>
+<value>ks</value>
+<value>Variable:/SBMLParameter:ks</value>
+<value>0</value>
+</value>
+<value>
+<value>k0</value>
+<value>Variable:/SBMLParameter:k0</value>
+<value>0</value>
+</value>
+<value>
+<value>dspspkd</value>
+<value>Variable:/SBMLParameter:dspspkd</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>h</value>
+<value>Variable:/SBMLParameter:h</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; ks &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; k0 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; dspspkd &lt;/ci&gt;#x0A            &lt;ci&gt; ka &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; h &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; dspspkd &lt;/ci&gt;#x0A          &lt;ci&gt; ka &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; h &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="___r2">
+<property name="Name">
+<value>[P] -&gt; ;</value>
+</property>
+<property name="__RATE__">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>__RATE__ * P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/univ:P</value>
+<value>-1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; __RATE__ &lt;/ci&gt;#x0A    &lt;ci&gt; P &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/univ">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Kd">
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ksp">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dspksp">
+<property name="Value">
+<value>9.999989899</value>
+</property>
+</variable>
+<variable class="Variable" id="dspspkd">
+<property name="Value">
+<value>9.9899949028</value>
+</property>
+</variable>
+<variable class="Variable" id="h">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k0">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Value">
+<value>40.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ks">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ku">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_dspksp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'dspksp'</value>
+</property>
+<property name="Expression">
+<value>Ksp.NumberConc / 2 * (1 + (s.NumberConc + P.NumberConc * univ.NumberConc) / Ksp.NumberConc - pow(pow(1 + (s.NumberConc + P.NumberConc * univ.NumberConc) / Ksp.NumberConc, 2) - 4 * s.NumberConc * P.NumberConc * univ.NumberConc / pow(Ksp.NumberConc, 2), 0.5))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; Ksp &lt;/ci&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; s &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A              &lt;ci&gt; univ &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Ksp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; s &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;ci&gt; univ &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; Ksp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 4 &lt;/cn&gt;#x0A              &lt;ci&gt; s &lt;/ci&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A              &lt;ci&gt; univ &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; Ksp &lt;/ci&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dspksp</value>
+<value>Variable:/SBMLParameter:dspksp</value>
+<value>1</value>
+</value>
+<value>
+<value>Ksp</value>
+<value>Variable:/SBMLParameter:Ksp</value>
+<value>0</value>
+</value>
+<value>
+<value>s</value>
+<value>Variable:/SBMLParameter:s</value>
+<value>0</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/univ:P</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_dspspkd">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'dspspkd'</value>
+</property>
+<property name="Expression">
+<value>Kd.NumberConc / 2 * (1 + 2 * dspksp.NumberConc / Kd.NumberConc - pow(pow(1 + 2 * dspksp.NumberConc / Kd.NumberConc, 2) - 4 * pow(dspksp.NumberConc, 2) / pow(Kd.NumberConc, 2), 0.5))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; Kd &lt;/ci&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;ci&gt; dspksp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kd &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn&gt; 2 &lt;/cn&gt;#x0A                  &lt;ci&gt; dspksp &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; Kd &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 4 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; dspksp &lt;/ci&gt;#x0A                &lt;cn&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; Kd &lt;/ci&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dspspkd</value>
+<value>Variable:/SBMLParameter:dspspkd</value>
+<value>1</value>
+</value>
+<value>
+<value>Kd</value>
+<value>Variable:/SBMLParameter:Kd</value>
+<value>0</value>
+</value>
+<value>
+<value>dspksp</value>
+<value>Variable:/SBMLParameter:dspksp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

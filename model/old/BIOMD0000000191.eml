@@ -1,0 +1,266 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Arginase">
+<property name="Name">
+<value>Arginase</value>
+</property>
+<property name="Vmaxarg">
+<value>110.0</value>
+</property>
+<property name="Kmarg">
+<value>1500.0</value>
+</property>
+<property name="Kioarg">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vmaxarg * ARGin.NumberConc / (Kmarg * (1 + ORN.NumberConc / Kioarg) + ARGin.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARGin</value>
+<value>Variable:/cytosol:ARGin</value>
+<value>-1</value>
+</value>
+<value>
+<value>ORN</value>
+<value>Variable:/cytosol:ORN</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Arginine_transport">
+<property name="Name">
+<value>Arginine transport</value>
+</property>
+<property name="Kmhat">
+<value>70.0</value>
+</property>
+<property name="Vmaxhat">
+<value>160.5</value>
+</property>
+<property name="Kmlat">
+<value>847.0</value>
+</property>
+<property name="Vmaxlat">
+<value>420.0</value>
+</property>
+<property name="Kiornhat">
+<value>360.0</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * (ARGex.NumberConc / (Kmhat + ARGex.NumberConc) * (Vmaxhat / (1 + ORN.NumberConc / Kiornhat + ARGin.NumberConc / Kmhat)) + ARGex.NumberConc / (Kmlat + ARGex.NumberConc) * (Vmaxlat / (1 + ORN.NumberConc / Kiornhat + ARGin.NumberConc / Kmlat)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARGex</value>
+<value>Variable:/extracellular:ARGex</value>
+<value>0</value>
+</value>
+<value>
+<value>ARGin</value>
+<value>Variable:/cytosol:ARGin</value>
+<value>1</value>
+</value>
+<value>
+<value>ORN</value>
+<value>Variable:/cytosol:ORN</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Ornithine_efflux">
+<property name="Name">
+<value>Ornithine efflux</value>
+</property>
+<property name="Kmhat">
+<value>70.0</value>
+</property>
+<property name="Kmlat">
+<value>847.0</value>
+</property>
+<property name="Vmaxefflhat">
+<value>160.5</value>
+</property>
+<property name="Vmaxeffllat">
+<value>420.0</value>
+</property>
+<property name="Kmeffllat">
+<value>847.0</value>
+</property>
+<property name="Kiornhat">
+<value>360.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vmaxefflhat / (1 + ARGex.NumberConc / Kmhat) * (ORN.NumberConc / (Kiornhat * (1 + ARGin.NumberConc / Kmhat) + ORN.NumberConc)) + Vmaxeffllat / (1 + ARGex.NumberConc / Kmlat) * (ORN.NumberConc / (Kmeffllat * (1 + ARGin.NumberConc / Kmlat) + ORN.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ORN</value>
+<value>Variable:/cytosol:ORN</value>
+<value>-1</value>
+</value>
+<value>
+<value>ARGex</value>
+<value>Variable:/extracellular:ARGex</value>
+<value>0</value>
+</value>
+<value>
+<value>ARGin</value>
+<value>Variable:/cytosol:ARGin</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="NOS">
+<property name="Name">
+<value>Nitric oxide synthase</value>
+</property>
+<property name="Vmaxnos1">
+<value>1.33</value>
+</property>
+<property name="Kmnos1">
+<value>16.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vmaxnos1 * ARGin.NumberConc / (Kmnos1 + ARGin.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARGin</value>
+<value>Variable:/cytosol:ARGin</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ODC">
+<property name="Name">
+<value>Ornithine decarboxylase</value>
+</property>
+<property name="Vmaxodc">
+<value>0.013</value>
+</property>
+<property name="Kmodc">
+<value>90.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vmaxodc * ORN.NumberConc / (Kmodc + ORN.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ORN</value>
+<value>Variable:/cytosol:ORN</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ARGex">
+<property name="Name">
+<value>Arginine ex</value>
+</property>
+<property name="NumberConc">
+<value>330.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ORN">
+<property name="Name">
+<value>Ornithine</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARGin">
+<property name="Name">
+<value>Arginine in</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

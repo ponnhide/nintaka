@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="Name">
+<value>S</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ES">
+<property name="Name">
+<value>ES</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="re2">
+<property name="Name">
+<value>[ES] -&gt; [S];</value>
+</property>
+<property name="Expression">
+<value>default.Value * k1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ES</value>
+<value>Variable:/:ES</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/:S</value>
+<value>1</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re12">
+<property name="Name">
+<value>[S] -&gt; [ES]; { S };</value>
+</property>
+<property name="Expression">
+<value>k2.Value * S.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>ES</value>
+<value>Variable:/:ES</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

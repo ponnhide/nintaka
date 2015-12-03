@@ -1,0 +1,530 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>-&gt; [EpoR];</value>
+</property>
+<property name="Expression">
+<value>kt.Value * Bmax_SAv.Value * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>kt</value>
+<value>Variable:/SBMLParameter:kt</value>
+<value>0</value>
+</value>
+<value>
+<value>Bmax_SAv</value>
+<value>Variable:/SBMLParameter:Bmax_SAv</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>[EpoR] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kt.Value * EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>kt</value>
+<value>Variable:/SBMLParameter:kt</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>[SAv] + [EpoR] -&gt; [SAv_EpoR];</value>
+</property>
+<property name="Expression">
+<value>kon_SAv.Value * SAv.NumberConc * EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv</value>
+<value>Variable:/medium:SAv</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>SAv_EpoR</value>
+<value>Variable:/cellsurface:SAv_EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>kon_SAv</value>
+<value>Variable:/SBMLParameter:kon_SAv</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>[SAv_EpoR] -&gt; [SAv] + [EpoR];</value>
+</property>
+<property name="Expression">
+<value>koff_SAv.Value * SAv_EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_EpoR</value>
+<value>Variable:/cellsurface:SAv_EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>SAv</value>
+<value>Variable:/medium:SAv</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>koff_SAv</value>
+<value>Variable:/SBMLParameter:koff_SAv</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>[SAv_EpoR] -&gt; [SAv_EpoRi];</value>
+</property>
+<property name="Expression">
+<value>kt.Value * SAv_EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_EpoR</value>
+<value>Variable:/cellsurface:SAv_EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>SAv_EpoRi</value>
+<value>Variable:/cell:SAv_EpoRi</value>
+<value>1</value>
+</value>
+<value>
+<value>kt</value>
+<value>Variable:/SBMLParameter:kt</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>[SAv_EpoRi] -&gt; [SAv];</value>
+</property>
+<property name="Expression">
+<value>kex_SAv.Value * SAv_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_EpoRi</value>
+<value>Variable:/cell:SAv_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>SAv</value>
+<value>Variable:/medium:SAv</value>
+<value>1</value>
+</value>
+<value>
+<value>kex_SAv</value>
+<value>Variable:/SBMLParameter:kex_SAv</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>[SAv_EpoRi] -&gt; [dSAvi];</value>
+</property>
+<property name="Expression">
+<value>kdi.Value * SAv_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_EpoRi</value>
+<value>Variable:/cell:SAv_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>dSAvi</value>
+<value>Variable:/cell:dSAvi</value>
+<value>1</value>
+</value>
+<value>
+<value>kdi</value>
+<value>Variable:/SBMLParameter:kdi</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>[SAv_EpoRi] -&gt; [dSAve];</value>
+</property>
+<property name="Expression">
+<value>kde.Value * SAv_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_EpoRi</value>
+<value>Variable:/cell:SAv_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>dSAve</value>
+<value>Variable:/medium:dSAve</value>
+<value>1</value>
+</value>
+<value>
+<value>kde</value>
+<value>Variable:/SBMLParameter:kde</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/medium">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>medium</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SAv">
+<property name="Name">
+<value>SAv</value>
+</property>
+<property name="NumberConc">
+<value>999.293</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dSAve">
+<property name="Name">
+<value>dSAve</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cellsurface">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cellsurface</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoR">
+<property name="Name">
+<value>EpoR</value>
+</property>
+<property name="NumberConc">
+<value>76.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SAv_EpoR">
+<property name="Name">
+<value>SAv_EpoR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SAv_EpoRi">
+<property name="Name">
+<value>SAv_EpoRi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dSAvi">
+<property name="Name">
+<value>dSAvi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kt">
+<property name="Value">
+<value>0.0329366</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Bmax_SAv">
+<property name="Value">
+<value>76.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kon_SAv">
+<property name="Value">
+<value>2.29402e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="koff_SAv">
+<property name="Value">
+<value>0.00679946</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kex_SAv">
+<property name="Value">
+<value>0.01101</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdi">
+<property name="Value">
+<value>0.00317871</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kde">
+<property name="Value">
+<value>0.0164042</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SAv_medium">
+<property name="Name">
+<value>SAv_medium</value>
+</property>
+<property name="Value">
+<value>999.293</value>
+</property>
+</variable>
+<variable class="Variable" id="SAv_cells">
+<property name="Name">
+<value>SAv_cells</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_SAv_medium">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'SAv_medium'</value>
+</property>
+<property name="Expression">
+<value>SAv.NumberConc + dSAve.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_medium</value>
+<value>Variable:/SBMLParameter:SAv_medium</value>
+<value>1</value>
+</value>
+<value>
+<value>SAv</value>
+<value>Variable:/medium:SAv</value>
+<value>0</value>
+</value>
+<value>
+<value>dSAve</value>
+<value>Variable:/medium:dSAve</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_SAv_cells">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'SAv_cells'</value>
+</property>
+<property name="Expression">
+<value>SAv_EpoRi.NumberConc + dSAvi.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SAv_cells</value>
+<value>Variable:/SBMLParameter:SAv_cells</value>
+<value>1</value>
+</value>
+<value>
+<value>SAv_EpoRi</value>
+<value>Variable:/cell:SAv_EpoRi</value>
+<value>0</value>
+</value>
+<value>
+<value>dSAvi</value>
+<value>Variable:/cell:dSAvi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

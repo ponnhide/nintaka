@@ -1,0 +1,321 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>Xi expr</value>
+</property>
+<property name="theta">
+<value>0.0001</value>
+</property>
+<property name="a">
+<value>1.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (theta / (theta + a * pow(species_3.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>1</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>Xi degr</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>Yi expr</value>
+</property>
+<property name="theta">
+<value>0.0001</value>
+</property>
+<property name="b">
+<value>21.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="c">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * ((theta + b * pow(species_2.NumberConc * species_4.NumberConc, n)) / (theta + c * pow(species_1.NumberConc, n) + b * pow(species_2.NumberConc * species_4.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>0</value>
+</value>
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>Yi degr</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>Xj expr</value>
+</property>
+<property name="theta">
+<value>0.0001</value>
+</property>
+<property name="a">
+<value>1.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (theta / (theta + a * pow(species_1.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>1</value>
+</value>
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>Xj degr</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>Yj expr</value>
+</property>
+<property name="theta">
+<value>0.0001</value>
+</property>
+<property name="b">
+<value>21.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="c">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * ((theta + b * pow(species_2.NumberConc * species_4.NumberConc, n)) / (theta + c * pow(species_3.NumberConc, n) + b * pow(species_2.NumberConc * species_4.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>0</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>Yj degr</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_1">
+<property name="Name">
+<value>Xi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_2">
+<property name="Name">
+<value>Yi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_3">
+<property name="Name">
+<value>Xj</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_4">
+<property name="Name">
+<value>Yj</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

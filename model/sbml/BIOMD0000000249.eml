@@ -1,0 +1,1346 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r1">
+<property name="Name">
+<value>Birth</value>
+</property>
+<property name="Expression">
+<value>mu.Value * N.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>1</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2">
+<property name="Name">
+<value>Death in S</value>
+</property>
+<property name="Expression">
+<value>mu.Value * S.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3">
+<property name="Name">
+<value>Death in I_1</value>
+</property>
+<property name="Expression">
+<value>mu.Value * I_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; I_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r4">
+<property name="Name">
+<value>Death in I_2</value>
+</property>
+<property name="Expression">
+<value>mu.Value * I_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; I_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r5">
+<property name="Name">
+<value>Death in R_1</value>
+</property>
+<property name="Expression">
+<value>mu.Value * R_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_1</value>
+<value>Variable:/env:R_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; R_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r6">
+<property name="Name">
+<value>Death in R_2</value>
+</property>
+<property name="Expression">
+<value>mu.Value * R_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_2</value>
+<value>Variable:/env:R_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; R_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r7">
+<property name="Name">
+<value>Death in I_1p</value>
+</property>
+<property name="Expression">
+<value>mu.Value * I_1p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; I_1p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r8">
+<property name="Name">
+<value>Death in I_2p</value>
+</property>
+<property name="Expression">
+<value>mu.Value * I_2p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; I_2p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r9">
+<property name="Name">
+<value>Death in R_p</value>
+</property>
+<property name="Expression">
+<value>mu.Value * R_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mu &lt;/ci&gt;#x0A    &lt;ci&gt; R_p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r10">
+<property name="Name">
+<value>Primary Infection with strain 1</value>
+</property>
+<property name="Expression">
+<value>beta_1.Value * ((I_1.NumberConc + I_1p.NumberConc) / N.NumberConc) * S.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>1</value>
+</value>
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_1</value>
+<value>Variable:/SBMLParameter:beta_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; beta_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; I_1 &lt;/ci&gt;#x0A        &lt;ci&gt; I_1p &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; N &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r11">
+<property name="Name">
+<value>Primary Infection with strain 2</value>
+</property>
+<property name="Expression">
+<value>beta_2.Value * ((I_2.NumberConc + I_2p.NumberConc) / N.NumberConc) * S.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>1</value>
+</value>
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_2</value>
+<value>Variable:/SBMLParameter:beta_2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; beta_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; I_2 &lt;/ci&gt;#x0A        &lt;ci&gt; I_2p &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; N &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r12">
+<property name="Name">
+<value>Secondary Infection with strain 1</value>
+</property>
+<property name="Expression">
+<value>(1 - psi.Value) * beta_1.Value * (I_1.NumberConc + I_1p.NumberConc) / N.NumberConc * R_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_2</value>
+<value>Variable:/env:R_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>1</value>
+</value>
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_1</value>
+<value>Variable:/SBMLParameter:beta_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;ci&gt; psi &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; beta_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; I_1 &lt;/ci&gt;#x0A          &lt;ci&gt; I_1p &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; N &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; R_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r13">
+<property name="Name">
+<value>Secondary Infection with strain 2</value>
+</property>
+<property name="Expression">
+<value>(1 - psi.Value) * beta_2.Value * (I_2.NumberConc + I_2p.NumberConc) / N.NumberConc * R_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_1</value>
+<value>Variable:/env:R_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>1</value>
+</value>
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_2</value>
+<value>Variable:/SBMLParameter:beta_2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;ci&gt; psi &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; beta_2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; I_2 &lt;/ci&gt;#x0A          &lt;ci&gt; I_2p &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; N &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; R_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r14">
+<property name="Name">
+<value>Recovery (I_1)</value>
+</property>
+<property name="Expression">
+<value>gamma_1.Value * I_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_1</value>
+<value>Variable:/env:R_1</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma_1</value>
+<value>Variable:/SBMLParameter:gamma_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gamma_1 &lt;/ci&gt;#x0A    &lt;ci&gt; I_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r15">
+<property name="Name">
+<value>Recovery (I_2)</value>
+</property>
+<property name="Expression">
+<value>gamma_2.Value * I_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_2</value>
+<value>Variable:/env:R_2</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma_2</value>
+<value>Variable:/SBMLParameter:gamma_2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gamma_2 &lt;/ci&gt;#x0A    &lt;ci&gt; I_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r16">
+<property name="Name">
+<value>Recovery (I_1p)</value>
+</property>
+<property name="Expression">
+<value>gamma_1.Value * I_1p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma_1</value>
+<value>Variable:/SBMLParameter:gamma_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gamma_1 &lt;/ci&gt;#x0A    &lt;ci&gt; I_1p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r17">
+<property name="Name">
+<value>Recovery (I_2p)</value>
+</property>
+<property name="Expression">
+<value>gamma_2.Value * I_2p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma_2</value>
+<value>Variable:/SBMLParameter:gamma_2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gamma_2 &lt;/ci&gt;#x0A    &lt;ci&gt; I_2p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r18">
+<property name="Name">
+<value>Loss of Immunity (R_1)</value>
+</property>
+<property name="Expression">
+<value>sigma.Value * R_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_1</value>
+<value>Variable:/env:R_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>1</value>
+</value>
+<value>
+<value>sigma</value>
+<value>Variable:/SBMLParameter:sigma</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; sigma &lt;/ci&gt;#x0A    &lt;ci&gt; R_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r19">
+<property name="Name">
+<value>Loss of Immunity (R_2)</value>
+</property>
+<property name="Expression">
+<value>sigma.Value * R_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_2</value>
+<value>Variable:/env:R_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>1</value>
+</value>
+<value>
+<value>sigma</value>
+<value>Variable:/SBMLParameter:sigma</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; sigma &lt;/ci&gt;#x0A    &lt;ci&gt; R_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r20">
+<property name="Name">
+<value>Loss of Immunity (R_p)</value>
+</property>
+<property name="Expression">
+<value>sigma.Value * R_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>1</value>
+</value>
+<value>
+<value>sigma</value>
+<value>Variable:/SBMLParameter:sigma</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; sigma &lt;/ci&gt;#x0A    &lt;ci&gt; R_p &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/env">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>environment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="N">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="NumberConc">
+<value>0.0588912</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I_1">
+<property name="NumberConc">
+<value>0.003775</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I_2">
+<property name="NumberConc">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_1">
+<property name="NumberConc">
+<value>0.93733</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I_1p">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I_2p">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_p">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="mu">
+<property name="Value">
+<value>0.02</value>
+</property>
+</variable>
+<variable class="Variable" id="l_e">
+<property name="Name">
+<value>life expectancy</value>
+</property>
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_1">
+<property name="Value">
+<value>295.476190476</value>
+</property>
+</variable>
+<variable class="Variable" id="R0_1">
+<property name="Value">
+<value>17.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_1">
+<property name="Value">
+<value>17.380952381</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_2">
+<property name="Value">
+<value>295.476190476</value>
+</property>
+</variable>
+<variable class="Variable" id="R0_2">
+<property name="Value">
+<value>17.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_2">
+<property name="Value">
+<value>17.380952381</value>
+</property>
+</variable>
+<variable class="Variable" id="tInf_1">
+<property name="Name">
+<value>infectious period 1</value>
+</property>
+<property name="Value">
+<value>21.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tInf_2">
+<property name="Name">
+<value>infectious period 2</value>
+</property>
+<property name="Value">
+<value>21.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sigma">
+<property name="Value">
+<value>0.05</value>
+</property>
+</variable>
+<variable class="Variable" id="tImm">
+<property name="Name">
+<value>immune period</value>
+</property>
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Lambda_1">
+<property name="Value">
+<value>1.11542261905</value>
+</property>
+</variable>
+<variable class="Variable" id="Lambda_2">
+<property name="Value">
+<value>0.000295476190476</value>
+</property>
+</variable>
+<variable class="Variable" id="I_1_frac">
+<property name="Value">
+<value>0.003775</value>
+</property>
+</variable>
+<variable class="Variable" id="I_2_frac">
+<property name="Value">
+<value>1e-06</value>
+</property>
+</variable>
+<variable class="Variable" id="S_frac">
+<property name="Value">
+<value>0.0588912</value>
+</property>
+</variable>
+<variable class="Variable" id="R1_frac">
+<property name="Value">
+<value>0.93733</value>
+</property>
+</variable>
+<variable class="Variable" id="R2_frac">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rp_frac">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="psi">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_mu">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'mu'</value>
+</property>
+<property name="Expression">
+<value>1 / l_e.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;ci&gt; l_e &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>1</value>
+</value>
+<value>
+<value>l_e</value>
+<value>Variable:/SBMLParameter:l_e</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_beta_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'beta_1'</value>
+</property>
+<property name="Expression">
+<value>R0_1.NumberConc * gamma_1.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; R0_1 &lt;/ci&gt;#x0A    &lt;ci&gt; gamma_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>beta_1</value>
+<value>Variable:/SBMLParameter:beta_1</value>
+<value>1</value>
+</value>
+<value>
+<value>R0_1</value>
+<value>Variable:/SBMLParameter:R0_1</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_1</value>
+<value>Variable:/SBMLParameter:gamma_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_gamma_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'gamma_1'</value>
+</property>
+<property name="Expression">
+<value>365 / tInf_1.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;cn type='integer'&gt; 365 &lt;/cn&gt;#x0A    &lt;ci&gt; tInf_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gamma_1</value>
+<value>Variable:/SBMLParameter:gamma_1</value>
+<value>1</value>
+</value>
+<value>
+<value>tInf_1</value>
+<value>Variable:/SBMLParameter:tInf_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_beta_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'beta_2'</value>
+</property>
+<property name="Expression">
+<value>R0_2.NumberConc * gamma_2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; R0_2 &lt;/ci&gt;#x0A    &lt;ci&gt; gamma_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>beta_2</value>
+<value>Variable:/SBMLParameter:beta_2</value>
+<value>1</value>
+</value>
+<value>
+<value>R0_2</value>
+<value>Variable:/SBMLParameter:R0_2</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_2</value>
+<value>Variable:/SBMLParameter:gamma_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_gamma_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'gamma_2'</value>
+</property>
+<property name="Expression">
+<value>365 / tInf_2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;cn type='integer'&gt; 365 &lt;/cn&gt;#x0A    &lt;ci&gt; tInf_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gamma_2</value>
+<value>Variable:/SBMLParameter:gamma_2</value>
+<value>1</value>
+</value>
+<value>
+<value>tInf_2</value>
+<value>Variable:/SBMLParameter:tInf_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_sigma">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'sigma'</value>
+</property>
+<property name="Expression">
+<value>1 / tImm.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;ci&gt; tImm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>sigma</value>
+<value>Variable:/SBMLParameter:sigma</value>
+<value>1</value>
+</value>
+<value>
+<value>tImm</value>
+<value>Variable:/SBMLParameter:tImm</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Lambda_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Lambda_1'</value>
+</property>
+<property name="Expression">
+<value>beta_1.NumberConc * (I_1.NumberConc + I_1p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; beta_1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; I_1 &lt;/ci&gt;#x0A        &lt;ci&gt; I_1p &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lambda_1</value>
+<value>Variable:/SBMLParameter:Lambda_1</value>
+<value>1</value>
+</value>
+<value>
+<value>beta_1</value>
+<value>Variable:/SBMLParameter:beta_1</value>
+<value>0</value>
+</value>
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>0</value>
+</value>
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Lambda_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Lambda_2'</value>
+</property>
+<property name="Expression">
+<value>beta_2.NumberConc * (I_2.NumberConc + I_2p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; beta_2 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; I_2 &lt;/ci&gt;#x0A        &lt;ci&gt; I_2p &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lambda_2</value>
+<value>Variable:/SBMLParameter:Lambda_2</value>
+<value>1</value>
+</value>
+<value>
+<value>beta_2</value>
+<value>Variable:/SBMLParameter:beta_2</value>
+<value>0</value>
+</value>
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>0</value>
+</value>
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_I_1_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'I_1_frac'</value>
+</property>
+<property name="Expression">
+<value>(I_1.NumberConc + I_1p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; I_1 &lt;/ci&gt;#x0A      &lt;ci&gt; I_1p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_1_frac</value>
+<value>Variable:/SBMLParameter:I_1_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>I_1</value>
+<value>Variable:/env:I_1</value>
+<value>0</value>
+</value>
+<value>
+<value>I_1p</value>
+<value>Variable:/env:I_1p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_I_2_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'I_2_frac'</value>
+</property>
+<property name="Expression">
+<value>(I_2.NumberConc + I_2p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; I_2 &lt;/ci&gt;#x0A      &lt;ci&gt; I_2p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I_2_frac</value>
+<value>Variable:/SBMLParameter:I_2_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>I_2</value>
+<value>Variable:/env:I_2</value>
+<value>0</value>
+</value>
+<value>
+<value>I_2p</value>
+<value>Variable:/env:I_2p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_S_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'S_frac'</value>
+</property>
+<property name="Expression">
+<value>S.NumberConc / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S_frac</value>
+<value>Variable:/SBMLParameter:S_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/env:S</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_R1_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'R1_frac'</value>
+</property>
+<property name="Expression">
+<value>(R_1.NumberConc + R_p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; R_1 &lt;/ci&gt;#x0A      &lt;ci&gt; R_p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R1_frac</value>
+<value>Variable:/SBMLParameter:R1_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>R_1</value>
+<value>Variable:/env:R_1</value>
+<value>0</value>
+</value>
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_R2_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'R2_frac'</value>
+</property>
+<property name="Expression">
+<value>(R_2.NumberConc + R_p.NumberConc) / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; R_2 &lt;/ci&gt;#x0A      &lt;ci&gt; R_p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R2_frac</value>
+<value>Variable:/SBMLParameter:R2_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>R_2</value>
+<value>Variable:/env:R_2</value>
+<value>0</value>
+</value>
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Rp_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rp_frac'</value>
+</property>
+<property name="Expression">
+<value>R_p.NumberConc / N.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; R_p &lt;/ci&gt;#x0A    &lt;ci&gt; N &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rp_frac</value>
+<value>Variable:/SBMLParameter:Rp_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>R_p</value>
+<value>Variable:/env:R_p</value>
+<value>0</value>
+</value>
+<value>
+<value>N</value>
+<value>Variable:/env:N</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

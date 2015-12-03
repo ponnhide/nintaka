@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Gpd_p">
+<property name="Name">
+<value>Glycerol 3-phosphate dehydrogenase</value>
+</property>
+<property name="Vf1">
+<value>47.0</value>
+</property>
+<property name="K1nadh">
+<value>0.023</value>
+</property>
+<property name="K1dhap">
+<value>0.54</value>
+</property>
+<property name="NADH">
+<value>1.87</value>
+</property>
+<property name="NAD">
+<value>1.45</value>
+</property>
+<property name="Keq1">
+<value>10000.0</value>
+</property>
+<property name="F16BP">
+<value>6.01</value>
+</property>
+<property name="K1f16bp">
+<value>4.8</value>
+</property>
+<property name="ATP">
+<value>2.37</value>
+</property>
+<property name="K1atp">
+<value>0.73</value>
+</property>
+<property name="ADP">
+<value>2.17</value>
+</property>
+<property name="K1adp">
+<value>2.0</value>
+</property>
+<property name="K1nad">
+<value>0.93</value>
+</property>
+<property name="K1g3p">
+<value>1.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vf1 / (K1nadh * K1dhap) * (NADH * DHAP.NumberConc - NAD * G3P.NumberConc / Keq1) / ((1 + F16BP / K1f16bp + ATP / K1atp + ADP / K1adp) * (1 + NADH / K1nadh + NAD / K1nad) * (1 + DHAP.NumberConc / K1dhap + G3P.NumberConc / K1g3p))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/compartment:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G3P</value>
+<value>Variable:/compartment:G3P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Gpp_p">
+<property name="Name">
+<value>Glycerol 3-phosphatase</value>
+</property>
+<property name="V2">
+<value>53.0</value>
+</property>
+<property name="K2g3p">
+<value>3.5</value>
+</property>
+<property name="Phi">
+<value>1.0</value>
+</property>
+<property name="K2phi">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * V2 * G3P.NumberConc / K2g3p / ((1 + G3P.NumberConc / K2g3p) * (1 + Phi / K2phi))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G3P</value>
+<value>Variable:/compartment:G3P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly</value>
+<value>Variable:/compartment:Gly</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="G3P">
+<property name="Name">
+<value>Glycerol 3-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly">
+<property name="Name">
+<value>Glycerol</value>
+</property>
+<property name="NumberConc">
+<value>15.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="Name">
+<value>DHAP</value>
+</property>
+<property name="NumberConc">
+<value>0.59</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

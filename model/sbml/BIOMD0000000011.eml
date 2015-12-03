@@ -1,0 +1,1223 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Reaction1">
+<property name="Name">
+<value>binding of RAF and RAFK</value>
+</property>
+<property name="a1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>a1 * RAF.NumberConc * RAFK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAF</value>
+<value>Variable:/Cytoplasm:RAF</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFK</value>
+<value>Variable:/Cytoplasm:RAFK</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFRAFK</value>
+<value>Variable:/Cytoplasm:RAFRAFK</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a1 &lt;/ci&gt;#x0A    &lt;ci&gt; RAF &lt;/ci&gt;#x0A    &lt;ci&gt; RAFK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction2">
+<property name="Name">
+<value>dissociation of RAF_RAFK</value>
+</property>
+<property name="d1">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>d1 * RAFRAFK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAFRAFK</value>
+<value>Variable:/Cytoplasm:RAFRAFK</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAF</value>
+<value>Variable:/Cytoplasm:RAF</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFK</value>
+<value>Variable:/Cytoplasm:RAFK</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d1 &lt;/ci&gt;#x0A    &lt;ci&gt; RAFRAFK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction3">
+<property name="Name">
+<value>phosphorylation of RAF</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * RAFRAFK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAFRAFK</value>
+<value>Variable:/Cytoplasm:RAFRAFK</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFK</value>
+<value>Variable:/Cytoplasm:RAFK</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; RAFRAFK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction4">
+<property name="Name">
+<value>binding of RAF-P and RAF phosphatase</value>
+</property>
+<property name="a2">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>a2 * RAFp.NumberConc * RAFPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFPH</value>
+<value>Variable:/Cytoplasm:RAFPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFpRAFPH</value>
+<value>Variable:/Cytoplasm:RAFpRAFPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a2 &lt;/ci&gt;#x0A    &lt;ci&gt; RAFp &lt;/ci&gt;#x0A    &lt;ci&gt; RAFPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction5">
+<property name="Name">
+<value>dissociation of RAF-P_RAFPase</value>
+</property>
+<property name="d2">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>d2 * RAFpRAFPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAFpRAFPH</value>
+<value>Variable:/Cytoplasm:RAFpRAFPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFPH</value>
+<value>Variable:/Cytoplasm:RAFPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d2 &lt;/ci&gt;#x0A    &lt;ci&gt; RAFpRAFPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction6">
+<property name="Name">
+<value>dephosphorylation of RAF-P</value>
+</property>
+<property name="k2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k2 * RAFpRAFPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RAFpRAFPH</value>
+<value>Variable:/Cytoplasm:RAFpRAFPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAF</value>
+<value>Variable:/Cytoplasm:RAF</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFPH</value>
+<value>Variable:/Cytoplasm:RAFPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; RAFpRAFPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction7">
+<property name="Name">
+<value>binding of MEK and RAF-P</value>
+</property>
+<property name="a3">
+<value>3.3</value>
+</property>
+<property name="Expression">
+<value>a3 * MEK.NumberConc * RAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEK</value>
+<value>Variable:/Cytoplasm:MEK</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKRAFp</value>
+<value>Variable:/Cytoplasm:MEKRAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a3 &lt;/ci&gt;#x0A    &lt;ci&gt; MEK &lt;/ci&gt;#x0A    &lt;ci&gt; RAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction8">
+<property name="Name">
+<value>dissociation of MEK_RAF-P</value>
+</property>
+<property name="d3">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>d3 * MEKRAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKRAFp</value>
+<value>Variable:/Cytoplasm:MEKRAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEK</value>
+<value>Variable:/Cytoplasm:MEK</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d3 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKRAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction9">
+<property name="Name">
+<value>phosphorylation of MEK</value>
+</property>
+<property name="k3">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k3 * MEKRAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKRAFp</value>
+<value>Variable:/Cytoplasm:MEKRAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKRAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction10">
+<property name="Name">
+<value>binding of MEK-P and MEK phosphatase</value>
+</property>
+<property name="a4">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>a4 * MEKp.NumberConc * MEKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpMEKPH</value>
+<value>Variable:/Cytoplasm:MEKpMEKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a4 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKp &lt;/ci&gt;#x0A    &lt;ci&gt; MEKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction11">
+<property name="Name">
+<value>dissociation of MEK-P_MEKPase</value>
+</property>
+<property name="d4">
+<value>0.8</value>
+</property>
+<property name="Expression">
+<value>d4 * MEKpMEKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKpMEKPH</value>
+<value>Variable:/Cytoplasm:MEKpMEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d4 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpMEKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction12">
+<property name="Name">
+<value>dephosphorylation of MEK-P</value>
+</property>
+<property name="k4">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k4 * MEKpMEKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKpMEKPH</value>
+<value>Variable:/Cytoplasm:MEKpMEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEK</value>
+<value>Variable:/Cytoplasm:MEK</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpMEKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction13">
+<property name="Name">
+<value>binding of MEK-P and RAF-P</value>
+</property>
+<property name="a5">
+<value>3.3</value>
+</property>
+<property name="Expression">
+<value>a5 * MEKp.NumberConc * RAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>-1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpRAFp</value>
+<value>Variable:/Cytoplasm:MEKpRAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a5 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKp &lt;/ci&gt;#x0A    &lt;ci&gt; RAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction14">
+<property name="Name">
+<value>dissociation of MEK-P_RAF-P</value>
+</property>
+<property name="d5">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>d5 * MEKpRAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKpRAFp</value>
+<value>Variable:/Cytoplasm:MEKpRAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d5 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpRAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction15">
+<property name="Name">
+<value>phosphorylation of MEK-P</value>
+</property>
+<property name="k5">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k5 * MEKpRAFp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKpRAFp</value>
+<value>Variable:/Cytoplasm:MEKpRAFp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+<value>
+<value>RAFp</value>
+<value>Variable:/Cytoplasm:RAFp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k5 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpRAFp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction16">
+<property name="Name">
+<value>binding of MEK-PP and MEK phosphatase</value>
+</property>
+<property name="a6">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>a6 * MEKPH.NumberConc * MEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKppMEKPH</value>
+<value>Variable:/Cytoplasm:MEKppMEKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a6 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKPH &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction17">
+<property name="Name">
+<value>dissociation of MEK-PP_MEKPase</value>
+</property>
+<property name="d6">
+<value>0.8</value>
+</property>
+<property name="Expression">
+<value>d6 * MEKppMEKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKppMEKPH</value>
+<value>Variable:/Cytoplasm:MEKppMEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d6 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKppMEKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction18">
+<property name="Name">
+<value>dephosphorylation of MEK-PP</value>
+</property>
+<property name="k6">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k6 * MEKppMEKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEKppMEKPH</value>
+<value>Variable:/Cytoplasm:MEKppMEKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKp</value>
+<value>Variable:/Cytoplasm:MEKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKPH</value>
+<value>Variable:/Cytoplasm:MEKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; MEKppMEKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction19">
+<property name="Name">
+<value>binding of MAPK and MEK-PP</value>
+</property>
+<property name="a7">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>a7 * MAPK.NumberConc * MEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPK</value>
+<value>Variable:/Cytoplasm:MAPK</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKMEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a7 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPK &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction20">
+<property name="Name">
+<value>dissociation of MAPK_MEK-PP</value>
+</property>
+<property name="d7">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>d7 * MAPKMEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKMEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPK</value>
+<value>Variable:/Cytoplasm:MAPK</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d7 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKMEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction21">
+<property name="Name">
+<value>phosphorylation of MAPK</value>
+</property>
+<property name="k7">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k7 * MAPKMEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKMEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k7 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKMEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction22">
+<property name="Name">
+<value>binding of MAPK-P and MAPK phosphatase</value>
+</property>
+<property name="a8">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>a8 * MAPKp.NumberConc * MAPKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKpMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKpMAPKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a8 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKp &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction23">
+<property name="Name">
+<value>dissociation of MAPK-P_MAPKPase</value>
+</property>
+<property name="d8">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>d8 * MAPKpMAPKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKpMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKpMAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d8 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKpMAPKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction24">
+<property name="Name">
+<value>dephosphorylation of MAPK-P</value>
+</property>
+<property name="k8">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k8 * MAPKpMAPKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKpMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKpMAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPK</value>
+<value>Variable:/Cytoplasm:MAPK</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKpMAPKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction25">
+<property name="Name">
+<value>binding of MAPK-P and MEK-PP</value>
+</property>
+<property name="a9">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>a9 * MAPKp.NumberConc * MEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKpMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKpMEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a9 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKp &lt;/ci&gt;#x0A    &lt;ci&gt; MEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction26">
+<property name="Name">
+<value>dissociation of MAPK-P_MEK-PP</value>
+</property>
+<property name="d9">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>d9 * MAPKpMEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKpMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKpMEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d9 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKpMEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction27">
+<property name="Name">
+<value>phosphorylation of MAPK-P</value>
+</property>
+<property name="k9">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k9 * MAPKpMEKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKpMEKpp</value>
+<value>Variable:/Cytoplasm:MAPKpMEKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKpp</value>
+<value>Variable:/Cytoplasm:MAPKpp</value>
+<value>1</value>
+</value>
+<value>
+<value>MEKpp</value>
+<value>Variable:/Cytoplasm:MEKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKpMEKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction28">
+<property name="Name">
+<value>binding of MAPK-PP and MAPK phosphatase</value>
+</property>
+<property name="a10">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>a10 * MAPKPH.NumberConc * MAPKpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKpp</value>
+<value>Variable:/Cytoplasm:MAPKpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKppMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKppMAPKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a10 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKPH &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction29">
+<property name="Name">
+<value>dissociation of MAPK-PP_MAPKPase</value>
+</property>
+<property name="d10">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>d10 * MAPKppMAPKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKppMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKppMAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKpp</value>
+<value>Variable:/Cytoplasm:MAPKpp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d10 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKppMAPKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction30">
+<property name="Name">
+<value>dephosphorylation of MAPK-PP</value>
+</property>
+<property name="k10">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k10 * MAPKppMAPKPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MAPKppMAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKppMAPKPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKp</value>
+<value>Variable:/Cytoplasm:MAPKp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKPH</value>
+<value>Variable:/Cytoplasm:MAPKPH</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k10 &lt;/ci&gt;#x0A    &lt;ci&gt; MAPKppMAPKPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPK">
+<property name="Name">
+<value>MAPK</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKMEKpp">
+<property name="Name">
+<value>MAPK_MEK-PP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKp">
+<property name="Name">
+<value>MAPK-P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKPH">
+<property name="Name">
+<value>MAPK phosphatase</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKpMAPKPH">
+<property name="Name">
+<value>MAPK-P_MAPKPase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKpMEKpp">
+<property name="Name">
+<value>MAPK-P_MEK-PP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKpp">
+<property name="Name">
+<value>MAPK-PP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKppMAPKPH">
+<property name="Name">
+<value>MAPK-PP_MAPKPase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEK">
+<property name="Name">
+<value>MEK</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKp">
+<property name="Name">
+<value>MEK-P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKPH">
+<property name="Name">
+<value>MEK phosphatase</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKpMEKPH">
+<property name="Name">
+<value>MEK-P_MEKPase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKpp">
+<property name="Name">
+<value>MEK-PP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKppMEKPH">
+<property name="Name">
+<value>MEK-PP_MEKPase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKpRAFp">
+<property name="Name">
+<value>MEK-P_RAF-P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEKRAFp">
+<property name="Name">
+<value>MEK_RAF-P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAF">
+<property name="Name">
+<value>RAF</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAFK">
+<property name="Name">
+<value>RAFK</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAFp">
+<property name="Name">
+<value>RAF-P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAFPH">
+<property name="Name">
+<value>RAF phosphatase</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAFpRAFPH">
+<property name="Name">
+<value>RAF-P_RAFPase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RAFRAFK">
+<property name="Name">
+<value>RAF_RAFK</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

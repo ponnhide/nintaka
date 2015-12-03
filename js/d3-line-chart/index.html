@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<style type="text/css">
+		.line { fill: none; }	
+		#tooltip {
+			position: absolute;
+			width: 200px;
+			height: auto;
+			padding: 10px;
+			background-color: white;
+			-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			pointer-events: none;
+		}
+		#tooltip.hidden {
+			display: none;
+		}
+		#tooltip p {
+			margin: 0;
+			font-family: sans-serif;
+		}
+		#tooltip .title {
+			text-decoration: underline;
+		}
+		.commit-circle, .legend-circle {
+			stroke-width: 0.22em;
+		}
+		.commit-circle.selected, .legend-circle.selected {
+			stroke-width: 0.40em;
+		}
+		axis path,
+		.axis line {
+		fill: none;
+		stroke: black;
+		shape-rendering: crispEdges;
+}
+
+	</style>	
+</head>
+<body>
+	<div id="sample" style="background-color: gray;">
+		<h1> Multiple series </h1>
+	</div>
+
+<script type="text/javascript" src="./d3.js" charset="utf-8"></script>
+<script type="text/javascript" src="./d3-line-chart.js" charset="utf-8"></script>
+<script type="text/javascript">
+	// simplest way to plot
+	var i = 0;
+	var data = {
+		name: 'points',
+		values:[]
+	};
+	var lc = new LineChart({
+		parent: '#sample'
+	});
+	lc.all_series = [data]
+	lc.all_series[0].values.push({x: 0, y: 0});
+	console.log(lc.all_series[0])
+	console.log(lc.all_series[0])
+	lc.plot();
+	function hoge(){
+		if(i == -1){
+			return;
+		}
+		i += 1
+		lc.all_series[0].values.push({x: i, y: Math.random()*i});
+		lc.plot();
+		console.log(lc.all_series[0]);
+		setTimeout("hoge()", 10);
+	}
+	hoge();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Abetaproduction">
+<property name="Name">
+<value>[Source] -&gt; [Abeta]; { Source };</value>
+</property>
+<property name="Expression">
+<value>kprod.Value * Source.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cell:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kprod</value>
+<value>Variable:/SBMLParameter:kprod</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kprod &lt;/ci&gt;#x0A    &lt;ci&gt; Source &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaDegradation">
+<property name="Name">
+<value>[Abeta] + [Nep] -&gt; [Sink] + [Nep]; { Abeta, Nep };</value>
+</property>
+<property name="Expression">
+<value>kdeg.Value * Abeta.NumberConc * Nep.NumberConc * 0.001</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>Nep</value>
+<value>Variable:/cell:Nep</value>
+<value>0</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdeg &lt;/ci&gt;#x0A    &lt;ci&gt; Abeta &lt;/ci&gt;#x0A    &lt;ci&gt; Nep &lt;/ci&gt;#x0A    &lt;cn&gt; 0.001 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaDimerisation">
+<property name="Name">
+<value>2 x [Abeta] -&gt; [AbDim]; { Abeta };</value>
+</property>
+<property name="Expression">
+<value>kdimer.Value * Abeta.NumberConc * (Abeta.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-2</value>
+</value>
+<value>
+<value>AbDim</value>
+<value>Variable:/cell:AbDim</value>
+<value>1</value>
+</value>
+<value>
+<value>kdimer</value>
+<value>Variable:/SBMLParameter:kdimer</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdimer &lt;/ci&gt;#x0A    &lt;ci&gt; Abeta &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; Abeta &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaDedimerisation">
+<property name="Name">
+<value>[AbDim] -&gt; 2 x [Abeta]; { AbDim };</value>
+</property>
+<property name="Expression">
+<value>kdedimer.Value * AbDim.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AbDim</value>
+<value>Variable:/cell:AbDim</value>
+<value>-1</value>
+</value>
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>2</value>
+</value>
+<value>
+<value>kdedimer</value>
+<value>Variable:/SBMLParameter:kdedimer</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdedimer &lt;/ci&gt;#x0A    &lt;ci&gt; AbDim &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaPlaqueFormation">
+<property name="Name">
+<value>2 x [AbDim] -&gt; 4 x [AbP]; { AbDim };</value>
+</property>
+<property name="Expression">
+<value>kpf.Value * AbDim.NumberConc * (AbDim.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AbDim</value>
+<value>Variable:/cell:AbDim</value>
+<value>-2</value>
+</value>
+<value>
+<value>AbP</value>
+<value>Variable:/cell:AbP</value>
+<value>4</value>
+</value>
+<value>
+<value>kpf</value>
+<value>Variable:/SBMLParameter:kpf</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kpf &lt;/ci&gt;#x0A    &lt;ci&gt; AbDim &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; AbDim &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaPlaqueGrowth">
+<property name="Name">
+<value>[Abeta] + [AbP] -&gt; 2 x [AbP]; { Abeta, AbP };</value>
+</property>
+<property name="Expression">
+<value>kpg.Value * Abeta.NumberConc * pow(AbP.NumberConc, 2) / (pow(kpghalf.Value, 2) + pow(AbP.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>AbP</value>
+<value>Variable:/cell:AbP</value>
+<value>1</value>
+</value>
+<value>
+<value>kpg</value>
+<value>Variable:/SBMLParameter:kpg</value>
+<value>0</value>
+</value>
+<value>
+<value>kpghalf</value>
+<value>Variable:/SBMLParameter:kpghalf</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kpg &lt;/ci&gt;#x0A      &lt;ci&gt; Abeta &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; AbP &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; kpghalf &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; AbP &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AbetaDisaggregation">
+<property name="Name">
+<value>[AbP] -&gt; [Abeta]; { AbP };</value>
+</property>
+<property name="Expression">
+<value>kdisagg.Value * AbP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AbP</value>
+<value>Variable:/cell:AbP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kdisagg</value>
+<value>Variable:/SBMLParameter:kdisagg</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdisagg &lt;/ci&gt;#x0A    &lt;ci&gt; AbP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="NepDegradation">
+<property name="Name">
+<value>[Nep] -&gt; [Sink]; { Nep };</value>
+</property>
+<property name="Expression">
+<value>kdegNep.Value * Nep.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Nep</value>
+<value>Variable:/cell:Nep</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegNep</value>
+<value>Variable:/SBMLParameter:kdegNep</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdegNep &lt;/ci&gt;#x0A    &lt;ci&gt; Nep &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Abeta">
+<property name="Name">
+<value>AbetaMonomer</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AbDim">
+<property name="Name">
+<value>AbetaDimer</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AbP">
+<property name="Name">
+<value>AbetaPlaque</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Source">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Sink">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Nep">
+<property name="Name">
+<value>Neprilysin</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kprod">
+<property name="Value">
+<value>1.86e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdeg">
+<property name="Value">
+<value>2.1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdimer">
+<property name="Value">
+<value>1.1783e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdedimer">
+<property name="Value">
+<value>8.4655e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdisagg">
+<property name="Value">
+<value>5.4357e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kpf">
+<property name="Value">
+<value>2.785e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kpg">
+<property name="Value">
+<value>0.00574</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kpghalf">
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegNep">
+<property name="Value">
+<value>1.8e-10</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

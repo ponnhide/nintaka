@@ -1,0 +1,400 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="a">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b">
+<property name="Value">
+<value>-0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c">
+<property name="Value">
+<value>-55.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vthresh">
+<property name="Value">
+<value>30.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="i">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="v">
+<property name="Value">
+<value>-60.0</value>
+</property>
+</variable>
+<variable class="Variable" id="u">
+<property name="Value">
+<value>6.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_v">
+<property name="Name">
+<value>Rate rule for 'v'</value>
+</property>
+<property name="Expression">
+<value>0.04 * pow(v.NumberConc, 2) + 4.1 * v.NumberConc + 108 - u.NumberConc + i.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.04 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; v &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 4.1 &lt;/cn&gt;#x0A          &lt;ci&gt; v &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn type='integer'&gt; 108 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; i &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>1</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_u">
+<property name="Name">
+<value>Rate rule for 'u'</value>
+</property>
+<property name="Expression">
+<value>a.NumberConc * (b.NumberConc * v.NumberConc - u.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; b &lt;/ci&gt;#x0A        &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>1</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>0</value>
+</value>
+<value>
+<value>b</value>
+<value>Variable:/SBMLParameter:b</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="event_0000001">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000001</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>v</value>
+<value>c.NumberConc</value>
+</value>
+<value>
+<value>u</value>
+<value>u.NumberConc + d.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;ci&gt; v &lt;/ci&gt;#x0A    &lt;ci&gt; Vthresh &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>gt(v.NumberConc, Vthresh.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>1</value>
+</value>
+<value>
+<value>c</value>
+<value>Variable:/SBMLParameter:c</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>1</value>
+</value>
+<value>
+<value>d</value>
+<value>Variable:/SBMLParameter:d</value>
+<value>0</value>
+</value>
+<value>
+<value>Vthresh</value>
+<value>Variable:/SBMLParameter:Vthresh</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_0000002">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000002</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>i</value>
+<value>9</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;or/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 9 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 11 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 14 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 16 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>or(and(gt(time.Value, 9), lt(time.Value, 11)), and(gt(time.Value, 14), lt(time.Value, 16)))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_0000003">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000003</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>i</value>
+<value>9</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;or/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 70 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 72 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 80 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 82 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>or(and(gt(time.Value, 70), lt(time.Value, 72)), and(gt(time.Value, 80), lt(time.Value, 82)))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_0000004">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000004</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>i</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;or/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 11 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;leq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 14 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 14 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 16 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>or(and(geq(time.Value, 11), leq(time.Value, 14)), and(geq(time.Value, 14), lt(time.Value, 16)))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_0000005">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000005</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>i</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;or/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 16 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;leq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 70 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 72 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;leq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn type='integer'&gt; 80 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;geq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;cn type='integer'&gt; 82 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>or(and(geq(time.Value, 16), leq(time.Value, 70)), and(geq(time.Value, 72), leq(time.Value, 80)), geq(time.Value, 82))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

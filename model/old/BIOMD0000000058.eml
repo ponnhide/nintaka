@@ -1,0 +1,802 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Jreceptor_Cell1">
+<property name="Name">
+<value>IP3R mediated Ca release Cell1</value>
+</property>
+<property name="kf">
+<value>28.0</value>
+</property>
+<property name="p">
+<value>0.2778</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kf * pow(p * h1.NumberConc * Phi1_c1.Value / (Phi1_c1.Value * p + Phi_minus1_c1.Value), 4)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>1</value>
+</value>
+<value>
+<value>h1</value>
+<value>Variable:/compartment:h1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi1_c1</value>
+<value>Variable:/SBMLParameter:Phi1_c1</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi_minus1_c1</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Jpump_Cell1">
+<property name="Name">
+<value>ATPase pump mediated Ca efflux Cell1</value>
+</property>
+<property name="Vp">
+<value>1.2</value>
+</property>
+<property name="Kp">
+<value>0.18</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vp * pow(c1.NumberConc, 2) / (pow(Kp, 2) + pow(c1.NumberConc, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Jleak_Cell1">
+<property name="Name">
+<value>IP3R independent Ca release Cell1</value>
+</property>
+<property name="Jleak">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Jleak</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Inactivated_to_S_Cell1">
+<property name="Name">
+<value>Inactivated to Shut state transition Cell1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Phi3_c1.Value * (1 - h1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>h1</value>
+<value>Variable:/compartment:h1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi3_c1</value>
+<value>Variable:/SBMLParameter:Phi3_c1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Open_to_Inactivated_Cell1">
+<property name="Name">
+<value>Open to Inactivated state transition Cell1</value>
+</property>
+<property name="p">
+<value>0.2778</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Phi1_c1.Value * Phi2_c1.Value * h1.NumberConc * p / (Phi1_c1.Value * p + Phi_minus1_c1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>h1</value>
+<value>Variable:/compartment:h1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi1_c1</value>
+<value>Variable:/SBMLParameter:Phi1_c1</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi2_c1</value>
+<value>Variable:/SBMLParameter:Phi2_c1</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi_minus1_c1</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Jreceptor_Cell2">
+<property name="Name">
+<value>IP3R mediated Ca release Cell2</value>
+</property>
+<property name="kf">
+<value>28.0</value>
+</property>
+<property name="p">
+<value>0.2778</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kf * pow(p * h2.NumberConc * Phi1_c2.Value / (Phi1_c2.Value * p + Phi_minus1_c2.Value), 4)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>1</value>
+</value>
+<value>
+<value>h2</value>
+<value>Variable:/compartment:h2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi1_c2</value>
+<value>Variable:/SBMLParameter:Phi1_c2</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi_minus1_c2</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Jpump_Cell2">
+<property name="Name">
+<value>ATPase pump mediated Ca efflux Cell2</value>
+</property>
+<property name="Vp">
+<value>1.2</value>
+</property>
+<property name="Kp">
+<value>0.18</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vp * pow(c2.NumberConc, 2) / (pow(Kp, 2) + pow(c2.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Jleak_Cell2">
+<property name="Name">
+<value>IP3R independent Ca release Cell2</value>
+</property>
+<property name="Jleak">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Jleak</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Inactivated_to_S_Cell2">
+<property name="Name">
+<value>Inactivated to Shut state transition Cell2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Phi3_c2.Value * (1 - h2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>h2</value>
+<value>Variable:/compartment:h2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi3_c2</value>
+<value>Variable:/SBMLParameter:Phi3_c2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Open_to_Inactivated_Cell2">
+<property name="Name">
+<value>Open to Inactivated state transition Cell2</value>
+</property>
+<property name="p">
+<value>0.2778</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Phi1_c2.Value * Phi2_c2.Value * h2.NumberConc * p / (Phi1_c2.Value * p + Phi_minus1_c2.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>h2</value>
+<value>Variable:/compartment:h2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi1_c2</value>
+<value>Variable:/SBMLParameter:Phi1_c2</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi2_c2</value>
+<value>Variable:/SBMLParameter:Phi2_c2</value>
+<value>0</value>
+</value>
+<value>
+<value>Phi_minus1_c2</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="diffusion">
+<property name="Name">
+<value>Diffusion of Ca between cells</value>
+</property>
+<property name="D">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * D * (c2.NumberConc - c1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>-1</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c1">
+<property name="Name">
+<value>Calcium ion Cell1</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="h1">
+<property name="Name">
+<value>Receptor fraction Cell1</value>
+</property>
+<property name="NumberConc">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="c2">
+<property name="Name">
+<value>Calcium ion Cell2</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="h2">
+<property name="Name">
+<value>Receptor fraction Cell2</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Phi1_c1">
+<property name="Value">
+<value>4.7619047619</value>
+</property>
+</variable>
+<variable class="Variable" id="r2">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R1">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi_minus1_c1">
+<property name="Value">
+<value>0.874751491054</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>44.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R3">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi2_c1">
+<property name="Value">
+<value>0.646123260437</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>26.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r4">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi3_c1">
+<property name="Value">
+<value>0.842105263158</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R5">
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi1_c2">
+<property name="Value">
+<value>1.6393442623</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi_minus1_c2">
+<property name="Value">
+<value>0.878243512974</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi2_c2">
+<property name="Value">
+<value>0.568862275449</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi3_c2">
+<property name="Value">
+<value>0.941176470588</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi1_c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi1_c1'</value>
+</property>
+<property name="Expression">
+<value>r2.NumberConc * c1.NumberConc / (R1.NumberConc + c1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi1_c1</value>
+<value>Variable:/SBMLParameter:Phi1_c1</value>
+<value>1</value>
+</value>
+<value>
+<value>r2</value>
+<value>Variable:/SBMLParameter:r2</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>0</value>
+</value>
+<value>
+<value>R1</value>
+<value>Variable:/SBMLParameter:R1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi_minus1_c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi_minus1_c1'</value>
+</property>
+<property name="Expression">
+<value>k1.NumberConc / (R3.NumberConc + c1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi_minus1_c1</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c1</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>R3</value>
+<value>Variable:/SBMLParameter:R3</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi2_c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi2_c1'</value>
+</property>
+<property name="Expression">
+<value>(k2.NumberConc + r4.NumberConc * c1.NumberConc) / (R3.NumberConc + c1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi2_c1</value>
+<value>Variable:/SBMLParameter:Phi2_c1</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>r4</value>
+<value>Variable:/SBMLParameter:r4</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>0</value>
+</value>
+<value>
+<value>R3</value>
+<value>Variable:/SBMLParameter:R3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi3_c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi3_c1'</value>
+</property>
+<property name="Expression">
+<value>k3.NumberConc / (R5.NumberConc + c1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi3_c1</value>
+<value>Variable:/SBMLParameter:Phi3_c1</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>R5</value>
+<value>Variable:/SBMLParameter:R5</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/compartment:c1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi1_c2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi1_c2'</value>
+</property>
+<property name="Expression">
+<value>r2.NumberConc * c2.NumberConc / (R1.NumberConc + c2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi1_c2</value>
+<value>Variable:/SBMLParameter:Phi1_c2</value>
+<value>1</value>
+</value>
+<value>
+<value>r2</value>
+<value>Variable:/SBMLParameter:r2</value>
+<value>0</value>
+</value>
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>0</value>
+</value>
+<value>
+<value>R1</value>
+<value>Variable:/SBMLParameter:R1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi_minus1_c2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi_minus1_c2'</value>
+</property>
+<property name="Expression">
+<value>k1.NumberConc / (R3.NumberConc + c2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi_minus1_c2</value>
+<value>Variable:/SBMLParameter:Phi_minus1_c2</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>R3</value>
+<value>Variable:/SBMLParameter:R3</value>
+<value>0</value>
+</value>
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi2_c2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi2_c2'</value>
+</property>
+<property name="Expression">
+<value>(k2.NumberConc + r4.NumberConc * c2.NumberConc) / (R3.NumberConc + c2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi2_c2</value>
+<value>Variable:/SBMLParameter:Phi2_c2</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>r4</value>
+<value>Variable:/SBMLParameter:r4</value>
+<value>0</value>
+</value>
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>0</value>
+</value>
+<value>
+<value>R3</value>
+<value>Variable:/SBMLParameter:R3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Phi3_c2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Phi3_c2'</value>
+</property>
+<property name="Expression">
+<value>k3.NumberConc / (R5.NumberConc + c2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phi3_c2</value>
+<value>Variable:/SBMLParameter:Phi3_c2</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>R5</value>
+<value>Variable:/SBMLParameter:R5</value>
+<value>0</value>
+</value>
+<value>
+<value>c2</value>
+<value>Variable:/compartment:c2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

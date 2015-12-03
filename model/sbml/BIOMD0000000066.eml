@@ -1,0 +1,584 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vak">
+<property name="Name">
+<value>Aspartate Kinase</value>
+</property>
+<property name="vm11">
+<value>0.15</value>
+</property>
+<property name="keqak">
+<value>0.00064</value>
+</property>
+<property name="k11">
+<value>0.97</value>
+</property>
+<property name="k1thr">
+<value>0.167</value>
+</property>
+<property name="nak1">
+<value>4.09</value>
+</property>
+<property name="alpha">
+<value>2.47</value>
+</property>
+<property name="k1aspp">
+<value>0.017</value>
+</property>
+<property name="k1atp">
+<value>0.98</value>
+</property>
+<property name="k1adp">
+<value>0.25</value>
+</property>
+<property name="vm13">
+<value>0.0722</value>
+</property>
+<property name="lys">
+<value>0.46</value>
+</property>
+<property name="k1lys">
+<value>0.391</value>
+</property>
+<property name="nak3">
+<value>2.8</value>
+</property>
+<property name="k13">
+<value>0.32</value>
+</property>
+<property name="k13aspp">
+<value>0.017</value>
+</property>
+<property name="k13atp">
+<value>0.22</value>
+</property>
+<property name="k13adp">
+<value>0.25</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (vm11 * (asp.NumberConc * atp.NumberConc - aspp.NumberConc * adp.NumberConc / keqak) / ((k11 * (1 + pow(thr.NumberConc / k1thr, nak1)) / (1 + pow(thr.NumberConc / (alpha * k1thr), nak1)) + k11 * aspp.NumberConc / k1aspp + asp.NumberConc) * (k1atp * (1 + adp.NumberConc / k1adp) + atp.NumberConc)) + vm13 * (asp.NumberConc * atp.NumberConc - aspp.NumberConc * adp.NumberConc / keqak) / ((1 + pow(lys / k1lys, nak3)) * (k13 * (1 + aspp.NumberConc / k13aspp) + asp.NumberConc) * (k13atp * (1 + adp.NumberConc / k13adp) + atp.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>atp</value>
+<value>Variable:/compartment:atp</value>
+<value>-1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/compartment:asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>aspp</value>
+<value>Variable:/compartment:aspp</value>
+<value>1</value>
+</value>
+<value>
+<value>adp</value>
+<value>Variable:/compartment:adp</value>
+<value>1</value>
+</value>
+<value>
+<value>thr</value>
+<value>Variable:/compartment:thr</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; vm11 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; asp &lt;/ci&gt;#x0A              &lt;ci&gt; atp &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; aspp &lt;/ci&gt;#x0A                &lt;ci&gt; adp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; keqak &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; k11 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; thr &lt;/ci&gt;#x0A                      &lt;ci&gt; k1thr &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; nak1 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; thr &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; alpha &lt;/ci&gt;#x0A                      &lt;ci&gt; k1thr &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; nak1 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; k11 &lt;/ci&gt;#x0A                &lt;ci&gt; aspp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; k1aspp &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; asp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; k1atp &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; adp &lt;/ci&gt;#x0A                  &lt;ci&gt; k1adp &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; atp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; vm13 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; asp &lt;/ci&gt;#x0A              &lt;ci&gt; atp &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; aspp &lt;/ci&gt;#x0A                &lt;ci&gt; adp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; keqak &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; lys &lt;/ci&gt;#x0A                &lt;ci&gt; k1lys &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; nak3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; k13 &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; aspp &lt;/ci&gt;#x0A                  &lt;ci&gt; k13aspp &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; asp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; k13atp &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; adp &lt;/ci&gt;#x0A                  &lt;ci&gt; k13adp &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; atp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vasd">
+<property name="Name">
+<value>Aspartate semialdehyde dehydrogenase</value>
+</property>
+<property name="vm2f">
+<value>0.1812</value>
+</property>
+<property name="k2eq">
+<value>56.4150334574</value>
+</property>
+<property name="k2aspp">
+<value>0.022</value>
+</property>
+<property name="k2asa">
+<value>0.11</value>
+</property>
+<property name="k2p">
+<value>10.0</value>
+</property>
+<property name="k2nadph">
+<value>0.029</value>
+</property>
+<property name="k2nadp">
+<value>0.144</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (vm2f * (aspp.NumberConc * nadph.NumberConc - asa.NumberConc * nadp.NumberConc * phos.NumberConc / k2eq) / ((k2aspp * (1 + asa.NumberConc / k2asa) * (1 + phos.NumberConc / k2p) + aspp.NumberConc) * (k2nadph * (1 + nadp.NumberConc / k2nadp) + nadph.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>nadph</value>
+<value>Variable:/compartment:nadph</value>
+<value>-1</value>
+</value>
+<value>
+<value>aspp</value>
+<value>Variable:/compartment:aspp</value>
+<value>-1</value>
+</value>
+<value>
+<value>nadp</value>
+<value>Variable:/compartment:nadp</value>
+<value>1</value>
+</value>
+<value>
+<value>phos</value>
+<value>Variable:/compartment:phos</value>
+<value>1</value>
+</value>
+<value>
+<value>asa</value>
+<value>Variable:/compartment:asa</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; vm2f &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; aspp &lt;/ci&gt;#x0A            &lt;ci&gt; nadph &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; asa &lt;/ci&gt;#x0A              &lt;ci&gt; nadp &lt;/ci&gt;#x0A              &lt;ci&gt; phos &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; k2eq &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k2aspp &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; asa &lt;/ci&gt;#x0A                &lt;ci&gt; k2asa &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; phos &lt;/ci&gt;#x0A                &lt;ci&gt; k2p &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; aspp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k2nadph &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; nadp &lt;/ci&gt;#x0A                &lt;ci&gt; k2nadp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; nadph &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vhdh">
+<property name="Name">
+<value>Homoserine dehydrogenase</value>
+</property>
+<property name="vm3f">
+<value>1.001</value>
+</property>
+<property name="k3eq">
+<value>3162.27766017</value>
+</property>
+<property name="k3thr">
+<value>0.097</value>
+</property>
+<property name="nhdh1">
+<value>1.41</value>
+</property>
+<property name="alpha3">
+<value>3.93</value>
+</property>
+<property name="k3asa">
+<value>0.24</value>
+</property>
+<property name="k3hs">
+<value>3.39</value>
+</property>
+<property name="k3nadph">
+<value>0.037</value>
+</property>
+<property name="k3nadp">
+<value>0.067</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (vm3f * (asa.NumberConc * nadph.NumberConc - hs.NumberConc * nadp.NumberConc / k3eq) / ((1 + pow(thr.NumberConc / k3thr, nhdh1)) / (1 + pow(thr.NumberConc / (alpha3 * k3thr), nhdh1)) * (k3asa + asa.NumberConc + hs.NumberConc * k3asa / k3hs) * (k3nadph * (1 + nadp.NumberConc / k3nadp) + nadph.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>nadph</value>
+<value>Variable:/compartment:nadph</value>
+<value>-1</value>
+</value>
+<value>
+<value>asa</value>
+<value>Variable:/compartment:asa</value>
+<value>-1</value>
+</value>
+<value>
+<value>hs</value>
+<value>Variable:/compartment:hs</value>
+<value>1</value>
+</value>
+<value>
+<value>nadp</value>
+<value>Variable:/compartment:nadp</value>
+<value>1</value>
+</value>
+<value>
+<value>asp</value>
+<value>Variable:/compartment:asp</value>
+<value>0</value>
+</value>
+<value>
+<value>thr</value>
+<value>Variable:/compartment:thr</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; vm3f &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; asa &lt;/ci&gt;#x0A            &lt;ci&gt; nadph &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; hs &lt;/ci&gt;#x0A              &lt;ci&gt; nadp &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; k3eq &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; thr &lt;/ci&gt;#x0A                &lt;ci&gt; k3thr &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; nhdh1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; thr &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; alpha3 &lt;/ci&gt;#x0A                  &lt;ci&gt; k3thr &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; nhdh1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; k3asa &lt;/ci&gt;#x0A          &lt;ci&gt; asa &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; hs &lt;/ci&gt;#x0A              &lt;ci&gt; k3asa &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; k3hs &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k3nadph &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; nadp &lt;/ci&gt;#x0A                &lt;ci&gt; k3nadp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; nadph &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vtsy">
+<property name="Name">
+<value>Threonine synthase</value>
+</property>
+<property name="vm5">
+<value>0.0434</value>
+</property>
+<property name="k5hsp">
+<value>0.31</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vm5 * hsp.NumberConc / (hsp.NumberConc + k5hsp)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>hsp</value>
+<value>Variable:/compartment:hsp</value>
+<value>-1</value>
+</value>
+<value>
+<value>thr</value>
+<value>Variable:/compartment:thr</value>
+<value>1</value>
+</value>
+<value>
+<value>phos</value>
+<value>Variable:/compartment:phos</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; compartment &lt;/ci&gt;#x0A      &lt;ci&gt; vm5 &lt;/ci&gt;#x0A      &lt;ci&gt; hsp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; hsp &lt;/ci&gt;#x0A      &lt;ci&gt; k5hsp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vhk">
+<property name="Name">
+<value>Homoserine kinase</value>
+</property>
+<property name="vm4f">
+<value>0.1</value>
+</property>
+<property name="lys">
+<value>0.46</value>
+</property>
+<property name="k4lys">
+<value>9.45</value>
+</property>
+<property name="k4atp">
+<value>0.072</value>
+</property>
+<property name="k4ihs">
+<value>4.7</value>
+</property>
+<property name="k4hs">
+<value>0.11</value>
+</property>
+<property name="k4thr">
+<value>1.09</value>
+</property>
+<property name="k4iatp">
+<value>4.35</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (vm4f * hs.NumberConc * atp.NumberConc / ((1 + lys / k4lys) * (atp.NumberConc + k4atp * (1 + hs.NumberConc / k4ihs)) * (hs.NumberConc + k4hs * (1 + thr.NumberConc / k4thr) * (1 + atp.NumberConc / k4iatp))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>hs</value>
+<value>Variable:/compartment:hs</value>
+<value>-1</value>
+</value>
+<value>
+<value>atp</value>
+<value>Variable:/compartment:atp</value>
+<value>-1</value>
+</value>
+<value>
+<value>hsp</value>
+<value>Variable:/compartment:hsp</value>
+<value>1</value>
+</value>
+<value>
+<value>adp</value>
+<value>Variable:/compartment:adp</value>
+<value>1</value>
+</value>
+<value>
+<value>thr</value>
+<value>Variable:/compartment:thr</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; vm4f &lt;/ci&gt;#x0A        &lt;ci&gt; hs &lt;/ci&gt;#x0A        &lt;ci&gt; atp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; lys &lt;/ci&gt;#x0A            &lt;ci&gt; k4lys &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; atp &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k4atp &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; hs &lt;/ci&gt;#x0A                &lt;ci&gt; k4ihs &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; hs &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k4hs &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; thr &lt;/ci&gt;#x0A                &lt;ci&gt; k4thr &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; atp &lt;/ci&gt;#x0A                &lt;ci&gt; k4iatp &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vnadph_endo">
+<property name="Name">
+<value>Endogenous consumption of NADPH</value>
+</property>
+<property name="knadph">
+<value>5.4e-06</value>
+</property>
+<property name="prot">
+<value>202.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * prot * knadph * nadph.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>nadph</value>
+<value>Variable:/compartment:nadph</value>
+<value>-1</value>
+</value>
+<value>
+<value>nadp</value>
+<value>Variable:/compartment:nadp</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; prot &lt;/ci&gt;#x0A    &lt;ci&gt; knadph &lt;/ci&gt;#x0A    &lt;ci&gt; nadph &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vatpase">
+<property name="Name">
+<value>ATPase</value>
+</property>
+<property name="katpase">
+<value>4.1e-05</value>
+</property>
+<property name="prot">
+<value>202.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * prot * katpase</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>atp</value>
+<value>Variable:/compartment:atp</value>
+<value>-1</value>
+</value>
+<value>
+<value>adp</value>
+<value>Variable:/compartment:adp</value>
+<value>1</value>
+</value>
+<value>
+<value>phos</value>
+<value>Variable:/compartment:phos</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; prot &lt;/ci&gt;#x0A    &lt;ci&gt; katpase &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="aspp">
+<property name="Name">
+<value>Aspartyl phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="asa">
+<property name="Name">
+<value>Aspartate beta-semialdehyde</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="hs">
+<property name="Name">
+<value>Homoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="hsp">
+<property name="Name">
+<value>O-Phospho-homoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="phos">
+<property name="Name">
+<value>Phos</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="thr">
+<property name="Name">
+<value>Threonine</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="asp">
+<property name="Name">
+<value>Aspartate</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="nadp">
+<property name="Name">
+<value>NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="nadph">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="adp">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="atp">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

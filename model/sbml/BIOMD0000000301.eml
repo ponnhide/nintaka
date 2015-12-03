@@ -1,0 +1,1369 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r0">
+<property name="Name">
+<value>[ara] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * piecewise(cAra.Value, and(eq(pulse_flag.Value, 1), gt(ara.NumberConc, 0)), dAra.Value * ara.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ara</value>
+<value>Variable:/cell:ara</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cAra</value>
+<value>Variable:/SBMLParameter:cAra</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>0</value>
+</value>
+<value>
+<value>dAra</value>
+<value>Variable:/SBMLParameter:dAra</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;piecewise&gt;#x0A      &lt;piece&gt;#x0A        &lt;ci&gt; cAra &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;and/&gt;#x0A          &lt;apply&gt;#x0A            &lt;eq/&gt;#x0A            &lt;ci&gt; pulse_flag &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;gt/&gt;#x0A            &lt;ci&gt; ara &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 0 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/piece&gt;#x0A      &lt;otherwise&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; dAra &lt;/ci&gt;#x0A          &lt;ci&gt; ara &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/otherwise&gt;#x0A    &lt;/piecewise&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r1a">
+<property name="Name">
+<value>-&gt; [taRNA]; { ara };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (sT.Value * ara.NumberConc / (ara.NumberConc + k_ara.Value) + s0_taRNA.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>taRNA</value>
+<value>Variable:/cell:taRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>Variable:/cell:ara</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>sT</value>
+<value>Variable:/SBMLParameter:sT</value>
+<value>0</value>
+</value>
+<value>
+<value>k_ara</value>
+<value>Variable:/SBMLParameter:k_ara</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_taRNA</value>
+<value>Variable:/SBMLParameter:s0_taRNA</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; sT &lt;/ci&gt;#x0A          &lt;ci&gt; ara &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ara &lt;/ci&gt;#x0A          &lt;ci&gt; k_ara &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; s0_taRNA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r1b">
+<property name="Name">
+<value>[taRNA] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_taRNA.Value * taRNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>taRNA</value>
+<value>Variable:/cell:taRNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_taRNA</value>
+<value>Variable:/SBMLParameter:d_taRNA</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_taRNA &lt;/ci&gt;#x0A    &lt;ci&gt; taRNA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2a">
+<property name="Name">
+<value>-&gt; [mT7cr];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * s0_mT7cr.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mT7cr</value>
+<value>Variable:/cell:mT7cr</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_mT7cr</value>
+<value>Variable:/SBMLParameter:s0_mT7cr</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; s0_mT7cr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2b">
+<property name="Name">
+<value>[mT7cr] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_mT7.Value * mT7cr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mT7cr</value>
+<value>Variable:/cell:mT7cr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_mT7</value>
+<value>Variable:/SBMLParameter:d_mT7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_mT7 &lt;/ci&gt;#x0A    &lt;ci&gt; mT7cr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3a">
+<property name="Name">
+<value>-&gt; [mGFPcr]; { pT3 };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (s0_mGFPcr.Value + k_pT3.Value * pow(pT3.NumberConc, n3.Value) / (pow(km3.Value, n3.Value) + pow(pT3.NumberConc, n3.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mGFPcr</value>
+<value>Variable:/cell:mGFPcr</value>
+<value>1</value>
+</value>
+<value>
+<value>pT3</value>
+<value>Variable:/cell:pT3</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_mGFPcr</value>
+<value>Variable:/SBMLParameter:s0_mGFPcr</value>
+<value>0</value>
+</value>
+<value>
+<value>k_pT3</value>
+<value>Variable:/SBMLParameter:k_pT3</value>
+<value>0</value>
+</value>
+<value>
+<value>n3</value>
+<value>Variable:/SBMLParameter:n3</value>
+<value>0</value>
+</value>
+<value>
+<value>km3</value>
+<value>Variable:/SBMLParameter:km3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; s0_mGFPcr &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k_pT3 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; pT3 &lt;/ci&gt;#x0A            &lt;ci&gt; n3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; km3 &lt;/ci&gt;#x0A            &lt;ci&gt; n3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; pT3 &lt;/ci&gt;#x0A            &lt;ci&gt; n3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3b">
+<property name="Name">
+<value>[mGFPcr] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_mGFP.Value * mGFPcr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mGFPcr</value>
+<value>Variable:/cell:mGFPcr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_mGFP</value>
+<value>Variable:/SBMLParameter:d_mGFP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_mGFP &lt;/ci&gt;#x0A    &lt;ci&gt; mGFPcr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r6">
+<property name="Name">
+<value>-&gt; [pT7]; { taRNA, mT7cr };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (s0_pT7.Value * mT7cr.NumberConc + s_pT7k.Value * mT7cr.NumberConc * taRNA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pT7</value>
+<value>Variable:/cell:pT7</value>
+<value>1</value>
+</value>
+<value>
+<value>taRNA</value>
+<value>Variable:/cell:taRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>mT7cr</value>
+<value>Variable:/cell:mT7cr</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_pT7</value>
+<value>Variable:/SBMLParameter:s0_pT7</value>
+<value>0</value>
+</value>
+<value>
+<value>s_pT7k</value>
+<value>Variable:/SBMLParameter:s_pT7k</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s0_pT7 &lt;/ci&gt;#x0A        &lt;ci&gt; mT7cr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s_pT7k &lt;/ci&gt;#x0A        &lt;ci&gt; mT7cr &lt;/ci&gt;#x0A        &lt;ci&gt; taRNA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r7">
+<property name="Name">
+<value>-&gt; [pGFP]; { taRNA, mGFPcr };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (s0_pGFP.Value * mGFPcr.NumberConc + s_pGFPk.Value * mGFPcr.NumberConc * taRNA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pGFP</value>
+<value>Variable:/cell:pGFP</value>
+<value>1</value>
+</value>
+<value>
+<value>taRNA</value>
+<value>Variable:/cell:taRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>mGFPcr</value>
+<value>Variable:/cell:mGFPcr</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_pGFP</value>
+<value>Variable:/SBMLParameter:s0_pGFP</value>
+<value>0</value>
+</value>
+<value>
+<value>s_pGFPk</value>
+<value>Variable:/SBMLParameter:s_pGFPk</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s0_pGFP &lt;/ci&gt;#x0A        &lt;ci&gt; mGFPcr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s_pGFPk &lt;/ci&gt;#x0A        &lt;ci&gt; mGFPcr &lt;/ci&gt;#x0A        &lt;ci&gt; taRNA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r8">
+<property name="Name">
+<value>[pT7] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_pT7.Value * pT7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pT7</value>
+<value>Variable:/cell:pT7</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_pT7</value>
+<value>Variable:/SBMLParameter:d_pT7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_pT7 &lt;/ci&gt;#x0A    &lt;ci&gt; pT7 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r9">
+<property name="Name">
+<value>[pGFP] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_pGFP.Value * pGFP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pGFP</value>
+<value>Variable:/cell:pGFP</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_pGFP</value>
+<value>Variable:/SBMLParameter:d_pGFP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_pGFP &lt;/ci&gt;#x0A    &lt;ci&gt; pGFP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r10a">
+<property name="Name">
+<value>-&gt; [mT3cr]; { pT7 };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (s0_mT3cr.Value + k_pT7.Value * pow(pT7.NumberConc, n7.Value) / (pow(km7.Value, n7.Value) + pow(pT7.NumberConc, n7.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mT3cr</value>
+<value>Variable:/cell:mT3cr</value>
+<value>1</value>
+</value>
+<value>
+<value>pT7</value>
+<value>Variable:/cell:pT7</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_mT3cr</value>
+<value>Variable:/SBMLParameter:s0_mT3cr</value>
+<value>0</value>
+</value>
+<value>
+<value>k_pT7</value>
+<value>Variable:/SBMLParameter:k_pT7</value>
+<value>0</value>
+</value>
+<value>
+<value>n7</value>
+<value>Variable:/SBMLParameter:n7</value>
+<value>0</value>
+</value>
+<value>
+<value>km7</value>
+<value>Variable:/SBMLParameter:km7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; s0_mT3cr &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k_pT7 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; pT7 &lt;/ci&gt;#x0A            &lt;ci&gt; n7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; km7 &lt;/ci&gt;#x0A            &lt;ci&gt; n7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; pT7 &lt;/ci&gt;#x0A            &lt;ci&gt; n7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r10b">
+<property name="Name">
+<value>[mT3cr] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_mT3.Value * mT3cr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mT3cr</value>
+<value>Variable:/cell:mT3cr</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_mT3</value>
+<value>Variable:/SBMLParameter:d_mT3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_mT3 &lt;/ci&gt;#x0A    &lt;ci&gt; mT3cr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r11">
+<property name="Name">
+<value>-&gt; [pT3]; { taRNA, mT3cr };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (s0_pT3.Value * mT3cr.NumberConc + s_pT3k.Value * taRNA.NumberConc * mT3cr.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pT3</value>
+<value>Variable:/cell:pT3</value>
+<value>1</value>
+</value>
+<value>
+<value>taRNA</value>
+<value>Variable:/cell:taRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>mT3cr</value>
+<value>Variable:/cell:mT3cr</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>s0_pT3</value>
+<value>Variable:/SBMLParameter:s0_pT3</value>
+<value>0</value>
+</value>
+<value>
+<value>s_pT3k</value>
+<value>Variable:/SBMLParameter:s_pT3k</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s0_pT3 &lt;/ci&gt;#x0A        &lt;ci&gt; mT3cr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; s_pT3k &lt;/ci&gt;#x0A        &lt;ci&gt; taRNA &lt;/ci&gt;#x0A        &lt;ci&gt; mT3cr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r12">
+<property name="Name">
+<value>[pT3] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * d_pT3.Value * pT3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pT3</value>
+<value>Variable:/cell:pT3</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>d_pT3</value>
+<value>Variable:/SBMLParameter:d_pT3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; d_pT3 &lt;/ci&gt;#x0A    &lt;ci&gt; pT3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="taRNA">
+<property name="NumberConc">
+<value>0.006796941377</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mT7cr">
+<property name="NumberConc">
+<value>0.3569405099</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mGFPcr">
+<property name="NumberConc">
+<value>0.176991329</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pT7">
+<property name="NumberConc">
+<value>0.05230744612</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pGFP">
+<property name="NumberConc">
+<value>6.338921181</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ara">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pT3">
+<property name="NumberConc">
+<value>6.41674e-05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mT3cr">
+<property name="NumberConc">
+<value>0.00566438</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="cAra">
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse_flag">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="dAra">
+<property name="Value">
+<value>0.1201</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sT">
+<property name="Value">
+<value>0.8467</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ara">
+<property name="Value">
+<value>0.0571</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_taRNA">
+<property name="Value">
+<value>0.0008</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_taRNA">
+<property name="Value">
+<value>0.1177</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_mT7cr">
+<property name="Value">
+<value>0.0252</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_mT7">
+<property name="Value">
+<value>0.0706</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_mGFPcr">
+<property name="Value">
+<value>0.0123</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_pT3">
+<property name="Value">
+<value>3.006</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n3">
+<property name="Value">
+<value>0.8892</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="km3">
+<property name="Value">
+<value>7.9075</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_mGFP">
+<property name="Value">
+<value>0.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_pT7">
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s_pT7k">
+<property name="Value">
+<value>0.0766</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_pGFP">
+<property name="Value">
+<value>0.1007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s_pGFPk">
+<property name="Value">
+<value>0.9923</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_pT7">
+<property name="Value">
+<value>0.0056</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_pGFP">
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_mT3cr">
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_pT7">
+<property name="Value">
+<value>3.8009</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n7">
+<property name="Value">
+<value>2.602</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="km7">
+<property name="Value">
+<value>3.0455</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_mT3">
+<property name="Value">
+<value>0.0701</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s0_pT3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s_pT3k">
+<property name="Value">
+<value>0.0115</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_pT3">
+<property name="Value">
+<value>0.0069</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse_interval">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse1_start">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse1_length">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse_conc">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse2_start">
+<property name="Value">
+<value>31.01</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse2_length">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse3_start">
+<property name="Value">
+<value>62.01</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse3_length">
+<property name="Value">
+<value>22.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pulse2_start">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pulse2_start'</value>
+</property>
+<property name="Expression">
+<value>pulse1_start.NumberConc + pulse1_length.NumberConc + pulse_interval.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; pulse1_start &lt;/ci&gt;#x0A    &lt;ci&gt; pulse1_length &lt;/ci&gt;#x0A    &lt;ci&gt; pulse_interval &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse2_start</value>
+<value>Variable:/SBMLParameter:pulse2_start</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse1_start</value>
+<value>Variable:/SBMLParameter:pulse1_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse1_length</value>
+<value>Variable:/SBMLParameter:pulse1_length</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse_interval</value>
+<value>Variable:/SBMLParameter:pulse_interval</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pulse3_start">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pulse3_start'</value>
+</property>
+<property name="Expression">
+<value>pulse2_start.NumberConc + pulse2_length.NumberConc + pulse_interval.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; pulse2_start &lt;/ci&gt;#x0A    &lt;ci&gt; pulse2_length &lt;/ci&gt;#x0A    &lt;ci&gt; pulse_interval &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse3_start</value>
+<value>Variable:/SBMLParameter:pulse3_start</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse2_start</value>
+<value>Variable:/SBMLParameter:pulse2_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse2_length</value>
+<value>Variable:/SBMLParameter:pulse2_length</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse_interval</value>
+<value>Variable:/SBMLParameter:pulse_interval</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="pulse_start1">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_start1</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>pulse_conc.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;geq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;ci&gt; pulse1_start &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;leq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; pulse1_start &lt;/ci&gt;#x0A        &lt;ci&gt; pulse1_length &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(geq(time.Value, pulse1_start.NumberConc), leq(time.Value, pulse1_start.NumberConc + pulse1_length.NumberConc))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>Variable:/cell:ara</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse_conc</value>
+<value>Variable:/SBMLParameter:pulse_conc</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse1_start</value>
+<value>Variable:/SBMLParameter:pulse1_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse1_length</value>
+<value>Variable:/SBMLParameter:pulse1_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulse_start2">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_start2</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>pulse_conc.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;geq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;ci&gt; pulse2_start &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;leq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; pulse2_start &lt;/ci&gt;#x0A        &lt;ci&gt; pulse2_length &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(geq(time.Value, pulse2_start.NumberConc), leq(time.Value, pulse2_start.NumberConc + pulse2_length.NumberConc))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>Variable:/cell:ara</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse_conc</value>
+<value>Variable:/SBMLParameter:pulse_conc</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse2_start</value>
+<value>Variable:/SBMLParameter:pulse2_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse2_length</value>
+<value>Variable:/SBMLParameter:pulse2_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulse_start3">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_start3</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>pulse_conc.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;geq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;ci&gt; pulse3_start &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;leq/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; pulse3_start &lt;/ci&gt;#x0A        &lt;ci&gt; pulse3_length &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(geq(time.Value, pulse3_start.NumberConc), leq(time.Value, pulse3_start.NumberConc + pulse3_length.NumberConc))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>ara</value>
+<value>Variable:/cell:ara</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse_conc</value>
+<value>Variable:/SBMLParameter:pulse_conc</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse3_start</value>
+<value>Variable:/SBMLParameter:pulse3_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse3_length</value>
+<value>Variable:/SBMLParameter:pulse3_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulse_end1">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_end1</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;lt/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;ci&gt; pulse2_start &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;gt/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; pulse1_start &lt;/ci&gt;#x0A        &lt;ci&gt; pulse1_length &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(lt(time.Value, pulse2_start.NumberConc), gt(time.Value, pulse1_start.NumberConc + pulse1_length.NumberConc))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse2_start</value>
+<value>Variable:/SBMLParameter:pulse2_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse1_start</value>
+<value>Variable:/SBMLParameter:pulse1_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse1_length</value>
+<value>Variable:/SBMLParameter:pulse1_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulse_end2">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_end2</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;lt/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;ci&gt; pulse3_start &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;gt/&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; pulse2_start &lt;/ci&gt;#x0A        &lt;ci&gt; pulse2_length &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(lt(time.Value, pulse3_start.NumberConc), gt(time.Value, pulse2_start.NumberConc + pulse2_length.NumberConc))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse3_start</value>
+<value>Variable:/SBMLParameter:pulse3_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse2_start</value>
+<value>Variable:/SBMLParameter:pulse2_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse2_length</value>
+<value>Variable:/SBMLParameter:pulse2_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulse_end3">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulse_end3</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>pulse_flag</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; pulse3_start &lt;/ci&gt;#x0A      &lt;ci&gt; pulse3_length &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>gt(time.Value, pulse3_start.NumberConc + pulse3_length.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pulse_flag</value>
+<value>Variable:/SBMLParameter:pulse_flag</value>
+<value>1</value>
+</value>
+<value>
+<value>pulse3_start</value>
+<value>Variable:/SBMLParameter:pulse3_start</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse3_length</value>
+<value>Variable:/SBMLParameter:pulse3_length</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

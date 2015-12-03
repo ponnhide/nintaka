@@ -1,0 +1,287 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<process class="ExpressionFluxexProcess" id="TC">
+<property name="Name">
+<value>transcription</value>
+</property>
+<property name="Vm">
+<value>1.0</value>
+</property>
+<property name="Pcrit">
+<value>0.1</value>
+</property>
+<property name="Keq">
+<value>200.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * (Vm / (1 + pow(P.NumberConc * (1 - 2 / (1 + pow(1 + 8 * Keq * P.NumberConc, 0.5))) / (2 * Pcrit), 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/CYTOPLASM:P</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CYTOPLASM &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;cn&gt; 2 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;cn&gt; 1 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; Keq &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A              &lt;ci&gt; Pcrit &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="TL">
+<property name="Name">
+<value>translation</value>
+</property>
+<property name="V">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>V * M.NumberConc * CYTOPLASM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/CYTOPLASM:P</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; V &lt;/ci&gt;#x0A    &lt;ci&gt; M &lt;/ci&gt;#x0A    &lt;ci&gt; CYTOPLASM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="mRNAD">
+<property name="Name">
+<value>mRNA degradation</value>
+</property>
+<property name="D">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>D * M.NumberConc * CYTOPLASM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; D &lt;/ci&gt;#x0A    &lt;ci&gt; M &lt;/ci&gt;#x0A    &lt;ci&gt; CYTOPLASM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ProteinD">
+<property name="Name">
+<value>protein degradation</value>
+</property>
+<property name="D">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>D * P.NumberConc * CYTOPLASM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/CYTOPLASM:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; D &lt;/ci&gt;#x0A    &lt;ci&gt; P &lt;/ci&gt;#x0A    &lt;ci&gt; CYTOPLASM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="DBT">
+<property name="Name">
+<value>Per phosphorylation and degradation</value>
+</property>
+<property name="k1">
+<value>10.0</value>
+</property>
+<property name="k2">
+<value>0.03</value>
+</property>
+<property name="J">
+<value>0.05</value>
+</property>
+<property name="Keq">
+<value>200.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * ((k1 * P.NumberConc * (2 / (1 + pow(1 + 8 * Keq * P.NumberConc, 0.5))) + k2 * P.NumberConc) / (J + P.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/CYTOPLASM:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CYTOPLASM &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k1 &lt;/ci&gt;#x0A          &lt;ci&gt; P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn&gt; 8 &lt;/cn&gt;#x0A                    &lt;ci&gt; Keq &lt;/ci&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k2 &lt;/ci&gt;#x0A          &lt;ci&gt; P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; J &lt;/ci&gt;#x0A        &lt;ci&gt; P &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/CYTOPLASM">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>Pt</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="N_A">
+<property name="Value">
+<value>6.0221367e+23</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

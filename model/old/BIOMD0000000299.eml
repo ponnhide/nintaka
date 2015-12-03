@@ -1,0 +1,368 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/Cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FC">
+<property name="Name">
+<value>FC</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>M</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FN">
+<property name="Name">
+<value>FN</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="vs">
+<property name="Name">
+<value>vs</value>
+</property>
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vm">
+<property name="Name">
+<value>vm</value>
+</property>
+<property name="Value">
+<value>0.505</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km">
+<property name="Name">
+<value>Km</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KI">
+<property name="Name">
+<value>KI</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>n</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ft">
+<property name="Name">
+<value>Ft</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+</variable>
+<variable class="Variable" id="ks">
+<property name="Name">
+<value>ks</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vd">
+<property name="Name">
+<value>vd</value>
+</property>
+<property name="Value">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kd">
+<property name="Name">
+<value>Kd</value>
+</property>
+<property name="Value">
+<value>0.13</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_M">
+<property name="Name">
+<value>Rate rule for 'M'</value>
+</property>
+<property name="Expression">
+<value>vs.NumberConc * (pow(KI.NumberConc, n.NumberConc) / (pow(KI.NumberConc, n.NumberConc) + pow(FN.NumberConc, n.NumberConc))) - vm.NumberConc * (M.NumberConc / (Km.NumberConc + M.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/Nucleus:M</value>
+<value>1</value>
+</value>
+<value>
+<value>vs</value>
+<value>Variable:/SBMLParameter:vs</value>
+<value>0</value>
+</value>
+<value>
+<value>KI</value>
+<value>Variable:/SBMLParameter:KI</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>FN</value>
+<value>Variable:/Nucleus:FN</value>
+<value>0</value>
+</value>
+<value>
+<value>vm</value>
+<value>Variable:/SBMLParameter:vm</value>
+<value>0</value>
+</value>
+<value>
+<value>Km</value>
+<value>Variable:/SBMLParameter:Km</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_FC">
+<property name="Name">
+<value>Rate rule for 'FC'</value>
+</property>
+<property name="Expression">
+<value>ks.NumberConc * M.NumberConc + k2.NumberConc * FN.NumberConc - (vd.NumberConc * (FC.NumberConc / (Kd.NumberConc + FC.NumberConc)) + k1.NumberConc * FC.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FC</value>
+<value>Variable:/Cytoplasm:FC</value>
+<value>1</value>
+</value>
+<value>
+<value>ks</value>
+<value>Variable:/SBMLParameter:ks</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/Nucleus:M</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>FN</value>
+<value>Variable:/Nucleus:FN</value>
+<value>0</value>
+</value>
+<value>
+<value>vd</value>
+<value>Variable:/SBMLParameter:vd</value>
+<value>0</value>
+</value>
+<value>
+<value>Kd</value>
+<value>Variable:/SBMLParameter:Kd</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_FN">
+<property name="Name">
+<value>Rate rule for 'FN'</value>
+</property>
+<property name="Expression">
+<value>k1.NumberConc * FC.NumberConc - k2.NumberConc * FN.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FN</value>
+<value>Variable:/Nucleus:FN</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>FC</value>
+<value>Variable:/Cytoplasm:FC</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Ft">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Ft'</value>
+</property>
+<property name="Expression">
+<value>FC.NumberConc + FN.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ft</value>
+<value>Variable:/SBMLParameter:Ft</value>
+<value>1</value>
+</value>
+<value>
+<value>FC</value>
+<value>Variable:/Cytoplasm:FC</value>
+<value>0</value>
+</value>
+<value>
+<value>FN</value>
+<value>Variable:/Nucleus:FN</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

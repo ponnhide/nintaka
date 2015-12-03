@@ -1,0 +1,1832 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>Fpn Export</value>
+</property>
+<property name="a">
+<value>2.0</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>3e-06</value>
+</property>
+<property name="Expression">
+<value>a * (pow(species_4.NumberConc, n) / (pow(K, n) + pow(species_4.NumberConc, n))) * species_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>-2</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; species_4 &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; K &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_4 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; species_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>TfR1 expression</value>
+</property>
+<property name="a">
+<value>6e-12</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>1e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * (a * pow(species_6.NumberConc, n) / (pow(K, n) + pow(species_6.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>1</value>
+</value>
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; a &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_6 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; K &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_6 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>TfR1 degradation</value>
+</property>
+<property name="k1">
+<value>8.37e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>Ferroportin Expression</value>
+</property>
+<property name="a">
+<value>1e-09</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>5e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * a * (1 - pow(species_6.NumberConc, n) / (pow(K, n) + pow(species_6.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>1</value>
+</value>
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_6 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; K &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_6 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>IRP expresion</value>
+</property>
+<property name="a">
+<value>4e-11</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>1e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * a * (1 - pow(species_2.NumberConc, n) / (pow(K, n) + pow(species_2.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_2 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; K &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_2 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>IRP degradation</value>
+</property>
+<property name="k1">
+<value>1.597e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>Fpn degradation</value>
+</property>
+<property name="a">
+<value>0.0002315</value>
+</property>
+<property name="n">
+<value>5.0</value>
+</property>
+<property name="K">
+<value>5e-09</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * a * (pow(species_7.NumberConc, n) / (pow(K, n) + pow(species_7.NumberConc, n))) * species_4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/compartment_1:species_7</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; species_7 &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; K &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_7 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; species_4 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>HFE degradation</value>
+</property>
+<property name="k1">
+<value>6.418e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_8.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_8 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_13">
+<property name="Name">
+<value>HFE expression</value>
+</property>
+<property name="v">
+<value>2.3469e-11</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * v</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; v &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_14">
+<property name="Name">
+<value>TfR2 expression</value>
+</property>
+<property name="v">
+<value>3e-11</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * v</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; v &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_15">
+<property name="Name">
+<value>TfR2 degradation</value>
+</property>
+<property name="a">
+<value>3.2e-05</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>2.5e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * a * (1 - pow(species_43.NumberConc, n) / (pow(K, n) + pow(species_43.NumberConc, n))) * species_10.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_43 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; K &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_43 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; species_10 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_17">
+<property name="Name">
+<value>Hepcidin expression</value>
+</property>
+<property name="basal">
+<value>0.0</value>
+</property>
+<property name="a">
+<value>5e-12</value>
+</property>
+<property name="n">
+<value>5.0</value>
+</property>
+<property name="K">
+<value>1.35e-07</value>
+</property>
+<property name="a1">
+<value>5e-12</value>
+</property>
+<property name="K1">
+<value>6e-07</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (basal + a * pow(species_18.NumberConc, n) / (pow(K, n) + pow(species_18.NumberConc, n)) + a1 * species_19.NumberConc / (K1 + species_19.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/compartment_1:species_7</value>
+<value>1</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_3:species_18</value>
+<value>0</value>
+</value>
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_3:species_19</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; basal &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; a &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; K &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; a1 &lt;/ci&gt;#x0A          &lt;ci&gt; species_19 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K1 &lt;/ci&gt;#x0A          &lt;ci&gt; species_19 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_18">
+<property name="Name">
+<value>Hepcidin degradation</value>
+</property>
+<property name="k1">
+<value>0.00056</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/compartment_1:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_7 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_21">
+<property name="Name">
+<value>HFE TfR1 binding</value>
+</property>
+<property name="k1">
+<value>1102000.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_8.NumberConc * species_3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_3:species_9</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_8 &lt;/ci&gt;#x0A    &lt;ci&gt; species_3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_22">
+<property name="Name">
+<value>HFE TfR1 release</value>
+</property>
+<property name="k1">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_9.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_3:species_9</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>1</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_9 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_23">
+<property name="Name">
+<value>TfR1 binding</value>
+</property>
+<property name="k1">
+<value>837400.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_43.NumberConc * species_3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_3:species_12</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_43 &lt;/ci&gt;#x0A    &lt;ci&gt; species_3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_24">
+<property name="Name">
+<value>TfR1 release</value>
+</property>
+<property name="k1">
+<value>0.0009142</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_12.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_3:species_12</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_12 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_25">
+<property name="Name">
+<value>HFE TfR2 binding</value>
+</property>
+<property name="k1">
+<value>3.9438e+11</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * pow(species_8.NumberConc, 2) * species_10.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>-2</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_3:species_18</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;power/&gt;#x0A      &lt;ci&gt; species_8 &lt;/ci&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; species_10 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_26">
+<property name="Name">
+<value>HFE TfR2 release</value>
+</property>
+<property name="k1">
+<value>0.0018</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_18.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_3:species_18</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>2</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_18 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_27">
+<property name="Name">
+<value>TfR2 binding</value>
+</property>
+<property name="k1">
+<value>222390.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_43.NumberConc * species_10.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_3:species_15</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_43 &lt;/ci&gt;#x0A    &lt;ci&gt; species_10 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_28">
+<property name="Name">
+<value>TfR2 release</value>
+</property>
+<property name="k1">
+<value>0.0061</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_15.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_3:species_15</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_15 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_29">
+<property name="Name">
+<value>TfR1 binding 2</value>
+</property>
+<property name="k1">
+<value>121400.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_12.NumberConc * species_43.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_3:species_12</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_16</value>
+<value>Variable:/compartment_3:species_16</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_12 &lt;/ci&gt;#x0A    &lt;ci&gt; species_43 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_30">
+<property name="Name">
+<value>TfR1 release 2</value>
+</property>
+<property name="k1">
+<value>0.003535</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_16.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_16</value>
+<value>Variable:/compartment_3:species_16</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_3:species_12</value>
+<value>1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_16 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_31">
+<property name="Name">
+<value>HFE TfR1 binding 2</value>
+</property>
+<property name="k1">
+<value>1102000.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_9.NumberConc * species_8.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_3:species_9</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_3:species_17</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_9 &lt;/ci&gt;#x0A    &lt;ci&gt; species_8 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_32">
+<property name="Name">
+<value>HFE TfR1 release 2</value>
+</property>
+<property name="k1">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_17.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_3:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_3:species_9</value>
+<value>1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_3:species_8</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_17 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_35">
+<property name="Name">
+<value>TfR2 binding 2</value>
+</property>
+<property name="k1">
+<value>69600.0</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_15.NumberConc * species_43.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_3:species_15</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_3:species_19</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_15 &lt;/ci&gt;#x0A    &lt;ci&gt; species_43 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_36">
+<property name="Name">
+<value>TfR2 release 2</value>
+</property>
+<property name="k1">
+<value>0.024</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_19.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_3:species_19</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_3:species_15</value>
+<value>1</value>
+</value>
+<value>
+<value>species_43</value>
+<value>Variable:/compartment_3:species_43</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_19 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>TfR1 iron internalisation</value>
+</property>
+<property name="k1">
+<value>0.8333</value>
+</property>
+<property name="Expression">
+<value>k1 * species_16.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_16</value>
+<value>Variable:/compartment_3:species_16</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>4</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_3:species_3</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_16 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>TfR2 iron internalisation</value>
+</property>
+<property name="k1">
+<value>0.8333</value>
+</property>
+<property name="Expression">
+<value>k1 * species_19.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_3:species_19</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>4</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_3:species_10</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_19 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_44">
+<property name="Name">
+<value>outFlow</value>
+</property>
+<property name="k1">
+<value>0.0004</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_45">
+<property name="Name">
+<value>Ferritin Iron binding</value>
+</property>
+<property name="k1">
+<value>47100000000.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_2.NumberConc * species_25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_24</value>
+<value>Variable:/compartment_1:species_24</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_2 &lt;/ci&gt;#x0A    &lt;ci&gt; species_25 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_46">
+<property name="Name">
+<value>Ferritin Iron release</value>
+</property>
+<property name="k1">
+<value>22922.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_24.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_24</value>
+<value>Variable:/compartment_1:species_24</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_24 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_47">
+<property name="Name">
+<value>Ferritin Iron internalisation</value>
+</property>
+<property name="k1">
+<value>108000.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_24.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_24</value>
+<value>Variable:/compartment_1:species_24</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_26</value>
+<value>Variable:/compartment_1:species_26</value>
+<value>1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_24 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_48">
+<property name="Name">
+<value>Ferritin internalised iron release</value>
+</property>
+<property name="kloss">
+<value>13.112</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * species_26.NumberConc * kloss * (1 + 0.048 * (species_26.NumberConc / species_25.NumberConc) / (1 + species_26.NumberConc / species_25.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_26</value>
+<value>Variable:/compartment_1:species_26</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_26 &lt;/ci&gt;#x0A    &lt;ci&gt; kloss &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.048 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_26 &lt;/ci&gt;#x0A            &lt;ci&gt; species_25 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_26 &lt;/ci&gt;#x0A            &lt;ci&gt; species_25 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_49">
+<property name="Name">
+<value>ferritin expression</value>
+</property>
+<property name="a">
+<value>2.312e-13</value>
+</property>
+<property name="n">
+<value>1.0</value>
+</property>
+<property name="K">
+<value>1e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * a * (1 - pow(species_6.NumberConc, n) / (pow(K, n) + pow(species_6.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>1</value>
+</value>
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; species_6 &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; K &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; species_6 &lt;/ci&gt;#x0A            &lt;ci&gt; n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_67">
+<property name="Name">
+<value>Ferritin Degredation Full</value>
+</property>
+<property name="k1">
+<value>1.203e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_25 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_73">
+<property name="Name">
+<value>Ferritin Degredation Full Iron Release</value>
+</property>
+<property name="K">
+<value>1.203e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * K * (species_26.NumberConc / species_25.NumberConc) * species_25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_26</value>
+<value>Variable:/compartment_1:species_26</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_1:species_25</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; K &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; species_26 &lt;/ci&gt;#x0A      &lt;ci&gt; species_25 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; species_25 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>HFETfR degradation</value>
+</property>
+<property name="k1">
+<value>8.37e-07</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_17.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_3:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_17 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>HFETfR2 degradation</value>
+</property>
+<property name="k1">
+<value>8.37e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_3.Value * k1 * species_18.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_3:species_18</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_3</value>
+<value>Variable:/compartment_3:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_3 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_18 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_16">
+<property name="Name">
+<value>Heme uptake</value>
+</property>
+<property name="Km">
+<value>0.000125</value>
+</property>
+<property name="V">
+<value>1.034e-05</value>
+</property>
+<property name="Expression">
+<value>V * species_11.NumberConc / (Km + species_11.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_3:species_11</value>
+<value>0</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; species_11 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; species_11 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_19">
+<property name="Name">
+<value>Heme export</value>
+</property>
+<property name="Km">
+<value>1.78e-05</value>
+</property>
+<property name="V">
+<value>2.18e-05</value>
+</property>
+<property name="Expression">
+<value>V * species_5.NumberConc / (Km + species_5.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_3:species_11</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; species_5 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; species_5 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_20">
+<property name="Name">
+<value>HO1 exp</value>
+</property>
+<property name="a">
+<value>2.1432e-15</value>
+</property>
+<property name="K">
+<value>1e-09</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * a * (species_5.NumberConc / (K + species_5.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>1</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; species_5 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K &lt;/ci&gt;#x0A        &lt;ci&gt; species_5 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_33">
+<property name="Name">
+<value>HO1 Deg</value>
+</property>
+<property name="k1">
+<value>3.209e-05</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k1 * species_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; species_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_34">
+<property name="Name">
+<value>Heme oxygenation</value>
+</property>
+<property name="C">
+<value>17777.7</value>
+</property>
+<property name="K">
+<value>2e-06</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (species_1.NumberConc * C * species_5.NumberConc / (K + species_5.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; species_1 &lt;/ci&gt;#x0A        &lt;ci&gt; C &lt;/ci&gt;#x0A        &lt;ci&gt; species_5 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K &lt;/ci&gt;#x0A        &lt;ci&gt; species_5 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>LiverCell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_7">
+<property name="Name">
+<value>Hamp</value>
+</property>
+<property name="NumberConc">
+<value>5e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_24">
+<property name="Name">
+<value>Fe-FT</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_25">
+<property name="Name">
+<value>FT</value>
+</property>
+<property name="NumberConc">
+<value>1.66e-10</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_26">
+<property name="Name">
+<value>FT1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_1">
+<property name="Name">
+<value>HO-1</value>
+</property>
+<property name="NumberConc">
+<value>3.56e-11</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_5">
+<property name="Name">
+<value>Heme</value>
+</property>
+<property name="NumberConc">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_2">
+<property name="Name">
+<value>LIP</value>
+</property>
+<property name="NumberConc">
+<value>1.3e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_4">
+<property name="Name">
+<value>Fpn</value>
+</property>
+<property name="NumberConc">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_6">
+<property name="Name">
+<value>IRP</value>
+</property>
+<property name="NumberConc">
+<value>1.16e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/compartment_3">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>intercell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_43">
+<property name="Name">
+<value>Tf-Fe_intercell</value>
+</property>
+<property name="NumberConc">
+<value>5e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_3">
+<property name="Name">
+<value>TfR</value>
+</property>
+<property name="NumberConc">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_12">
+<property name="Name">
+<value>Tf-Fe-TfR1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_8">
+<property name="Name">
+<value>HFE</value>
+</property>
+<property name="NumberConc">
+<value>2e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_9">
+<property name="Name">
+<value>HFE-TfR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_15">
+<property name="Name">
+<value>Tf-Fe-TfR2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_16">
+<property name="Name">
+<value>2(Tf-Fe)-TfR1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_17">
+<property name="Name">
+<value>2HFE-TfR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_18">
+<property name="Name">
+<value>2HFE-TfR2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_19">
+<property name="Name">
+<value>2(Tf-Fe)-TfR2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_10">
+<property name="Name">
+<value>TfR2</value>
+</property>
+<property name="NumberConc">
+<value>3e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_11">
+<property name="Name">
+<value>Heme_intercell</value>
+</property>
+<property name="NumberConc">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="parameter_1">
+<property name="Name">
+<value>Fe2GutQUant</value>
+</property>
+<property name="Value">
+<value>1600000000.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_parameter_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'parameter_1'</value>
+</property>
+<property name="Expression">
+<value>piecewise(1.000000e-07, lt(-5.000000e-13 * pow(time.Value - 40000, 2) + 0.0001, 1.000000e-07), -5.000000e-13 * pow(time.Value - 40000, 2) + 0.0001)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn type='e-notation'&gt; 1 &lt;sep/&gt; -7 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='e-notation'&gt; 5 &lt;sep/&gt; -13 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A                &lt;cn&gt; 40000 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.0001 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn type='e-notation'&gt; 1 &lt;sep/&gt; -7 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='e-notation'&gt; 5 &lt;sep/&gt; -13 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A              &lt;cn&gt; 40000 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0.0001 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>parameter_1</value>
+<value>Variable:/SBMLParameter:parameter_1</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

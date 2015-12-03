@@ -1,0 +1,1338 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Import_AS">
+<property name="Name">
+<value>[AS_m] -&gt; [AS_c];</value>
+</property>
+<property name="Expression">
+<value>Import_AS_k.Value * AS_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_m</value>
+<value>Variable:/medium:AS_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_AS_k</value>
+<value>Variable:/SBMLParameter:Import_AS_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Import_ASL">
+<property name="Name">
+<value>[ASL_m] -&gt; [ASL_c];</value>
+</property>
+<property name="Expression">
+<value>Import_ASL_k.Value * ASL_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_m</value>
+<value>Variable:/medium:ASL_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_ASL_k</value>
+<value>Variable:/SBMLParameter:Import_ASL_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CYP3A4_ASpOH">
+<property name="Name">
+<value>[AS_c] -&gt; [ASpOH_c]; { ASL_c };</value>
+</property>
+<property name="Expression">
+<value>CYP3A4_ASpOH_Vmax.Value / CYP3A4_ASpOH_Km1.Value * AS_c.NumberConc / (1 + AS_c.NumberConc / CYP3A4_ASpOH_Km1.Value + AS_c.NumberConc / CYP3A4_ASoOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLpOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLoOH_Km1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_c</value>
+<value>Variable:/cell:ASpOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASpOH_Vmax</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASpOH_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASoOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLoOH_Km1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CYP3A4_ASoOH">
+<property name="Name">
+<value>[AS_c] -&gt; [ASoOH_c]; { ASL_c };</value>
+</property>
+<property name="Expression">
+<value>CYP3A4_ASoOH_Vmax.Value / CYP3A4_ASoOH_Km1.Value * AS_c.NumberConc / (1 + AS_c.NumberConc / CYP3A4_ASpOH_Km1.Value + AS_c.NumberConc / CYP3A4_ASoOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLpOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLoOH_Km1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_c</value>
+<value>Variable:/cell:ASoOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASoOH_Vmax</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASoOH_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASoOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLoOH_Km1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CYP3A4_ASLpOH">
+<property name="Name">
+<value>[ASL_c] -&gt; [ASLpOH_c]; { AS_c };</value>
+</property>
+<property name="Expression">
+<value>CYP3A4_ASLpOH_Vmax.Value / CYP3A4_ASLpOH_Km1.Value * ASL_c.NumberConc / (1 + AS_c.NumberConc / CYP3A4_ASpOH_Km1.Value + AS_c.NumberConc / CYP3A4_ASoOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLpOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLoOH_Km1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLpOH_c</value>
+<value>Variable:/cell:ASLpOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLpOH_Vmax</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLpOH_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASoOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLoOH_Km1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CYP3A4_ASLoOH">
+<property name="Name">
+<value>[ASL_c] -&gt; [ASLoOH_c]; { AS_c };</value>
+</property>
+<property name="Expression">
+<value>CYP3A4_ASLoOH_Vmax.Value / CYP3A4_ASLoOH_Km1.Value * ASL_c.NumberConc / (1 + AS_c.NumberConc / CYP3A4_ASpOH_Km1.Value + AS_c.NumberConc / CYP3A4_ASoOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLpOH_Km1.Value + ASL_c.NumberConc / CYP3A4_ASLoOH_Km1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLoOH_c</value>
+<value>Variable:/cell:ASLoOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLoOH_Vmax</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLoOH_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLoOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASpOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASoOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASoOH_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>CYP3A4_ASLpOH_Km1</value>
+<value>Variable:/SBMLParameter:CYP3A4_ASLpOH_Km1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_ASoOH">
+<property name="Name">
+<value>[ASoOH_c] -&gt; [ASoOH_m];</value>
+</property>
+<property name="Expression">
+<value>Export_ASoOH_k.Value * ASoOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASoOH_c</value>
+<value>Variable:/cell:ASoOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_m</value>
+<value>Variable:/medium:ASoOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_ASoOH_k</value>
+<value>Variable:/SBMLParameter:Export_ASoOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="UGT1A3_AS">
+<property name="Name">
+<value>[AS_c] -&gt; [ASL_c];</value>
+</property>
+<property name="Expression">
+<value>UGT1A3_AS_Vmax.Value * AS_c.NumberConc / (UGT1A3_AS_Km1.Value + AS_c.NumberConc + AS_c.NumberConc * AS_c.NumberConc / UGT1A3_AS_KI1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>1</value>
+</value>
+<value>
+<value>UGT1A3_AS_Vmax</value>
+<value>Variable:/SBMLParameter:UGT1A3_AS_Vmax</value>
+<value>0</value>
+</value>
+<value>
+<value>UGT1A3_AS_Km1</value>
+<value>Variable:/SBMLParameter:UGT1A3_AS_Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>UGT1A3_AS_KI1</value>
+<value>Variable:/SBMLParameter:UGT1A3_AS_KI1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_ASASL_c">
+<property name="Name">
+<value>[ASL_c] -&gt; [AS_c];</value>
+</property>
+<property name="Expression">
+<value>(k_CR_ASL_c.Value + k_PON_ASL_c.Value) * ASL_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_c</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_c</value>
+<value>0</value>
+</value>
+<value>
+<value>k_PON_ASL_c</value>
+<value>Variable:/SBMLParameter:k_PON_ASL_c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CR_oOH">
+<property name="Name">
+<value>[ASLoOH_c] -&gt; [ASoOH_c];</value>
+</property>
+<property name="Expression">
+<value>(k_CR_ASL_c.Value + k_PON_OH_c.Value) * ASLoOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLoOH_c</value>
+<value>Variable:/cell:ASLoOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_c</value>
+<value>Variable:/cell:ASoOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_c</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_c</value>
+<value>0</value>
+</value>
+<value>
+<value>k_PON_OH_c</value>
+<value>Variable:/SBMLParameter:k_PON_OH_c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CR_pOH">
+<property name="Name">
+<value>[ASLpOH_c] -&gt; [ASpOH_c];</value>
+</property>
+<property name="Expression">
+<value>(k_CR_ASL_c.Value + k_PON_OH_c.Value) * ASLpOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLpOH_c</value>
+<value>Variable:/cell:ASLpOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_c</value>
+<value>Variable:/cell:ASpOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_c</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_c</value>
+<value>0</value>
+</value>
+<value>
+<value>k_PON_OH_c</value>
+<value>Variable:/SBMLParameter:k_PON_OH_c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_AS">
+<property name="Name">
+<value>[AS_c] -&gt; [AS_m];</value>
+</property>
+<property name="Expression">
+<value>Export_AS_k.Value * AS_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>AS_m</value>
+<value>Variable:/medium:AS_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_AS_k</value>
+<value>Variable:/SBMLParameter:Export_AS_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_ASL">
+<property name="Name">
+<value>[ASL_c] -&gt; [ASL_m];</value>
+</property>
+<property name="Expression">
+<value>Export_ASL_k.Value * ASL_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASL_m</value>
+<value>Variable:/medium:ASL_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_ASL_k</value>
+<value>Variable:/SBMLParameter:Export_ASL_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Import_ASLpOH">
+<property name="Name">
+<value>[ASLpOH_m] -&gt; [ASLpOH_c];</value>
+</property>
+<property name="Expression">
+<value>Import_ASLpOH_k.Value * ASLpOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLpOH_m</value>
+<value>Variable:/medium:ASLpOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLpOH_c</value>
+<value>Variable:/cell:ASLpOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_ASLpOH_k</value>
+<value>Variable:/SBMLParameter:Import_ASLpOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Import_ASLoOH">
+<property name="Name">
+<value>[ASLoOH_m] -&gt; [ASLoOH_c];</value>
+</property>
+<property name="Expression">
+<value>Import_ASLoOH_k.Value * ASLoOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLoOH_m</value>
+<value>Variable:/medium:ASLoOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLoOH_c</value>
+<value>Variable:/cell:ASLoOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_ASLoOH_k</value>
+<value>Variable:/SBMLParameter:Import_ASLoOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ASpOH_Prot">
+<property name="Name">
+<value>[ASpOH_c] -&gt; [ASpOH_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_AS.Value) / fu_AS.Value * ASpOH_c.NumberConc - ASpOH_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASpOH_c</value>
+<value>Variable:/cell:ASpOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_b</value>
+<value>Variable:/cell:ASpOH_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_AS</value>
+<value>Variable:/SBMLParameter:fu_AS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ASoOH_Prot">
+<property name="Name">
+<value>[ASoOH_c] -&gt; [ASoOH_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_AS.Value) / fu_AS.Value * ASoOH_c.NumberConc - ASoOH_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASoOH_c</value>
+<value>Variable:/cell:ASoOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_b</value>
+<value>Variable:/cell:ASoOH_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_AS</value>
+<value>Variable:/SBMLParameter:fu_AS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ASLpOH_Prot">
+<property name="Name">
+<value>[ASLpOH_c] -&gt; [ASLpOH_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_ASL.Value) / fu_ASL.Value * ASLpOH_c.NumberConc - ASLpOH_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLpOH_c</value>
+<value>Variable:/cell:ASLpOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLpOH_b</value>
+<value>Variable:/cell:ASLpOH_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_ASL</value>
+<value>Variable:/SBMLParameter:fu_ASL</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ASLoOH_Prot">
+<property name="Name">
+<value>[ASLoOH_c] -&gt; [ASLoOH_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_ASL.Value) / fu_ASL.Value * ASLoOH_c.NumberConc - ASLoOH_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLoOH_c</value>
+<value>Variable:/cell:ASLoOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLoOH_b</value>
+<value>Variable:/cell:ASLoOH_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_ASL</value>
+<value>Variable:/SBMLParameter:fu_ASL</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AS_Prot">
+<property name="Name">
+<value>[AS_c] -&gt; [AS_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_AS.Value) / fu_AS.Value * AS_c.NumberConc - AS_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AS_c</value>
+<value>Variable:/cell:AS_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>AS_b</value>
+<value>Variable:/cell:AS_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_AS</value>
+<value>Variable:/SBMLParameter:fu_AS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ASL_Prot">
+<property name="Name">
+<value>[ASL_c] -&gt; [ASL_b];</value>
+</property>
+<property name="Expression">
+<value>Prot_k1.Value * ((1 - fu_ASL.Value) / fu_ASL.Value * ASL_c.NumberConc - ASL_b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_c</value>
+<value>Variable:/cell:ASL_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASL_b</value>
+<value>Variable:/cell:ASL_b</value>
+<value>1</value>
+</value>
+<value>
+<value>Prot_k1</value>
+<value>Variable:/SBMLParameter:Prot_k1</value>
+<value>0</value>
+</value>
+<value>
+<value>fu_ASL</value>
+<value>Variable:/SBMLParameter:fu_ASL</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Import_ASpOH">
+<property name="Name">
+<value>[ASpOH_m] -&gt; [ASpOH_c];</value>
+</property>
+<property name="Expression">
+<value>Import_ASpOH_k.Value * ASpOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASpOH_m</value>
+<value>Variable:/medium:ASpOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_c</value>
+<value>Variable:/cell:ASpOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_ASpOH_k</value>
+<value>Variable:/SBMLParameter:Import_ASpOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_ASASL_m">
+<property name="Name">
+<value>[ASL_m] -&gt; [AS_m];</value>
+</property>
+<property name="Expression">
+<value>k_CR_ASL_m.Value * ASL_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASL_m</value>
+<value>Variable:/medium:ASL_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>AS_m</value>
+<value>Variable:/medium:AS_m</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_m</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_m</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_pOH_m">
+<property name="Name">
+<value>[ASLpOH_m] -&gt; [ASpOH_m];</value>
+</property>
+<property name="Expression">
+<value>k_CR_ASL_m.Value * ASLpOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLpOH_m</value>
+<value>Variable:/medium:ASLpOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_m</value>
+<value>Variable:/medium:ASpOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_m</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_m</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_oOH_m">
+<property name="Name">
+<value>[ASLoOH_m] -&gt; [ASoOH_m];</value>
+</property>
+<property name="Expression">
+<value>k_CR_ASL_m.Value * ASLoOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLoOH_m</value>
+<value>Variable:/medium:ASLoOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_m</value>
+<value>Variable:/medium:ASoOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>k_CR_ASL_m</value>
+<value>Variable:/SBMLParameter:k_CR_ASL_m</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_ASLpOH">
+<property name="Name">
+<value>[ASLpOH_c] -&gt; [ASLpOH_m];</value>
+</property>
+<property name="Expression">
+<value>Export_ASLpOH_k.Value * ASLpOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLpOH_c</value>
+<value>Variable:/cell:ASLpOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLpOH_m</value>
+<value>Variable:/medium:ASLpOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_ASLpOH_k</value>
+<value>Variable:/SBMLParameter:Export_ASLpOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_ASLoOH">
+<property name="Name">
+<value>[ASLoOH_c] -&gt; [ASLoOH_m];</value>
+</property>
+<property name="Expression">
+<value>Export_ASLoOH_k.Value * ASLoOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASLoOH_c</value>
+<value>Variable:/cell:ASLoOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASLoOH_m</value>
+<value>Variable:/medium:ASLoOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_ASLoOH_k</value>
+<value>Variable:/SBMLParameter:Export_ASLoOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Export_ASpOH">
+<property name="Name">
+<value>[ASpOH_c] -&gt; [ASpOH_m];</value>
+</property>
+<property name="Expression">
+<value>Export_ASpOH_k.Value * ASpOH_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASpOH_c</value>
+<value>Variable:/cell:ASpOH_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASpOH_m</value>
+<value>Variable:/medium:ASpOH_m</value>
+<value>1</value>
+</value>
+<value>
+<value>Export_ASpOH_k</value>
+<value>Variable:/SBMLParameter:Export_ASpOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Import_ASoOH">
+<property name="Name">
+<value>[ASoOH_m] -&gt; [ASoOH_c];</value>
+</property>
+<property name="Expression">
+<value>Import_ASoOH_k.Value * ASoOH_m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASoOH_m</value>
+<value>Variable:/medium:ASoOH_m</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASoOH_c</value>
+<value>Variable:/cell:ASoOH_c</value>
+<value>1</value>
+</value>
+<value>
+<value>Import_ASoOH_k</value>
+<value>Variable:/SBMLParameter:Import_ASoOH_k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/medium">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AS_m">
+<property name="NumberConc">
+<value>8797.15</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASL_m">
+<property name="NumberConc">
+<value>30.56</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASoOH_m">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLpOH_m">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASpOH_m">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLoOH_m">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.0142</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AS_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASL_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASpOH_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASoOH_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLpOH_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLoOH_c">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASpOH_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASoOH_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLpOH_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASLoOH_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AS_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASL_b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="CYP3A4_ASLpOH_Km1">
+<property name="Value">
+<value>1400.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASLoOH_Km1">
+<property name="Value">
+<value>3900.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASpOH_Km1">
+<property name="Value">
+<value>25600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASoOH_Km1">
+<property name="Value">
+<value>29700.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_ASLpOH_k">
+<property name="Value">
+<value>0.033729</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_ASLoOH_k">
+<property name="Value">
+<value>0.026122</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_ASL_k">
+<property name="Value">
+<value>0.2754</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fu_ASL">
+<property name="Value">
+<value>0.22</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fu_AS">
+<property name="Value">
+<value>0.22</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_ASpOH_k">
+<property name="Value">
+<value>0.0039614</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_ASLpOH_k">
+<property name="Value">
+<value>0.0011319</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_ASLoOH_k">
+<property name="Value">
+<value>0.0026674</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CR_ASL_c">
+<property name="Value">
+<value>3.55e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CR_ASL_m">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_PON_OH_c">
+<property name="Value">
+<value>0.0039829</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_ASoOH_k">
+<property name="Value">
+<value>0.0015983</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Prot_k1">
+<property name="Value">
+<value>8.52</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASoOH_Vmax">
+<property name="Value">
+<value>47.4985</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASLpOH_Vmax">
+<property name="Value">
+<value>17.4446</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASLoOH_Vmax">
+<property name="Value">
+<value>39.1342</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="UGT1A3_AS_Vmax">
+<property name="Value">
+<value>13.5862</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="UGT1A3_AS_Km1">
+<property name="Value">
+<value>12000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="UGT1A3_AS_KI1">
+<property name="Value">
+<value>75000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_PON_ASL_c">
+<property name="Value">
+<value>0.0043734</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_AS_k">
+<property name="Value">
+<value>0.002166</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_ASL_k">
+<property name="Value">
+<value>0.021822</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_AS_k">
+<property name="Value">
+<value>0.020335</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Import_ASoOH_k">
+<property name="Value">
+<value>0.00038875</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Export_ASpOH_k">
+<property name="Value">
+<value>0.00079526</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CYP3A4_ASpOH_Vmax">
+<property name="Value">
+<value>15.7336</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

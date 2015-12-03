@@ -1,0 +1,349 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="R1">
+<property name="Name">
+<value>p53 production</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * beta_x.Value * pow(S.Value, n.Value) / (pow(S.Value, n.Value) + 1) * psi.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_x</value>
+<value>Variable:/SBMLParameter:beta_x</value>
+<value>0</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; compartment &lt;/ci&gt;#x0A        &lt;ci&gt; beta_x &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; S &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; S &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; psi &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R3">
+<property name="Name">
+<value>Mdm2 dependent p53 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_xy.Value * y.NumberConc * x.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_xy</value>
+<value>Variable:/SBMLParameter:alpha_xy</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; alpha_xy &lt;/ci&gt;#x0A    &lt;ci&gt; y &lt;/ci&gt;#x0A    &lt;ci&gt; x &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R4">
+<property name="Name">
+<value>p53 dependent Mdm2 production</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * beta_y.Value * psi.Value * delay(x.NumberConc, tau.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_y</value>
+<value>Variable:/SBMLParameter:beta_y</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+<value>
+<value>tau</value>
+<value>Variable:/SBMLParameter:tau</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; beta_y &lt;/ci&gt;#x0A    &lt;ci&gt; psi &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A      &lt;ci&gt; x &lt;/ci&gt;#x0A      &lt;ci&gt; tau &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R5">
+<property name="Name">
+<value>Mdm2 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_y.Value * y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_y</value>
+<value>Variable:/SBMLParameter:alpha_y</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; alpha_y &lt;/ci&gt;#x0A    &lt;ci&gt; y &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>p53</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y">
+<property name="Name">
+<value>Mdm2</value>
+</property>
+<property name="NumberConc">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="beta_x">
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="psi">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_xy">
+<property name="Value">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_y">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_y">
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau">
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_S">
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_S">
+<property name="Value">
+<value>2.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_S">
+<property name="Name">
+<value>Rate rule for 'S'</value>
+</property>
+<property name="Expression">
+<value>beta_S.NumberConc - alpha_S.NumberConc * y.NumberConc * S.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; beta_S &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; alpha_S &lt;/ci&gt;#x0A      &lt;ci&gt; y &lt;/ci&gt;#x0A      &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>1</value>
+</value>
+<value>
+<value>beta_S</value>
+<value>Variable:/SBMLParameter:beta_S</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_S</value>
+<value>Variable:/SBMLParameter:alpha_S</value>
+<value>0</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

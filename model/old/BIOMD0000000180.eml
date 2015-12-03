@@ -1,0 +1,780 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="React1">
+<property name="Name">
+<value>-&gt; [R1];</value>
+</property>
+<property name="Expression">
+<value>i1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R1</value>
+<value>Variable:/compartment:R1</value>
+<value>1</value>
+</value>
+<value>
+<value>i1</value>
+<value>Variable:/SBMLParameter:i1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React2">
+<property name="Name">
+<value>[R1] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_R1.Value * R1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R1</value>
+<value>Variable:/compartment:R1</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_R1</value>
+<value>Variable:/SBMLParameter:d_R1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React3">
+<property name="Name">
+<value>-&gt; [P1]; { R1 };</value>
+</property>
+<property name="Expression">
+<value>sP1R1.Value * R1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/compartment:P1</value>
+<value>1</value>
+</value>
+<value>
+<value>R1</value>
+<value>Variable:/compartment:R1</value>
+<value>0</value>
+</value>
+<value>
+<value>sP1R1</value>
+<value>Variable:/SBMLParameter:sP1R1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React4">
+<property name="Name">
+<value>[P1] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P1.Value * P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/compartment:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P1</value>
+<value>Variable:/SBMLParameter:d_P1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React5">
+<property name="Name">
+<value>-&gt; [P1_prime]; { P1 };</value>
+</property>
+<property name="Expression">
+<value>sP1_prime_P1.Value * P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/compartment:P1</value>
+<value>0</value>
+</value>
+<value>
+<value>sP1_prime_P1</value>
+<value>Variable:/SBMLParameter:sP1_prime_P1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React6">
+<property name="Name">
+<value>-&gt; [P1_prime]; { P2_prime };</value>
+</property>
+<property name="Expression">
+<value>s1.Value / (1 + pow(P2_prime.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>s1</value>
+<value>Variable:/SBMLParameter:s1</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React7">
+<property name="Name">
+<value>-&gt; [P1_prime]; { P3_prime };</value>
+</property>
+<property name="Expression">
+<value>s3.Value / (1 + pow(P3_prime.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P3_prime</value>
+<value>Variable:/compartment:P3_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/SBMLParameter:s3</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React8">
+<property name="Name">
+<value>[P1_prime] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P1_prime.Value * P1_prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P1_prime</value>
+<value>Variable:/SBMLParameter:d_P1_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React9">
+<property name="Name">
+<value>-&gt; [R2];</value>
+</property>
+<property name="Expression">
+<value>i2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>1</value>
+</value>
+<value>
+<value>i2</value>
+<value>Variable:/SBMLParameter:i2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React10">
+<property name="Name">
+<value>[R2] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_R2.Value * R2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_R2</value>
+<value>Variable:/SBMLParameter:d_R2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React11">
+<property name="Name">
+<value>-&gt; [P2]; { R2 };</value>
+</property>
+<property name="Expression">
+<value>sP2R2.Value * R2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/compartment:P2</value>
+<value>1</value>
+</value>
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>0</value>
+</value>
+<value>
+<value>sP2R2</value>
+<value>Variable:/SBMLParameter:sP2R2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React12">
+<property name="Name">
+<value>[P2] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P2.Value * P2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/compartment:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P2</value>
+<value>Variable:/SBMLParameter:d_P2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React13">
+<property name="Name">
+<value>-&gt; [P2_prime]; { P2 };</value>
+</property>
+<property name="Expression">
+<value>sP2_prime_P2.Value * P2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/compartment:P2</value>
+<value>0</value>
+</value>
+<value>
+<value>sP2_prime_P2</value>
+<value>Variable:/SBMLParameter:sP2_prime_P2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React14">
+<property name="Name">
+<value>-&gt; [P2_prime]; { P1_prime };</value>
+</property>
+<property name="Expression">
+<value>s2.Value / (1 + pow(P1_prime.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/SBMLParameter:s2</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React15">
+<property name="Name">
+<value>[P2_prime] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P2_prime.Value * P2_prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P2_prime</value>
+<value>Variable:/SBMLParameter:d_P2_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React16">
+<property name="Name">
+<value>-&gt; [P3_prime]; { P2_prime };</value>
+</property>
+<property name="Expression">
+<value>sP3_prime_P2_prime.Value * (pow(P2_prime.NumberConc, n.Value) / (1 + pow(P2_prime.NumberConc, n.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P3_prime</value>
+<value>Variable:/compartment:P3_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>sP3_prime_P2_prime</value>
+<value>Variable:/SBMLParameter:sP3_prime_P2_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React17">
+<property name="Name">
+<value>[P3_prime] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P3_prime.Value * P3_prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P3_prime</value>
+<value>Variable:/compartment:P3_prime</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P3_prime</value>
+<value>Variable:/SBMLParameter:d_P3_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React18">
+<property name="Name">
+<value>&lt;-&gt; [P2_prime]; { P4_prime };</value>
+</property>
+<property name="Expression">
+<value>s3.Value / (1 + pow(P4_prime.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2_prime</value>
+<value>Variable:/compartment:P2_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P4_prime</value>
+<value>Variable:/compartment:P4_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/SBMLParameter:s3</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React19">
+<property name="Name">
+<value>&lt;-&gt; [P4_prime]; { P1_prime };</value>
+</property>
+<property name="Expression">
+<value>sP4_prime_P1_prime.Value * (pow(P1_prime.NumberConc, n.Value) / (1 + pow(P1_prime.NumberConc, n.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P4_prime</value>
+<value>Variable:/compartment:P4_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>P1_prime</value>
+<value>Variable:/compartment:P1_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>sP4_prime_P1_prime</value>
+<value>Variable:/SBMLParameter:sP4_prime_P1_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="React20">
+<property name="Name">
+<value>[P4_prime] &lt;-&gt; ;</value>
+</property>
+<property name="Expression">
+<value>d_P4_prime.Value * P4_prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P4_prime</value>
+<value>Variable:/compartment:P4_prime</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_P4_prime</value>
+<value>Variable:/SBMLParameter:d_P4_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R1">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R2">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2_prime">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P3_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P4_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="i1">
+<property name="Value">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="d_R1">
+<property name="Value">
+<value>0.23521</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP1R1">
+<property name="Value">
+<value>0.47305</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P1">
+<property name="Value">
+<value>0.22367</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP1_prime_P1">
+<property name="Value">
+<value>0.28687</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s1">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>9.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s3">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P1_prime">
+<property name="Value">
+<value>0.37048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="i2">
+<property name="Value">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="d_R2">
+<property name="Value">
+<value>0.23521</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP2R2">
+<property name="Value">
+<value>0.47305</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P2">
+<property name="Value">
+<value>0.22367</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP2_prime_P2">
+<property name="Value">
+<value>0.28687</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s2">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P2_prime">
+<property name="Value">
+<value>0.37048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP3_prime_P2_prime">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P3_prime">
+<property name="Value">
+<value>0.37048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_P4_prime">
+<property name="Value">
+<value>0.37048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sP4_prime_P1_prime">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_i2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'i2'</value>
+</property>
+<property name="Expression">
+<value>piecewise(1, and(geq(&lt;t&gt;, 175), leq(&lt;t&gt;, 225)), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i2</value>
+<value>Variable:/SBMLParameter:i2</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_i1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'i1'</value>
+</property>
+<property name="Expression">
+<value>piecewise(1, and(geq(&lt;t&gt;, 50), leq(&lt;t&gt;, 100)), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>i1</value>
+<value>Variable:/SBMLParameter:i1</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

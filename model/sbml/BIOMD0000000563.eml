@@ -1,0 +1,671 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="PAMP_recognition">
+<property name="Name">
+<value>PAMP recognition</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="k2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * PRR_0.NumberConc * PAMP.NumberConc - k2 * PRR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PRR_0</value>
+<value>Variable:/Apoplast:PRR_0</value>
+<value>-1</value>
+</value>
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PRR</value>
+<value>Variable:/Apoplast:PRR</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;ci&gt; PRR_0 &lt;/ci&gt;#x0A      &lt;ci&gt; PAMP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2 &lt;/ci&gt;#x0A      &lt;ci&gt; PRR &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Effector_recognition">
+<property name="Name">
+<value>Effector recognition</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="k2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * R.NumberConc * E_int.NumberConc - k2 * R_0.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_0</value>
+<value>Variable:/Cell:R_0</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; R &lt;/ci&gt;#x0A        &lt;ci&gt; E_int &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; R_0 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Effector_removal">
+<property name="Name">
+<value>Effector removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * E.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Apoplast &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; E &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PAMP_removal">
+<property name="Name">
+<value>PAMP removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * PAMP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; PAMP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Pathogen_arrival">
+<property name="Name">
+<value>Pathogen arrival</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path_bulk.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path_bulk</value>
+<value>Variable:/Apoplast:Path_bulk</value>
+<value>0</value>
+</value>
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Apoplast &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path_bulk &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Pathogen_removal">
+<property name="Name">
+<value>Pathogen removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Apoplast &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PAMP_production">
+<property name="Name">
+<value>PAMP production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>0</value>
+</value>
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Effector_production">
+<property name="Name">
+<value>Effector production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Apoplast &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="E_int_removal">
+<property name="Name">
+<value>E_int removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * E_int.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; E_int &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ETI">
+<property name="Name">
+<value>ETI</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc * R_0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_0</value>
+<value>Variable:/Cell:R_0</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path &lt;/ci&gt;#x0A    &lt;ci&gt; R_0 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Effector_translocation">
+<property name="Name">
+<value>Effector translocation</value>
+</property>
+<property name="Km">
+<value>0.1</value>
+</property>
+<property name="V">
+<value>0.1</value>
+</property>
+<property name="Ki">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>V * E.NumberConc / (Km + E.NumberConc + Km * Callose.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>1</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; E &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; E &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km &lt;/ci&gt;#x0A          &lt;ci&gt; Callose &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Callose_production">
+<property name="Name">
+<value>Callose production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * PRR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PRR</value>
+<value>Variable:/Apoplast:PRR</value>
+<value>0</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; PRR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Callose_removal">
+<property name="Name">
+<value>Callose removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * Callose.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Callose &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PTI">
+<property name="Name">
+<value>PTI</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc * Callose.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Path &lt;/ci&gt;#x0A    &lt;ci&gt; Callose &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Callose_suppression">
+<property name="Name">
+<value>Callose suppression</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * Callose.NumberConc * E_int.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Callose &lt;/ci&gt;#x0A    &lt;ci&gt; E_int &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PAMP">
+<property name="Name">
+<value>PAMP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_0">
+<property name="Name">
+<value>R*</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E_int">
+<property name="Name">
+<value>E_int</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Callose">
+<property name="Name">
+<value>Callose</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Apoplast">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Apoplast</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Path">
+<property name="Name">
+<value>Path</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Path_bulk">
+<property name="Name">
+<value>Path_bulk</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PRR">
+<property name="Name">
+<value>PRR*</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PRR_0">
+<property name="Name">
+<value>PRR</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="Pathogen_introduced">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Pathogen_introduced</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Path_bulk</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;cn&gt; 10 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>gt(time.Value, 10)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path_bulk</value>
+<value>Variable:/Apoplast:Path_bulk</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

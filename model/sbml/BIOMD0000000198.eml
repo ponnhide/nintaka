@@ -1,0 +1,784 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r1fast">
+<property name="Name">
+<value>r1fast</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k1.Value * NO.NumberConc * sGCfast.NumberConc - k2.Value * NO_sGCfast.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO</value>
+<value>Variable:/cytosol:NO</value>
+<value>-1</value>
+</value>
+<value>
+<value>sGCfast</value>
+<value>Variable:/cytosol:sGCfast</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCfast</value>
+<value>Variable:/cytosol:NO_sGCfast</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; NO &lt;/ci&gt;#x0A        &lt;ci&gt; sGCfast &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCfast &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2fast">
+<property name="Name">
+<value>r2fast</value>
+</property>
+<property name="Expression">
+<value>k3.Value * cytosol.Value * NO_sGCfast.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO_sGCfast</value>
+<value>Variable:/cytosol:NO_sGCfast</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCfast_6coord</value>
+<value>Variable:/cytosol:NO_sGCfast_6coord</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3 &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCfast &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3fast">
+<property name="Name">
+<value>r3fast</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k4.Value * NO_sGCfast_6coord.NumberConc - k5.Value * NO_sGCfast_5coord.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO_sGCfast_6coord</value>
+<value>Variable:/cytosol:NO_sGCfast_6coord</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCfast_5coord</value>
+<value>Variable:/cytosol:NO_sGCfast_5coord</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k4 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCfast_6coord &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k5 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCfast_5coord &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r1slow">
+<property name="Name">
+<value>r1slow</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k6.Value * NO.NumberConc * sGCslow.NumberConc - k7.Value * NO_sGCslow.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO</value>
+<value>Variable:/cytosol:NO</value>
+<value>-1</value>
+</value>
+<value>
+<value>sGCslow</value>
+<value>Variable:/cytosol:sGCslow</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCslow</value>
+<value>Variable:/cytosol:NO_sGCslow</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k6 &lt;/ci&gt;#x0A        &lt;ci&gt; NO &lt;/ci&gt;#x0A        &lt;ci&gt; sGCslow &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k7 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2slow">
+<property name="Name">
+<value>r2slow</value>
+</property>
+<property name="Expression">
+<value>k8.Value * cytosol.Value * NO_sGCslow.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO_sGCslow</value>
+<value>Variable:/cytosol:NO_sGCslow</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord</value>
+<value>1</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCslow &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3slow">
+<property name="Name">
+<value>r3slow</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k9.Value * NO.NumberConc * NO_sGCslow_6coord.NumberConc - k10.Value * NO_sGCslow_6coord_NO_int.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO</value>
+<value>Variable:/cytosol:NO</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord_NO_int</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord_NO_int</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k9 &lt;/ci&gt;#x0A        &lt;ci&gt; NO &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_6coord &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k10 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_6coord_NO_int &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r4slow">
+<property name="Name">
+<value>r4slow</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (k11.Value * NO_sGCslow_6coord_NO_int.NumberConc - k12.Value * NO_sGCslow_5coord.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO_sGCslow_6coord_NO_int</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord_NO_int</value>
+<value>-1</value>
+</value>
+<value>
+<value>NO_sGCslow_5coord</value>
+<value>Variable:/cytosol:NO_sGCslow_5coord</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k11 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_6coord_NO_int &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k12 &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_5coord &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NO">
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="sGCfast">
+<property name="NumberConc">
+<value>0.112</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCfast">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCfast_6coord">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCfast_5coord">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="sGCslow">
+<property name="NumberConc">
+<value>0.288</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCslow">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCslow_6coord">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCslow_6coord_NO_int">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGCslow_5coord">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NO_sGC_5coord_tot">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="sGC_inact_tot">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>700.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>800.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>850.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>700.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>800.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>850.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e5c">
+<property name="Name">
+<value>ext_5coord</value>
+</property>
+<property name="Value">
+<value>0.11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e5c_NO">
+<property name="Name">
+<value>ext_5coord_NO</value>
+</property>
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e6c_NO">
+<property name="Name">
+<value>ext_6coord_NO</value>
+</property>
+<property name="Value">
+<value>0.064</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ext">
+<property name="Name">
+<value>extinction</value>
+</property>
+<property name="Value">
+<value>0.044</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_NO_sGC_5coord_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'NO_sGC_5coord_tot'</value>
+</property>
+<property name="Expression">
+<value>NO_sGCfast_5coord.NumberConc + NO_sGCslow_5coord.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; NO_sGCfast_5coord &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCslow_5coord &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NO_sGC_5coord_tot</value>
+<value>Variable:/cytosol:NO_sGC_5coord_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>NO_sGCfast_5coord</value>
+<value>Variable:/cytosol:NO_sGCfast_5coord</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_5coord</value>
+<value>Variable:/cytosol:NO_sGCslow_5coord</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_sGC_inact_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'sGC_inact_tot'</value>
+</property>
+<property name="Expression">
+<value>sGCfast.NumberConc + NO_sGCfast.NumberConc + NO_sGCfast_6coord.NumberConc + sGCslow.NumberConc + NO_sGCslow.NumberConc + NO_sGCslow_6coord.NumberConc + NO_sGCslow_6coord_NO_int.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; sGCfast &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCfast &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCfast_6coord &lt;/ci&gt;#x0A    &lt;ci&gt; sGCslow &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCslow &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCslow_6coord &lt;/ci&gt;#x0A    &lt;ci&gt; NO_sGCslow_6coord_NO_int &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>sGC_inact_tot</value>
+<value>Variable:/cytosol:sGC_inact_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>sGCfast</value>
+<value>Variable:/cytosol:sGCfast</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCfast</value>
+<value>Variable:/cytosol:NO_sGCfast</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCfast_6coord</value>
+<value>Variable:/cytosol:NO_sGCfast_6coord</value>
+<value>0</value>
+</value>
+<value>
+<value>sGCslow</value>
+<value>Variable:/cytosol:sGCslow</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow</value>
+<value>Variable:/cytosol:NO_sGCslow</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord_NO_int</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord_NO_int</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ext">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ext'</value>
+</property>
+<property name="Expression">
+<value>e5c.NumberConc * (sGCfast.NumberConc + NO_sGCfast.NumberConc + sGCslow.NumberConc + NO_sGCslow.NumberConc) + e5c_NO.NumberConc * (NO_sGCfast_5coord.NumberConc + NO_sGCslow_5coord.NumberConc) + e6c_NO.NumberConc * (NO_sGCfast_6coord.NumberConc + NO_sGCslow_6coord.NumberConc + NO_sGCslow_6coord_NO_int.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; e5c &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; sGCfast &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCfast &lt;/ci&gt;#x0A        &lt;ci&gt; sGCslow &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; e5c_NO &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; NO_sGCfast_5coord &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_5coord &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; e6c_NO &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; NO_sGCfast_6coord &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_6coord &lt;/ci&gt;#x0A        &lt;ci&gt; NO_sGCslow_6coord_NO_int &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ext</value>
+<value>Variable:/SBMLParameter:ext</value>
+<value>1</value>
+</value>
+<value>
+<value>e5c</value>
+<value>Variable:/SBMLParameter:e5c</value>
+<value>0</value>
+</value>
+<value>
+<value>sGCfast</value>
+<value>Variable:/cytosol:sGCfast</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCfast</value>
+<value>Variable:/cytosol:NO_sGCfast</value>
+<value>0</value>
+</value>
+<value>
+<value>sGCslow</value>
+<value>Variable:/cytosol:sGCslow</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow</value>
+<value>Variable:/cytosol:NO_sGCslow</value>
+<value>0</value>
+</value>
+<value>
+<value>e5c_NO</value>
+<value>Variable:/SBMLParameter:e5c_NO</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCfast_5coord</value>
+<value>Variable:/cytosol:NO_sGCfast_5coord</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_5coord</value>
+<value>Variable:/cytosol:NO_sGCslow_5coord</value>
+<value>0</value>
+</value>
+<value>
+<value>e6c_NO</value>
+<value>Variable:/SBMLParameter:e6c_NO</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCfast_6coord</value>
+<value>Variable:/cytosol:NO_sGCfast_6coord</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord</value>
+<value>0</value>
+</value>
+<value>
+<value>NO_sGCslow_6coord_NO_int</value>
+<value>Variable:/cytosol:NO_sGCslow_6coord_NO_int</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

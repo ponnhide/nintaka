@@ -1,0 +1,529 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>[PEP] + [EI] &lt;-&gt; [PyrPI];</value>
+</property>
+<property name="k1f">
+<value>1960.0</value>
+</property>
+<property name="k1r">
+<value>480000.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k1f * PEP.NumberConc * EI.NumberConc - k1r * PyrPI.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PEP</value>
+<value>Variable:/compartment:PEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>EI</value>
+<value>Variable:/compartment:EI</value>
+<value>-1</value>
+</value>
+<value>
+<value>PyrPI</value>
+<value>Variable:/compartment:PyrPI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>[PyrPI] &lt;-&gt; [EIP] + [Pyr];</value>
+</property>
+<property name="k2f">
+<value>108000.0</value>
+</property>
+<property name="k2r">
+<value>294.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k2f * PyrPI.NumberConc - k2r * Pyr.NumberConc * EIP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PyrPI</value>
+<value>Variable:/compartment:PyrPI</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIP</value>
+<value>Variable:/compartment:EIP</value>
+<value>1</value>
+</value>
+<value>
+<value>Pyr</value>
+<value>Variable:/compartment:Pyr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>[HPr] + [EIP] &lt;-&gt; [EIPHPr];</value>
+</property>
+<property name="k3f">
+<value>14000.0</value>
+</property>
+<property name="k3r">
+<value>14000.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k3f * EIP.NumberConc * HPr.NumberConc - k3r * EIPHPr.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HPr</value>
+<value>Variable:/compartment:HPr</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIP</value>
+<value>Variable:/compartment:EIP</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIPHPr</value>
+<value>Variable:/compartment:EIPHPr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>[EIPHPr] &lt;-&gt; [HPrP] + [EI];</value>
+</property>
+<property name="k4f">
+<value>84000.0</value>
+</property>
+<property name="k4r">
+<value>3360.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k4f * EIPHPr.NumberConc - k4r * EI.NumberConc * HPrP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EIPHPr</value>
+<value>Variable:/compartment:EIPHPr</value>
+<value>-1</value>
+</value>
+<value>
+<value>HPrP</value>
+<value>Variable:/compartment:HPrP</value>
+<value>1</value>
+</value>
+<value>
+<value>EI</value>
+<value>Variable:/compartment:EI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>[HPrP] + [EIIA] &lt;-&gt; [HPrPIIA];</value>
+</property>
+<property name="k5f">
+<value>21960.0</value>
+</property>
+<property name="k5r">
+<value>21960.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k5f * HPrP.NumberConc * EIIA.NumberConc - k5r * HPrPIIA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HPrP</value>
+<value>Variable:/compartment:HPrP</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIIA</value>
+<value>Variable:/compartment:EIIA</value>
+<value>-1</value>
+</value>
+<value>
+<value>HPrPIIA</value>
+<value>Variable:/compartment:HPrPIIA</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>[HPrPIIA] &lt;-&gt; [EIIAP] + [HPr];</value>
+</property>
+<property name="k6f">
+<value>4392.0</value>
+</property>
+<property name="k6r">
+<value>3384.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k6f * HPrPIIA.NumberConc - k6r * HPr.NumberConc * EIIAP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HPrPIIA</value>
+<value>Variable:/compartment:HPrPIIA</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIIAP</value>
+<value>Variable:/compartment:EIIAP</value>
+<value>1</value>
+</value>
+<value>
+<value>HPr</value>
+<value>Variable:/compartment:HPr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7">
+<property name="Name">
+<value>[EIICB] + [EIIAP] &lt;-&gt; [EIIAPIICB];</value>
+</property>
+<property name="k7f">
+<value>880.0</value>
+</property>
+<property name="k7r">
+<value>880.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k7f * EIIAP.NumberConc * EIICB.NumberConc - k7r * EIIAPIICB.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EIICB</value>
+<value>Variable:/compartment:EIICB</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIIAP</value>
+<value>Variable:/compartment:EIIAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIIAPIICB</value>
+<value>Variable:/compartment:EIIAPIICB</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v8">
+<property name="Name">
+<value>[EIIAPIICB] &lt;-&gt; [EIICBP] + [EIIA];</value>
+</property>
+<property name="k8f">
+<value>2640.0</value>
+</property>
+<property name="k8r">
+<value>960.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k8f * EIIAPIICB.NumberConc - k8r * EIIA.NumberConc * EIICBP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EIIAPIICB</value>
+<value>Variable:/compartment:EIIAPIICB</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIICBP</value>
+<value>Variable:/compartment:EIICBP</value>
+<value>1</value>
+</value>
+<value>
+<value>EIIA</value>
+<value>Variable:/compartment:EIIA</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v9">
+<property name="Name">
+<value>[EIICBP] + [Glc] &lt;-&gt; [EIICBPGlc];</value>
+</property>
+<property name="k9f">
+<value>260.0</value>
+</property>
+<property name="k9r">
+<value>389.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k9f * EIICBP.NumberConc * Glc.NumberConc - k9r * EIICBPGlc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EIICBP</value>
+<value>Variable:/compartment:EIICBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/compartment:Glc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIICBPGlc</value>
+<value>Variable:/compartment:EIICBPGlc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v10">
+<property name="Name">
+<value>[EIICBPGlc] &lt;-&gt; [EIICB] + [GlcP];</value>
+</property>
+<property name="k10f">
+<value>4800.0</value>
+</property>
+<property name="k10r">
+<value>0.0054</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k10f * EIICBPGlc.NumberConc - k10r * EIICB.NumberConc * GlcP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EIICBPGlc</value>
+<value>Variable:/compartment:EIICBPGlc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EIICB</value>
+<value>Variable:/compartment:EIICB</value>
+<value>1</value>
+</value>
+<value>
+<value>GlcP</value>
+<value>Variable:/compartment:GlcP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EI">
+<property name="NumberConc">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PyrPI">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIP">
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HPr">
+<property name="NumberConc">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIPHPr">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HPrP">
+<property name="NumberConc">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIIA">
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HPrPIIA">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIIAP">
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIICB">
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIIAPIICB">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIICBP">
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EIICBPGlc">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP">
+<property name="NumberConc">
+<value>2800.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyr">
+<property name="NumberConc">
+<value>900.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GlcP">
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc">
+<property name="NumberConc">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

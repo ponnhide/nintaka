@@ -1,0 +1,495 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="PstatDimerisation">
+<property name="Name">
+<value>PstatDimerisation</value>
+</property>
+<property name="Kf_PstatDimerisation">
+<value>0.6</value>
+</property>
+<property name="Kr_PstatDimerisation">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>(Kf_PstatDimerisation * pow(Pstat_sol.NumberConc, 2) + -(Kr_PstatDimerisation * PstatDimer_sol.NumberConc)) * sol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pstat_sol</value>
+<value>Variable:/sol:Pstat_sol</value>
+<value>-2</value>
+</value>
+<value>
+<value>PstatDimer_sol</value>
+<value>Variable:/sol:PstatDimer_sol</value>
+<value>1</value>
+</value>
+<value>
+<value>sol</value>
+<value>Variable:/sol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Kf_PstatDimerisation &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Pstat_sol &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Kr_PstatDimerisation &lt;/ci&gt;#x0A          &lt;ci&gt; PstatDimer_sol &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; sol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="statDephosphorylation">
+<property name="Name">
+<value>statDephosphorylation</value>
+</property>
+<property name="Kcat_dephos">
+<value>1.0</value>
+</property>
+<property name="Km_dephos">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>Kcat_dephos * statPhosphatase_nuc.NumberConc * Pstat_nuc.NumberConc * (1 / (Km_dephos + Pstat_nuc.NumberConc)) * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pstat_nuc</value>
+<value>Variable:/nuc:Pstat_nuc</value>
+<value>-1</value>
+</value>
+<value>
+<value>stat_nuc</value>
+<value>Variable:/nuc:stat_nuc</value>
+<value>1</value>
+</value>
+<value>
+<value>statPhosphatase_nuc</value>
+<value>Variable:/nuc:statPhosphatase_nuc</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Kcat_dephos &lt;/ci&gt;#x0A    &lt;ci&gt; statPhosphatase_nuc &lt;/ci&gt;#x0A    &lt;ci&gt; Pstat_nuc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km_dephos &lt;/ci&gt;#x0A        &lt;ci&gt; Pstat_nuc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="statPhosphorylation">
+<property name="Name">
+<value>statPhosphorylation</value>
+</property>
+<property name="Kcat_phos">
+<value>1.0</value>
+</property>
+<property name="Km_phos">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>Kcat_phos * statKinase_sol.NumberConc * stat_sol.NumberConc * (1 / (Km_phos + stat_sol.NumberConc)) * sol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>stat_sol</value>
+<value>Variable:/sol:stat_sol</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pstat_sol</value>
+<value>Variable:/sol:Pstat_sol</value>
+<value>1</value>
+</value>
+<value>
+<value>species_test</value>
+<value>Variable:/sol:species_test</value>
+<value>1</value>
+</value>
+<value>
+<value>statKinase_sol</value>
+<value>Variable:/sol:statKinase_sol</value>
+<value>0</value>
+</value>
+<value>
+<value>sol</value>
+<value>Variable:/sol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Kcat_phos &lt;/ci&gt;#x0A    &lt;ci&gt; statKinase_sol &lt;/ci&gt;#x0A    &lt;ci&gt; stat_sol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km_phos &lt;/ci&gt;#x0A        &lt;ci&gt; stat_sol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; sol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PstatDimerisationNuc">
+<property name="Name">
+<value>PstatDimerisationNuc</value>
+</property>
+<property name="Kf_PstatDimerisation">
+<value>0.6</value>
+</property>
+<property name="Kr_PstatDimerisation">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>(Kf_PstatDimerisation * pow(Pstat_nuc.NumberConc, 2) + -(Kr_PstatDimerisation * PstatDimer_nuc.NumberConc)) * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pstat_nuc</value>
+<value>Variable:/nuc:Pstat_nuc</value>
+<value>-2</value>
+</value>
+<value>
+<value>PstatDimer_nuc</value>
+<value>Variable:/nuc:PstatDimer_nuc</value>
+<value>1</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Kf_PstatDimerisation &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Pstat_nuc &lt;/ci&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Kr_PstatDimerisation &lt;/ci&gt;#x0A          &lt;ci&gt; PstatDimer_nuc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PstatDimer__import">
+<property name="Name">
+<value>PstatDimer_ import</value>
+</property>
+<property name="PstatDimer_impMax">
+<value>0.045</value>
+</property>
+<property name="Kpsd_imp">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>PstatDimer_impMax * PstatDimer_sol.NumberConc * (1 / (Kpsd_imp + PstatDimer_sol.NumberConc)) * nm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PstatDimer_sol</value>
+<value>Variable:/sol:PstatDimer_sol</value>
+<value>-1</value>
+</value>
+<value>
+<value>PstatDimer_nuc</value>
+<value>Variable:/nuc:PstatDimer_nuc</value>
+<value>1</value>
+</value>
+<value>
+<value>nm</value>
+<value>Variable:/nm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PstatDimer_impMax &lt;/ci&gt;#x0A    &lt;ci&gt; PstatDimer_sol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Kpsd_imp &lt;/ci&gt;#x0A        &lt;ci&gt; PstatDimer_sol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="stat_export">
+<property name="Name">
+<value>stat_export</value>
+</property>
+<property name="stat_expMax">
+<value>-0.06</value>
+</property>
+<property name="Ks_exp">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>nuc.Value * stat_expMax * stat_nuc.NumberConc * (1 / (Ks_exp + stat_nuc.NumberConc)) * nm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>stat_sol</value>
+<value>Variable:/sol:stat_sol</value>
+<value>-1</value>
+</value>
+<value>
+<value>stat_nuc</value>
+<value>Variable:/nuc:stat_nuc</value>
+<value>1</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>nm</value>
+<value>Variable:/nm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A    &lt;ci&gt; stat_expMax &lt;/ci&gt;#x0A    &lt;ci&gt; stat_nuc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Ks_exp &lt;/ci&gt;#x0A        &lt;ci&gt; stat_nuc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="stat_import">
+<property name="Name">
+<value>stat_import</value>
+</property>
+<property name="stat_impMax">
+<value>0.003</value>
+</property>
+<property name="Ks_imp">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>nuc.Value * stat_impMax * stat_sol.NumberConc * (1 / (Ks_imp + stat_sol.NumberConc)) * nm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>stat_sol</value>
+<value>Variable:/sol:stat_sol</value>
+<value>-1</value>
+</value>
+<value>
+<value>stat_nuc</value>
+<value>Variable:/nuc:stat_nuc</value>
+<value>1</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>nm</value>
+<value>Variable:/nm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A    &lt;ci&gt; stat_impMax &lt;/ci&gt;#x0A    &lt;ci&gt; stat_sol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Ks_imp &lt;/ci&gt;#x0A        &lt;ci&gt; stat_sol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/nuc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nuc</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PstatDimer_nuc">
+<property name="Name">
+<value>PstatDimer_nuc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="stat_nuc">
+<property name="Name">
+<value>stat_nuc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pstat_nuc">
+<property name="Name">
+<value>Pstat_nuc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="statPhosphatase_nuc">
+<property name="Name">
+<value>statPhosphatase_nuc</value>
+</property>
+<property name="NumberConc">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/sol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>sol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>14.625</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="stat_sol">
+<property name="Name">
+<value>stat_sol</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pstat_sol">
+<property name="Name">
+<value>Pstat_sol</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="statKinase_sol">
+<property name="Name">
+<value>statKinase_sol</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PstatDimer_sol">
+<property name="Name">
+<value>PstatDimer_sol</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_test">
+<property name="Name">
+<value>species_test</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/nm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>2</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_statKinase_sol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'statKinase_sol'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0.01 * sin(0.001571 * (-500 + time.Value)), and(gt(time.Value, 500), lt(time.Value, 2502.54614894971)), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 0.01 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;sin/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 0.001571 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn&gt; -500 &lt;/cn&gt;#x0A              &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;and/&gt;#x0A        &lt;apply&gt;#x0A          &lt;gt/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;cn&gt; 500 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;cn&gt; 2502.54614894971 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>statKinase_sol</value>
+<value>Variable:/sol:statKinase_sol</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

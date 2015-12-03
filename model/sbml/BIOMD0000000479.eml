@@ -1,0 +1,2003 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="R1">
+<property name="Name">
+<value>Receptor-Ligand association</value>
+</property>
+<property name="k1">
+<value>0.0025</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.NumberConc * R.NumberConc * k1</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/compartment:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/compartment:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>LR</value>
+<value>Variable:/compartment:LR</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; L &lt;/ci&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R2">
+<property name="Name">
+<value>Receptor-Gprotein association</value>
+</property>
+<property name="k2">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * R.NumberConc * Gabg.NumberConc * k2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGabg</value>
+<value>Variable:/compartment:RGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; Gabg &lt;/ci&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R3">
+<property name="Name">
+<value>LR-Gprotein association</value>
+</property>
+<property name="k3">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LR.NumberConc * Gabg.NumberConc * k3</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LR</value>
+<value>Variable:/compartment:LR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRGabg</value>
+<value>Variable:/compartment:LRGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LR &lt;/ci&gt;#x0A    &lt;ci&gt; Gabg &lt;/ci&gt;#x0A    &lt;ci&gt; k3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R4">
+<property name="Name">
+<value>Ligand-RGabg association</value>
+</property>
+<property name="k4">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.NumberConc * RGabg.NumberConc * k4</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/compartment:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGabg</value>
+<value>Variable:/compartment:RGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRGabg</value>
+<value>Variable:/compartment:LRGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; L &lt;/ci&gt;#x0A    &lt;ci&gt; RGabg &lt;/ci&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R5">
+<property name="Name">
+<value>Ligand-RRGSm association</value>
+</property>
+<property name="k5">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.NumberConc * RRGSm.NumberConc * k5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/compartment:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; L &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k5 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R6">
+<property name="Name">
+<value>RRGSm-Gprotein association</value>
+</property>
+<property name="k6">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RRGSm.NumberConc * Gabg.NumberConc * k6</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSmGabg</value>
+<value>Variable:/compartment:RRGSmGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; Gabg &lt;/ci&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R7">
+<property name="Name">
+<value>LRRGSm-Gprotein association</value>
+</property>
+<property name="k7">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRRGSm.NumberConc * Gabg.NumberConc * k7</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSmGabg</value>
+<value>Variable:/compartment:LRRGSmGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; Gabg &lt;/ci&gt;#x0A    &lt;ci&gt; k7 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R8">
+<property name="Name">
+<value>Ligand-RRGSmGabg association</value>
+</property>
+<property name="k8">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.NumberConc * RRGSmGabg.NumberConc * k8</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/compartment:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSmGabg</value>
+<value>Variable:/compartment:RRGSmGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSmGabg</value>
+<value>Variable:/compartment:LRRGSmGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; L &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSmGabg &lt;/ci&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R9">
+<property name="Name">
+<value>Gprotein activation by LR</value>
+</property>
+<property name="k9">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRGabg.NumberConc * k9</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRGabg</value>
+<value>Variable:/compartment:LRGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>LR</value>
+<value>Variable:/compartment:LR</value>
+<value>1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>Gbg</value>
+<value>Variable:/compartment:Gbg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRGabg &lt;/ci&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R10">
+<property name="Name">
+<value>Gprotein spontaneous activation</value>
+</property>
+<property name="k10">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Gabg.NumberConc * k10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>Gbg</value>
+<value>Variable:/compartment:Gbg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Gabg &lt;/ci&gt;#x0A    &lt;ci&gt; k10 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R11">
+<property name="Name">
+<value>Gprotein activation by LRRGSm</value>
+</property>
+<property name="k11">
+<value>40.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRRGSmGabg.NumberConc * k11</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRRGSmGabg</value>
+<value>Variable:/compartment:LRRGSmGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>Gbg</value>
+<value>Variable:/compartment:Gbg</value>
+<value>1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSmGabg &lt;/ci&gt;#x0A    &lt;ci&gt; k11 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R12">
+<property name="Name">
+<value>Effector-GaGTP association</value>
+</property>
+<property name="k12">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Effector.NumberConc * GaGTP.NumberConc * k12</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Effector</value>
+<value>Variable:/compartment:Effector</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTPEffector</value>
+<value>Variable:/compartment:GaGTPEffector</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Effector &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k12 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R13">
+<property name="Name">
+<value>RGS in cytosol moves to membrane</value>
+</property>
+<property name="k13">
+<value>0.0005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGSc.NumberConc * k13</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k13 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R14">
+<property name="Name">
+<value>RGS in membrane moves to cytosol</value>
+</property>
+<property name="k14">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGSm.NumberConc * k14</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k14 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R15">
+<property name="Name">
+<value>Receptor recruits RGSc to membrane</value>
+</property>
+<property name="k15">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * R.NumberConc * RGSc.NumberConc * k15</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k15 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R16">
+<property name="Name">
+<value>R-RGSm dissociation</value>
+</property>
+<property name="k16">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RRGSm.NumberConc * k16</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/compartment:R</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k16 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R17">
+<property name="Name">
+<value>LR recruits RGSc to membrane</value>
+</property>
+<property name="k17">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LR.NumberConc * RGSc.NumberConc * k17</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LR</value>
+<value>Variable:/compartment:LR</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LR &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k17 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R18">
+<property name="Name">
+<value>LR-RGSm dissociation</value>
+</property>
+<property name="k18">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRRGSm.NumberConc * k18</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>LR</value>
+<value>Variable:/compartment:LR</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k18 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R19">
+<property name="Name">
+<value>RGabg recruits RGSc to membrane</value>
+</property>
+<property name="k19">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGabg.NumberConc * RGSc.NumberConc * k19</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGabg</value>
+<value>Variable:/compartment:RGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSmGabg</value>
+<value>Variable:/compartment:RRGSmGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGabg &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k19 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R20">
+<property name="Name">
+<value>RRGSmGabg dissociation</value>
+</property>
+<property name="k20">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RRGSmGabg.NumberConc * k20</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RRGSmGabg</value>
+<value>Variable:/compartment:RRGSmGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGabg</value>
+<value>Variable:/compartment:RGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSmGabg &lt;/ci&gt;#x0A    &lt;ci&gt; k20 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R21">
+<property name="Name">
+<value>LRGabg recruits RGSc to membrane</value>
+</property>
+<property name="k21">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRGabg.NumberConc * RGSc.NumberConc * k21</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRGabg</value>
+<value>Variable:/compartment:LRGabg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSmGabg</value>
+<value>Variable:/compartment:LRRGSmGabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRGabg &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k21 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R22">
+<property name="Name">
+<value>GaGTP recruits RGSc to membrane</value>
+</property>
+<property name="k22">
+<value>60.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * RGSc.NumberConc * k22</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSmGaGTP</value>
+<value>Variable:/compartment:RGSmGaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k22 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R23">
+<property name="Name">
+<value>RGSmGaGTP dissociation</value>
+</property>
+<property name="k23">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGSmGaGTP.NumberConc * k23</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGSmGaGTP</value>
+<value>Variable:/compartment:RGSmGaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGSmGaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k23 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R24">
+<property name="Name">
+<value>GaGTPEffectorOFF recruits RGS from cytosol</value>
+</property>
+<property name="k24">
+<value>0.0001</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffectorOFF.NumberConc * RGSc.NumberConc * k24</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTPEffectorOFF</value>
+<value>Variable:/compartment:GaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSmGaGTPEffectorOFF</value>
+<value>Variable:/compartment:RGSmGaGTPEffectorOFF</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; RGSc &lt;/ci&gt;#x0A    &lt;ci&gt; k24 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R25">
+<property name="Name">
+<value>Effector turns off</value>
+</property>
+<property name="k25">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffector.NumberConc * k25</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTPEffector</value>
+<value>Variable:/compartment:GaGTPEffector</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTPEffectorOFF</value>
+<value>Variable:/compartment:GaGTPEffectorOFF</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffector &lt;/ci&gt;#x0A    &lt;ci&gt; k25 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R26">
+<property name="Name">
+<value>GaGTP hydrolyzes GTP</value>
+</property>
+<property name="k26">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * k26</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k26 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R27">
+<property name="Name">
+<value>GaGTP-RGSm association</value>
+</property>
+<property name="k27">
+<value>500.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * RGSm.NumberConc * k27</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSmGaGTP</value>
+<value>Variable:/compartment:RGSmGaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; RGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k27 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R28">
+<property name="Name">
+<value>RGSmGaGTP hydrolyzes GTP</value>
+</property>
+<property name="k28">
+<value>2.5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGSmGaGTP.NumberConc * k28</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGSmGaGTP</value>
+<value>Variable:/compartment:RGSmGaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGSmGaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k28 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R29">
+<property name="Name">
+<value>GaGTP-LRRGSm association</value>
+</property>
+<property name="k29">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * LRRGSm.NumberConc * k29</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSmGaGTP</value>
+<value>Variable:/compartment:LRRGSmGaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k29 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R30">
+<property name="Name">
+<value>LRRGSmGaGTP hydrolyzes GTP</value>
+</property>
+<property name="k30">
+<value>2.5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRRGSmGaGTP.NumberConc * k30</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRRGSmGaGTP</value>
+<value>Variable:/compartment:LRRGSmGaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSmGaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k30 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R31">
+<property name="Name">
+<value>GaGTP-RRGSm association</value>
+</property>
+<property name="k31">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * RRGSm.NumberConc * k31</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>RRGSmGaGTP</value>
+<value>Variable:/compartment:RRGSmGaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k31 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R32">
+<property name="Name">
+<value>RRGSmGaGTP hydrolyzes GTP</value>
+</property>
+<property name="k32">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RRGSmGaGTP.NumberConc * k32</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RRGSmGaGTP</value>
+<value>Variable:/compartment:RRGSmGaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>RRGSm</value>
+<value>Variable:/compartment:RRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RRGSmGaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k32 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R33">
+<property name="Name">
+<value>GaGTPEffectorOFF hydrolyzes GTP</value>
+</property>
+<property name="k33">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffectorOFF.NumberConc * k33</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTPEffectorOFF</value>
+<value>Variable:/compartment:GaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>Effector</value>
+<value>Variable:/compartment:Effector</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; k33 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R34">
+<property name="Name">
+<value>GaGTPEffectorOFF-RGSm association</value>
+</property>
+<property name="k34">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffectorOFF.NumberConc * RGSm.NumberConc * k34</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTPEffectorOFF</value>
+<value>Variable:/compartment:GaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSm</value>
+<value>Variable:/compartment:RGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGSmGaGTPEffectorOFF</value>
+<value>Variable:/compartment:RGSmGaGTPEffectorOFF</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; RGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k34 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R35">
+<property name="Name">
+<value>RGSmGaGTPEffectorOFF hydrolyzes GTP</value>
+</property>
+<property name="k35">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * RGSmGaGTPEffectorOFF.NumberConc * k35</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGSmGaGTPEffectorOFF</value>
+<value>Variable:/compartment:RGSmGaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>RGSc</value>
+<value>Variable:/compartment:RGSc</value>
+<value>1</value>
+</value>
+<value>
+<value>Effector</value>
+<value>Variable:/compartment:Effector</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; RGSmGaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; k35 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R36">
+<property name="Name">
+<value>GaGTPEffectorOFF-LRRGSm association</value>
+</property>
+<property name="k36">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffectorOFF.NumberConc * LRRGSm.NumberConc * k36</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTPEffectorOFF</value>
+<value>Variable:/compartment:GaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>LRRGSmGaGTPEffectorOFF</value>
+<value>Variable:/compartment:LRRGSmGaGTPEffectorOFF</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSm &lt;/ci&gt;#x0A    &lt;ci&gt; k36 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R37">
+<property name="Name">
+<value>LRRGSmGaGTPEffectorOFF hydrolyzes GTP</value>
+</property>
+<property name="k37">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * LRRGSmGaGTPEffectorOFF.NumberConc * k37</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>LRRGSmGaGTPEffectorOFF</value>
+<value>Variable:/compartment:LRRGSmGaGTPEffectorOFF</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>1</value>
+</value>
+<value>
+<value>LRRGSm</value>
+<value>Variable:/compartment:LRRGSm</value>
+<value>1</value>
+</value>
+<value>
+<value>Effector</value>
+<value>Variable:/compartment:Effector</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; LRRGSmGaGTPEffectorOFF &lt;/ci&gt;#x0A    &lt;ci&gt; k37 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R38">
+<property name="Name">
+<value>Phosphate release</value>
+</property>
+<property name="k38">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGDPP.NumberConc * k38</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGDPP</value>
+<value>Variable:/compartment:GaGDPP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDP</value>
+<value>Variable:/compartment:GaGDP</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/compartment:P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGDPP &lt;/ci&gt;#x0A    &lt;ci&gt; k38 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R39">
+<property name="Name">
+<value>Gprotein subunits association</value>
+</property>
+<property name="k39">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGDP.NumberConc * Gbg.NumberConc * k39</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGDP</value>
+<value>Variable:/compartment:GaGDP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbg</value>
+<value>Variable:/compartment:Gbg</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabg</value>
+<value>Variable:/compartment:Gabg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGDP &lt;/ci&gt;#x0A    &lt;ci&gt; Gbg &lt;/ci&gt;#x0A    &lt;ci&gt; k39 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R40">
+<property name="Name">
+<value>Phosphate degradation</value>
+</property>
+<property name="k40">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * P.NumberConc * k40</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/compartment:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; P &lt;/ci&gt;#x0A    &lt;ci&gt; k40 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R41">
+<property name="Name">
+<value>Delay 1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTPEffector.NumberConc * ka.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z1</value>
+<value>Variable:/compartment:z1</value>
+<value>1</value>
+</value>
+<value>
+<value>GaGTPEffector</value>
+<value>Variable:/compartment:GaGTPEffector</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTPEffector &lt;/ci&gt;#x0A    &lt;ci&gt; ka &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R42">
+<property name="Name">
+<value>Delay 2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * z1.NumberConc * ka.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z1</value>
+<value>Variable:/compartment:z1</value>
+<value>-1</value>
+</value>
+<value>
+<value>z2</value>
+<value>Variable:/compartment:z2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; z1 &lt;/ci&gt;#x0A    &lt;ci&gt; ka &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R43">
+<property name="Name">
+<value>Delay 3</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * z2.NumberConc * ka.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z2</value>
+<value>Variable:/compartment:z2</value>
+<value>-1</value>
+</value>
+<value>
+<value>z3</value>
+<value>Variable:/compartment:z3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; z2 &lt;/ci&gt;#x0A    &lt;ci&gt; ka &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R44">
+<property name="Name">
+<value>Final output</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * z3.NumberConc * ka.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z3</value>
+<value>Variable:/compartment:z3</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; z3 &lt;/ci&gt;#x0A    &lt;ci&gt; ka &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Name">
+<value>L</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="Value">
+<value>205.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LR">
+<property name="Name">
+<value>LR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gabg">
+<property name="Name">
+<value>Gabg</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGabg">
+<property name="Name">
+<value>RGabg</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LRGabg">
+<property name="Name">
+<value>LRGabg</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RRGSm">
+<property name="Name">
+<value>RRGSm</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LRRGSm">
+<property name="Name">
+<value>LRRGSm</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RRGSmGabg">
+<property name="Name">
+<value>RRGSmGabg</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LRRGSmGabg">
+<property name="Name">
+<value>LRRGSmGabg</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGTP">
+<property name="Name">
+<value>GaGTP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gbg">
+<property name="Name">
+<value>Gbg</value>
+</property>
+<property name="Value">
+<value>205.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Effector">
+<property name="Name">
+<value>Effector</value>
+</property>
+<property name="Value">
+<value>305.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGTPEffector">
+<property name="Name">
+<value>GaGTPEffector</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGSc">
+<property name="Name">
+<value>RGSc</value>
+</property>
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGSm">
+<property name="Name">
+<value>RGSm</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGSmGaGTP">
+<property name="Name">
+<value>RGSmGaGTP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGTPEffectorOFF">
+<property name="Name">
+<value>GaGTPEffectorOFF</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGSmGaGTPEffectorOFF">
+<property name="Name">
+<value>RGSmGaGTPEffectorOFF</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGDPP">
+<property name="Name">
+<value>GaGDPP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LRRGSmGaGTP">
+<property name="Name">
+<value>LRRGSmGaGTP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RRGSmGaGTP">
+<property name="Name">
+<value>RRGSmGaGTP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LRRGSmGaGTPEffectorOFF">
+<property name="Name">
+<value>LRRGSmGaGTPEffectorOFF</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGDP">
+<property name="Name">
+<value>GaGDP</value>
+</property>
+<property name="Value">
+<value>205.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>P</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z1">
+<property name="Name">
+<value>z1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z2">
+<property name="Name">
+<value>z2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z3">
+<property name="Name">
+<value>z3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="ka">
+<property name="Name">
+<value>ka</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ligand_conc">
+<property name="Name">
+<value>Ligand_conc</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="Ligand_addition">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Ligand_addition</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>L</value>
+<value>L.NumberConc + Ligand_conc.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;cn type='integer'&gt; 14 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, 14)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/compartment:L</value>
+<value>1</value>
+</value>
+<value>
+<value>Ligand_conc</value>
+<value>Variable:/SBMLParameter:Ligand_conc</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

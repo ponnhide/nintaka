@@ -1,0 +1,2458 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>[JAK2] -&gt; [pJAK2]; { Epo };</value>
+</property>
+<property name="Expression">
+<value>JAK2_phosphorylation_by_Epo.Value * JAK2.NumberConc * Epo.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>JAK2</value>
+<value>Variable:/cell:JAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>Epo</value>
+<value>Variable:/cell:Epo</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2_phosphorylation_by_Epo</value>
+<value>Variable:/SBMLParameter:JAK2_phosphorylation_by_Epo</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; JAK2_phosphorylation_by_Epo &lt;/ci&gt;#x0A    &lt;ci&gt; JAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; Epo &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>[EpoR] -&gt; [pEpoR]; { pJAK2 };</value>
+</property>
+<property name="Expression">
+<value>EpoR_phosphorylation_by_pJAK2.Value * EpoR.NumberConc * pJAK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoR</value>
+<value>Variable:/cell:EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>pEpoR</value>
+<value>Variable:/cell:pEpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoR_phosphorylation_by_pJAK2</value>
+<value>Variable:/SBMLParameter:EpoR_phosphorylation_by_pJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; EpoR_phosphorylation_by_pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; EpoR &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>[SHP1] -&gt; [mSHP1]; { pEpoR };</value>
+</property>
+<property name="Expression">
+<value>SHP1_activation_by_pEpoR.Value * SHP1.NumberConc * pEpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SHP1</value>
+<value>Variable:/cell:SHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>mSHP1</value>
+<value>Variable:/cell:mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>pEpoR</value>
+<value>Variable:/cell:pEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>SHP1_activation_by_pEpoR</value>
+<value>Variable:/SBMLParameter:SHP1_activation_by_pEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_activation_by_pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; SHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>[mSHP1] -&gt; [Delay01_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mSHP1</value>
+<value>Variable:/cell:mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay01_mSHP1</value>
+<value>Variable:/cell:Delay01_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>[Delay01_mSHP1] -&gt; [Delay02_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay01_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay01_mSHP1</value>
+<value>Variable:/cell:Delay01_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay02_mSHP1</value>
+<value>Variable:/cell:Delay02_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay01_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>[Delay02_mSHP1] -&gt; [Delay03_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay02_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay02_mSHP1</value>
+<value>Variable:/cell:Delay02_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay03_mSHP1</value>
+<value>Variable:/cell:Delay03_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay02_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>[Delay03_mSHP1] -&gt; [Delay04_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay03_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay03_mSHP1</value>
+<value>Variable:/cell:Delay03_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay04_mSHP1</value>
+<value>Variable:/cell:Delay04_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay03_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>[Delay04_mSHP1] -&gt; [Delay05_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay04_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay04_mSHP1</value>
+<value>Variable:/cell:Delay04_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay05_mSHP1</value>
+<value>Variable:/cell:Delay05_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay04_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>[Delay05_mSHP1] -&gt; [Delay06_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay05_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay05_mSHP1</value>
+<value>Variable:/cell:Delay05_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay06_mSHP1</value>
+<value>Variable:/cell:Delay06_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay05_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>[Delay06_mSHP1] -&gt; [Delay07_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay06_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay06_mSHP1</value>
+<value>Variable:/cell:Delay06_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay07_mSHP1</value>
+<value>Variable:/cell:Delay07_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay06_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>[Delay07_mSHP1] -&gt; [Delay08_mSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay07_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay07_mSHP1</value>
+<value>Variable:/cell:Delay07_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Delay08_mSHP1</value>
+<value>Variable:/cell:Delay08_mSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay07_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>[Delay08_mSHP1] -&gt; [actSHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1_delay.Value * Delay08_mSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Delay08_mSHP1</value>
+<value>Variable:/cell:Delay08_mSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>actSHP1</value>
+<value>Variable:/cell:actSHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1_delay</value>
+<value>Variable:/SBMLParameter:SHP1_delay</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1_delay &lt;/ci&gt;#x0A    &lt;ci&gt; Delay08_mSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_13">
+<property name="Name">
+<value>[actSHP1] -&gt; [SHP1];</value>
+</property>
+<property name="Expression">
+<value>actSHP1_deactivation.Value * actSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>actSHP1</value>
+<value>Variable:/cell:actSHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>SHP1</value>
+<value>Variable:/cell:SHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>actSHP1_deactivation</value>
+<value>Variable:/SBMLParameter:actSHP1_deactivation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; actSHP1_deactivation &lt;/ci&gt;#x0A    &lt;ci&gt; actSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_14">
+<property name="Name">
+<value>[pEpoR] -&gt; [EpoR]; { actSHP1 };</value>
+</property>
+<property name="Expression">
+<value>pEpoR_dephosphorylation_by_actSHP1.Value * pEpoR.NumberConc * actSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pEpoR</value>
+<value>Variable:/cell:pEpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cell:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>actSHP1</value>
+<value>Variable:/cell:actSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>pEpoR_dephosphorylation_by_actSHP1</value>
+<value>Variable:/SBMLParameter:pEpoR_dephosphorylation_by_actSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pEpoR_dephosphorylation_by_actSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; actSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_15">
+<property name="Name">
+<value>[pJAK2] -&gt; [JAK2]; { actSHP1 };</value>
+</property>
+<property name="Expression">
+<value>pJAK2_dephosphorylation_by_actSHP1.Value * pJAK2.NumberConc * actSHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>JAK2</value>
+<value>Variable:/cell:JAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>actSHP1</value>
+<value>Variable:/cell:actSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>pJAK2_dephosphorylation_by_actSHP1</value>
+<value>Variable:/SBMLParameter:pJAK2_dephosphorylation_by_actSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pJAK2_dephosphorylation_by_actSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; actSHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_16">
+<property name="Name">
+<value>[SOS] -&gt; [mSOS]; { pEpoR };</value>
+</property>
+<property name="Expression">
+<value>SOS_recruitment_by_pEpoR.Value * SOS.NumberConc * pEpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOS</value>
+<value>Variable:/cell:SOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>1</value>
+</value>
+<value>
+<value>pEpoR</value>
+<value>Variable:/cell:pEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>SOS_recruitment_by_pEpoR</value>
+<value>Variable:/SBMLParameter:SOS_recruitment_by_pEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOS_recruitment_by_pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; SOS &lt;/ci&gt;#x0A    &lt;ci&gt; pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_17">
+<property name="Name">
+<value>[mSOS] -&gt; [SOS];</value>
+</property>
+<property name="Expression">
+<value>mSOS_release_from_membrane.Value * mSOS.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/cell:SOS</value>
+<value>1</value>
+</value>
+<value>
+<value>mSOS_release_from_membrane</value>
+<value>Variable:/SBMLParameter:mSOS_release_from_membrane</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mSOS_release_from_membrane &lt;/ci&gt;#x0A    &lt;ci&gt; mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_18">
+<property name="Name">
+<value>[Raf] -&gt; [pRaf]; { mSOS };</value>
+</property>
+<property name="Expression">
+<value>mSOS_induced_Raf_phosphorylation.Value * Raf.NumberConc * mSOS.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Raf</value>
+<value>Variable:/cell:Raf</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>1</value>
+</value>
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>0</value>
+</value>
+<value>
+<value>mSOS_induced_Raf_phosphorylation</value>
+<value>Variable:/SBMLParameter:mSOS_induced_Raf_phosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mSOS_induced_Raf_phosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; Raf &lt;/ci&gt;#x0A    &lt;ci&gt; mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_19">
+<property name="Name">
+<value>[pRaf] -&gt; [Raf];</value>
+</property>
+<property name="Expression">
+<value>pRaf_dephosphorylation.Value * pRaf.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>-1</value>
+</value>
+<value>
+<value>Raf</value>
+<value>Variable:/cell:Raf</value>
+<value>1</value>
+</value>
+<value>
+<value>pRaf_dephosphorylation</value>
+<value>Variable:/SBMLParameter:pRaf_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pRaf_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_20">
+<property name="Name">
+<value>[MEK2] -&gt; [pMEK2]; { pRaf };</value>
+</property>
+<property name="Expression">
+<value>First_MEK2_phosphorylation_by_pRaf.Value * MEK2.NumberConc * pRaf.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEK2</value>
+<value>Variable:/cell:MEK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pMEK2</value>
+<value>Variable:/cell:pMEK2</value>
+<value>1</value>
+</value>
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>First_MEK2_phosphorylation_by_pRaf</value>
+<value>Variable:/SBMLParameter:First_MEK2_phosphorylation_by_pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_MEK2_phosphorylation_by_pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; MEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_21">
+<property name="Name">
+<value>[MEK1] -&gt; [pMEK1]; { pRaf };</value>
+</property>
+<property name="Expression">
+<value>First_MEK1_phosphorylation_by_pRaf.Value * MEK1.NumberConc * pRaf.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MEK1</value>
+<value>Variable:/cell:MEK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>pMEK1</value>
+<value>Variable:/cell:pMEK1</value>
+<value>1</value>
+</value>
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>First_MEK1_phosphorylation_by_pRaf</value>
+<value>Variable:/SBMLParameter:First_MEK1_phosphorylation_by_pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_MEK1_phosphorylation_by_pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; MEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_22">
+<property name="Name">
+<value>[pMEK2] -&gt; [ppMEK2]; { pRaf };</value>
+</property>
+<property name="Expression">
+<value>Second_MEK2_phosphorylation_by_pRaf.Value * pMEK2.NumberConc * pRaf.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pMEK2</value>
+<value>Variable:/cell:pMEK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>1</value>
+</value>
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_MEK2_phosphorylation_by_pRaf</value>
+<value>Variable:/SBMLParameter:Second_MEK2_phosphorylation_by_pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_MEK2_phosphorylation_by_pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; pMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_23">
+<property name="Name">
+<value>[pMEK1] -&gt; [ppMEK1]; { pRaf };</value>
+</property>
+<property name="Expression">
+<value>Second_MEK1_phosphorylation_by_pRaf.Value * pMEK1.NumberConc * pRaf.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pMEK1</value>
+<value>Variable:/cell:pMEK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>1</value>
+</value>
+<value>
+<value>pRaf</value>
+<value>Variable:/cell:pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_MEK1_phosphorylation_by_pRaf</value>
+<value>Variable:/SBMLParameter:Second_MEK1_phosphorylation_by_pRaf</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_MEK1_phosphorylation_by_pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; pMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; pRaf &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_24">
+<property name="Name">
+<value>[ppMEK2] -&gt; [pMEK2];</value>
+</property>
+<property name="Expression">
+<value>First_MEK_dephosphorylation.Value * ppMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pMEK2</value>
+<value>Variable:/cell:pMEK2</value>
+<value>1</value>
+</value>
+<value>
+<value>First_MEK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:First_MEK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_MEK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_25">
+<property name="Name">
+<value>[ppMEK1] -&gt; [pMEK1];</value>
+</property>
+<property name="Expression">
+<value>First_MEK_dephosphorylation.Value * ppMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>pMEK1</value>
+<value>Variable:/cell:pMEK1</value>
+<value>1</value>
+</value>
+<value>
+<value>First_MEK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:First_MEK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_MEK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_26">
+<property name="Name">
+<value>[pMEK2] -&gt; [MEK2];</value>
+</property>
+<property name="Expression">
+<value>Second_MEK_dephosphorylation.Value * pMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pMEK2</value>
+<value>Variable:/cell:pMEK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEK2</value>
+<value>Variable:/cell:MEK2</value>
+<value>1</value>
+</value>
+<value>
+<value>Second_MEK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:Second_MEK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_MEK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_27">
+<property name="Name">
+<value>[pMEK1] -&gt; [MEK1];</value>
+</property>
+<property name="Expression">
+<value>Second_MEK_dephosphorylation.Value * pMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pMEK1</value>
+<value>Variable:/cell:pMEK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>MEK1</value>
+<value>Variable:/cell:MEK1</value>
+<value>1</value>
+</value>
+<value>
+<value>Second_MEK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:Second_MEK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_MEK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_28">
+<property name="Name">
+<value>[ERK1] -&gt; [pERK1]; { ppMEK2 };</value>
+</property>
+<property name="Expression">
+<value>First_ERK1_phosphorylation_by_ppMEK.Value * ERK1.NumberConc * ppMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK1</value>
+<value>Variable:/cell:ERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>0</value>
+</value>
+<value>
+<value>First_ERK1_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:First_ERK1_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK1_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_29">
+<property name="Name">
+<value>[ERK2] -&gt; [pERK2]; { ppMEK2 };</value>
+</property>
+<property name="Expression">
+<value>First_ERK2_phosphorylation_by_ppMEK.Value * ERK2.NumberConc * ppMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK2</value>
+<value>Variable:/cell:ERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>0</value>
+</value>
+<value>
+<value>First_ERK2_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:First_ERK2_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK2_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_30">
+<property name="Name">
+<value>[ERK1] -&gt; [pERK1]; { ppMEK1 };</value>
+</property>
+<property name="Expression">
+<value>First_ERK1_phosphorylation_by_ppMEK.Value * ERK1.NumberConc * ppMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK1</value>
+<value>Variable:/cell:ERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>0</value>
+</value>
+<value>
+<value>First_ERK1_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:First_ERK1_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK1_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_31">
+<property name="Name">
+<value>[ERK2] -&gt; [pERK2]; { ppMEK1 };</value>
+</property>
+<property name="Expression">
+<value>First_ERK2_phosphorylation_by_ppMEK.Value * ERK2.NumberConc * ppMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK2</value>
+<value>Variable:/cell:ERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>0</value>
+</value>
+<value>
+<value>First_ERK2_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:First_ERK2_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK2_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_32">
+<property name="Name">
+<value>[pERK1] -&gt; [ppERK1]; { ppMEK2 };</value>
+</property>
+<property name="Expression">
+<value>Second_ERK1_phosphorylation_by_ppMEK.Value * pERK1.NumberConc * ppMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK1</value>
+<value>Variable:/cell:ppERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_ERK1_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:Second_ERK1_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK1_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; pERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_33">
+<property name="Name">
+<value>[pERK2] -&gt; [ppERK2]; { ppMEK2 };</value>
+</property>
+<property name="Expression">
+<value>Second_ERK2_phosphorylation_by_ppMEK.Value * pERK2.NumberConc * ppMEK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK2</value>
+<value>Variable:/cell:ppERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_ERK2_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:Second_ERK2_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK2_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; pERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_34">
+<property name="Name">
+<value>[pERK1] -&gt; [ppERK1]; { ppMEK1 };</value>
+</property>
+<property name="Expression">
+<value>Second_ERK1_phosphorylation_by_ppMEK.Value * pERK1.NumberConc * ppMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK1</value>
+<value>Variable:/cell:ppERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_ERK1_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:Second_ERK1_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK1_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; pERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_35">
+<property name="Name">
+<value>[pERK2] -&gt; [ppERK2]; { ppMEK1 };</value>
+</property>
+<property name="Expression">
+<value>Second_ERK2_phosphorylation_by_ppMEK.Value * pERK2.NumberConc * ppMEK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK2</value>
+<value>Variable:/cell:ppERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>0</value>
+</value>
+<value>
+<value>Second_ERK2_phosphorylation_by_ppMEK</value>
+<value>Variable:/SBMLParameter:Second_ERK2_phosphorylation_by_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK2_phosphorylation_by_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; pERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_36">
+<property name="Name">
+<value>[ppERK1] -&gt; [pERK1];</value>
+</property>
+<property name="Expression">
+<value>First_ERK_dephosphorylation.Value * ppERK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERK1</value>
+<value>Variable:/cell:ppERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>First_ERK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:First_ERK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_37">
+<property name="Name">
+<value>[ppERK2] -&gt; [pERK2];</value>
+</property>
+<property name="Expression">
+<value>First_ERK_dephosphorylation.Value * ppERK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERK2</value>
+<value>Variable:/cell:ppERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>First_ERK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:First_ERK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; First_ERK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_38">
+<property name="Name">
+<value>[pERK1] -&gt; [ERK1];</value>
+</property>
+<property name="Expression">
+<value>Second_ERK_dephosphorylation.Value * pERK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK1</value>
+<value>Variable:/cell:pERK1</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERK1</value>
+<value>Variable:/cell:ERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>Second_ERK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:Second_ERK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_39">
+<property name="Name">
+<value>[pERK2] -&gt; [ERK2];</value>
+</property>
+<property name="Expression">
+<value>Second_ERK_dephosphorylation.Value * pERK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK2</value>
+<value>Variable:/cell:pERK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERK2</value>
+<value>Variable:/cell:ERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>Second_ERK_dephosphorylation</value>
+<value>Variable:/SBMLParameter:Second_ERK_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Second_ERK_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_40">
+<property name="Name">
+<value>[mSOS] -&gt; [pSOS]; { ppERK1 };</value>
+</property>
+<property name="Expression">
+<value>ppERK_neg_feedback_on_mSOS.Value * mSOS.NumberConc * ppERK1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>pSOS</value>
+<value>Variable:/cell:pSOS</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERK1</value>
+<value>Variable:/cell:ppERK1</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERK_neg_feedback_on_mSOS</value>
+<value>Variable:/SBMLParameter:ppERK_neg_feedback_on_mSOS</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ppERK_neg_feedback_on_mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_41">
+<property name="Name">
+<value>[mSOS] -&gt; [pSOS]; { ppERK2 };</value>
+</property>
+<property name="Expression">
+<value>ppERK_neg_feedback_on_mSOS.Value * mSOS.NumberConc * ppERK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>pSOS</value>
+<value>Variable:/cell:pSOS</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERK2</value>
+<value>Variable:/cell:ppERK2</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERK_neg_feedback_on_mSOS</value>
+<value>Variable:/SBMLParameter:ppERK_neg_feedback_on_mSOS</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ppERK_neg_feedback_on_mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; mSOS &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_42">
+<property name="Name">
+<value>[pSOS] -&gt; [SOS];</value>
+</property>
+<property name="Expression">
+<value>pSOS_dephosphorylation.Value * pSOS.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pSOS</value>
+<value>Variable:/cell:pSOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/cell:SOS</value>
+<value>1</value>
+</value>
+<value>
+<value>pSOS_dephosphorylation</value>
+<value>Variable:/SBMLParameter:pSOS_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pSOS_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pSOS &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="JAK2">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoR">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1">
+<property name="Value">
+<value>10.7991</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOS">
+<property name="Value">
+<value>2.5101</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Raf">
+<property name="Value">
+<value>3.7719</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEK2">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MEK1">
+<property name="Value">
+<value>24.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK1">
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK2">
+<property name="Value">
+<value>21.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pJAK2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pEpoR">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="actSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mSOS">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pRaf">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppMEK2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppMEK1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pSOS">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pMEK2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pMEK1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay01_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay02_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay03_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay04_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay05_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay06_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay07_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Delay08_mSHP1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="JAK2_phosphorylation_by_Epo">
+<property name="Value">
+<value>0.0122149</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoR_phosphorylation_by_pJAK2">
+<property name="Value">
+<value>3.15714</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1_activation_by_pEpoR">
+<property name="Value">
+<value>0.408408</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1_delay">
+<property name="Value">
+<value>0.408408</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="actSHP1_deactivation">
+<property name="Value">
+<value>0.0248773</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pEpoR_dephosphorylation_by_actSHP1">
+<property name="Value">
+<value>1.19995</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pJAK2_dephosphorylation_by_actSHP1">
+<property name="Value">
+<value>0.368384</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOS_recruitment_by_pEpoR">
+<property name="Value">
+<value>0.10271</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mSOS_release_from_membrane">
+<property name="Value">
+<value>15.5956</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mSOS_induced_Raf_phosphorylation">
+<property name="Value">
+<value>0.144515</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pRaf_dephosphorylation">
+<property name="Value">
+<value>0.374228</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_MEK2_phosphorylation_by_pRaf">
+<property name="Value">
+<value>3.11919</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_MEK2_phosphorylation_by_pRaf">
+<property name="Value">
+<value>215.158</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_MEK1_phosphorylation_by_pRaf">
+<property name="Value">
+<value>0.687193</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_MEK1_phosphorylation_by_pRaf">
+<property name="Value">
+<value>667.957</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_MEK_dephosphorylation">
+<property name="Value">
+<value>0.130937</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_MEK_dephosphorylation">
+<property name="Value">
+<value>0.0732724</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_ERK1_phosphorylation_by_ppMEK">
+<property name="Value">
+<value>2.4927</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_ERK1_phosphorylation_by_ppMEK">
+<property name="Value">
+<value>59.5251</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_ERK2_phosphorylation_by_ppMEK">
+<property name="Value">
+<value>2.44361</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_ERK2_phosphorylation_by_ppMEK">
+<property name="Value">
+<value>53.0816</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="First_ERK_dephosphorylation">
+<property name="Value">
+<value>39.0886</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Second_ERK_dephosphorylation">
+<property name="Value">
+<value>3.00453</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK_neg_feedback_on_mSOS">
+<property name="Value">
+<value>5122.68</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pSOS_dephosphorylation">
+<property name="Value">
+<value>0.124944</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_pEpoR">
+<property name="Name">
+<value>scale_pEpoR</value>
+</property>
+<property name="Value">
+<value>0.493312</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_pJAK2">
+<property name="Name">
+<value>scale_pJAK2</value>
+</property>
+<property name="Value">
+<value>0.21008</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_ppERK">
+<property name="Name">
+<value>scale_ppERK</value>
+</property>
+<property name="Value">
+<value>13.5981</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_SOS">
+<property name="Name">
+<value>scale_SOS</value>
+</property>
+<property name="Value">
+<value>1.10228</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_ppMEK">
+<property name="Name">
+<value>scale_ppMEK</value>
+</property>
+<property name="Value">
+<value>40.5364</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_pEpoR">
+<property name="Name">
+<value>rescaled_pEpoR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_ppMEK1">
+<property name="Name">
+<value>rescaled_ppMEK1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_ppMEK2">
+<property name="Name">
+<value>rescaled_ppMEK2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_ppERK1">
+<property name="Name">
+<value>rescaled_ppERK1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_ppERK2">
+<property name="Name">
+<value>rescaled_ppERK2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_pJAK2">
+<property name="Name">
+<value>rescaled_pJAK2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_pSOS">
+<property name="Name">
+<value>rescaled_pSOS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_SOS">
+<property name="Name">
+<value>rescaled_SOS</value>
+</property>
+<property name="Value">
+<value>2.766833028</value>
+</property>
+</variable>
+<variable class="Variable" id="rescaled_mSOS">
+<property name="Name">
+<value>rescaled_mSOS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_pEpoR">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_pEpoR'</value>
+</property>
+<property name="Expression">
+<value>scale_pEpoR.NumberConc * pEpoR.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_pEpoR &lt;/ci&gt;#x0A    &lt;ci&gt; pEpoR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_pEpoR</value>
+<value>Variable:/SBMLParameter:rescaled_pEpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_pEpoR</value>
+<value>Variable:/SBMLParameter:scale_pEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>pEpoR</value>
+<value>Variable:/cell:pEpoR</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_pJAK2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_pJAK2'</value>
+</property>
+<property name="Expression">
+<value>scale_pJAK2.NumberConc * pJAK2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_pJAK2</value>
+<value>Variable:/SBMLParameter:rescaled_pJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_pJAK2</value>
+<value>Variable:/SBMLParameter:scale_pJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_ppERK1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_ppERK1'</value>
+</property>
+<property name="Expression">
+<value>scale_ppERK.NumberConc * ppERK1.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_ppERK &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_ppERK1</value>
+<value>Variable:/SBMLParameter:rescaled_ppERK1</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_ppERK</value>
+<value>Variable:/SBMLParameter:scale_ppERK</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERK1</value>
+<value>Variable:/cell:ppERK1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_ppERK2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_ppERK2'</value>
+</property>
+<property name="Expression">
+<value>scale_ppERK.NumberConc * ppERK2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_ppERK &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_ppERK2</value>
+<value>Variable:/SBMLParameter:rescaled_ppERK2</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_ppERK</value>
+<value>Variable:/SBMLParameter:scale_ppERK</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERK2</value>
+<value>Variable:/cell:ppERK2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_ppMEK1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_ppMEK1'</value>
+</property>
+<property name="Expression">
+<value>scale_ppMEK.NumberConc * ppMEK1.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_ppMEK1</value>
+<value>Variable:/SBMLParameter:rescaled_ppMEK1</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_ppMEK</value>
+<value>Variable:/SBMLParameter:scale_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>ppMEK1</value>
+<value>Variable:/cell:ppMEK1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_ppMEK2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_ppMEK2'</value>
+</property>
+<property name="Expression">
+<value>scale_ppMEK.NumberConc * ppMEK2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_ppMEK &lt;/ci&gt;#x0A    &lt;ci&gt; ppMEK2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_ppMEK2</value>
+<value>Variable:/SBMLParameter:rescaled_ppMEK2</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_ppMEK</value>
+<value>Variable:/SBMLParameter:scale_ppMEK</value>
+<value>0</value>
+</value>
+<value>
+<value>ppMEK2</value>
+<value>Variable:/cell:ppMEK2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_pSOS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_pSOS'</value>
+</property>
+<property name="Expression">
+<value>scale_SOS.NumberConc * pSOS.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_SOS &lt;/ci&gt;#x0A    &lt;ci&gt; pSOS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_pSOS</value>
+<value>Variable:/SBMLParameter:rescaled_pSOS</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_SOS</value>
+<value>Variable:/SBMLParameter:scale_SOS</value>
+<value>0</value>
+</value>
+<value>
+<value>pSOS</value>
+<value>Variable:/cell:pSOS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_SOS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_SOS'</value>
+</property>
+<property name="Expression">
+<value>scale_SOS.NumberConc * SOS.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_SOS &lt;/ci&gt;#x0A    &lt;ci&gt; SOS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_SOS</value>
+<value>Variable:/SBMLParameter:rescaled_SOS</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_SOS</value>
+<value>Variable:/SBMLParameter:scale_SOS</value>
+<value>0</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/cell:SOS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_rescaled_mSOS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'rescaled_mSOS'</value>
+</property>
+<property name="Expression">
+<value>scale_SOS.NumberConc * mSOS.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; scale_SOS &lt;/ci&gt;#x0A    &lt;ci&gt; mSOS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>rescaled_mSOS</value>
+<value>Variable:/SBMLParameter:rescaled_mSOS</value>
+<value>1</value>
+</value>
+<value>
+<value>scale_SOS</value>
+<value>Variable:/SBMLParameter:scale_SOS</value>
+<value>0</value>
+</value>
+<value>
+<value>mSOS</value>
+<value>Variable:/cell:mSOS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,392 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="v1">
+<property name="Name">
+<value>phosphorylation of MAPK</value>
+</property>
+<property name="Expression">
+<value>uVol.Value * (k1cat.Value * MAPKK1.NumberConc * M.NumberConc / Km1.Value / (1 + M.NumberConc / Km1.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/uVol:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mp</value>
+<value>Variable:/uVol:Mp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK1</value>
+<value>Variable:/uVol:MAPKK1</value>
+<value>0</value>
+</value>
+<value>
+<value>uVol</value>
+<value>Variable:/uVol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1cat</value>
+<value>Variable:/SBMLParameter:k1cat</value>
+<value>0</value>
+</value>
+<value>
+<value>Km1</value>
+<value>Variable:/SBMLParameter:Km1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; uVol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k1cat &lt;/ci&gt;#x0A          &lt;ci&gt; MAPKK1 &lt;/ci&gt;#x0A          &lt;ci&gt; M &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Km1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; M &lt;/ci&gt;#x0A          &lt;ci&gt; Km1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v2">
+<property name="Name">
+<value>phosphorylation of P-MAPK</value>
+</property>
+<property name="Expression">
+<value>uVol.Value * (k2cat.Value * MAPKK2.NumberConc * Mp.NumberConc / Km2.Value / (1 + Mp.NumberConc / Km2.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mp</value>
+<value>Variable:/uVol:Mp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mpp</value>
+<value>Variable:/uVol:Mpp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK2</value>
+<value>Variable:/uVol:MAPKK2</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/uVol:M</value>
+<value>0</value>
+</value>
+<value>
+<value>uVol</value>
+<value>Variable:/uVol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2cat</value>
+<value>Variable:/SBMLParameter:k2cat</value>
+<value>0</value>
+</value>
+<value>
+<value>Km2</value>
+<value>Variable:/SBMLParameter:Km2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; uVol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k2cat &lt;/ci&gt;#x0A          &lt;ci&gt; MAPKK2 &lt;/ci&gt;#x0A          &lt;ci&gt; Mp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Km2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mp &lt;/ci&gt;#x0A          &lt;ci&gt; Km2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v3">
+<property name="Name">
+<value>dephosphorylation of PP-MAPK</value>
+</property>
+<property name="Expression">
+<value>uVol.Value * (k3cat.Value * MKP3.NumberConc * Mpp.NumberConc / Km3.Value / (1 + Mpp.NumberConc / Km3.Value + Mp.NumberConc / Km4.Value + M.NumberConc / Km5.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mpp</value>
+<value>Variable:/uVol:Mpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mp</value>
+<value>Variable:/uVol:Mp</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP3</value>
+<value>Variable:/uVol:MKP3</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/uVol:M</value>
+<value>0</value>
+</value>
+<value>
+<value>uVol</value>
+<value>Variable:/uVol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3cat</value>
+<value>Variable:/SBMLParameter:k3cat</value>
+<value>0</value>
+</value>
+<value>
+<value>Km3</value>
+<value>Variable:/SBMLParameter:Km3</value>
+<value>0</value>
+</value>
+<value>
+<value>Km4</value>
+<value>Variable:/SBMLParameter:Km4</value>
+<value>0</value>
+</value>
+<value>
+<value>Km5</value>
+<value>Variable:/SBMLParameter:Km5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; uVol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k3cat &lt;/ci&gt;#x0A          &lt;ci&gt; MKP3 &lt;/ci&gt;#x0A          &lt;ci&gt; Mpp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Km3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mpp &lt;/ci&gt;#x0A          &lt;ci&gt; Km3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mp &lt;/ci&gt;#x0A          &lt;ci&gt; Km4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; M &lt;/ci&gt;#x0A          &lt;ci&gt; Km5 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v4">
+<property name="Name">
+<value>dephosphorylation of P-MAPK</value>
+</property>
+<property name="Expression">
+<value>uVol.Value * (k4cat.Value * MKP3.NumberConc * Mp.NumberConc / Km4.Value / (1 + Mpp.NumberConc / Km3.Value + Mp.NumberConc / Km4.Value + M.NumberConc / Km5.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mp</value>
+<value>Variable:/uVol:Mp</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/uVol:M</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP3</value>
+<value>Variable:/uVol:MKP3</value>
+<value>0</value>
+</value>
+<value>
+<value>Mpp</value>
+<value>Variable:/uVol:Mpp</value>
+<value>0</value>
+</value>
+<value>
+<value>uVol</value>
+<value>Variable:/uVol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4cat</value>
+<value>Variable:/SBMLParameter:k4cat</value>
+<value>0</value>
+</value>
+<value>
+<value>Km4</value>
+<value>Variable:/SBMLParameter:Km4</value>
+<value>0</value>
+</value>
+<value>
+<value>Km3</value>
+<value>Variable:/SBMLParameter:Km3</value>
+<value>0</value>
+</value>
+<value>
+<value>Km5</value>
+<value>Variable:/SBMLParameter:Km5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; uVol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k4cat &lt;/ci&gt;#x0A          &lt;ci&gt; MKP3 &lt;/ci&gt;#x0A          &lt;ci&gt; Mp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Km4 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mpp &lt;/ci&gt;#x0A          &lt;ci&gt; Km3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mp &lt;/ci&gt;#x0A          &lt;ci&gt; Km4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; M &lt;/ci&gt;#x0A          &lt;ci&gt; Km5 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/uVol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mp">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mpp">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKK1">
+<property name="Name">
+<value>MAPKK1</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKK2">
+<property name="Name">
+<value>MAPKK2</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MKP3">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1cat">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km1">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2cat">
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km2">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3cat">
+<property name="Value">
+<value>0.084</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km3">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4cat">
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km4">
+<property name="Value">
+<value>18.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km5">
+<property name="Value">
+<value>78.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

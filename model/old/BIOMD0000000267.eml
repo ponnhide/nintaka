@@ -1,0 +1,247 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="endocytosis">
+<property name="Name">
+<value>[bound] -&gt; [translocate];</value>
+</property>
+<property name="kT">
+<value>0.141</value>
+</property>
+<property name="Expression">
+<value>kT * bound.NumberConc * extracellular.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bound</value>
+<value>Variable:/extracellular:bound</value>
+<value>-1</value>
+</value>
+<value>
+<value>translocate</value>
+<value>Variable:/endosome:translocate</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="translocation">
+<property name="Name">
+<value>[translocate] -&gt; [lytic];</value>
+</property>
+<property name="kL">
+<value>0.013</value>
+</property>
+<property name="Expression">
+<value>kL * translocate.NumberConc * endosome.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>translocate</value>
+<value>Variable:/endosome:translocate</value>
+<value>-1</value>
+</value>
+<value>
+<value>lytic</value>
+<value>Variable:/neuroplasm:lytic</value>
+<value>1</value>
+</value>
+<value>
+<value>endosome</value>
+<value>Variable:/endosome:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="binding">
+<property name="Name">
+<value>[free] -&gt; [bound];</value>
+</property>
+<property name="kB">
+<value>0.058</value>
+</property>
+<property name="Expression">
+<value>kB * free.NumberConc * extracellular.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>free</value>
+<value>Variable:/extracellular:free</value>
+<value>-1</value>
+</value>
+<value>
+<value>bound</value>
+<value>Variable:/extracellular:bound</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="free">
+<property name="Name">
+<value>free_BoNT/A</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="bound">
+<property name="Name">
+<value>bound_BoNT/A</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/endosome">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>endosome</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="translocate">
+<property name="Name">
+<value>transloc_BoNT/A</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/neuroplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>neuroplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lytic">
+<property name="Name">
+<value>lytic_BoNT/A</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="tension">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_tension">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'tension'</value>
+</property>
+<property name="Expression">
+<value>1 - lytic.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tension</value>
+<value>Variable:/SBMLParameter:tension</value>
+<value>1</value>
+</value>
+<value>
+<value>lytic</value>
+<value>Variable:/neuroplasm:lytic</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,783 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="R1">
+<property name="Name">
+<value>[Mad1_CMad2] + [OMad2] &lt;-&gt; [Mad1_CMad2_OMad2];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * (u.Value * k1f.Value * Mad1_CMad2.NumberConc * OMad2.NumberConc - k1r.Value * Mad1_CMad2_OMad2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mad1_CMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mad1_CMad2_OMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2_OMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>k1f</value>
+<value>Variable:/SBMLParameter:k1f</value>
+<value>0</value>
+</value>
+<value>
+<value>k1r</value>
+<value>Variable:/SBMLParameter:k1r</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A        &lt;ci&gt; k1f &lt;/ci&gt;#x0A        &lt;ci&gt; Mad1_CMad2 &lt;/ci&gt;#x0A        &lt;ci&gt; OMad2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1r &lt;/ci&gt;#x0A        &lt;ci&gt; Mad1_CMad2_OMad2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R2">
+<property name="Name">
+<value>[Mad1_CMad2_OMad2] + [Cdc20] -&gt; [Mad1_CMad2] + [Cdc20_CMad2];</value>
+</property>
+<property name="Expression">
+<value>u.Value * k2f.Value * Mad1_CMad2_OMad2.NumberConc * Cdc20.NumberConc * Cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mad1_CMad2_OMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2_OMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mad1_CMad2</value>
+<value>Variable:/Cytoplasm:Mad1_CMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>k2f</value>
+<value>Variable:/SBMLParameter:k2f</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;ci&gt; k2f &lt;/ci&gt;#x0A    &lt;ci&gt; Mad1_CMad2_OMad2 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20 &lt;/ci&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R3">
+<property name="Name">
+<value>[Cdc20_CMad2] -&gt; [Cdc20] + [OMad2];</value>
+</property>
+<property name="Expression">
+<value>k3f.Value * Cdc20_CMad2.NumberConc * Cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>1</value>
+</value>
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>k3f</value>
+<value>Variable:/SBMLParameter:k3f</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3f &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20_CMad2 &lt;/ci&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R4">
+<property name="Name">
+<value>[Cdc20_CMad2] + [Bub3_BubR1] &lt;-&gt; [MCC];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * (u.Value * k4f.Value * Cdc20_CMad2.NumberConc * Bub3_BubR1.NumberConc - k4r.Value * MCC.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bub3_BubR1</value>
+<value>Variable:/Cytoplasm:Bub3_BubR1</value>
+<value>-1</value>
+</value>
+<value>
+<value>MCC</value>
+<value>Variable:/Cytoplasm:MCC</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>k4f</value>
+<value>Variable:/SBMLParameter:k4f</value>
+<value>0</value>
+</value>
+<value>
+<value>k4r</value>
+<value>Variable:/SBMLParameter:k4r</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A        &lt;ci&gt; k4f &lt;/ci&gt;#x0A        &lt;ci&gt; Cdc20_CMad2 &lt;/ci&gt;#x0A        &lt;ci&gt; Bub3_BubR1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k4r &lt;/ci&gt;#x0A        &lt;ci&gt; MCC &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R5">
+<property name="Name">
+<value>[Bub3_BubR1] + [Cdc20] &lt;-&gt; [Bub3_BubR1_Cdc20];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * (u.Value * k5f.Value * Bub3_BubR1.NumberConc * Cdc20.NumberConc - k5r.Value * Bub3_BubR1_Cdc20.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bub3_BubR1</value>
+<value>Variable:/Cytoplasm:Bub3_BubR1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bub3_BubR1_Cdc20</value>
+<value>Variable:/Cytoplasm:Bub3_BubR1_Cdc20</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>k5f</value>
+<value>Variable:/SBMLParameter:k5f</value>
+<value>0</value>
+</value>
+<value>
+<value>k5r</value>
+<value>Variable:/SBMLParameter:k5r</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A        &lt;ci&gt; k5f &lt;/ci&gt;#x0A        &lt;ci&gt; Bub3_BubR1 &lt;/ci&gt;#x0A        &lt;ci&gt; Cdc20 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k5r &lt;/ci&gt;#x0A        &lt;ci&gt; Bub3_BubR1_Cdc20 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R6">
+<property name="Name">
+<value>[OMad2] + [Cdc20] -&gt; [Cdc20_CMad2];</value>
+</property>
+<property name="Expression">
+<value>kf6.Value * OMad2.NumberConc * Cdc20.NumberConc * Cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20_CMad2</value>
+<value>Variable:/Cytoplasm:Cdc20_CMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>kf6</value>
+<value>Variable:/SBMLParameter:kf6</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kf6 &lt;/ci&gt;#x0A    &lt;ci&gt; OMad2 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc20 &lt;/ci&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R7">
+<property name="Name">
+<value>[MCC] + [APC] -&gt; [MCC_APC];</value>
+</property>
+<property name="Expression">
+<value>u.Value * k7f.Value * MCC.NumberConc * APC.NumberConc * Cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MCC</value>
+<value>Variable:/Cytoplasm:MCC</value>
+<value>-1</value>
+</value>
+<value>
+<value>APC</value>
+<value>Variable:/Cytoplasm:APC</value>
+<value>-1</value>
+</value>
+<value>
+<value>MCC_APC</value>
+<value>Variable:/Cytoplasm:MCC_APC</value>
+<value>1</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>0</value>
+</value>
+<value>
+<value>k7f</value>
+<value>Variable:/SBMLParameter:k7f</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;ci&gt; k7f &lt;/ci&gt;#x0A    &lt;ci&gt; MCC &lt;/ci&gt;#x0A    &lt;ci&gt; APC &lt;/ci&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R7b">
+<property name="Name">
+<value>[MCC_APC] -&gt; [OMad2] + [Bub3_BubR1] + [APC_Cdc20];</value>
+</property>
+<property name="Expression">
+<value>u_prime.Value * k7bf.Value * MCC_APC.NumberConc * Cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MCC_APC</value>
+<value>Variable:/Cytoplasm:MCC_APC</value>
+<value>-1</value>
+</value>
+<value>
+<value>OMad2</value>
+<value>Variable:/Cytoplasm:OMad2</value>
+<value>1</value>
+</value>
+<value>
+<value>Bub3_BubR1</value>
+<value>Variable:/Cytoplasm:Bub3_BubR1</value>
+<value>1</value>
+</value>
+<value>
+<value>APC_Cdc20</value>
+<value>Variable:/Cytoplasm:APC_Cdc20</value>
+<value>1</value>
+</value>
+<value>
+<value>u_prime</value>
+<value>Variable:/SBMLParameter:u_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>k7bf</value>
+<value>Variable:/SBMLParameter:k7bf</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; u_prime &lt;/ci&gt;#x0A    &lt;ci&gt; k7bf &lt;/ci&gt;#x0A    &lt;ci&gt; MCC_APC &lt;/ci&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="R8">
+<property name="Name">
+<value>[APC] + [Cdc20] &lt;-&gt; [APC_Cdc20];</value>
+</property>
+<property name="Expression">
+<value>Cytoplasm.Value * (k8f.Value * APC.NumberConc * Cdc20.NumberConc - k8r.Value * APC_Cdc20.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>APC</value>
+<value>Variable:/Cytoplasm:APC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc20</value>
+<value>Variable:/Cytoplasm:Cdc20</value>
+<value>-1</value>
+</value>
+<value>
+<value>APC_Cdc20</value>
+<value>Variable:/Cytoplasm:APC_Cdc20</value>
+<value>1</value>
+</value>
+<value>
+<value>Cytoplasm</value>
+<value>Variable:/Cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8f</value>
+<value>Variable:/SBMLParameter:k8f</value>
+<value>0</value>
+</value>
+<value>
+<value>k8r</value>
+<value>Variable:/SBMLParameter:k8r</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k8f &lt;/ci&gt;#x0A        &lt;ci&gt; APC &lt;/ci&gt;#x0A        &lt;ci&gt; Cdc20 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k8r &lt;/ci&gt;#x0A        &lt;ci&gt; APC_Cdc20 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Mad1_CMad2">
+<property name="Name">
+<value>Mad1:C-Mad2</value>
+</property>
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="OMad2">
+<property name="Name">
+<value>O-Mad2</value>
+</property>
+<property name="Value">
+<value>1.3e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mad1_CMad2_OMad2">
+<property name="Name">
+<value>Mad1:C-Mad2:O-Mad2*</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20">
+<property name="Name">
+<value>Cdc20</value>
+</property>
+<property name="Value">
+<value>2.2e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc20_CMad2">
+<property name="Name">
+<value>Cdc20:C-Mad2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bub3_BubR1">
+<property name="Name">
+<value>Bub3:BubR1</value>
+</property>
+<property name="Value">
+<value>1.27e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MCC">
+<property name="Name">
+<value>MCC</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bub3_BubR1_Cdc20">
+<property name="Name">
+<value>Bub3:BubR1:Cdc20</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="APC">
+<property name="Name">
+<value>APC</value>
+</property>
+<property name="Value">
+<value>9e-08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MCC_APC">
+<property name="Name">
+<value>MCC:APC</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="APC_Cdc20">
+<property name="Name">
+<value>APC:Cdc20</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k3f">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf6">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5f">
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5r">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2f">
+<property name="Value">
+<value>100000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1f">
+<property name="Value">
+<value>200000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1r">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4f">
+<property name="Value">
+<value>10000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4r">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7f">
+<property name="Value">
+<value>100000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7bf">
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8f">
+<property name="Value">
+<value>5000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8r">
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="u">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="u_prime">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="const_val_0">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="const_val_1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="mt_attachment">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>mt_attachment</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>u</value>
+<value>const_val_0.NumberConc</value>
+</value>
+<value>
+<value>u_prime</value>
+<value>const_val_1.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;cn&gt; 2000 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>gt(time.Value, 2000)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u</value>
+<value>Variable:/SBMLParameter:u</value>
+<value>1</value>
+</value>
+<value>
+<value>const_val_0</value>
+<value>Variable:/SBMLParameter:const_val_0</value>
+<value>0</value>
+</value>
+<value>
+<value>u_prime</value>
+<value>Variable:/SBMLParameter:u_prime</value>
+<value>1</value>
+</value>
+<value>
+<value>const_val_1</value>
+<value>Variable:/SBMLParameter:const_val_1</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

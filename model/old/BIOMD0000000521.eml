@@ -1,0 +1,414 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/plama">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>plasma</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="Name">
+<value>PCV_plasma</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/tissue">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>tissue</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>Proliferative tissue</value>
+</property>
+<property name="NumberConc">
+<value>7.13</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Q">
+<property name="Name">
+<value>nonproliferative quiescent tissue</value>
+</property>
+<property name="NumberConc">
+<value>41.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Qp">
+<property name="Name">
+<value>damaged quiescent cells</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Pstar">
+<property name="Name">
+<value>Pstar</value>
+</property>
+<property name="Value">
+<value>48.33</value>
+</property>
+</variable>
+<variable class="Variable" id="P0">
+<property name="Name">
+<value>P0</value>
+</property>
+<property name="Value">
+<value>7.13</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Q0">
+<property name="Name">
+<value>Q0</value>
+</property>
+<property name="Value">
+<value>41.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lambda_P">
+<property name="Name">
+<value>lambda_P</value>
+</property>
+<property name="Value">
+<value>0.121</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_PQ">
+<property name="Name">
+<value>k_PQ</value>
+</property>
+<property name="Value">
+<value>0.00295</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_Qp_P">
+<property name="Name">
+<value>k_Qp_P</value>
+</property>
+<property name="Value">
+<value>0.0031</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="delta_QP">
+<property name="Name">
+<value>delta_QP</value>
+</property>
+<property name="Value">
+<value>0.0087</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma">
+<property name="Name">
+<value>gamma</value>
+</property>
+<property name="Value">
+<value>0.729</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KDE">
+<property name="Name">
+<value>KDE</value>
+</property>
+<property name="Value">
+<value>0.24</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K">
+<property name="Name">
+<value>K</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Pstar">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Pstar'</value>
+</property>
+<property name="Expression">
+<value>P.NumberConc + Q.NumberConc + Qp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pstar</value>
+<value>Variable:/SBMLParameter:Pstar</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/tissue:P</value>
+<value>0</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/tissue:Q</value>
+<value>0</value>
+</value>
+<value>
+<value>Qp</value>
+<value>Variable:/tissue:Qp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_C">
+<property name="Name">
+<value>Rate rule for 'C'</value>
+</property>
+<property name="Expression">
+<value>-KDE.NumberConc * C.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C</value>
+<value>Variable:/plama:C</value>
+<value>1</value>
+</value>
+<value>
+<value>KDE</value>
+<value>Variable:/SBMLParameter:KDE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_P">
+<property name="Name">
+<value>Rate rule for 'P'</value>
+</property>
+<property name="Expression">
+<value>lambda_P.NumberConc * P.NumberConc * (1 - Pstar.NumberConc / K.NumberConc) + k_Qp_P.NumberConc * Qp.NumberConc - k_PQ.NumberConc * P.NumberConc - gamma.NumberConc * C.NumberConc * KDE.NumberConc * P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/tissue:P</value>
+<value>1</value>
+</value>
+<value>
+<value>lambda_P</value>
+<value>Variable:/SBMLParameter:lambda_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Pstar</value>
+<value>Variable:/SBMLParameter:Pstar</value>
+<value>0</value>
+</value>
+<value>
+<value>K</value>
+<value>Variable:/SBMLParameter:K</value>
+<value>0</value>
+</value>
+<value>
+<value>k_Qp_P</value>
+<value>Variable:/SBMLParameter:k_Qp_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Qp</value>
+<value>Variable:/tissue:Qp</value>
+<value>0</value>
+</value>
+<value>
+<value>k_PQ</value>
+<value>Variable:/SBMLParameter:k_PQ</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/plama:C</value>
+<value>0</value>
+</value>
+<value>
+<value>KDE</value>
+<value>Variable:/SBMLParameter:KDE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_Q">
+<property name="Name">
+<value>Rate rule for 'Q'</value>
+</property>
+<property name="Expression">
+<value>k_PQ.NumberConc - gamma.NumberConc * C.NumberConc * KDE.NumberConc * Q.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Q</value>
+<value>Variable:/tissue:Q</value>
+<value>1</value>
+</value>
+<value>
+<value>k_PQ</value>
+<value>Variable:/SBMLParameter:k_PQ</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/plama:C</value>
+<value>0</value>
+</value>
+<value>
+<value>KDE</value>
+<value>Variable:/SBMLParameter:KDE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_Qp">
+<property name="Name">
+<value>Rate rule for 'Qp'</value>
+</property>
+<property name="Expression">
+<value>gamma.NumberConc * C.NumberConc * KDE.NumberConc * Q.NumberConc - k_Qp_P.NumberConc * Qp.NumberConc - delta_QP.NumberConc * Qp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Qp</value>
+<value>Variable:/tissue:Qp</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/plama:C</value>
+<value>0</value>
+</value>
+<value>
+<value>KDE</value>
+<value>Variable:/SBMLParameter:KDE</value>
+<value>0</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/tissue:Q</value>
+<value>0</value>
+</value>
+<value>
+<value>k_Qp_P</value>
+<value>Variable:/SBMLParameter:k_Qp_P</value>
+<value>0</value>
+</value>
+<value>
+<value>delta_QP</value>
+<value>Variable:/SBMLParameter:delta_QP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,1052 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="PIPSyn">
+<property name="Name">
+<value>PIPSyn</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>(Ratebasal_PIPsyn_PIPSyn.Value + Ratestim_PIPsyn_PIPSyn.Value) * PI_PM.NumberConc * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PI_PM</value>
+<value>Variable:/Extracellular/PM:PI_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PIP_PM</value>
+<value>Variable:/Extracellular/PM:PIP_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>Ratebasal_PIPsyn_PIPSyn</value>
+<value>Variable:/SBMLParameter:Ratebasal_PIPsyn_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>Ratestim_PIPsyn_PIPSyn</value>
+<value>Variable:/SBMLParameter:Ratestim_PIPsyn_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Ratebasal_PIPsyn_PIPSyn &lt;/ci&gt;#x0A      &lt;ci&gt; Ratestim_PIPsyn_PIPSyn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; PI_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PIP2_hyd">
+<property name="Name">
+<value>PIP2_hyd</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="k_PIP2hyd">
+<value>2.4</value>
+</property>
+<property name="Expression">
+<value>k_PIP2hyd * PIP2_PM.NumberConc * PLC_act_PM.NumberConc * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PIP2_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>DAG_PM</value>
+<value>Variable:/Extracellular/PM:DAG_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>IP3_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:IP3_Cyt</value>
+<value>1</value>
+</value>
+<value>
+<value>PLC_act_PM</value>
+<value>Variable:/Extracellular/PM:PLC_act_PM</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k_PIP2hyd &lt;/ci&gt;#x0A    &lt;ci&gt; PIP2_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PLC_act_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PLCact">
+<property name="Name">
+<value>PLCact</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="KfPLCact">
+<value>0.0005</value>
+</property>
+<property name="krPLCact">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>(KfPLCact * PLC_PM.NumberConc * stim_PM.NumberConc * signal_PLCact.Value + -(krPLCact * PLC_act_PM.NumberConc)) * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLC_PM</value>
+<value>Variable:/Extracellular/PM:PLC_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PLC_act_PM</value>
+<value>Variable:/Extracellular/PM:PLC_act_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>stim_PM</value>
+<value>Variable:/Extracellular/PM:stim_PM</value>
+<value>0</value>
+</value>
+<value>
+<value>signal_PLCact</value>
+<value>Variable:/SBMLParameter:signal_PLCact</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KfPLCact &lt;/ci&gt;#x0A        &lt;ci&gt; PLC_PM &lt;/ci&gt;#x0A        &lt;ci&gt; stim_PM &lt;/ci&gt;#x0A        &lt;ci&gt; signal_PLCact &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; krPLCact &lt;/ci&gt;#x0A          &lt;ci&gt; PLC_act_PM &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PIP2_PH_hyd">
+<property name="Name">
+<value>PIP2_PH_hyd</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="k_PIP2PHhyd">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>k_PIP2PHhyd * PLC_act_PM.NumberConc * PIP2_PHGFP_PM.NumberConc * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PIP2_PHGFP_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PHGFP_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PH_GFP_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:PH_GFP_Cyt</value>
+<value>1</value>
+</value>
+<value>
+<value>IP3_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:IP3_Cyt</value>
+<value>1</value>
+</value>
+<value>
+<value>DAG_PM</value>
+<value>Variable:/Extracellular/PM:DAG_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>PLC_act_PM</value>
+<value>Variable:/Extracellular/PM:PLC_act_PM</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k_PIP2PHhyd &lt;/ci&gt;#x0A    &lt;ci&gt; PLC_act_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PIP2_PHGFP_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PIP2_PH">
+<property name="Name">
+<value>PIP2_PH</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>(kf_PIP2PH_PIP2_PH.Value * 0.00166112956810631 * PH_GFP_Cyt.NumberConc * PIP2_PM.NumberConc + -(kr_PIP2PH_PIP2_PH.Value * PIP2_PHGFP_PM.NumberConc)) * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PH_GFP_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:PH_GFP_Cyt</value>
+<value>-1</value>
+</value>
+<value>
+<value>PIP2_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PIP2_PHGFP_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PHGFP_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>kf_PIP2PH_PIP2_PH</value>
+<value>Variable:/SBMLParameter:kf_PIP2PH_PIP2_PH</value>
+<value>0</value>
+</value>
+<value>
+<value>kr_PIP2PH_PIP2_PH</value>
+<value>Variable:/SBMLParameter:kr_PIP2PH_PIP2_PH</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kf_PIP2PH_PIP2_PH &lt;/ci&gt;#x0A        &lt;cn&gt; 0.00166112956810631 &lt;/cn&gt;#x0A        &lt;ci&gt; PH_GFP_Cyt &lt;/ci&gt;#x0A        &lt;ci&gt; PIP2_PM &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; kr_PIP2PH_PIP2_PH &lt;/ci&gt;#x0A          &lt;ci&gt; PIP2_PHGFP_PM &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="IP3deg">
+<property name="Name">
+<value>IP3deg</value>
+</property>
+<property name="kIP3deg">
+<value>0.08</value>
+</property>
+<property name="IP3_basal">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>kIP3deg * (0.00166112956810631 * IP3_Cyt.NumberConc + -IP3_basal) * Cytosol.Value * 1 * (1 / KMOLE.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:IP3_Cyt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cytosol</value>
+<value>Variable:/Extracellular/PM/Cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>KMOLE</value>
+<value>Variable:/SBMLParameter:KMOLE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kIP3deg &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 0.00166112956810631 &lt;/cn&gt;#x0A        &lt;ci&gt; IP3_Cyt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; IP3_basal &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; Cytosol &lt;/ci&gt;#x0A    &lt;cn&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; KMOLE &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PIP2Syn">
+<property name="Name">
+<value>PIP2Syn</value>
+</property>
+<property name="I">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>(Rate_PIP2Synbasal_PIP2Syn.Value + Rate_PIP2SynStim_PIP2Syn.Value) * PIP_PM.NumberConc * PM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PIP_PM</value>
+<value>Variable:/Extracellular/PM:PIP_PM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PIP2_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PM</value>
+<value>1</value>
+</value>
+<value>
+<value>Rate_PIP2Synbasal_PIP2Syn</value>
+<value>Variable:/SBMLParameter:Rate_PIP2Synbasal_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>Rate_PIP2SynStim_PIP2Syn</value>
+<value>Variable:/SBMLParameter:Rate_PIP2SynStim_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>PM</value>
+<value>Variable:/Extracellular/PM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Rate_PIP2Synbasal_PIP2Syn &lt;/ci&gt;#x0A      &lt;ci&gt; Rate_PIP2SynStim_PIP2Syn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; PIP_PM &lt;/ci&gt;#x0A    &lt;ci&gt; PM &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="IP3_PHGFP">
+<property name="Name">
+<value>IP3-PHGFP</value>
+</property>
+<property name="Expression">
+<value>(kf_IP3PH_IP3_PHGFP.Value * 0.00166112956810631 * IP3_Cyt.NumberConc * 0.00166112956810631 * PH_GFP_Cyt.NumberConc + -(kr_IP3PH_IP3_PHGFP.Value * 0.00166112956810631 * IP3_PHGFP_Cyt.NumberConc)) * Cytosol.Value * 1 * (1 / KMOLE.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:IP3_Cyt</value>
+<value>-1</value>
+</value>
+<value>
+<value>PH_GFP_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:PH_GFP_Cyt</value>
+<value>-1</value>
+</value>
+<value>
+<value>IP3_PHGFP_Cyt</value>
+<value>Variable:/Extracellular/PM/Cytosol:IP3_PHGFP_Cyt</value>
+<value>1</value>
+</value>
+<value>
+<value>kf_IP3PH_IP3_PHGFP</value>
+<value>Variable:/SBMLParameter:kf_IP3PH_IP3_PHGFP</value>
+<value>0</value>
+</value>
+<value>
+<value>kr_IP3PH_IP3_PHGFP</value>
+<value>Variable:/SBMLParameter:kr_IP3PH_IP3_PHGFP</value>
+<value>0</value>
+</value>
+<value>
+<value>Cytosol</value>
+<value>Variable:/Extracellular/PM/Cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>KMOLE</value>
+<value>Variable:/SBMLParameter:KMOLE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kf_IP3PH_IP3_PHGFP &lt;/ci&gt;#x0A        &lt;cn&gt; 0.00166112956810631 &lt;/cn&gt;#x0A        &lt;ci&gt; IP3_Cyt &lt;/ci&gt;#x0A        &lt;cn&gt; 0.00166112956810631 &lt;/cn&gt;#x0A        &lt;ci&gt; PH_GFP_Cyt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; kr_IP3PH_IP3_PHGFP &lt;/ci&gt;#x0A          &lt;cn&gt; 0.00166112956810631 &lt;/cn&gt;#x0A          &lt;ci&gt; IP3_PHGFP_Cyt &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; Cytosol &lt;/ci&gt;#x0A    &lt;cn&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; KMOLE &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.277777777778</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Extracellular/PM">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>PM</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>2</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.555555555556</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP2_PHGFP_PM">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PI_PM">
+<property name="Value">
+<value>142857.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="stim_PM">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP2_PM">
+<property name="Value">
+<value>4000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP_PM">
+<property name="Value">
+<value>2857.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DAG_PM">
+<property name="Value">
+<value>2000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLC_PM">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLC_act_PM">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Extracellular/PM/Cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PH_GFP_Cyt">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IP3_PHGFP_Cyt">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="hv_Cytosol">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IP3X_Cytosol">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IP3_Cyt">
+<property name="Value">
+<value>96.32</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Extracellular/PM/Cytosol/NM">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>NM</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>2</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.111111111111</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Extracellular/PM/Cytosol/NM/Nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.111111111111</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="KMOLE">
+<property name="Value">
+<value>0.00166112956811</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP_basal_PIPSyn">
+<property name="Value">
+<value>2857.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kBasalSynPIP_PIPSyn">
+<property name="Value">
+<value>0.0055</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kStimSynPIP_PIPSyn">
+<property name="Value">
+<value>0.019</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tauPIPsyn_PIPSyn">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PIPsyndecay_PIPSyn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ratebasal_PIPsyn_PIPSyn">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ratestim_PIPsyn_PIPSyn">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="tau0_PLCact">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="stimdecay_PLCact">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="signal_PLCact">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kf_PIP2PH_PIP2_PH">
+<property name="Value">
+<value>0.12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KdPIP2PH_PIP2_PH">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr_PIP2PH_PIP2_PH">
+<property name="Value">
+<value>0.24</value>
+</property>
+</variable>
+<variable class="Variable" id="kStimSynPIP2_PIP2Syn">
+<property name="Value">
+<value>0.92</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tauPIP2syn_PIP2Syn">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP2syndecay_PIP2Syn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PIP2_basal_PIP2Syn">
+<property name="Value">
+<value>4000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kBasalSynPIP2_PIP2Syn">
+<property name="Value">
+<value>0.048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rate_PIP2Synbasal_PIP2Syn">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rate_PIP2SynStim_PIP2Syn">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kf_IP3PH_IP3_PHGFP">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KdIP3PH_IP3_PHGFP">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr_IP3PH_IP3_PHGFP">
+<property name="Value">
+<value>20.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Ratebasal_PIPsyn_PIPSyn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Ratebasal_PIPsyn_PIPSyn'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0.581 * kBasalSynPIP_PIPSyn.NumberConc * (-1 + exp((PIP_basal_PIPSyn.NumberConc + -PIP_PM.NumberConc) * (1 / PIP_basal_PIPSyn.NumberConc))), lt(PIP_PM.NumberConc, PIP_basal_PIPSyn.NumberConc), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 0.581 &lt;/cn&gt;#x0A        &lt;ci&gt; kBasalSynPIP_PIPSyn &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; -1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;exp/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; PIP_basal_PIPSyn &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; PIP_PM &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; PIP_basal_PIPSyn &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;ci&gt; PIP_PM &lt;/ci&gt;#x0A        &lt;ci&gt; PIP_basal_PIPSyn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ratebasal_PIPsyn_PIPSyn</value>
+<value>Variable:/SBMLParameter:Ratebasal_PIPsyn_PIPSyn</value>
+<value>1</value>
+</value>
+<value>
+<value>kBasalSynPIP_PIPSyn</value>
+<value>Variable:/SBMLParameter:kBasalSynPIP_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIP_basal_PIPSyn</value>
+<value>Variable:/SBMLParameter:PIP_basal_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIP_PM</value>
+<value>Variable:/Extracellular/PM:PIP_PM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Ratestim_PIPsyn_PIPSyn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Ratestim_PIPsyn_PIPSyn'</value>
+</property>
+<property name="Expression">
+<value>piecewise(kStimSynPIP_PIPSyn.NumberConc * exp(-((time.Value + -tauPIPsyn_PIPSyn.NumberConc) * (1 / PIPsyndecay_PIPSyn.NumberConc))), gt(time.Value, tauPIPsyn_PIPSyn.NumberConc), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kStimSynPIP_PIPSyn &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;exp/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; tauPIPsyn_PIPSyn &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; PIPsyndecay_PIPSyn &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;ci&gt; tauPIPsyn_PIPSyn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ratestim_PIPsyn_PIPSyn</value>
+<value>Variable:/SBMLParameter:Ratestim_PIPsyn_PIPSyn</value>
+<value>1</value>
+</value>
+<value>
+<value>kStimSynPIP_PIPSyn</value>
+<value>Variable:/SBMLParameter:kStimSynPIP_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>tauPIPsyn_PIPSyn</value>
+<value>Variable:/SBMLParameter:tauPIPsyn_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIPsyndecay_PIPSyn</value>
+<value>Variable:/SBMLParameter:PIPsyndecay_PIPSyn</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_signal_PLCact">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'signal_PLCact'</value>
+</property>
+<property name="Expression">
+<value>piecewise(exp(-((time.Value + -tau0_PLCact.NumberConc) * (1 / stimdecay_PLCact.NumberConc))), gt(time.Value, tau0_PLCact.NumberConc), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;exp/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; tau0_PLCact &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; stimdecay_PLCact &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;ci&gt; tau0_PLCact &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>signal_PLCact</value>
+<value>Variable:/SBMLParameter:signal_PLCact</value>
+<value>1</value>
+</value>
+<value>
+<value>tau0_PLCact</value>
+<value>Variable:/SBMLParameter:tau0_PLCact</value>
+<value>0</value>
+</value>
+<value>
+<value>stimdecay_PLCact</value>
+<value>Variable:/SBMLParameter:stimdecay_PLCact</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_kr_PIP2PH_PIP2_PH">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kr_PIP2PH_PIP2_PH'</value>
+</property>
+<property name="Expression">
+<value>kf_PIP2PH_PIP2_PH.NumberConc * KdPIP2PH_PIP2_PH.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kf_PIP2PH_PIP2_PH &lt;/ci&gt;#x0A    &lt;ci&gt; KdPIP2PH_PIP2_PH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kr_PIP2PH_PIP2_PH</value>
+<value>Variable:/SBMLParameter:kr_PIP2PH_PIP2_PH</value>
+<value>1</value>
+</value>
+<value>
+<value>kf_PIP2PH_PIP2_PH</value>
+<value>Variable:/SBMLParameter:kf_PIP2PH_PIP2_PH</value>
+<value>0</value>
+</value>
+<value>
+<value>KdPIP2PH_PIP2_PH</value>
+<value>Variable:/SBMLParameter:KdPIP2PH_PIP2_PH</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Rate_PIP2Synbasal_PIP2Syn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rate_PIP2Synbasal_PIP2Syn'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0.581 * kBasalSynPIP2_PIP2Syn.NumberConc * (-1 + exp((PIP2_basal_PIP2Syn.NumberConc + -PIP2_PM.NumberConc) * (1 / PIP2_basal_PIP2Syn.NumberConc))), lt(PIP2_PM.NumberConc, PIP2_basal_PIP2Syn.NumberConc), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 0.581 &lt;/cn&gt;#x0A        &lt;ci&gt; kBasalSynPIP2_PIP2Syn &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; -1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;exp/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; PIP2_basal_PIP2Syn &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; PIP2_PM &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; PIP2_basal_PIP2Syn &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;ci&gt; PIP2_PM &lt;/ci&gt;#x0A        &lt;ci&gt; PIP2_basal_PIP2Syn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rate_PIP2Synbasal_PIP2Syn</value>
+<value>Variable:/SBMLParameter:Rate_PIP2Synbasal_PIP2Syn</value>
+<value>1</value>
+</value>
+<value>
+<value>kBasalSynPIP2_PIP2Syn</value>
+<value>Variable:/SBMLParameter:kBasalSynPIP2_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIP2_basal_PIP2Syn</value>
+<value>Variable:/SBMLParameter:PIP2_basal_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIP2_PM</value>
+<value>Variable:/Extracellular/PM:PIP2_PM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Rate_PIP2SynStim_PIP2Syn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rate_PIP2SynStim_PIP2Syn'</value>
+</property>
+<property name="Expression">
+<value>piecewise(kStimSynPIP2_PIP2Syn.NumberConc * exp(-((time.Value + -tauPIP2syn_PIP2Syn.NumberConc) * (1 / PIP2syndecay_PIP2Syn.NumberConc))), gt(time.Value, tauPIP2syn_PIP2Syn.NumberConc), 0)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kStimSynPIP2_PIP2Syn &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;exp/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; tauPIP2syn_PIP2Syn &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; PIP2syndecay_PIP2Syn &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;ci&gt; tauPIP2syn_PIP2Syn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rate_PIP2SynStim_PIP2Syn</value>
+<value>Variable:/SBMLParameter:Rate_PIP2SynStim_PIP2Syn</value>
+<value>1</value>
+</value>
+<value>
+<value>kStimSynPIP2_PIP2Syn</value>
+<value>Variable:/SBMLParameter:kStimSynPIP2_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>tauPIP2syn_PIP2Syn</value>
+<value>Variable:/SBMLParameter:tauPIP2syn_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>PIP2syndecay_PIP2Syn</value>
+<value>Variable:/SBMLParameter:PIP2syndecay_PIP2Syn</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_kr_IP3PH_IP3_PHGFP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kr_IP3PH_IP3_PHGFP'</value>
+</property>
+<property name="Expression">
+<value>kf_IP3PH_IP3_PHGFP.NumberConc * KdIP3PH_IP3_PHGFP.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kf_IP3PH_IP3_PHGFP &lt;/ci&gt;#x0A    &lt;ci&gt; KdIP3PH_IP3_PHGFP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kr_IP3PH_IP3_PHGFP</value>
+<value>Variable:/SBMLParameter:kr_IP3PH_IP3_PHGFP</value>
+<value>1</value>
+</value>
+<value>
+<value>kf_IP3PH_IP3_PHGFP</value>
+<value>Variable:/SBMLParameter:kf_IP3PH_IP3_PHGFP</value>
+<value>0</value>
+</value>
+<value>
+<value>KdIP3PH_IP3_PHGFP</value>
+<value>Variable:/SBMLParameter:KdIP3PH_IP3_PHGFP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

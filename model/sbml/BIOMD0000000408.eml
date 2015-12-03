@@ -1,0 +1,2096 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Jsyn">
+<property name="Name">
+<value>[P_ii] + [ADPi] &lt;-&gt; [ATPi];</value>
+</property>
+<property name="Expression">
+<value>Vmaxsyn.Value * ADPi.NumberConc * P_ii.NumberConc / (Kadp.Value * Kpi.Value * (1 + ADPi.NumberConc / Kadp.Value + P_ii.NumberConc / Kpi.Value + ADPi.NumberConc * P_ii.NumberConc / (Kadp.Value * Kpi.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P_ii</value>
+<value>Variable:/IMS:P_ii</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>1</value>
+</value>
+<value>
+<value>Vmaxsyn</value>
+<value>Variable:/SBMLParameter:Vmaxsyn</value>
+<value>0</value>
+</value>
+<value>
+<value>Kadp</value>
+<value>Variable:/SBMLParameter:Kadp</value>
+<value>0</value>
+</value>
+<value>
+<value>Kpi</value>
+<value>Variable:/SBMLParameter:Kpi</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vmaxsyn &lt;/ci&gt;#x0A      &lt;ci&gt; ADPi &lt;/ci&gt;#x0A      &lt;ci&gt; P_ii &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Kadp &lt;/ci&gt;#x0A      &lt;ci&gt; Kpi &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ADPi &lt;/ci&gt;#x0A          &lt;ci&gt; Kadp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; P_ii &lt;/ci&gt;#x0A          &lt;ci&gt; Kpi &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ADPi &lt;/ci&gt;#x0A            &lt;ci&gt; P_ii &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Kadp &lt;/ci&gt;#x0A            &lt;ci&gt; Kpi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_CK_Mi">
+<property name="Name">
+<value>[ATPi] + [Cri] &lt;-&gt; [PCri] + [ADPi];</value>
+</property>
+<property name="Expression">
+<value>j_ck_mi.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>-1</value>
+</value>
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>1</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>1</value>
+</value>
+<value>
+<value>j_ck_mi</value>
+<value>Variable:/SBMLParameter:j_ck_mi</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_ck_mi &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_CK_MM">
+<property name="Name">
+<value>[Cr] + [ATP] &lt;-&gt; [PCr] + [ADP];</value>
+</property>
+<property name="Expression">
+<value>j_ck_mm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>j_ck_mm</value>
+<value>Variable:/SBMLParameter:j_ck_mm</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_ck_mm &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Jhyd_reaction">
+<property name="Name">
+<value>[ATP] &lt;-&gt; [ADP] + [P_i];</value>
+</property>
+<property name="Expression">
+<value>Jhyd.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>P_i</value>
+<value>Variable:/CYT:P_i</value>
+<value>1</value>
+</value>
+<value>
+<value>Jhyd</value>
+<value>Variable:/SBMLParameter:Jhyd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; Jhyd &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_diff_Pi">
+<property name="Name">
+<value>[P_ii] &lt;-&gt; [P_i];</value>
+</property>
+<property name="Expression">
+<value>j_diff_pi.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P_ii</value>
+<value>Variable:/IMS:P_ii</value>
+<value>-1</value>
+</value>
+<value>
+<value>P_i</value>
+<value>Variable:/CYT:P_i</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_pi</value>
+<value>Variable:/SBMLParameter:j_diff_pi</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_diff_pi &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_diff_Cr">
+<property name="Name">
+<value>[Cri] &lt;-&gt; [Cr];</value>
+</property>
+<property name="Expression">
+<value>j_diff_cr.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_cr</value>
+<value>Variable:/SBMLParameter:j_diff_cr</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_diff_cr &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_diff_ADP">
+<property name="Name">
+<value>[ADPi] &lt;-&gt; [ADP];</value>
+</property>
+<property name="Expression">
+<value>j_diff_adp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_adp</value>
+<value>Variable:/SBMLParameter:j_diff_adp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_diff_adp &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_diff_PCr">
+<property name="Name">
+<value>[PCri] &lt;-&gt; [PCr];</value>
+</property>
+<property name="Expression">
+<value>j_diff_pcr.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>-1</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_pcr</value>
+<value>Variable:/SBMLParameter:j_diff_pcr</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_diff_pcr &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="J_diff_ATP">
+<property name="Name">
+<value>[ATPi] &lt;-&gt; [ATP];</value>
+</property>
+<property name="Expression">
+<value>j_diff_atp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_atp</value>
+<value>Variable:/SBMLParameter:j_diff_atp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; j_diff_atp &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/IMS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>IMS</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.0625</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ADPi">
+<property name="Name">
+<value>ADPi</value>
+</property>
+<property name="Value">
+<value>39.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATPi">
+<property name="Name">
+<value>ATPi</value>
+</property>
+<property name="Value">
+<value>5626.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cri">
+<property name="Name">
+<value>Cri</value>
+</property>
+<property name="Value">
+<value>9789.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PCri">
+<property name="Name">
+<value>PCri</value>
+</property>
+<property name="Value">
+<value>5711.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P_ii">
+<property name="Name">
+<value>P_ii</value>
+</property>
+<property name="Value">
+<value>910.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/CYT">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>CYT</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.75</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PCr">
+<property name="Name">
+<value>PCr</value>
+</property>
+<property name="Value">
+<value>5710.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="Value">
+<value>64.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="Value">
+<value>5601.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cr">
+<property name="Name">
+<value>Cr</value>
+</property>
+<property name="Value">
+<value>9789.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P_i">
+<property name="Name">
+<value>P_i</value>
+</property>
+<property name="Value">
+<value>912.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="j_diff_pcr">
+<property name="Value">
+<value>155.0</value>
+</property>
+</variable>
+<variable class="Variable" id="j_diff_atp">
+<property name="Value">
+<value>332.36925</value>
+</property>
+</variable>
+<variable class="Variable" id="densyn">
+<property name="Value">
+<value>5.472</value>
+</property>
+</variable>
+<variable class="Variable" id="tmito">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="vatpnorm">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="jsyn">
+<property name="Value">
+<value>487.643755482</value>
+</property>
+</variable>
+<variable class="Variable" id="r_diff_pcr">
+<property name="Value">
+<value>0.318034016303</value>
+</property>
+</variable>
+<variable class="Variable" id="j_ck_mi">
+<property name="Name">
+<value>j_ck_mi</value>
+</property>
+<property name="Value">
+<value>165.698145469</value>
+</property>
+</variable>
+<variable class="Variable" id="j_ck_mm">
+<property name="Name">
+<value>j_ck_mm</value>
+</property>
+<property name="Value">
+<value>-42.1237589982</value>
+</property>
+</variable>
+<variable class="Variable" id="j_diff_adp">
+<property name="Value">
+<value>-332.36925</value>
+</property>
+</variable>
+<variable class="Variable" id="j_diff_cr">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="j_diff_pi">
+<property name="Value">
+<value>-388.0</value>
+</property>
+</variable>
+<variable class="Variable" id="stepsize">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phase">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="heartrate_bpm">
+<property name="Value">
+<value>135.0</value>
+</property>
+</variable>
+<variable class="Variable" id="heartrate_basis">
+<property name="Value">
+<value>135.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="heartrate_test">
+<property name="Value">
+<value>220.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fracDia">
+<property name="Value">
+<value>0.6666666668</value>
+</property>
+</variable>
+<variable class="Variable" id="fracSysUp">
+<property name="Value">
+<value>0.1666666666</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fracSysDown">
+<property name="Value">
+<value>0.1666666666</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="VhydAmp_basis">
+<property name="Value">
+<value>2919.00000117</value>
+</property>
+</variable>
+<variable class="Variable" id="VhydAmp_test">
+<property name="Value">
+<value>3765.60000151</value>
+</property>
+</variable>
+<variable class="Variable" id="time_Jhyd_step">
+<property name="Name">
+<value>time_Jhyd_step</value>
+</property>
+<property name="Value">
+<value>40.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Jhyd_test">
+<property name="Name">
+<value>Jhyd_test</value>
+</property>
+<property name="Value">
+<value>627.6</value>
+</property>
+</variable>
+<variable class="Variable" id="Jhyd_basis">
+<property name="Name">
+<value>Jhyd_basis</value>
+</property>
+<property name="Value">
+<value>486.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="last_time_fired">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Jhyd">
+<property name="Name">
+<value>Jhyd</value>
+</property>
+<property name="Value">
+<value>486.5</value>
+</property>
+</variable>
+<variable class="Variable" id="ck_factor_iaa">
+<property name="Name">
+<value>ck_factor_iaa</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ck_factor_ia">
+<property name="Name">
+<value>ck_factor_ia</value>
+</property>
+<property name="Value">
+<value>0.0286</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tmito_factor">
+<property name="Name">
+<value>tmito_factor</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="PSmomATP">
+<property name="Name">
+<value>PSmomATP</value>
+</property>
+<property name="Value">
+<value>13.29477</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_CK_eq">
+<property name="Name">
+<value>K_CK_eq</value>
+</property>
+<property name="Value">
+<value>152.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMMb">
+<property name="Value">
+<value>46303.5434544</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMib">
+<property name="Value">
+<value>3520.34110228</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMif_full_activity">
+<property name="Value">
+<value>882.0756</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMMf_full_activity">
+<property name="Value">
+<value>11441.78</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMif">
+<property name="Value">
+<value>882.0756</value>
+</property>
+</variable>
+<variable class="Variable" id="VmaxMMf">
+<property name="Value">
+<value>11441.78</value>
+</property>
+</variable>
+<variable class="Variable" id="KiaMi">
+<property name="Value">
+<value>750.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KbMi">
+<property name="Value">
+<value>5200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KicMi">
+<property name="Value">
+<value>204.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KdMi">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KibMi">
+<property name="Value">
+<value>28800.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KidMi">
+<property name="Value">
+<value>1600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KiaMM">
+<property name="Value">
+<value>900.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KbMM">
+<property name="Value">
+<value>15500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KicMM">
+<property name="Value">
+<value>222.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KdMM">
+<property name="Value">
+<value>1670.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KibMM">
+<property name="Value">
+<value>34900.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KidMM">
+<property name="Value">
+<value>4730.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vmaxsyn">
+<property name="Name">
+<value>Vmaxsyn</value>
+</property>
+<property name="Value">
+<value>1503.74</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kadp">
+<property name="Name">
+<value>Kadp</value>
+</property>
+<property name="Value">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kpi">
+<property name="Name">
+<value>Kpi</value>
+</property>
+<property name="Value">
+<value>800.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PSmomPi">
+<property name="Name">
+<value>PSmomPi</value>
+</property>
+<property name="Value">
+<value>194.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PSmomCr">
+<property name="Name">
+<value>PSmomCr</value>
+</property>
+<property name="Value">
+<value>155.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PSmomPCr">
+<property name="Name">
+<value>PSmomPCr</value>
+</property>
+<property name="Value">
+<value>155.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulsatility">
+<property name="Name">
+<value>pulsatility</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_tmito">
+<property name="Name">
+<value>Rate rule for 'tmito'</value>
+</property>
+<property name="Expression">
+<value>vatpnorm.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; vatpnorm &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tmito</value>
+<value>Variable:/SBMLParameter:tmito</value>
+<value>1</value>
+</value>
+<value>
+<value>vatpnorm</value>
+<value>Variable:/SBMLParameter:vatpnorm</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_densyn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'densyn'</value>
+</property>
+<property name="Expression">
+<value>1 + ADPi.NumberConc / Kadp.NumberConc + P_ii.NumberConc / Kpi.NumberConc + ADPi.NumberConc * P_ii.NumberConc / (Kadp.NumberConc * Kpi.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ADPi &lt;/ci&gt;#x0A      &lt;ci&gt; Kadp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; P_ii &lt;/ci&gt;#x0A      &lt;ci&gt; Kpi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ADPi &lt;/ci&gt;#x0A        &lt;ci&gt; P_ii &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Kadp &lt;/ci&gt;#x0A        &lt;ci&gt; Kpi &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>densyn</value>
+<value>Variable:/SBMLParameter:densyn</value>
+<value>1</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>0</value>
+</value>
+<value>
+<value>Kadp</value>
+<value>Variable:/SBMLParameter:Kadp</value>
+<value>0</value>
+</value>
+<value>
+<value>P_ii</value>
+<value>Variable:/IMS:P_ii</value>
+<value>0</value>
+</value>
+<value>
+<value>Kpi</value>
+<value>Variable:/SBMLParameter:Kpi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jsyn">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jsyn'</value>
+</property>
+<property name="Expression">
+<value>Vmaxsyn.NumberConc * (ADPi.NumberConc * P_ii.NumberConc / (Kpi.NumberConc * Kadp.NumberConc * densyn.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Vmaxsyn &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ADPi &lt;/ci&gt;#x0A        &lt;ci&gt; P_ii &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Kpi &lt;/ci&gt;#x0A        &lt;ci&gt; Kadp &lt;/ci&gt;#x0A        &lt;ci&gt; densyn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jsyn</value>
+<value>Variable:/SBMLParameter:jsyn</value>
+<value>1</value>
+</value>
+<value>
+<value>Vmaxsyn</value>
+<value>Variable:/SBMLParameter:Vmaxsyn</value>
+<value>0</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>0</value>
+</value>
+<value>
+<value>P_ii</value>
+<value>Variable:/IMS:P_ii</value>
+<value>0</value>
+</value>
+<value>
+<value>Kpi</value>
+<value>Variable:/SBMLParameter:Kpi</value>
+<value>0</value>
+</value>
+<value>
+<value>Kadp</value>
+<value>Variable:/SBMLParameter:Kadp</value>
+<value>0</value>
+</value>
+<value>
+<value>densyn</value>
+<value>Variable:/SBMLParameter:densyn</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_vatpnorm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'vatpnorm'</value>
+</property>
+<property name="Expression">
+<value>tmito_factor.NumberConc * ((Jhyd_test.NumberConc - jsyn.NumberConc) / (Jhyd_test.NumberConc - Jhyd_basis.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; tmito_factor &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; Jhyd_test &lt;/ci&gt;#x0A        &lt;ci&gt; jsyn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; Jhyd_test &lt;/ci&gt;#x0A        &lt;ci&gt; Jhyd_basis &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>vatpnorm</value>
+<value>Variable:/SBMLParameter:vatpnorm</value>
+<value>1</value>
+</value>
+<value>
+<value>tmito_factor</value>
+<value>Variable:/SBMLParameter:tmito_factor</value>
+<value>0</value>
+</value>
+<value>
+<value>Jhyd_test</value>
+<value>Variable:/SBMLParameter:Jhyd_test</value>
+<value>0</value>
+</value>
+<value>
+<value>jsyn</value>
+<value>Variable:/SBMLParameter:jsyn</value>
+<value>0</value>
+</value>
+<value>
+<value>Jhyd_basis</value>
+<value>Variable:/SBMLParameter:Jhyd_basis</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VmaxMif">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VmaxMif'</value>
+</property>
+<property name="Expression">
+<value>VmaxMif_full_activity.NumberConc * ck_factor_iaa.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; VmaxMif_full_activity &lt;/ci&gt;#x0A    &lt;ci&gt; ck_factor_iaa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VmaxMif</value>
+<value>Variable:/SBMLParameter:VmaxMif</value>
+<value>1</value>
+</value>
+<value>
+<value>VmaxMif_full_activity</value>
+<value>Variable:/SBMLParameter:VmaxMif_full_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>ck_factor_iaa</value>
+<value>Variable:/SBMLParameter:ck_factor_iaa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VmaxMMf">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VmaxMMf'</value>
+</property>
+<property name="Expression">
+<value>VmaxMMf_full_activity.NumberConc * ck_factor_iaa.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; VmaxMMf_full_activity &lt;/ci&gt;#x0A    &lt;ci&gt; ck_factor_iaa &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VmaxMMf</value>
+<value>Variable:/SBMLParameter:VmaxMMf</value>
+<value>1</value>
+</value>
+<value>
+<value>VmaxMMf_full_activity</value>
+<value>Variable:/SBMLParameter:VmaxMMf_full_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>ck_factor_iaa</value>
+<value>Variable:/SBMLParameter:ck_factor_iaa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VmaxMib">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VmaxMib'</value>
+</property>
+<property name="Expression">
+<value>K_CK_eq.NumberConc * KicMi.NumberConc * KdMi.NumberConc * VmaxMif.NumberConc / (KiaMi.NumberConc * KbMi.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; K_CK_eq &lt;/ci&gt;#x0A      &lt;ci&gt; KicMi &lt;/ci&gt;#x0A      &lt;ci&gt; KdMi &lt;/ci&gt;#x0A      &lt;ci&gt; VmaxMif &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; KiaMi &lt;/ci&gt;#x0A      &lt;ci&gt; KbMi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VmaxMib</value>
+<value>Variable:/SBMLParameter:VmaxMib</value>
+<value>1</value>
+</value>
+<value>
+<value>K_CK_eq</value>
+<value>Variable:/SBMLParameter:K_CK_eq</value>
+<value>0</value>
+</value>
+<value>
+<value>KicMi</value>
+<value>Variable:/SBMLParameter:KicMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KdMi</value>
+<value>Variable:/SBMLParameter:KdMi</value>
+<value>0</value>
+</value>
+<value>
+<value>VmaxMif</value>
+<value>Variable:/SBMLParameter:VmaxMif</value>
+<value>0</value>
+</value>
+<value>
+<value>KiaMi</value>
+<value>Variable:/SBMLParameter:KiaMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KbMi</value>
+<value>Variable:/SBMLParameter:KbMi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VmaxMMb">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VmaxMMb'</value>
+</property>
+<property name="Expression">
+<value>K_CK_eq.NumberConc * KicMM.NumberConc * KdMM.NumberConc * VmaxMMf.NumberConc / (KiaMM.NumberConc * KbMM.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; K_CK_eq &lt;/ci&gt;#x0A      &lt;ci&gt; KicMM &lt;/ci&gt;#x0A      &lt;ci&gt; KdMM &lt;/ci&gt;#x0A      &lt;ci&gt; VmaxMMf &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; KiaMM &lt;/ci&gt;#x0A      &lt;ci&gt; KbMM &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VmaxMMb</value>
+<value>Variable:/SBMLParameter:VmaxMMb</value>
+<value>1</value>
+</value>
+<value>
+<value>K_CK_eq</value>
+<value>Variable:/SBMLParameter:K_CK_eq</value>
+<value>0</value>
+</value>
+<value>
+<value>KicMM</value>
+<value>Variable:/SBMLParameter:KicMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KdMM</value>
+<value>Variable:/SBMLParameter:KdMM</value>
+<value>0</value>
+</value>
+<value>
+<value>VmaxMMf</value>
+<value>Variable:/SBMLParameter:VmaxMMf</value>
+<value>0</value>
+</value>
+<value>
+<value>KiaMM</value>
+<value>Variable:/SBMLParameter:KiaMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KbMM</value>
+<value>Variable:/SBMLParameter:KbMM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_diff_pcr">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_diff_pcr'</value>
+</property>
+<property name="Expression">
+<value>PSmomPCr.NumberConc * (PCri.NumberConc - PCr.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PSmomPCr &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; PCri &lt;/ci&gt;#x0A      &lt;ci&gt; PCr &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_diff_pcr</value>
+<value>Variable:/SBMLParameter:j_diff_pcr</value>
+<value>1</value>
+</value>
+<value>
+<value>PSmomPCr</value>
+<value>Variable:/SBMLParameter:PSmomPCr</value>
+<value>0</value>
+</value>
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>0</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_diff_atp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_diff_atp'</value>
+</property>
+<property name="Expression">
+<value>PSmomATP.NumberConc * (ATPi.NumberConc - ATP.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PSmomATP &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; ATPi &lt;/ci&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_diff_atp</value>
+<value>Variable:/SBMLParameter:j_diff_atp</value>
+<value>1</value>
+</value>
+<value>
+<value>PSmomATP</value>
+<value>Variable:/SBMLParameter:PSmomATP</value>
+<value>0</value>
+</value>
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_r_diff_pcr">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'r_diff_pcr'</value>
+</property>
+<property name="Expression">
+<value>j_diff_pcr.NumberConc / (j_diff_pcr.NumberConc + j_diff_atp.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; j_diff_pcr &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; j_diff_pcr &lt;/ci&gt;#x0A      &lt;ci&gt; j_diff_atp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>r_diff_pcr</value>
+<value>Variable:/SBMLParameter:r_diff_pcr</value>
+<value>1</value>
+</value>
+<value>
+<value>j_diff_pcr</value>
+<value>Variable:/SBMLParameter:j_diff_pcr</value>
+<value>0</value>
+</value>
+<value>
+<value>j_diff_atp</value>
+<value>Variable:/SBMLParameter:j_diff_atp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_phase">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'phase'</value>
+</property>
+<property name="Expression">
+<value>(abs(time.Value - time_Jhyd_step.NumberConc) - floor(abs(time.Value - time_Jhyd_step.NumberConc) / (60 / heartrate_bpm.NumberConc)) * 60 / heartrate_bpm.NumberConc) / (60 / heartrate_bpm.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;abs/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;ci&gt; time_Jhyd_step &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;floor/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;abs/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A                  &lt;ci&gt; time_Jhyd_step &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;cn type='integer'&gt; 60 &lt;/cn&gt;#x0A                &lt;ci&gt; heartrate_bpm &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn type='integer'&gt; 60 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; heartrate_bpm &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 60 &lt;/cn&gt;#x0A      &lt;ci&gt; heartrate_bpm &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phase</value>
+<value>Variable:/SBMLParameter:phase</value>
+<value>1</value>
+</value>
+<value>
+<value>time_Jhyd_step</value>
+<value>Variable:/SBMLParameter:time_Jhyd_step</value>
+<value>0</value>
+</value>
+<value>
+<value>heartrate_bpm</value>
+<value>Variable:/SBMLParameter:heartrate_bpm</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_fracDia">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'fracDia'</value>
+</property>
+<property name="Expression">
+<value>1 - fracSysUp.NumberConc - fracSysDown.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; fracSysUp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; fracSysDown &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>fracDia</value>
+<value>Variable:/SBMLParameter:fracDia</value>
+<value>1</value>
+</value>
+<value>
+<value>fracSysUp</value>
+<value>Variable:/SBMLParameter:fracSysUp</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysDown</value>
+<value>Variable:/SBMLParameter:fracSysDown</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VhydAmp_basis">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VhydAmp_basis'</value>
+</property>
+<property name="Expression">
+<value>2 * Jhyd_basis.NumberConc / (fracSysUp.NumberConc + fracSysDown.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;ci&gt; Jhyd_basis &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; fracSysUp &lt;/ci&gt;#x0A      &lt;ci&gt; fracSysDown &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VhydAmp_basis</value>
+<value>Variable:/SBMLParameter:VhydAmp_basis</value>
+<value>1</value>
+</value>
+<value>
+<value>Jhyd_basis</value>
+<value>Variable:/SBMLParameter:Jhyd_basis</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysUp</value>
+<value>Variable:/SBMLParameter:fracSysUp</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysDown</value>
+<value>Variable:/SBMLParameter:fracSysDown</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_VhydAmp_test">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'VhydAmp_test'</value>
+</property>
+<property name="Expression">
+<value>2 * Jhyd_test.NumberConc / (fracSysUp.NumberConc + fracSysDown.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;ci&gt; Jhyd_test &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; fracSysUp &lt;/ci&gt;#x0A      &lt;ci&gt; fracSysDown &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VhydAmp_test</value>
+<value>Variable:/SBMLParameter:VhydAmp_test</value>
+<value>1</value>
+</value>
+<value>
+<value>Jhyd_test</value>
+<value>Variable:/SBMLParameter:Jhyd_test</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysUp</value>
+<value>Variable:/SBMLParameter:fracSysUp</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysDown</value>
+<value>Variable:/SBMLParameter:fracSysDown</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_ck_mi">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_ck_mi'</value>
+</property>
+<property name="Expression">
+<value>(VmaxMif.NumberConc * ATPi.NumberConc * Cri.NumberConc / (KiaMi.NumberConc * KbMi.NumberConc) - VmaxMib.NumberConc * ADPi.NumberConc * PCri.NumberConc / (KicMi.NumberConc * KdMi.NumberConc)) / (1 + Cri.NumberConc / KibMi.NumberConc + PCri.NumberConc / KidMi.NumberConc + ATPi.NumberConc * (1 / KiaMi.NumberConc + Cri.NumberConc / (KiaMi.NumberConc * KbMi.NumberConc)) + ADPi.NumberConc * (1 / KicMi.NumberConc + Cri.NumberConc / (KicMi.NumberConc * KibMi.NumberConc) + PCri.NumberConc / (KidMi.NumberConc * (KicMi.NumberConc * KdMi.NumberConc / KidMi.NumberConc))))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmaxMif &lt;/ci&gt;#x0A          &lt;ci&gt; ATPi &lt;/ci&gt;#x0A          &lt;ci&gt; Cri &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KiaMi &lt;/ci&gt;#x0A          &lt;ci&gt; KbMi &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmaxMib &lt;/ci&gt;#x0A          &lt;ci&gt; ADPi &lt;/ci&gt;#x0A          &lt;ci&gt; PCri &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KicMi &lt;/ci&gt;#x0A          &lt;ci&gt; KdMi &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Cri &lt;/ci&gt;#x0A        &lt;ci&gt; KibMi &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; PCri &lt;/ci&gt;#x0A        &lt;ci&gt; KidMi &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ATPi &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; KiaMi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Cri &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiaMi &lt;/ci&gt;#x0A              &lt;ci&gt; KbMi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ADPi &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; KicMi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Cri &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KicMi &lt;/ci&gt;#x0A              &lt;ci&gt; KibMi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PCri &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KidMi &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; KicMi &lt;/ci&gt;#x0A                  &lt;ci&gt; KdMi &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; KidMi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_ck_mi</value>
+<value>Variable:/SBMLParameter:j_ck_mi</value>
+<value>1</value>
+</value>
+<value>
+<value>VmaxMif</value>
+<value>Variable:/SBMLParameter:VmaxMif</value>
+<value>0</value>
+</value>
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>0</value>
+</value>
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>0</value>
+</value>
+<value>
+<value>KiaMi</value>
+<value>Variable:/SBMLParameter:KiaMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KbMi</value>
+<value>Variable:/SBMLParameter:KbMi</value>
+<value>0</value>
+</value>
+<value>
+<value>VmaxMib</value>
+<value>Variable:/SBMLParameter:VmaxMib</value>
+<value>0</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>0</value>
+</value>
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>0</value>
+</value>
+<value>
+<value>KicMi</value>
+<value>Variable:/SBMLParameter:KicMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KdMi</value>
+<value>Variable:/SBMLParameter:KdMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KibMi</value>
+<value>Variable:/SBMLParameter:KibMi</value>
+<value>0</value>
+</value>
+<value>
+<value>KidMi</value>
+<value>Variable:/SBMLParameter:KidMi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_ck_mm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_ck_mm'</value>
+</property>
+<property name="Expression">
+<value>(VmaxMMf.NumberConc * ATP.NumberConc * Cr.NumberConc / (KiaMM.NumberConc * KbMM.NumberConc) - VmaxMMb.NumberConc * ADP.NumberConc * PCr.NumberConc / (KicMM.NumberConc * KdMM.NumberConc)) / (1 + Cr.NumberConc / KibMM.NumberConc + PCr.NumberConc / KidMM.NumberConc + ATP.NumberConc * (1 / KiaMM.NumberConc + Cr.NumberConc / (KiaMM.NumberConc * KbMM.NumberConc)) + ADP.NumberConc * (1 / KicMM.NumberConc + Cr.NumberConc / (KicMM.NumberConc * KibMM.NumberConc) + PCr.NumberConc / (KidMM.NumberConc * (KicMM.NumberConc * KdMM.NumberConc / KidMM.NumberConc))))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmaxMMf &lt;/ci&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;ci&gt; Cr &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KiaMM &lt;/ci&gt;#x0A          &lt;ci&gt; KbMM &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmaxMMb &lt;/ci&gt;#x0A          &lt;ci&gt; ADP &lt;/ci&gt;#x0A          &lt;ci&gt; PCr &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KicMM &lt;/ci&gt;#x0A          &lt;ci&gt; KdMM &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Cr &lt;/ci&gt;#x0A        &lt;ci&gt; KibMM &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; PCr &lt;/ci&gt;#x0A        &lt;ci&gt; KidMM &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; KiaMM &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Cr &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiaMM &lt;/ci&gt;#x0A              &lt;ci&gt; KbMM &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ADP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; KicMM &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Cr &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KicMM &lt;/ci&gt;#x0A              &lt;ci&gt; KibMM &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PCr &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KidMM &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; KicMM &lt;/ci&gt;#x0A                  &lt;ci&gt; KdMM &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; KidMM &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_ck_mm</value>
+<value>Variable:/SBMLParameter:j_ck_mm</value>
+<value>1</value>
+</value>
+<value>
+<value>VmaxMMf</value>
+<value>Variable:/SBMLParameter:VmaxMMf</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>0</value>
+</value>
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>0</value>
+</value>
+<value>
+<value>KiaMM</value>
+<value>Variable:/SBMLParameter:KiaMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KbMM</value>
+<value>Variable:/SBMLParameter:KbMM</value>
+<value>0</value>
+</value>
+<value>
+<value>VmaxMMb</value>
+<value>Variable:/SBMLParameter:VmaxMMb</value>
+<value>0</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>0</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>0</value>
+</value>
+<value>
+<value>KicMM</value>
+<value>Variable:/SBMLParameter:KicMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KdMM</value>
+<value>Variable:/SBMLParameter:KdMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KibMM</value>
+<value>Variable:/SBMLParameter:KibMM</value>
+<value>0</value>
+</value>
+<value>
+<value>KidMM</value>
+<value>Variable:/SBMLParameter:KidMM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_diff_adp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_diff_adp'</value>
+</property>
+<property name="Expression">
+<value>PSmomATP.NumberConc * (ADPi.NumberConc - ADP.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PSmomATP &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; ADPi &lt;/ci&gt;#x0A      &lt;ci&gt; ADP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_diff_adp</value>
+<value>Variable:/SBMLParameter:j_diff_adp</value>
+<value>1</value>
+</value>
+<value>
+<value>PSmomATP</value>
+<value>Variable:/SBMLParameter:PSmomATP</value>
+<value>0</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>0</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_diff_pi">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_diff_pi'</value>
+</property>
+<property name="Expression">
+<value>PSmomPi.NumberConc * (P_ii.NumberConc - P_i.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PSmomPi &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; P_ii &lt;/ci&gt;#x0A      &lt;ci&gt; P_i &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_diff_pi</value>
+<value>Variable:/SBMLParameter:j_diff_pi</value>
+<value>1</value>
+</value>
+<value>
+<value>PSmomPi</value>
+<value>Variable:/SBMLParameter:PSmomPi</value>
+<value>0</value>
+</value>
+<value>
+<value>P_ii</value>
+<value>Variable:/IMS:P_ii</value>
+<value>0</value>
+</value>
+<value>
+<value>P_i</value>
+<value>Variable:/CYT:P_i</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j_diff_cr">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j_diff_cr'</value>
+</property>
+<property name="Expression">
+<value>PSmomCr.NumberConc * (Cri.NumberConc - Cr.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; PSmomCr &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; Cri &lt;/ci&gt;#x0A      &lt;ci&gt; Cr &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j_diff_cr</value>
+<value>Variable:/SBMLParameter:j_diff_cr</value>
+<value>1</value>
+</value>
+<value>
+<value>PSmomCr</value>
+<value>Variable:/SBMLParameter:PSmomCr</value>
+<value>0</value>
+</value>
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>0</value>
+</value>
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="pulsatile_test">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulsatile_test</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Jhyd</value>
+<value>piecewise((1 - (phase.NumberConc - fracSysUp.NumberConc) / fracSysDown.NumberConc) * VhydAmp_test.NumberConc, and(gt(phase.NumberConc, fracSysUp.NumberConc), leq(phase.NumberConc, 1 - fracDia.NumberConc)), phase.NumberConc / fracSysUp.NumberConc * VhydAmp_test.NumberConc, leq(phase.NumberConc, fracSysUp.NumberConc), 0, geq(phase.NumberConc, 1 - fracDia.NumberConc), Jhyd.NumberConc)</value>
+</value>
+<value>
+<value>last_time_fired</value>
+<value>&lt;t&gt;</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A        &lt;ci&gt; time_Jhyd_step &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;gt/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A          &lt;ci&gt; last_time_fired &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; stepsize &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;eq/&gt;#x0A      &lt;ci&gt; pulsatility &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(and(geq(time.Value, time_Jhyd_step.NumberConc), gt(time.Value - last_time_fired.NumberConc, stepsize.NumberConc)), eq(pulsatility.NumberConc, 1))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Jhyd</value>
+<value>Variable:/SBMLParameter:Jhyd</value>
+<value>1</value>
+</value>
+<value>
+<value>phase</value>
+<value>Variable:/SBMLParameter:phase</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysUp</value>
+<value>Variable:/SBMLParameter:fracSysUp</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysDown</value>
+<value>Variable:/SBMLParameter:fracSysDown</value>
+<value>0</value>
+</value>
+<value>
+<value>VhydAmp_test</value>
+<value>Variable:/SBMLParameter:VhydAmp_test</value>
+<value>0</value>
+</value>
+<value>
+<value>fracDia</value>
+<value>Variable:/SBMLParameter:fracDia</value>
+<value>0</value>
+</value>
+<value>
+<value>last_time_fired</value>
+<value>Variable:/SBMLParameter:last_time_fired</value>
+<value>1</value>
+</value>
+<value>
+<value>time_Jhyd_step</value>
+<value>Variable:/SBMLParameter:time_Jhyd_step</value>
+<value>0</value>
+</value>
+<value>
+<value>stepsize</value>
+<value>Variable:/SBMLParameter:stepsize</value>
+<value>0</value>
+</value>
+<value>
+<value>pulsatility</value>
+<value>Variable:/SBMLParameter:pulsatility</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="pulsatile_basis">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>pulsatile_basis</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Jhyd</value>
+<value>piecewise(0, leq(phase.NumberConc, fracDia.NumberConc), (phase.NumberConc - fracDia.NumberConc) / fracSysDown.NumberConc * VhydAmp_basis.NumberConc, and(gt(phase.NumberConc, fracDia.NumberConc), leq(phase.NumberConc, 1 - fracSysUp.NumberConc)), (1 - phase.NumberConc) * VhydAmp_basis.NumberConc / fracSysUp.NumberConc, gt(phase.NumberConc, 1 - fracSysUp.NumberConc), Jhyd.NumberConc)</value>
+</value>
+<value>
+<value>last_time_fired</value>
+<value>&lt;t&gt;</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;and/&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A        &lt;ci&gt; time_Jhyd_step &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;geq/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A          &lt;ci&gt; last_time_fired &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; stepsize &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;eq/&gt;#x0A      &lt;ci&gt; pulsatility &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(and(lt(time.Value, time_Jhyd_step.NumberConc), geq(time.Value - last_time_fired.NumberConc, stepsize.NumberConc)), eq(pulsatility.NumberConc, 1))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Jhyd</value>
+<value>Variable:/SBMLParameter:Jhyd</value>
+<value>1</value>
+</value>
+<value>
+<value>phase</value>
+<value>Variable:/SBMLParameter:phase</value>
+<value>0</value>
+</value>
+<value>
+<value>fracDia</value>
+<value>Variable:/SBMLParameter:fracDia</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysDown</value>
+<value>Variable:/SBMLParameter:fracSysDown</value>
+<value>0</value>
+</value>
+<value>
+<value>VhydAmp_basis</value>
+<value>Variable:/SBMLParameter:VhydAmp_basis</value>
+<value>0</value>
+</value>
+<value>
+<value>fracSysUp</value>
+<value>Variable:/SBMLParameter:fracSysUp</value>
+<value>0</value>
+</value>
+<value>
+<value>last_time_fired</value>
+<value>Variable:/SBMLParameter:last_time_fired</value>
+<value>1</value>
+</value>
+<value>
+<value>time_Jhyd_step</value>
+<value>Variable:/SBMLParameter:time_Jhyd_step</value>
+<value>0</value>
+</value>
+<value>
+<value>stepsize</value>
+<value>Variable:/SBMLParameter:stepsize</value>
+<value>0</value>
+</value>
+<value>
+<value>pulsatility</value>
+<value>Variable:/SBMLParameter:pulsatility</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="nonpulsatile_step">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nonpulsatile_step</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Jhyd</value>
+<value>piecewise(Jhyd_test.NumberConc, eq(pulsatility.NumberConc, 0), Jhyd.NumberConc)</value>
+</value>
+<value>
+<value>heartrate_bpm</value>
+<value>heartrate_test.NumberConc</value>
+</value>
+<value>
+<value>tmito_factor</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A    &lt;ci&gt; time_Jhyd_step &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, time_Jhyd_step.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Jhyd</value>
+<value>Variable:/SBMLParameter:Jhyd</value>
+<value>1</value>
+</value>
+<value>
+<value>Jhyd_test</value>
+<value>Variable:/SBMLParameter:Jhyd_test</value>
+<value>0</value>
+</value>
+<value>
+<value>pulsatility</value>
+<value>Variable:/SBMLParameter:pulsatility</value>
+<value>0</value>
+</value>
+<value>
+<value>heartrate_bpm</value>
+<value>Variable:/SBMLParameter:heartrate_bpm</value>
+<value>1</value>
+</value>
+<value>
+<value>heartrate_test</value>
+<value>Variable:/SBMLParameter:heartrate_test</value>
+<value>0</value>
+</value>
+<value>
+<value>tmito_factor</value>
+<value>Variable:/SBMLParameter:tmito_factor</value>
+<value>1</value>
+</value>
+<value>
+<value>time_Jhyd_step</value>
+<value>Variable:/SBMLParameter:time_Jhyd_step</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,906 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="r1">
+<property name="Name">
+<value>r1</value>
+</property>
+<property name="Expression">
+<value>system.Value * (Dex.Value / system.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/system:M</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Dex</value>
+<value>Variable:/SBMLParameter:Dex</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r2">
+<property name="Name">
+<value>r2</value>
+</property>
+<property name="Expression">
+<value>system.Value * (kms.Value * pow(TF.NumberConc, n.Value) / (pow(J.Value, n.Value) + pow(TF.NumberConc, n.Value)) / system.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/system:M</value>
+<value>1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kms</value>
+<value>Variable:/SBMLParameter:kms</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>J</value>
+<value>Variable:/SBMLParameter:J</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r3">
+<property name="Name">
+<value>r3</value>
+</property>
+<property name="Expression">
+<value>system.Value * kmd.Value * M.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/system:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kmd</value>
+<value>Variable:/SBMLParameter:kmd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r4">
+<property name="Name">
+<value>r4</value>
+</property>
+<property name="Expression">
+<value>system.Value * kcps.Value * M.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/system:M</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kcps</value>
+<value>Variable:/SBMLParameter:kcps</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r5">
+<property name="Name">
+<value>r5</value>
+</property>
+<property name="Expression">
+<value>system.Value * kcpd.Value * CP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>-1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kcpd</value>
+<value>Variable:/SBMLParameter:kcpd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r6">
+<property name="Name">
+<value>r6</value>
+</property>
+<property name="Expression">
+<value>system.Value * ka.Value * pow(CP.NumberConc, 2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>-2</value>
+</value>
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r7">
+<property name="Name">
+<value>r7</value>
+</property>
+<property name="Expression">
+<value>system.Value * kd.Value * CP2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>2</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kd</value>
+<value>Variable:/SBMLParameter:kd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r8">
+<property name="Name">
+<value>r8</value>
+</property>
+<property name="Expression">
+<value>system.Value * (kp1.Value * CP.NumberConc / (Jp.Value + CP.NumberConc + 2 * CP2.NumberConc + 2 * IC.NumberConc) / system.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>-1</value>
+</value>
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>0</value>
+</value>
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kp1</value>
+<value>Variable:/SBMLParameter:kp1</value>
+<value>0</value>
+</value>
+<value>
+<value>Jp</value>
+<value>Variable:/SBMLParameter:Jp</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r9">
+<property name="Name">
+<value>r9</value>
+</property>
+<property name="Expression">
+<value>system.Value * chk2.Value * CP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>-1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>chk2</value>
+<value>Variable:/SBMLParameter:chk2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r10">
+<property name="Name">
+<value>r10</value>
+</property>
+<property name="Expression">
+<value>system.Value * kicd.Value * IC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>-1</value>
+</value>
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kicd</value>
+<value>Variable:/SBMLParameter:kicd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r11">
+<property name="Name">
+<value>r11</value>
+</property>
+<property name="Expression">
+<value>system.Value * kcp2d.Value * CP2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kcp2d</value>
+<value>Variable:/SBMLParameter:kcp2d</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r12">
+<property name="Name">
+<value>r12</value>
+</property>
+<property name="Expression">
+<value>system.Value * kica.Value * CP2.NumberConc * TF.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>-1</value>
+</value>
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kica</value>
+<value>Variable:/SBMLParameter:kica</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r13">
+<property name="Name">
+<value>r13</value>
+</property>
+<property name="Expression">
+<value>system.Value * (kp2.Value * CP2.NumberConc / (Jp.Value + CP.NumberConc + 2 * CP2.NumberConc + 2 * IC.NumberConc) / system.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>0</value>
+</value>
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kp2</value>
+<value>Variable:/SBMLParameter:kp2</value>
+<value>0</value>
+</value>
+<value>
+<value>Jp</value>
+<value>Variable:/SBMLParameter:Jp</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r14">
+<property name="Name">
+<value>r14</value>
+</property>
+<property name="Expression">
+<value>system.Value * chk2.Value * CP2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>-1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>chk2</value>
+<value>Variable:/SBMLParameter:chk2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r15">
+<property name="Name">
+<value>r15</value>
+</property>
+<property name="Expression">
+<value>system.Value * kcp2d.Value * IC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>-1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kcp2d</value>
+<value>Variable:/SBMLParameter:kcp2d</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r16">
+<property name="Name">
+<value>r16</value>
+</property>
+<property name="Expression">
+<value>system.Value * chk2c.Value * IC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>-1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>1</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>chk2c</value>
+<value>Variable:/SBMLParameter:chk2c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r17">
+<property name="Name">
+<value>r17</value>
+</property>
+<property name="Expression">
+<value>system.Value * (kp2.Value * IC.NumberConc / (Jp.Value + CP.NumberConc + 2 * CP2.NumberConc + 2 * IC.NumberConc) / system.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>-1</value>
+</value>
+<value>
+<value>TF</value>
+<value>Variable:/system:TF</value>
+<value>1</value>
+</value>
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>0</value>
+</value>
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kp2</value>
+<value>Variable:/SBMLParameter:kp2</value>
+<value>0</value>
+</value>
+<value>
+<value>Jp</value>
+<value>Variable:/SBMLParameter:Jp</value>
+<value>0</value>
+</value>
+<value>
+<value>system</value>
+<value>Variable:/system:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/system">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>system</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>M</value>
+</property>
+<property name="NumberConc">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TF">
+<property name="Name">
+<value>TF</value>
+</property>
+<property name="NumberConc">
+<value>0.13</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CP">
+<property name="Name">
+<value>CP</value>
+</property>
+<property name="NumberConc">
+<value>0.037</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CP2">
+<property name="Name">
+<value>CP2</value>
+</property>
+<property name="NumberConc">
+<value>0.046</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IC">
+<property name="Name">
+<value>IC</value>
+</property>
+<property name="NumberConc">
+<value>0.37</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CPtot">
+<property name="Name">
+<value>CPtot</value>
+</property>
+<property name="Value">
+<value>0.869</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Dex">
+<property name="Name">
+<value>Dex</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kms">
+<property name="Name">
+<value>kms</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>n</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J">
+<property name="Name">
+<value>J</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kmd">
+<property name="Name">
+<value>kmd</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcps">
+<property name="Name">
+<value>kcps</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcpd">
+<property name="Name">
+<value>kcpd</value>
+</property>
+<property name="Value">
+<value>0.525</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Name">
+<value>ka</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd">
+<property name="Name">
+<value>kd</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp1">
+<property name="Name">
+<value>kp1</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Jp">
+<property name="Name">
+<value>Jp</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="chk2">
+<property name="Name">
+<value>chk2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kicd">
+<property name="Name">
+<value>kicd</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcp2d">
+<property name="Name">
+<value>kcp2d</value>
+</property>
+<property name="Value">
+<value>0.0525</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kica">
+<property name="Name">
+<value>kica</value>
+</property>
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="chk2c">
+<property name="Name">
+<value>chk2c</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp2">
+<property name="Name">
+<value>kp2</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ICtot">
+<property name="Name">
+<value>TFtot</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_CPtot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CPtot'</value>
+</property>
+<property name="Expression">
+<value>CP.NumberConc + 2 * CP2.NumberConc + 2 * IC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CPtot</value>
+<value>Variable:/system:CPtot</value>
+<value>1</value>
+</value>
+<value>
+<value>CP</value>
+<value>Variable:/system:CP</value>
+<value>0</value>
+</value>
+<value>
+<value>CP2</value>
+<value>Variable:/system:CP2</value>
+<value>0</value>
+</value>
+<value>
+<value>IC</value>
+<value>Variable:/system:IC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

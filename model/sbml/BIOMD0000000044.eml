@@ -1,0 +1,412 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vin">
+<property name="Name">
+<value>[EC] -&gt; [Z];</value>
+</property>
+<property name="v0">
+<value>2.0</value>
+</property>
+<property name="v1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (v0 + v1 * beta.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EC</value>
+<value>Variable:/extracellular:EC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta</value>
+<value>Variable:/SBMLParameter:beta</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; v0 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; v1 &lt;/ci&gt;#x0A        &lt;ci&gt; beta &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v2">
+<property name="Name">
+<value>[Z] -&gt; [Y];</value>
+</property>
+<property name="Vm2">
+<value>6.5</value>
+</property>
+<property name="K2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>intravesicular.Value * (Vm2 * pow(Z.NumberConc, 2) / (pow(K2, 2) + pow(Z.NumberConc, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>-1</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/extracellular/cytosol/intravesicular:Y</value>
+<value>1</value>
+</value>
+<value>
+<value>intravesicular</value>
+<value>Variable:/extracellular/cytosol/intravesicular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; intravesicular &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Z &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; K2 &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Z &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v3">
+<property name="Name">
+<value>[Y] -&gt; [Z]; { A };</value>
+</property>
+<property name="Vm3">
+<value>19.5</value>
+</property>
+<property name="Ka">
+<value>0.2</value>
+</property>
+<property name="Ky">
+<value>0.2</value>
+</property>
+<property name="Kz">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * Vm3 * pow(A.NumberConc, 4) * pow(Y.NumberConc, 2) * pow(Z.NumberConc, 4) / ((pow(Ka, 4) + pow(A.NumberConc, 4)) * (pow(Ky, 2) + pow(Y.NumberConc, 2)) * (pow(Kz, 4) + pow(Z.NumberConc, 4)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y</value>
+<value>Variable:/extracellular/cytosol/intravesicular:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/extracellular/cytosol:A</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A      &lt;ci&gt; Vm3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; A &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Y &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Z &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Ka &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; A &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Ky &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Y &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Kz &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Z &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v4">
+<property name="Name">
+<value>[Y] -&gt; [Z];</value>
+</property>
+<property name="Kf">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * Kf * Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y</value>
+<value>Variable:/extracellular/cytosol/intravesicular:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; Kf &lt;/ci&gt;#x0A    &lt;ci&gt; Y &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v5">
+<property name="Name">
+<value>[Z] -&gt; [EC];</value>
+</property>
+<property name="K">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>extracellular.Value * K * Z.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>-1</value>
+</value>
+<value>
+<value>EC</value>
+<value>Variable:/extracellular:EC</value>
+<value>1</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; K &lt;/ci&gt;#x0A    &lt;ci&gt; Z &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v6">
+<property name="Name">
+<value>Agonist stimulated production of IP3</value>
+</property>
+<property name="Vp">
+<value>2.5</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * beta.Value * Vp</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/extracellular/cytosol:A</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta</value>
+<value>Variable:/SBMLParameter:beta</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; beta &lt;/ci&gt;#x0A    &lt;ci&gt; Vp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v7">
+<property name="Name">
+<value>Ca dependent IP3 degradation</value>
+</property>
+<property name="Vd">
+<value>80.0</value>
+</property>
+<property name="Kp">
+<value>1.0</value>
+</property>
+<property name="Kd">
+<value>0.4</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * Vd * pow(A.NumberConc, 2) * pow(Z.NumberConc, n) / ((pow(Kp, 2) + pow(A.NumberConc, 2)) * (pow(Kd, n) + pow(Z.NumberConc, n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/extracellular/cytosol:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/extracellular/cytosol:Z</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A      &lt;ci&gt; Vd &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; A &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Z &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Kp &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; A &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Kd &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Z &lt;/ci&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v8">
+<property name="Name">
+<value>Ca independent IP3 degradation</value>
+</property>
+<property name="epsilon">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * epsilon * A.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/extracellular/cytosol:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/extracellular/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;ci&gt; epsilon &lt;/ci&gt;#x0A    &lt;ci&gt; A &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EC">
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Z">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="NumberConc">
+<value>0.45</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular/cytosol/intravesicular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Y">
+<property name="NumberConc">
+<value>0.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="beta">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

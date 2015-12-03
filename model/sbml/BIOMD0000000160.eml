@@ -1,0 +1,2091 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="re1">
+<property name="Name">
+<value>CC PT association</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CC.NumberConc * PT.NumberConc * bccpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>-1</value>
+</value>
+<value>
+<value>PT</value>
+<value>Variable:/wholeCell:PT</value>
+<value>-1</value>
+</value>
+<value>
+<value>CCPT</value>
+<value>Variable:/wholeCell:CCPT</value>
+<value>1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bccpt</value>
+<value>Variable:/SBMLParameter:bccpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;ci&gt; PT &lt;/ci&gt;#x0A    &lt;ci&gt; bccpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re2">
+<property name="Name">
+<value>Degradation of CLK CYK dimer</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CC.NumberConc * dcc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dcc</value>
+<value>Variable:/SBMLParameter:dcc</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;ci&gt; dcc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re3">
+<property name="Name">
+<value>Degradation of CC PT dimer</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CCPT.NumberConc * dccpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCPT</value>
+<value>Variable:/wholeCell:CCPT</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dccpt</value>
+<value>Variable:/SBMLParameter:dccpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CCPT &lt;/ci&gt;#x0A    &lt;ci&gt; dccpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re4">
+<property name="Name">
+<value>Degradation of PER TIM dimer</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * PT.NumberConc * dpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PT</value>
+<value>Variable:/wholeCell:PT</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dpt</value>
+<value>Variable:/SBMLParameter:dpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; PT &lt;/ci&gt;#x0A    &lt;ci&gt; dpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re9">
+<property name="Name">
+<value>Degradation of clk mRNA</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * clkm.NumberConc * dclkm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>clkm</value>
+<value>Variable:/wholeCell:clkm</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dclkm</value>
+<value>Variable:/SBMLParameter:dclkm</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; clkm &lt;/ci&gt;#x0A    &lt;ci&gt; dclkm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re10">
+<property name="Name">
+<value>clkm translation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * clkm.NumberConc * tlclk.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CLK</value>
+<value>Variable:/wholeCell:CLK</value>
+<value>1</value>
+</value>
+<value>
+<value>clkm</value>
+<value>Variable:/wholeCell:clkm</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tlclk</value>
+<value>Variable:/SBMLParameter:tlclk</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; clkm &lt;/ci&gt;#x0A    &lt;ci&gt; tlclk &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re15">
+<property name="Name">
+<value>Degradation of per mRNA</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * perm.NumberConc * dperm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>perm</value>
+<value>Variable:/wholeCell:perm</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dperm</value>
+<value>Variable:/SBMLParameter:dperm</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; perm &lt;/ci&gt;#x0A    &lt;ci&gt; dperm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re17">
+<property name="Name">
+<value>perm translation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * perm.NumberConc * tlper.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PER</value>
+<value>Variable:/wholeCell:PER</value>
+<value>1</value>
+</value>
+<value>
+<value>perm</value>
+<value>Variable:/wholeCell:perm</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tlper</value>
+<value>Variable:/SBMLParameter:tlper</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; perm &lt;/ci&gt;#x0A    &lt;ci&gt; tlper &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re20">
+<property name="Name">
+<value>per transcription</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ((1 - pow(1 - prcper.NumberConc, npt.Value)) * tcccperp.Value + pow(1 - prcper.NumberConc, npt.Value) * tcdvpmt.Value) * perp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>perm</value>
+<value>Variable:/wholeCell:perm</value>
+<value>1</value>
+</value>
+<value>
+<value>prcper</value>
+<value>Variable:/wholeCell:prcper</value>
+<value>0</value>
+</value>
+<value>
+<value>perp</value>
+<value>Variable:/wholeCell:perp</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>npt</value>
+<value>Variable:/SBMLParameter:npt</value>
+<value>0</value>
+</value>
+<value>
+<value>tcccperp</value>
+<value>Variable:/SBMLParameter:tcccperp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcdvpmt</value>
+<value>Variable:/SBMLParameter:tcdvpmt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; prcper &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; npt &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcccperp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; prcper &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; npt &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcdvpmt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; perp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re28">
+<property name="Name">
+<value>vri transcription</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ((1 - pow(1 - prcv.NumberConc, nvri.Value)) * tcccvrip.Value + pow(1 - prcv.NumberConc, nvri.Value) * tcdvpmt.Value) * vrip.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>vrim</value>
+<value>Variable:/wholeCell:vrim</value>
+<value>1</value>
+</value>
+<value>
+<value>prcv</value>
+<value>Variable:/wholeCell:prcv</value>
+<value>0</value>
+</value>
+<value>
+<value>vrip</value>
+<value>Variable:/wholeCell:vrip</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>nvri</value>
+<value>Variable:/SBMLParameter:nvri</value>
+<value>0</value>
+</value>
+<value>
+<value>tcccvrip</value>
+<value>Variable:/SBMLParameter:tcccvrip</value>
+<value>0</value>
+</value>
+<value>
+<value>tcdvpmt</value>
+<value>Variable:/SBMLParameter:tcdvpmt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; prcv &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; nvri &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcccvrip &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; prcv &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; nvri &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcdvpmt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; vrip &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re30">
+<property name="Name">
+<value>Degradation of vri mRNA</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * vrim.NumberConc * dvrim.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>vrim</value>
+<value>Variable:/wholeCell:vrim</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dvrim</value>
+<value>Variable:/SBMLParameter:dvrim</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; vrim &lt;/ci&gt;#x0A    &lt;ci&gt; dvrim &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re31">
+<property name="Name">
+<value>vrim translation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * vrim.NumberConc * tlvri.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VRI</value>
+<value>Variable:/wholeCell:VRI</value>
+<value>1</value>
+</value>
+<value>
+<value>vrim</value>
+<value>Variable:/wholeCell:vrim</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tlvri</value>
+<value>Variable:/SBMLParameter:tlvri</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; vrim &lt;/ci&gt;#x0A    &lt;ci&gt; tlvri &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re32">
+<property name="Name">
+<value>VRI protein degradation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * VRI.NumberConc * dvri.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VRI</value>
+<value>Variable:/wholeCell:VRI</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dvri</value>
+<value>Variable:/SBMLParameter:dvri</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; VRI &lt;/ci&gt;#x0A    &lt;ci&gt; dvri &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re35">
+<property name="Name">
+<value>pdp transcription</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ((1 - pow(1 - prcpdp.NumberConc, npdp.Value)) * tcccpdpp.Value + pow(1 - prcpdp.NumberConc, npdp.Value) * tcdvpmt.Value) * pdpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pdpm</value>
+<value>Variable:/wholeCell:pdpm</value>
+<value>1</value>
+</value>
+<value>
+<value>prcpdp</value>
+<value>Variable:/wholeCell:prcpdp</value>
+<value>0</value>
+</value>
+<value>
+<value>pdpp</value>
+<value>Variable:/wholeCell:pdpp</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>npdp</value>
+<value>Variable:/SBMLParameter:npdp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcccpdpp</value>
+<value>Variable:/SBMLParameter:tcccpdpp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcdvpmt</value>
+<value>Variable:/SBMLParameter:tcdvpmt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; prcpdp &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; npdp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcccpdpp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; prcpdp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; npdp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcdvpmt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; pdpp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re37">
+<property name="Name">
+<value>Degradation of pdp mRNA</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * pdpm.NumberConc * dpdpm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pdpm</value>
+<value>Variable:/wholeCell:pdpm</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dpdpm</value>
+<value>Variable:/SBMLParameter:dpdpm</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; pdpm &lt;/ci&gt;#x0A    &lt;ci&gt; dpdpm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re38">
+<property name="Name">
+<value>pdpm translation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * pdpm.NumberConc * tlpdp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PDP</value>
+<value>Variable:/wholeCell:PDP</value>
+<value>1</value>
+</value>
+<value>
+<value>pdpm</value>
+<value>Variable:/wholeCell:pdpm</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tlpdp</value>
+<value>Variable:/SBMLParameter:tlpdp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; pdpm &lt;/ci&gt;#x0A    &lt;ci&gt; tlpdp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re39">
+<property name="Name">
+<value>PDP protein degradation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * PDP.NumberConc * dpdp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PDP</value>
+<value>Variable:/wholeCell:PDP</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dpdp</value>
+<value>Variable:/SBMLParameter:dpdp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; PDP &lt;/ci&gt;#x0A    &lt;ci&gt; dpdp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re42">
+<property name="Name">
+<value>clk transcription</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (prvc.NumberConc * tcvriclkp.Value + prpc.NumberConc * tcpdpclkp.Value + (1 - prvc.NumberConc - prpc.NumberConc) * tcclkp.Value) * clkp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>clkm</value>
+<value>Variable:/wholeCell:clkm</value>
+<value>1</value>
+</value>
+<value>
+<value>prvc</value>
+<value>Variable:/wholeCell:prvc</value>
+<value>0</value>
+</value>
+<value>
+<value>clkp</value>
+<value>Variable:/wholeCell:clkp</value>
+<value>0</value>
+</value>
+<value>
+<value>prpc</value>
+<value>Variable:/wholeCell:prpc</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tcvriclkp</value>
+<value>Variable:/SBMLParameter:tcvriclkp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcpdpclkp</value>
+<value>Variable:/SBMLParameter:tcpdpclkp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcclkp</value>
+<value>Variable:/SBMLParameter:tcclkp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; prvc &lt;/ci&gt;#x0A        &lt;ci&gt; tcvriclkp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; prpc &lt;/ci&gt;#x0A        &lt;ci&gt; tcpdpclkp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; prvc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; prpc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcclkp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; clkp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re43">
+<property name="Name">
+<value>CLK CYC association</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CLK.NumberConc * bcc.Value * CYC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CLK</value>
+<value>Variable:/wholeCell:CLK</value>
+<value>-1</value>
+</value>
+<value>
+<value>CYC</value>
+<value>Variable:/wholeCell:CYC</value>
+<value>0</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bcc</value>
+<value>Variable:/SBMLParameter:bcc</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CLK &lt;/ci&gt;#x0A    &lt;ci&gt; bcc &lt;/ci&gt;#x0A    &lt;ci&gt; CYC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re44">
+<property name="Name">
+<value>CLK protein degradation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CLK.NumberConc * dclk.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CLK</value>
+<value>Variable:/wholeCell:CLK</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dclk</value>
+<value>Variable:/SBMLParameter:dclk</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CLK &lt;/ci&gt;#x0A    &lt;ci&gt; dclk &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re45">
+<property name="Name">
+<value>CLK CYC dissociation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CC.NumberConc * ubcc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>-1</value>
+</value>
+<value>
+<value>CLK</value>
+<value>Variable:/wholeCell:CLK</value>
+<value>1</value>
+</value>
+<value>
+<value>CYC</value>
+<value>Variable:/wholeCell:CYC</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubcc</value>
+<value>Variable:/SBMLParameter:ubcc</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;ci&gt; ubcc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re46">
+<property name="Name">
+<value>PER TIM association</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * PER.NumberConc * TIM.NumberConc * bpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PER</value>
+<value>Variable:/wholeCell:PER</value>
+<value>-1</value>
+</value>
+<value>
+<value>TIM</value>
+<value>Variable:/wholeCell:TIM</value>
+<value>-1</value>
+</value>
+<value>
+<value>PT</value>
+<value>Variable:/wholeCell:PT</value>
+<value>1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bpt</value>
+<value>Variable:/SBMLParameter:bpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; PER &lt;/ci&gt;#x0A    &lt;ci&gt; TIM &lt;/ci&gt;#x0A    &lt;ci&gt; bpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re47">
+<property name="Name">
+<value>PER TIM dissociation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * PT.NumberConc * ubpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PT</value>
+<value>Variable:/wholeCell:PT</value>
+<value>-1</value>
+</value>
+<value>
+<value>PER</value>
+<value>Variable:/wholeCell:PER</value>
+<value>1</value>
+</value>
+<value>
+<value>TIM</value>
+<value>Variable:/wholeCell:TIM</value>
+<value>1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubpt</value>
+<value>Variable:/SBMLParameter:ubpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; PT &lt;/ci&gt;#x0A    &lt;ci&gt; ubpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re48">
+<property name="Name">
+<value>PER protein degradation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * PER.NumberConc * dper.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PER</value>
+<value>Variable:/wholeCell:PER</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dper</value>
+<value>Variable:/SBMLParameter:dper</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; PER &lt;/ci&gt;#x0A    &lt;ci&gt; dper &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re51">
+<property name="Name">
+<value>tim transcription</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ((1 - pow(1 - prct.NumberConc, npt.Value)) * tccctimp.Value + pow(1 - prct.NumberConc, npt.Value) * tcdvpmt.Value) * timp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>timm</value>
+<value>Variable:/wholeCell:timm</value>
+<value>1</value>
+</value>
+<value>
+<value>prct</value>
+<value>Variable:/wholeCell:prct</value>
+<value>0</value>
+</value>
+<value>
+<value>timp</value>
+<value>Variable:/wholeCell:timp</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>npt</value>
+<value>Variable:/SBMLParameter:npt</value>
+<value>0</value>
+</value>
+<value>
+<value>tccctimp</value>
+<value>Variable:/SBMLParameter:tccctimp</value>
+<value>0</value>
+</value>
+<value>
+<value>tcdvpmt</value>
+<value>Variable:/SBMLParameter:tcdvpmt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; prct &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; npt &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tccctimp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; prct &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; npt &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; tcdvpmt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; timp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re53">
+<property name="Name">
+<value>Degradation of tim mRNA</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * timm.NumberConc * dtimm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>timm</value>
+<value>Variable:/wholeCell:timm</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dtimm</value>
+<value>Variable:/SBMLParameter:dtimm</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; timm &lt;/ci&gt;#x0A    &lt;ci&gt; dtimm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re54">
+<property name="Name">
+<value>timm translation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * timm.NumberConc * tltim.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TIM</value>
+<value>Variable:/wholeCell:TIM</value>
+<value>1</value>
+</value>
+<value>
+<value>timm</value>
+<value>Variable:/wholeCell:timm</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tltim</value>
+<value>Variable:/SBMLParameter:tltim</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; timm &lt;/ci&gt;#x0A    &lt;ci&gt; tltim &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re55">
+<property name="Name">
+<value>TIM protein degradation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * TIM.NumberConc * dtim.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TIM</value>
+<value>Variable:/wholeCell:TIM</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dtim</value>
+<value>Variable:/SBMLParameter:dtim</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; TIM &lt;/ci&gt;#x0A    &lt;ci&gt; dtim &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re56">
+<property name="Name">
+<value>CC PT dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * CCPT.NumberConc * ubccpt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCPT</value>
+<value>Variable:/wholeCell:CCPT</value>
+<value>-1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>1</value>
+</value>
+<value>
+<value>PT</value>
+<value>Variable:/wholeCell:PT</value>
+<value>1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubccpt</value>
+<value>Variable:/SBMLParameter:ubccpt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; CCPT &lt;/ci&gt;#x0A    &lt;ci&gt; ubccpt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re57">
+<property name="Name">
+<value>CC binding probability in per promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prcper.NumberConc) * bccperp.Value * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcper</value>
+<value>Variable:/wholeCell:prcper</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bccperp</value>
+<value>Variable:/SBMLParameter:bccperp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; prcper &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bccperp &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re58">
+<property name="Name">
+<value>CC Unbinding probability in per promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * prcper.NumberConc * ubccperp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcper</value>
+<value>Variable:/wholeCell:prcper</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubccperp</value>
+<value>Variable:/SBMLParameter:ubccperp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; prcper &lt;/ci&gt;#x0A    &lt;ci&gt; ubccperp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re59">
+<property name="Name">
+<value>CC Unbinding probability in vri promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ubccvrip.Value * prcv.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcv</value>
+<value>Variable:/wholeCell:prcv</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubccvrip</value>
+<value>Variable:/SBMLParameter:ubccvrip</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; ubccvrip &lt;/ci&gt;#x0A    &lt;ci&gt; prcv &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re60">
+<property name="Name">
+<value>CC binding probability in vri promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prcv.NumberConc) * bccvrip.Value * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcv</value>
+<value>Variable:/wholeCell:prcv</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bccvrip</value>
+<value>Variable:/SBMLParameter:bccvrip</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; prcv &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bccvrip &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re61">
+<property name="Name">
+<value>CC Unbinding probability in pdp1 promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * ubccpdpp.Value * prcpdp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcpdp</value>
+<value>Variable:/wholeCell:prcpdp</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubccpdpp</value>
+<value>Variable:/SBMLParameter:ubccpdpp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; ubccpdpp &lt;/ci&gt;#x0A    &lt;ci&gt; prcpdp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re62">
+<property name="Name">
+<value>CC binding probability in pdp1 promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prcpdp.NumberConc) * bccpdpp.Value * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prcpdp</value>
+<value>Variable:/wholeCell:prcpdp</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bccpdpp</value>
+<value>Variable:/SBMLParameter:bccpdpp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; prcpdp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bccpdpp &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re63">
+<property name="Name">
+<value>VRI binding clk promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prvc.NumberConc - prpc.NumberConc) * bvriclkp.Value * VRI.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prvc</value>
+<value>Variable:/wholeCell:prvc</value>
+<value>1</value>
+</value>
+<value>
+<value>prpc</value>
+<value>Variable:/wholeCell:prpc</value>
+<value>0</value>
+</value>
+<value>
+<value>VRI</value>
+<value>Variable:/wholeCell:VRI</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bvriclkp</value>
+<value>Variable:/SBMLParameter:bvriclkp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; prvc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; prpc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bvriclkp &lt;/ci&gt;#x0A    &lt;ci&gt; VRI &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re64">
+<property name="Name">
+<value>VRI unbinding clk promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * prvc.NumberConc * ubvriclkp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prvc</value>
+<value>Variable:/wholeCell:prvc</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubvriclkp</value>
+<value>Variable:/SBMLParameter:ubvriclkp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; prvc &lt;/ci&gt;#x0A    &lt;ci&gt; ubvriclkp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re65">
+<property name="Name">
+<value>PDP binding clk promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prvc.NumberConc - prpc.NumberConc) * bpdpclkp.Value * PDP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prpc</value>
+<value>Variable:/wholeCell:prpc</value>
+<value>1</value>
+</value>
+<value>
+<value>prvc</value>
+<value>Variable:/wholeCell:prvc</value>
+<value>0</value>
+</value>
+<value>
+<value>PDP</value>
+<value>Variable:/wholeCell:PDP</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bpdpclkp</value>
+<value>Variable:/SBMLParameter:bpdpclkp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; prvc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; prpc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bpdpclkp &lt;/ci&gt;#x0A    &lt;ci&gt; PDP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re66">
+<property name="Name">
+<value>PDP unbinding clk promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * prpc.NumberConc * ubpdpclkp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prpc</value>
+<value>Variable:/wholeCell:prpc</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubpdpclkp</value>
+<value>Variable:/SBMLParameter:ubpdpclkp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; prpc &lt;/ci&gt;#x0A    &lt;ci&gt; ubpdpclkp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re68">
+<property name="Name">
+<value>CC binding probability in tim promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * (1 - prct.NumberConc) * bcctimp.Value * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prct</value>
+<value>Variable:/wholeCell:prct</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/wholeCell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>bcctimp</value>
+<value>Variable:/SBMLParameter:bcctimp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; prct &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; bcctimp &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re69">
+<property name="Name">
+<value>CC Unbinding probability in tim promoter</value>
+</property>
+<property name="Expression">
+<value>wholeCell.Value * prct.NumberConc * ubcctimp.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prct</value>
+<value>Variable:/wholeCell:prct</value>
+<value>-1</value>
+</value>
+<value>
+<value>wholeCell</value>
+<value>Variable:/wholeCell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ubcctimp</value>
+<value>Variable:/SBMLParameter:ubcctimp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; wholeCell &lt;/ci&gt;#x0A    &lt;ci&gt; prct &lt;/ci&gt;#x0A    &lt;ci&gt; ubcctimp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/wholeCell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>wholeCell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CC">
+<property name="Name">
+<value>CC</value>
+</property>
+<property name="NumberConc">
+<value>0.5566</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CCPT">
+<property name="Name">
+<value>CCPT</value>
+</property>
+<property name="NumberConc">
+<value>0.4982</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="clkp">
+<property name="Name">
+<value>clkp</value>
+</property>
+<property name="NumberConc">
+<value>0.003185</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="perp">
+<property name="Name">
+<value>perp</value>
+</property>
+<property name="NumberConc">
+<value>0.003185</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="clkm">
+<property name="Name">
+<value>clkm</value>
+</property>
+<property name="NumberConc">
+<value>0.2583</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="perm">
+<property name="Name">
+<value>perm</value>
+</property>
+<property name="NumberConc">
+<value>0.2395</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PT">
+<property name="Name">
+<value>PT</value>
+</property>
+<property name="NumberConc">
+<value>0.4014</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="vrip">
+<property name="Name">
+<value>vrip</value>
+</property>
+<property name="NumberConc">
+<value>0.003185</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="vrim">
+<property name="Name">
+<value>vrim</value>
+</property>
+<property name="NumberConc">
+<value>0.2571</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="VRI">
+<property name="Name">
+<value>VRI</value>
+</property>
+<property name="NumberConc">
+<value>3.175</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pdpp">
+<property name="Name">
+<value>pdpp</value>
+</property>
+<property name="NumberConc">
+<value>0.003185</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pdpm">
+<property name="Name">
+<value>pdpm</value>
+</property>
+<property name="NumberConc">
+<value>0.3175</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PDP">
+<property name="Name">
+<value>PDP</value>
+</property>
+<property name="NumberConc">
+<value>4.1953</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CLK">
+<property name="Name">
+<value>CLK</value>
+</property>
+<property name="NumberConc">
+<value>3.6628</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PER">
+<property name="Name">
+<value>PER</value>
+</property>
+<property name="NumberConc">
+<value>2.7527</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="timp">
+<property name="Name">
+<value>timp</value>
+</property>
+<property name="NumberConc">
+<value>0.003185</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="timm">
+<property name="Name">
+<value>timm</value>
+</property>
+<property name="NumberConc">
+<value>0.2395</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TIM">
+<property name="Name">
+<value>TIM</value>
+</property>
+<property name="NumberConc">
+<value>2.7527</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CYC">
+<property name="Name">
+<value>CYC</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="prcper">
+<property name="Name">
+<value>CCbindingPer</value>
+</property>
+<property name="Value">
+<value>0.0431</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prcv">
+<property name="Name">
+<value>CCbindingvri</value>
+</property>
+<property name="Value">
+<value>0.0585</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prcpdp">
+<property name="Name">
+<value>CCbindingpdp</value>
+</property>
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prvc">
+<property name="Name">
+<value>VRIbindingclkp</value>
+</property>
+<property name="Value">
+<value>0.489</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prpc">
+<property name="Name">
+<value>PDPbindingclkp</value>
+</property>
+<property name="Value">
+<value>0.426</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prct">
+<property name="Name">
+<value>CCbindingtim</value>
+</property>
+<property name="Value">
+<value>0.043</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="dccpt">
+<property name="Value">
+<value>15.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bccperp">
+<property name="Value">
+<value>0.069</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubccperp">
+<property name="Value">
+<value>0.262</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bccpt">
+<property name="Value">
+<value>51.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dperm">
+<property name="Value">
+<value>0.053</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tlper">
+<property name="Value">
+<value>36.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcccperp">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcdvpmt">
+<property name="Value">
+<value>0.028</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dvri">
+<property name="Value">
+<value>1.226</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcclkp">
+<property name="Value">
+<value>1.42</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bcc">
+<property name="Value">
+<value>2.349</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dclk">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubcc">
+<property name="Value">
+<value>0.89</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bpt">
+<property name="Value">
+<value>1.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubpt">
+<property name="Value">
+<value>2.93</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dper">
+<property name="Value">
+<value>0.62</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcccvrip">
+<property name="Value">
+<value>16.86</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcccpdpp">
+<property name="Value">
+<value>9.831</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dvrim">
+<property name="Value">
+<value>0.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dpdpm">
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubccpt">
+<property name="Value">
+<value>7.89</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tlvri">
+<property name="Value">
+<value>14.68</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tlpdp">
+<property name="Value">
+<value>1.87</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bccvrip">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bccpdpp">
+<property name="Value">
+<value>0.062</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubccvrip">
+<property name="Value">
+<value>0.276</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubccpdpp">
+<property name="Value">
+<value>0.145</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcpdpclkp">
+<property name="Value">
+<value>125.54</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dclkm">
+<property name="Value">
+<value>0.643</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bvriclkp">
+<property name="Value">
+<value>1.858</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bpdpclkp">
+<property name="Value">
+<value>1.155</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubvriclkp">
+<property name="Value">
+<value>1.043</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubpdpclkp">
+<property name="Value">
+<value>0.952</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tcvriclkp">
+<property name="Value">
+<value>0.053</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dpdp">
+<property name="Value">
+<value>0.156</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tlclk">
+<property name="Value">
+<value>35.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dcc">
+<property name="Value">
+<value>0.184</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dpt">
+<property name="Value">
+<value>0.279</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dtim">
+<property name="Value">
+<value>0.62</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dtimm">
+<property name="Value">
+<value>0.053</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tltim">
+<property name="Value">
+<value>36.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bcctimp">
+<property name="Value">
+<value>0.069</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ubcctimp">
+<property name="Value">
+<value>0.262</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tccctimp">
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="npt">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="nvri">
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="npdp">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,1087 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>EGF+EGFR</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (EGF_binding_kf.Value * EGF.NumberConc * EGFR.NumberConc - EGF_binding_kb.Value * EGF_EGFR.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGF</value>
+<value>Variable:/Cell:EGF</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGFR</value>
+<value>Variable:/Cell:EGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGF_EGFR</value>
+<value>Variable:/Cell:EGF_EGFR</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_binding_kf</value>
+<value>Variable:/SBMLParameter:EGF_binding_kf</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_binding_kb</value>
+<value>Variable:/SBMLParameter:EGF_binding_kb</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EGF_binding_kf &lt;/ci&gt;#x0A        &lt;ci&gt; EGF &lt;/ci&gt;#x0A        &lt;ci&gt; EGFR &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EGF_binding_kb &lt;/ci&gt;#x0A        &lt;ci&gt; EGF_EGFR &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>pEGFR+Akt</value>
+</property>
+<property name="k1">
+<value>1.5543e-05</value>
+</property>
+<property name="k2">
+<value>0.00517473</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * pEGFR.NumberConc * Akt.NumberConc - k2 * pEGFR_Akt.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pEGFR</value>
+<value>Variable:/Cell:pEGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/Cell:Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>pEGFR_Akt</value>
+<value>Variable:/Cell:pEGFR_Akt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; pEGFR &lt;/ci&gt;#x0A        &lt;ci&gt; Akt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; pEGFR_Akt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>Akt_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.0528141</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pEGFR_Akt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pEGFR_Akt</value>
+<value>Variable:/Cell:pEGFR_Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>pEGFR</value>
+<value>Variable:/Cell:pEGFR</value>
+<value>1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pEGFR_Akt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>pEGFR_degradation</value>
+</property>
+<property name="k1">
+<value>0.0997194</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pEGFR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pEGFR</value>
+<value>Variable:/Cell:pEGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pEGFR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>pAkt+S6</value>
+</property>
+<property name="k1">
+<value>2.10189e-06</value>
+</property>
+<property name="k2">
+<value>5.1794e-15</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * pAkt.NumberConc * S6.NumberConc - k2 * pAkt_S6.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>-1</value>
+</value>
+<value>
+<value>S6</value>
+<value>Variable:/Cell:S6</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; pAkt &lt;/ci&gt;#x0A        &lt;ci&gt; S6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>S6_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.00121498</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pAkt_S6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>1</value>
+</value>
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>pAkt_dephospho</value>
+</property>
+<property name="k1">
+<value>0.0327962</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pAkt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/Cell:Akt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pAkt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>pS6_dephospho</value>
+</property>
+<property name="k1">
+<value>0.00113102</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pS6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>-1</value>
+</value>
+<value>
+<value>S6</value>
+<value>Variable:/Cell:S6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pS6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>EGFR_synthesis</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * EGFR_turnover.Value * pro_EGFR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pro_EGFR</value>
+<value>Variable:/Cell:pro_EGFR</value>
+<value>0</value>
+</value>
+<value>
+<value>EGFR</value>
+<value>Variable:/Cell:EGFR</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>EGFR_turnover</value>
+<value>Variable:/SBMLParameter:EGFR_turnover</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; EGFR_turnover &lt;/ci&gt;#x0A    &lt;ci&gt; pro_EGFR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>EGFR_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.0192391</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * EGF_EGFR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGF_EGFR</value>
+<value>Variable:/Cell:EGF_EGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>pEGFR</value>
+<value>Variable:/Cell:pEGFR</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; EGF_EGFR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>EGFR_degradation</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * EGFR_turnover.Value * EGFR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGFR</value>
+<value>Variable:/Cell:EGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>EGFR_turnover</value>
+<value>Variable:/SBMLParameter:EGFR_turnover</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; EGFR_turnover &lt;/ci&gt;#x0A    &lt;ci&gt; EGFR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>EGFR+i</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (inhibitor_binding_kf.Value * Inhibitor.NumberConc * EGFR.NumberConc - inhibitor_binding_kb.Value * EGFR_i.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Inhibitor</value>
+<value>Variable:/Cell:Inhibitor</value>
+<value>0</value>
+</value>
+<value>
+<value>EGFR</value>
+<value>Variable:/Cell:EGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGFR_i</value>
+<value>Variable:/Cell:EGFR_i</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>inhibitor_binding_kf</value>
+<value>Variable:/SBMLParameter:inhibitor_binding_kf</value>
+<value>0</value>
+</value>
+<value>
+<value>inhibitor_binding_kb</value>
+<value>Variable:/SBMLParameter:inhibitor_binding_kb</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; inhibitor_binding_kf &lt;/ci&gt;#x0A        &lt;ci&gt; Inhibitor &lt;/ci&gt;#x0A        &lt;ci&gt; EGFR &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; inhibitor_binding_kb &lt;/ci&gt;#x0A        &lt;ci&gt; EGFR_i &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_13">
+<property name="Name">
+<value>EGF_EGFR+i</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (inhibitor_binding_kf.Value * Inhibitor.NumberConc * EGF_EGFR.NumberConc - inhibitor_binding_kb.Value * EGF_EGFR_i.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Inhibitor</value>
+<value>Variable:/Cell:Inhibitor</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_EGFR</value>
+<value>Variable:/Cell:EGF_EGFR</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGF_EGFR_i</value>
+<value>Variable:/Cell:EGF_EGFR_i</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>inhibitor_binding_kf</value>
+<value>Variable:/SBMLParameter:inhibitor_binding_kf</value>
+<value>0</value>
+</value>
+<value>
+<value>inhibitor_binding_kb</value>
+<value>Variable:/SBMLParameter:inhibitor_binding_kb</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; inhibitor_binding_kf &lt;/ci&gt;#x0A        &lt;ci&gt; Inhibitor &lt;/ci&gt;#x0A        &lt;ci&gt; EGF_EGFR &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; inhibitor_binding_kb &lt;/ci&gt;#x0A        &lt;ci&gt; EGF_EGFR_i &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_14">
+<property name="Name">
+<value>EGF+EGFR_i</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (EGF_binding_kf.Value * EGF.NumberConc * EGFR_i.NumberConc - EGF_binding_kb.Value * EGF_EGFR_i.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGF</value>
+<value>Variable:/Cell:EGF</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGFR_i</value>
+<value>Variable:/Cell:EGFR_i</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGF_EGFR_i</value>
+<value>Variable:/Cell:EGF_EGFR_i</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_binding_kf</value>
+<value>Variable:/SBMLParameter:EGF_binding_kf</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_binding_kb</value>
+<value>Variable:/SBMLParameter:EGF_binding_kb</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EGF_binding_kf &lt;/ci&gt;#x0A        &lt;ci&gt; EGF &lt;/ci&gt;#x0A        &lt;ci&gt; EGFR_i &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EGF_binding_kb &lt;/ci&gt;#x0A        &lt;ci&gt; EGF_EGFR_i &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_15">
+<property name="Name">
+<value>EGFR_i_degradation</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * EGFR_turnover.Value * EGFR_i.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGFR_i</value>
+<value>Variable:/Cell:EGFR_i</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>EGFR_turnover</value>
+<value>Variable:/SBMLParameter:EGFR_turnover</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; EGFR_turnover &lt;/ci&gt;#x0A    &lt;ci&gt; EGFR_i &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF">
+<property name="Name">
+<value>EGF</value>
+</property>
+<property name="Value">
+<value>30.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EGFR">
+<property name="Name">
+<value>EGFR</value>
+</property>
+<property name="NumberConc">
+<value>68190.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pEGFR">
+<property name="Name">
+<value>pEGFR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pEGFR_Akt">
+<property name="Name">
+<value>pEGFR_Akt</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Akt">
+<property name="Name">
+<value>Akt</value>
+</property>
+<property name="Value">
+<value>0.043309</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt">
+<property name="Name">
+<value>pAkt</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S6">
+<property name="Name">
+<value>S6</value>
+</property>
+<property name="Value">
+<value>3.54317</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_S6">
+<property name="Name">
+<value>pAkt_S6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6">
+<property name="Name">
+<value>pS6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pro_EGFR">
+<property name="Name">
+<value>pro_EGFR</value>
+</property>
+<property name="Value">
+<value>68190.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_EGFR">
+<property name="Name">
+<value>EGF_EGFR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EGFR_i">
+<property name="Name">
+<value>EGFR_i</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_EGFR_i">
+<property name="Name">
+<value>EGF_EGFR_i</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Inhibitor">
+<property name="Name">
+<value>Inhibitor</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="pEGFR_total">
+<property name="Name">
+<value>pEGFR_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_total">
+<property name="Name">
+<value>pAkt_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="pEGFR_scaleFactor">
+<property name="Name">
+<value>pEGFR_scaleFactor</value>
+</property>
+<property name="Value">
+<value>0.000181735</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_scaleFactor">
+<property name="Name">
+<value>pAkt_scaleFactor</value>
+</property>
+<property name="Value">
+<value>60.0588</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6_scaleFactor">
+<property name="Name">
+<value>pS6_scaleFactor</value>
+</property>
+<property name="Value">
+<value>49886.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6_total">
+<property name="Name">
+<value>pS6_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_conc_step">
+<property name="Name">
+<value>EGF_conc_step</value>
+</property>
+<property name="Value">
+<value>30.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_conc_pulse">
+<property name="Name">
+<value>EGF_conc_pulse</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_conc_ramp">
+<property name="Name">
+<value>EGF_conc_ramp</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGFR_turnover">
+<property name="Name">
+<value>EGFR_turnover</value>
+</property>
+<property name="Value">
+<value>0.000106386</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_binding_kf">
+<property name="Name">
+<value>EGF_binding_kf</value>
+</property>
+<property name="Value">
+<value>0.00673816</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF_binding_kb">
+<property name="Name">
+<value>EGF_binding_kb</value>
+</property>
+<property name="Value">
+<value>0.040749</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="inhibitor_binding_kf">
+<property name="Name">
+<value>inhibitor_binding_kf</value>
+</property>
+<property name="Value">
+<value>2.43466029021e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="inhibitor_binding_kb">
+<property name="Name">
+<value>inhibitor_binding_kb</value>
+</property>
+<property name="Value">
+<value>5.25096686262e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse_time">
+<property name="Name">
+<value>pulse_time</value>
+</property>
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ramp_time">
+<property name="Name">
+<value>ramp_time</value>
+</property>
+<property name="Value">
+<value>3600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pAkt_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pAkt_total'</value>
+</property>
+<property name="Expression">
+<value>(pAkt.NumberConc + pAkt_S6.NumberConc) * pAkt_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; pAkt &lt;/ci&gt;#x0A      &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; pAkt_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt_total</value>
+<value>Variable:/SBMLParameter:pAkt_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>0</value>
+</value>
+<value>
+<value>pAkt_scaleFactor</value>
+<value>Variable:/SBMLParameter:pAkt_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pEGFR_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pEGFR_total'</value>
+</property>
+<property name="Expression">
+<value>(pEGFR.NumberConc + pEGFR_Akt.NumberConc) * pEGFR_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; pEGFR &lt;/ci&gt;#x0A      &lt;ci&gt; pEGFR_Akt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; pEGFR_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pEGFR_total</value>
+<value>Variable:/SBMLParameter:pEGFR_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pEGFR</value>
+<value>Variable:/Cell:pEGFR</value>
+<value>0</value>
+</value>
+<value>
+<value>pEGFR_Akt</value>
+<value>Variable:/Cell:pEGFR_Akt</value>
+<value>0</value>
+</value>
+<value>
+<value>pEGFR_scaleFactor</value>
+<value>Variable:/SBMLParameter:pEGFR_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_EGF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'EGF'</value>
+</property>
+<property name="Expression">
+<value>EGF_conc_step.NumberConc + piecewise(EGF_conc_pulse.NumberConc, leq(time.Value, pulse_time.NumberConc), 0) + EGF_conc_ramp.NumberConc * time.Value / ramp_time.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; EGF_conc_step &lt;/ci&gt;#x0A    &lt;piecewise&gt;#x0A      &lt;piece&gt;#x0A        &lt;ci&gt; EGF_conc_pulse &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;leq/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;ci&gt; pulse_time &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/piece&gt;#x0A      &lt;otherwise&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/otherwise&gt;#x0A    &lt;/piecewise&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EGF_conc_ramp &lt;/ci&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; ramp_time &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EGF</value>
+<value>Variable:/Cell:EGF</value>
+<value>1</value>
+</value>
+<value>
+<value>EGF_conc_step</value>
+<value>Variable:/SBMLParameter:EGF_conc_step</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_conc_pulse</value>
+<value>Variable:/SBMLParameter:EGF_conc_pulse</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse_time</value>
+<value>Variable:/SBMLParameter:pulse_time</value>
+<value>0</value>
+</value>
+<value>
+<value>EGF_conc_ramp</value>
+<value>Variable:/SBMLParameter:EGF_conc_ramp</value>
+<value>0</value>
+</value>
+<value>
+<value>ramp_time</value>
+<value>Variable:/SBMLParameter:ramp_time</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pS6_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pS6_total'</value>
+</property>
+<property name="Expression">
+<value>pS6.NumberConc * pS6_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pS6 &lt;/ci&gt;#x0A    &lt;ci&gt; pS6_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pS6_total</value>
+<value>Variable:/SBMLParameter:pS6_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>0</value>
+</value>
+<value>
+<value>pS6_scaleFactor</value>
+<value>Variable:/SBMLParameter:pS6_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

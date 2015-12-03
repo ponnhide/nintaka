@@ -1,0 +1,939 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="_1">
+<property name="Name">
+<value>cyclinD synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * aD_1.Value * (GF_1.Value / (pow(k1_1.Value, -1) + GF_1.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_1</value>
+<value>Variable:/cell:D_1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>aD_1</value>
+<value>Variable:/SBMLParameter:aD_1</value>
+<value>0</value>
+</value>
+<value>
+<value>GF_1</value>
+<value>Variable:/SBMLParameter:GF_1</value>
+<value>0</value>
+</value>
+<value>
+<value>k1_1</value>
+<value>Variable:/SBMLParameter:k1_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; aD_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; k1_1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cyclinD_1">
+<property name="Name">
+<value>cyclinD degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dD_1.Value * E_1.NumberConc * D_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_1</value>
+<value>Variable:/cell:D_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_1</value>
+<value>Variable:/cell:E_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dD_1</value>
+<value>Variable:/SBMLParameter:dD_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; dD_1 &lt;/ci&gt;#x0A    &lt;ci&gt; E_1 &lt;/ci&gt;#x0A    &lt;ci&gt; D_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cyclinEsynthesis_1">
+<property name="Name">
+<value>cyclinE synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * aE_1.Value * (GF_1.Value / (pow(k2_1.Value, -1) + GF_1.Value) + aF_1.Value * theta_1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E_1</value>
+<value>Variable:/cell:E_1</value>
+<value>1</value>
+</value>
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>aE_1</value>
+<value>Variable:/SBMLParameter:aE_1</value>
+<value>0</value>
+</value>
+<value>
+<value>GF_1</value>
+<value>Variable:/SBMLParameter:GF_1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_1</value>
+<value>Variable:/SBMLParameter:k2_1</value>
+<value>0</value>
+</value>
+<value>
+<value>aF_1</value>
+<value>Variable:/SBMLParameter:aF_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; aE_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; k2_1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; aF_1 &lt;/ci&gt;#x0A        &lt;ci&gt; theta_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cyclinEdegradation_1">
+<property name="Name">
+<value>cyclinE degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dE_1.Value * X_1.NumberConc * E_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E_1</value>
+<value>Variable:/cell:E_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>X_1</value>
+<value>Variable:/cell:X_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dE_1</value>
+<value>Variable:/SBMLParameter:dE_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; dE_1 &lt;/ci&gt;#x0A    &lt;ci&gt; X_1 &lt;/ci&gt;#x0A    &lt;ci&gt; E_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="pRBsynthesis_1">
+<property name="Name">
+<value>pRB synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (pX_1.Value * (RT_1.Value - RS_1.NumberConc - R_1.NumberConc) * X_1.NumberConc / (qX_1.Value + RT_1.Value - RS_1.NumberConc - R_1.NumberConc + X_1.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_1</value>
+<value>Variable:/cell:R_1</value>
+<value>1</value>
+</value>
+<value>
+<value>RS_1</value>
+<value>Variable:/cell:RS_1</value>
+<value>0</value>
+</value>
+<value>
+<value>X_1</value>
+<value>Variable:/cell:X_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>pX_1</value>
+<value>Variable:/SBMLParameter:pX_1</value>
+<value>0</value>
+</value>
+<value>
+<value>RT_1</value>
+<value>Variable:/SBMLParameter:RT_1</value>
+<value>0</value>
+</value>
+<value>
+<value>qX_1</value>
+<value>Variable:/SBMLParameter:qX_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; pX_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;ci&gt; RT_1 &lt;/ci&gt;#x0A            &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; R_1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; X_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; qX_1 &lt;/ci&gt;#x0A              &lt;ci&gt; RT_1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; R_1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; X_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="pRBdeplation_1">
+<property name="Name">
+<value>pRB/E2F complex association</value>
+</property>
+<property name="Expression">
+<value>cell.Value * pS_1.Value * R_1.NumberConc * theta_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_1</value>
+<value>Variable:/cell:R_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>RS_1</value>
+<value>Variable:/cell:RS_1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>pS_1</value>
+<value>Variable:/SBMLParameter:pS_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; pS_1 &lt;/ci&gt;#x0A    &lt;ci&gt; R_1 &lt;/ci&gt;#x0A    &lt;ci&gt; theta_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="_2">
+<property name="Name">
+<value>pRB/E2F complex dissociation via cyclin D</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (pD_1.Value * RS_1.NumberConc * D_1.NumberConc / (qD_1.Value + RS_1.NumberConc + D_1.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RS_1</value>
+<value>Variable:/cell:RS_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>1</value>
+</value>
+<value>
+<value>D_1</value>
+<value>Variable:/cell:D_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>pD_1</value>
+<value>Variable:/SBMLParameter:pD_1</value>
+<value>0</value>
+</value>
+<value>
+<value>qD_1</value>
+<value>Variable:/SBMLParameter:qD_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; pD_1 &lt;/ci&gt;#x0A        &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A        &lt;ci&gt; D_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; qD_1 &lt;/ci&gt;#x0A        &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A        &lt;ci&gt; D_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="null2_1">
+<property name="Name">
+<value>pRB/E2F complex dissociation via cyclin E</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (pE_1.Value * RS_1.NumberConc * E_1.NumberConc / (qE_1.Value + RS_1.NumberConc + E_1.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RS_1</value>
+<value>Variable:/cell:RS_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>1</value>
+</value>
+<value>
+<value>E_1</value>
+<value>Variable:/cell:E_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>pE_1</value>
+<value>Variable:/SBMLParameter:pE_1</value>
+<value>0</value>
+</value>
+<value>
+<value>qE_1</value>
+<value>Variable:/SBMLParameter:qE_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; pE_1 &lt;/ci&gt;#x0A        &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A        &lt;ci&gt; E_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; qE_1 &lt;/ci&gt;#x0A        &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A        &lt;ci&gt; E_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="null3_1">
+<property name="Name">
+<value>E2F synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * atheta_1.Value * (GF_1.Value / (pow(k3_1.Value, -1) + GF_1.Value) + fC_1_1.Value * theta_1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>atheta_1</value>
+<value>Variable:/SBMLParameter:atheta_1</value>
+<value>0</value>
+</value>
+<value>
+<value>GF_1</value>
+<value>Variable:/SBMLParameter:GF_1</value>
+<value>0</value>
+</value>
+<value>
+<value>k3_1</value>
+<value>Variable:/SBMLParameter:k3_1</value>
+<value>0</value>
+</value>
+<value>
+<value>fC_1_1</value>
+<value>Variable:/SBMLParameter:fC_1_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; atheta_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; k3_1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; GF_1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; fC_1_1 &lt;/ci&gt;#x0A        &lt;ci&gt; theta_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="E2Fdegradationviacellcycleprogression_1">
+<property name="Name">
+<value>E2F degradation via cell cycle progression</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dtheta_1.Value * (X_1.NumberConc / (qtheta_1.Value + X_1.NumberConc)) * theta_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>X_1</value>
+<value>Variable:/cell:X_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dtheta_1</value>
+<value>Variable:/SBMLParameter:dtheta_1</value>
+<value>0</value>
+</value>
+<value>
+<value>qtheta_1</value>
+<value>Variable:/SBMLParameter:qtheta_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; dtheta_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; X_1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; qtheta_1 &lt;/ci&gt;#x0A        &lt;ci&gt; X_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; theta_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cellcycleprogression_1">
+<property name="Name">
+<value>cell cycle progression go</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (aX_1.Value * E_1.NumberConc + f_1.Value * theta_1.NumberConc + g_1.Value * pow(X_1.NumberConc, 2) * E_1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X_1</value>
+<value>Variable:/cell:X_1</value>
+<value>1</value>
+</value>
+<value>
+<value>E_1</value>
+<value>Variable:/cell:E_1</value>
+<value>0</value>
+</value>
+<value>
+<value>theta_1</value>
+<value>Variable:/cell:theta_1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>aX_1</value>
+<value>Variable:/SBMLParameter:aX_1</value>
+<value>0</value>
+</value>
+<value>
+<value>f_1</value>
+<value>Variable:/SBMLParameter:f_1</value>
+<value>0</value>
+</value>
+<value>
+<value>g_1</value>
+<value>Variable:/SBMLParameter:g_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; aX_1 &lt;/ci&gt;#x0A        &lt;ci&gt; E_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; f_1 &lt;/ci&gt;#x0A        &lt;ci&gt; theta_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; g_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; X_1 &lt;/ci&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; E_1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cellcycleprogressionslow_1">
+<property name="Name">
+<value>cell cycle progression slow</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dX_1.Value * X_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X_1</value>
+<value>Variable:/cell:X_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>dX_1</value>
+<value>Variable:/SBMLParameter:dX_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; dX_1 &lt;/ci&gt;#x0A    &lt;ci&gt; X_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="D_1">
+<property name="Name">
+<value>D</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E_1">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_1">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="Value">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RS_1">
+<property name="Name">
+<value>RS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="theta_1">
+<property name="Name">
+<value>theta</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X_1">
+<property name="Name">
+<value>X</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="GF_1">
+<property name="Name">
+<value>GF</value>
+</property>
+<property name="Value">
+<value>6.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dD_1">
+<property name="Name">
+<value>dD</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="aD_1">
+<property name="Name">
+<value>aD</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="aE_1">
+<property name="Name">
+<value>aE</value>
+</property>
+<property name="Value">
+<value>0.16</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_1">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="aF_1">
+<property name="Name">
+<value>aF</value>
+</property>
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pX_1">
+<property name="Name">
+<value>pX</value>
+</property>
+<property name="Value">
+<value>0.48</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RT_1">
+<property name="Name">
+<value>RT</value>
+</property>
+<property name="Value">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qX_1">
+<property name="Name">
+<value>qX</value>
+</property>
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pS_1">
+<property name="Name">
+<value>pS</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pD_1">
+<property name="Name">
+<value>pD</value>
+</property>
+<property name="Value">
+<value>0.48</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qD_1">
+<property name="Name">
+<value>qD</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pE_1">
+<property name="Name">
+<value>pE</value>
+</property>
+<property name="Value">
+<value>0.096</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qE_1">
+<property name="Name">
+<value>qE</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="atheta_1">
+<property name="Name">
+<value>atheta</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3_1">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dtheta_1">
+<property name="Name">
+<value>dtheta</value>
+</property>
+<property name="Value">
+<value>0.12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qtheta_1">
+<property name="Name">
+<value>qtheta</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="aX_1">
+<property name="Name">
+<value>aX</value>
+</property>
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_1">
+<property name="Name">
+<value>f</value>
+</property>
+<property name="Value">
+<value>0.35</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g_1">
+<property name="Name">
+<value>g</value>
+</property>
+<property name="Value">
+<value>0.528</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dX_1">
+<property name="Name">
+<value>dX</value>
+</property>
+<property name="Value">
+<value>1.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dE_1">
+<property name="Name">
+<value>dE</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fC_1_1">
+<property name="Name">
+<value>fe</value>
+</property>
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rb_phos">
+<property name="Name">
+<value>Rb_phosphorylated</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Rb_phos">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rb_phos'</value>
+</property>
+<property name="Expression">
+<value>RT_1.NumberConc - RS_1.NumberConc - R_1.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; RT_1 &lt;/ci&gt;#x0A      &lt;ci&gt; RS_1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; R_1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rb_phos</value>
+<value>Variable:/SBMLParameter:Rb_phos</value>
+<value>1</value>
+</value>
+<value>
+<value>RT_1</value>
+<value>Variable:/SBMLParameter:RT_1</value>
+<value>0</value>
+</value>
+<value>
+<value>RS_1</value>
+<value>Variable:/cell:RS_1</value>
+<value>0</value>
+</value>
+<value>
+<value>R_1</value>
+<value>Variable:/cell:R_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

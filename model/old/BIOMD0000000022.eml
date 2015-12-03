@@ -1,0 +1,1270 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Reaction1">
+<property name="Name">
+<value>Per transcription</value>
+</property>
+<property name="a">
+<value>1.0</value>
+</property>
+<property name="A1">
+<value>0.45</value>
+</property>
+<property name="B1">
+<value>0.0</value>
+</property>
+<property name="c1">
+<value>0.0</value>
+</property>
+<property name="r1">
+<value>1.02</value>
+</property>
+<property name="s1">
+<value>1.45</value>
+</property>
+<property name="r">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (c1 + (B1 + pow(CCn.NumberConc / A1, a)) * s1 / (1 + B1 + pow(CCn.NumberConc / A1, a) + pow(PTn.NumberConc / r1, r)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Perm</value>
+<value>Variable:/compartment_0000003:Perm</value>
+<value>1</value>
+</value>
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>0</value>
+</value>
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction2">
+<property name="Name">
+<value>non-specific Per mRNA degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * D0 * Perm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Perm</value>
+<value>Variable:/compartment_0000003:Perm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction3">
+<property name="Name">
+<value>Tim transcription</value>
+</property>
+<property name="a">
+<value>1.0</value>
+</property>
+<property name="A2">
+<value>0.45</value>
+</property>
+<property name="B2">
+<value>0.0</value>
+</property>
+<property name="c2">
+<value>0.0</value>
+</property>
+<property name="r2">
+<value>1.02</value>
+</property>
+<property name="s3">
+<value>1.45</value>
+</property>
+<property name="r">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (c2 + (B2 + pow(CCn.NumberConc / A2, a)) * s3 / (1 + B2 + pow(CCn.NumberConc / A2, a) + pow(PTn.NumberConc / r2, r)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Timm</value>
+<value>Variable:/compartment_0000003:Timm</value>
+<value>1</value>
+</value>
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>0</value>
+</value>
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction4">
+<property name="Name">
+<value>non-specific Tim mRNA degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>Drosophilia.Value * D0 * Timm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Timm</value>
+<value>Variable:/compartment_0000003:Timm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>Drosophilia</value>
+<value>Variable:/Drosophilia:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction5">
+<property name="Name">
+<value>Clk transcription</value>
+</property>
+<property name="a">
+<value>1.0</value>
+</property>
+<property name="A3">
+<value>0.8</value>
+</property>
+<property name="B3">
+<value>0.6</value>
+</property>
+<property name="c3">
+<value>0.0</value>
+</property>
+<property name="r3">
+<value>0.89</value>
+</property>
+<property name="s5">
+<value>1.63</value>
+</property>
+<property name="r">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (c3 + (B3 + pow(PTn.NumberConc / A3, a)) * s5 / (1 + B3 + pow(PTn.NumberConc / A3, a) + pow(CCn.NumberConc / r3, r)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Clkm</value>
+<value>Variable:/compartment_0000003:Clkm</value>
+<value>1</value>
+</value>
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>0</value>
+</value>
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction6">
+<property name="Name">
+<value>non-specific Clk mRNA degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>Drosophilia.Value * Clkm.NumberConc * D0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Clkm</value>
+<value>Variable:/compartment_0000003:Clkm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>Drosophilia</value>
+<value>Variable:/Drosophilia:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction7">
+<property name="Name">
+<value>Clk-Cyc nuclear import</value>
+</property>
+<property name="k3">
+<value>2.0</value>
+</property>
+<property name="T3">
+<value>1.63</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (CCc.NumberConc * T3 / (k3 + CCc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCc</value>
+<value>Variable:/compartment_0000003:CCc</value>
+<value>-1</value>
+</value>
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction8">
+<property name="Name">
+<value>Clk-Cyc nuclear export</value>
+</property>
+<property name="k4">
+<value>2.0</value>
+</property>
+<property name="T4">
+<value>0.52</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * (CCn.NumberConc * T4 / (k4 + CCn.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>-1</value>
+</value>
+<value>
+<value>CCc</value>
+<value>Variable:/compartment_0000003:CCc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction9">
+<property name="Name">
+<value>Per-Tim nuclear export</value>
+</property>
+<property name="k2">
+<value>2.0</value>
+</property>
+<property name="T2">
+<value>0.72</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * (PTn.NumberConc * T2 / (k2 + PTn.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>-1</value>
+</value>
+<value>
+<value>PTc</value>
+<value>Variable:/compartment_0000003:PTc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction10">
+<property name="Name">
+<value>Per-Tim nuclear import</value>
+</property>
+<property name="k1">
+<value>2.0</value>
+</property>
+<property name="T1">
+<value>1.73</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (PTc.NumberConc * T1 / (k1 + PTc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTc</value>
+<value>Variable:/compartment_0000003:PTc</value>
+<value>-1</value>
+</value>
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction11">
+<property name="Name">
+<value>Clk Cyc equilibrium</value>
+</property>
+<property name="v3">
+<value>1.63</value>
+</property>
+<property name="parameter_0000073">
+<value>1.63</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (Clkc.NumberConc * v3 * species_0000012.NumberConc - parameter_0000073 * CCc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_0000012</value>
+<value>Variable:/compartment_0000003:species_0000012</value>
+<value>0</value>
+</value>
+<value>
+<value>Clkc</value>
+<value>Variable:/compartment_0000003:Clkc</value>
+<value>-1</value>
+</value>
+<value>
+<value>CCc</value>
+<value>Variable:/compartment_0000003:CCc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction12">
+<property name="Name">
+<value>Per Tim equilibrium</value>
+</property>
+<property name="v1">
+<value>1.45</value>
+</property>
+<property name="parameter_0000072">
+<value>1.45</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (Perc.NumberConc * Timc.NumberConc * v1 - parameter_0000072 * PTc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Perc</value>
+<value>Variable:/compartment_0000003:Perc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Timc</value>
+<value>Variable:/compartment_0000003:Timc</value>
+<value>-1</value>
+</value>
+<value>
+<value>PTc</value>
+<value>Variable:/compartment_0000003:PTc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction16">
+<property name="Name">
+<value>Tim translation</value>
+</property>
+<property name="s4">
+<value>0.48</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * s4 * Timm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Timc</value>
+<value>Variable:/compartment_0000003:Timc</value>
+<value>1</value>
+</value>
+<value>
+<value>Timm</value>
+<value>Variable:/compartment_0000003:Timm</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction18">
+<property name="Name">
+<value>Clk translation</value>
+</property>
+<property name="s6">
+<value>0.47</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * Clkm.NumberConc * s6</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Clkc</value>
+<value>Variable:/compartment_0000003:Clkc</value>
+<value>1</value>
+</value>
+<value>
+<value>Clkm</value>
+<value>Variable:/compartment_0000003:Clkm</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction19">
+<property name="Name">
+<value>Per translation</value>
+</property>
+<property name="s2">
+<value>0.48</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * s2 * Perm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>Perc</value>
+<value>Variable:/compartment_0000003:Perc</value>
+<value>1</value>
+</value>
+<value>
+<value>Perm</value>
+<value>Variable:/compartment_0000003:Perm</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction20">
+<property name="Name">
+<value>non-specific Per_cyt degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>Drosophilia.Value * D0 * Perc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Perc</value>
+<value>Variable:/compartment_0000003:Perc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>Drosophilia</value>
+<value>Variable:/Drosophilia:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction21">
+<property name="Name">
+<value>non-specific Per-Tim_cyt degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * D0 * PTc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTc</value>
+<value>Variable:/compartment_0000003:PTc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction23">
+<property name="Name">
+<value>non-specific Per-Tim_nuc degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * D0 * PTn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction24">
+<property name="Name">
+<value>non-specific Clk-Cyc_cyt degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * CCc.NumberConc * D0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCc</value>
+<value>Variable:/compartment_0000003:CCc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction25">
+<property name="Name">
+<value>non-specific Clk_cyt degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * Clkc.NumberConc * D0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Clkc</value>
+<value>Variable:/compartment_0000003:Clkc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction26">
+<property name="Name">
+<value>non-specific Clk-Cyc_nuc degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * CCn.NumberConc * D0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction27">
+<property name="Name">
+<value>non-specific Tim_cyt degradation</value>
+</property>
+<property name="D0">
+<value>0.012</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * D0 * Timc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Timc</value>
+<value>Variable:/compartment_0000003:Timc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction28">
+<property name="Name">
+<value>Per mRNA degradation</value>
+</property>
+<property name="D1">
+<value>0.94</value>
+</property>
+<property name="L1">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (D1 * Perm.NumberConc / (L1 + Perm.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Perm</value>
+<value>Variable:/compartment_0000003:Perm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction29">
+<property name="Name">
+<value>Dbt regulated Per_cyt degradation</value>
+</property>
+<property name="D2">
+<value>0.44</value>
+</property>
+<property name="L2">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (D2 * species_0000013.NumberConc * Perc.NumberConc / (L2 + Perc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Perc</value>
+<value>Variable:/compartment_0000003:Perc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>species_0000013</value>
+<value>Variable:/compartment_0000003:species_0000013</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction30">
+<property name="Name">
+<value>Tim mRNA degradation</value>
+</property>
+<property name="D3">
+<value>0.94</value>
+</property>
+<property name="L3">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (D3 * Timm.NumberConc / (L3 + Timm.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Timm</value>
+<value>Variable:/compartment_0000003:Timm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction31">
+<property name="Name">
+<value>Tim_cyt degradation</value>
+</property>
+<property name="D4">
+<value>0.44</value>
+</property>
+<property name="L4">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (D4 * Timc.NumberConc / (L4 + Timc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Timc</value>
+<value>Variable:/compartment_0000003:Timc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction32">
+<property name="Name">
+<value>Per-Tim_cyt degradation</value>
+</property>
+<property name="D5">
+<value>0.44</value>
+</property>
+<property name="L5">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (D5 * PTc.NumberConc / (L5 + PTc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTc</value>
+<value>Variable:/compartment_0000003:PTc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction33">
+<property name="Name">
+<value>Per-Tim_nuc degradation</value>
+</property>
+<property name="D6">
+<value>0.29</value>
+</property>
+<property name="L6">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * (D6 * PTn.NumberConc / (L6 + PTn.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:PTn</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction34">
+<property name="Name">
+<value>Clk mRNA degradation</value>
+</property>
+<property name="D7">
+<value>0.54</value>
+</property>
+<property name="L7">
+<value>0.13</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (Clkm.NumberConc * D7 / (Clkm.NumberConc + L7))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Clkm</value>
+<value>Variable:/compartment_0000003:Clkm</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction35">
+<property name="Name">
+<value>Clk_cyt degradation</value>
+</property>
+<property name="D8">
+<value>0.6</value>
+</property>
+<property name="L8">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (Clkc.NumberConc * D8 / (Clkc.NumberConc + L8))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Clkc</value>
+<value>Variable:/compartment_0000003:Clkc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction36">
+<property name="Name">
+<value>Clk-Cyc_cyt degradation</value>
+</property>
+<property name="D9">
+<value>0.6</value>
+</property>
+<property name="L9">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000003.Value * (CCc.NumberConc * D9 / (CCc.NumberConc + L9))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCc</value>
+<value>Variable:/compartment_0000003:CCc</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000003</value>
+<value>Variable:/compartment_0000003:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Reaction37">
+<property name="Name">
+<value>[CCn] -&gt; [EmptySet];</value>
+</property>
+<property name="D10">
+<value>0.3</value>
+</property>
+<property name="L10">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * (CCn.NumberConc * D10 / (CCn.NumberConc + L10))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CCn</value>
+<value>Variable:/compartment_0000003/compartment_0000002:CCn</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/Drosophilia:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/compartment_0000003/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Drosophilia">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/compartment_0000003">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CCc">
+<property name="Name">
+<value>Clk-Cyc_cyt</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Clkc">
+<property name="Name">
+<value>Clk_cyt</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Clkm">
+<property name="Name">
+<value>Clk_mRNA</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Perc">
+<property name="Name">
+<value>Per_cyt</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Perm">
+<property name="Name">
+<value>Per_mRNA</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PTc">
+<property name="Name">
+<value>Per-Tim_cyt</value>
+</property>
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Timc">
+<property name="Name">
+<value>Tim_cyt</value>
+</property>
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Timm">
+<property name="Name">
+<value>Tim_mRNA</value>
+</property>
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_0000012">
+<property name="Name">
+<value>Cyc_cyt</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_0000013">
+<property name="Name">
+<value>Dbt_cyt</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/compartment_0000003/compartment_0000002">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CCn">
+<property name="Name">
+<value>Clk-Cyc_nuc</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PTn">
+<property name="Name">
+<value>Per-Tim_nuc</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>reaction_1</value>
+</property>
+<property name="alpha">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>alpha</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c</value>
+<value>Variable:/cell:c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>reaction_3</value>
+</property>
+<property name="kd">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>kd * c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c</value>
+<value>Variable:/cell:c</value>
+<value>-1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>reaction_2</value>
+</property>
+<property name="kappa">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>c.NumberConc / (kappa + c.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c</value>
+<value>Variable:/cell:c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>reaction_4</value>
+</property>
+<property name="phi">
+<value>5e-06</value>
+</property>
+<property name="delta">
+<value>1e-05</value>
+</property>
+<property name="gamma">
+<value>1e-05</value>
+</property>
+<property name="Expression">
+<value>phi * c.NumberConc / (delta + gamma * c.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>c</value>
+<value>Variable:/cell:c</value>
+<value>-1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c">
+<property name="Name">
+<value>ribosome concentration</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,472 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Photoreceptor_activation">
+<property name="Name">
+<value>[Pfr] -&gt; [Pr];</value>
+</property>
+<property name="IfrSfrPfr">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Pfr.NumberConc * IfrSfrPfr</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pfr</value>
+<value>Variable:/compartment:Pfr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pr</value>
+<value>Variable:/compartment:Pr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Photoreceptor_inactivation">
+<property name="Name">
+<value>[Pr] -&gt; [Pfr];</value>
+</property>
+<property name="IrSrPr">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>IrSrPr * Pr.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pr</value>
+<value>Variable:/compartment:Pr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pfr</value>
+<value>Variable:/compartment:Pfr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Transducer_activation">
+<property name="Name">
+<value>[Xi] -&gt; [Xa]; { Pr };</value>
+</property>
+<property name="kia">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Xi.NumberConc * kia * Pr.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Xi</value>
+<value>Variable:/compartment:Xi</value>
+<value>-1</value>
+</value>
+<value>
+<value>Xa</value>
+<value>Variable:/compartment:Xa</value>
+<value>1</value>
+</value>
+<value>
+<value>Pr</value>
+<value>Variable:/compartment:Pr</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Transducer_inactivation">
+<property name="Name">
+<value>[Xa] -&gt; [Xi];</value>
+</property>
+<property name="kai">
+<value>0.8</value>
+</property>
+<property name="Expression">
+<value>kai * Xa.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Xa</value>
+<value>Variable:/compartment:Xa</value>
+<value>-1</value>
+</value>
+<value>
+<value>Xi</value>
+<value>Variable:/compartment:Xi</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="preS_formation">
+<property name="Name">
+<value>[prepreS] -&gt; [preS]; { Xa };</value>
+</property>
+<property name="kx">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>prepreS.NumberConc * kx * Xa.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>prepreS</value>
+<value>Variable:/compartment:prepreS</value>
+<value>-1</value>
+</value>
+<value>
+<value>preS</value>
+<value>Variable:/compartment:preS</value>
+<value>1</value>
+</value>
+<value>
+<value>Xa</value>
+<value>Variable:/compartment:Xa</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="S_generation">
+<property name="Name">
+<value>[preS] -&gt; [S]; { Ya };</value>
+</property>
+<property name="ky">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>preS.NumberConc * ky * Ya.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>preS</value>
+<value>Variable:/compartment:preS</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/compartment:S</value>
+<value>1</value>
+</value>
+<value>
+<value>Ya</value>
+<value>Variable:/compartment:Ya</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Glucose_sensor_inactivation">
+<property name="Name">
+<value>[Ya] + [Gluc] -&gt; [Yi];</value>
+</property>
+<property name="kG">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>kG * Ya.NumberConc * Gluc.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ya</value>
+<value>Variable:/compartment:Ya</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gluc</value>
+<value>Variable:/compartment:Gluc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Yi</value>
+<value>Variable:/compartment:Yi</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="S_formation">
+<property name="Name">
+<value>-&gt; [S]; { V };</value>
+</property>
+<property name="alpha1">
+<value>30.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (alpha1 / (1 + pow(V.NumberConc, 3)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/compartment:S</value>
+<value>1</value>
+</value>
+<value>
+<value>V</value>
+<value>Variable:/compartment:V</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_formation">
+<property name="Name">
+<value>-&gt; [V]; { S };</value>
+</property>
+<property name="alpha2">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (alpha2 / (1 + pow(S.NumberConc, 3)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V</value>
+<value>Variable:/compartment:V</value>
+<value>1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/compartment:S</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="S_degradation">
+<property name="Name">
+<value>[S] -&gt; ;</value>
+</property>
+<property name="kd_s">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>kd_s * S.NumberConc * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/compartment:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="V_degradation">
+<property name="Name">
+<value>[V] -&gt; ;</value>
+</property>
+<property name="kd_v">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * V.NumberConc * kd_v</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V</value>
+<value>Variable:/compartment:V</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Photoreceptor_decay">
+<property name="Name">
+<value>[Pr] -&gt; [Pi];</value>
+</property>
+<property name="kd">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kd * Pr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pr</value>
+<value>Variable:/compartment:Pr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/compartment:Pi</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pfr">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pr">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Xi">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Xa">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="prepreS">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="preS">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ya">
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gluc">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Yi">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="V">
+<property name="Value">
+<value>30.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pi">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

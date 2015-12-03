@@ -1,0 +1,352 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="G1">
+<property name="Name">
+<value>Glucose_1</value>
+</property>
+<property name="NumberConc">
+<value>6.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="T1">
+<property name="Name">
+<value>ATP_1</value>
+</property>
+<property name="NumberConc">
+<value>7.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2">
+<property name="Name">
+<value>Glucose_2</value>
+</property>
+<property name="NumberConc">
+<value>10.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="T2">
+<property name="Name">
+<value>ATP_2</value>
+</property>
+<property name="NumberConc">
+<value>0.41</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="V_in">
+<property name="Value">
+<value>0.36</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="km">
+<property name="Value">
+<value>13.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="epsilon">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Tsum">
+<property name="Name">
+<value>Tsum</value>
+</property>
+<property name="Value">
+<value>8.01</value>
+</property>
+</variable>
+<variable class="Variable" id="Tdiff">
+<property name="Name">
+<value>Tdiff</value>
+</property>
+<property name="Value">
+<value>-7.19</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_G1">
+<property name="Name">
+<value>Rate rule for 'G1'</value>
+</property>
+<property name="Expression">
+<value>V_in.NumberConc - k1.NumberConc * G1.NumberConc * T1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1</value>
+<value>Variable:/compartment:G1</value>
+<value>1</value>
+</value>
+<value>
+<value>V_in</value>
+<value>Variable:/SBMLParameter:V_in</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/compartment:T1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_G2">
+<property name="Name">
+<value>Rate rule for 'G2'</value>
+</property>
+<property name="Expression">
+<value>V_in.NumberConc - k1.NumberConc * G2.NumberConc * T2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2</value>
+<value>Variable:/compartment:G2</value>
+<value>1</value>
+</value>
+<value>
+<value>V_in</value>
+<value>Variable:/SBMLParameter:V_in</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/compartment:T2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_T1">
+<property name="Name">
+<value>Rate rule for 'T1'</value>
+</property>
+<property name="Expression">
+<value>2 * k1.NumberConc * T1.NumberConc * G1.NumberConc - kp.NumberConc * T1.NumberConc / (km.NumberConc + T1.NumberConc) + epsilon.NumberConc * (T2.NumberConc - T1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T1</value>
+<value>Variable:/compartment:T1</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>G1</value>
+<value>Variable:/compartment:G1</value>
+<value>0</value>
+</value>
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>0</value>
+</value>
+<value>
+<value>km</value>
+<value>Variable:/SBMLParameter:km</value>
+<value>0</value>
+</value>
+<value>
+<value>epsilon</value>
+<value>Variable:/SBMLParameter:epsilon</value>
+<value>0</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/compartment:T2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_T2">
+<property name="Name">
+<value>Rate rule for 'T2'</value>
+</property>
+<property name="Expression">
+<value>2 * k1.NumberConc * G2.NumberConc * T2.NumberConc - kp.NumberConc * T2.NumberConc / (km.NumberConc + T2.NumberConc) - epsilon.NumberConc * (T2.NumberConc - T1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T2</value>
+<value>Variable:/compartment:T2</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>G2</value>
+<value>Variable:/compartment:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>0</value>
+</value>
+<value>
+<value>km</value>
+<value>Variable:/SBMLParameter:km</value>
+<value>0</value>
+</value>
+<value>
+<value>epsilon</value>
+<value>Variable:/SBMLParameter:epsilon</value>
+<value>0</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/compartment:T1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Tsum">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Tsum'</value>
+</property>
+<property name="Expression">
+<value>T2.NumberConc + T1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tsum</value>
+<value>Variable:/SBMLParameter:Tsum</value>
+<value>1</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/compartment:T2</value>
+<value>0</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/compartment:T1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Tdiff">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Tdiff'</value>
+</property>
+<property name="Expression">
+<value>T2.NumberConc - T1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tdiff</value>
+<value>Variable:/SBMLParameter:Tdiff</value>
+<value>1</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/compartment:T2</value>
+<value>0</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/compartment:T1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

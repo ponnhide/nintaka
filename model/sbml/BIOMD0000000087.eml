@@ -1,0 +1,2704 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Capping">
+<property name="Name">
+<value>Capping</value>
+</property>
+<property name="k1">
+<value>0.0005</value>
+</property>
+<property name="Expression">
+<value>k1 * Cdc13.NumberConc * Utelo.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc13</value>
+<value>Variable:/cellMembrane/nucleus:Cdc13</value>
+<value>-1</value>
+</value>
+<value>
+<value>Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Utelo</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ctelo</value>
+<value>Variable:/cellMembrane/nucleus:Ctelo</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc13 &lt;/ci&gt;#x0A    &lt;ci&gt; Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Uncapping">
+<property name="Name">
+<value>Uncapping</value>
+</property>
+<property name="k2">
+<value>0.000385</value>
+</property>
+<property name="Expression">
+<value>k2 * Ctelo.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ctelo</value>
+<value>Variable:/cellMembrane/nucleus:Ctelo</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc13</value>
+<value>Variable:/cellMembrane/nucleus:Cdc13</value>
+<value>1</value>
+</value>
+<value>
+<value>Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Utelo</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; Ctelo &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rad17binding">
+<property name="Name">
+<value>Rad17binding</value>
+</property>
+<property name="k3">
+<value>1.5e-08</value>
+</property>
+<property name="Expression">
+<value>k3 * Utelo.NumberConc * Rad17.NumberConc * Rad24.NumberConc * ATP.NumberConc * kalive.Value / (5000 + ATP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Utelo</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad17</value>
+<value>Variable:/cellMembrane/nucleus:Rad17</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad24</value>
+<value>Variable:/cellMembrane/nucleus:Rad24</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cellMembrane/nucleus:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cellMembrane/nucleus:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k3 &lt;/ci&gt;#x0A      &lt;ci&gt; Utelo &lt;/ci&gt;#x0A      &lt;ci&gt; Rad17 &lt;/ci&gt;#x0A      &lt;ci&gt; Rad24 &lt;/ci&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;ci&gt; kalive &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 5000 &lt;/cn&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ExoXactivation">
+<property name="Name">
+<value>ExoXactivation</value>
+</property>
+<property name="k4">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>k4 * ExoXI.NumberConc * Rad17Utelo.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ExoXI</value>
+<value>Variable:/cellMembrane/nucleus:ExoXI</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>0</value>
+</value>
+<value>
+<value>ExoXA</value>
+<value>Variable:/cellMembrane/nucleus:ExoXA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; ExoXI &lt;/ci&gt;#x0A    &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ExoXactivity">
+<property name="Name">
+<value>ExoXactivity</value>
+</property>
+<property name="k5">
+<value>0.0003</value>
+</property>
+<property name="Expression">
+<value>k5 * ExoXA.NumberConc * Rad17Utelo.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ExoXA</value>
+<value>Variable:/cellMembrane/nucleus:ExoXA</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k5 &lt;/ci&gt;#x0A    &lt;ci&gt; ExoXA &lt;/ci&gt;#x0A    &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Exo1activation">
+<property name="Name">
+<value>Rad24independentExo1Activation</value>
+</property>
+<property name="k6a">
+<value>5e-05</value>
+</property>
+<property name="Expression">
+<value>k6a * Exo1I.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Exo1I</value>
+<value>Variable:/cellMembrane/nucleus:Exo1I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6a &lt;/ci&gt;#x0A    &lt;ci&gt; Exo1I &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Exo1Rad24dependentActivation">
+<property name="Name">
+<value>Rad24dependentExo1Activation</value>
+</property>
+<property name="k6b">
+<value>0.0005</value>
+</property>
+<property name="Expression">
+<value>k6b * Exo1I.NumberConc * Rad24.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Exo1I</value>
+<value>Variable:/cellMembrane/nucleus:Exo1I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad24</value>
+<value>Variable:/cellMembrane/nucleus:Rad24</value>
+<value>0</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6b &lt;/ci&gt;#x0A    &lt;ci&gt; Exo1I &lt;/ci&gt;#x0A    &lt;ci&gt; Rad24 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Exo1Rad17independentActivity">
+<property name="Name">
+<value>Rad17independentExo1Activity</value>
+</property>
+<property name="k7a">
+<value>3e-05</value>
+</property>
+<property name="Expression">
+<value>k7a * Utelo.NumberConc * Exo1A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Utelo</value>
+<value>0</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k7a &lt;/ci&gt;#x0A    &lt;ci&gt; Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; Exo1A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Exo1Rad17dependentActivity">
+<property name="Name">
+<value>Rad17dependentExo1Activity</value>
+</property>
+<property name="k7b">
+<value>3e-05</value>
+</property>
+<property name="Expression">
+<value>k7b * Rad17Utelo.NumberConc * Exo1A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>0</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k7b &lt;/ci&gt;#x0A    &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; Exo1A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="RPAbinding1">
+<property name="Name">
+<value>RPAbinding-stage1</value>
+</property>
+<property name="k8a">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>k8a * RPA.NumberConc * ssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPA</value>
+<value>Variable:/cellMembrane/nucleus:RPA</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPAssDNA1</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA1</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8a &lt;/ci&gt;#x0A    &lt;ci&gt; RPA &lt;/ci&gt;#x0A    &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="RPAbinding2">
+<property name="Name">
+<value>RPAbinding-stage2</value>
+</property>
+<property name="k8b">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>k8b * RPAssDNA1.NumberConc * ssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPAssDNA1</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA1</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPAssDNA2</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA2</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8b &lt;/ci&gt;#x0A    &lt;ci&gt; RPAssDNA1 &lt;/ci&gt;#x0A    &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="RPAbinding">
+<property name="Name">
+<value>RPAbinding-completed</value>
+</property>
+<property name="k8c">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>k8c * RPAssDNA2.NumberConc * ssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPAssDNA2</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA2</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8c &lt;/ci&gt;#x0A    &lt;ci&gt; RPAssDNA2 &lt;/ci&gt;#x0A    &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Mec1binding">
+<property name="Name">
+<value>Mec1binding</value>
+</property>
+<property name="k8d">
+<value>0.004</value>
+</property>
+<property name="Expression">
+<value>k8d * RPAssDNA.NumberConc * Mec1.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mec1</value>
+<value>Variable:/cellMembrane/nucleus:Mec1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8d &lt;/ci&gt;#x0A    &lt;ci&gt; RPAssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; Mec1 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rad9activation">
+<property name="Name">
+<value>Rad9activation</value>
+</property>
+<property name="k9">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>k9 * Rad9Kin.NumberConc * Rad9I.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rad9Kin</value>
+<value>Variable:/cellMembrane/nucleus:Rad9Kin</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad9I</value>
+<value>Variable:/cellMembrane/nucleus:Rad9I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>Variable:/cellMembrane/nucleus:Rad9A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9Kin &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9I &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ExoXinhibition">
+<property name="Name">
+<value>ExoXinhibition</value>
+</property>
+<property name="k10a">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>ExoXA.NumberConc * k10a * Rad9A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ExoXA</value>
+<value>Variable:/cellMembrane/nucleus:ExoXA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>Variable:/cellMembrane/nucleus:Rad9A</value>
+<value>0</value>
+</value>
+<value>
+<value>ExoXI</value>
+<value>Variable:/cellMembrane/nucleus:ExoXI</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ExoXA &lt;/ci&gt;#x0A    &lt;ci&gt; k10a &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ExoXinhibition2">
+<property name="Name">
+<value>ExoXinhibition2</value>
+</property>
+<property name="k10b">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>ExoXA.NumberConc * k10b * Rad9I.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ExoXA</value>
+<value>Variable:/cellMembrane/nucleus:ExoXA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad9I</value>
+<value>Variable:/cellMembrane/nucleus:Rad9I</value>
+<value>0</value>
+</value>
+<value>
+<value>ExoXI</value>
+<value>Variable:/cellMembrane/nucleus:ExoXI</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; ExoXA &lt;/ci&gt;#x0A    &lt;ci&gt; k10b &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9I &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rad53activation">
+<property name="Name">
+<value>Rad53activation</value>
+</property>
+<property name="k11">
+<value>1e-05</value>
+</property>
+<property name="Expression">
+<value>k11 * Rad53I.NumberConc * Rad9A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rad53I</value>
+<value>Variable:/cellMembrane/nucleus:Rad53I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>Variable:/cellMembrane/nucleus:Rad9A</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad53A</value>
+<value>Variable:/cellMembrane/nucleus:Rad53A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k11 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad53I &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Chk1Activation">
+<property name="Name">
+<value>Chk1Activation</value>
+</property>
+<property name="k12">
+<value>0.00017</value>
+</property>
+<property name="Expression">
+<value>Chk1I.NumberConc * k12 * Rad9A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Chk1I</value>
+<value>Variable:/cellMembrane/nucleus:Chk1I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>Variable:/cellMembrane/nucleus:Rad9A</value>
+<value>0</value>
+</value>
+<value>
+<value>Chk1A</value>
+<value>Variable:/cellMembrane/nucleus:Chk1A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Chk1I &lt;/ci&gt;#x0A    &lt;ci&gt; k12 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad9A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Exo1inhibition">
+<property name="Name">
+<value>Exo1inhibition</value>
+</property>
+<property name="k13">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>Exo1A.NumberConc * k13 * Rad53A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad53A</value>
+<value>Variable:/cellMembrane/nucleus:Rad53A</value>
+<value>0</value>
+</value>
+<value>
+<value>Exo1I</value>
+<value>Variable:/cellMembrane/nucleus:Exo1I</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Exo1A &lt;/ci&gt;#x0A    &lt;ci&gt; k13 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad53A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Dun1activation">
+<property name="Name">
+<value>Dun1activation</value>
+</property>
+<property name="k14">
+<value>3.3e-06</value>
+</property>
+<property name="Expression">
+<value>Dun1I.NumberConc * k14 * Rad53A.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Dun1I</value>
+<value>Variable:/cellMembrane/nucleus:Dun1I</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad53A</value>
+<value>Variable:/cellMembrane/nucleus:Rad53A</value>
+<value>0</value>
+</value>
+<value>
+<value>Dun1A</value>
+<value>Variable:/cellMembrane/nucleus:Dun1A</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Dun1I &lt;/ci&gt;#x0A    &lt;ci&gt; k14 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad53A &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Chk1cellArrest">
+<property name="Name">
+<value>Chk1cellArrest</value>
+</property>
+<property name="k15">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Chk1A.NumberConc * G2Mon.NumberConc * k15 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Chk1A</value>
+<value>Variable:/cellMembrane/nucleus:Chk1A</value>
+<value>0</value>
+</value>
+<value>
+<value>G2Mon</value>
+<value>Variable:/cellMembrane/nucleus:G2Mon</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Chk1A &lt;/ci&gt;#x0A    &lt;ci&gt; G2Mon &lt;/ci&gt;#x0A    &lt;ci&gt; k15 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Dun1cellArrest">
+<property name="Name">
+<value>Dun1cellArrest</value>
+</property>
+<property name="k16">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Dun1A.NumberConc * G2Mon.NumberConc * k16 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Dun1A</value>
+<value>Variable:/cellMembrane/nucleus:Dun1A</value>
+<value>0</value>
+</value>
+<value>
+<value>G2Mon</value>
+<value>Variable:/cellMembrane/nucleus:G2Mon</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Dun1A &lt;/ci&gt;#x0A    &lt;ci&gt; G2Mon &lt;/ci&gt;#x0A    &lt;ci&gt; k16 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SDNArepair1">
+<property name="Name">
+<value>SDNArepair1</value>
+</property>
+<property name="k17a">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>k17a * Mec1RPAssDNA.NumberConc * S.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>0</value>
+</value>
+<value>
+<value>Mec1</value>
+<value>Variable:/cellMembrane/nucleus:Mec1</value>
+<value>1</value>
+</value>
+<value>
+<value>RPA</value>
+<value>Variable:/cellMembrane/nucleus:RPA</value>
+<value>1</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>3</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k17a &lt;/ci&gt;#x0A    &lt;ci&gt; Mec1RPAssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2DNArepair1">
+<property name="Name">
+<value>G2DNArepair1</value>
+</property>
+<property name="k17b">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>G2.NumberConc * G2Moff.NumberConc * k17b * Mec1RPAssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>0</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mec1</value>
+<value>Variable:/cellMembrane/nucleus:Mec1</value>
+<value>1</value>
+</value>
+<value>
+<value>RPA</value>
+<value>Variable:/cellMembrane/nucleus:RPA</value>
+<value>1</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>3</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2 &lt;/ci&gt;#x0A    &lt;ci&gt; G2Moff &lt;/ci&gt;#x0A    &lt;ci&gt; k17b &lt;/ci&gt;#x0A    &lt;ci&gt; Mec1RPAssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SDNArepair2">
+<property name="Name">
+<value>SDNArepair2</value>
+</property>
+<property name="k18a">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>k18a * S.NumberConc * ssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k18a &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2DNArepair2">
+<property name="Name">
+<value>G2DNArepair2</value>
+</property>
+<property name="k18b">
+<value>1e-05</value>
+</property>
+<property name="Expression">
+<value>G2.NumberConc * G2Moff.NumberConc * k18b * ssDNA.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2 &lt;/ci&gt;#x0A    &lt;ci&gt; G2Moff &lt;/ci&gt;#x0A    &lt;ci&gt; k18b &lt;/ci&gt;#x0A    &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Recovery">
+<property name="Name">
+<value>Recovery</value>
+</property>
+<property name="k19">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>Cdc13.NumberConc * k19 * Rad17Utelo.NumberConc * recovery.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc13</value>
+<value>Variable:/cellMembrane/nucleus:Cdc13</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>-1</value>
+</value>
+<value>
+<value>recovery</value>
+<value>Variable:/cellMembrane/nucleus:recovery</value>
+<value>0</value>
+</value>
+<value>
+<value>Ctelo</value>
+<value>Variable:/cellMembrane/nucleus:Ctelo</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad17</value>
+<value>Variable:/cellMembrane/nucleus:Rad17</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cdc13 &lt;/ci&gt;#x0A    &lt;ci&gt; k19 &lt;/ci&gt;#x0A    &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A    &lt;ci&gt; recovery &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G1cyclinSynthesis">
+<property name="Name">
+<value>G1cyclinSynthesis</value>
+</property>
+<property name="kc1">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>G1.NumberConc * kc1 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1</value>
+<value>Variable:/cellMembrane/nucleus:G1</value>
+<value>0</value>
+</value>
+<value>
+<value>G1cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G1cyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G1 &lt;/ci&gt;#x0A    &lt;ci&gt; kc1 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ScyclinSynthesis">
+<property name="Name">
+<value>ScyclinSynthesis</value>
+</property>
+<property name="kc1">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>kc1 * S.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>0</value>
+</value>
+<value>
+<value>Scyclin</value>
+<value>Variable:/cellMembrane/nucleus:Scyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc1 &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2cyclinSynthesis">
+<property name="Name">
+<value>G2cyclinSynthesis</value>
+</property>
+<property name="kc1">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>G2.NumberConc * kc1 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>G2cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G2cyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2 &lt;/ci&gt;#x0A    &lt;ci&gt; kc1 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="McyclinSynthesis">
+<property name="Name">
+<value>McyclinSynthesis</value>
+</property>
+<property name="kc1">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>kc1 * M.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cellMembrane/nucleus:M</value>
+<value>0</value>
+</value>
+<value>
+<value>Mcyclin</value>
+<value>Variable:/cellMembrane/nucleus:Mcyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc1 &lt;/ci&gt;#x0A    &lt;ci&gt; M &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G1toSGenesOn">
+<property name="Name">
+<value>G1toSGenesOn</value>
+</property>
+<property name="kc2">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>G1.NumberConc * G1CdkA.NumberConc * G1Soff.NumberConc * kc2 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1Soff</value>
+<value>Variable:/cellMembrane/nucleus:G1Soff</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1</value>
+<value>Variable:/cellMembrane/nucleus:G1</value>
+<value>0</value>
+</value>
+<value>
+<value>G1CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G1CdkA</value>
+<value>0</value>
+</value>
+<value>
+<value>G1Son</value>
+<value>Variable:/cellMembrane/nucleus:G1Son</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G1 &lt;/ci&gt;#x0A    &lt;ci&gt; G1CdkA &lt;/ci&gt;#x0A    &lt;ci&gt; G1Soff &lt;/ci&gt;#x0A    &lt;ci&gt; kc2 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="StoG2GenesOn">
+<property name="Name">
+<value>StoG2GenesOn</value>
+</property>
+<property name="kc2">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>kc2 * S.NumberConc * SCdkA.NumberConc * SG2off.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SG2off</value>
+<value>Variable:/cellMembrane/nucleus:SG2off</value>
+<value>-1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>0</value>
+</value>
+<value>
+<value>SCdkA</value>
+<value>Variable:/cellMembrane/nucleus:SCdkA</value>
+<value>0</value>
+</value>
+<value>
+<value>SG2on</value>
+<value>Variable:/cellMembrane/nucleus:SG2on</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc2 &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; SCdkA &lt;/ci&gt;#x0A    &lt;ci&gt; SG2off &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2toMGenesOn">
+<property name="Name">
+<value>G2toMGenesOn</value>
+</property>
+<property name="kc2">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>G2.NumberConc * G2CdkA.NumberConc * G2Moff.NumberConc * kc2 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>G2CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G2CdkA</value>
+<value>0</value>
+</value>
+<value>
+<value>G2Mon</value>
+<value>Variable:/cellMembrane/nucleus:G2Mon</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2 &lt;/ci&gt;#x0A    &lt;ci&gt; G2CdkA &lt;/ci&gt;#x0A    &lt;ci&gt; G2Moff &lt;/ci&gt;#x0A    &lt;ci&gt; kc2 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="MtoG1GenesOn">
+<property name="Name">
+<value>MtoG1GenesOn</value>
+</property>
+<property name="kc2">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>kc2 * M.NumberConc * MCdkA.NumberConc * MG1off.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MG1off</value>
+<value>Variable:/cellMembrane/nucleus:MG1off</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cellMembrane/nucleus:M</value>
+<value>0</value>
+</value>
+<value>
+<value>MCdkA</value>
+<value>Variable:/cellMembrane/nucleus:MCdkA</value>
+<value>0</value>
+</value>
+<value>
+<value>MG1on</value>
+<value>Variable:/cellMembrane/nucleus:MG1on</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc2 &lt;/ci&gt;#x0A    &lt;ci&gt; M &lt;/ci&gt;#x0A    &lt;ci&gt; MCdkA &lt;/ci&gt;#x0A    &lt;ci&gt; MG1off &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G1cyclinDegradation">
+<property name="Name">
+<value>G1cyclinDegradation</value>
+</property>
+<property name="kc3">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>G1cyclin.NumberConc * kc3 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G1cyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>sink</value>
+<value>Variable:/cellMembrane/nucleus:sink</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G1cyclin &lt;/ci&gt;#x0A    &lt;ci&gt; kc3 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ScyclinDegradation">
+<property name="Name">
+<value>ScyclinDegradation</value>
+</property>
+<property name="kc3">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>kc3 * Scyclin.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Scyclin</value>
+<value>Variable:/cellMembrane/nucleus:Scyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>sink</value>
+<value>Variable:/cellMembrane/nucleus:sink</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc3 &lt;/ci&gt;#x0A    &lt;ci&gt; Scyclin &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2cyclinDegradation">
+<property name="Name">
+<value>G2cyclinDegradation</value>
+</property>
+<property name="kc3">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>G2cyclin.NumberConc * kc3 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G2cyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>sink</value>
+<value>Variable:/cellMembrane/nucleus:sink</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2cyclin &lt;/ci&gt;#x0A    &lt;ci&gt; kc3 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="McyclinDegradation">
+<property name="Name">
+<value>McyclinDegradation</value>
+</property>
+<property name="kc3">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>kc3 * Mcyclin.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mcyclin</value>
+<value>Variable:/cellMembrane/nucleus:Mcyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>sink</value>
+<value>Variable:/cellMembrane/nucleus:sink</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc3 &lt;/ci&gt;#x0A    &lt;ci&gt; Mcyclin &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G1toSProgession">
+<property name="Name">
+<value>G1toSProgession</value>
+</property>
+<property name="kc4">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>G1.NumberConc * G1CdkA.NumberConc * G1Son.NumberConc * kc4 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1</value>
+<value>Variable:/cellMembrane/nucleus:G1</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G1CdkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1Son</value>
+<value>Variable:/cellMembrane/nucleus:G1Son</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1CdkI</value>
+<value>Variable:/cellMembrane/nucleus:G1CdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>G1Soff</value>
+<value>Variable:/cellMembrane/nucleus:G1Soff</value>
+<value>1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G1 &lt;/ci&gt;#x0A    &lt;ci&gt; G1CdkA &lt;/ci&gt;#x0A    &lt;ci&gt; G1Son &lt;/ci&gt;#x0A    &lt;ci&gt; kc4 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="StoG2Progession">
+<property name="Name">
+<value>StoG2Progession</value>
+</property>
+<property name="kc4">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>kc4 * S.NumberConc * SCdkA.NumberConc * SG2on.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/cellMembrane/nucleus:S</value>
+<value>-1</value>
+</value>
+<value>
+<value>SCdkA</value>
+<value>Variable:/cellMembrane/nucleus:SCdkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>SG2on</value>
+<value>Variable:/cellMembrane/nucleus:SG2on</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>1</value>
+</value>
+<value>
+<value>SCdkI</value>
+<value>Variable:/cellMembrane/nucleus:SCdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>SG2off</value>
+<value>Variable:/cellMembrane/nucleus:SG2off</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc4 &lt;/ci&gt;#x0A    &lt;ci&gt; S &lt;/ci&gt;#x0A    &lt;ci&gt; SCdkA &lt;/ci&gt;#x0A    &lt;ci&gt; SG2on &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="G2toMProgession">
+<property name="Name">
+<value>G2toMProgession</value>
+</property>
+<property name="kc4">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>G2.NumberConc * G2CdkA.NumberConc * G2Mon.NumberConc * kc4 * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G2CdkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2Mon</value>
+<value>Variable:/cellMembrane/nucleus:G2Mon</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2CdkI</value>
+<value>Variable:/cellMembrane/nucleus:G2CdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cellMembrane/nucleus:M</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; G2 &lt;/ci&gt;#x0A    &lt;ci&gt; G2CdkA &lt;/ci&gt;#x0A    &lt;ci&gt; G2Mon &lt;/ci&gt;#x0A    &lt;ci&gt; kc4 &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="MtoG1Progession">
+<property name="Name">
+<value>MtoG1Progession</value>
+</property>
+<property name="kc4">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>kc4 * M.NumberConc * MCdkA.NumberConc * MG1on.NumberConc * kalive.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cellMembrane/nucleus:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>MCdkA</value>
+<value>Variable:/cellMembrane/nucleus:MCdkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>MG1on</value>
+<value>Variable:/cellMembrane/nucleus:MG1on</value>
+<value>-1</value>
+</value>
+<value>
+<value>budscar</value>
+<value>Variable:/cellMembrane:budscar</value>
+<value>1</value>
+</value>
+<value>
+<value>G1</value>
+<value>Variable:/cellMembrane/nucleus:G1</value>
+<value>1</value>
+</value>
+<value>
+<value>MCdkI</value>
+<value>Variable:/cellMembrane/nucleus:MCdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>MG1off</value>
+<value>Variable:/cellMembrane/nucleus:MG1off</value>
+<value>1</value>
+</value>
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kc4 &lt;/ci&gt;#x0A    &lt;ci&gt; M &lt;/ci&gt;#x0A    &lt;ci&gt; MCdkA &lt;/ci&gt;#x0A    &lt;ci&gt; MG1on &lt;/ci&gt;#x0A    &lt;ci&gt; kalive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cellMembrane">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="budscar">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cellMembrane/nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ctelo">
+<property name="Value">
+<value>64.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Utelo">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc13">
+<property name="Value">
+<value>300.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad17Utelo">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad17">
+<property name="Value">
+<value>70.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad24">
+<property name="Value">
+<value>70.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPA">
+<property name="Value">
+<value>4000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mec1">
+<property name="Value">
+<value>4000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ssDNA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPAssDNA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPAssDNA1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPAssDNA2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mec1RPAssDNA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ExoXI">
+<property name="Value">
+<value>70.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ExoXA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Exo1I">
+<property name="Value">
+<value>670.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Exo1A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad9I">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad9A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad53I">
+<property name="Value">
+<value>6900.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad53A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Chk1I">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Chk1A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Dun1I">
+<property name="Value">
+<value>3000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Dun1A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rad9Kin">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="recovery">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1cyclin">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Scyclin">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2cyclin">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mcyclin">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1CdkI">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1CdkA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SCdkI">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SCdkA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2CdkI">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2CdkA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MCdkI">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MCdkA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1Soff">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1Son">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SG2off">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SG2on">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2Moff">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2Mon">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MG1off">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MG1on">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="sink">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kalive">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="Rad9KinaseActivation">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Rad9KinaseActivation</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Rad9Kin</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;ci&gt; Mec1RPAssDNA &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 800 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>geq(Mec1RPAssDNA.NumberConc, 800)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rad9Kin</value>
+<value>Variable:/cellMembrane/nucleus:Rad9Kin</value>
+<value>1</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="ssDNAremoval">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>ssDNAremoval</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>recovery</value>
+<value>1</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>0</value>
+</value>
+<value>
+<value>RPAssDNA</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;leq/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Mec1RPAssDNA &lt;/ci&gt;#x0A      &lt;ci&gt; RPAssDNA &lt;/ci&gt;#x0A      &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>leq(Mec1RPAssDNA.NumberConc + RPAssDNA.NumberConc + ssDNA.NumberConc, 1)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>recovery</value>
+<value>Variable:/cellMembrane/nucleus:recovery</value>
+<value>1</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="G2MRecoveryCompleted">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>G2MRecoveryCompleted</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>G2Mon</value>
+<value>1</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>0</value>
+</value>
+<value>
+<value>recovery</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad9I</value>
+<value>20</value>
+</value>
+<value>
+<value>Chk1A</value>
+<value>0</value>
+</value>
+<value>
+<value>Chk1I</value>
+<value>60</value>
+</value>
+<value>
+<value>Dun1A</value>
+<value>0</value>
+</value>
+<value>
+<value>Dun1I</value>
+<value>3000</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>0</value>
+</value>
+<value>
+<value>Exo1I</value>
+<value>670</value>
+</value>
+<value>
+<value>ExoXA</value>
+<value>0</value>
+</value>
+<value>
+<value>ExoXI</value>
+<value>70</value>
+</value>
+<value>
+<value>Rad53I</value>
+<value>6900</value>
+</value>
+<value>
+<value>Rad53A</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;and/&gt;#x0A    &lt;apply&gt;#x0A      &lt;eq/&gt;#x0A      &lt;ci&gt; G2 &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;eq/&gt;#x0A      &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A      &lt;cn type='integer'&gt; 0 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>and(eq(G2.NumberConc, 1), eq(Rad17Utelo.NumberConc, 0))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2Mon</value>
+<value>Variable:/cellMembrane/nucleus:G2Mon</value>
+<value>1</value>
+</value>
+<value>
+<value>G2Moff</value>
+<value>Variable:/cellMembrane/nucleus:G2Moff</value>
+<value>1</value>
+</value>
+<value>
+<value>recovery</value>
+<value>Variable:/cellMembrane/nucleus:recovery</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad9A</value>
+<value>Variable:/cellMembrane/nucleus:Rad9A</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad9I</value>
+<value>Variable:/cellMembrane/nucleus:Rad9I</value>
+<value>1</value>
+</value>
+<value>
+<value>Chk1A</value>
+<value>Variable:/cellMembrane/nucleus:Chk1A</value>
+<value>1</value>
+</value>
+<value>
+<value>Chk1I</value>
+<value>Variable:/cellMembrane/nucleus:Chk1I</value>
+<value>1</value>
+</value>
+<value>
+<value>Dun1A</value>
+<value>Variable:/cellMembrane/nucleus:Dun1A</value>
+<value>1</value>
+</value>
+<value>
+<value>Dun1I</value>
+<value>Variable:/cellMembrane/nucleus:Dun1I</value>
+<value>1</value>
+</value>
+<value>
+<value>Exo1A</value>
+<value>Variable:/cellMembrane/nucleus:Exo1A</value>
+<value>1</value>
+</value>
+<value>
+<value>Exo1I</value>
+<value>Variable:/cellMembrane/nucleus:Exo1I</value>
+<value>1</value>
+</value>
+<value>
+<value>ExoXA</value>
+<value>Variable:/cellMembrane/nucleus:ExoXA</value>
+<value>1</value>
+</value>
+<value>
+<value>ExoXI</value>
+<value>Variable:/cellMembrane/nucleus:ExoXI</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad53I</value>
+<value>Variable:/cellMembrane/nucleus:Rad53I</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad53A</value>
+<value>Variable:/cellMembrane/nucleus:Rad53A</value>
+<value>1</value>
+</value>
+<value>
+<value>G2</value>
+<value>Variable:/cellMembrane/nucleus:G2</value>
+<value>0</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="SphaseRecoveryCompleted">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>SphaseRecoveryCompleted</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>recovery</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;eq/&gt;#x0A    &lt;ci&gt; Rad17Utelo &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 0 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>eq(Rad17Utelo.NumberConc, 0)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>recovery</value>
+<value>Variable:/cellMembrane/nucleus:recovery</value>
+<value>1</value>
+</value>
+<value>
+<value>Rad17Utelo</value>
+<value>Variable:/cellMembrane/nucleus:Rad17Utelo</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="G1CdkActivation">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>G1CdkActivation</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>G1CdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>G1CdkI</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;ci&gt; G1cyclin &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>gt(G1cyclin.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G1CdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>G1CdkI</value>
+<value>Variable:/cellMembrane/nucleus:G1CdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>G1cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G1cyclin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="SCdkActivation">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>SCdkActivation</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>SCdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>SCdkI</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;ci&gt; Scyclin &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>gt(Scyclin.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SCdkA</value>
+<value>Variable:/cellMembrane/nucleus:SCdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>SCdkI</value>
+<value>Variable:/cellMembrane/nucleus:SCdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>Scyclin</value>
+<value>Variable:/cellMembrane/nucleus:Scyclin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="G2CdkActivation">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>G2CdkActivation</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>G2CdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>G2CdkI</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;ci&gt; G2cyclin &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>gt(G2cyclin.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2CdkA</value>
+<value>Variable:/cellMembrane/nucleus:G2CdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>G2CdkI</value>
+<value>Variable:/cellMembrane/nucleus:G2CdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>G2cyclin</value>
+<value>Variable:/cellMembrane/nucleus:G2cyclin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="MCdkActivation">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>MCdkActivation</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>MCdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>MCdkI</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;gt/&gt;#x0A    &lt;ci&gt; Mcyclin &lt;/ci&gt;#x0A    &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>gt(Mcyclin.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MCdkA</value>
+<value>Variable:/cellMembrane/nucleus:MCdkA</value>
+<value>1</value>
+</value>
+<value>
+<value>MCdkI</value>
+<value>Variable:/cellMembrane/nucleus:MCdkI</value>
+<value>1</value>
+</value>
+<value>
+<value>Mcyclin</value>
+<value>Variable:/cellMembrane/nucleus:Mcyclin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="CellDeath">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>CellDeath</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>kalive</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Mec1RPAssDNA &lt;/ci&gt;#x0A      &lt;ci&gt; RPAssDNA &lt;/ci&gt;#x0A      &lt;ci&gt; ssDNA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn type='integer'&gt; 2000 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="Trigger">
+<value>geq(Mec1RPAssDNA.NumberConc + RPAssDNA.NumberConc + ssDNA.NumberConc, 2000)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kalive</value>
+<value>Variable:/SBMLParameter:kalive</value>
+<value>1</value>
+</value>
+<value>
+<value>Mec1RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:Mec1RPAssDNA</value>
+<value>0</value>
+</value>
+<value>
+<value>RPAssDNA</value>
+<value>Variable:/cellMembrane/nucleus:RPAssDNA</value>
+<value>0</value>
+</value>
+<value>
+<value>ssDNA</value>
+<value>Variable:/cellMembrane/nucleus:ssDNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

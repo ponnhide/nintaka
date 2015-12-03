@@ -1,0 +1,1896 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>[ERKc] &lt;-&gt; [ERK_ppMEKc]; { ppMEKc_tot, pERK_ppMEKc, ERKc, ppMEKc_tot, ERK_ppMEKc, pERK_ppMEKc };</value>
+</property>
+<property name="Expression">
+<value>k1_ERKc.Value * ERKc.NumberConc * (ppMEKc_tot.NumberConc * cytosol.Value - ERK_ppMEKc.NumberConc * cytosol.Value - pERK_ppMEKc.NumberConc) * cytosol.Value - k2_ERKc.Value * ERK_ppMEKc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKc</value>
+<value>Variable:/cytosol:ERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERK_ppMEKc</value>
+<value>Variable:/cytosol:ERK_ppMEKc</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEKc_tot</value>
+<value>Variable:/cytosol:ppMEKc_tot</value>
+<value>0</value>
+</value>
+<value>
+<value>pERK_ppMEKc</value>
+<value>Variable:/cytosol:pERK_ppMEKc</value>
+<value>0</value>
+</value>
+<value>
+<value>k1_ERKc</value>
+<value>Variable:/SBMLParameter:k1_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_ERKc</value>
+<value>Variable:/SBMLParameter:k2_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1_ERKc &lt;/ci&gt;#x0A      &lt;ci&gt; ERKc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ppMEKc_tot &lt;/ci&gt;#x0A            &lt;ci&gt; cytosol &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ERK_ppMEKc &lt;/ci&gt;#x0A            &lt;ci&gt; cytosol &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; pERK_ppMEKc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2_ERKc &lt;/ci&gt;#x0A      &lt;ci&gt; ERK_ppMEKc &lt;/ci&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>[ERK_ppMEKc] -&gt; [pERKc]; { ERK_ppMEKc };</value>
+</property>
+<property name="Expression">
+<value>k3_ERKc.Value * ERK_ppMEKc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK_ppMEKc</value>
+<value>Variable:/cytosol:ERK_ppMEKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>1</value>
+</value>
+<value>
+<value>k3_ERKc</value>
+<value>Variable:/SBMLParameter:k3_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3_ERKc &lt;/ci&gt;#x0A    &lt;ci&gt; ERK_ppMEKc &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>[pERKc] &lt;-&gt; [pERK_ppMEKc]; { ppMEKc_tot, ERK_ppMEKc, pERKc, ppMEKc_tot, pERK_ppMEKc, ERK_ppMEKc };</value>
+</property>
+<property name="Expression">
+<value>k1_ERKc.Value * pERKc.NumberConc * (ppMEKc_tot.NumberConc * cytosol.Value - pERK_ppMEKc.NumberConc * cytosol.Value - ERK_ppMEKc.NumberConc) * cytosol.Value - k2_ERKc.Value * pERK_ppMEKc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK_ppMEKc</value>
+<value>Variable:/cytosol:pERK_ppMEKc</value>
+<value>1</value>
+</value>
+<value>
+<value>ppMEKc_tot</value>
+<value>Variable:/cytosol:ppMEKc_tot</value>
+<value>0</value>
+</value>
+<value>
+<value>ERK_ppMEKc</value>
+<value>Variable:/cytosol:ERK_ppMEKc</value>
+<value>0</value>
+</value>
+<value>
+<value>k1_ERKc</value>
+<value>Variable:/SBMLParameter:k1_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_ERKc</value>
+<value>Variable:/SBMLParameter:k2_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1_ERKc &lt;/ci&gt;#x0A      &lt;ci&gt; pERKc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ppMEKc_tot &lt;/ci&gt;#x0A            &lt;ci&gt; cytosol &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; pERK_ppMEKc &lt;/ci&gt;#x0A            &lt;ci&gt; cytosol &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; ERK_ppMEKc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2_ERKc &lt;/ci&gt;#x0A      &lt;ci&gt; pERK_ppMEKc &lt;/ci&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>[pERK_ppMEKc] -&gt; [ppERKc]; { pERK_ppMEKc };</value>
+</property>
+<property name="Expression">
+<value>k3_ERKc.Value * pERK_ppMEKc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK_ppMEKc</value>
+<value>Variable:/cytosol:pERK_ppMEKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERKc</value>
+<value>Variable:/cytosol:ppERKc</value>
+<value>1</value>
+</value>
+<value>
+<value>k3_ERKc</value>
+<value>Variable:/SBMLParameter:k3_ERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3_ERKc &lt;/ci&gt;#x0A    &lt;ci&gt; pERK_ppMEKc &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>[ERKc] -&gt; [ERKn]; { ERKc, ERKn };</value>
+</property>
+<property name="Expression">
+<value>k_ERKin.Value * ERKc.NumberConc * cytosol.Value - k_ERKout.Value * ERKn.NumberConc * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKc</value>
+<value>Variable:/cytosol:ERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKn</value>
+<value>Variable:/nucleus:ERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>k_ERKin</value>
+<value>Variable:/SBMLParameter:k_ERKin</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_ERKout</value>
+<value>Variable:/SBMLParameter:k_ERKout</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_ERKin &lt;/ci&gt;#x0A      &lt;ci&gt; ERKc &lt;/ci&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_ERKout &lt;/ci&gt;#x0A      &lt;ci&gt; ERKn &lt;/ci&gt;#x0A      &lt;ci&gt; nucleus &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>[pERKc] -&gt; [pERKn]; { pERKc, pERKn };</value>
+</property>
+<property name="Expression">
+<value>k_pERKin.Value * pERKc.NumberConc * cytosol.Value - k_pERKout.Value * pERKn.NumberConc * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERKn</value>
+<value>Variable:/nucleus:pERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>k_pERKin</value>
+<value>Variable:/SBMLParameter:k_pERKin</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_pERKout</value>
+<value>Variable:/SBMLParameter:k_pERKout</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_pERKin &lt;/ci&gt;#x0A      &lt;ci&gt; pERKc &lt;/ci&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_pERKout &lt;/ci&gt;#x0A      &lt;ci&gt; pERKn &lt;/ci&gt;#x0A      &lt;ci&gt; nucleus &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>[ppERKc] -&gt; [ppERKn]; { ppERKc, ppERKn };</value>
+</property>
+<property name="Expression">
+<value>k_ppERKin.Value * ppERKc.NumberConc * cytosol.Value - k_ppERKout.Value * ppERKn.NumberConc * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKc</value>
+<value>Variable:/cytosol:ppERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERKn</value>
+<value>Variable:/nucleus:ppERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>k_ppERKin</value>
+<value>Variable:/SBMLParameter:k_ppERKin</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_ppERKout</value>
+<value>Variable:/SBMLParameter:k_ppERKout</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_ppERKin &lt;/ci&gt;#x0A      &lt;ci&gt; ppERKc &lt;/ci&gt;#x0A      &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k_ppERKout &lt;/ci&gt;#x0A      &lt;ci&gt; ppERKn &lt;/ci&gt;#x0A      &lt;ci&gt; nucleus &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>[ppERKc] + [DUSPc] &lt;-&gt; [ppERK_DUSPc]; { ppERKc, DUSPc, ppERK_DUSPc };</value>
+</property>
+<property name="Expression">
+<value>(kd1_ppERKc.Value * ppERKc.NumberConc * DUSPc.NumberConc / 0.94 * cytosol.Value - kd2_ppERKc.Value * ppERK_DUSPc.NumberConc) * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKc</value>
+<value>Variable:/cytosol:ppERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>DUSPc</value>
+<value>Variable:/cytosol:DUSPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK_DUSPc</value>
+<value>Variable:/cytosol:ppERK_DUSPc</value>
+<value>1</value>
+</value>
+<value>
+<value>kd1_ppERKc</value>
+<value>Variable:/SBMLParameter:kd1_ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kd2_ppERKc</value>
+<value>Variable:/SBMLParameter:kd2_ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; kd1_ppERKc &lt;/ci&gt;#x0A            &lt;ci&gt; ppERKc &lt;/ci&gt;#x0A            &lt;ci&gt; DUSPc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.94 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; cytosol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kd2_ppERKc &lt;/ci&gt;#x0A        &lt;ci&gt; ppERK_DUSPc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>[ppERK_DUSPc] -&gt; [pERKc] + [DUSPc]; { ppERK_DUSPc };</value>
+</property>
+<property name="Expression">
+<value>kd3_ppERKc.Value * ppERK_DUSPc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERK_DUSPc</value>
+<value>Variable:/cytosol:ppERK_DUSPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>1</value>
+</value>
+<value>
+<value>DUSPc</value>
+<value>Variable:/cytosol:DUSPc</value>
+<value>1</value>
+</value>
+<value>
+<value>kd3_ppERKc</value>
+<value>Variable:/SBMLParameter:kd3_ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kd3_ppERKc &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK_DUSPc &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>[pERKc] + [DUSPc] &lt;-&gt; [pERK_DUSPc]; { pERKc, DUSPc, pERK_DUSPc };</value>
+</property>
+<property name="Expression">
+<value>(kd1_pERKc.Value * pERKc.NumberConc * DUSPc.NumberConc / 0.94 * cytosol.Value - kd2_pERKc.Value * pERK_DUSPc.NumberConc) * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>-1</value>
+</value>
+<value>
+<value>DUSPc</value>
+<value>Variable:/cytosol:DUSPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK_DUSPc</value>
+<value>Variable:/cytosol:pERK_DUSPc</value>
+<value>1</value>
+</value>
+<value>
+<value>kd1_pERKc</value>
+<value>Variable:/SBMLParameter:kd1_pERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kd2_pERKc</value>
+<value>Variable:/SBMLParameter:kd2_pERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; kd1_pERKc &lt;/ci&gt;#x0A            &lt;ci&gt; pERKc &lt;/ci&gt;#x0A            &lt;ci&gt; DUSPc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.94 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; cytosol &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kd2_pERKc &lt;/ci&gt;#x0A        &lt;ci&gt; pERK_DUSPc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>[pERK_DUSPc] -&gt; [ERKc] + [DUSPc]; { pERK_DUSPc };</value>
+</property>
+<property name="Expression">
+<value>kd3_pERKc.Value * pERK_DUSPc.NumberConc * cytosol.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK_DUSPc</value>
+<value>Variable:/cytosol:pERK_DUSPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKc</value>
+<value>Variable:/cytosol:ERKc</value>
+<value>1</value>
+</value>
+<value>
+<value>DUSPc</value>
+<value>Variable:/cytosol:DUSPc</value>
+<value>1</value>
+</value>
+<value>
+<value>kd3_pERKc</value>
+<value>Variable:/SBMLParameter:kd3_pERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kd3_pERKc &lt;/ci&gt;#x0A    &lt;ci&gt; pERK_DUSPc &lt;/ci&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>[ppERKn] + [DUSPn] &lt;-&gt; [ppERK_DUSPn]; { ppERKn, DUSPn, ppERK_DUSPn };</value>
+</property>
+<property name="Expression">
+<value>(kd1_ppERKn.Value * ppERKn.NumberConc * DUSPn.NumberConc / 0.22 * nucleus.Value - kd2_ppERKn.Value * ppERK_DUSPn.NumberConc) * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKn</value>
+<value>Variable:/nucleus:ppERKn</value>
+<value>-1</value>
+</value>
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK_DUSPn</value>
+<value>Variable:/nucleus:ppERK_DUSPn</value>
+<value>1</value>
+</value>
+<value>
+<value>kd1_ppERKn</value>
+<value>Variable:/SBMLParameter:kd1_ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kd2_ppERKn</value>
+<value>Variable:/SBMLParameter:kd2_ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; kd1_ppERKn &lt;/ci&gt;#x0A            &lt;ci&gt; ppERKn &lt;/ci&gt;#x0A            &lt;ci&gt; DUSPn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; nucleus &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kd2_ppERKn &lt;/ci&gt;#x0A        &lt;ci&gt; ppERK_DUSPn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_13">
+<property name="Name">
+<value>[ppERK_DUSPn] -&gt; [pERKn] + [DUSPn]; { ppERK_DUSPn };</value>
+</property>
+<property name="Expression">
+<value>kd3_ppERKn.Value * ppERK_DUSPn.NumberConc * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERK_DUSPn</value>
+<value>Variable:/nucleus:ppERK_DUSPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERKn</value>
+<value>Variable:/nucleus:pERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>1</value>
+</value>
+<value>
+<value>kd3_ppERKn</value>
+<value>Variable:/SBMLParameter:kd3_ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kd3_ppERKn &lt;/ci&gt;#x0A    &lt;ci&gt; ppERK_DUSPn &lt;/ci&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_14">
+<property name="Name">
+<value>[pERKn] + [DUSPn] &lt;-&gt; [pERK_DUSPn]; { pERKn, DUSPn, pERK_DUSPn };</value>
+</property>
+<property name="Expression">
+<value>(kd1_pERKn.Value * pERKn.NumberConc * DUSPn.NumberConc / 0.22 * nucleus.Value - kd2_pERKn.Value * pERK_DUSPn.NumberConc) * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKn</value>
+<value>Variable:/nucleus:pERKn</value>
+<value>-1</value>
+</value>
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK_DUSPn</value>
+<value>Variable:/nucleus:pERK_DUSPn</value>
+<value>1</value>
+</value>
+<value>
+<value>kd1_pERKn</value>
+<value>Variable:/SBMLParameter:kd1_pERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kd2_pERKn</value>
+<value>Variable:/SBMLParameter:kd2_pERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; kd1_pERKn &lt;/ci&gt;#x0A            &lt;ci&gt; pERKn &lt;/ci&gt;#x0A            &lt;ci&gt; DUSPn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; nucleus &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kd2_pERKn &lt;/ci&gt;#x0A        &lt;ci&gt; pERK_DUSPn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_15">
+<property name="Name">
+<value>[pERK_DUSPn] -&gt; [ERKn] + [DUSPn]; { pERK_DUSPn };</value>
+</property>
+<property name="Expression">
+<value>kd3_pERKn.Value * pERK_DUSPn.NumberConc * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERK_DUSPn</value>
+<value>Variable:/nucleus:pERK_DUSPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERKn</value>
+<value>Variable:/nucleus:ERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>1</value>
+</value>
+<value>
+<value>kd3_pERKn</value>
+<value>Variable:/SBMLParameter:kd3_pERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kd3_pERKn &lt;/ci&gt;#x0A    &lt;ci&gt; pERK_DUSPn &lt;/ci&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_16">
+<property name="Name">
+<value>-&gt; [duspn]; { ppERKn, ppERKn };</value>
+</property>
+<property name="Expression">
+<value>duspn_basal.Value * (1 + duspn_ind.Value * pow(ppERKn.NumberConc, 2) / (pow(ppERKn.NumberConc, 2) * nucleus.Value + pow(Kduspn.Value, 2))) * 0.693 / Tduspn.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>duspn</value>
+<value>Variable:/nucleus:duspn</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKn</value>
+<value>Variable:/nucleus:ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>duspn_basal</value>
+<value>Variable:/SBMLParameter:duspn_basal</value>
+<value>0</value>
+</value>
+<value>
+<value>duspn_ind</value>
+<value>Variable:/SBMLParameter:duspn_ind</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Kduspn</value>
+<value>Variable:/SBMLParameter:Kduspn</value>
+<value>0</value>
+</value>
+<value>
+<value>Tduspn</value>
+<value>Variable:/SBMLParameter:Tduspn</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; duspn_basal &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; duspn_ind &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; ppERKn &lt;/ci&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; ppERKn &lt;/ci&gt;#x0A                &lt;cn&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; nucleus &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; Kduspn &lt;/ci&gt;#x0A              &lt;cn&gt; 2 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.693 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; Tduspn &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_17">
+<property name="Name">
+<value>[duspn] -&gt; ; { duspn };</value>
+</property>
+<property name="Expression">
+<value>duspn.NumberConc * 0.693 / Tduspn.Value * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>duspn</value>
+<value>Variable:/nucleus:duspn</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tduspn</value>
+<value>Variable:/SBMLParameter:Tduspn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; duspn &lt;/ci&gt;#x0A        &lt;cn&gt; 0.693 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Tduspn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_18">
+<property name="Name">
+<value>-&gt; [DUSPn]; { duspn, duspn };</value>
+</property>
+<property name="Expression">
+<value>v2.Value * duspn.NumberConc / 0.22 * 0.693 / TDUSPn.Value * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>1</value>
+</value>
+<value>
+<value>duspn</value>
+<value>Variable:/nucleus:duspn</value>
+<value>0</value>
+</value>
+<value>
+<value>v2</value>
+<value>Variable:/SBMLParameter:v2</value>
+<value>0</value>
+</value>
+<value>
+<value>TDUSPn</value>
+<value>Variable:/SBMLParameter:TDUSPn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; v2 &lt;/ci&gt;#x0A            &lt;ci&gt; duspn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0.693 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; TDUSPn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_19">
+<property name="Name">
+<value>[DUSPn] -&gt; ; { DUSPn };</value>
+</property>
+<property name="Expression">
+<value>DUSPn.NumberConc * 0.693 / TDUSPn.Value * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DUSPn</value>
+<value>Variable:/nucleus:DUSPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>TDUSPn</value>
+<value>Variable:/SBMLParameter:TDUSPn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; DUSPn &lt;/ci&gt;#x0A        &lt;cn&gt; 0.693 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; TDUSPn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_20">
+<property name="Name">
+<value>[ERKn] + [STYXn] &lt;-&gt; [ERK_STYXn]; { ERKn, STYXn, ERK_STYXn };</value>
+</property>
+<property name="Expression">
+<value>(k1_ES.Value * ERKn.NumberConc * STYXn.NumberConc / 0.22 * nucleus.Value - k2_ES.Value * ERK_STYXn.NumberConc) * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKn</value>
+<value>Variable:/nucleus:ERKn</value>
+<value>-1</value>
+</value>
+<value>
+<value>STYXn</value>
+<value>Variable:/nucleus:STYXn</value>
+<value>-1</value>
+</value>
+<value>
+<value>ERK_STYXn</value>
+<value>Variable:/nucleus:ERK_STYXn</value>
+<value>1</value>
+</value>
+<value>
+<value>k1_ES</value>
+<value>Variable:/SBMLParameter:k1_ES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_ES</value>
+<value>Variable:/SBMLParameter:k2_ES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k1_ES &lt;/ci&gt;#x0A            &lt;ci&gt; ERKn &lt;/ci&gt;#x0A            &lt;ci&gt; STYXn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; nucleus &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2_ES &lt;/ci&gt;#x0A        &lt;ci&gt; ERK_STYXn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_21">
+<property name="Name">
+<value>[pERKn] + [STYXn] &lt;-&gt; [pERK_STYXn]; { pERKn, STYXn, pERK_STYXn };</value>
+</property>
+<property name="Expression">
+<value>(k1_pES.Value * pERKn.NumberConc * STYXn.NumberConc / 0.22 * nucleus.Value - k2_pES.Value * pERK_STYXn.NumberConc) * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKn</value>
+<value>Variable:/nucleus:pERKn</value>
+<value>-1</value>
+</value>
+<value>
+<value>STYXn</value>
+<value>Variable:/nucleus:STYXn</value>
+<value>-1</value>
+</value>
+<value>
+<value>pERK_STYXn</value>
+<value>Variable:/nucleus:pERK_STYXn</value>
+<value>1</value>
+</value>
+<value>
+<value>k1_pES</value>
+<value>Variable:/SBMLParameter:k1_pES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_pES</value>
+<value>Variable:/SBMLParameter:k2_pES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k1_pES &lt;/ci&gt;#x0A            &lt;ci&gt; pERKn &lt;/ci&gt;#x0A            &lt;ci&gt; STYXn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; nucleus &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2_pES &lt;/ci&gt;#x0A        &lt;ci&gt; pERK_STYXn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_22">
+<property name="Name">
+<value>[ppERKn] + [STYXn] &lt;-&gt; [ppERK_STYXn]; { ppERKn, STYXn, ppERK_STYXn };</value>
+</property>
+<property name="Expression">
+<value>(k1_ppES.Value * ppERKn.NumberConc * STYXn.NumberConc / 0.22 * nucleus.Value - k2_ppES.Value * ppERK_STYXn.NumberConc) * nucleus.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKn</value>
+<value>Variable:/nucleus:ppERKn</value>
+<value>-1</value>
+</value>
+<value>
+<value>STYXn</value>
+<value>Variable:/nucleus:STYXn</value>
+<value>-1</value>
+</value>
+<value>
+<value>ppERK_STYXn</value>
+<value>Variable:/nucleus:ppERK_STYXn</value>
+<value>1</value>
+</value>
+<value>
+<value>k1_ppES</value>
+<value>Variable:/SBMLParameter:k1_ppES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2_ppES</value>
+<value>Variable:/SBMLParameter:k2_ppES</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/nucleus:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k1_ppES &lt;/ci&gt;#x0A            &lt;ci&gt; ppERKn &lt;/ci&gt;#x0A            &lt;ci&gt; STYXn &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 0.22 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; nucleus &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2_ppES &lt;/ci&gt;#x0A        &lt;ci&gt; ppERK_STYXn &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; nucleus &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.94</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKc">
+<property name="Name">
+<value>ERKc</value>
+</property>
+<property name="NumberConc">
+<value>572.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERKc">
+<property name="Name">
+<value>pERKc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERKc">
+<property name="Name">
+<value>ppERKc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK_ppMEKc">
+<property name="Name">
+<value>ERK_ppMEKc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK_ppMEKc">
+<property name="Name">
+<value>pERK_ppMEKc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DUSPc">
+<property name="Name">
+<value>DUSPc</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK_DUSPc">
+<property name="Name">
+<value>pERK_DUSPc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK_DUSPc">
+<property name="Name">
+<value>ppERK_DUSPc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="u_ppMEKc_tot">
+<property name="Name">
+<value>u_ppMEKc_tot</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppMEKc_tot">
+<property name="Name">
+<value>ppMEKc_tot</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKc_obs">
+<property name="Name">
+<value>ERKc_obs</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERKc_obs">
+<property name="Name">
+<value>pERKc_obs</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERKc_obs">
+<property name="Name">
+<value>ppERKc_obs</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK_ppMEKc_obs">
+<property name="Name">
+<value>ERK_ppMEKc_obs</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.22</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ERKn">
+<property name="Name">
+<value>ERKn</value>
+</property>
+<property name="NumberConc">
+<value>1630.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERKn">
+<property name="Name">
+<value>pERKn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERKn">
+<property name="Name">
+<value>ppERKn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK_DUSPn">
+<property name="Name">
+<value>pERK_DUSPn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK_DUSPn">
+<property name="Name">
+<value>ppERK_DUSPn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="STYXn">
+<property name="Name">
+<value>STYXn</value>
+</property>
+<property name="NumberConc">
+<value>3000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ERK_STYXn">
+<property name="Name">
+<value>ERK_STYXn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pERK_STYXn">
+<property name="Name">
+<value>pERK_STYXn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERK_STYXn">
+<property name="Name">
+<value>ppERK_STYXn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="duspn">
+<property name="Name">
+<value>duspn</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DUSPn">
+<property name="Name">
+<value>DUSPn</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k_ERKin">
+<property name="Value">
+<value>0.144</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ERKout">
+<property name="Value">
+<value>1.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_pERKin">
+<property name="Value">
+<value>0.144</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_pERKout">
+<property name="Value">
+<value>1.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ppERKin">
+<property name="Value">
+<value>0.66</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ppERKout">
+<property name="Value">
+<value>0.78</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_ES">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_ES">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_pES">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_pES">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_ppES">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_ppES">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_ERKc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_ERKc">
+<property name="Value">
+<value>350.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3_ERKc">
+<property name="Value">
+<value>13.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_ppERKc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_ppERKc">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd3_ppERKc">
+<property name="Value">
+<value>0.388</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_pERKc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_pERKc">
+<property name="Value">
+<value>160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd3_pERKc">
+<property name="Value">
+<value>0.432</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_ERKc">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_ERKc">
+<property name="Value">
+<value>5160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_ERKn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_ERKn">
+<property name="Value">
+<value>350.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3_ERKn">
+<property name="Value">
+<value>13.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_ppERKn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_ppERKn">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd3_ppERKn">
+<property name="Value">
+<value>38.88</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_pERKn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_pERKn">
+<property name="Value">
+<value>160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd3_pERKn">
+<property name="Value">
+<value>43.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd1_ERKn">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd2_ERKn">
+<property name="Value">
+<value>160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ppMEKc_tot">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="actCompl">
+<property name="Value">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="duspn_basal">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="duspn_ind">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kduspn">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Tduspn">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v2">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TDUSPn">
+<property name="Value">
+<value>45.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_cytERK_tot">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_nucERK_tot">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_cellERK_tot">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_cytppERK_tot">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_nucppERK_tot">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_cellppERK_tot">
+<property name="Value">
+<value>0.0193861307998</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_tDUSPn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="scale_tERK_STYXn">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ppMEKc_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ppMEKc_tot'</value>
+</property>
+<property name="Expression">
+<value>u_ppMEKc_tot.NumberConc * k_ppMEKc_tot.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; u_ppMEKc_tot &lt;/ci&gt;#x0A    &lt;ci&gt; k_ppMEKc_tot &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppMEKc_tot</value>
+<value>Variable:/cytosol:ppMEKc_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>u_ppMEKc_tot</value>
+<value>Variable:/cytosol:u_ppMEKc_tot</value>
+<value>0</value>
+</value>
+<value>
+<value>k_ppMEKc_tot</value>
+<value>Variable:/SBMLParameter:k_ppMEKc_tot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ERKc_obs">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ERKc_obs'</value>
+</property>
+<property name="Expression">
+<value>ERKc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; ERKc &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERKc_obs</value>
+<value>Variable:/cytosol:ERKc_obs</value>
+<value>1</value>
+</value>
+<value>
+<value>ERKc</value>
+<value>Variable:/cytosol:ERKc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pERKc_obs">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pERKc_obs'</value>
+</property>
+<property name="Expression">
+<value>pERKc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; pERKc &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pERKc_obs</value>
+<value>Variable:/cytosol:pERKc_obs</value>
+<value>1</value>
+</value>
+<value>
+<value>pERKc</value>
+<value>Variable:/cytosol:pERKc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ppERKc_obs">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ppERKc_obs'</value>
+</property>
+<property name="Expression">
+<value>ppERKc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; ppERKc &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKc_obs</value>
+<value>Variable:/cytosol:ppERKc_obs</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKc</value>
+<value>Variable:/cytosol:ppERKc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ERK_ppMEKc_obs">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ERK_ppMEKc_obs'</value>
+</property>
+<property name="Expression">
+<value>ERK_ppMEKc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; ERK_ppMEKc &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ERK_ppMEKc_obs</value>
+<value>Variable:/cytosol:ERK_ppMEKc_obs</value>
+<value>1</value>
+</value>
+<value>
+<value>ERK_ppMEKc</value>
+<value>Variable:/cytosol:ERK_ppMEKc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_u_ppMEKc_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'u_ppMEKc_tot'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0, lt(time.Value, -1), 0, lt(time.Value, 0), 1, lt(time.Value, 120), 1)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn&gt; -1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;cn&gt; 120 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u_ppMEKc_tot</value>
+<value>Variable:/cytosol:u_ppMEKc_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

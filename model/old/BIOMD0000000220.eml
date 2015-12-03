@@ -1,0 +1,3380 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="re1">
+<property name="Name">
+<value>[L] + [R] &lt;-&gt; [L_R];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (L.NumberConc * R.NumberConc * k1.Value - L_R.NumberConc * k_1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>L_R</value>
+<value>Variable:/cell:L_R</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k_1</value>
+<value>Variable:/SBMLParameter:k_1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re2">
+<property name="Name">
+<value>[L_R] -&gt; [R_hash];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * L_R.NumberConc * kc1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L_R</value>
+<value>Variable:/cell:L_R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_hash</value>
+<value>Variable:/cell:R_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc1</value>
+<value>Variable:/SBMLParameter:kc1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re3">
+<property name="Name">
+<value>[R_hash] + [flip] &lt;-&gt; [flip_R_hash];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (R_hash.NumberConc * flip.NumberConc * k2.Value - flip_R_hash.NumberConc * k_2.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_hash</value>
+<value>Variable:/cell:R_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>flip</value>
+<value>Variable:/cell:flip</value>
+<value>-1</value>
+</value>
+<value>
+<value>flip_R_hash</value>
+<value>Variable:/cell:flip_R_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>k_2</value>
+<value>Variable:/SBMLParameter:k_2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re4">
+<property name="Name">
+<value>[R_hash] + [pC8] &lt;-&gt; [R_hash_pC8];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (R_hash.NumberConc * pC8.NumberConc * k3.Value - R_hash_pC8.NumberConc * k_3.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_hash</value>
+<value>Variable:/cell:R_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>pC8</value>
+<value>Variable:/cell:pC8</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_hash_pC8</value>
+<value>Variable:/cell:R_hash_pC8</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k_3</value>
+<value>Variable:/SBMLParameter:k_3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re5">
+<property name="Name">
+<value>[R_hash_pC8] -&gt; [C8] + [R_hash];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * R_hash_pC8.NumberConc * kc3.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R_hash_pC8</value>
+<value>Variable:/cell:R_hash_pC8</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>1</value>
+</value>
+<value>
+<value>R_hash</value>
+<value>Variable:/cell:R_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc3</value>
+<value>Variable:/SBMLParameter:kc3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re6">
+<property name="Name">
+<value>[C6] + [pC8] &lt;-&gt; [C6_pC8];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (C6.NumberConc * pC8.NumberConc * k7.Value - C6_pC8.NumberConc * k_7.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C6</value>
+<value>Variable:/cell:C6</value>
+<value>-1</value>
+</value>
+<value>
+<value>pC8</value>
+<value>Variable:/cell:pC8</value>
+<value>-1</value>
+</value>
+<value>
+<value>C6_pC8</value>
+<value>Variable:/cell:C6_pC8</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>k_7</value>
+<value>Variable:/SBMLParameter:k_7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re7">
+<property name="Name">
+<value>[C6_pC8] -&gt; [C8] + [C6];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * C6_pC8.NumberConc * kc7.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C6_pC8</value>
+<value>Variable:/cell:C6_pC8</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>1</value>
+</value>
+<value>
+<value>C6</value>
+<value>Variable:/cell:C6</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc7</value>
+<value>Variable:/SBMLParameter:kc7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re8">
+<property name="Name">
+<value>[C8] + [BAR] &lt;-&gt; [BAR_C8];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (C8.NumberConc * BAR.NumberConc * k4.Value - BAR_C8.NumberConc * k_4.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>-1</value>
+</value>
+<value>
+<value>BAR</value>
+<value>Variable:/cell:BAR</value>
+<value>-1</value>
+</value>
+<value>
+<value>BAR_C8</value>
+<value>Variable:/cell:BAR_C8</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>k_4</value>
+<value>Variable:/SBMLParameter:k_4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re9">
+<property name="Name">
+<value>[pC3] + [C8] &lt;-&gt; [C8_pC3];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (pC3.NumberConc * C8.NumberConc * k5.Value - C8_pC3.NumberConc * k_5.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pC3</value>
+<value>Variable:/cell:pC3</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8_pC3</value>
+<value>Variable:/cell:C8_pC3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+<value>
+<value>k_5</value>
+<value>Variable:/SBMLParameter:k_5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re10">
+<property name="Name">
+<value>[C8_pC3] -&gt; [C8] + [C3];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * C8_pC3.NumberConc * kc5.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C8_pC3</value>
+<value>Variable:/cell:C8_pC3</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc5</value>
+<value>Variable:/SBMLParameter:kc5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re11">
+<property name="Name">
+<value>[C8] + [Bid] &lt;-&gt; [C8_Bid];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (C8.NumberConc * Bid.NumberConc * k10.Value - C8_Bid.NumberConc * k_10.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bid</value>
+<value>Variable:/cell:Bid</value>
+<value>-1</value>
+</value>
+<value>
+<value>C8_Bid</value>
+<value>Variable:/cell:C8_Bid</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+<value>
+<value>k_10</value>
+<value>Variable:/SBMLParameter:k_10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re12">
+<property name="Name">
+<value>[C8_Bid] -&gt; [tBid] + [C8];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * C8_Bid.NumberConc * kc10.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C8_Bid</value>
+<value>Variable:/cell:C8_Bid</value>
+<value>-1</value>
+</value>
+<value>
+<value>tBid</value>
+<value>Variable:/cell:tBid</value>
+<value>1</value>
+</value>
+<value>
+<value>C8</value>
+<value>Variable:/cell:C8</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc10</value>
+<value>Variable:/SBMLParameter:kc10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re13">
+<property name="Name">
+<value>[pC3] + [Apop] &lt;-&gt; [pC3_Apop];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (pC3.NumberConc * Apop.NumberConc * k25.Value - pC3_Apop.NumberConc * k_25.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pC3</value>
+<value>Variable:/cell:pC3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apop</value>
+<value>Variable:/cell:Apop</value>
+<value>-1</value>
+</value>
+<value>
+<value>pC3_Apop</value>
+<value>Variable:/cell:pC3_Apop</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+<value>
+<value>k_25</value>
+<value>Variable:/SBMLParameter:k_25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re14">
+<property name="Name">
+<value>[pC3_Apop] -&gt; [C3] + [Apop];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * pC3_Apop.NumberConc * kc25.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pC3_Apop</value>
+<value>Variable:/cell:pC3_Apop</value>
+<value>-1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>1</value>
+</value>
+<value>
+<value>Apop</value>
+<value>Variable:/cell:Apop</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc25</value>
+<value>Variable:/SBMLParameter:kc25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re15">
+<property name="Name">
+<value>[C3] + [pC6] &lt;-&gt; [C3_pC6];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (C3.NumberConc * pC6.NumberConc * k6.Value - C3_pC6.NumberConc * k_6.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>-1</value>
+</value>
+<value>
+<value>pC6</value>
+<value>Variable:/cell:pC6</value>
+<value>-1</value>
+</value>
+<value>
+<value>C3_pC6</value>
+<value>Variable:/cell:C3_pC6</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>k_6</value>
+<value>Variable:/SBMLParameter:k_6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re16">
+<property name="Name">
+<value>[C3_pC6] -&gt; [C3] + [C6];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * C3_pC6.NumberConc * kc6.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3_pC6</value>
+<value>Variable:/cell:C3_pC6</value>
+<value>-1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>1</value>
+</value>
+<value>
+<value>C6</value>
+<value>Variable:/cell:C6</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc6</value>
+<value>Variable:/SBMLParameter:kc6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re17">
+<property name="Name">
+<value>[C3] + [XIAP] &lt;-&gt; [XIAP_C3];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (C3.NumberConc * XIAP.NumberConc * k8.Value - XIAP_C3.NumberConc * k_8.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>-1</value>
+</value>
+<value>
+<value>XIAP</value>
+<value>Variable:/cell:XIAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>XIAP_C3</value>
+<value>Variable:/cell:XIAP_C3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>k_8</value>
+<value>Variable:/SBMLParameter:k_8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re18">
+<property name="Name">
+<value>[XIAP_C3] -&gt; [C3_Ub] + [XIAP];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * XIAP_C3.NumberConc * kc8.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>XIAP_C3</value>
+<value>Variable:/cell:XIAP_C3</value>
+<value>-1</value>
+</value>
+<value>
+<value>C3_Ub</value>
+<value>Variable:/cell:C3_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>XIAP</value>
+<value>Variable:/cell:XIAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc8</value>
+<value>Variable:/SBMLParameter:kc8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re19">
+<property name="Name">
+<value>[PARP] + [C3] &lt;-&gt; [PARP_C3];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (PARP.NumberConc * C3.NumberConc * k9.Value - PARP_C3.NumberConc * k_9.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PARP</value>
+<value>Variable:/cell:PARP</value>
+<value>-1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>-1</value>
+</value>
+<value>
+<value>PARP_C3</value>
+<value>Variable:/cell:PARP_C3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+<value>
+<value>k_9</value>
+<value>Variable:/SBMLParameter:k_9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re20">
+<property name="Name">
+<value>[PARP_C3] -&gt; [CPARP] + [C3];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * PARP_C3.NumberConc * kc9.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PARP_C3</value>
+<value>Variable:/cell:PARP_C3</value>
+<value>-1</value>
+</value>
+<value>
+<value>CPARP</value>
+<value>Variable:/cell:CPARP</value>
+<value>1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc9</value>
+<value>Variable:/SBMLParameter:kc9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re21">
+<property name="Name">
+<value>[XIAP] + [Apop] &lt;-&gt; [Apop_XIAP];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (XIAP.NumberConc * Apop.NumberConc * k27.Value - Apop_XIAP.NumberConc * k_27.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>XIAP</value>
+<value>Variable:/cell:XIAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apop</value>
+<value>Variable:/cell:Apop</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apop_XIAP</value>
+<value>Variable:/cell:Apop_XIAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k27</value>
+<value>Variable:/SBMLParameter:k27</value>
+<value>0</value>
+</value>
+<value>
+<value>k_27</value>
+<value>Variable:/SBMLParameter:k_27</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re22">
+<property name="Name">
+<value>[XIAP] + [Smac] &lt;-&gt; [Smac_XIAP];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (XIAP.NumberConc * Smac.NumberConc * k28.Value - Smac_XIAP.NumberConc * k_28.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>XIAP</value>
+<value>Variable:/cell:XIAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Smac</value>
+<value>Variable:/cell:Smac</value>
+<value>-1</value>
+</value>
+<value>
+<value>Smac_XIAP</value>
+<value>Variable:/cell:Smac_XIAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k28</value>
+<value>Variable:/SBMLParameter:k28</value>
+<value>0</value>
+</value>
+<value>
+<value>k_28</value>
+<value>Variable:/SBMLParameter:k_28</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re23">
+<property name="Name">
+<value>[tBid] + [Bcl2c] &lt;-&gt; [Bcl2c_tBid];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (tBid.NumberConc * Bcl2c.NumberConc * k11.Value - Bcl2c_tBid.NumberConc * k_11.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tBid</value>
+<value>Variable:/cell:tBid</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bcl2c</value>
+<value>Variable:/cell:Bcl2c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bcl2c_tBid</value>
+<value>Variable:/cell:Bcl2c_tBid</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>k_11</value>
+<value>Variable:/SBMLParameter:k_11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re24">
+<property name="Name">
+<value>[tBid] + [Bax] &lt;-&gt; [Bax_tBid];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (tBid.NumberConc * Bax.NumberConc * k12.Value - Bax_tBid.NumberConc * k_12.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tBid</value>
+<value>Variable:/cell:tBid</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax</value>
+<value>Variable:/cell:Bax</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax_tBid</value>
+<value>Variable:/cell:Bax_tBid</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+<value>
+<value>k_12</value>
+<value>Variable:/SBMLParameter:k_12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re25">
+<property name="Name">
+<value>[Bax_tBid] -&gt; [tBid] + [Bax_hash];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Bax_tBid.NumberConc * kc12.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bax_tBid</value>
+<value>Variable:/cell:Bax_tBid</value>
+<value>-1</value>
+</value>
+<value>
+<value>tBid</value>
+<value>Variable:/cell:tBid</value>
+<value>1</value>
+</value>
+<value>
+<value>Bax_hash</value>
+<value>Variable:/cell:Bax_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc12</value>
+<value>Variable:/SBMLParameter:kc12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re26">
+<property name="Name">
+<value>[Bax_hash] &lt;-&gt; [Baxm];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Bax_hash.NumberConc * k13.Value - Baxm.NumberConc * k_13.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bax_hash</value>
+<value>Variable:/cell:Bax_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>Baxm</value>
+<value>Variable:/cell/mitochondrion:Baxm</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+<value>
+<value>k_13</value>
+<value>Variable:/SBMLParameter:k_13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re27">
+<property name="Name">
+<value>[Baxm] + [Bcl2] &lt;-&gt; [Baxm_Bcl2];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Baxm.NumberConc * Bcl2.NumberConc * k14.Value / v.Value - Baxm_Bcl2.NumberConc * k_14.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Baxm</value>
+<value>Variable:/cell/mitochondrion:Baxm</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bcl2</value>
+<value>Variable:/cell/mitochondrion:Bcl2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Baxm_Bcl2</value>
+<value>Variable:/cell/mitochondrion:Baxm_Bcl2</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_14</value>
+<value>Variable:/SBMLParameter:k_14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re29">
+<property name="Name">
+<value>[Baxm] + [Baxm] &lt;-&gt; [Bax2];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Baxm.NumberConc * Baxm.NumberConc * k15.Value / v.Value - Bax2.NumberConc * k_15.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Baxm</value>
+<value>Variable:/cell/mitochondrion:Baxm</value>
+<value>-2</value>
+</value>
+<value>
+<value>Bax2</value>
+<value>Variable:/cell/mitochondrion:Bax2</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k15</value>
+<value>Variable:/SBMLParameter:k15</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_15</value>
+<value>Variable:/SBMLParameter:k_15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re30">
+<property name="Name">
+<value>[Bax2] + [Bax2] &lt;-&gt; [Bax4];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Bax2.NumberConc * Bax2.NumberConc * k17.Value / v.Value - Bax4.NumberConc * k_17.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bax2</value>
+<value>Variable:/cell/mitochondrion:Bax2</value>
+<value>-2</value>
+</value>
+<value>
+<value>Bax4</value>
+<value>Variable:/cell/mitochondrion:Bax4</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_17</value>
+<value>Variable:/SBMLParameter:k_17</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re31">
+<property name="Name">
+<value>[Bcl2] + [Bax2] &lt;-&gt; [Bax2_Bcl2];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Bcl2.NumberConc * Bax2.NumberConc * k16.Value / v.Value - Bax2_Bcl2.NumberConc * k_16.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bcl2</value>
+<value>Variable:/cell/mitochondrion:Bcl2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax2</value>
+<value>Variable:/cell/mitochondrion:Bax2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax2_Bcl2</value>
+<value>Variable:/cell/mitochondrion:Bax2_Bcl2</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_16</value>
+<value>Variable:/SBMLParameter:k_16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re32">
+<property name="Name">
+<value>[Bcl2] + [Bax4] &lt;-&gt; [Bax4_Bcl2];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Bcl2.NumberConc * Bax4.NumberConc * k18.Value / v.Value - Bax4_Bcl2.NumberConc * k_18.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bcl2</value>
+<value>Variable:/cell/mitochondrion:Bcl2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax4</value>
+<value>Variable:/cell/mitochondrion:Bax4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax4_Bcl2</value>
+<value>Variable:/cell/mitochondrion:Bax4_Bcl2</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k18</value>
+<value>Variable:/SBMLParameter:k18</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_18</value>
+<value>Variable:/SBMLParameter:k_18</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re33">
+<property name="Name">
+<value>[Bax4] + [M] &lt;-&gt; [Bax4_M];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (Bax4.NumberConc * M.NumberConc * k19.Value / v.Value - Bax4_M.NumberConc * k_19.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bax4</value>
+<value>Variable:/cell/mitochondrion:Bax4</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell/mitochondrion:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bax4_M</value>
+<value>Variable:/cell/mitochondrion:Bax4_M</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_19</value>
+<value>Variable:/SBMLParameter:k_19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re34">
+<property name="Name">
+<value>[Bax4_M] -&gt; [M_hash];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * Bax4_M.NumberConc * kc19.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bax4_M</value>
+<value>Variable:/cell/mitochondrion:Bax4_M</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_hash</value>
+<value>Variable:/cell/mitochondrion:M_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc19</value>
+<value>Variable:/SBMLParameter:kc19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re35">
+<property name="Name">
+<value>[M_hash] + [Smacm] &lt;-&gt; [M_hash_Smacm];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (M_hash.NumberConc * Smacm.NumberConc * k21.Value / v.Value - M_hash_Smacm.NumberConc * k_21.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_hash</value>
+<value>Variable:/cell/mitochondrion:M_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>Smacm</value>
+<value>Variable:/cell/mitochondrion:Smacm</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_hash_Smacm</value>
+<value>Variable:/cell/mitochondrion:M_hash_Smacm</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k21</value>
+<value>Variable:/SBMLParameter:k21</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_21</value>
+<value>Variable:/SBMLParameter:k_21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re36">
+<property name="Name">
+<value>[M_hash_Smacm] -&gt; [M_hash] + [Smacr];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * M_hash_Smacm.NumberConc * kc21.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_hash_Smacm</value>
+<value>Variable:/cell/mitochondrion:M_hash_Smacm</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_hash</value>
+<value>Variable:/cell/mitochondrion:M_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>Smacr</value>
+<value>Variable:/cell/mitochondrion:Smacr</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc21</value>
+<value>Variable:/SBMLParameter:kc21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re37">
+<property name="Name">
+<value>[Smacr] &lt;-&gt; [Smac];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Smacr.NumberConc * k26.Value - Smac.NumberConc * k_26.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Smacr</value>
+<value>Variable:/cell/mitochondrion:Smacr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Smac</value>
+<value>Variable:/cell:Smac</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k26</value>
+<value>Variable:/SBMLParameter:k26</value>
+<value>0</value>
+</value>
+<value>
+<value>k_26</value>
+<value>Variable:/SBMLParameter:k_26</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re38">
+<property name="Name">
+<value>[M_hash] + [CytoCm] &lt;-&gt; [M_hash_CytoCm];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * (M_hash.NumberConc * CytoCm.NumberConc * k20.Value / v.Value - M_hash_CytoCm.NumberConc * k_20.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_hash</value>
+<value>Variable:/cell/mitochondrion:M_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>CytoCm</value>
+<value>Variable:/cell/mitochondrion:CytoCm</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_hash_CytoCm</value>
+<value>Variable:/cell/mitochondrion:M_hash_CytoCm</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k20</value>
+<value>Variable:/SBMLParameter:k20</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>k_20</value>
+<value>Variable:/SBMLParameter:k_20</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re39">
+<property name="Name">
+<value>[M_hash_CytoCm] -&gt; [CytoCr] + [M_hash];</value>
+</property>
+<property name="Expression">
+<value>mitochondrion.Value * M_hash_CytoCm.NumberConc * kc20.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_hash_CytoCm</value>
+<value>Variable:/cell/mitochondrion:M_hash_CytoCm</value>
+<value>-1</value>
+</value>
+<value>
+<value>CytoCr</value>
+<value>Variable:/cell/mitochondrion:CytoCr</value>
+<value>1</value>
+</value>
+<value>
+<value>M_hash</value>
+<value>Variable:/cell/mitochondrion:M_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>mitochondrion</value>
+<value>Variable:/cell/mitochondrion:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc20</value>
+<value>Variable:/SBMLParameter:kc20</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re40">
+<property name="Name">
+<value>[CytoCr] &lt;-&gt; [CytoC];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (CytoCr.NumberConc * k22.Value - CytoC.NumberConc * k_22.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CytoCr</value>
+<value>Variable:/cell/mitochondrion:CytoCr</value>
+<value>-1</value>
+</value>
+<value>
+<value>CytoC</value>
+<value>Variable:/cell:CytoC</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k22</value>
+<value>Variable:/SBMLParameter:k22</value>
+<value>0</value>
+</value>
+<value>
+<value>k_22</value>
+<value>Variable:/SBMLParameter:k_22</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re41">
+<property name="Name">
+<value>[CytoC] + [Apaf] &lt;-&gt; [CytoC_Apaf];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (CytoC.NumberConc * Apaf.NumberConc * k23.Value - CytoC_Apaf.NumberConc * k_23.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CytoC</value>
+<value>Variable:/cell:CytoC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apaf</value>
+<value>Variable:/cell:Apaf</value>
+<value>-1</value>
+</value>
+<value>
+<value>CytoC_Apaf</value>
+<value>Variable:/cell:CytoC_Apaf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k23</value>
+<value>Variable:/SBMLParameter:k23</value>
+<value>0</value>
+</value>
+<value>
+<value>k_23</value>
+<value>Variable:/SBMLParameter:k_23</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re42">
+<property name="Name">
+<value>[CytoC_Apaf] -&gt; [CytoC] + [Apaf_hash];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * CytoC_Apaf.NumberConc * kc23.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CytoC_Apaf</value>
+<value>Variable:/cell:CytoC_Apaf</value>
+<value>-1</value>
+</value>
+<value>
+<value>CytoC</value>
+<value>Variable:/cell:CytoC</value>
+<value>1</value>
+</value>
+<value>
+<value>Apaf_hash</value>
+<value>Variable:/cell:Apaf_hash</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc23</value>
+<value>Variable:/SBMLParameter:kc23</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re43">
+<property name="Name">
+<value>[Apaf_hash] + [pC9] &lt;-&gt; [Apop];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Apaf_hash.NumberConc * pC9.NumberConc * k24.Value - Apop.NumberConc * k_24.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Apaf_hash</value>
+<value>Variable:/cell:Apaf_hash</value>
+<value>-1</value>
+</value>
+<value>
+<value>pC9</value>
+<value>Variable:/cell:pC9</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apop</value>
+<value>Variable:/cell:Apop</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k24</value>
+<value>Variable:/SBMLParameter:k24</value>
+<value>0</value>
+</value>
+<value>
+<value>k_24</value>
+<value>Variable:/SBMLParameter:k_24</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Name">
+<value>L</value>
+</property>
+<property name="Value">
+<value>3000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="flip">
+<property name="Name">
+<value>flip</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pC8">
+<property name="Name">
+<value>proC8</value>
+</property>
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C8">
+<property name="Name">
+<value>casp8</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C6">
+<property name="Name">
+<value>casp6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BAR">
+<property name="Name">
+<value>BAR</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pC3">
+<property name="Name">
+<value>proC3</value>
+</property>
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3">
+<property name="Name">
+<value>casp3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bid">
+<property name="Name">
+<value>Bid</value>
+</property>
+<property name="Value">
+<value>40000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="tBid">
+<property name="Name">
+<value>tBid</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pC6">
+<property name="Name">
+<value>proC6</value>
+</property>
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="XIAP">
+<property name="Name">
+<value>XIAP</value>
+</property>
+<property name="Value">
+<value>100000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3_Ub">
+<property name="Name">
+<value>Ub C3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PARP">
+<property name="Name">
+<value>PARP</value>
+</property>
+<property name="Value">
+<value>1000000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CPARP">
+<property name="Name">
+<value>cPARP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Smac">
+<property name="Name">
+<value>Smac</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bcl2c">
+<property name="Name">
+<value>cytosolic Bcl-2</value>
+</property>
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax">
+<property name="Name">
+<value>Bax</value>
+</property>
+<property name="Value">
+<value>100000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax_hash">
+<property name="Name">
+<value>Bax#</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="L_R">
+<property name="Name">
+<value>L:R</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_hash">
+<property name="Name">
+<value>R#</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="flip_R_hash">
+<property name="Name">
+<value>flip:R#</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_hash_pC8">
+<property name="Name">
+<value>R#:pC8</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C6_pC8">
+<property name="Name">
+<value>C6:pC8</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BAR_C8">
+<property name="Name">
+<value>BAR:C8</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C8_pC3">
+<property name="Name">
+<value>C8:pC3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pC3_Apop">
+<property name="Name">
+<value>pC3:Apop</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Apop">
+<property name="Name">
+<value>Apop</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C8_Bid">
+<property name="Name">
+<value>C8:Bid</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3_pC6">
+<property name="Name">
+<value>C3:pC6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="XIAP_C3">
+<property name="Name">
+<value>XIAP:C3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PARP_C3">
+<property name="Name">
+<value>PARP:C3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Apop_XIAP">
+<property name="Name">
+<value>Apop:XIAP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Smac_XIAP">
+<property name="Name">
+<value>Smac:XIAP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bcl2c_tBid">
+<property name="Name">
+<value>Bcl2c:tBid</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax_tBid">
+<property name="Name">
+<value>Bax:tBid</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CytoC">
+<property name="Name">
+<value>CytoC</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Apaf">
+<property name="Name">
+<value>Apaf</value>
+</property>
+<property name="Value">
+<value>100000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CytoC_Apaf">
+<property name="Name">
+<value>CytoC:Apaf</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Apaf_hash">
+<property name="Name">
+<value>Apaf#</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pC9">
+<property name="Name">
+<value>proC9</value>
+</property>
+<property name="Value">
+<value>100000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell/mitochondrion">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>mitochondrion</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Bcl2">
+<property name="Name">
+<value>Bcl-2</value>
+</property>
+<property name="Value">
+<value>20000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Baxm_Bcl2">
+<property name="Name">
+<value>Baxm:Bcl2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax4">
+<property name="Name">
+<value>Bax4</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax2_Bcl2">
+<property name="Name">
+<value>Bax2:Bcl2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax4_Bcl2">
+<property name="Name">
+<value>Bax4:Bcl2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>M</value>
+</property>
+<property name="Value">
+<value>500000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax4_M">
+<property name="Name">
+<value>Bax4:M</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_hash">
+<property name="Name">
+<value>M#</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Smacm">
+<property name="Name">
+<value>Smac_m</value>
+</property>
+<property name="Value">
+<value>100000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_hash_Smacm">
+<property name="Name">
+<value>M#:Smac_m</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Smacr">
+<property name="Name">
+<value>Smac released</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CytoCm">
+<property name="Name">
+<value>CytoC_m</value>
+</property>
+<property name="Value">
+<value>500000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_hash_CytoCm">
+<property name="Name">
+<value>M#:CytoC_m</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CytoCr">
+<property name="Name">
+<value>CytoC released</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Baxm">
+<property name="Name">
+<value>Baxm</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bax2">
+<property name="Name">
+<value>Bax2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_1">
+<property name="Name">
+<value>k_1</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc1">
+<property name="Name">
+<value>kc1</value>
+</property>
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_2">
+<property name="Name">
+<value>k_2</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_3">
+<property name="Name">
+<value>k_3</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc3">
+<property name="Name">
+<value>kc3</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_4">
+<property name="Name">
+<value>k_4</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_5">
+<property name="Name">
+<value>k_5</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc5">
+<property name="Name">
+<value>kc5</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_6">
+<property name="Name">
+<value>k_6</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc6">
+<property name="Name">
+<value>kc6</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>3e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_7">
+<property name="Name">
+<value>k_7</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_8">
+<property name="Name">
+<value>k_8</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc8">
+<property name="Name">
+<value>kc8</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_9">
+<property name="Name">
+<value>k_9</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc9">
+<property name="Name">
+<value>kc9</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_10">
+<property name="Name">
+<value>k_10</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc10">
+<property name="Name">
+<value>kc10</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_11">
+<property name="Name">
+<value>k_11</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_12">
+<property name="Name">
+<value>k_12</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc12">
+<property name="Name">
+<value>kc12</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_13">
+<property name="Name">
+<value>k_13</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Name">
+<value>k14</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_14">
+<property name="Name">
+<value>k_14</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15">
+<property name="Name">
+<value>k15</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_15">
+<property name="Name">
+<value>k_15</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Name">
+<value>k16</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_16">
+<property name="Name">
+<value>k_16</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Name">
+<value>k17</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_17">
+<property name="Name">
+<value>k_17</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18">
+<property name="Name">
+<value>k18</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_18">
+<property name="Name">
+<value>k_18</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Name">
+<value>k19</value>
+</property>
+<property name="Value">
+<value>1e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_19">
+<property name="Name">
+<value>k_19</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc19">
+<property name="Name">
+<value>kc19</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k20">
+<property name="Name">
+<value>k20</value>
+</property>
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_20">
+<property name="Name">
+<value>k_20</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc20">
+<property name="Name">
+<value>kc20</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k21">
+<property name="Name">
+<value>k21</value>
+</property>
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_21">
+<property name="Name">
+<value>k_21</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc21">
+<property name="Name">
+<value>kc21</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k22">
+<property name="Name">
+<value>k22</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_22">
+<property name="Name">
+<value>k_22</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k23">
+<property name="Name">
+<value>k23</value>
+</property>
+<property name="Value">
+<value>5e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_23">
+<property name="Name">
+<value>k_23</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc23">
+<property name="Name">
+<value>kc23</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k24">
+<property name="Name">
+<value>k24</value>
+</property>
+<property name="Value">
+<value>5e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_24">
+<property name="Name">
+<value>k_24</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k25">
+<property name="Name">
+<value>k25</value>
+</property>
+<property name="Value">
+<value>5e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_25">
+<property name="Name">
+<value>k_25</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc25">
+<property name="Name">
+<value>kc25</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k26">
+<property name="Name">
+<value>k26</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_26">
+<property name="Name">
+<value>k_26</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k27">
+<property name="Name">
+<value>k27</value>
+</property>
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_27">
+<property name="Name">
+<value>k_27</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k28">
+<property name="Name">
+<value>k28</value>
+</property>
+<property name="Value">
+<value>7e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_28">
+<property name="Name">
+<value>k_28</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc7">
+<property name="Name">
+<value>kc7</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v">
+<property name="Name">
+<value>v</value>
+</property>
+<property name="Value">
+<value>0.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pC3_frac">
+<property name="Name">
+<value>pC3 fraction</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3_frac">
+<property name="Name">
+<value>C3 fraction</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3_UB_frac">
+<property name="Name">
+<value>degraded C3 fraction</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="cPARP_frac">
+<property name="Name">
+<value>cPARP fraction</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="C3_tot">
+<property name="Name">
+<value>total Caspase 3</value>
+</property>
+<property name="Value">
+<value>10000.0</value>
+</property>
+</variable>
+<variable class="Variable" id="fC3_fract">
+<property name="Name">
+<value>free C3 fraction</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_C3_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'C3_tot'</value>
+</property>
+<property name="Expression">
+<value>pC3.NumberConc + C8_pC3.NumberConc + pC3_Apop.NumberConc + C3.NumberConc + C3_pC6.NumberConc + XIAP_C3.NumberConc + PARP_C3.NumberConc + C3_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3_tot</value>
+<value>Variable:/SBMLParameter:C3_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>pC3</value>
+<value>Variable:/cell:pC3</value>
+<value>0</value>
+</value>
+<value>
+<value>C8_pC3</value>
+<value>Variable:/cell:C8_pC3</value>
+<value>0</value>
+</value>
+<value>
+<value>pC3_Apop</value>
+<value>Variable:/cell:pC3_Apop</value>
+<value>0</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_pC6</value>
+<value>Variable:/cell:C3_pC6</value>
+<value>0</value>
+</value>
+<value>
+<value>XIAP_C3</value>
+<value>Variable:/cell:XIAP_C3</value>
+<value>0</value>
+</value>
+<value>
+<value>PARP_C3</value>
+<value>Variable:/cell:PARP_C3</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_Ub</value>
+<value>Variable:/cell:C3_Ub</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_C3_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'C3_frac'</value>
+</property>
+<property name="Expression">
+<value>(C3.NumberConc + C3_pC6.NumberConc + XIAP_C3.NumberConc + PARP_C3.NumberConc) / C3_tot.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3_frac</value>
+<value>Variable:/SBMLParameter:C3_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_pC6</value>
+<value>Variable:/cell:C3_pC6</value>
+<value>0</value>
+</value>
+<value>
+<value>XIAP_C3</value>
+<value>Variable:/cell:XIAP_C3</value>
+<value>0</value>
+</value>
+<value>
+<value>PARP_C3</value>
+<value>Variable:/cell:PARP_C3</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_tot</value>
+<value>Variable:/SBMLParameter:C3_tot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_C3_UB_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'C3_UB_frac'</value>
+</property>
+<property name="Expression">
+<value>C3_Ub.NumberConc / C3_tot.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C3_UB_frac</value>
+<value>Variable:/SBMLParameter:C3_UB_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>C3_Ub</value>
+<value>Variable:/cell:C3_Ub</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_tot</value>
+<value>Variable:/SBMLParameter:C3_tot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_pC3_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pC3_frac'</value>
+</property>
+<property name="Expression">
+<value>(pC3.NumberConc + C8_pC3.NumberConc + pC3_Apop.NumberConc) / C3_tot.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pC3_frac</value>
+<value>Variable:/SBMLParameter:pC3_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>pC3</value>
+<value>Variable:/cell:pC3</value>
+<value>0</value>
+</value>
+<value>
+<value>C8_pC3</value>
+<value>Variable:/cell:C8_pC3</value>
+<value>0</value>
+</value>
+<value>
+<value>pC3_Apop</value>
+<value>Variable:/cell:pC3_Apop</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_tot</value>
+<value>Variable:/SBMLParameter:C3_tot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_fC3_fract">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'fC3_fract'</value>
+</property>
+<property name="Expression">
+<value>C3.NumberConc / C3_tot.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>fC3_fract</value>
+<value>Variable:/SBMLParameter:fC3_fract</value>
+<value>1</value>
+</value>
+<value>
+<value>C3</value>
+<value>Variable:/cell:C3</value>
+<value>0</value>
+</value>
+<value>
+<value>C3_tot</value>
+<value>Variable:/SBMLParameter:C3_tot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cPARP_frac">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cPARP_frac'</value>
+</property>
+<property name="Expression">
+<value>CPARP.NumberConc / (CPARP.NumberConc + PARP.NumberConc + PARP_C3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cPARP_frac</value>
+<value>Variable:/SBMLParameter:cPARP_frac</value>
+<value>1</value>
+</value>
+<value>
+<value>CPARP</value>
+<value>Variable:/cell:CPARP</value>
+<value>0</value>
+</value>
+<value>
+<value>PARP</value>
+<value>Variable:/cell:PARP</value>
+<value>0</value>
+</value>
+<value>
+<value>PARP_C3</value>
+<value>Variable:/cell:PARP_C3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

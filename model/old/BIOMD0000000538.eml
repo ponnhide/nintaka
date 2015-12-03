@@ -1,0 +1,210 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/Brain">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Brain</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ONLnr">
+<property name="Name">
+<value>ONLnr</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ONLpcd">
+<property name="Name">
+<value>ONLpcd</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ONLrom">
+<property name="Name">
+<value>ONLrom</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Munr">
+<property name="Name">
+<value>Munr</value>
+</property>
+<property name="Value">
+<value>0.278</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Mupcd">
+<property name="Name">
+<value>Mupcd</value>
+</property>
+<property name="Value">
+<value>0.223</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rrom">
+<property name="Name">
+<value>Rrom</value>
+</property>
+<property name="Value">
+<value>0.103</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ONLrom_0">
+<property name="Name">
+<value>ONLrom</value>
+</property>
+<property name="Value">
+<value>40.947</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Murom">
+<property name="Name">
+<value>Murom</value>
+</property>
+<property name="Value">
+<value>0.0708</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_ONLrom">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ONLrom'</value>
+</property>
+<property name="Expression">
+<value>ONLrom_0.NumberConc * exp((exp(-Rrom.NumberConc * &lt;t&gt;) - 1) * Murom.NumberConc / Rrom.NumberConc) * 100 / ONLrom_0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ONLrom</value>
+<value>Variable:/Brain:ONLrom</value>
+<value>1</value>
+</value>
+<value>
+<value>ONLrom_0</value>
+<value>Variable:/SBMLParameter:ONLrom_0</value>
+<value>0</value>
+</value>
+<value>
+<value>Rrom</value>
+<value>Variable:/SBMLParameter:Rrom</value>
+<value>0</value>
+</value>
+<value>
+<value>Murom</value>
+<value>Variable:/SBMLParameter:Murom</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_ONLnr">
+<property name="Name">
+<value>Rate rule for 'ONLnr'</value>
+</property>
+<property name="Expression">
+<value>-Munr.NumberConc * ONLnr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ONLnr</value>
+<value>Variable:/Brain:ONLnr</value>
+<value>1</value>
+</value>
+<value>
+<value>Munr</value>
+<value>Variable:/SBMLParameter:Munr</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_ONLpcd">
+<property name="Name">
+<value>Rate rule for 'ONLpcd'</value>
+</property>
+<property name="Expression">
+<value>-Mupcd.NumberConc * ONLpcd.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ONLpcd</value>
+<value>Variable:/Brain:ONLpcd</value>
+<value>1</value>
+</value>
+<value>
+<value>Mupcd</value>
+<value>Variable:/SBMLParameter:Mupcd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

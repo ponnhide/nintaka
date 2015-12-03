@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="v1">
+<property name="Name">
+<value>Phosphohomoserine synthesis</value>
+</property>
+<property name="V0">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * V0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Hser</value>
+<value>Variable:/compartment:Hser</value>
+<value>-1</value>
+</value>
+<value>
+<value>Phser</value>
+<value>Variable:/compartment:Phser</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; V0 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vCys">
+<property name="Name">
+<value>Cystathionine gamma-synthase</value>
+</property>
+<property name="kcat2">
+<value>30.0</value>
+</property>
+<property name="KmCYS">
+<value>460.0</value>
+</property>
+<property name="KmPHSER">
+<value>2500.0</value>
+</property>
+<property name="Ki2">
+<value>2000.0</value>
+</property>
+<property name="Expression">
+<value>CGS.NumberConc * (kcat2 / (1 + KmCYS / Cys.NumberConc)) * Phser.NumberConc / (Phser.NumberConc + KmPHSER * (1 + Phi.NumberConc / Ki2) / (1 + KmCYS / Cys.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phser</value>
+<value>Variable:/compartment:Phser</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cys</value>
+<value>Variable:/compartment:Cys</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cystathionine</value>
+<value>Variable:/compartment:Cystathionine</value>
+<value>1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>1</value>
+</value>
+<value>
+<value>CGS</value>
+<value>Variable:/compartment:CGS</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CGS &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; kcat2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KmCYS &lt;/ci&gt;#x0A            &lt;ci&gt; Cys &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Phser &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Phser &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KmPHSER &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Phi &lt;/ci&gt;#x0A              &lt;ci&gt; Ki2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KmCYS &lt;/ci&gt;#x0A            &lt;ci&gt; Cys &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vThr">
+<property name="Name">
+<value>Threonine Synthase</value>
+</property>
+<property name="Ki3">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>TS.NumberConc * (5.900000e-04 + 0.062 * pow(AdoMet.NumberConc, 2.9) / (pow(32, 2.9) + pow(AdoMet.NumberConc, 2.9))) * Phser.NumberConc / (1 + Phi.NumberConc / Ki3)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phser</value>
+<value>Variable:/compartment:Phser</value>
+<value>-1</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/compartment:Thr</value>
+<value>1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>1</value>
+</value>
+<value>
+<value>AdoMet</value>
+<value>Variable:/compartment:AdoMet</value>
+<value>0</value>
+</value>
+<value>
+<value>TS</value>
+<value>Variable:/compartment:TS</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; TS &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='e-notation'&gt; 5.9 &lt;sep/&gt; -4 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 0.062 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; AdoMet &lt;/ci&gt;#x0A              &lt;cn&gt; 2.9 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;cn type='integer'&gt; 32 &lt;/cn&gt;#x0A              &lt;cn&gt; 2.9 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;ci&gt; AdoMet &lt;/ci&gt;#x0A              &lt;cn&gt; 2.9 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Phser &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Phi &lt;/ci&gt;#x0A        &lt;ci&gt; Ki3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Phser">
+<property name="Name">
+<value>Phosphohomoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Thr">
+<property name="Name">
+<value>Threonine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cystathionine">
+<property name="Name">
+<value>Cystathionine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Hser">
+<property name="Name">
+<value>Homoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi">
+<property name="Name">
+<value>Inorganic phosphate</value>
+</property>
+<property name="NumberConc">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cys">
+<property name="Name">
+<value>Cysteine</value>
+</property>
+<property name="NumberConc">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AdoMet">
+<property name="Name">
+<value>S-adenosylmethionine</value>
+</property>
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CGS">
+<property name="Name">
+<value>Cystathionine gamma-synthase</value>
+</property>
+<property name="NumberConc">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TS">
+<property name="Name">
+<value>Threonine synthase</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

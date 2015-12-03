@@ -1,0 +1,364 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Reaction1">
+<property name="Name">
+<value>[EmptySet] -&gt; [z];</value>
+</property>
+<property name="Expression">
+<value>kappa.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/cell:EmptySet</value>
+<value>-1</value>
+</value>
+<value>
+<value>z</value>
+<value>Variable:/cell:z</value>
+<value>1</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; kappa &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction2">
+<property name="Name">
+<value>[u] -&gt; [EmptySet];</value>
+</property>
+<property name="Expression">
+<value>k6.Value * u.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u</value>
+<value>Variable:/cell:u</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/cell:EmptySet</value>
+<value>1</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; u &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction3">
+<property name="Name">
+<value>[z] -&gt; [u];</value>
+</property>
+<property name="Expression">
+<value>k4.Value * z.NumberConc * (k4prime.Value / k4.Value + pow(u.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z</value>
+<value>Variable:/cell:z</value>
+<value>-1</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/cell:u</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>k4prime</value>
+<value>Variable:/SBMLParameter:k4prime</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; z &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; k4prime &lt;/ci&gt;#x0A        &lt;ci&gt; k4 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="u">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="v">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kappa">
+<property name="Value">
+<value>0.015</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>180.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4prime">
+<property name="Value">
+<value>0.018</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha">
+<property name="Value">
+<value>0.0001</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_u">
+<property name="Name">
+<value>Rate rule for 'u'</value>
+</property>
+<property name="Expression">
+<value>k4.NumberConc * (v.NumberConc - u.NumberConc) * (alpha.NumberConc + pow(u.NumberConc, 2)) - k6.NumberConc * u.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k4 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; v &lt;/ci&gt;#x0A        &lt;ci&gt; u &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; alpha &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; u &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k6 &lt;/ci&gt;#x0A      &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>u</value>
+<value>Variable:/cell:u</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/cell:v</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_z">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'z'</value>
+</property>
+<property name="Expression">
+<value>v.NumberConc - u.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; v &lt;/ci&gt;#x0A    &lt;ci&gt; u &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z</value>
+<value>Variable:/cell:z</value>
+<value>1</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/cell:v</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/cell:u</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_v">
+<property name="Name">
+<value>Rate rule for 'v'</value>
+</property>
+<property name="Expression">
+<value>kappa.NumberConc - k6.NumberConc * u.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; kappa &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k6 &lt;/ci&gt;#x0A      &lt;ci&gt; u &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>v</value>
+<value>Variable:/cell:v</value>
+<value>1</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>u</value>
+<value>Variable:/cell:u</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_alpha">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'alpha'</value>
+</property>
+<property name="Expression">
+<value>k4prime.NumberConc / k4.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; k4prime &lt;/ci&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>1</value>
+</value>
+<value>
+<value>k4prime</value>
+<value>Variable:/SBMLParameter:k4prime</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

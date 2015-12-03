@@ -1,0 +1,1760 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vGLK">
+<property name="Name">
+<value>Hexokinase</value>
+</property>
+<property name="VmGLK">
+<value>226.452</value>
+</property>
+<property name="KeqAK">
+<value>0.45</value>
+</property>
+<property name="KeqGLK">
+<value>3800.0</value>
+</property>
+<property name="KmGLKATP">
+<value>0.15</value>
+</property>
+<property name="KmGLKGLCi">
+<value>0.08</value>
+</property>
+<property name="KmGLKG6P">
+<value>30.0</value>
+</property>
+<property name="KmGLKADP">
+<value>0.23</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmGLK * (-(G6P.NumberConc * (SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((1 - 4 * KeqAK) * KeqGLK)) + GLCi.NumberConc * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / (2 - 8 * KeqAK)) / (KmGLKATP * KmGLKGLCi * (1 + G6P.NumberConc / KmGLKG6P + GLCi.NumberConc / KmGLKGLCi) * (1 + (SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((1 - 4 * KeqAK) * KmGLKADP) + (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmGLKATP))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLCi</value>
+<value>Variable:/extracellular/cytoplasm:GLCi</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular/cytoplasm:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytoplasm:G6P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>SUMAXP</value>
+<value>Variable:/SBMLParameter:SUMAXP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; VmGLK &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; G6P &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; KeqGLK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GLCi &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KmGLKATP &lt;/ci&gt;#x0A        &lt;ci&gt; KmGLKGLCi &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; G6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGLKG6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GLCi &lt;/ci&gt;#x0A            &lt;ci&gt; KmGLKGLCi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmGLKADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmGLKATP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGI">
+<property name="Name">
+<value>Glucose-6-phosphate isomerase</value>
+</property>
+<property name="VmPGI">
+<value>339.677</value>
+</property>
+<property name="KmPGIG6P">
+<value>1.4</value>
+</property>
+<property name="KeqPGI">
+<value>0.314</value>
+</property>
+<property name="KmPGIF6P">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmPGI / KmPGIG6P * (G6P.NumberConc - F6P.NumberConc / KeqPGI) / (1 + G6P.NumberConc / KmPGIG6P + F6P.NumberConc / KmPGIF6P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytoplasm:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytoplasm:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; VmPGI &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGIG6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; KeqPGI &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGIG6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGIF6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPFK">
+<property name="Name">
+<value>Phosphofructokinase</value>
+</property>
+<property name="gR">
+<value>5.12</value>
+</property>
+<property name="VmPFK">
+<value>182.903</value>
+</property>
+<property name="KeqAK">
+<value>0.45</value>
+</property>
+<property name="KmPFKF6P">
+<value>0.1</value>
+</property>
+<property name="KmPFKATP">
+<value>0.71</value>
+</property>
+<property name="L0">
+<value>0.66</value>
+</property>
+<property name="CPFKF26BP">
+<value>0.0174</value>
+</property>
+<property name="KPFKF26BP">
+<value>0.000682</value>
+</property>
+<property name="CPFKF16BP">
+<value>0.397</value>
+</property>
+<property name="KPFKF16BP">
+<value>0.111</value>
+</property>
+<property name="CPFKAMP">
+<value>0.0845</value>
+</property>
+<property name="KPFKAMP">
+<value>0.0995</value>
+</property>
+<property name="CiPFKATP">
+<value>100.0</value>
+</property>
+<property name="KiPFKATP">
+<value>0.65</value>
+</property>
+<property name="CPFKATP">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (gR * VmPFK * F6P.NumberConc * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) * (1 + F6P.NumberConc / KmPFKF6P + (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPFKATP) + gR * F6P.NumberConc * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPFKATP * KmPFKF6P)) / ((2 - 8 * KeqAK) * KmPFKATP * KmPFKF6P * (L0 * pow(1 + CPFKF26BP * F26BP.NumberConc / KPFKF26BP + CPFKF16BP * F16P.NumberConc / KPFKF16BP, 2) * pow(1 + 2 * CPFKAMP * KeqAK * pow(SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5), 2) / ((-1 + 4 * KeqAK) * KPFKAMP * (SUMAXP.Value - P.NumberConc + 4 * KeqAK * P.NumberConc - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5))), 2) * pow(1 + CiPFKATP * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KiPFKATP), 2) * pow(1 + CPFKATP * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPFKATP), 2) / (pow(1 + F26BP.NumberConc / KPFKF26BP + F16P.NumberConc / KPFKF16BP, 2) * pow(1 + 2 * KeqAK * pow(SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5), 2) / ((-1 + 4 * KeqAK) * KPFKAMP * (SUMAXP.Value - P.NumberConc + 4 * KeqAK * P.NumberConc - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5))), 2) * pow(1 + (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KiPFKATP), 2)) + pow(1 + F6P.NumberConc / KmPFKF6P + (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPFKATP) + gR * F6P.NumberConc * (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPFKATP * KmPFKF6P), 2))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytoplasm:F6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular/cytoplasm:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F16P</value>
+<value>Variable:/extracellular/cytoplasm:F16P</value>
+<value>1</value>
+</value>
+<value>
+<value>F26BP</value>
+<value>Variable:/extracellular/cytoplasm:F26BP</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>SUMAXP</value>
+<value>Variable:/SBMLParameter:SUMAXP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; gR &lt;/ci&gt;#x0A        &lt;ci&gt; VmPFK &lt;/ci&gt;#x0A        &lt;ci&gt; F6P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmPFKF6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; gR &lt;/ci&gt;#x0A              &lt;ci&gt; F6P &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A              &lt;ci&gt; KmPFKF6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A        &lt;ci&gt; KmPFKF6P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; L0 &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; CPFKF26BP &lt;/ci&gt;#x0A                      &lt;ci&gt; F26BP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; KPFKF26BP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; CPFKF16BP &lt;/ci&gt;#x0A                      &lt;ci&gt; F16P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; KPFKF16BP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;ci&gt; CPFKAMP &lt;/ci&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;minus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;plus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;minus/&gt;#x0A                                  &lt;apply&gt;#x0A                                    &lt;power/&gt;#x0A                                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;/apply&gt;#x0A                                  &lt;apply&gt;#x0A                                    &lt;times/&gt;#x0A                                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                    &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;/apply&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;cn type='integer'&gt; -1 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KPFKAMP &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;plus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;plus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;minus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; CiPFKATP &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;plus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;minus/&gt;#x0A                              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;plus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;minus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KiPFKATP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; CPFKATP &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;plus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;minus/&gt;#x0A                              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;plus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;minus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; F26BP &lt;/ci&gt;#x0A                    &lt;ci&gt; KPFKF26BP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; F16P &lt;/ci&gt;#x0A                    &lt;ci&gt; KPFKF16BP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;minus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;plus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;minus/&gt;#x0A                                  &lt;apply&gt;#x0A                                    &lt;power/&gt;#x0A                                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;/apply&gt;#x0A                                  &lt;apply&gt;#x0A                                    &lt;times/&gt;#x0A                                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                    &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;/apply&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;cn type='integer'&gt; -1 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KPFKAMP &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;plus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;plus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;minus/&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;power/&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;/apply&gt;#x0A                                &lt;apply&gt;#x0A                                  &lt;times/&gt;#x0A                                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                  &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;/apply&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;plus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;plus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;minus/&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;power/&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;/apply&gt;#x0A                              &lt;apply&gt;#x0A                                &lt;times/&gt;#x0A                                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                                &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;/apply&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                              &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                              &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;power/&gt;#x0A                              &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;power/&gt;#x0A                              &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KiPFKATP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; F6P &lt;/ci&gt;#x0A                &lt;ci&gt; KmPFKF6P &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; gR &lt;/ci&gt;#x0A                  &lt;ci&gt; F6P &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;plus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;minus/&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;power/&gt;#x0A                              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;/apply&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;times/&gt;#x0A                              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                              &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; KmPFKATP &lt;/ci&gt;#x0A                  &lt;ci&gt; KmPFKF6P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vALD">
+<property name="Name">
+<value>Aldolase</value>
+</property>
+<property name="VmALD">
+<value>322.258</value>
+</property>
+<property name="KeqTPI">
+<value>0.045</value>
+</property>
+<property name="KeqALD">
+<value>0.069</value>
+</property>
+<property name="KmALDF16P">
+<value>0.3</value>
+</property>
+<property name="KmALDDHAP">
+<value>2.4</value>
+</property>
+<property name="KmALDGAP">
+<value>2.0</value>
+</property>
+<property name="KmALDGAPi">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmALD * F16P.NumberConc / KmALDF16P * (1 - DHAP.NumberConc * GA3P.NumberConc / (F16P.NumberConc * KeqALD)) / (1 + F16P.NumberConc / KmALDF16P + DHAP.NumberConc / KmALDDHAP + GA3P.NumberConc / KmALDGAP + F16P.NumberConc * GA3P.NumberConc / (KmALDF16P * KmALDGAPi) + DHAP.NumberConc * GA3P.NumberConc / (KmALDDHAP * KmALDGAP)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F16P</value>
+<value>Variable:/extracellular/cytoplasm:F16P</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytoplasm:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmALD &lt;/ci&gt;#x0A            &lt;ci&gt; F16P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KmALDF16P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A              &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; F16P &lt;/ci&gt;#x0A              &lt;ci&gt; KeqALD &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; F16P &lt;/ci&gt;#x0A          &lt;ci&gt; KmALDF16P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;ci&gt; KmALDDHAP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; GA3P &lt;/ci&gt;#x0A          &lt;ci&gt; KmALDGAP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; F16P &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmALDF16P &lt;/ci&gt;#x0A            &lt;ci&gt; KmALDGAPi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmALDDHAP &lt;/ci&gt;#x0A            &lt;ci&gt; KmALDGAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vG3PDH">
+<property name="Name">
+<value>Glycerol 3-phosphate dehydrogenase</value>
+</property>
+<property name="VmG3PDH">
+<value>70.15</value>
+</property>
+<property name="KeqG3PDH">
+<value>4300.0</value>
+</property>
+<property name="KeqTPI">
+<value>0.045</value>
+</property>
+<property name="KmG3PDHDHAP">
+<value>0.4</value>
+</property>
+<property name="KmG3PDHNADH">
+<value>0.023</value>
+</property>
+<property name="KmG3PDHNAD">
+<value>0.93</value>
+</property>
+<property name="KmG3PDHGLY">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmG3PDH * (-(GLY.NumberConc * NAD.NumberConc / KeqG3PDH) + NADH.NumberConc * DHAP.NumberConc / (1 + KeqTPI)) / (KmG3PDHDHAP * KmG3PDHNADH * (1 + NAD.NumberConc / KmG3PDHNAD + NADH.NumberConc / KmG3PDHNADH) * (1 + GLY.NumberConc / KmG3PDHGLY + DHAP.NumberConc / ((1 + KeqTPI) * KmG3PDHDHAP))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytoplasm:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytoplasm:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>GLY</value>
+<value>Variable:/extracellular:GLY</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytoplasm:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; VmG3PDH &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; GLY &lt;/ci&gt;#x0A                &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KeqG3PDH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; KeqTPI &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KmG3PDHDHAP &lt;/ci&gt;#x0A        &lt;ci&gt; KmG3PDHNADH &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A            &lt;ci&gt; KmG3PDHNAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;ci&gt; KmG3PDHNADH &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GLY &lt;/ci&gt;#x0A            &lt;ci&gt; KmG3PDHGLY &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqTPI &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmG3PDHDHAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGAPDH">
+<property name="Name">
+<value>Glyceraldehyde 3-phosphate dehydrogenase</value>
+</property>
+<property name="VmGAPDHr">
+<value>6549.68</value>
+</property>
+<property name="KmGAPDHBPG">
+<value>0.0098</value>
+</property>
+<property name="KmGAPDHNADH">
+<value>0.06</value>
+</property>
+<property name="KeqTPI">
+<value>0.045</value>
+</property>
+<property name="VmGAPDHf">
+<value>1184.52</value>
+</property>
+<property name="KmGAPDHGAP">
+<value>0.21</value>
+</property>
+<property name="KmGAPDHNAD">
+<value>0.09</value>
+</property>
+<property name="KeqGAPDH">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (k_rel_GAPDH.Value * VmGAPDHf * GA3P.NumberConc * NAD.NumberConc / (KmGAPDHGAP * KmGAPDHNAD) * (1 - BPG.NumberConc * NADH.NumberConc / (GA3P.NumberConc * NAD.NumberConc * KeqGAPDH)) / ((1 + GA3P.NumberConc / KmGAPDHGAP + BPG.NumberConc / KmGAPDHBPG) * (1 + NAD.NumberConc / KmGAPDHNAD + NADH.NumberConc / KmGAPDHNADH)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytoplasm:NAD</value>
+<value>-1</value>
+</value>
+<value>
+<value>BPG</value>
+<value>Variable:/extracellular/cytoplasm:BPG</value>
+<value>1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytoplasm:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_rel_GAPDH</value>
+<value>Variable:/SBMLParameter:k_rel_GAPDH</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k_rel_GAPDH &lt;/ci&gt;#x0A            &lt;ci&gt; VmGAPDHf &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmGAPDHGAP &lt;/ci&gt;#x0A            &lt;ci&gt; KmGAPDHNAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; BPG &lt;/ci&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GA3P &lt;/ci&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; KeqGAPDH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGAPDHGAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; BPG &lt;/ci&gt;#x0A            &lt;ci&gt; KmGAPDHBPG &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A            &lt;ci&gt; KmGAPDHNAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;ci&gt; KmGAPDHNADH &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGK">
+<property name="Name">
+<value>Phosphoglycerate kinase</value>
+</property>
+<property name="VmPGK">
+<value>1306.45</value>
+</property>
+<property name="KeqPGK">
+<value>3200.0</value>
+</property>
+<property name="KeqAK">
+<value>0.45</value>
+</property>
+<property name="KmPGKATP">
+<value>0.3</value>
+</property>
+<property name="KmPGKP3G">
+<value>0.53</value>
+</property>
+<property name="KmPGKADP">
+<value>0.2</value>
+</property>
+<property name="KmPGKBPG">
+<value>0.003</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmPGK * (KeqPGK * BPG.NumberConc * (SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / (1 - 4 * KeqAK) - (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) * P3G.NumberConc / (2 - 8 * KeqAK)) / (KmPGKATP * KmPGKP3G * (1 + (SUMAXP.Value - pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((1 - 4 * KeqAK) * KmPGKADP) + (-SUMAXP.Value + P.NumberConc - 4 * KeqAK * P.NumberConc + pow(pow(SUMAXP.Value, 2) - 2 * SUMAXP.Value * P.NumberConc + 8 * KeqAK * SUMAXP.Value * P.NumberConc + pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2), 0.5)) / ((2 - 8 * KeqAK) * KmPGKATP)) * (1 + BPG.NumberConc / KmPGKBPG + P3G.NumberConc / KmPGKP3G)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>BPG</value>
+<value>Variable:/extracellular/cytoplasm:BPG</value>
+<value>-1</value>
+</value>
+<value>
+<value>P3G</value>
+<value>Variable:/extracellular/cytoplasm:P3G</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular/cytoplasm:P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>SUMAXP</value>
+<value>Variable:/SBMLParameter:SUMAXP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; VmPGK &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KeqPGK &lt;/ci&gt;#x0A              &lt;ci&gt; BPG &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; P3G &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KmPGKATP &lt;/ci&gt;#x0A        &lt;ci&gt; KmPGKP3G &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmPGKADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KmPGKATP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; BPG &lt;/ci&gt;#x0A            &lt;ci&gt; KmPGKBPG &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; P3G &lt;/ci&gt;#x0A            &lt;ci&gt; KmPGKP3G &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGM">
+<property name="Name">
+<value>Phosphoglycerate mutase</value>
+</property>
+<property name="VmPGM">
+<value>2525.81</value>
+</property>
+<property name="KmPGMP3G">
+<value>1.2</value>
+</property>
+<property name="KeqPGM">
+<value>0.19</value>
+</property>
+<property name="KmPGMP2G">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmPGM / KmPGMP3G * (P3G.NumberConc - P2G.NumberConc / KeqPGM) / (1 + P3G.NumberConc / KmPGMP3G + P2G.NumberConc / KmPGMP2G))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P3G</value>
+<value>Variable:/extracellular/cytoplasm:P3G</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2G</value>
+<value>Variable:/extracellular/cytoplasm:P2G</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; VmPGM &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGMP3G &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; P3G &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; P2G &lt;/ci&gt;#x0A            &lt;ci&gt; KeqPGM &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; P3G &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGMP3G &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; P2G &lt;/ci&gt;#x0A          &lt;ci&gt; KmPGMP2G &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vENO">
+<property name="Name">
+<value>Enolase</value>
+</property>
+<property name="VmENO">
+<value>365.806</value>
+</property>
+<property name="KmENOP2G">
+<value>0.04</value>
+</property>
+<property name="KeqENO">
+<value>6.7</value>
+</property>
+<property name="KmENOPEP">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmENO / KmENOP2G * (P2G.NumberConc - PEP.NumberConc / KeqENO) / (1 + P2G.NumberConc / KmENOP2G + PEP.NumberConc / KmENOPEP))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2G</value>
+<value>Variable:/extracellular/cytoplasm:P2G</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/extracellular/cytoplasm:PEP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; VmENO &lt;/ci&gt;#x0A          &lt;ci&gt; KmENOP2G &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; P2G &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PEP &lt;/ci&gt;#x0A            &lt;ci&gt; KeqENO &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; P2G &lt;/ci&gt;#x0A          &lt;ci&gt; KmENOP2G &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; PEP &lt;/ci&gt;#x0A          &lt;ci&gt; KmENOPEP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPYK">
+<property name="Name">
+<value>Pyruvate kinase</value>
+</property>
+<property name="VmPYK">
+<value>1088.71</value>
+</property>
+<property name="KmPYKPEP">
+<value>0.14</value>
+</property>
+<property name="KmPYKADP">
+<value>0.53</value>
+</property>
+<property name="KeqAK">
+<value>0.45</value>
+</property>
+<property name="KeqPYK">
+<value>6500.0</value>
+</property>
+<property name="KmPYKPYR">
+<value>21.0</value>
+</property>
+<property name="KmPYKATP">
+<value>1.5</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmPYK / (KmPYKPEP * KmPYKADP) * (PEP.NumberConc * (SUMAXP.Value - pow(pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2) - 2 * P.NumberConc * SUMAXP.Value + 8 * KeqAK * P.NumberConc * SUMAXP.Value + pow(SUMAXP.Value, 2), 0.5)) / (1 - 4 * KeqAK) - PYR.NumberConc * (P.NumberConc - 4 * KeqAK * P.NumberConc - SUMAXP.Value + pow(pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2) - 2 * P.NumberConc * SUMAXP.Value + 8 * KeqAK * P.NumberConc * SUMAXP.Value + pow(SUMAXP.Value, 2), 0.5)) / (2 - 8 * KeqAK) / KeqPYK) / ((1 + PEP.NumberConc / KmPYKPEP + PYR.NumberConc / KmPYKPYR) * (1 + (P.NumberConc - 4 * KeqAK * P.NumberConc - SUMAXP.Value + pow(pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2) - 2 * P.NumberConc * SUMAXP.Value + 8 * KeqAK * P.NumberConc * SUMAXP.Value + pow(SUMAXP.Value, 2), 0.5)) / (2 - 8 * KeqAK) / KmPYKATP + (SUMAXP.Value - pow(pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2) - 2 * P.NumberConc * SUMAXP.Value + 8 * KeqAK * P.NumberConc * SUMAXP.Value + pow(SUMAXP.Value, 2), 0.5)) / (1 - 4 * KeqAK) / KmPYKADP)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PEP</value>
+<value>Variable:/extracellular/cytoplasm:PEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PYR</value>
+<value>Variable:/extracellular/cytoplasm:PYR</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/extracellular/cytoplasm:P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>SUMAXP</value>
+<value>Variable:/SBMLParameter:SUMAXP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; VmPYK &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmPYKPEP &lt;/ci&gt;#x0A            &lt;ci&gt; KmPYKADP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; PEP &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; PYR &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;minus/&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;times/&gt;#x0A                            &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                            &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                            &lt;apply&gt;#x0A                              &lt;power/&gt;#x0A                              &lt;ci&gt; P &lt;/ci&gt;#x0A                              &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                            &lt;/apply&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                        &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;power/&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KeqPYK &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PEP &lt;/ci&gt;#x0A            &lt;ci&gt; KmPYKPEP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PYR &lt;/ci&gt;#x0A            &lt;ci&gt; KmPYKPYR &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;minus/&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KmPYKATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;minus/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;power/&gt;#x0A                          &lt;ci&gt; P &lt;/ci&gt;#x0A                          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;/apply&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;times/&gt;#x0A                          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;power/&gt;#x0A                            &lt;ci&gt; P &lt;/ci&gt;#x0A                            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                        &lt;ci&gt; P &lt;/ci&gt;#x0A                        &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                      &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                  &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KmPYKADP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPDC">
+<property name="Name">
+<value>Pyruvate decarboxylase</value>
+</property>
+<property name="VmPDC">
+<value>174.194</value>
+</property>
+<property name="nPDC">
+<value>1.9</value>
+</property>
+<property name="KmPDCPYR">
+<value>4.33</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmPDC * pow(PYR.NumberConc, nPDC) / pow(KmPDCPYR, nPDC) / (1 + pow(PYR.NumberConc, nPDC) / pow(KmPDCPYR, nPDC)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYR</value>
+<value>Variable:/extracellular/cytoplasm:PYR</value>
+<value>-1</value>
+</value>
+<value>
+<value>ACE</value>
+<value>Variable:/extracellular/cytoplasm:ACE</value>
+<value>1</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/extracellular:CO2</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmPDC &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; PYR &lt;/ci&gt;#x0A            &lt;ci&gt; nPDC &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; KmPDCPYR &lt;/ci&gt;#x0A          &lt;ci&gt; nPDC &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; PYR &lt;/ci&gt;#x0A            &lt;ci&gt; nPDC &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; KmPDCPYR &lt;/ci&gt;#x0A            &lt;ci&gt; nPDC &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vSUC">
+<property name="Name">
+<value>Succinate synthesis</value>
+</property>
+<property name="KSUCC">
+<value>21.4</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * KSUCC * ACE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ACE</value>
+<value>Variable:/extracellular/cytoplasm:ACE</value>
+<value>-2</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytoplasm:NAD</value>
+<value>-3</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytoplasm:NADH</value>
+<value>3</value>
+</value>
+<value>
+<value>SUCC</value>
+<value>Variable:/extracellular:SUCC</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;ci&gt; KSUCC &lt;/ci&gt;#x0A    &lt;ci&gt; ACE &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vADH">
+<property name="Name">
+<value>Alcohol dehydrogenase</value>
+</property>
+<property name="VmADH">
+<value>810.0</value>
+</property>
+<property name="KiADHNAD">
+<value>0.92</value>
+</property>
+<property name="KmADHETOH">
+<value>17.0</value>
+</property>
+<property name="KeqADH">
+<value>6.9e-05</value>
+</property>
+<property name="KmADHNAD">
+<value>0.17</value>
+</property>
+<property name="KmADHNADH">
+<value>0.11</value>
+</property>
+<property name="KiADHNADH">
+<value>0.031</value>
+</property>
+<property name="KmADHACE">
+<value>1.11</value>
+</property>
+<property name="KiADHACE">
+<value>1.1</value>
+</property>
+<property name="KiADHETOH">
+<value>90.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * -(VmADH / (KiADHNAD * KmADHETOH) * (NAD.NumberConc * ETOH.NumberConc - NADH.NumberConc * ACE.NumberConc / KeqADH) / (1 + NAD.NumberConc / KiADHNAD + KmADHNAD * ETOH.NumberConc / (KiADHNAD * KmADHETOH) + KmADHNADH * ACE.NumberConc / (KiADHNADH * KmADHACE) + NADH.NumberConc / KiADHNADH + NAD.NumberConc * ETOH.NumberConc / (KiADHNAD * KmADHETOH) + KmADHNADH * NAD.NumberConc * ACE.NumberConc / (KiADHNAD * KiADHNADH * KmADHACE) + KmADHNAD * ETOH.NumberConc * NADH.NumberConc / (KiADHNAD * KmADHETOH * KiADHNADH) + NADH.NumberConc * ACE.NumberConc / (KiADHNADH * KmADHACE) + NAD.NumberConc * ETOH.NumberConc * ACE.NumberConc / (KiADHNAD * KmADHETOH * KiADHACE) + ETOH.NumberConc * NADH.NumberConc * ACE.NumberConc / (KiADHETOH * KiADHNADH * KmADHACE)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ACE</value>
+<value>Variable:/extracellular/cytoplasm:ACE</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/extracellular/cytoplasm:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>ETOH</value>
+<value>Variable:/extracellular:ETOH</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/extracellular/cytoplasm:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; VmADH &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; NADH &lt;/ci&gt;#x0A                &lt;ci&gt; ACE &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KeqADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A            &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KmADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KmADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; ACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHETOH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KmADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; ACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KmADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHETOH &lt;/ci&gt;#x0A              &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;ci&gt; ACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; NAD &lt;/ci&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A              &lt;ci&gt; ACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHNAD &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHETOH &lt;/ci&gt;#x0A              &lt;ci&gt; KiADHACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; ETOH &lt;/ci&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A              &lt;ci&gt; ACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KiADHETOH &lt;/ci&gt;#x0A              &lt;ci&gt; KiADHNADH &lt;/ci&gt;#x0A              &lt;ci&gt; KmADHACE &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vATP">
+<property name="Name">
+<value>ATPase activity</value>
+</property>
+<property name="KATPASE">
+<value>39.5</value>
+</property>
+<property name="KeqAK">
+<value>0.45</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (KATPASE * (P.NumberConc - 4 * KeqAK * P.NumberConc - SUMAXP.Value + pow(pow(P.NumberConc, 2) - 4 * KeqAK * pow(P.NumberConc, 2) - 2 * P.NumberConc * SUMAXP.Value + 8 * KeqAK * P.NumberConc * SUMAXP.Value + pow(SUMAXP.Value, 2), 0.5)) / (2 - 8 * KeqAK))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/extracellular/cytoplasm:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/extracellular/cytoplasm:X</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>SUMAXP</value>
+<value>Variable:/SBMLParameter:SUMAXP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KATPASE &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;ci&gt; P &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;ci&gt; P &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;power/&gt;#x0A                    &lt;ci&gt; P &lt;/ci&gt;#x0A                    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A                    &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;power/&gt;#x0A                      &lt;ci&gt; P &lt;/ci&gt;#x0A                      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                  &lt;ci&gt; P &lt;/ci&gt;#x0A                  &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A                &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A                &lt;ci&gt; P &lt;/ci&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; SUMAXP &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn&gt; 0.5 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A          &lt;ci&gt; KeqAK &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTPI">
+<property name="Name">
+<value>vTPI</value>
+</property>
+<property name="KmGA3P">
+<value>1.27</value>
+</property>
+<property name="KmDHAP">
+<value>1.23</value>
+</property>
+<property name="VmDHAP">
+<value>10900.0</value>
+</property>
+<property name="VmGA3P">
+<value>555.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (k_rel_TPI.Value * (VmDHAP * GA3P.NumberConc / KmGA3P - VmGA3P * DHAP.NumberConc / KmDHAP) / (1 + GA3P.NumberConc / KmGA3P + DHAP.NumberConc / KmDHAP))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/extracellular/cytoplasm:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_rel_TPI</value>
+<value>Variable:/SBMLParameter:k_rel_TPI</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k_rel_TPI &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; VmDHAP &lt;/ci&gt;#x0A              &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; VmGA3P &lt;/ci&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KmDHAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; GA3P &lt;/ci&gt;#x0A          &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;ci&gt; KmDHAP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vG6PDH">
+<property name="Name">
+<value>vG6PDH</value>
+</property>
+<property name="VmG6PDH">
+<value>4.0</value>
+</property>
+<property name="KmG6P">
+<value>0.04</value>
+</property>
+<property name="KmNADP">
+<value>0.02</value>
+</property>
+<property name="KiNADPH">
+<value>0.017</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmG6PDH * G6P.NumberConc * NADP.NumberConc / (KmG6P * KmNADP) / ((1 + G6P.NumberConc / KmG6P + NADPH.NumberConc / KiNADPH) * (1 + NADP.NumberConc / KmNADP)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/extracellular/cytoplasm:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/extracellular/cytoplasm:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>D6PGluconoLactone</value>
+<value>Variable:/extracellular/cytoplasm:D6PGluconoLactone</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/extracellular/cytoplasm:NADPH</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmG6PDH &lt;/ci&gt;#x0A          &lt;ci&gt; G6P &lt;/ci&gt;#x0A          &lt;ci&gt; NADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KmG6P &lt;/ci&gt;#x0A          &lt;ci&gt; KmNADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; G6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmG6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADPH &lt;/ci&gt;#x0A            &lt;ci&gt; KiNADPH &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADP &lt;/ci&gt;#x0A            &lt;ci&gt; KmNADP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v6PGL">
+<property name="Name">
+<value>v6PGL</value>
+</property>
+<property name="Vm6PGL">
+<value>4.0</value>
+</property>
+<property name="Km6PGL">
+<value>0.8</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (Vm6PGL * D6PGluconoLactone.NumberConc / (Km6PGL + D6PGluconoLactone.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D6PGluconoLactone</value>
+<value>Variable:/extracellular/cytoplasm:D6PGluconoLactone</value>
+<value>-1</value>
+</value>
+<value>
+<value>D6PGluconate</value>
+<value>Variable:/extracellular/cytoplasm:D6PGluconate</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm6PGL &lt;/ci&gt;#x0A        &lt;ci&gt; D6PGluconoLactone &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km6PGL &lt;/ci&gt;#x0A        &lt;ci&gt; D6PGluconoLactone &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGluDH">
+<property name="Name">
+<value>vGluDH</value>
+</property>
+<property name="VmGluDH">
+<value>4.0</value>
+</property>
+<property name="KmGluconate">
+<value>0.02</value>
+</property>
+<property name="KmNADP">
+<value>0.03</value>
+</property>
+<property name="KiNADPH">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmGluDH * D6PGluconate.NumberConc * NADP.NumberConc / (KmGluconate * KmNADP) / ((1 + D6PGluconate.NumberConc / KmGluconate + NADPH.NumberConc / KiNADPH) * (1 + NADP.NumberConc / KmNADP)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D6PGluconate</value>
+<value>Variable:/extracellular/cytoplasm:D6PGluconate</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/extracellular/cytoplasm:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ribulose5P</value>
+<value>Variable:/extracellular/cytoplasm:Ribulose5P</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/extracellular/cytoplasm:NADPH</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; VmGluDH &lt;/ci&gt;#x0A          &lt;ci&gt; D6PGluconate &lt;/ci&gt;#x0A          &lt;ci&gt; NADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KmGluconate &lt;/ci&gt;#x0A          &lt;ci&gt; KmNADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; D6PGluconate &lt;/ci&gt;#x0A            &lt;ci&gt; KmGluconate &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADPH &lt;/ci&gt;#x0A            &lt;ci&gt; KiNADPH &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADP &lt;/ci&gt;#x0A            &lt;ci&gt; KmNADP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPPI">
+<property name="Name">
+<value>vPPI</value>
+</property>
+<property name="VmPPIf">
+<value>3458.0</value>
+</property>
+<property name="VmPPIr">
+<value>3458.0</value>
+</property>
+<property name="KmRibu5P">
+<value>1.6</value>
+</property>
+<property name="KmRibo5P">
+<value>1.6</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((VmPPIf * Ribulose5P.NumberConc / KmRibu5P - VmPPIr * Ribose5P.NumberConc / KmRibo5P) / (1 + Ribulose5P.NumberConc / KmRibu5P + Ribose5P.NumberConc / KmRibo5P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ribulose5P</value>
+<value>Variable:/extracellular/cytoplasm:Ribulose5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ribose5P</value>
+<value>Variable:/extracellular/cytoplasm:Ribose5P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmPPIf &lt;/ci&gt;#x0A            &lt;ci&gt; Ribulose5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KmRibu5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmPPIr &lt;/ci&gt;#x0A            &lt;ci&gt; Ribose5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KmRibo5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Ribulose5P &lt;/ci&gt;#x0A          &lt;ci&gt; KmRibu5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Ribose5P &lt;/ci&gt;#x0A          &lt;ci&gt; KmRibo5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTransk1">
+<property name="Name">
+<value>vTransk1</value>
+</property>
+<property name="VmTransk1f">
+<value>4.0</value>
+</property>
+<property name="VmTransk1r">
+<value>2.0</value>
+</property>
+<property name="KmRibose5P">
+<value>0.1</value>
+</property>
+<property name="KmXyl5P">
+<value>0.15</value>
+</property>
+<property name="KmGA3P">
+<value>0.1</value>
+</property>
+<property name="KmSeduhept">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((VmTransk1f * Ribose5P.NumberConc * Xyl5P.NumberConc / (KmRibose5P * KmXyl5P) - VmTransk1r * GA3P.NumberConc * Seduhept7P.NumberConc / (KmGA3P * KmSeduhept)) / ((1 + Ribose5P.NumberConc / KmRibose5P + GA3P.NumberConc / KmGA3P) * (1 + Xyl5P.NumberConc / KmXyl5P + Seduhept7P.NumberConc / KmSeduhept)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ribose5P</value>
+<value>Variable:/extracellular/cytoplasm:Ribose5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Xyl5P</value>
+<value>Variable:/extracellular/cytoplasm:Xyl5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>1</value>
+</value>
+<value>
+<value>Seduhept7P</value>
+<value>Variable:/extracellular/cytoplasm:Seduhept7P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransk1f &lt;/ci&gt;#x0A            &lt;ci&gt; Ribose5P &lt;/ci&gt;#x0A            &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmRibose5P &lt;/ci&gt;#x0A            &lt;ci&gt; KmXyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransk1r &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; Seduhept7P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmSeduhept &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Ribose5P &lt;/ci&gt;#x0A            &lt;ci&gt; KmRibose5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A            &lt;ci&gt; KmXyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Seduhept7P &lt;/ci&gt;#x0A            &lt;ci&gt; KmSeduhept &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vR5PI">
+<property name="Name">
+<value>vR5PI</value>
+</property>
+<property name="VmR5PIf">
+<value>1039.0</value>
+</property>
+<property name="VmR5PIr">
+<value>1039.0</value>
+</property>
+<property name="KmRibu5P">
+<value>1.5</value>
+</property>
+<property name="KmXyl">
+<value>1.5</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((VmR5PIf * Ribulose5P.NumberConc / KmRibu5P - VmR5PIr * Xyl5P.NumberConc / KmXyl) / (1 + Ribulose5P.NumberConc / KmRibu5P + Xyl5P.NumberConc / KmXyl))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ribulose5P</value>
+<value>Variable:/extracellular/cytoplasm:Ribulose5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Xyl5P</value>
+<value>Variable:/extracellular/cytoplasm:Xyl5P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmR5PIf &lt;/ci&gt;#x0A            &lt;ci&gt; Ribulose5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KmRibu5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmR5PIr &lt;/ci&gt;#x0A            &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KmXyl &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Ribulose5P &lt;/ci&gt;#x0A          &lt;ci&gt; KmRibu5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A          &lt;ci&gt; KmXyl &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTransald">
+<property name="Name">
+<value>vTransald</value>
+</property>
+<property name="VmTransaldf">
+<value>55.0</value>
+</property>
+<property name="VmTransaldr">
+<value>10.0</value>
+</property>
+<property name="KmGA3P">
+<value>0.22</value>
+</property>
+<property name="KmSeduhept">
+<value>0.18</value>
+</property>
+<property name="KmF6P">
+<value>0.32</value>
+</property>
+<property name="KmEry4P">
+<value>0.018</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((VmTransaldf * GA3P.NumberConc * Seduhept7P.NumberConc / (KmGA3P * KmSeduhept) - VmTransaldr * F6P.NumberConc * Erythrose4P.NumberConc / (KmF6P * KmEry4P)) / ((1 + GA3P.NumberConc / KmGA3P + F6P.NumberConc / KmF6P) * (1 + Seduhept7P.NumberConc / KmSeduhept + Erythrose4P.NumberConc / KmEry4P)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Seduhept7P</value>
+<value>Variable:/extracellular/cytoplasm:Seduhept7P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytoplasm:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>Erythrose4P</value>
+<value>Variable:/extracellular/cytoplasm:Erythrose4P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransaldf &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; Seduhept7P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmSeduhept &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransaldr &lt;/ci&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; Erythrose4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmF6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmEry4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmF6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Seduhept7P &lt;/ci&gt;#x0A            &lt;ci&gt; KmSeduhept &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Erythrose4P &lt;/ci&gt;#x0A            &lt;ci&gt; KmEry4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTransk2">
+<property name="Name">
+<value>vTransk2</value>
+</property>
+<property name="VmTransk2f">
+<value>3.2</value>
+</property>
+<property name="VmTransk2r">
+<value>43.0</value>
+</property>
+<property name="KmXyl5P">
+<value>0.16</value>
+</property>
+<property name="KmEry4P">
+<value>0.09</value>
+</property>
+<property name="KmF6P">
+<value>1.1</value>
+</property>
+<property name="KmGA3P">
+<value>2.1</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((VmTransk2f * Erythrose4P.NumberConc * Xyl5P.NumberConc / (KmEry4P * KmXyl5P) - VmTransk2r * F6P.NumberConc * GA3P.NumberConc / (KmF6P * KmGA3P)) / ((1 + Xyl5P.NumberConc / KmXyl5P + GA3P.NumberConc / KmGA3P) * (1 + Erythrose4P.NumberConc / KmEry4P + F6P.NumberConc / KmF6P)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Xyl5P</value>
+<value>Variable:/extracellular/cytoplasm:Xyl5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Erythrose4P</value>
+<value>Variable:/extracellular/cytoplasm:Erythrose4P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GA3P</value>
+<value>Variable:/extracellular/cytoplasm:GA3P</value>
+<value>1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/extracellular/cytoplasm:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransk2f &lt;/ci&gt;#x0A            &lt;ci&gt; Erythrose4P &lt;/ci&gt;#x0A            &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmEry4P &lt;/ci&gt;#x0A            &lt;ci&gt; KmXyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; VmTransk2r &lt;/ci&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KmF6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Xyl5P &lt;/ci&gt;#x0A            &lt;ci&gt; KmXyl5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GA3P &lt;/ci&gt;#x0A            &lt;ci&gt; KmGA3P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Erythrose4P &lt;/ci&gt;#x0A            &lt;ci&gt; KmEry4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; KmF6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vNADPH">
+<property name="Name">
+<value>vNADPH</value>
+</property>
+<property name="kNADPH">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * kNADPH * NADPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADPH</value>
+<value>Variable:/extracellular/cytoplasm:NADPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/extracellular/cytoplasm:NADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;ci&gt; kNADPH &lt;/ci&gt;#x0A    &lt;ci&gt; NADPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGLT">
+<property name="Name">
+<value>Glucose transport</value>
+</property>
+<property name="VmGLT">
+<value>97.264</value>
+</property>
+<property name="KeqGLT">
+<value>1.0</value>
+</property>
+<property name="KmGLTGLCo">
+<value>1.1918</value>
+</property>
+<property name="KmGLTGLCi">
+<value>1.1918</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * (VmGLT * (GLCo.NumberConc - GLCi.NumberConc / KeqGLT) / (KmGLTGLCo * (1 + GLCo.NumberConc / KmGLTGLCo + GLCi.NumberConc / KmGLTGLCi + 0.91 * GLCo.NumberConc * GLCi.NumberConc / (KmGLTGLCi * KmGLTGLCo))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLCo</value>
+<value>Variable:/extracellular:GLCo</value>
+<value>-1</value>
+</value>
+<value>
+<value>GLCi</value>
+<value>Variable:/extracellular/cytoplasm:GLCi</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/extracellular/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytoplasm &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; VmGLT &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; GLCo &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GLCi &lt;/ci&gt;#x0A            &lt;ci&gt; KeqGLT &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; KmGLTGLCo &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GLCo &lt;/ci&gt;#x0A            &lt;ci&gt; KmGLTGLCo &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GLCi &lt;/ci&gt;#x0A            &lt;ci&gt; KmGLTGLCi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.91 &lt;/cn&gt;#x0A              &lt;ci&gt; GLCo &lt;/ci&gt;#x0A              &lt;ci&gt; GLCi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KmGLTGLCi &lt;/ci&gt;#x0A              &lt;ci&gt; KmGLTGLCo &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CO2">
+<property name="Name">
+<value>CO2</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ETOH">
+<property name="Name">
+<value>Ethanol</value>
+</property>
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SUCC">
+<property name="Name">
+<value>Succinate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLY">
+<property name="Name">
+<value>Glycerol</value>
+</property>
+<property name="NumberConc">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLCo">
+<property name="Name">
+<value>Extracellular Glucose</value>
+</property>
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular/cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>High energy phosphates</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="Name">
+<value>Glucose 6 Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>1.39</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6P">
+<property name="Name">
+<value>Fructose 6 Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.28</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F16P">
+<property name="Name">
+<value>Fructose-1,6 bisphosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="Name">
+<value>NADH</value>
+</property>
+<property name="NumberConc">
+<value>0.39</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="Name">
+<value>NAD</value>
+</property>
+<property name="NumberConc">
+<value>1.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BPG">
+<property name="Name">
+<value>1,3-bisphosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P3G">
+<property name="Name">
+<value>3-phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2G">
+<property name="Name">
+<value>2-phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP">
+<property name="Name">
+<value>Phosphoenolpyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PYR">
+<property name="Name">
+<value>Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>3.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ACE">
+<property name="Name">
+<value>Acetaldehyde</value>
+</property>
+<property name="NumberConc">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="Name">
+<value>X</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GA3P">
+<property name="Name">
+<value>glyceraldehyde 3-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="Name">
+<value>dihydroxyacetone phosphate</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="D6PGluconoLactone">
+<property name="Name">
+<value>D-6-phosphoglucono-delta-lactone</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="D6PGluconate">
+<property name="Name">
+<value>6-phosphogluconate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADP">
+<property name="Name">
+<value>NADP+</value>
+</property>
+<property name="NumberConc">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ribulose5P">
+<property name="Name">
+<value>ribulose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ribose5P">
+<property name="Name">
+<value>ribose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Xyl5P">
+<property name="Name">
+<value>xylulose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Seduhept7P">
+<property name="Name">
+<value>sedoheptulose 7-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Erythrose4P">
+<property name="Name">
+<value>erythrose 4-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLCi">
+<property name="Name">
+<value>Glucose in Cytosol</value>
+</property>
+<property name="NumberConc">
+<value>0.087</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F26BP">
+<property name="Name">
+<value>F2,6P</value>
+</property>
+<property name="NumberConc">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k_rel_TPI">
+<property name="Name">
+<value>k_rel_TPI</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_rel_GAPDH">
+<property name="Name">
+<value>k_rel_GAPDH</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ratio_NADPH_NADP">
+<property name="Name">
+<value>ratio_NADPH_NADP</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+</variable>
+<variable class="Variable" id="SUMAXP">
+<property name="Name">
+<value>sum of AXP conc</value>
+</property>
+<property name="Value">
+<value>4.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ratio_NADPH_NADP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ratio_NADPH_NADP'</value>
+</property>
+<property name="Expression">
+<value>NADPH.NumberConc / NADP.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; NADPH &lt;/ci&gt;#x0A    &lt;ci&gt; NADP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ratio_NADPH_NADP</value>
+<value>Variable:/SBMLParameter:ratio_NADPH_NADP</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/extracellular/cytoplasm:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/extracellular/cytoplasm:NADP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,1601 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>Insulin binding</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * (k1.Value * x1.NumberConc * x2.NumberConc - kminus1.Value * x3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/CellSurface:x2</value>
+<value>-1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/CellSurface:x3</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/CellSurface:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus1</value>
+<value>Variable:/SBMLParameter:kminus1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>Receptor Autophosphorylation</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * k3.Value * x3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x3</value>
+<value>Variable:/CellSurface:x3</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>Insulin Binding</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * k2.Value * x1.NumberConc * x5.NumberConc - kminus2.Value * x4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>-1</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/CellSurface:x4</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/CellSurface:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus2</value>
+<value>Variable:/SBMLParameter:kminus2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>Receptor dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * kminus3.Value * PTP.Value * x5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>-1</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/CellSurface:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus3</value>
+<value>Variable:/SBMLParameter:kminus3</value>
+<value>0</value>
+</value>
+<value>
+<value>PTP</value>
+<value>Variable:/SBMLParameter:PTP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>Receptor endocytosis</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * (k4.Value * x2.NumberConc - kminus4.Value * x6.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/CellSurface:x2</value>
+<value>-1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>1</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus4</value>
+<value>Variable:/SBMLParameter:kminus4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>Receptor transport</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * (k4prime.Value * x4.NumberConc - kminus4prime.Value * x7.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x4</value>
+<value>Variable:/CellSurface:x4</value>
+<value>-1</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/CellSurface/Intracellular:x7</value>
+<value>1</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4prime</value>
+<value>Variable:/SBMLParameter:k4prime</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus4prime</value>
+<value>Variable:/SBMLParameter:kminus4prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>Receptor transport</value>
+</property>
+<property name="Expression">
+<value>CellSurface.Value * (k4prime.Value * x5.NumberConc - kminus4prime.Value * x8.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/CellSurface/Intracellular:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>CellSurface</value>
+<value>Variable:/CellSurface:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4prime</value>
+<value>Variable:/SBMLParameter:k4prime</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus4prime</value>
+<value>Variable:/SBMLParameter:kminus4prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>Receptor synthesis</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * k5.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>Receptor degradation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * kminus5.Value * x6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>-1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus5</value>
+<value>Variable:/SBMLParameter:kminus5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>Intracellular receptor dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * k6.Value * PTP.Value * x7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x7</value>
+<value>Variable:/CellSurface/Intracellular:x7</value>
+<value>-1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>PTP</value>
+<value>Variable:/SBMLParameter:PTP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>Intracellular receptor dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * k6.Value * PTP.Value * x8.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x8</value>
+<value>Variable:/CellSurface/Intracellular:x8</value>
+<value>-1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>PTP</value>
+<value>Variable:/SBMLParameter:PTP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>IRS1 activation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k7.Value * x9.NumberConc * (x4.NumberConc + x5.NumberConc) / IRp.Value - kminus7.Value * PTP.Value * x10.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x9</value>
+<value>Variable:/CellSurface/Intracellular:x9</value>
+<value>-1</value>
+</value>
+<value>
+<value>x10</value>
+<value>Variable:/CellSurface/Intracellular:x10</value>
+<value>1</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/CellSurface:x4</value>
+<value>0</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>0</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>IRp</value>
+<value>Variable:/SBMLParameter:IRp</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus7</value>
+<value>Variable:/SBMLParameter:kminus7</value>
+<value>0</value>
+</value>
+<value>
+<value>PTP</value>
+<value>Variable:/SBMLParameter:PTP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>IRS1-PI3K complex formation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k8.Value * x10.NumberConc * x11.NumberConc - kminus8.Value * x12.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x11</value>
+<value>Variable:/CellSurface/Intracellular:x11</value>
+<value>-1</value>
+</value>
+<value>
+<value>x10</value>
+<value>Variable:/CellSurface/Intracellular:x10</value>
+<value>-1</value>
+</value>
+<value>
+<value>x12</value>
+<value>Variable:/CellSurface/Intracellular:x12</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus8</value>
+<value>Variable:/SBMLParameter:kminus8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>PI 3,4,5 P3 generation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k9.Value * x14.NumberConc - kminus9.Value * PTEN.Value * x13.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x14</value>
+<value>Variable:/CellSurface/Intracellular:x14</value>
+<value>-1</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/CellSurface/Intracellular:x13</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus9</value>
+<value>Variable:/SBMLParameter:kminus9</value>
+<value>0</value>
+</value>
+<value>
+<value>PTEN</value>
+<value>Variable:/SBMLParameter:PTEN</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>PI 3,4,5P3 generation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k10.Value * x15.NumberConc - kminus10.Value * SHIP.Value * x13.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x15</value>
+<value>Variable:/CellSurface/Intracellular:x15</value>
+<value>-1</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/CellSurface/Intracellular:x13</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus10</value>
+<value>Variable:/SBMLParameter:kminus10</value>
+<value>0</value>
+</value>
+<value>
+<value>SHIP</value>
+<value>Variable:/SBMLParameter:SHIP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R16">
+<property name="Name">
+<value>Akt activation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k11.Value * x16.NumberConc - kminus11.Value * x17.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x16</value>
+<value>Variable:/CellSurface/Intracellular:x16</value>
+<value>-1</value>
+</value>
+<value>
+<value>x17</value>
+<value>Variable:/CellSurface/Intracellular:x17</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus11</value>
+<value>Variable:/SBMLParameter:kminus11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R17">
+<property name="Name">
+<value>PKC activation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * (k12.Value * x18.NumberConc - kminus12.Value * x19.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x18</value>
+<value>Variable:/CellSurface/Intracellular:x18</value>
+<value>-1</value>
+</value>
+<value>
+<value>x19</value>
+<value>Variable:/CellSurface/Intracellular:x19</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus12</value>
+<value>Variable:/SBMLParameter:kminus12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R18">
+<property name="Name">
+<value>GLUT4 synthesis</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * k14.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x20</value>
+<value>Variable:/CellSurface/Intracellular:x20</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R19">
+<property name="Name">
+<value>GLUT4 degradation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * kminus14.Value * x20.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x20</value>
+<value>Variable:/CellSurface/Intracellular:x20</value>
+<value>-1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus14</value>
+<value>Variable:/SBMLParameter:kminus14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R20">
+<property name="Name">
+<value>GLUT4 translocation</value>
+</property>
+<property name="Expression">
+<value>Intracellular.Value * ((k13.Value + k13prime.Value) * x20.NumberConc - kminus13.Value * x21.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x20</value>
+<value>Variable:/CellSurface/Intracellular:x20</value>
+<value>-1</value>
+</value>
+<value>
+<value>x21</value>
+<value>Variable:/CellSurface:x21</value>
+<value>1</value>
+</value>
+<value>
+<value>Intracellular</value>
+<value>Variable:/CellSurface/Intracellular:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+<value>
+<value>k13prime</value>
+<value>Variable:/SBMLParameter:k13prime</value>
+<value>0</value>
+</value>
+<value>
+<value>kminus13</value>
+<value>Variable:/SBMLParameter:kminus13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/CellSurface">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x1">
+<property name="Name">
+<value>Insulin</value>
+</property>
+<property name="NumberConc">
+<value>100000000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x2">
+<property name="Name">
+<value>Unbound Insulin Receptor</value>
+</property>
+<property name="NumberConc">
+<value>900.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x3">
+<property name="Name">
+<value>Unphosphorylated once bound receptor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x5">
+<property name="Name">
+<value>Phosphorylated once bound receptor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x4">
+<property name="Name">
+<value>Phosphorylated twice bound receptor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x21">
+<property name="Name">
+<value>Cell surface GLUT4</value>
+</property>
+<property name="NumberConc">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/CellSurface/Intracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x6">
+<property name="Name">
+<value>Unbound unphosphorylated intracellular receptor</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x7">
+<property name="Name">
+<value>Phosphorylated twice bound intracellular receptor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x8">
+<property name="Name">
+<value>Phosphorylated once bound intracellular receptor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x9">
+<property name="Name">
+<value>Unphosphorylated IRS1</value>
+</property>
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x10">
+<property name="Name">
+<value>Phosphorylated IRS1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x11">
+<property name="Name">
+<value>PI3 Kinase</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x12">
+<property name="Name">
+<value>IRS1- PI3 Kinase Complex</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x13">
+<property name="Name">
+<value>PI3,4,5P3</value>
+</property>
+<property name="NumberConc">
+<value>0.31</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x14">
+<property name="Name">
+<value>PI4,5P2</value>
+</property>
+<property name="NumberConc">
+<value>99.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x15">
+<property name="Name">
+<value>PI3,4P2</value>
+</property>
+<property name="NumberConc">
+<value>0.29</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x16">
+<property name="Name">
+<value>Unactivated Akt</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x17">
+<property name="Name">
+<value>Activated Akt</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x18">
+<property name="Name">
+<value>Unactivated PKC</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x19">
+<property name="Name">
+<value>Activated PKC</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x20">
+<property name="Name">
+<value>Intracellular GLUT4</value>
+</property>
+<property name="NumberConc">
+<value>96.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>6e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus1">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>6e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus2">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>2500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus3">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>0.00033333334</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus4">
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4prime">
+<property name="Value">
+<value>0.0021</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus4prime">
+<property name="Value">
+<value>0.00021</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus5">
+<property name="Value">
+<value>1.67e-18</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Value">
+<value>0.461</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Value">
+<value>4.16</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus7">
+<property name="Value">
+<value>1.396</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Value">
+<value>0.000706</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus8">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Value">
+<value>0.13145</value>
+</property>
+</variable>
+<variable class="Variable" id="k9_stimulated">
+<property name="Value">
+<value>1.39</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9_basal">
+<property name="Value">
+<value>0.13145</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus9">
+<property name="Value">
+<value>42.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Value">
+<value>2.961</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus10">
+<property name="Value">
+<value>2.77</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus11">
+<property name="Value">
+<value>6.9315</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus12">
+<property name="Value">
+<value>6.9315</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Value">
+<value>0.00696</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus13">
+<property name="Value">
+<value>0.167</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13prime">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Value">
+<value>0.11088</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kminus14">
+<property name="Value">
+<value>0.001155</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Effect">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="IRp">
+<property name="Value">
+<value>897.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHIP">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PTEN">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PTP">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="APequil">
+<property name="Value">
+<value>9.09091</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PI3K">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x4x5">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_k9">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k9'</value>
+</property>
+<property name="Expression">
+<value>(k9_stimulated.NumberConc + k9_basal.NumberConc) * (x12.NumberConc / PI3K.NumberConc) + k9_basal.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>1</value>
+</value>
+<value>
+<value>k9_stimulated</value>
+<value>Variable:/SBMLParameter:k9_stimulated</value>
+<value>0</value>
+</value>
+<value>
+<value>k9_basal</value>
+<value>Variable:/SBMLParameter:k9_basal</value>
+<value>0</value>
+</value>
+<value>
+<value>x12</value>
+<value>Variable:/CellSurface/Intracellular:x12</value>
+<value>0</value>
+</value>
+<value>
+<value>PI3K</value>
+<value>Variable:/SBMLParameter:PI3K</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k11">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k11'</value>
+</property>
+<property name="Expression">
+<value>0.1 * kminus11.NumberConc * (x13.NumberConc - 0.31) / (3.1 - 0.31)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>1</value>
+</value>
+<value>
+<value>kminus11</value>
+<value>Variable:/SBMLParameter:kminus11</value>
+<value>0</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/CellSurface/Intracellular:x13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k12">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k12'</value>
+</property>
+<property name="Expression">
+<value>0.1 * kminus12.NumberConc * (x13.NumberConc - 0.31) / (3.1 - 0.31)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>1</value>
+</value>
+<value>
+<value>kminus12</value>
+<value>Variable:/SBMLParameter:kminus12</value>
+<value>0</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/CellSurface/Intracellular:x13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Effect">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Effect'</value>
+</property>
+<property name="Expression">
+<value>(0.2 * x17.NumberConc + 0.8 * x19.NumberConc) / APequil.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Effect</value>
+<value>Variable:/SBMLParameter:Effect</value>
+<value>1</value>
+</value>
+<value>
+<value>x17</value>
+<value>Variable:/CellSurface/Intracellular:x17</value>
+<value>0</value>
+</value>
+<value>
+<value>x19</value>
+<value>Variable:/CellSurface/Intracellular:x19</value>
+<value>0</value>
+</value>
+<value>
+<value>APequil</value>
+<value>Variable:/SBMLParameter:APequil</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k13prime">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k13prime'</value>
+</property>
+<property name="Expression">
+<value>(40 / 60 - 4 / 96) * kminus13.NumberConc * Effect.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k13prime</value>
+<value>Variable:/SBMLParameter:k13prime</value>
+<value>1</value>
+</value>
+<value>
+<value>kminus13</value>
+<value>Variable:/SBMLParameter:kminus13</value>
+<value>0</value>
+</value>
+<value>
+<value>Effect</value>
+<value>Variable:/SBMLParameter:Effect</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_x4x5">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'x4x5'</value>
+</property>
+<property name="Expression">
+<value>x4.NumberConc + x5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x4x5</value>
+<value>Variable:/SBMLParameter:x4x5</value>
+<value>1</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/CellSurface:x4</value>
+<value>0</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/CellSurface:x5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="event_0000001">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000001</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>x1</value>
+<value>0</value>
+</value>
+</property>
+<property name="Trigger">
+<value>geq(&lt;t&gt;, 15)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/CellSurface:x1</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="event_0000002">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000002</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>k5</value>
+<value>1.670000e-02</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(x6.NumberConc + x7.NumberConc + x8.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>0</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/CellSurface/Intracellular:x7</value>
+<value>0</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/CellSurface/Intracellular:x8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="event_0000003">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000003</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>k5</value>
+<value>0.1002</value>
+</value>
+</property>
+<property name="Trigger">
+<value>leq(x6.NumberConc + x7.NumberConc + x8.NumberConc, 100)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/CellSurface/Intracellular:x6</value>
+<value>0</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/CellSurface/Intracellular:x7</value>
+<value>0</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/CellSurface/Intracellular:x8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

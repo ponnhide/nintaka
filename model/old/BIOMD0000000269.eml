@@ -1,0 +1,1429 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>v1: Auxin Transport to the cell</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k1a.Value / (1 + X.NumberConc / k1.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment_1:X</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1a</value>
+<value>Variable:/SBMLParameter:k1a</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>v2: Auxin biosynthesis in the cell</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k2.Value + k2a.Value * (ET.NumberConc / (1 + CK.NumberConc / k2b.Value)) * (PLSp.NumberConc / (k2c.Value + PLSp.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>1</value>
+</value>
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>0</value>
+</value>
+<value>
+<value>CK</value>
+<value>Variable:/compartment_1:CK</value>
+<value>0</value>
+</value>
+<value>
+<value>PLSp</value>
+<value>Variable:/compartment_1:PLSp</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>k2a</value>
+<value>Variable:/SBMLParameter:k2a</value>
+<value>0</value>
+</value>
+<value>
+<value>k2b</value>
+<value>Variable:/SBMLParameter:k2b</value>
+<value>0</value>
+</value>
+<value>
+<value>k2c</value>
+<value>Variable:/SBMLParameter:k2c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>v3: Auxin removal from the cell</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k3.Value + k3a.Value * X.NumberConc) * Auxin.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>-1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment_1:X</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k3a</value>
+<value>Variable:/SBMLParameter:k3a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>v4: Conversion of auxin receptor from the inactivated form to the activated form</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k4.Value * Auxin.NumberConc * Ra.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ra</value>
+<value>Variable:/compartment_1:Ra</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ra_star</value>
+<value>Variable:/compartment_1:Ra_star</value>
+<value>1</value>
+</value>
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>v5: Conversion of  auxin receptor from the activated form   to the inactivated form</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k5.Value * Ra_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ra_star</value>
+<value>Variable:/compartment_1:Ra_star</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ra</value>
+<value>Variable:/compartment_1:Ra</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>v6: Transcription of POLARIS gene</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k6.Value * Ra_star.NumberConc / (1 + ET.NumberConc / k6a.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLSm</value>
+<value>Variable:/compartment_1:PLSm</value>
+<value>1</value>
+</value>
+<value>
+<value>Ra_star</value>
+<value>Variable:/compartment_1:Ra_star</value>
+<value>0</value>
+</value>
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>k6a</value>
+<value>Variable:/SBMLParameter:k6a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>v7: Decay of mRNA of POLARIS gene</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k7.Value * PLSm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLSm</value>
+<value>Variable:/compartment_1:PLSm</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>v8: Translation of POLARIS gene</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k8.Value * PLSm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLSp</value>
+<value>Variable:/compartment_1:PLSp</value>
+<value>1</value>
+</value>
+<value>
+<value>PLSm</value>
+<value>Variable:/compartment_1:PLSm</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_9">
+<property name="Name">
+<value>v9: Decay of protein of POLARIS gene</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k9.Value * PLSp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLSp</value>
+<value>Variable:/compartment_1:PLSp</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_10">
+<property name="Name">
+<value>v10: Conversion of the inactivated form of ethylene receptor to its activated form by PLSp </value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k10.Value + k10a.Value * PLSp.NumberConc) * Re.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Re</value>
+<value>Variable:/compartment_1:Re</value>
+<value>-1</value>
+</value>
+<value>
+<value>Re_star</value>
+<value>Variable:/compartment_1:Re_star</value>
+<value>1</value>
+</value>
+<value>
+<value>PLSp</value>
+<value>Variable:/compartment_1:PLSp</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+<value>
+<value>k10a</value>
+<value>Variable:/SBMLParameter:k10a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_11">
+<property name="Name">
+<value>v11: Conversion of the activated form of ethylene receptor to its inactivated form</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k11.Value * Re_star.NumberConc * ET.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Re_star</value>
+<value>Variable:/compartment_1:Re_star</value>
+<value>-1</value>
+</value>
+<value>
+<value>Re</value>
+<value>Variable:/compartment_1:Re</value>
+<value>1</value>
+</value>
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_12">
+<property name="Name">
+<value>v12: Ethylene biosynthesis </value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k12.Value + k12a.Value * Auxin.NumberConc * CK.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>1</value>
+</value>
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>0</value>
+</value>
+<value>
+<value>CK</value>
+<value>Variable:/compartment_1:CK</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+<value>
+<value>k12a</value>
+<value>Variable:/SBMLParameter:k12a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_13">
+<property name="Name">
+<value>v13: Removal of ethylene</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k13.Value * ET.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_14">
+<property name="Name">
+<value>v14: Conversion of the inactivated form of CTR1 protein to its activated form by Re*</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k14.Value * Re_star.NumberConc * CTR1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CTR1</value>
+<value>Variable:/compartment_1:CTR1</value>
+<value>-1</value>
+</value>
+<value>
+<value>CTR1_star</value>
+<value>Variable:/compartment_1:CTR1_star</value>
+<value>1</value>
+</value>
+<value>
+<value>Re_star</value>
+<value>Variable:/compartment_1:Re_star</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_15">
+<property name="Name">
+<value>v15: Conversion of the activated form of CTR1 protein to its inactivated form</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k15.Value * CTR1_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CTR1_star</value>
+<value>Variable:/compartment_1:CTR1_star</value>
+<value>-1</value>
+</value>
+<value>
+<value>CTR1</value>
+<value>Variable:/compartment_1:CTR1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k15</value>
+<value>Variable:/SBMLParameter:k15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_16">
+<property name="Name">
+<value>v16: Activation of the downstream of ethylene signalling response is inhibited by  CTR1*</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k16.Value - k16a.Value * CTR1_star.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/compartment_1:X</value>
+<value>1</value>
+</value>
+<value>
+<value>CTR1_star</value>
+<value>Variable:/compartment_1:CTR1_star</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+<value>
+<value>k16a</value>
+<value>Variable:/SBMLParameter:k16a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_17">
+<property name="Name">
+<value>v17: Removal of the unknown molecule X</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k17.Value * X.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/compartment_1:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_18">
+<property name="Name">
+<value>v18: Biosynthesis of cytokinin</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k18a.Value / (1 + Auxin.NumberConc / k18.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CK</value>
+<value>Variable:/compartment_1:CK</value>
+<value>1</value>
+</value>
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k18a</value>
+<value>Variable:/SBMLParameter:k18a</value>
+<value>0</value>
+</value>
+<value>
+<value>k18</value>
+<value>Variable:/SBMLParameter:k18</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_19">
+<property name="Name">
+<value>v19: removal of cytokinin</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k19.Value * CK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CK</value>
+<value>Variable:/compartment_1:CK</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v_Ethylene">
+<property name="Name">
+<value>vEthylene: Uptake rate of exogenous ACC (1-aminocyclopropane-1-carboxylic acid)</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k_ethylene.Value * ACC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ACC</value>
+<value>Variable:/extra:ACC</value>
+<value>-1</value>
+</value>
+<value>
+<value>ET</value>
+<value>Variable:/compartment_1:ET</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_ethylene</value>
+<value>Variable:/SBMLParameter:k_ethylene</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v_Auxin">
+<property name="Name">
+<value>vAuxin: Uptake rate of exogenous auxin (indole-3-acetic acid, IAA)</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k_auxin.Value * IAA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IAA</value>
+<value>Variable:/extra:IAA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Auxin</value>
+<value>Variable:/compartment_1:Auxin</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_auxin</value>
+<value>Variable:/SBMLParameter:k_auxin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v_Cytokinin">
+<property name="Name">
+<value>vCytokinin: Uptake rate of exogenous cytokinin</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k_cytokinin.Value * CK_ex.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CK_ex</value>
+<value>Variable:/extra:CK_ex</value>
+<value>-1</value>
+</value>
+<value>
+<value>CK</value>
+<value>Variable:/compartment_1:CK</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k_cytokinin</value>
+<value>Variable:/SBMLParameter:k_cytokinin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Auxin">
+<property name="Name">
+<value>Auxin</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="Name">
+<value>X</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLSp">
+<property name="Name">
+<value>PLSp</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ra">
+<property name="Name">
+<value>Ra</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ra_star">
+<property name="Name">
+<value>Ra*</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RaT">
+<property name="Name">
+<value>Ra_total</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CK">
+<property name="Name">
+<value>CK</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ET">
+<property name="Name">
+<value>ET</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLSm">
+<property name="Name">
+<value>PLSm</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Re">
+<property name="Name">
+<value>Re</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ReT">
+<property name="Name">
+<value>Re_total</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Re_star">
+<property name="Name">
+<value>Re*</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CTR1">
+<property name="Name">
+<value>CTR1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CTR1T">
+<property name="Name">
+<value>CTR1_total</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CTR1_star">
+<property name="Name">
+<value>CTR1*</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extra">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="IAA">
+<property name="Name">
+<value>IAA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ACC">
+<property name="Name">
+<value>ACC</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CK_ex">
+<property name="Name">
+<value>Cytokinin_ext</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1a">
+<property name="Name">
+<value>k1a</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2a">
+<property name="Name">
+<value>k2a</value>
+</property>
+<property name="Value">
+<value>2.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2b">
+<property name="Name">
+<value>k2b</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2c">
+<property name="Name">
+<value>k2c</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3a">
+<property name="Name">
+<value>k3a</value>
+</property>
+<property name="Value">
+<value>0.45</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6a">
+<property name="Name">
+<value>k6a</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10a">
+<property name="Name">
+<value>k10a</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12a">
+<property name="Name">
+<value>k12a</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Name">
+<value>k14</value>
+</property>
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15">
+<property name="Name">
+<value>k15</value>
+</property>
+<property name="Value">
+<value>0.085</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Name">
+<value>k16</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16a">
+<property name="Name">
+<value>k16a</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Name">
+<value>k17</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18a">
+<property name="Name">
+<value>k18a</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18">
+<property name="Name">
+<value>k18</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Name">
+<value>k19</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_ethylene">
+<property name="Name">
+<value>k_ethylene</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_auxin">
+<property name="Name">
+<value>k_auxin</value>
+</property>
+<property name="Value">
+<value>70.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_cytokinin">
+<property name="Name">
+<value>k_cytokinin</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Ra">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Ra'</value>
+</property>
+<property name="Expression">
+<value>RaT.NumberConc - Ra_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ra</value>
+<value>Variable:/compartment_1:Ra</value>
+<value>1</value>
+</value>
+<value>
+<value>RaT</value>
+<value>Variable:/compartment_1:RaT</value>
+<value>0</value>
+</value>
+<value>
+<value>Ra_star</value>
+<value>Variable:/compartment_1:Ra_star</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Re">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Re'</value>
+</property>
+<property name="Expression">
+<value>ReT.NumberConc - Re_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Re</value>
+<value>Variable:/compartment_1:Re</value>
+<value>1</value>
+</value>
+<value>
+<value>ReT</value>
+<value>Variable:/compartment_1:ReT</value>
+<value>0</value>
+</value>
+<value>
+<value>Re_star</value>
+<value>Variable:/compartment_1:Re_star</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CTR1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CTR1'</value>
+</property>
+<property name="Expression">
+<value>CTR1T.NumberConc - CTR1_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CTR1</value>
+<value>Variable:/compartment_1:CTR1</value>
+<value>1</value>
+</value>
+<value>
+<value>CTR1T</value>
+<value>Variable:/compartment_1:CTR1T</value>
+<value>0</value>
+</value>
+<value>
+<value>CTR1_star</value>
+<value>Variable:/compartment_1:CTR1_star</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,1412 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_0000001">
+<property name="Name">
+<value>binding MAPKK on Tyr site of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1.Value * M.NumberConc * MAPKK.NumberConc - k_1.Value * M_MAPKK_Y.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_MAPKK_Y</value>
+<value>Variable:/cell:M_MAPKK_Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k_1</value>
+<value>Variable:/SBMLParameter:k_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; M &lt;/ci&gt;#x0A        &lt;ci&gt; MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k_1 &lt;/ci&gt;#x0A        &lt;ci&gt; M_MAPKK_Y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000002">
+<property name="Name">
+<value>tyr phosphorylation of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k2.Value * M_MAPKK_Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_MAPKK_Y</value>
+<value>Variable:/cell:M_MAPKK_Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpY</value>
+<value>Variable:/cell:MpY</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; M_MAPKK_Y &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000003">
+<property name="Name">
+<value>binding of MAPKK on MAPK-PY</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k3.Value * MpY.NumberConc * MAPKK.NumberConc - k_3.Value * MpY_MAPKK.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpY</value>
+<value>Variable:/cell:MpY</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpY_MAPKK</value>
+<value>Variable:/cell:MpY_MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k_3</value>
+<value>Variable:/SBMLParameter:k_3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k3 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY &lt;/ci&gt;#x0A        &lt;ci&gt; MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k_3 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY_MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000004">
+<property name="Name">
+<value>thr phosphorylation of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k4.Value * MpY_MAPKK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpY_MAPKK</value>
+<value>Variable:/cell:MpY_MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mpp</value>
+<value>Variable:/cell:Mpp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; MpY_MAPKK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000005">
+<property name="Name">
+<value>binding of MAPKK on Thr site of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k5.Value * M.NumberConc * MAPKK.NumberConc - k_5.Value * M_MAPKK_T.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_MAPKK_T</value>
+<value>Variable:/cell:M_MAPKK_T</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+<value>
+<value>k_5</value>
+<value>Variable:/SBMLParameter:k_5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k5 &lt;/ci&gt;#x0A        &lt;ci&gt; M &lt;/ci&gt;#x0A        &lt;ci&gt; MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k_5 &lt;/ci&gt;#x0A        &lt;ci&gt; M_MAPKK_T &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000006">
+<property name="Name">
+<value>thr phosphorylation of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k6.Value * M_MAPKK_T.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_MAPKK_T</value>
+<value>Variable:/cell:M_MAPKK_T</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpT</value>
+<value>Variable:/cell:MpT</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; M_MAPKK_T &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000007">
+<property name="Name">
+<value>binding MAPK-PT and MAPKK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k7.Value * MpT.NumberConc * MAPKK.NumberConc - k_7.Value * MpT_MAPKK.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpT</value>
+<value>Variable:/cell:MpT</value>
+<value>-1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpT_MAPKK</value>
+<value>Variable:/cell:MpT_MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>k_7</value>
+<value>Variable:/SBMLParameter:k_7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k7 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT &lt;/ci&gt;#x0A        &lt;ci&gt; MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k_7 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT_MAPKK &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000008">
+<property name="Name">
+<value>tyr phosphorylation of MAPK</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k8.Value * MpT_MAPKK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpT_MAPKK</value>
+<value>Variable:/cell:MpT_MAPKK</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mpp</value>
+<value>Variable:/cell:Mpp</value>
+<value>1</value>
+</value>
+<value>
+<value>MAPKK</value>
+<value>Variable:/cell:MAPKK</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A    &lt;ci&gt; MpT_MAPKK &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000009">
+<property name="Name">
+<value>binding of MKP on Tyr site of MAPK-PP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h1.Value * Mpp.NumberConc * MKP.NumberConc - h_1.Value * Mpp_MKP_Y.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mpp</value>
+<value>Variable:/cell:Mpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mpp_MKP_Y</value>
+<value>Variable:/cell:Mpp_MKP_Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h1</value>
+<value>Variable:/SBMLParameter:h1</value>
+<value>0</value>
+</value>
+<value>
+<value>h_1</value>
+<value>Variable:/SBMLParameter:h_1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h1 &lt;/ci&gt;#x0A        &lt;ci&gt; Mpp &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_1 &lt;/ci&gt;#x0A        &lt;ci&gt; Mpp_MKP_Y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000010">
+<property name="Name">
+<value>dephosphorylation of Tyr on MAPKK-PP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * h2.Value * Mpp_MKP_Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mpp_MKP_Y</value>
+<value>Variable:/cell:Mpp_MKP_Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpT_MKP_Y</value>
+<value>Variable:/cell:MpT_MKP_Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h2</value>
+<value>Variable:/SBMLParameter:h2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; h2 &lt;/ci&gt;#x0A    &lt;ci&gt; Mpp_MKP_Y &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000011">
+<property name="Name">
+<value>dissociation MAPK-PT and MKP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h3.Value * MpT_MKP_Y.NumberConc - h_3.Value * MpT.NumberConc * MKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpT_MKP_Y</value>
+<value>Variable:/cell:MpT_MKP_Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpT</value>
+<value>Variable:/cell:MpT</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h3</value>
+<value>Variable:/SBMLParameter:h3</value>
+<value>0</value>
+</value>
+<value>
+<value>h_3</value>
+<value>Variable:/SBMLParameter:h_3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h3 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT_MKP_Y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_3 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000013">
+<property name="Name">
+<value>binding of MKP on Thr site of MAPK-PT</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h4.Value * MpT.NumberConc * MKP.NumberConc - h_4.Value * MpT_MKP_T.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpT</value>
+<value>Variable:/cell:MpT</value>
+<value>-1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpT_MKP_T</value>
+<value>Variable:/cell:MpT_MKP_T</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h4</value>
+<value>Variable:/SBMLParameter:h4</value>
+<value>0</value>
+</value>
+<value>
+<value>h_4</value>
+<value>Variable:/SBMLParameter:h_4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h4 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_4 &lt;/ci&gt;#x0A        &lt;ci&gt; MpT_MKP_T &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000012">
+<property name="Name">
+<value>dephosphorylation of MAPK-PT</value>
+</property>
+<property name="Expression">
+<value>cell.Value * h5.Value * MpT_MKP_T.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpT_MKP_T</value>
+<value>Variable:/cell:MpT_MKP_T</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_MKP_T</value>
+<value>Variable:/cell:M_MKP_T</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h5</value>
+<value>Variable:/SBMLParameter:h5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; h5 &lt;/ci&gt;#x0A    &lt;ci&gt; MpT_MKP_T &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000015">
+<property name="Name">
+<value>dissociation MAPK and MKP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h6.Value * M_MKP_T.NumberConc - h_6.Value * M.NumberConc * MKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_MKP_T</value>
+<value>Variable:/cell:M_MKP_T</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h6</value>
+<value>Variable:/SBMLParameter:h6</value>
+<value>0</value>
+</value>
+<value>
+<value>h_6</value>
+<value>Variable:/SBMLParameter:h_6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h6 &lt;/ci&gt;#x0A        &lt;ci&gt; M_MKP_T &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_6 &lt;/ci&gt;#x0A        &lt;ci&gt; M &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000017">
+<property name="Name">
+<value>binding of MKP on the Tyr site of MAPK-PY</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h7.Value * MpY.NumberConc * MKP.NumberConc - h_7.Value * MpY_MKP_Y.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpY</value>
+<value>Variable:/cell:MpY</value>
+<value>-1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpY_MKP_Y</value>
+<value>Variable:/cell:MpY_MKP_Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h7</value>
+<value>Variable:/SBMLParameter:h7</value>
+<value>0</value>
+</value>
+<value>
+<value>h_7</value>
+<value>Variable:/SBMLParameter:h_7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h7 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_7 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY_MKP_Y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000014">
+<property name="Name">
+<value>dephosphorylation of MAPK-PY</value>
+</property>
+<property name="Expression">
+<value>cell.Value * h8.Value * MpY_MKP_Y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpY_MKP_Y</value>
+<value>Variable:/cell:MpY_MKP_Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>M_MKP_Y</value>
+<value>Variable:/cell:M_MKP_Y</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h8</value>
+<value>Variable:/SBMLParameter:h8</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; h8 &lt;/ci&gt;#x0A    &lt;ci&gt; MpY_MKP_Y &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000019">
+<property name="Name">
+<value>Dissociation MAPK and MKP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h9.Value * M_MKP_Y.NumberConc - h_9.Value * M.NumberConc * MKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M_MKP_Y</value>
+<value>Variable:/cell:M_MKP_Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h9</value>
+<value>Variable:/SBMLParameter:h9</value>
+<value>0</value>
+</value>
+<value>
+<value>h_9</value>
+<value>Variable:/SBMLParameter:h_9</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h9 &lt;/ci&gt;#x0A        &lt;ci&gt; M_MKP_Y &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_9 &lt;/ci&gt;#x0A        &lt;ci&gt; M &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000020">
+<property name="Name">
+<value>binding of MKP on Thr site of MAPK-PP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h10.Value * Mpp.NumberConc * MKP.NumberConc - h_10.Value * Mpp_MKP_T.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mpp</value>
+<value>Variable:/cell:Mpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mpp_MKP_T</value>
+<value>Variable:/cell:Mpp_MKP_T</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h10</value>
+<value>Variable:/SBMLParameter:h10</value>
+<value>0</value>
+</value>
+<value>
+<value>h_10</value>
+<value>Variable:/SBMLParameter:h_10</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h10 &lt;/ci&gt;#x0A        &lt;ci&gt; Mpp &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_10 &lt;/ci&gt;#x0A        &lt;ci&gt; Mpp_MKP_T &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000021">
+<property name="Name">
+<value>dephosphorylation of Thr on MAPKK-PP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * h11.Value * Mpp_MKP_T.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mpp_MKP_T</value>
+<value>Variable:/cell:Mpp_MKP_T</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpY_MKP_T</value>
+<value>Variable:/cell:MpY_MKP_T</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h11</value>
+<value>Variable:/SBMLParameter:h11</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; h11 &lt;/ci&gt;#x0A    &lt;ci&gt; Mpp_MKP_T &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_0000022">
+<property name="Name">
+<value>dissociation MAPK-PY and MKP</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (h12.Value * MpY_MKP_T.NumberConc - h_12.Value * MpY.NumberConc * MKP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MpY_MKP_T</value>
+<value>Variable:/cell:MpY_MKP_T</value>
+<value>-1</value>
+</value>
+<value>
+<value>MpY</value>
+<value>Variable:/cell:MpY</value>
+<value>1</value>
+</value>
+<value>
+<value>MKP</value>
+<value>Variable:/cell:MKP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>h12</value>
+<value>Variable:/SBMLParameter:h12</value>
+<value>0</value>
+</value>
+<value>
+<value>h_12</value>
+<value>Variable:/SBMLParameter:h_12</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h12 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY_MKP_T &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; h_12 &lt;/ci&gt;#x0A        &lt;ci&gt; MpY &lt;/ci&gt;#x0A        &lt;ci&gt; MKP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>MAPK</value>
+</property>
+<property name="NumberConc">
+<value>800.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpY">
+<property name="Name">
+<value>MAPK-PY</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpT">
+<property name="Name">
+<value>MAPK-PT</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mpp">
+<property name="Name">
+<value>MAPK-PP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MAPKK">
+<property name="Name">
+<value>MAPKK</value>
+</property>
+<property name="NumberConc">
+<value>180.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MKP">
+<property name="Name">
+<value>MKP</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpY_MAPKK">
+<property name="Name">
+<value>MAPK-PY_MAPKK</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpT_MAPKK">
+<property name="Name">
+<value>MAPK-PT_MAPKK</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_MAPKK_Y">
+<property name="Name">
+<value>MAPK_MAPKK_Y</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_MAPKK_T">
+<property name="Name">
+<value>MAPK_MAPKK_T</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mpp_MKP_Y">
+<property name="Name">
+<value>MAPK-PP_MKP_T</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mpp_MKP_T">
+<property name="Name">
+<value>MAPK-PP_MKP_Y</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpY_MKP_Y">
+<property name="Name">
+<value>MAPK-PY_MKP_Y</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpY_MKP_T">
+<property name="Name">
+<value>MAPK-PY_MKP_T</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpT_MKP_Y">
+<property name="Name">
+<value>MAPK-PT_MKP_Y</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MpT_MKP_T">
+<property name="Name">
+<value>MAPK-PT_MKP_T</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_MKP_T">
+<property name="Name">
+<value>MAPK_MKP_T</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="M_MKP_Y">
+<property name="Name">
+<value>MAPK_MKP_Y</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_1">
+<property name="Name">
+<value>k_1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>0.032</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_3">
+<property name="Name">
+<value>k_3</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_5">
+<property name="Name">
+<value>k_5</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>0.032</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_7">
+<property name="Name">
+<value>k_7</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h1">
+<property name="Name">
+<value>h1</value>
+</property>
+<property name="Value">
+<value>0.045</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_1">
+<property name="Name">
+<value>h_1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h2">
+<property name="Name">
+<value>h2</value>
+</property>
+<property name="Value">
+<value>0.092</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h3">
+<property name="Name">
+<value>h3</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_3">
+<property name="Name">
+<value>h_3</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h4">
+<property name="Name">
+<value>h4</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_4">
+<property name="Name">
+<value>h_4</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h5">
+<property name="Name">
+<value>h5</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h6">
+<property name="Name">
+<value>h6</value>
+</property>
+<property name="Value">
+<value>0.086</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_6">
+<property name="Name">
+<value>h_6</value>
+</property>
+<property name="Value">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h7">
+<property name="Name">
+<value>h7</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_7">
+<property name="Name">
+<value>h_7</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h8">
+<property name="Name">
+<value>h8</value>
+</property>
+<property name="Value">
+<value>0.47</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h9">
+<property name="Name">
+<value>h9</value>
+</property>
+<property name="Value">
+<value>0.14</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_9">
+<property name="Name">
+<value>h_9</value>
+</property>
+<property name="Value">
+<value>0.0018</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h10">
+<property name="Name">
+<value>h10</value>
+</property>
+<property name="Value">
+<value>0.045</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_10">
+<property name="Name">
+<value>h_10</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h11">
+<property name="Name">
+<value>h11</value>
+</property>
+<property name="Value">
+<value>0.092</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h12">
+<property name="Name">
+<value>h12</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h_12">
+<property name="Name">
+<value>h_12</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

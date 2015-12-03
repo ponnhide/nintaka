@@ -1,0 +1,2113 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>[EpoRJAK2] -&gt; [EpoRpJAK2]; { Epo, SOCS3 };</value>
+</property>
+<property name="Expression">
+<value>JAK2ActEpo.Value * Epo.NumberConc * EpoRJAK2.NumberConc / (SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoRJAK2</value>
+<value>Variable:/cyt:EpoRJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>Epo</value>
+<value>Variable:/cyt:Epo</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2ActEpo</value>
+<value>Variable:/SBMLParameter:JAK2ActEpo</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; JAK2ActEpo &lt;/ci&gt;#x0A        &lt;ci&gt; Epo &lt;/ci&gt;#x0A        &lt;ci&gt; EpoRJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A            &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>[EpoRpJAK2] -&gt; [EpoRJAK2]; { SHP1Act };</value>
+</property>
+<property name="Expression">
+<value>JAK2EpoRDeaSHP1.Value * SHP1Act.NumberConc * EpoRpJAK2.NumberConc / init_SHP1.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoRJAK2</value>
+<value>Variable:/cyt:EpoRJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2EpoRDeaSHP1</value>
+<value>Variable:/SBMLParameter:JAK2EpoRDeaSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>init_SHP1</value>
+<value>Variable:/SBMLParameter:init_SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; JAK2EpoRDeaSHP1 &lt;/ci&gt;#x0A        &lt;ci&gt; SHP1Act &lt;/ci&gt;#x0A        &lt;ci&gt; EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_SHP1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>[EpoRpJAK2] -&gt; [p1EpoRpJAK2]; { SOCS3 };</value>
+</property>
+<property name="Expression">
+<value>EpoRActJAK2.Value * EpoRpJAK2.NumberConc / (SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRActJAK2</value>
+<value>Variable:/SBMLParameter:EpoRActJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EpoRActJAK2 &lt;/ci&gt;#x0A        &lt;ci&gt; EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A            &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>[EpoRpJAK2] -&gt; [p2EpoRpJAK2]; { EpoRJAK2_CIS, SOCS3 };</value>
+</property>
+<property name="Expression">
+<value>3 * EpoRActJAK2.Value * EpoRpJAK2.NumberConc / ((SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1) * (EpoRCISInh.Value * EpoRJAK2_CIS.NumberConc + 1)) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p2EpoRpJAK2</value>
+<value>Variable:/cyt:p2EpoRpJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoRJAK2_CIS</value>
+<value>Variable:/cyt:EpoRJAK2_CIS</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRActJAK2</value>
+<value>Variable:/SBMLParameter:EpoRActJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRCISInh</value>
+<value>Variable:/SBMLParameter:EpoRCISInh</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 3 &lt;/cn&gt;#x0A        &lt;ci&gt; EpoRActJAK2 &lt;/ci&gt;#x0A        &lt;ci&gt; EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A              &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; EpoRCISInh &lt;/ci&gt;#x0A            &lt;ci&gt; EpoRJAK2_CIS &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>[p1EpoRpJAK2] -&gt; [p12EpoRpJAK2]; { EpoRJAK2_CIS, SOCS3 };</value>
+</property>
+<property name="Expression">
+<value>3 * EpoRActJAK2.Value * p1EpoRpJAK2.NumberConc / ((SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1) * (EpoRCISInh.Value * EpoRJAK2_CIS.NumberConc + 1)) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoRJAK2_CIS</value>
+<value>Variable:/cyt:EpoRJAK2_CIS</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRActJAK2</value>
+<value>Variable:/SBMLParameter:EpoRActJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRCISInh</value>
+<value>Variable:/SBMLParameter:EpoRCISInh</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 3 &lt;/cn&gt;#x0A        &lt;ci&gt; EpoRActJAK2 &lt;/ci&gt;#x0A        &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A              &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; EpoRCISInh &lt;/ci&gt;#x0A            &lt;ci&gt; EpoRJAK2_CIS &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>[p2EpoRpJAK2] -&gt; [p12EpoRpJAK2]; { SOCS3 };</value>
+</property>
+<property name="Expression">
+<value>EpoRActJAK2.Value * p2EpoRpJAK2.NumberConc / (SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2EpoRpJAK2</value>
+<value>Variable:/cyt:p2EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRActJAK2</value>
+<value>Variable:/SBMLParameter:EpoRActJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EpoRActJAK2 &lt;/ci&gt;#x0A        &lt;ci&gt; p2EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A            &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>[p1EpoRpJAK2] -&gt; [EpoRJAK2]; { SHP1Act };</value>
+</property>
+<property name="Expression">
+<value>JAK2EpoRDeaSHP1.Value * SHP1Act.NumberConc * p1EpoRpJAK2.NumberConc / init_SHP1.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoRJAK2</value>
+<value>Variable:/cyt:EpoRJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2EpoRDeaSHP1</value>
+<value>Variable:/SBMLParameter:JAK2EpoRDeaSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>init_SHP1</value>
+<value>Variable:/SBMLParameter:init_SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; JAK2EpoRDeaSHP1 &lt;/ci&gt;#x0A        &lt;ci&gt; SHP1Act &lt;/ci&gt;#x0A        &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_SHP1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>[p2EpoRpJAK2] -&gt; [EpoRJAK2]; { SHP1Act };</value>
+</property>
+<property name="Expression">
+<value>JAK2EpoRDeaSHP1.Value * SHP1Act.NumberConc * p2EpoRpJAK2.NumberConc / init_SHP1.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2EpoRpJAK2</value>
+<value>Variable:/cyt:p2EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoRJAK2</value>
+<value>Variable:/cyt:EpoRJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2EpoRDeaSHP1</value>
+<value>Variable:/SBMLParameter:JAK2EpoRDeaSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>init_SHP1</value>
+<value>Variable:/SBMLParameter:init_SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; JAK2EpoRDeaSHP1 &lt;/ci&gt;#x0A        &lt;ci&gt; SHP1Act &lt;/ci&gt;#x0A        &lt;ci&gt; p2EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_SHP1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>[p12EpoRpJAK2] -&gt; [EpoRJAK2]; { SHP1Act };</value>
+</property>
+<property name="Expression">
+<value>JAK2EpoRDeaSHP1.Value * SHP1Act.NumberConc * p12EpoRpJAK2.NumberConc / init_SHP1.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoRJAK2</value>
+<value>Variable:/cyt:EpoRJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2EpoRDeaSHP1</value>
+<value>Variable:/SBMLParameter:JAK2EpoRDeaSHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>init_SHP1</value>
+<value>Variable:/SBMLParameter:init_SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; JAK2EpoRDeaSHP1 &lt;/ci&gt;#x0A        &lt;ci&gt; SHP1Act &lt;/ci&gt;#x0A        &lt;ci&gt; p12EpoRpJAK2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_SHP1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>[EpoRJAK2_CIS] -&gt; ; { p12EpoRpJAK2, p1EpoRpJAK2 };</value>
+</property>
+<property name="Expression">
+<value>EpoRCISRemove.Value * EpoRJAK2_CIS.NumberConc * (p12EpoRpJAK2.NumberConc + p1EpoRpJAK2.NumberConc) / init_EpoRJAK2.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoRJAK2_CIS</value>
+<value>Variable:/cyt:EpoRJAK2_CIS</value>
+<value>-1</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>EpoRCISRemove</value>
+<value>Variable:/SBMLParameter:EpoRCISRemove</value>
+<value>0</value>
+</value>
+<value>
+<value>init_EpoRJAK2</value>
+<value>Variable:/SBMLParameter:init_EpoRJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; EpoRCISRemove &lt;/ci&gt;#x0A        &lt;ci&gt; EpoRJAK2_CIS &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; p12EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_EpoRJAK2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>[SHP1] -&gt; [SHP1Act]; { EpoRpJAK2, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2 };</value>
+</property>
+<property name="Expression">
+<value>SHP1ActEpoR.Value * SHP1.NumberConc * (EpoRpJAK2.NumberConc + p12EpoRpJAK2.NumberConc + p1EpoRpJAK2.NumberConc + p2EpoRpJAK2.NumberConc) / init_EpoRJAK2.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SHP1</value>
+<value>Variable:/cyt:SHP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p2EpoRpJAK2</value>
+<value>Variable:/cyt:p2EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SHP1ActEpoR</value>
+<value>Variable:/SBMLParameter:SHP1ActEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>init_EpoRJAK2</value>
+<value>Variable:/SBMLParameter:init_EpoRJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; SHP1ActEpoR &lt;/ci&gt;#x0A        &lt;ci&gt; SHP1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p12EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p2EpoRpJAK2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; init_EpoRJAK2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>[SHP1Act] -&gt; [SHP1];</value>
+</property>
+<property name="Expression">
+<value>SHP1Dea.Value * SHP1Act.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SHP1Act</value>
+<value>Variable:/cyt:SHP1Act</value>
+<value>-1</value>
+</value>
+<value>
+<value>SHP1</value>
+<value>Variable:/cyt:SHP1</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1Dea</value>
+<value>Variable:/SBMLParameter:SHP1Dea</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SHP1Dea &lt;/ci&gt;#x0A    &lt;ci&gt; SHP1Act &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_13">
+<property name="Name">
+<value>[STAT5] -&gt; [pSTAT5]; { EpoRpJAK2, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2, p2EpoRpJAK2 };</value>
+</property>
+<property name="Expression">
+<value>STAT5ActJAK2.Value * STAT5.NumberConc * (EpoRpJAK2.NumberConc + p12EpoRpJAK2.NumberConc + p1EpoRpJAK2.NumberConc + p2EpoRpJAK2.NumberConc) / (init_EpoRJAK2.Value * (SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1)) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>STAT5</value>
+<value>Variable:/cyt:STAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cyt:pSTAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoRpJAK2</value>
+<value>Variable:/cyt:EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p2EpoRpJAK2</value>
+<value>Variable:/cyt:p2EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>STAT5ActJAK2</value>
+<value>Variable:/SBMLParameter:STAT5ActJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>init_EpoRJAK2</value>
+<value>Variable:/SBMLParameter:init_EpoRJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; STAT5ActJAK2 &lt;/ci&gt;#x0A        &lt;ci&gt; STAT5 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p12EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;ci&gt; p2EpoRpJAK2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; init_EpoRJAK2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A              &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_14">
+<property name="Name">
+<value>[STAT5] -&gt; [pSTAT5]; { CIS, SOCS3, p12EpoRpJAK2, p1EpoRpJAK2 };</value>
+</property>
+<property name="Expression">
+<value>STAT5ActEpoR.Value * STAT5.NumberConc * pow(p12EpoRpJAK2.NumberConc + p1EpoRpJAK2.NumberConc, 2) / (pow(init_EpoRJAK2.Value, 2) * (CISInh.Value * CIS.NumberConc / CISEqc.Value + 1) * (SOCS3Inh.Value * SOCS3.NumberConc / SOCS3Eqc.Value + 1)) * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>STAT5</value>
+<value>Variable:/cyt:STAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cyt:pSTAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>CIS</value>
+<value>Variable:/cyt:CIS</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>0</value>
+</value>
+<value>
+<value>p12EpoRpJAK2</value>
+<value>Variable:/cyt:p12EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>p1EpoRpJAK2</value>
+<value>Variable:/cyt:p1EpoRpJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>STAT5ActEpoR</value>
+<value>Variable:/SBMLParameter:STAT5ActEpoR</value>
+<value>0</value>
+</value>
+<value>
+<value>init_EpoRJAK2</value>
+<value>Variable:/SBMLParameter:init_EpoRJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>CISInh</value>
+<value>Variable:/SBMLParameter:CISInh</value>
+<value>0</value>
+</value>
+<value>
+<value>CISEqc</value>
+<value>Variable:/SBMLParameter:CISEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Inh</value>
+<value>Variable:/SBMLParameter:SOCS3Inh</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; STAT5ActEpoR &lt;/ci&gt;#x0A        &lt;ci&gt; STAT5 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; p12EpoRpJAK2 &lt;/ci&gt;#x0A            &lt;ci&gt; p1EpoRpJAK2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; init_EpoRJAK2 &lt;/ci&gt;#x0A          &lt;cn&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; CISInh &lt;/ci&gt;#x0A              &lt;ci&gt; CIS &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; CISEqc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; SOCS3Inh &lt;/ci&gt;#x0A              &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_15">
+<property name="Name">
+<value>[pSTAT5] -&gt; [npSTAT5];</value>
+</property>
+<property name="Expression">
+<value>STAT5Imp.Value * pSTAT5.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cyt:pSTAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>npSTAT5</value>
+<value>Variable:/nuc:npSTAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>STAT5Imp</value>
+<value>Variable:/SBMLParameter:STAT5Imp</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; STAT5Imp &lt;/ci&gt;#x0A    &lt;ci&gt; pSTAT5 &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_16">
+<property name="Name">
+<value>[npSTAT5] -&gt; [STAT5];</value>
+</property>
+<property name="Expression">
+<value>STAT5Exp.Value * npSTAT5.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>npSTAT5</value>
+<value>Variable:/nuc:npSTAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>STAT5</value>
+<value>Variable:/cyt:STAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>STAT5Exp</value>
+<value>Variable:/SBMLParameter:STAT5Exp</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; STAT5Exp &lt;/ci&gt;#x0A    &lt;ci&gt; npSTAT5 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_17">
+<property name="Name">
+<value>&lt;-&gt; [CISnRNA1]; { npSTAT5 };</value>
+</property>
+<property name="Expression">
+<value>-(CISRNAEqc.Value * CISRNATurn.Value * npSTAT5.NumberConc * (ActD.Value - 1) / init_STAT5.Value * nuc.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA1</value>
+<value>Variable:/nuc:CISnRNA1</value>
+<value>1</value>
+</value>
+<value>
+<value>npSTAT5</value>
+<value>Variable:/nuc:npSTAT5</value>
+<value>0</value>
+</value>
+<value>
+<value>CISRNAEqc</value>
+<value>Variable:/SBMLParameter:CISRNAEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>CISRNATurn</value>
+<value>Variable:/SBMLParameter:CISRNATurn</value>
+<value>0</value>
+</value>
+<value>
+<value>ActD</value>
+<value>Variable:/SBMLParameter:ActD</value>
+<value>0</value>
+</value>
+<value>
+<value>init_STAT5</value>
+<value>Variable:/SBMLParameter:init_STAT5</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; CISRNAEqc &lt;/ci&gt;#x0A          &lt;ci&gt; CISRNATurn &lt;/ci&gt;#x0A          &lt;ci&gt; npSTAT5 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;ci&gt; ActD &lt;/ci&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; init_STAT5 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; nuc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_18">
+<property name="Name">
+<value>[CISnRNA1] -&gt; [CISnRNA2];</value>
+</property>
+<property name="Expression">
+<value>CISRNADelay.Value * CISnRNA1.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA1</value>
+<value>Variable:/nuc:CISnRNA1</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISnRNA2</value>
+<value>Variable:/nuc:CISnRNA2</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNADelay</value>
+<value>Variable:/SBMLParameter:CISRNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; CISnRNA1 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_19">
+<property name="Name">
+<value>[CISnRNA2] -&gt; [CISnRNA3];</value>
+</property>
+<property name="Expression">
+<value>CISRNADelay.Value * CISnRNA2.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA2</value>
+<value>Variable:/nuc:CISnRNA2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISnRNA3</value>
+<value>Variable:/nuc:CISnRNA3</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNADelay</value>
+<value>Variable:/SBMLParameter:CISRNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; CISnRNA2 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_20">
+<property name="Name">
+<value>[CISnRNA3] -&gt; [CISnRNA4];</value>
+</property>
+<property name="Expression">
+<value>CISRNADelay.Value * CISnRNA3.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA3</value>
+<value>Variable:/nuc:CISnRNA3</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISnRNA4</value>
+<value>Variable:/nuc:CISnRNA4</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNADelay</value>
+<value>Variable:/SBMLParameter:CISRNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; CISnRNA3 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_21">
+<property name="Name">
+<value>[CISnRNA4] -&gt; [CISnRNA5];</value>
+</property>
+<property name="Expression">
+<value>CISRNADelay.Value * CISnRNA4.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA4</value>
+<value>Variable:/nuc:CISnRNA4</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISnRNA5</value>
+<value>Variable:/nuc:CISnRNA5</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNADelay</value>
+<value>Variable:/SBMLParameter:CISRNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; CISnRNA4 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_22">
+<property name="Name">
+<value>[CISnRNA5] -&gt; [CISRNA];</value>
+</property>
+<property name="Expression">
+<value>CISRNADelay.Value * CISnRNA5.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISnRNA5</value>
+<value>Variable:/nuc:CISnRNA5</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISRNA</value>
+<value>Variable:/cyt:CISRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNADelay</value>
+<value>Variable:/SBMLParameter:CISRNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; CISnRNA5 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_23">
+<property name="Name">
+<value>[CISRNA] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>CISRNATurn.Value * CISRNA.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CISRNA</value>
+<value>Variable:/cyt:CISRNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISRNATurn</value>
+<value>Variable:/SBMLParameter:CISRNATurn</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISRNATurn &lt;/ci&gt;#x0A    &lt;ci&gt; CISRNA &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_24">
+<property name="Name">
+<value>-&gt; [CIS]; { CISRNA };</value>
+</property>
+<property name="Expression">
+<value>CISEqc.Value * CISTurn.Value * CISRNA.NumberConc / CISRNAEqc.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CIS</value>
+<value>Variable:/cyt:CIS</value>
+<value>1</value>
+</value>
+<value>
+<value>CISRNA</value>
+<value>Variable:/cyt:CISRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>CISEqc</value>
+<value>Variable:/SBMLParameter:CISEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>CISTurn</value>
+<value>Variable:/SBMLParameter:CISTurn</value>
+<value>0</value>
+</value>
+<value>
+<value>CISRNAEqc</value>
+<value>Variable:/SBMLParameter:CISRNAEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; CISEqc &lt;/ci&gt;#x0A        &lt;ci&gt; CISTurn &lt;/ci&gt;#x0A        &lt;ci&gt; CISRNA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; CISRNAEqc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_25">
+<property name="Name">
+<value>[CIS] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>CISTurn.Value * CIS.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CIS</value>
+<value>Variable:/cyt:CIS</value>
+<value>-1</value>
+</value>
+<value>
+<value>CISTurn</value>
+<value>Variable:/SBMLParameter:CISTurn</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISTurn &lt;/ci&gt;#x0A    &lt;ci&gt; CIS &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_26">
+<property name="Name">
+<value>-&gt; [CIS];</value>
+</property>
+<property name="Expression">
+<value>CISoe.Value * CISEqc.Value * CISTurn.Value * CISEqcOE.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CIS</value>
+<value>Variable:/cyt:CIS</value>
+<value>1</value>
+</value>
+<value>
+<value>CISoe</value>
+<value>Variable:/SBMLParameter:CISoe</value>
+<value>0</value>
+</value>
+<value>
+<value>CISEqc</value>
+<value>Variable:/SBMLParameter:CISEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>CISTurn</value>
+<value>Variable:/SBMLParameter:CISTurn</value>
+<value>0</value>
+</value>
+<value>
+<value>CISEqcOE</value>
+<value>Variable:/SBMLParameter:CISEqcOE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CISoe &lt;/ci&gt;#x0A    &lt;ci&gt; CISEqc &lt;/ci&gt;#x0A    &lt;ci&gt; CISTurn &lt;/ci&gt;#x0A    &lt;ci&gt; CISEqcOE &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_27">
+<property name="Name">
+<value>&lt;-&gt; [SOCS3nRNA1]; { npSTAT5 };</value>
+</property>
+<property name="Expression">
+<value>-(SOCS3RNAEqc.Value * SOCS3RNATurn.Value * npSTAT5.NumberConc * (ActD.Value - 1) / init_STAT5.Value * nuc.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA1</value>
+<value>Variable:/nuc:SOCS3nRNA1</value>
+<value>1</value>
+</value>
+<value>
+<value>npSTAT5</value>
+<value>Variable:/nuc:npSTAT5</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3RNAEqc</value>
+<value>Variable:/SBMLParameter:SOCS3RNAEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3RNATurn</value>
+<value>Variable:/SBMLParameter:SOCS3RNATurn</value>
+<value>0</value>
+</value>
+<value>
+<value>ActD</value>
+<value>Variable:/SBMLParameter:ActD</value>
+<value>0</value>
+</value>
+<value>
+<value>init_STAT5</value>
+<value>Variable:/SBMLParameter:init_STAT5</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; SOCS3RNAEqc &lt;/ci&gt;#x0A          &lt;ci&gt; SOCS3RNATurn &lt;/ci&gt;#x0A          &lt;ci&gt; npSTAT5 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;ci&gt; ActD &lt;/ci&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; init_STAT5 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; nuc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_28">
+<property name="Name">
+<value>[SOCS3nRNA1] -&gt; [SOCS3nRNA2];</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNADelay.Value * SOCS3nRNA1.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA1</value>
+<value>Variable:/nuc:SOCS3nRNA1</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3nRNA2</value>
+<value>Variable:/nuc:SOCS3nRNA2</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNADelay</value>
+<value>Variable:/SBMLParameter:SOCS3RNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3nRNA1 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_29">
+<property name="Name">
+<value>[SOCS3nRNA2] -&gt; [SOCS3nRNA3];</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNADelay.Value * SOCS3nRNA2.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA2</value>
+<value>Variable:/nuc:SOCS3nRNA2</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3nRNA3</value>
+<value>Variable:/nuc:SOCS3nRNA3</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNADelay</value>
+<value>Variable:/SBMLParameter:SOCS3RNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3nRNA2 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_30">
+<property name="Name">
+<value>[SOCS3nRNA3] -&gt; [SOCS3nRNA4];</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNADelay.Value * SOCS3nRNA3.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA3</value>
+<value>Variable:/nuc:SOCS3nRNA3</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3nRNA4</value>
+<value>Variable:/nuc:SOCS3nRNA4</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNADelay</value>
+<value>Variable:/SBMLParameter:SOCS3RNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3nRNA3 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_31">
+<property name="Name">
+<value>[SOCS3nRNA4] -&gt; [SOCS3nRNA5];</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNADelay.Value * SOCS3nRNA4.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA4</value>
+<value>Variable:/nuc:SOCS3nRNA4</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3nRNA5</value>
+<value>Variable:/nuc:SOCS3nRNA5</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNADelay</value>
+<value>Variable:/SBMLParameter:SOCS3RNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3nRNA4 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_32">
+<property name="Name">
+<value>[SOCS3nRNA5] -&gt; [SOCS3RNA];</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNADelay.Value * SOCS3nRNA5.NumberConc * nuc.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3nRNA5</value>
+<value>Variable:/nuc:SOCS3nRNA5</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3RNA</value>
+<value>Variable:/cyt:SOCS3RNA</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNADelay</value>
+<value>Variable:/SBMLParameter:SOCS3RNADelay</value>
+<value>0</value>
+</value>
+<value>
+<value>nuc</value>
+<value>Variable:/nuc:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNADelay &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3nRNA5 &lt;/ci&gt;#x0A    &lt;ci&gt; nuc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_33">
+<property name="Name">
+<value>[SOCS3RNA] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>SOCS3RNATurn.Value * SOCS3RNA.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3RNA</value>
+<value>Variable:/cyt:SOCS3RNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3RNATurn</value>
+<value>Variable:/SBMLParameter:SOCS3RNATurn</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3RNATurn &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3RNA &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_34">
+<property name="Name">
+<value>-&gt; [SOCS3]; { SOCS3RNA };</value>
+</property>
+<property name="Expression">
+<value>SOCS3Eqc.Value * SOCS3Turn.Value * SOCS3RNA.NumberConc / SOCS3RNAEqc.Value * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3RNA</value>
+<value>Variable:/cyt:SOCS3RNA</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Turn</value>
+<value>Variable:/SBMLParameter:SOCS3Turn</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3RNAEqc</value>
+<value>Variable:/SBMLParameter:SOCS3RNAEqc</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A        &lt;ci&gt; SOCS3Turn &lt;/ci&gt;#x0A        &lt;ci&gt; SOCS3RNA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; SOCS3RNAEqc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_35">
+<property name="Name">
+<value>[SOCS3] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>SOCS3Turn.Value * SOCS3.NumberConc * cyt.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOCS3Turn</value>
+<value>Variable:/SBMLParameter:SOCS3Turn</value>
+<value>0</value>
+</value>
+<value>
+<value>cyt</value>
+<value>Variable:/cyt:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3Turn &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3 &lt;/ci&gt;#x0A    &lt;ci&gt; cyt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_36">
+<property name="Name">
+<value>-&gt; [SOCS3];</value>
+</property>
+<property name="Expression">
+<value>SOCS3oe.Value * SOCS3Eqc.Value * SOCS3Turn.Value * SOCS3EqcOE.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOCS3</value>
+<value>Variable:/cyt:SOCS3</value>
+<value>1</value>
+</value>
+<value>
+<value>SOCS3oe</value>
+<value>Variable:/SBMLParameter:SOCS3oe</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Eqc</value>
+<value>Variable:/SBMLParameter:SOCS3Eqc</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3Turn</value>
+<value>Variable:/SBMLParameter:SOCS3Turn</value>
+<value>0</value>
+</value>
+<value>
+<value>SOCS3EqcOE</value>
+<value>Variable:/SBMLParameter:SOCS3EqcOE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; SOCS3oe &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3Eqc &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3Turn &lt;/ci&gt;#x0A    &lt;ci&gt; SOCS3EqcOE &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cyt">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cyt</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRJAK2">
+<property name="Name">
+<value>EpoRJAK2</value>
+</property>
+<property name="NumberConc">
+<value>3.97622</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRpJAK2">
+<property name="Name">
+<value>EpoRpJAK2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p1EpoRpJAK2">
+<property name="Name">
+<value>p1EpoRpJAK2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p2EpoRpJAK2">
+<property name="Name">
+<value>p2EpoRpJAK2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p12EpoRpJAK2">
+<property name="Name">
+<value>p12EpoRpJAK2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRJAK2_CIS">
+<property name="Name">
+<value>EpoRJAK2_CIS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1">
+<property name="Name">
+<value>SHP1</value>
+</property>
+<property name="NumberConc">
+<value>26.7251</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1Act">
+<property name="Name">
+<value>SHP1Act</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5">
+<property name="Name">
+<value>STAT5</value>
+</property>
+<property name="NumberConc">
+<value>79.7535</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pSTAT5">
+<property name="Name">
+<value>pSTAT5</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISRNA">
+<property name="Name">
+<value>CISRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CIS">
+<property name="Name">
+<value>CIS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3RNA">
+<property name="Name">
+<value>SOCS3RNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3">
+<property name="Name">
+<value>SOCS3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo">
+<property name="Name">
+<value>Epo</value>
+</property>
+<property name="NumberConc">
+<value>1.24997e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/nuc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nuc</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.275</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="npSTAT5">
+<property name="Name">
+<value>npSTAT5</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISnRNA1">
+<property name="Name">
+<value>CISnRNA1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISnRNA2">
+<property name="Name">
+<value>CISnRNA2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISnRNA3">
+<property name="Name">
+<value>CISnRNA3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISnRNA4">
+<property name="Name">
+<value>CISnRNA4</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CISnRNA5">
+<property name="Name">
+<value>CISnRNA5</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3nRNA1">
+<property name="Name">
+<value>SOCS3nRNA1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3nRNA2">
+<property name="Name">
+<value>SOCS3nRNA2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3nRNA3">
+<property name="Name">
+<value>SOCS3nRNA3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3nRNA4">
+<property name="Name">
+<value>SOCS3nRNA4</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3nRNA5">
+<property name="Name">
+<value>SOCS3nRNA5</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="ActD">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISEqc">
+<property name="Value">
+<value>432.871</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISEqcOE">
+<property name="Value">
+<value>0.530261</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISInh">
+<property name="Value">
+<value>784653000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISRNADelay">
+<property name="Value">
+<value>0.144775</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISRNAEqc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISRNATurn">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISTurn">
+<property name="Value">
+<value>0.00839842</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CISoe">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRActJAK2">
+<property name="Value">
+<value>0.267308</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRCISInh">
+<property name="Value">
+<value>1000000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoRCISRemove">
+<property name="Value">
+<value>5.42932</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="JAK2ActEpo">
+<property name="Value">
+<value>633253.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="JAK2EpoRDeaSHP1">
+<property name="Value">
+<value>142.722</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1ActEpoR">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1Dea">
+<property name="Value">
+<value>0.00816391</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3Eqc">
+<property name="Value">
+<value>173.653</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3EqcOE">
+<property name="Value">
+<value>0.679157</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3Inh">
+<property name="Value">
+<value>10.408</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3RNADelay">
+<property name="Value">
+<value>1.06465</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3RNAEqc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3RNATurn">
+<property name="Value">
+<value>0.00830844</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3Turn">
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOCS3oe">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5ActEpoR">
+<property name="Value">
+<value>38.9757</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5ActJAK2">
+<property name="Value">
+<value>0.0780965</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5Exp">
+<property name="Value">
+<value>0.0745155</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5Imp">
+<property name="Value">
+<value>0.0268889</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="epo_level">
+<property name="Value">
+<value>1.24997e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="init_EpoRJAK2">
+<property name="Value">
+<value>3.97622</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="init_SHP1">
+<property name="Value">
+<value>26.7251</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="init_STAT5">
+<property name="Value">
+<value>79.7535</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

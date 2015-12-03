@@ -1,0 +1,444 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Jch">
+<property name="Name">
+<value>[CaER] -&gt; [Ca_Cyt];</value>
+</property>
+<property name="Fch_0">
+<value>8.0</value>
+</property>
+<property name="Expression">
+<value>Fch_0 * p1.Value * p2.Value * p3.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaER</value>
+<value>Variable:/Cytosol/Endoplasmic_Reticulum:CaER</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ca_Cyt</value>
+<value>Variable:/Cytosol:Ca_Cyt</value>
+<value>1</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>0</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+<value>
+<value>p3</value>
+<value>Variable:/SBMLParameter:p3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Fch_0 &lt;/ci&gt;#x0A    &lt;ci&gt; p1 &lt;/ci&gt;#x0A    &lt;ci&gt; p2 &lt;/ci&gt;#x0A    &lt;ci&gt; p3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Jleak">
+<property name="Name">
+<value>[CaER] -&gt; [Ca_Cyt];</value>
+</property>
+<property name="Fleak">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>Fleak</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaER</value>
+<value>Variable:/Cytosol/Endoplasmic_Reticulum:CaER</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ca_Cyt</value>
+<value>Variable:/Cytosol:Ca_Cyt</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; Fleak &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Jpump">
+<property name="Name">
+<value>[Ca_Cyt] -&gt; [CaER];</value>
+</property>
+<property name="Fpump_0">
+<value>2.0</value>
+</property>
+<property name="Kpump">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Fpump_0 * Ca_Cyt.NumberConc / (Kpump + Ca_Cyt.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ca_Cyt</value>
+<value>Variable:/Cytosol:Ca_Cyt</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaER</value>
+<value>Variable:/Cytosol/Endoplasmic_Reticulum:CaER</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Fpump_0 &lt;/ci&gt;#x0A      &lt;ci&gt; Ca_Cyt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Kpump &lt;/ci&gt;#x0A      &lt;ci&gt; Ca_Cyt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ca_Cyt">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Cytosol/Endoplasmic_Reticulum">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CaER">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="n0">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbN">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kappa">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p1">
+<property name="Value">
+<value>0.333333333333</value>
+</property>
+</variable>
+<variable class="Variable" id="p11">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p12">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="K2">
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p3">
+<property name="Value">
+<value>0.95</value>
+</property>
+</variable>
+<variable class="Variable" id="k31">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K3">
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_n">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'n'</value>
+</property>
+<property name="Expression">
+<value>n0.NumberConc * (exp(-kbN.NumberConc * time.Value) + kappa.NumberConc * (1 - exp(-kbN.NumberConc * time.Value)))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; n0 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;exp/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;ci&gt; kbN &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kappa &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;exp/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; kbN &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>1</value>
+</value>
+<value>
+<value>n0</value>
+<value>Variable:/SBMLParameter:n0</value>
+<value>0</value>
+</value>
+<value>
+<value>kbN</value>
+<value>Variable:/SBMLParameter:kbN</value>
+<value>0</value>
+</value>
+<value>
+<value>kappa</value>
+<value>Variable:/SBMLParameter:kappa</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_p1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'p1'</value>
+</property>
+<property name="Expression">
+<value>p11.NumberConc + p12.NumberConc * n.NumberConc / (K1.NumberConc + n.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; p11 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; p12 &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K1 &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>1</value>
+</value>
+<value>
+<value>p11</value>
+<value>Variable:/SBMLParameter:p11</value>
+<value>0</value>
+</value>
+<value>
+<value>p12</value>
+<value>Variable:/SBMLParameter:p12</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_p2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'p2'</value>
+</property>
+<property name="Expression">
+<value>Ca_Cyt.NumberConc / (K2.NumberConc + Ca_Cyt.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; Ca_Cyt &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K2 &lt;/ci&gt;#x0A      &lt;ci&gt; Ca_Cyt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>1</value>
+</value>
+<value>
+<value>Ca_Cyt</value>
+<value>Variable:/Cytosol:Ca_Cyt</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_p3">
+<property name="Name">
+<value>Rate rule for 'p3'</value>
+</property>
+<property name="Expression">
+<value>-(k31.NumberConc * Ca_Cyt.NumberConc * p3.NumberConc) + k31.NumberConc * K3.NumberConc * (1 - p3.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k31 &lt;/ci&gt;#x0A        &lt;ci&gt; Ca_Cyt &lt;/ci&gt;#x0A        &lt;ci&gt; p3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k31 &lt;/ci&gt;#x0A      &lt;ci&gt; K3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; p3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p3</value>
+<value>Variable:/SBMLParameter:p3</value>
+<value>1</value>
+</value>
+<value>
+<value>k31</value>
+<value>Variable:/SBMLParameter:k31</value>
+<value>0</value>
+</value>
+<value>
+<value>Ca_Cyt</value>
+<value>Variable:/Cytosol:Ca_Cyt</value>
+<value>0</value>
+</value>
+<value>
+<value>K3</value>
+<value>Variable:/SBMLParameter:K3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

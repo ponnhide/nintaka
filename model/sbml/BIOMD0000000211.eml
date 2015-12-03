@@ -1,0 +1,1382 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vGT">
+<property name="Name">
+<value>glucose transport</value>
+</property>
+<property name="Vmax_v1">
+<value>108.9</value>
+</property>
+<property name="KGlc">
+<value>1.0</value>
+</property>
+<property name="Alpha_v1">
+<value>0.75</value>
+</property>
+<property name="Expression">
+<value>Vmax_v1 * ((species_25.NumberConc - species_10.NumberConc) / (KGlc + species_25.NumberConc + species_10.NumberConc + Alpha_v1 * species_25.NumberConc * species_10.NumberConc / KGlc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_25</value>
+<value>Variable:/compartment_3:species_25</value>
+<value>0</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_2:species_10</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Vmax_v1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; species_25 &lt;/ci&gt;#x0A        &lt;ci&gt; species_10 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; KGlc &lt;/ci&gt;#x0A        &lt;ci&gt; species_25 &lt;/ci&gt;#x0A        &lt;ci&gt; species_10 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Alpha_v1 &lt;/ci&gt;#x0A            &lt;ci&gt; species_25 &lt;/ci&gt;#x0A            &lt;ci&gt; species_10 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KGlc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vHK">
+<property name="Name">
+<value>hexokinase</value>
+</property>
+<property name="Vmax_v2">
+<value>1929.0</value>
+</property>
+<property name="KGlcInt_v2">
+<value>0.1</value>
+</property>
+<property name="KATPg_v2">
+<value>0.116</value>
+</property>
+<property name="KADPg_v2">
+<value>0.126</value>
+</property>
+<property name="KGlc6P_v2">
+<value>12.0</value>
+</property>
+<property name="Expression">
+<value>RaHXK.Value * compartment_2.Value * (Vmax_v2 * (species_10.NumberConc / KGlcInt_v2) * (species_11.NumberConc / KATPg_v2) / ((1 + species_11.NumberConc / KATPg_v2 + species_12.NumberConc / KADPg_v2) * (1 + species_10.NumberConc / KGlcInt_v2 + species_14.NumberConc / KGlc6P_v2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_10</value>
+<value>Variable:/compartment_2:species_10</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_14</value>
+<value>Variable:/compartment_2:species_14</value>
+<value>1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>1</value>
+</value>
+<value>
+<value>RaHXK</value>
+<value>Variable:/SBMLParameter:RaHXK</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; RaHXK &lt;/ci&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax_v2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_10 &lt;/ci&gt;#x0A          &lt;ci&gt; KGlcInt_v2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_11 &lt;/ci&gt;#x0A          &lt;ci&gt; KATPg_v2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_12 &lt;/ci&gt;#x0A            &lt;ci&gt; KADPg_v2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_10 &lt;/ci&gt;#x0A            &lt;ci&gt; KGlcInt_v2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_14 &lt;/ci&gt;#x0A            &lt;ci&gt; KGlc6P_v2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGI">
+<property name="Name">
+<value>phosphoglycerate isomerase</value>
+</property>
+<property name="Kms">
+<value>0.4</value>
+</property>
+<property name="Kmp">
+<value>0.12</value>
+</property>
+<property name="Vf">
+<value>1305.0</value>
+</property>
+<property name="Vr">
+<value>1305.0</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * ((Vf * species_14.NumberConc / Kms - Vr * species_15.NumberConc / Kmp) / (1 + species_14.NumberConc / Kms + species_15.NumberConc / Kmp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_14</value>
+<value>Variable:/compartment_2:species_14</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_2:species_15</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf &lt;/ci&gt;#x0A            &lt;ci&gt; species_14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vr &lt;/ci&gt;#x0A            &lt;ci&gt; species_15 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_14 &lt;/ci&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_15 &lt;/ci&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPFK">
+<property name="Name">
+<value>phophofructokinase</value>
+</property>
+<property name="Vmax_v4">
+<value>1708.0</value>
+</property>
+<property name="Ki1Fru16BP_v4">
+<value>15.8</value>
+</property>
+<property name="KFru6P_v4">
+<value>0.82</value>
+</property>
+<property name="KATPg_v4">
+<value>0.026</value>
+</property>
+<property name="Ki2Fru16BP_v4">
+<value>10.7</value>
+</property>
+<property name="Expression">
+<value>RaPFK.Value * compartment_2.Value * (Vmax_v4 * (Ki1Fru16BP_v4 / (Ki1Fru16BP_v4 + species_16.NumberConc)) * (species_15.NumberConc / KFru6P_v4) * (species_11.NumberConc / KATPg_v4) / ((1 + species_15.NumberConc / KFru6P_v4 + species_16.NumberConc / Ki2Fru16BP_v4) * (1 + species_11.NumberConc / KATPg_v4)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_15</value>
+<value>Variable:/compartment_2:species_15</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_16</value>
+<value>Variable:/compartment_2:species_16</value>
+<value>1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>1</value>
+</value>
+<value>
+<value>RaPFK</value>
+<value>Variable:/SBMLParameter:RaPFK</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; RaPFK &lt;/ci&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax_v4 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Ki1Fru16BP_v4 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Ki1Fru16BP_v4 &lt;/ci&gt;#x0A            &lt;ci&gt; species_16 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_15 &lt;/ci&gt;#x0A          &lt;ci&gt; KFru6P_v4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_11 &lt;/ci&gt;#x0A          &lt;ci&gt; KATPg_v4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_15 &lt;/ci&gt;#x0A            &lt;ci&gt; KFru6P_v4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_16 &lt;/ci&gt;#x0A            &lt;ci&gt; Ki2Fru16BP_v4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vALD">
+<property name="Name">
+<value>aldolase</value>
+</property>
+<property name="Vmax_v5">
+<value>560.0</value>
+</property>
+<property name="Keq_v5">
+<value>0.069</value>
+</property>
+<property name="r_v5">
+<value>1.19</value>
+</property>
+<property name="KGAP_v5">
+<value>0.067</value>
+</property>
+<property name="KGAPi_v5">
+<value>0.098</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * (Vmax_v5 * (species_16.NumberConc - species_18.NumberConc * species_17.NumberConc / Keq_v5) / (0.009 * (1 + species_11.NumberConc / 0.68 + species_12.NumberConc / 1.51 + species_13.NumberConc / 3.65) + species_16.NumberConc + species_18.NumberConc * (0.015 * (1 + species_11.NumberConc / 0.68 + species_12.NumberConc / 1.51 + species_13.NumberConc / 3.65) / Keq_v5) * (1 / r_v5) + species_17.NumberConc * (KGAP_v5 / Keq_v5) * (1 / r_v5) + species_16.NumberConc * species_18.NumberConc / KGAPi_v5 + species_18.NumberConc * species_17.NumberConc / Keq_v5 * (1 / r_v5)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_16</value>
+<value>Variable:/compartment_2:species_16</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_2:species_17</value>
+<value>1</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_2:species_18</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>0</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>0</value>
+</value>
+<value>
+<value>species_13</value>
+<value>Variable:/compartment_2:species_13</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax_v5 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; species_16 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; species_18 &lt;/ci&gt;#x0A              &lt;ci&gt; species_17 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keq_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.009 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; species_11 &lt;/ci&gt;#x0A              &lt;cn&gt; 0.68 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; species_12 &lt;/ci&gt;#x0A              &lt;cn&gt; 1.51 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; species_13 &lt;/ci&gt;#x0A              &lt;cn&gt; 3.65 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; species_16 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; species_18 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.015 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; species_11 &lt;/ci&gt;#x0A                  &lt;cn&gt; 0.68 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; species_12 &lt;/ci&gt;#x0A                  &lt;cn&gt; 1.51 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; species_13 &lt;/ci&gt;#x0A                  &lt;cn&gt; 3.65 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keq_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; r_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; species_17 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KGAP_v5 &lt;/ci&gt;#x0A            &lt;ci&gt; Keq_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; r_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; species_16 &lt;/ci&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KGAPi_v5 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; species_18 &lt;/ci&gt;#x0A              &lt;ci&gt; species_17 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keq_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; r_v5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTPI">
+<property name="Name">
+<value>triosephosphate isomerase</value>
+</property>
+<property name="Kms">
+<value>1.2</value>
+</property>
+<property name="Kmp">
+<value>0.25</value>
+</property>
+<property name="Vf">
+<value>999.3</value>
+</property>
+<property name="Vr">
+<value>5696.01</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * ((Vf * species_17.NumberConc / Kms - Vr * species_18.NumberConc / Kmp) / (1 + species_17.NumberConc / Kms + species_18.NumberConc / Kmp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_2:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_2:species_18</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf &lt;/ci&gt;#x0A            &lt;ci&gt; species_17 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vr &lt;/ci&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_17 &lt;/ci&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_18 &lt;/ci&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGAPDH">
+<property name="Name">
+<value>glyceraldehyde3phosphatedehydrogenase</value>
+</property>
+<property name="Vmax_v7">
+<value>720.9</value>
+</property>
+<property name="KGAP_v7">
+<value>0.15</value>
+</property>
+<property name="KNAD_v7">
+<value>0.45</value>
+</property>
+<property name="r_v7">
+<value>0.67</value>
+</property>
+<property name="KBPGA13_v7">
+<value>0.1</value>
+</property>
+<property name="KNADH_v7">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * Vmax_v7 * ((species_18.NumberConc / KGAP_v7 * (species_19.NumberConc / KNAD_v7) - r_v7 * (species_21.NumberConc / KBPGA13_v7) * (species_20.NumberConc / KNADH_v7)) / ((1 + species_18.NumberConc / KGAP_v7 + species_21.NumberConc / KBPGA13_v7) * (1 + species_19.NumberConc / KNAD_v7 + species_20.NumberConc / KNADH_v7)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_18</value>
+<value>Variable:/compartment_2:species_18</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_2:species_19</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_21</value>
+<value>Variable:/compartment_2:species_21</value>
+<value>1</value>
+</value>
+<value>
+<value>species_20</value>
+<value>Variable:/compartment_2:species_20</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;ci&gt; Vmax_v7 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A            &lt;ci&gt; KGAP_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_19 &lt;/ci&gt;#x0A            &lt;ci&gt; KNAD_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; r_v7 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_21 &lt;/ci&gt;#x0A            &lt;ci&gt; KBPGA13_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_20 &lt;/ci&gt;#x0A            &lt;ci&gt; KNADH_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_18 &lt;/ci&gt;#x0A            &lt;ci&gt; KGAP_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_21 &lt;/ci&gt;#x0A            &lt;ci&gt; KBPGA13_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_19 &lt;/ci&gt;#x0A            &lt;ci&gt; KNAD_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_20 &lt;/ci&gt;#x0A            &lt;ci&gt; KNADH_v7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGPDH">
+<property name="Name">
+<value>glycerol3phosphatedehydrogenase</value>
+</property>
+<property name="Vmax_v8">
+<value>465.0</value>
+</property>
+<property name="KDHAPg_v8">
+<value>0.1</value>
+</property>
+<property name="KNADH_v8">
+<value>0.01</value>
+</property>
+<property name="r_v8">
+<value>0.28</value>
+</property>
+<property name="KNAD_v8">
+<value>0.4</value>
+</property>
+<property name="KGly3Pg_v8">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * Vmax_v8 * ((species_17.NumberConc / KDHAPg_v8 * (species_20.NumberConc / KNADH_v8) - r_v8 * (species_19.NumberConc / KNAD_v8) * (species_22.NumberConc / KGly3Pg_v8)) / ((1 + species_17.NumberConc / KDHAPg_v8 + species_22.NumberConc / KGly3Pg_v8) * (1 + species_20.NumberConc / KNADH_v8 + species_19.NumberConc / KNAD_v8)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_2:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_20</value>
+<value>Variable:/compartment_2:species_20</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_19</value>
+<value>Variable:/compartment_2:species_19</value>
+<value>1</value>
+</value>
+<value>
+<value>species_22</value>
+<value>Variable:/compartment_2:species_22</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;ci&gt; Vmax_v8 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_17 &lt;/ci&gt;#x0A            &lt;ci&gt; KDHAPg_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_20 &lt;/ci&gt;#x0A            &lt;ci&gt; KNADH_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; r_v8 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_19 &lt;/ci&gt;#x0A            &lt;ci&gt; KNAD_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_22 &lt;/ci&gt;#x0A            &lt;ci&gt; KGly3Pg_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_17 &lt;/ci&gt;#x0A            &lt;ci&gt; KDHAPg_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_22 &lt;/ci&gt;#x0A            &lt;ci&gt; KGly3Pg_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_20 &lt;/ci&gt;#x0A            &lt;ci&gt; KNADH_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_19 &lt;/ci&gt;#x0A            &lt;ci&gt; KNAD_v8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGPO">
+<property name="Name">
+<value>glycerol3phosphate oxidase</value>
+</property>
+<property name="Km">
+<value>1.7</value>
+</property>
+<property name="V">
+<value>368.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (V * species_9.NumberConc / (Km + species_9.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_1:species_9</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_1:species_8</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V &lt;/ci&gt;#x0A        &lt;ci&gt; species_9 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km &lt;/ci&gt;#x0A        &lt;ci&gt; species_9 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPT">
+<property name="Name">
+<value>pyruvate transport</value>
+</property>
+<property name="Km">
+<value>1.96</value>
+</property>
+<property name="V">
+<value>200.0</value>
+</property>
+<property name="Expression">
+<value>V * species_1.NumberConc / (Km + species_1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_26</value>
+<value>Variable:/compartment_3:species_26</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; species_1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; species_1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGK">
+<property name="Name">
+<value>phosphoglycerate kinase</value>
+</property>
+<property name="Vmax_v11">
+<value>2862.0</value>
+</property>
+<property name="KBPGA13_v11">
+<value>0.003</value>
+</property>
+<property name="KADPg_v11">
+<value>0.1</value>
+</property>
+<property name="r_v11">
+<value>0.47</value>
+</property>
+<property name="KPGA3_v11">
+<value>1.62</value>
+</property>
+<property name="KATPg_v11">
+<value>0.29</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * Vmax_v11 * ((species_21.NumberConc / KBPGA13_v11 * (species_12.NumberConc / KADPg_v11) - r_v11 * (species_23.NumberConc / KPGA3_v11) * (species_11.NumberConc / KATPg_v11)) / ((1 + species_21.NumberConc / KBPGA13_v11 + species_23.NumberConc / KPGA3_v11) * (1 + species_12.NumberConc / KADPg_v11 + species_11.NumberConc / KATPg_v11)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_21</value>
+<value>Variable:/compartment_2:species_21</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_23</value>
+<value>Variable:/compartment_2:species_23</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;ci&gt; Vmax_v11 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_21 &lt;/ci&gt;#x0A            &lt;ci&gt; KBPGA13_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_12 &lt;/ci&gt;#x0A            &lt;ci&gt; KADPg_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; r_v11 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_23 &lt;/ci&gt;#x0A            &lt;ci&gt; KPGA3_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_21 &lt;/ci&gt;#x0A            &lt;ci&gt; KBPGA13_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_23 &lt;/ci&gt;#x0A            &lt;ci&gt; KPGA3_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_12 &lt;/ci&gt;#x0A            &lt;ci&gt; KADPg_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPK">
+<property name="Name">
+<value>pyruvate kinase</value>
+</property>
+<property name="Vmax_v12">
+<value>1020.0</value>
+</property>
+<property name="PK_n">
+<value>2.5</value>
+</property>
+<property name="KADP_v12">
+<value>0.114</value>
+</property>
+<property name="Expression">
+<value>RaPYK.Value * compartment_1.Value * (Vmax_v12 * pow(species_4.NumberConc / (0.34 * (1 + species_3.NumberConc / 0.57 + species_2.NumberConc / 0.64)), PK_n) * (species_2.NumberConc / KADP_v12) / ((1 + pow(species_4.NumberConc / (0.34 * (1 + species_3.NumberConc / 0.57 + species_2.NumberConc / 0.64)), PK_n)) * (1 + species_2.NumberConc / KADP_v12)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_1</value>
+<value>Variable:/compartment_1:species_1</value>
+<value>1</value>
+</value>
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>1</value>
+</value>
+<value>
+<value>RaPYK</value>
+<value>Variable:/SBMLParameter:RaPYK</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; RaPYK &lt;/ci&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax_v12 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_4 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.34 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; species_3 &lt;/ci&gt;#x0A                  &lt;cn&gt; 0.57 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; species_2 &lt;/ci&gt;#x0A                  &lt;cn&gt; 0.64 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; PK_n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_2 &lt;/ci&gt;#x0A          &lt;ci&gt; KADP_v12 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; species_4 &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;cn&gt; 0.34 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; species_3 &lt;/ci&gt;#x0A                    &lt;cn&gt; 0.57 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; species_2 &lt;/ci&gt;#x0A                    &lt;cn&gt; 0.64 &lt;/cn&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; PK_n &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_2 &lt;/ci&gt;#x0A            &lt;ci&gt; KADP_v12 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vAU">
+<property name="Name">
+<value>atp utilisation</value>
+</property>
+<property name="k">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * (k * species_3.NumberConc / species_2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k &lt;/ci&gt;#x0A        &lt;ci&gt; species_3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; species_2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGK">
+<property name="Name">
+<value>glycerol kinase</value>
+</property>
+<property name="Vmax_v14">
+<value>200.0</value>
+</property>
+<property name="KGly3Pg_v14">
+<value>3.83</value>
+</property>
+<property name="KADPg_v14">
+<value>0.56</value>
+</property>
+<property name="r_v14">
+<value>60.86</value>
+</property>
+<property name="KGlycerol_v14">
+<value>0.44</value>
+</property>
+<property name="KATPg_v14">
+<value>0.24</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * Vmax_v14 * ((species_22.NumberConc / KGly3Pg_v14 * (species_12.NumberConc / KADPg_v14) - r_v14 * (species_24.NumberConc / KGlycerol_v14) * (species_11.NumberConc / KATPg_v14)) / ((1 + species_22.NumberConc / KGly3Pg_v14 + species_24.NumberConc / KGlycerol_v14) * (1 + species_12.NumberConc / KADPg_v14 + species_11.NumberConc / KATPg_v14)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_22</value>
+<value>Variable:/compartment_2:species_22</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_24</value>
+<value>Variable:/compartment_2:species_24</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;ci&gt; Vmax_v14 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_22 &lt;/ci&gt;#x0A            &lt;ci&gt; KGly3Pg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_12 &lt;/ci&gt;#x0A            &lt;ci&gt; KADPg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; r_v14 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_24 &lt;/ci&gt;#x0A            &lt;ci&gt; KGlycerol_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_22 &lt;/ci&gt;#x0A            &lt;ci&gt; KGly3Pg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_24 &lt;/ci&gt;#x0A            &lt;ci&gt; KGlycerol_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_12 &lt;/ci&gt;#x0A            &lt;ci&gt; KADPg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; species_11 &lt;/ci&gt;#x0A            &lt;ci&gt; KATPg_v14 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGM">
+<property name="Name">
+<value>phosphoglycerate mutase</value>
+</property>
+<property name="Kms">
+<value>0.27</value>
+</property>
+<property name="Kmp">
+<value>0.11</value>
+</property>
+<property name="Vf">
+<value>225.0</value>
+</property>
+<property name="Vr">
+<value>495.0</value>
+</property>
+<property name="Expression">
+<value>RaPGAM.Value * compartment_1.Value * ((Vf * species_7.NumberConc / Kms - Vr * species_5.NumberConc / Kmp) / (1 + species_7.NumberConc / Kms + species_5.NumberConc / Kmp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/compartment_1:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>1</value>
+</value>
+<value>
+<value>RaPGAM</value>
+<value>Variable:/SBMLParameter:RaPGAM</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; RaPGAM &lt;/ci&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf &lt;/ci&gt;#x0A            &lt;ci&gt; species_7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vr &lt;/ci&gt;#x0A            &lt;ci&gt; species_5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_7 &lt;/ci&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_5 &lt;/ci&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vENO">
+<property name="Name">
+<value>enolase</value>
+</property>
+<property name="Kms">
+<value>0.054</value>
+</property>
+<property name="Kmp">
+<value>0.24</value>
+</property>
+<property name="Vf">
+<value>598.0</value>
+</property>
+<property name="Vr">
+<value>394.68</value>
+</property>
+<property name="Expression">
+<value>RaENO.Value * compartment_1.Value * ((Vf * species_5.NumberConc / Kms - Vr * species_4.NumberConc / Kmp) / (1 + species_5.NumberConc / Kms + species_4.NumberConc / Kmp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_5</value>
+<value>Variable:/compartment_1:species_5</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_4</value>
+<value>Variable:/compartment_1:species_4</value>
+<value>1</value>
+</value>
+<value>
+<value>RaENO</value>
+<value>Variable:/SBMLParameter:RaENO</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; RaENO &lt;/ci&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf &lt;/ci&gt;#x0A            &lt;ci&gt; species_5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vr &lt;/ci&gt;#x0A            &lt;ci&gt; species_4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_5 &lt;/ci&gt;#x0A          &lt;ci&gt; Kms &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; species_4 &lt;/ci&gt;#x0A          &lt;ci&gt; Kmp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vAKc">
+<property name="Name">
+<value>adenylate kinase cytosol</value>
+</property>
+<property name="k">
+<value>1000000.0</value>
+</property>
+<property name="keqak">
+<value>0.442</value>
+</property>
+<property name="Expression">
+<value>compartment_1.Value * k * (species_3.NumberConc * species_6.NumberConc - keqak * species_2.NumberConc * species_2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/compartment_1:species_3</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_6</value>
+<value>Variable:/compartment_1:species_6</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/compartment_1:species_2</value>
+<value>2</value>
+</value>
+<value>
+<value>compartment_1</value>
+<value>Variable:/compartment_1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_1 &lt;/ci&gt;#x0A    &lt;ci&gt; k &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; species_3 &lt;/ci&gt;#x0A        &lt;ci&gt; species_6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; keqak &lt;/ci&gt;#x0A        &lt;ci&gt; species_2 &lt;/ci&gt;#x0A        &lt;ci&gt; species_2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vAKg">
+<property name="Name">
+<value>adenylate kinase glycosome</value>
+</property>
+<property name="k">
+<value>1000000.0</value>
+</property>
+<property name="keqak">
+<value>0.442</value>
+</property>
+<property name="Expression">
+<value>compartment_2.Value * k * (species_11.NumberConc * species_13.NumberConc - keqak * species_12.NumberConc * species_12.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_11</value>
+<value>Variable:/compartment_2:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_13</value>
+<value>Variable:/compartment_2:species_13</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_12</value>
+<value>Variable:/compartment_2:species_12</value>
+<value>2</value>
+</value>
+<value>
+<value>compartment_2</value>
+<value>Variable:/compartment_2:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_2 &lt;/ci&gt;#x0A    &lt;ci&gt; k &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; species_11 &lt;/ci&gt;#x0A        &lt;ci&gt; species_13 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; keqak &lt;/ci&gt;#x0A        &lt;ci&gt; species_12 &lt;/ci&gt;#x0A        &lt;ci&gt; species_12 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGT">
+<property name="Name">
+<value>3phosphoglycerate transport</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1000000.0</value>
+</property>
+<property name="Expression">
+<value>k1 * species_23.NumberConc - k2 * species_7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_23</value>
+<value>Variable:/compartment_2:species_23</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/compartment_1:species_7</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;ci&gt; species_23 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2 &lt;/ci&gt;#x0A      &lt;ci&gt; species_7 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vANTI">
+<property name="Name">
+<value>gly3p dhap antiporter</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1000000.0</value>
+</property>
+<property name="Expression">
+<value>k1 * species_22.NumberConc * species_8.NumberConc - k2 * species_9.NumberConc * species_17.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_22</value>
+<value>Variable:/compartment_2:species_22</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/compartment_1:species_8</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_9</value>
+<value>Variable:/compartment_1:species_9</value>
+<value>1</value>
+</value>
+<value>
+<value>species_17</value>
+<value>Variable:/compartment_2:species_17</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;ci&gt; species_22 &lt;/ci&gt;#x0A      &lt;ci&gt; species_8 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2 &lt;/ci&gt;#x0A      &lt;ci&gt; species_9 &lt;/ci&gt;#x0A      &lt;ci&gt; species_17 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGlyT">
+<property name="Name">
+<value>glycerol transport</value>
+</property>
+<property name="k1">
+<value>1000000.0</value>
+</property>
+<property name="k2">
+<value>1000000.0</value>
+</property>
+<property name="Expression">
+<value>k1 * species_24.NumberConc - k2 * species_27.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_24</value>
+<value>Variable:/compartment_2:species_24</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_27</value>
+<value>Variable:/compartment_3:species_27</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;ci&gt; species_24 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k2 &lt;/ci&gt;#x0A      &lt;ci&gt; species_27 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_1">
+<property name="Name">
+<value>pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_2">
+<property name="Name">
+<value>adpc</value>
+</property>
+<property name="NumberConc">
+<value>1.31652277625</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_3">
+<property name="Name">
+<value>atpc</value>
+</property>
+<property name="NumberConc">
+<value>0.341738611875</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_4">
+<property name="Name">
+<value>phosphoenolpyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_5">
+<property name="Name">
+<value>2phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_6">
+<property name="Name">
+<value>ampc</value>
+</property>
+<property name="NumberConc">
+<value>2.24173861188</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_7">
+<property name="Name">
+<value>3phosphoglycerate cytosol</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_8">
+<property name="Name">
+<value>dihydroxyacetonephosphate cytosol</value>
+</property>
+<property name="NumberConc">
+<value>2.23134594788</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_9">
+<property name="Name">
+<value>glycerol3phosphate cytosol</value>
+</property>
+<property name="NumberConc">
+<value>2.76865405212</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/compartment_2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>glycosome</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_10">
+<property name="Name">
+<value>glucose</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_11">
+<property name="Name">
+<value>atpg</value>
+</property>
+<property name="NumberConc">
+<value>0.240501857508</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_12">
+<property name="Name">
+<value>adpg</value>
+</property>
+<property name="NumberConc">
+<value>1.51899628498</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_13">
+<property name="Name">
+<value>ampg</value>
+</property>
+<property name="NumberConc">
+<value>4.24050185751</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_14">
+<property name="Name">
+<value>glucose6phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_15">
+<property name="Name">
+<value>fructose6phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_16">
+<property name="Name">
+<value>fructose16bisphosphate</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_17">
+<property name="Name">
+<value>dihydroxyacetonephosphate</value>
+</property>
+<property name="NumberConc">
+<value>8.47911460193</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_18">
+<property name="Name">
+<value>glyceraldehyde3phosphate</value>
+</property>
+<property name="NumberConc">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_19">
+<property name="Name">
+<value>nad</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_20">
+<property name="Name">
+<value>nadh</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_21">
+<property name="Name">
+<value>bisphosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_22">
+<property name="Name">
+<value>glycerol3phosphate</value>
+</property>
+<property name="NumberConc">
+<value>10.5208853981</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_23">
+<property name="Name">
+<value>3phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_24">
+<property name="Name">
+<value>glycerol</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/compartment_3">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>extracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_25">
+<property name="Name">
+<value>glucose external</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_26">
+<property name="Name">
+<value>pyruvate external</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_27">
+<property name="Name">
+<value>glycerol external</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="RaHXK">
+<property name="Name">
+<value>RaHXK</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RaPFK">
+<property name="Name">
+<value>RaPFK</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RaPYK">
+<property name="Name">
+<value>RaPYK</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RaPGAM">
+<property name="Name">
+<value>RaPGAM</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RaENO">
+<property name="Name">
+<value>RaENO</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

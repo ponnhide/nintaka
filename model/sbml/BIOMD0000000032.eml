@@ -1,0 +1,2120 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="v1">
+<property name="Name">
+<value>alpha degradation</value>
+</property>
+<property name="k1">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>Extracellular.Value * alpha.NumberConc * Bar1aex.NumberConc * k1</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>alpha</value>
+<value>Variable:/Extracellular:alpha</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bar1aex</value>
+<value>Variable:/Extracellular:Bar1aex</value>
+<value>0</value>
+</value>
+<value>
+<value>Extracellular</value>
+<value>Variable:/Extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Extracellular &lt;/ci&gt;#x0A    &lt;ci&gt; alpha &lt;/ci&gt;#x0A    &lt;ci&gt; Bar1aex &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v2">
+<property name="Name">
+<value>[Ste2] &lt;-&gt; [Ste2a]; { alpha };</value>
+</property>
+<property name="k2">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste2.NumberConc * alpha.NumberConc * k2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste2</value>
+<value>Variable:/Extracellular/compartment:Ste2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste2a</value>
+<value>Variable:/Extracellular/compartment:Ste2a</value>
+<value>1</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/Extracellular:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste2 &lt;/ci&gt;#x0A    &lt;ci&gt; alpha &lt;/ci&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v3">
+<property name="Name">
+<value>[Ste2a] &lt;-&gt; [Ste2];</value>
+</property>
+<property name="k3">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste2a.NumberConc * k3</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste2a</value>
+<value>Variable:/Extracellular/compartment:Ste2a</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste2</value>
+<value>Variable:/Extracellular/compartment:Ste2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste2a &lt;/ci&gt;#x0A    &lt;ci&gt; k3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v4">
+<property name="Name">
+<value>[Ste2a] &lt;-&gt; [p];</value>
+</property>
+<property name="k4">
+<value>0.24</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste2a.NumberConc * k4</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste2a</value>
+<value>Variable:/Extracellular/compartment:Ste2a</value>
+<value>-1</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/Extracellular/compartment:p</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste2a &lt;/ci&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v5">
+<property name="Name">
+<value>[Ste2] &lt;-&gt; ;</value>
+</property>
+<property name="k5">
+<value>0.024</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste2.NumberConc * k5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste2</value>
+<value>Variable:/Extracellular/compartment:Ste2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste2 &lt;/ci&gt;#x0A    &lt;ci&gt; k5 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v6">
+<property name="Name">
+<value>[Gabc] &lt;-&gt; [GaGTP] + [Gbc]; { Ste2a };</value>
+</property>
+<property name="k6">
+<value>0.0036</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste2a.NumberConc * Gabc.NumberConc * k6</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gabc</value>
+<value>Variable:/Extracellular/compartment:Gabc</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGTP</value>
+<value>Variable:/Extracellular/compartment:GaGTP</value>
+<value>1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste2a</value>
+<value>Variable:/Extracellular/compartment:Ste2a</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste2a &lt;/ci&gt;#x0A    &lt;ci&gt; Gabc &lt;/ci&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v7">
+<property name="Name">
+<value>[GaGTP] &lt;-&gt; [GaGDP];</value>
+</property>
+<property name="k7">
+<value>0.24</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * k7</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/Extracellular/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDP</value>
+<value>Variable:/Extracellular/compartment:GaGDP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; k7 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v8">
+<property name="Name">
+<value>[GaGTP] &lt;-&gt; [GaGDP]; { Sst2 };</value>
+</property>
+<property name="k8">
+<value>0.033</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGTP.NumberConc * Sst2.NumberConc * k8</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGTP</value>
+<value>Variable:/Extracellular/compartment:GaGTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GaGDP</value>
+<value>Variable:/Extracellular/compartment:GaGDP</value>
+<value>1</value>
+</value>
+<value>
+<value>Sst2</value>
+<value>Variable:/Extracellular/compartment:Sst2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGTP &lt;/ci&gt;#x0A    &lt;ci&gt; Sst2 &lt;/ci&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v9">
+<property name="Name">
+<value>[GaGDP] + [Gbc] &lt;-&gt; [Gabc];</value>
+</property>
+<property name="k9">
+<value>2000.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * GaGDP.NumberConc * Gbc.NumberConc * k9</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GaGDP</value>
+<value>Variable:/Extracellular/compartment:GaGDP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gabc</value>
+<value>Variable:/Extracellular/compartment:Gabc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; GaGDP &lt;/ci&gt;#x0A    &lt;ci&gt; Gbc &lt;/ci&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v10">
+<property name="Name">
+<value>[Gbc] + [complexC] &lt;-&gt; [complexD];</value>
+</property>
+<property name="k10">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Gbc.NumberConc * complexC.NumberConc * k10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexC</value>
+<value>Variable:/Extracellular/compartment:complexC</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexD</value>
+<value>Variable:/Extracellular/compartment:complexD</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Gbc &lt;/ci&gt;#x0A    &lt;ci&gt; complexC &lt;/ci&gt;#x0A    &lt;ci&gt; k10 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v11">
+<property name="Name">
+<value>[complexD] &lt;-&gt; [Gbc] + [complexC];</value>
+</property>
+<property name="k11">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexD.NumberConc * k11</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexD</value>
+<value>Variable:/Extracellular/compartment:complexD</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>complexC</value>
+<value>Variable:/Extracellular/compartment:complexC</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexD &lt;/ci&gt;#x0A    &lt;ci&gt; k11 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v12">
+<property name="Name">
+<value>[Ste11] + [Ste5] &lt;-&gt; [complexA];</value>
+</property>
+<property name="k12">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste5.NumberConc * Ste11.NumberConc * k12</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexA</value>
+<value>Variable:/Extracellular/compartment:complexA</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste5 &lt;/ci&gt;#x0A    &lt;ci&gt; Ste11 &lt;/ci&gt;#x0A    &lt;ci&gt; k12 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v13">
+<property name="Name">
+<value>[complexA] &lt;-&gt; [Ste11] + [Ste5];</value>
+</property>
+<property name="k13">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexA.NumberConc * k13</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexA</value>
+<value>Variable:/Extracellular/compartment:complexA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexA &lt;/ci&gt;#x0A    &lt;ci&gt; k13 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v14">
+<property name="Name">
+<value>[Fus3] + [Ste7] &lt;-&gt; [complexB];</value>
+</property>
+<property name="k14">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste7.NumberConc * Fus3.NumberConc * k14</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexB</value>
+<value>Variable:/Extracellular/compartment:complexB</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste7 &lt;/ci&gt;#x0A    &lt;ci&gt; Fus3 &lt;/ci&gt;#x0A    &lt;ci&gt; k14 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v15">
+<property name="Name">
+<value>[complexB] &lt;-&gt; [Fus3] + [Ste7];</value>
+</property>
+<property name="k15">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexB.NumberConc * k15</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexB</value>
+<value>Variable:/Extracellular/compartment:complexB</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexB &lt;/ci&gt;#x0A    &lt;ci&gt; k15 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v16">
+<property name="Name">
+<value>[complexA] + [complexB] &lt;-&gt; [complexC];</value>
+</property>
+<property name="k16">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexA.NumberConc * complexB.NumberConc * k16</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexA</value>
+<value>Variable:/Extracellular/compartment:complexA</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexB</value>
+<value>Variable:/Extracellular/compartment:complexB</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexC</value>
+<value>Variable:/Extracellular/compartment:complexC</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexA &lt;/ci&gt;#x0A    &lt;ci&gt; complexB &lt;/ci&gt;#x0A    &lt;ci&gt; k16 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v17">
+<property name="Name">
+<value>[complexC] &lt;-&gt; [Fus3] + [Ste11] + [Ste7] + [Ste5];</value>
+</property>
+<property name="k17">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexC.NumberConc * k17</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexC</value>
+<value>Variable:/Extracellular/compartment:complexC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexC &lt;/ci&gt;#x0A    &lt;ci&gt; k17 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v18">
+<property name="Name">
+<value>[complexD] + [Ste20] &lt;-&gt; [complexE];</value>
+</property>
+<property name="k18">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexD.NumberConc * Ste20.NumberConc * k18</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexD</value>
+<value>Variable:/Extracellular/compartment:complexD</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexE</value>
+<value>Variable:/Extracellular/compartment:complexE</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexD &lt;/ci&gt;#x0A    &lt;ci&gt; Ste20 &lt;/ci&gt;#x0A    &lt;ci&gt; k18 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v19">
+<property name="Name">
+<value>[complexE] &lt;-&gt; [complexD] + [Ste20];</value>
+</property>
+<property name="k19">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexE.NumberConc * k19</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexE</value>
+<value>Variable:/Extracellular/compartment:complexE</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexD</value>
+<value>Variable:/Extracellular/compartment:complexD</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexE &lt;/ci&gt;#x0A    &lt;ci&gt; k19 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v20">
+<property name="Name">
+<value>[complexE] &lt;-&gt; [complexF];</value>
+</property>
+<property name="k20">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexE.NumberConc * k20</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexE</value>
+<value>Variable:/Extracellular/compartment:complexE</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexF</value>
+<value>Variable:/Extracellular/compartment:complexF</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexE &lt;/ci&gt;#x0A    &lt;ci&gt; k20 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v21">
+<property name="Name">
+<value>[complexE] &lt;-&gt; [Gbc] + [Ste7] + [Ste5] + [Fus3] + [Ste20] + [Ste11];</value>
+</property>
+<property name="k21">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexE.NumberConc * k21</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexE</value>
+<value>Variable:/Extracellular/compartment:complexE</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexE &lt;/ci&gt;#x0A    &lt;ci&gt; k21 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v22">
+<property name="Name">
+<value>[complexF] &lt;-&gt; [complexG];</value>
+</property>
+<property name="k22">
+<value>47.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexF.NumberConc * k22</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexF</value>
+<value>Variable:/Extracellular/compartment:complexF</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexG</value>
+<value>Variable:/Extracellular/compartment:complexG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexF &lt;/ci&gt;#x0A    &lt;ci&gt; k22 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v23">
+<property name="Name">
+<value>[complexF] &lt;-&gt; [Gbc] + [Ste7] + [Ste5] + [Fus3] + [Ste20] + [Ste11];</value>
+</property>
+<property name="k23">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexF.NumberConc * k23</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexF</value>
+<value>Variable:/Extracellular/compartment:complexF</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexF &lt;/ci&gt;#x0A    &lt;ci&gt; k23 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v24">
+<property name="Name">
+<value>[complexG] &lt;-&gt; [complexH];</value>
+</property>
+<property name="k24">
+<value>345.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexG.NumberConc * k24</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexG</value>
+<value>Variable:/Extracellular/compartment:complexG</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexH</value>
+<value>Variable:/Extracellular/compartment:complexH</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexG &lt;/ci&gt;#x0A    &lt;ci&gt; k24 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v25">
+<property name="Name">
+<value>[complexG] &lt;-&gt; [Gbc] + [Ste7] + [Ste5] + [Fus3] + [Ste20] + [Ste11];</value>
+</property>
+<property name="k25">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexG.NumberConc * k25</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexG</value>
+<value>Variable:/Extracellular/compartment:complexG</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexG &lt;/ci&gt;#x0A    &lt;ci&gt; k25 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v26">
+<property name="Name">
+<value>[complexH] &lt;-&gt; [complexI];</value>
+</property>
+<property name="k26">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexH.NumberConc * k26</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexH</value>
+<value>Variable:/Extracellular/compartment:complexH</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexI</value>
+<value>Variable:/Extracellular/compartment:complexI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexH &lt;/ci&gt;#x0A    &lt;ci&gt; k26 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v27">
+<property name="Name">
+<value>[complexH] &lt;-&gt; [Gbc] + [Ste7] + [Ste5] + [Fus3] + [Ste20] + [Ste11];</value>
+</property>
+<property name="k27">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexH.NumberConc * k27</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexH</value>
+<value>Variable:/Extracellular/compartment:complexH</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexH &lt;/ci&gt;#x0A    &lt;ci&gt; k27 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v28">
+<property name="Name">
+<value>[complexI] &lt;-&gt; [complexL] + [Fus3PP];</value>
+</property>
+<property name="k28">
+<value>140.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexI.NumberConc * k28</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexI</value>
+<value>Variable:/Extracellular/compartment:complexI</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexL</value>
+<value>Variable:/Extracellular/compartment:complexL</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexI &lt;/ci&gt;#x0A    &lt;ci&gt; k28 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v29">
+<property name="Name">
+<value>[complexL] + [Fus3] &lt;-&gt; [complexK];</value>
+</property>
+<property name="k29">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexL.NumberConc * Fus3.NumberConc * k29</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexL</value>
+<value>Variable:/Extracellular/compartment:complexL</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexK</value>
+<value>Variable:/Extracellular/compartment:complexK</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexL &lt;/ci&gt;#x0A    &lt;ci&gt; Fus3 &lt;/ci&gt;#x0A    &lt;ci&gt; k29 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v30">
+<property name="Name">
+<value>[complexK] &lt;-&gt; [complexL] + [Fus3];</value>
+</property>
+<property name="k30">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexK.NumberConc * k30</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexK</value>
+<value>Variable:/Extracellular/compartment:complexK</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexL</value>
+<value>Variable:/Extracellular/compartment:complexL</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexK &lt;/ci&gt;#x0A    &lt;ci&gt; k30 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v31">
+<property name="Name">
+<value>[complexK] &lt;-&gt; [complexI];</value>
+</property>
+<property name="k31">
+<value>250.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexK.NumberConc * k31</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexK</value>
+<value>Variable:/Extracellular/compartment:complexK</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexI</value>
+<value>Variable:/Extracellular/compartment:complexI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexK &lt;/ci&gt;#x0A    &lt;ci&gt; k31 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v32">
+<property name="Name">
+<value>[complexL] &lt;-&gt; [Gbc] + [Ste7] + [Ste5] + [Ste20] + [Ste11];</value>
+</property>
+<property name="k32">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexL.NumberConc * k32</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexL</value>
+<value>Variable:/Extracellular/compartment:complexL</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste7</value>
+<value>Variable:/Extracellular/compartment:Ste7</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste5</value>
+<value>Variable:/Extracellular/compartment:Ste5</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste20</value>
+<value>Variable:/Extracellular/compartment:Ste20</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste11</value>
+<value>Variable:/Extracellular/compartment:Ste11</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexL &lt;/ci&gt;#x0A    &lt;ci&gt; k32 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v33">
+<property name="Name">
+<value>[Fus3PP] &lt;-&gt; [Fus3];</value>
+</property>
+<property name="k33">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Fus3PP.NumberConc * k33</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fus3</value>
+<value>Variable:/Extracellular/compartment:Fus3</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A    &lt;ci&gt; k33 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v34">
+<property name="Name">
+<value>[Ste12] + [Fus3PP] &lt;-&gt; [Ste12a];</value>
+</property>
+<property name="k34">
+<value>18.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste12.NumberConc * Fus3PP.NumberConc * k34</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste12</value>
+<value>Variable:/Extracellular/compartment:Ste12</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste12a</value>
+<value>Variable:/Extracellular/compartment:Ste12a</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste12 &lt;/ci&gt;#x0A    &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A    &lt;ci&gt; k34 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v35">
+<property name="Name">
+<value>[Ste12a] &lt;-&gt; [Ste12] + [Fus3PP];</value>
+</property>
+<property name="k35">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste12a.NumberConc * k35</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ste12a</value>
+<value>Variable:/Extracellular/compartment:Ste12a</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ste12</value>
+<value>Variable:/Extracellular/compartment:Ste12</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste12a &lt;/ci&gt;#x0A    &lt;ci&gt; k35 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v36">
+<property name="Name">
+<value>[Bar1] &lt;-&gt; [Bar1a]; { Ste12a };</value>
+</property>
+<property name="k36">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Ste12a.NumberConc * Bar1.NumberConc * k36</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bar1</value>
+<value>Variable:/Extracellular/compartment:Bar1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bar1a</value>
+<value>Variable:/Extracellular/compartment:Bar1a</value>
+<value>1</value>
+</value>
+<value>
+<value>Ste12a</value>
+<value>Variable:/Extracellular/compartment:Ste12a</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Ste12a &lt;/ci&gt;#x0A    &lt;ci&gt; Bar1 &lt;/ci&gt;#x0A    &lt;ci&gt; k36 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v37">
+<property name="Name">
+<value>[Bar1a] &lt;-&gt; [Bar1];</value>
+</property>
+<property name="k37">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Bar1a.NumberConc * k37</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bar1a</value>
+<value>Variable:/Extracellular/compartment:Bar1a</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bar1</value>
+<value>Variable:/Extracellular/compartment:Bar1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Bar1a &lt;/ci&gt;#x0A    &lt;ci&gt; k37 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v38">
+<property name="Name">
+<value>[Bar1a] &lt;-&gt; [Bar1aex];</value>
+</property>
+<property name="k38">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Bar1a.NumberConc * k38</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Bar1a</value>
+<value>Variable:/Extracellular/compartment:Bar1a</value>
+<value>-1</value>
+</value>
+<value>
+<value>Bar1aex</value>
+<value>Variable:/Extracellular:Bar1aex</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Bar1a &lt;/ci&gt;#x0A    &lt;ci&gt; k38 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v39">
+<property name="Name">
+<value>[Far1] &lt;-&gt; [Far1PP]; { Fus3PP };</value>
+</property>
+<property name="k39">
+<value>18.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Far1.NumberConc * Fus3PP.NumberConc * Fus3PP.NumberConc / (100 * 100 + Fus3PP.NumberConc * Fus3PP.NumberConc)) * k39</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Far1</value>
+<value>Variable:/Extracellular/compartment:Far1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Far1 &lt;/ci&gt;#x0A        &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A        &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A          &lt;cn type='integer'&gt; 100 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A          &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; k39 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v40">
+<property name="Name">
+<value>[Far1PP] &lt;-&gt; [Far1];</value>
+</property>
+<property name="k40">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Far1PP.NumberConc * k40</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Far1</value>
+<value>Variable:/Extracellular/compartment:Far1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Far1PP &lt;/ci&gt;#x0A    &lt;ci&gt; k40 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v41">
+<property name="Name">
+<value>[Far1] &lt;-&gt; [Far1U]; { Cdc28 };</value>
+</property>
+<property name="k41">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Far1.NumberConc * Cdc28.NumberConc * k41</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Far1</value>
+<value>Variable:/Extracellular/compartment:Far1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Far1U</value>
+<value>Variable:/Extracellular/compartment:Far1U</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc28</value>
+<value>Variable:/Extracellular/compartment:Cdc28</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Far1 &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc28 &lt;/ci&gt;#x0A    &lt;ci&gt; k41 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v42">
+<property name="Name">
+<value>[Gbc] + [Far1PP] &lt;-&gt; [complexM];</value>
+</property>
+<property name="k42">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Gbc.NumberConc * Far1PP.NumberConc * k42</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexM</value>
+<value>Variable:/Extracellular/compartment:complexM</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Gbc &lt;/ci&gt;#x0A    &lt;ci&gt; Far1PP &lt;/ci&gt;#x0A    &lt;ci&gt; k42 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v43">
+<property name="Name">
+<value>[complexM] &lt;-&gt; [Gbc] + [Far1PP];</value>
+</property>
+<property name="k43">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexM.NumberConc * k43</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexM</value>
+<value>Variable:/Extracellular/compartment:complexM</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gbc</value>
+<value>Variable:/Extracellular/compartment:Gbc</value>
+<value>1</value>
+</value>
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexM &lt;/ci&gt;#x0A    &lt;ci&gt; k43 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v44">
+<property name="Name">
+<value>[complexN] &lt;-&gt; [Cdc28] + [Far1PP];</value>
+</property>
+<property name="k44">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * complexN.NumberConc * k44</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>complexN</value>
+<value>Variable:/Extracellular/compartment:complexN</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc28</value>
+<value>Variable:/Extracellular/compartment:Cdc28</value>
+<value>1</value>
+</value>
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; complexN &lt;/ci&gt;#x0A    &lt;ci&gt; k44 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v45">
+<property name="Name">
+<value>[Cdc28] + [Far1PP] &lt;-&gt; [complexN];</value>
+</property>
+<property name="k45">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Far1PP.NumberConc * Cdc28.NumberConc * k45</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc28</value>
+<value>Variable:/Extracellular/compartment:Cdc28</value>
+<value>-1</value>
+</value>
+<value>
+<value>Far1PP</value>
+<value>Variable:/Extracellular/compartment:Far1PP</value>
+<value>-1</value>
+</value>
+<value>
+<value>complexN</value>
+<value>Variable:/Extracellular/compartment:complexN</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Far1PP &lt;/ci&gt;#x0A    &lt;ci&gt; Cdc28 &lt;/ci&gt;#x0A    &lt;ci&gt; k45 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v46">
+<property name="Name">
+<value>[p] &lt;-&gt; [Sst2]; { Fus3PP };</value>
+</property>
+<property name="k46">
+<value>200.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (pow(Fus3PP.NumberConc, 2) / (pow(4, 2) + pow(Fus3PP.NumberConc, 2))) * k46</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p</value>
+<value>Variable:/Extracellular/compartment:p</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sst2</value>
+<value>Variable:/Extracellular/compartment:Sst2</value>
+<value>1</value>
+</value>
+<value>
+<value>Fus3PP</value>
+<value>Variable:/Extracellular/compartment:Fus3PP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; Fus3PP &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; k46 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v47">
+<property name="Name">
+<value>[Sst2] &lt;-&gt; [p];</value>
+</property>
+<property name="k47">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Sst2.NumberConc * k47</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Sst2</value>
+<value>Variable:/Extracellular/compartment:Sst2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/Extracellular/compartment:p</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/Extracellular/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Sst2 &lt;/ci&gt;#x0A    &lt;ci&gt; k47 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha">
+<property name="Name">
+<value>α-factor</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bar1aex">
+<property name="Name">
+<value>Bar1activeEx</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Extracellular/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste2">
+<property name="NumberConc">
+<value>1666.6666667</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste2a">
+<property name="Name">
+<value>Ste2active</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gabc">
+<property name="Name">
+<value>Gαβγ</value>
+</property>
+<property name="NumberConc">
+<value>1666.6666667</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGTP">
+<property name="Name">
+<value>GαGTP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gbc">
+<property name="Name">
+<value>Gβγ</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GaGDP">
+<property name="Name">
+<value>GαGDP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexC">
+<property name="NumberConc">
+<value>235.724935792</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexD">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste5">
+<property name="NumberConc">
+<value>158.331766088</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste11">
+<property name="NumberConc">
+<value>158.331766088</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexA">
+<property name="NumberConc">
+<value>105.94329812</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste7">
+<property name="NumberConc">
+<value>36.3997016405</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fus3">
+<property name="NumberConc">
+<value>686.399701641</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexB">
+<property name="NumberConc">
+<value>77.8753625676</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste20">
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexE">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexF">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexG">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexH">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexI">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexL">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fus3PP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexK">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste12">
+<property name="NumberConc">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ste12a">
+<property name="Name">
+<value>Ste12active</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bar1">
+<property name="NumberConc">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Bar1a">
+<property name="Name">
+<value>Bar1active</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Far1">
+<property name="NumberConc">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Far1PP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Far1U">
+<property name="Name">
+<value>Far1ubiquitin</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexM">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="complexN">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc28">
+<property name="NumberConc">
+<value>300.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Sst2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

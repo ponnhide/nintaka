@@ -1,0 +1,849 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>NGF+TrkA</value>
+</property>
+<property name="k1">
+<value>0.00269408</value>
+</property>
+<property name="k2">
+<value>0.0133747</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * NGF.NumberConc * TrkA.NumberConc - k2 * NGF_TrkA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NGF</value>
+<value>Variable:/Cell:NGF</value>
+<value>-1</value>
+</value>
+<value>
+<value>TrkA</value>
+<value>Variable:/Cell:TrkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>NGF_TrkA</value>
+<value>Variable:/Cell:NGF_TrkA</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; NGF &lt;/ci&gt;#x0A        &lt;ci&gt; TrkA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; NGF_TrkA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>pTrkA+Akt</value>
+</property>
+<property name="k1">
+<value>0.0882701</value>
+</property>
+<property name="k2">
+<value>1.47518e-10</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * pTrkA.NumberConc * Akt.NumberConc - k2 * pTrkA_Akt.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pTrkA</value>
+<value>Variable:/Cell:pTrkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/Cell:Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>pTrkA_Akt</value>
+<value>Variable:/Cell:pTrkA_Akt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; pTrkA &lt;/ci&gt;#x0A        &lt;ci&gt; Akt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; pTrkA_Akt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>Akt_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.0202517</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pTrkA_Akt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pTrkA_Akt</value>
+<value>Variable:/Cell:pTrkA_Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>pTrkA</value>
+<value>Variable:/Cell:pTrkA</value>
+<value>1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pTrkA_Akt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>pTrkA_degradation</value>
+</property>
+<property name="k1">
+<value>0.0684084</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pTrkA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pTrkA</value>
+<value>Variable:/Cell:pTrkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pTrkA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>pAkt+S6</value>
+</property>
+<property name="k1">
+<value>68.3666</value>
+</property>
+<property name="k2">
+<value>5.23519</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * pAkt.NumberConc * S6.NumberConc - k2 * pAkt_S6.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>-1</value>
+</value>
+<value>
+<value>S6</value>
+<value>Variable:/Cell:S6</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k1 &lt;/ci&gt;#x0A        &lt;ci&gt; pAkt &lt;/ci&gt;#x0A        &lt;ci&gt; S6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>S6_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.0056515</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pAkt_S6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>1</value>
+</value>
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>pAkt_dephospho</value>
+</property>
+<property name="k1">
+<value>1.28135</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pAkt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/Cell:Akt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pAkt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>pS6_dephospho</value>
+</property>
+<property name="k1">
+<value>0.000293167</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * pS6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>-1</value>
+</value>
+<value>
+<value>S6</value>
+<value>Variable:/Cell:S6</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; pS6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>TrkA_synthesis</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * TrkA_turnover.Value * pro_TrkA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pro_TrkA</value>
+<value>Variable:/Cell:pro_TrkA</value>
+<value>0</value>
+</value>
+<value>
+<value>TrkA</value>
+<value>Variable:/Cell:TrkA</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>TrkA_turnover</value>
+<value>Variable:/SBMLParameter:TrkA_turnover</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; TrkA_turnover &lt;/ci&gt;#x0A    &lt;ci&gt; pro_TrkA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>TrkA_phosphorylation</value>
+</property>
+<property name="k1">
+<value>0.00833178</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * NGF_TrkA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NGF_TrkA</value>
+<value>Variable:/Cell:NGF_TrkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>pTrkA</value>
+<value>Variable:/Cell:pTrkA</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; NGF_TrkA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>TrkA_degradation</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * TrkA_turnover.Value * TrkA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TrkA</value>
+<value>Variable:/Cell:TrkA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>TrkA_turnover</value>
+<value>Variable:/SBMLParameter:TrkA_turnover</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; TrkA_turnover &lt;/ci&gt;#x0A    &lt;ci&gt; TrkA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NGF">
+<property name="Name">
+<value>NGF</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TrkA">
+<property name="Name">
+<value>TrkA</value>
+</property>
+<property name="NumberConc">
+<value>8.52065090518</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pTrkA">
+<property name="Name">
+<value>pTrkA</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pTrkA_Akt">
+<property name="Name">
+<value>pTrkA_Akt</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Akt">
+<property name="Name">
+<value>Akt</value>
+</property>
+<property name="Value">
+<value>1.15594897919</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt">
+<property name="Name">
+<value>pAkt</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S6">
+<property name="Name">
+<value>S6</value>
+</property>
+<property name="Value">
+<value>3.55233603956</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_S6">
+<property name="Name">
+<value>pAkt_S6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6">
+<property name="Name">
+<value>pS6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pro_TrkA">
+<property name="Name">
+<value>pro_TrkA</value>
+</property>
+<property name="Value">
+<value>8.52065090518</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NGF_TrkA">
+<property name="Name">
+<value>NGF_TrkA</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="pTrkA_total">
+<property name="Name">
+<value>pTrkA_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_total">
+<property name="Name">
+<value>pAkt_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="pTrkA_scaleFactor">
+<property name="Name">
+<value>pTrkA_scaleFactor</value>
+</property>
+<property name="Value">
+<value>0.848783474941</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt_scaleFactor">
+<property name="Name">
+<value>pAkt_scaleFactor</value>
+</property>
+<property name="Value">
+<value>2.42381211095</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6_scaleFactor">
+<property name="Name">
+<value>pS6_scaleFactor</value>
+</property>
+<property name="Value">
+<value>0.525842718263</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pS6_total">
+<property name="Name">
+<value>pS6_total</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="NGF_conc_step">
+<property name="Name">
+<value>NGF_conc_step</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NGF_conc_pulse">
+<property name="Name">
+<value>NGF_conc_pulse</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NGF_conc_ramp">
+<property name="Name">
+<value>NGF_conc_ramp</value>
+</property>
+<property name="Value">
+<value>30.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TrkA_turnover">
+<property name="Name">
+<value>TrkA_turnover</value>
+</property>
+<property name="Value">
+<value>0.00110324407698</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pulse_time">
+<property name="Name">
+<value>pulse_time</value>
+</property>
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ramp_time">
+<property name="Name">
+<value>ramp_time</value>
+</property>
+<property name="Value">
+<value>3600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pS6_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pS6_total'</value>
+</property>
+<property name="Expression">
+<value>pS6.NumberConc * pS6_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pS6 &lt;/ci&gt;#x0A    &lt;ci&gt; pS6_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pS6_total</value>
+<value>Variable:/SBMLParameter:pS6_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pS6</value>
+<value>Variable:/Cell:pS6</value>
+<value>0</value>
+</value>
+<value>
+<value>pS6_scaleFactor</value>
+<value>Variable:/SBMLParameter:pS6_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pAkt_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pAkt_total'</value>
+</property>
+<property name="Expression">
+<value>(pAkt.NumberConc + pAkt_S6.NumberConc) * pAkt_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; pAkt &lt;/ci&gt;#x0A      &lt;ci&gt; pAkt_S6 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; pAkt_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt_total</value>
+<value>Variable:/SBMLParameter:pAkt_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/Cell:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>pAkt_S6</value>
+<value>Variable:/Cell:pAkt_S6</value>
+<value>0</value>
+</value>
+<value>
+<value>pAkt_scaleFactor</value>
+<value>Variable:/SBMLParameter:pAkt_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_pTrkA_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'pTrkA_total'</value>
+</property>
+<property name="Expression">
+<value>(pTrkA.NumberConc + pTrkA_Akt.NumberConc) * pTrkA_scaleFactor.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; pTrkA &lt;/ci&gt;#x0A      &lt;ci&gt; pTrkA_Akt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; pTrkA_scaleFactor &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pTrkA_total</value>
+<value>Variable:/SBMLParameter:pTrkA_total</value>
+<value>1</value>
+</value>
+<value>
+<value>pTrkA</value>
+<value>Variable:/Cell:pTrkA</value>
+<value>0</value>
+</value>
+<value>
+<value>pTrkA_Akt</value>
+<value>Variable:/Cell:pTrkA_Akt</value>
+<value>0</value>
+</value>
+<value>
+<value>pTrkA_scaleFactor</value>
+<value>Variable:/SBMLParameter:pTrkA_scaleFactor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_NGF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'NGF'</value>
+</property>
+<property name="Expression">
+<value>NGF_conc_step.NumberConc + piecewise(NGF_conc_pulse.NumberConc, leq(time.Value, pulse_time.NumberConc), 0) + NGF_conc_ramp.NumberConc * time.Value / ramp_time.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; NGF_conc_step &lt;/ci&gt;#x0A    &lt;piecewise&gt;#x0A      &lt;piece&gt;#x0A        &lt;ci&gt; NGF_conc_pulse &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;leq/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;ci&gt; pulse_time &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/piece&gt;#x0A      &lt;otherwise&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/otherwise&gt;#x0A    &lt;/piecewise&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; NGF_conc_ramp &lt;/ci&gt;#x0A        &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; ramp_time &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NGF</value>
+<value>Variable:/Cell:NGF</value>
+<value>1</value>
+</value>
+<value>
+<value>NGF_conc_step</value>
+<value>Variable:/SBMLParameter:NGF_conc_step</value>
+<value>0</value>
+</value>
+<value>
+<value>NGF_conc_pulse</value>
+<value>Variable:/SBMLParameter:NGF_conc_pulse</value>
+<value>0</value>
+</value>
+<value>
+<value>pulse_time</value>
+<value>Variable:/SBMLParameter:pulse_time</value>
+<value>0</value>
+</value>
+<value>
+<value>NGF_conc_ramp</value>
+<value>Variable:/SBMLParameter:NGF_conc_ramp</value>
+<value>0</value>
+</value>
+<value>
+<value>ramp_time</value>
+<value>Variable:/SBMLParameter:ramp_time</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

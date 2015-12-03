@@ -1,0 +1,945 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s1">
+<property name="Name">
+<value>Ca_ex</value>
+</property>
+<property name="Value">
+<value>1500000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s5">
+<property name="Name">
+<value>s5</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s12">
+<property name="Name">
+<value>TimeT</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s13">
+<property name="Name">
+<value>s13</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s119">
+<property name="Name">
+<value>Shear Stress</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<process class="ExpressionFluxexProcess" id="re3">
+<property name="Name">
+<value>re1</value>
+</property>
+<property name="Expression">
+<value>-k6.Value * s3.NumberConc * (B_T.Value - s4.NumberConc) + k7.Value * s4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s4</value>
+<value>Variable:/c1:s4</value>
+<value>-1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>1</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>B_T</value>
+<value>Variable:/SBMLParameter:B_T</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; k6 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; s3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; B_T &lt;/ci&gt;#x0A        &lt;ci&gt; s4 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k7 &lt;/ci&gt;#x0A      &lt;ci&gt; s4 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re4">
+<property name="Name">
+<value>[s5] -&gt; [s2]; { s1, s2, s1, s2, s1 };</value>
+</property>
+<property name="Expression">
+<value>k_CCE.Value * (fracK.Value * Cao.Value / (K3.Value + Cao.Value) - s2.NumberConc) * (s1.NumberConc - s2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s5</value>
+<value>Variable:/:s5</value>
+<value>-1</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/c1/c2:s2</value>
+<value>1</value>
+</value>
+<value>
+<value>s1</value>
+<value>Variable:/:s1</value>
+<value>0</value>
+</value>
+<value>
+<value>k_CCE</value>
+<value>Variable:/SBMLParameter:k_CCE</value>
+<value>0</value>
+</value>
+<value>
+<value>fracK</value>
+<value>Variable:/SBMLParameter:fracK</value>
+<value>0</value>
+</value>
+<value>
+<value>Cao</value>
+<value>Variable:/SBMLParameter:Cao</value>
+<value>0</value>
+</value>
+<value>
+<value>K3</value>
+<value>Variable:/SBMLParameter:K3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k_CCE &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; fracK &lt;/ci&gt;#x0A          &lt;ci&gt; Cao &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; K3 &lt;/ci&gt;#x0A          &lt;ci&gt; Cao &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; s2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; s1 &lt;/ci&gt;#x0A      &lt;ci&gt; s2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re5">
+<property name="Name">
+<value>[s7] -&gt; [s6]; { s3, s12, s119, s12, s3, s12, s3 };</value>
+</property>
+<property name="Expression">
+<value>k1.Value * (R_T.Value - half.Value * R_T.Value * (exp(-s12.NumberConc / tau_I.Value) + exp(-s12.NumberConc / tau_II.Value) + (exp(-s12.NumberConc / tau_I.Value) - exp(-s12.NumberConc / tau_II.Value)) * (tau_I.Value + tau_II.Value) / (tau_I.Value - tau_II.Value))) * s3.NumberConc / (K1.Value + s3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s7</value>
+<value>Variable:/c1:s7</value>
+<value>-1</value>
+</value>
+<value>
+<value>s6</value>
+<value>Variable:/c1:s6</value>
+<value>1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>0</value>
+</value>
+<value>
+<value>s12</value>
+<value>Variable:/:s12</value>
+<value>0</value>
+</value>
+<value>
+<value>s119</value>
+<value>Variable:/:s119</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>R_T</value>
+<value>Variable:/SBMLParameter:R_T</value>
+<value>0</value>
+</value>
+<value>
+<value>half</value>
+<value>Variable:/SBMLParameter:half</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_I</value>
+<value>Variable:/SBMLParameter:tau_I</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_II</value>
+<value>Variable:/SBMLParameter:tau_II</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; R_T &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; half &lt;/ci&gt;#x0A          &lt;ci&gt; R_T &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;exp/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; s12 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; tau_I &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;exp/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;ci&gt; s12 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; tau_II &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;minus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;exp/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;ci&gt; s12 &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; tau_I &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;exp/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;minus/&gt;#x0A                        &lt;ci&gt; s12 &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; tau_II &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; tau_I &lt;/ci&gt;#x0A                  &lt;ci&gt; tau_II &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;ci&gt; tau_I &lt;/ci&gt;#x0A                &lt;ci&gt; tau_II &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; s3 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K1 &lt;/ci&gt;#x0A      &lt;ci&gt; s3 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re6">
+<property name="Name">
+<value>[s6] -&gt; [s8]; { s6, s6 };</value>
+</property>
+<property name="Expression">
+<value>k2.Value * s6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s6</value>
+<value>Variable:/c1:s6</value>
+<value>-1</value>
+</value>
+<value>
+<value>s8</value>
+<value>Variable:/c1:s8</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; s6 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re7">
+<property name="Name">
+<value>[s2] -&gt; [s3]; { s6, s3, s6, s2, s3, s6, s2 };</value>
+</property>
+<property name="Expression">
+<value>k3.Value * (k_CICR.Value * s3.NumberConc / (K_CICR.Value + s3.NumberConc)) * pow(s6.NumberConc / (K2.Value + s6.NumberConc), 3) * s2.NumberConc - k4.Value * pow(s3.NumberConc / (K3.Value + s3.NumberConc), 2) + k5.Value * s2.NumberConc * s2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s2</value>
+<value>Variable:/c1/c2:s2</value>
+<value>-1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>1</value>
+</value>
+<value>
+<value>s6</value>
+<value>Variable:/c1:s6</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k_CICR</value>
+<value>Variable:/SBMLParameter:k_CICR</value>
+<value>0</value>
+</value>
+<value>
+<value>K_CICR</value>
+<value>Variable:/SBMLParameter:K_CICR</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>K3</value>
+<value>Variable:/SBMLParameter:K3</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k3 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k_CICR &lt;/ci&gt;#x0A            &lt;ci&gt; s3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K_CICR &lt;/ci&gt;#x0A            &lt;ci&gt; s3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; s6 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; K2 &lt;/ci&gt;#x0A              &lt;ci&gt; s6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn type='integer'&gt; 3 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; s2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k4 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; s3 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; K3 &lt;/ci&gt;#x0A              &lt;ci&gt; s3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k5 &lt;/ci&gt;#x0A      &lt;ci&gt; s2 &lt;/ci&gt;#x0A      &lt;ci&gt; s2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re8">
+<property name="Name">
+<value>[s3] -&gt; [s9]; { s3, s3 };</value>
+</property>
+<property name="Expression">
+<value>dot_Vhi.Value * pow(s3.NumberConc, 4) / (pow(K_hi.Value, 4) + pow(s3.NumberConc, 4))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>s9</value>
+<value>Variable:/c1:s9</value>
+<value>1</value>
+</value>
+<value>
+<value>dot_Vhi</value>
+<value>Variable:/SBMLParameter:dot_Vhi</value>
+<value>0</value>
+</value>
+<value>
+<value>K_hi</value>
+<value>Variable:/SBMLParameter:K_hi</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; dot_Vhi &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; s3 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K_hi &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; s3 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re9">
+<property name="Name">
+<value>[s3] -&gt; [s10]; { s3, s3 };</value>
+</property>
+<property name="Expression">
+<value>dot_Vex.Value * s3.NumberConc / (K5.Value + s3.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>s10</value>
+<value>Variable:/c1:s10</value>
+<value>1</value>
+</value>
+<value>
+<value>dot_Vex</value>
+<value>Variable:/SBMLParameter:dot_Vex</value>
+<value>0</value>
+</value>
+<value>
+<value>K5</value>
+<value>Variable:/SBMLParameter:K5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; dot_Vex &lt;/ci&gt;#x0A      &lt;ci&gt; s3 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K5 &lt;/ci&gt;#x0A      &lt;ci&gt; s3 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re10">
+<property name="Name">
+<value>[s11] -&gt; [s3];</value>
+</property>
+<property name="Expression">
+<value>dot_q_inpass.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s11</value>
+<value>Variable:/c1:s11</value>
+<value>-1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>1</value>
+</value>
+<value>
+<value>dot_q_inpass</value>
+<value>Variable:/SBMLParameter:dot_q_inpass</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; dot_q_inpass &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re11">
+<property name="Name">
+<value>[s13] -&gt; [s12];</value>
+</property>
+<property name="unisec">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>unisec</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s13</value>
+<value>Variable:/:s13</value>
+<value>-1</value>
+</value>
+<value>
+<value>s12</value>
+<value>Variable:/:s12</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; unisec &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="re12">
+<property name="Name">
+<value>[s3] -&gt; [s9]; { s3, s3 };</value>
+</property>
+<property name="Expression">
+<value>dot_Vp.Value * pow(s3.NumberConc, 2) / (pow(K4.Value, 2) + pow(s3.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/c1:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>s9</value>
+<value>Variable:/c1:s9</value>
+<value>1</value>
+</value>
+<value>
+<value>dot_Vp</value>
+<value>Variable:/SBMLParameter:dot_Vp</value>
+<value>0</value>
+</value>
+<value>
+<value>K4</value>
+<value>Variable:/SBMLParameter:K4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; dot_Vp &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; s3 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K4 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; s3 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s3">
+<property name="Name">
+<value>Ca_c</value>
+</property>
+<property name="Value">
+<value>117.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s4">
+<property name="Name">
+<value>Ca_B</value>
+</property>
+<property name="Value">
+<value>3870.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s6">
+<property name="Name">
+<value>IP3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s7">
+<property name="Name">
+<value>s7</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s8">
+<property name="Name">
+<value>s8</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s9">
+<property name="Name">
+<value>s9</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s10">
+<property name="Name">
+<value>s10</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s11">
+<property name="Name">
+<value>s11</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/c1/c2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>ER</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s2">
+<property name="Name">
+<value>Ca_s</value>
+</property>
+<property name="Value">
+<value>2830000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="R_T">
+<property name="Name">
+<value>R_T</value>
+</property>
+<property name="Value">
+<value>44000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.0006</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>3.32</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>2500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>5e-11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>150.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Name">
+<value>K1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2">
+<property name="Name">
+<value>K2</value>
+</property>
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K3">
+<property name="Name">
+<value>K3</value>
+</property>
+<property name="Value">
+<value>150.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K4">
+<property name="Name">
+<value>K4</value>
+</property>
+<property name="Value">
+<value>80.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K5">
+<property name="Name">
+<value>K5</value>
+</property>
+<property name="Value">
+<value>321.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_hi">
+<property name="Name">
+<value>K_hi</value>
+</property>
+<property name="Value">
+<value>380.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CICR">
+<property name="Name">
+<value>k_CICR</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_CICR">
+<property name="Name">
+<value>K_CICR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CCE">
+<property name="Name">
+<value>k_CCE</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="B_T">
+<property name="Name">
+<value>B_T</value>
+</property>
+<property name="Value">
+<value>120000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dot_Vp">
+<property name="Name">
+<value>dot_Vp</value>
+</property>
+<property name="Value">
+<value>815.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dot_Vex">
+<property name="Name">
+<value>dot_Vex</value>
+</property>
+<property name="Value">
+<value>9165.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dot_Vhi">
+<property name="Name">
+<value>dot_Vhi</value>
+</property>
+<property name="Value">
+<value>2380.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="dot_q_inpass">
+<property name="Name">
+<value>dot_q_inpass</value>
+</property>
+<property name="Value">
+<value>3000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Cao">
+<property name="Name">
+<value>Cao</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau_I">
+<property name="Name">
+<value>tau_I</value>
+</property>
+<property name="Value">
+<value>66.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau_II">
+<property name="Name">
+<value>tau_II</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="half">
+<property name="Name">
+<value>half</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fracK">
+<property name="Name">
+<value>fracK</value>
+</property>
+<property name="Value">
+<value>7071067.81</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

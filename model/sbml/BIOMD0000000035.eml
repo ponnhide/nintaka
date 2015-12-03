@@ -1,0 +1,572 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Reaction1">
+<property name="Name">
+<value>[A] + [R] -&gt; [C];</value>
+</property>
+<property name="gammaC">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>A.NumberConc * R.NumberConc * gammaC</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/deterministicOscillator:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/deterministicOscillator:C</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; A &lt;/ci&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; gammaC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction2">
+<property name="Name">
+<value>[A] -&gt; [EmptySet];</value>
+</property>
+<property name="deltaA">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>A.NumberConc * deltaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/deterministicOscillator:EmptySet</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; A &lt;/ci&gt;#x0A    &lt;ci&gt; deltaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction3">
+<property name="Name">
+<value>[C] -&gt; [R];</value>
+</property>
+<property name="deltaA">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>C.NumberConc * deltaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C</value>
+<value>Variable:/deterministicOscillator:C</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/deterministicOscillator:R</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; C &lt;/ci&gt;#x0A    &lt;ci&gt; deltaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction4">
+<property name="Name">
+<value>[R] -&gt; [EmptySet];</value>
+</property>
+<property name="deltaR">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>R.NumberConc * deltaR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/deterministicOscillator:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/deterministicOscillator:EmptySet</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; deltaR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction5">
+<property name="Name">
+<value>[A] + [DA] -&gt; [DAp];</value>
+</property>
+<property name="gammaA">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>A.NumberConc * DA.NumberConc * gammaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>DA</value>
+<value>Variable:/deterministicOscillator:DA</value>
+<value>-1</value>
+</value>
+<value>
+<value>DAp</value>
+<value>Variable:/deterministicOscillator:DAp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; A &lt;/ci&gt;#x0A    &lt;ci&gt; DA &lt;/ci&gt;#x0A    &lt;ci&gt; gammaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction6">
+<property name="Name">
+<value>[DAp] -&gt; [A] + [DA];</value>
+</property>
+<property name="thetaA">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>DAp.NumberConc * thetaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DAp</value>
+<value>Variable:/deterministicOscillator:DAp</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>1</value>
+</value>
+<value>
+<value>DA</value>
+<value>Variable:/deterministicOscillator:DA</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DAp &lt;/ci&gt;#x0A    &lt;ci&gt; thetaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction7">
+<property name="Name">
+<value>[DA] -&gt; [DA] + [MA];</value>
+</property>
+<property name="alphaA">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>DA.NumberConc * alphaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DA</value>
+<value>Variable:/deterministicOscillator:DA</value>
+<value>0</value>
+</value>
+<value>
+<value>MA</value>
+<value>Variable:/deterministicOscillator:MA</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DA &lt;/ci&gt;#x0A    &lt;ci&gt; alphaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction8">
+<property name="Name">
+<value>[DAp] -&gt; [DAp] + [MA];</value>
+</property>
+<property name="alphaAp">
+<value>500.0</value>
+</property>
+<property name="Expression">
+<value>DAp.NumberConc * alphaAp</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DAp</value>
+<value>Variable:/deterministicOscillator:DAp</value>
+<value>0</value>
+</value>
+<value>
+<value>MA</value>
+<value>Variable:/deterministicOscillator:MA</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DAp &lt;/ci&gt;#x0A    &lt;ci&gt; alphaAp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction9">
+<property name="Name">
+<value>[MA] -&gt; [EmptySet];</value>
+</property>
+<property name="deltaMA">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>MA.NumberConc * deltaMA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MA</value>
+<value>Variable:/deterministicOscillator:MA</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/deterministicOscillator:EmptySet</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; MA &lt;/ci&gt;#x0A    &lt;ci&gt; deltaMA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction10">
+<property name="Name">
+<value>[MA] -&gt; [A] + [MA];</value>
+</property>
+<property name="betaA">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>MA.NumberConc * betaA</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MA</value>
+<value>Variable:/deterministicOscillator:MA</value>
+<value>0</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; MA &lt;/ci&gt;#x0A    &lt;ci&gt; betaA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction11">
+<property name="Name">
+<value>[A] + [DR] -&gt; [DRp];</value>
+</property>
+<property name="gammaR">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>A.NumberConc * DR.NumberConc * gammaR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>DR</value>
+<value>Variable:/deterministicOscillator:DR</value>
+<value>-1</value>
+</value>
+<value>
+<value>DRp</value>
+<value>Variable:/deterministicOscillator:DRp</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; A &lt;/ci&gt;#x0A    &lt;ci&gt; DR &lt;/ci&gt;#x0A    &lt;ci&gt; gammaR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction12">
+<property name="Name">
+<value>[DRp] -&gt; [A] + [DR];</value>
+</property>
+<property name="thetaR">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>DRp.NumberConc * thetaR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DRp</value>
+<value>Variable:/deterministicOscillator:DRp</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/deterministicOscillator:A</value>
+<value>1</value>
+</value>
+<value>
+<value>DR</value>
+<value>Variable:/deterministicOscillator:DR</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DRp &lt;/ci&gt;#x0A    &lt;ci&gt; thetaR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction13">
+<property name="Name">
+<value>[DR] -&gt; [DR] + [MR];</value>
+</property>
+<property name="alphaR">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>DR.NumberConc * alphaR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DR</value>
+<value>Variable:/deterministicOscillator:DR</value>
+<value>0</value>
+</value>
+<value>
+<value>MR</value>
+<value>Variable:/deterministicOscillator:MR</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DR &lt;/ci&gt;#x0A    &lt;ci&gt; alphaR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction14">
+<property name="Name">
+<value>[DRp] -&gt; [DRp] + [MR];</value>
+</property>
+<property name="alphaRp">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>DRp.NumberConc * alphaRp</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DRp</value>
+<value>Variable:/deterministicOscillator:DRp</value>
+<value>0</value>
+</value>
+<value>
+<value>MR</value>
+<value>Variable:/deterministicOscillator:MR</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; DRp &lt;/ci&gt;#x0A    &lt;ci&gt; alphaRp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction15">
+<property name="Name">
+<value>[MR] -&gt; [EmptySet];</value>
+</property>
+<property name="deltaMR">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>MR.NumberConc * deltaMR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MR</value>
+<value>Variable:/deterministicOscillator:MR</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/deterministicOscillator:EmptySet</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; MR &lt;/ci&gt;#x0A    &lt;ci&gt; deltaMR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Reaction16">
+<property name="Name">
+<value>[MR] -&gt; [MR] + [R];</value>
+</property>
+<property name="betaR">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>MR.NumberConc * betaR</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MR</value>
+<value>Variable:/deterministicOscillator:MR</value>
+<value>0</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/deterministicOscillator:R</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; MR &lt;/ci&gt;#x0A    &lt;ci&gt; betaR &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/deterministicOscillator">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DA">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DAp">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DR">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DRp">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MR">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

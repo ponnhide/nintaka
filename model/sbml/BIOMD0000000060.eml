@@ -1,0 +1,243 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Closed_state_1">
+<property name="Name">
+<value>[Po1] &lt;-&gt; [Pc1]; { Po1 };</value>
+</property>
+<property name="ka_minus">
+<value>28.8</value>
+</property>
+<property name="ka_plus">
+<value>1500.0</value>
+</property>
+<property name="Ca">
+<value>0.9</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>ka_minus * Po1.NumberConc - ka_plus * pow(Ca, n) * Pc1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Po1</value>
+<value>Variable:/compartment:Po1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pc1</value>
+<value>Variable:/compartment:Pc1</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; ka_minus &lt;/ci&gt;#x0A      &lt;ci&gt; Po1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; ka_plus &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Ca &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Pc1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Open_state_2">
+<property name="Name">
+<value>[Po1] &lt;-&gt; [Po2]; { Po1 };</value>
+</property>
+<property name="kb_plus">
+<value>1500.0</value>
+</property>
+<property name="Ca">
+<value>0.9</value>
+</property>
+<property name="m">
+<value>3.0</value>
+</property>
+<property name="kb_minus">
+<value>385.9</value>
+</property>
+<property name="Expression">
+<value>kb_plus * pow(Ca, m) * Po1.NumberConc - kb_minus * Po2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Po1</value>
+<value>Variable:/compartment:Po1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Po2</value>
+<value>Variable:/compartment:Po2</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kb_plus &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Ca &lt;/ci&gt;#x0A        &lt;ci&gt; m &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; Po1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kb_minus &lt;/ci&gt;#x0A      &lt;ci&gt; Po2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Closed_State_2">
+<property name="Name">
+<value>Closed State 2</value>
+</property>
+<property name="kc_plus">
+<value>1.75</value>
+</property>
+<property name="kc_minus">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>kc_plus * Po1.NumberConc - kc_minus * Pc2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Po1</value>
+<value>Variable:/compartment:Po1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pc2</value>
+<value>Variable:/compartment:Pc2</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kc_plus &lt;/ci&gt;#x0A      &lt;ci&gt; Po1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kc_minus &lt;/ci&gt;#x0A      &lt;ci&gt; Pc2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pc1">
+<property name="Value">
+<value>0.963</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Po2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Po1">
+<property name="Name">
+<value>Po1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pc2">
+<property name="Name">
+<value>Pc2</value>
+</property>
+<property name="Value">
+<value>0.037</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Open_probability">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Open_probability">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Open_probability'</value>
+</property>
+<property name="Expression">
+<value>Po1.NumberConc + Po2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; Po1 &lt;/ci&gt;#x0A    &lt;ci&gt; Po2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Open_probability</value>
+<value>Variable:/SBMLParameter:Open_probability</value>
+<value>1</value>
+</value>
+<value>
+<value>Po1</value>
+<value>Variable:/compartment:Po1</value>
+<value>0</value>
+</value>
+<value>
+<value>Po2</value>
+<value>Variable:/compartment:Po2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

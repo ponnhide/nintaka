@@ -1,0 +1,537 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="OxPhos">
+<property name="Name">
+<value>Vsyn</value>
+</property>
+<property name="V_1">
+<value>4600.0</value>
+</property>
+<property name="Ka_1">
+<value>800.0</value>
+</property>
+<property name="Kb_1">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * (V_1 * ADPi.NumberConc * Pi.NumberConc / (Ka_1 * Kb_1 * (1 + ADPi.NumberConc / Ka_1 + Pi.NumberConc / Kb_1 + ADPi.NumberConc * Pi.NumberConc / (Ka_1 * Kb_1))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/IMS:Pi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; IMS &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V_1 &lt;/ci&gt;#x0A        &lt;ci&gt; ADPi &lt;/ci&gt;#x0A        &lt;ci&gt; Pi &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ka_1 &lt;/ci&gt;#x0A        &lt;ci&gt; Kb_1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ADPi &lt;/ci&gt;#x0A            &lt;ci&gt; Ka_1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Pi &lt;/ci&gt;#x0A            &lt;ci&gt; Kb_1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; ADPi &lt;/ci&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Ka_1 &lt;/ci&gt;#x0A              &lt;ci&gt; Kb_1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="MiCK">
+<property name="Name">
+<value>Vmick</value>
+</property>
+<property name="Vf_2">
+<value>2658.0</value>
+</property>
+<property name="Kia_2">
+<value>750.0</value>
+</property>
+<property name="Kb_2">
+<value>5200.0</value>
+</property>
+<property name="Vb_2">
+<value>11160.0</value>
+</property>
+<property name="Kic_2">
+<value>204.8</value>
+</property>
+<property name="Kd_2">
+<value>500.0</value>
+</property>
+<property name="Kib_2">
+<value>28800.0</value>
+</property>
+<property name="Kid_2">
+<value>1600.0</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * ((Vf_2 * ATPi.NumberConc * Cri.NumberConc / (Kia_2 * Kb_2) - Vb_2 * ADPi.NumberConc * PCri.NumberConc / (Kic_2 * Kd_2)) / (1 + Cri.NumberConc / Kib_2 + PCri.NumberConc / Kid_2 + ATPi.NumberConc * (1 / Kia_2 + Cri.NumberConc / (Kia_2 * Kb_2)) + ADPi.NumberConc * (1 / Kic_2 + Cri.NumberConc / (Kic_2 * Kib_2) + PCri.NumberConc / (Kid_2 * (Kic_2 * Kd_2 / Kid_2)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>1</value>
+</value>
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; IMS &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf_2 &lt;/ci&gt;#x0A            &lt;ci&gt; ATPi &lt;/ci&gt;#x0A            &lt;ci&gt; Cri &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Kia_2 &lt;/ci&gt;#x0A            &lt;ci&gt; Kb_2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vb_2 &lt;/ci&gt;#x0A            &lt;ci&gt; ADPi &lt;/ci&gt;#x0A            &lt;ci&gt; PCri &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Kic_2 &lt;/ci&gt;#x0A            &lt;ci&gt; Kd_2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Cri &lt;/ci&gt;#x0A          &lt;ci&gt; Kib_2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; PCri &lt;/ci&gt;#x0A          &lt;ci&gt; Kid_2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ATPi &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; Kia_2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Cri &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kia_2 &lt;/ci&gt;#x0A                &lt;ci&gt; Kb_2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ADPi &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; Kic_2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Cri &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kic_2 &lt;/ci&gt;#x0A                &lt;ci&gt; Kib_2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; PCri &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kid_2 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kic_2 &lt;/ci&gt;#x0A                    &lt;ci&gt; Kd_2 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; Kid_2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="MMCK">
+<property name="Name">
+<value>Vmmck</value>
+</property>
+<property name="Vf_3">
+<value>6966.0</value>
+</property>
+<property name="Kia_3">
+<value>900.0</value>
+</property>
+<property name="Kb_3">
+<value>15500.0</value>
+</property>
+<property name="Vb_3">
+<value>29250.0</value>
+</property>
+<property name="Kic_3">
+<value>222.4</value>
+</property>
+<property name="Kd_3">
+<value>1670.0</value>
+</property>
+<property name="Kib_3">
+<value>34900.0</value>
+</property>
+<property name="Kid_3">
+<value>4730.0</value>
+</property>
+<property name="Expression">
+<value>CYT.Value * ((Vf_3 * ATP.NumberConc * Cr.NumberConc / (Kia_3 * Kb_3) - Vb_3 * ADP.NumberConc * PCr.NumberConc / (Kic_3 * Kd_3)) / (1 + Cr.NumberConc / Kib_3 + PCr.NumberConc / Kid_3 + ATP.NumberConc * (1 / Kia_3 + Cr.NumberConc / (Kia_3 * Kb_3)) + ADP.NumberConc * (1 / Kic_3 + Cr.NumberConc / (Kic_3 * Kib_3) + PCr.NumberConc / (Kid_3 * (Kic_3 * Kd_3 / Kid_3)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>-1</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CYT &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vf_3 &lt;/ci&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; Cr &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Kia_3 &lt;/ci&gt;#x0A            &lt;ci&gt; Kb_3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Vb_3 &lt;/ci&gt;#x0A            &lt;ci&gt; ADP &lt;/ci&gt;#x0A            &lt;ci&gt; PCr &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Kic_3 &lt;/ci&gt;#x0A            &lt;ci&gt; Kd_3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Cr &lt;/ci&gt;#x0A          &lt;ci&gt; Kib_3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; PCr &lt;/ci&gt;#x0A          &lt;ci&gt; Kid_3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; Kia_3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Cr &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kia_3 &lt;/ci&gt;#x0A                &lt;ci&gt; Kb_3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ADP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A              &lt;ci&gt; Kic_3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Cr &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kic_3 &lt;/ci&gt;#x0A                &lt;ci&gt; Kib_3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; PCr &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; Kid_3 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kic_3 &lt;/ci&gt;#x0A                    &lt;ci&gt; Kd_3 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; Kid_3 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ATPase">
+<property name="Name">
+<value>Vhyd</value>
+</property>
+<property name="v_4">
+<value>4600.0</value>
+</property>
+<property name="Expression">
+<value>CYT.Value * v_4 * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/CYT:P</value>
+<value>1</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CYT &lt;/ci&gt;#x0A    &lt;ci&gt; v_4 &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Pi_diffusion">
+<property name="Name">
+<value>Jpi</value>
+</property>
+<property name="k2_5">
+<value>18.4</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * k2_5 * Pi.NumberConc - CYT.Value * k2_5 * P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pi</value>
+<value>Variable:/IMS:Pi</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/CYT:P</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; IMS &lt;/ci&gt;#x0A      &lt;ci&gt; k2_5 &lt;/ci&gt;#x0A      &lt;ci&gt; Pi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CYT &lt;/ci&gt;#x0A      &lt;ci&gt; k2_5 &lt;/ci&gt;#x0A      &lt;ci&gt; P &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Cr_diffusion">
+<property name="Name">
+<value>Jcr</value>
+</property>
+<property name="k1_6">
+<value>14.6</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * k1_6 * Cri.NumberConc - CYT.Value * k1_6 * Cr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cri</value>
+<value>Variable:/IMS:Cri</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cr</value>
+<value>Variable:/CYT:Cr</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; IMS &lt;/ci&gt;#x0A      &lt;ci&gt; k1_6 &lt;/ci&gt;#x0A      &lt;ci&gt; Cri &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CYT &lt;/ci&gt;#x0A      &lt;ci&gt; k1_6 &lt;/ci&gt;#x0A      &lt;ci&gt; Cr &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ADP_diffusion">
+<property name="Name">
+<value>Jadp</value>
+</property>
+<property name="k1_7">
+<value>8.16</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * k1_7 * ADPi.NumberConc - CYT.Value * k1_7 * ADP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADPi</value>
+<value>Variable:/IMS:ADPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/CYT:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; IMS &lt;/ci&gt;#x0A      &lt;ci&gt; k1_7 &lt;/ci&gt;#x0A      &lt;ci&gt; ADPi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CYT &lt;/ci&gt;#x0A      &lt;ci&gt; k1_7 &lt;/ci&gt;#x0A      &lt;ci&gt; ADP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PCr_diffusion">
+<property name="Name">
+<value>Jpcr</value>
+</property>
+<property name="k1_8">
+<value>14.6</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * k1_8 * PCri.NumberConc - CYT.Value * k1_8 * PCr.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PCri</value>
+<value>Variable:/IMS:PCri</value>
+<value>-1</value>
+</value>
+<value>
+<value>PCr</value>
+<value>Variable:/CYT:PCr</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; IMS &lt;/ci&gt;#x0A      &lt;ci&gt; k1_8 &lt;/ci&gt;#x0A      &lt;ci&gt; PCri &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CYT &lt;/ci&gt;#x0A      &lt;ci&gt; k1_8 &lt;/ci&gt;#x0A      &lt;ci&gt; PCr &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ATP_diffusion">
+<property name="Name">
+<value>Jatp</value>
+</property>
+<property name="k1_9">
+<value>8.16</value>
+</property>
+<property name="Expression">
+<value>IMS.Value * k1_9 * ATPi.NumberConc - CYT.Value * k1_9 * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATPi</value>
+<value>Variable:/IMS:ATPi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/CYT:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>IMS</value>
+<value>Variable:/IMS:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>CYT</value>
+<value>Variable:/CYT:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; IMS &lt;/ci&gt;#x0A      &lt;ci&gt; k1_9 &lt;/ci&gt;#x0A      &lt;ci&gt; ATPi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; CYT &lt;/ci&gt;#x0A      &lt;ci&gt; k1_9 &lt;/ci&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/IMS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.0625</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ADPi">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATPi">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cri">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PCri">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pi">
+<property name="Name">
+<value>Pii</value>
+</property>
+<property name="NumberConc">
+<value>32000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/CYT">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.75</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PCr">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="NumberConc">
+<value>9700.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cr">
+<property name="NumberConc">
+<value>26000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>Pi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

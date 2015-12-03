@@ -1,0 +1,4310 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>IL6-gp80 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * kf0.Value * x1.NumberConc * IL6.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/cytosol:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/cytosol:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf0</value>
+<value>Variable:/SBMLParameter:kf0</value>
+<value>0</value>
+</value>
+<value>
+<value>IL6</value>
+<value>Variable:/SBMLParameter:IL6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>IL6-gp80 complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * kr0.Value * x2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/cytosol:x2</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr0</value>
+<value>Variable:/SBMLParameter:kr0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kr2.Value * x6.NumberConc - kf2.Value * x2.NumberConc * x5.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x6</value>
+<value>Variable:/cytosol:x6</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/cytosol:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/cytosol:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr2</value>
+<value>Variable:/SBMLParameter:kr2</value>
+<value>0</value>
+</value>
+<value>
+<value>kf2</value>
+<value>Variable:/SBMLParameter:kf2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>gp130-JAK complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf1.Value * x3.NumberConc * x4.NumberConc - kr1.Value * x5.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x4</value>
+<value>Variable:/cytosol:x4</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/cytosol:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cytosol:x3</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf1</value>
+<value>Variable:/SBMLParameter:kf1</value>
+<value>0</value>
+</value>
+<value>
+<value>kr1</value>
+<value>Variable:/SBMLParameter:kr1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK dimerization</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * kf3.Value * pow(x6.NumberConc, 2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x6</value>
+<value>Variable:/cytosol:x6</value>
+<value>-2</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/cytosol:x7</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf3</value>
+<value>Variable:/SBMLParameter:kf3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * kr3.Value * x7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x7</value>
+<value>Variable:/cytosol:x7</value>
+<value>-1</value>
+</value>
+<value>
+<value>x6</value>
+<value>Variable:/cytosol:x6</value>
+<value>2</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr3</value>
+<value>Variable:/SBMLParameter:kr3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK dimer phosphorylation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k4.Value * x7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x7</value>
+<value>Variable:/cytosol:x7</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK dimer-SHP2 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k10.Value * x16.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x16</value>
+<value>Variable:/cytosol:x16</value>
+<value>-1</value>
+</value>
+<value>
+<value>x15</value>
+<value>Variable:/cytosol:x15</value>
+<value>1</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/cytosol:x7</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK -STAT3C complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf5.Value * x8.NumberConc * x9.NumberConc - kr5.Value * x11.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>-1</value>
+</value>
+<value>
+<value>x11</value>
+<value>Variable:/cytosol:x11</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf5</value>
+<value>Variable:/SBMLParameter:kf5</value>
+<value>0</value>
+</value>
+<value>
+<value>kr5</value>
+<value>Variable:/SBMLParameter:kr5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK -STAT3C dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k6.Value * x11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x11</value>
+<value>Variable:/cytosol:x11</value>
+<value>-1</value>
+</value>
+<value>
+<value>x10</value>
+<value>Variable:/cytosol:x10</value>
+<value>1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK-STAT3Cast complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf7.Value * x8.NumberConc * x10.NumberConc - kr7.Value * x12.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x10</value>
+<value>Variable:/cytosol:x10</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>-1</value>
+</value>
+<value>
+<value>x12</value>
+<value>Variable:/cytosol:x12</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf7</value>
+<value>Variable:/SBMLParameter:kf7</value>
+<value>0</value>
+</value>
+<value>
+<value>kr7</value>
+<value>Variable:/SBMLParameter:kr7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK -SHP2 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf9.Value * x8.NumberConc * x15.NumberConc - kr9.Value * x16.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x15</value>
+<value>Variable:/cytosol:x15</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>-1</value>
+</value>
+<value>
+<value>x16</value>
+<value>Variable:/cytosol:x16</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf9</value>
+<value>Variable:/SBMLParameter:kf9</value>
+<value>0</value>
+</value>
+<value>
+<value>kr9</value>
+<value>Variable:/SBMLParameter:kr9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK -SOCS3 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf21.Value * x29.NumberConc * x8.NumberConc - kr21.Value * x30.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x29</value>
+<value>Variable:/cytosol:x29</value>
+<value>-1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>-1</value>
+</value>
+<value>
+<value>x30</value>
+<value>Variable:/cytosol:x30</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf21</value>
+<value>Variable:/SBMLParameter:kf21</value>
+<value>0</value>
+</value>
+<value>
+<value>kr21</value>
+<value>Variable:/SBMLParameter:kr21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R16">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK -SHP2 dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf37.Value * x39.NumberConc - kr37.Value * x8.NumberConc * x46.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x39</value>
+<value>Variable:/cytosol:x39</value>
+<value>-1</value>
+</value>
+<value>
+<value>x46</value>
+<value>Variable:/cytosol:x46</value>
+<value>1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf37</value>
+<value>Variable:/SBMLParameter:kf37</value>
+<value>0</value>
+</value>
+<value>
+<value>kr37</value>
+<value>Variable:/SBMLParameter:kr37</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R16a">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK SHP2 Grb2 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf39.Value * x40.NumberConc - kr39.Value * x45.NumberConc * x8.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x40</value>
+<value>Variable:/cytosol:x40</value>
+<value>-1</value>
+</value>
+<value>
+<value>x45</value>
+<value>Variable:/cytosol:x45</value>
+<value>1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf39</value>
+<value>Variable:/SBMLParameter:kf39</value>
+<value>0</value>
+</value>
+<value>
+<value>kr39</value>
+<value>Variable:/SBMLParameter:kr39</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R17">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK-SHP2-Grb2-SOS dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf32.Value * x41.NumberConc - kr32.Value * x44.NumberConc * x8.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>-1</value>
+</value>
+<value>
+<value>x44</value>
+<value>Variable:/cytosol:x44</value>
+<value>1</value>
+</value>
+<value>
+<value>x8</value>
+<value>Variable:/cytosol:x8</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf32</value>
+<value>Variable:/SBMLParameter:kf32</value>
+<value>0</value>
+</value>
+<value>
+<value>kr32</value>
+<value>Variable:/SBMLParameter:kr32</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R18">
+<property name="Name">
+<value>PP1-STAT3Cast dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k12.Value * x18.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x18</value>
+<value>Variable:/cytosol:x18</value>
+<value>-1</value>
+</value>
+<value>
+<value>x17</value>
+<value>Variable:/cytosol:x17</value>
+<value>1</value>
+</value>
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R19">
+<property name="Name">
+<value>STAT3C dimerization</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf13.Value * x9.NumberConc * x10.NumberConc - kr13.Value * x14.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x10</value>
+<value>Variable:/cytosol:x10</value>
+<value>-1</value>
+</value>
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>-1</value>
+</value>
+<value>
+<value>x14</value>
+<value>Variable:/cytosol:x14</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf13</value>
+<value>Variable:/SBMLParameter:kf13</value>
+<value>0</value>
+</value>
+<value>
+<value>kr13</value>
+<value>Variable:/SBMLParameter:kr13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R20">
+<property name="Name">
+<value>STAT3N transport</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k17.Value * x22.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x22</value>
+<value>Variable:/cytosol/nucleus:x22</value>
+<value>-1</value>
+</value>
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R21">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK-SOCS2-STAT3C complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf5.Value * x9.NumberConc * x30.NumberConc - kr5.Value * x31.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x30</value>
+<value>Variable:/cytosol:x30</value>
+<value>-1</value>
+</value>
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>-1</value>
+</value>
+<value>
+<value>x31</value>
+<value>Variable:/cytosol:x31</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf5</value>
+<value>Variable:/SBMLParameter:kf5</value>
+<value>0</value>
+</value>
+<value>
+<value>kr5</value>
+<value>Variable:/SBMLParameter:kr5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R22">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK-STAT3C-SOCS3-SHP2 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k10.Value * x32.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x32</value>
+<value>Variable:/cytosol:x32</value>
+<value>-1</value>
+</value>
+<value>
+<value>x29</value>
+<value>Variable:/cytosol:x29</value>
+<value>1</value>
+</value>
+<value>
+<value>x15</value>
+<value>Variable:/cytosol:x15</value>
+<value>1</value>
+</value>
+<value>
+<value>x9</value>
+<value>Variable:/cytosol:x9</value>
+<value>1</value>
+</value>
+<value>
+<value>x7</value>
+<value>Variable:/cytosol:x7</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R23">
+<property name="Name">
+<value>STAT3C dimerization, ( denominatior = 2 )</value>
+</property>
+<property name="Expression">
+<value>1 / 2 * cytosol.Value * (2 * kf8.Value * pow(x10.NumberConc, 2) - 2 * kr8.Value * x13.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x10</value>
+<value>Variable:/cytosol:x10</value>
+<value>-2</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/cytosol:x13</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf8</value>
+<value>Variable:/SBMLParameter:kf8</value>
+<value>0</value>
+</value>
+<value>
+<value>kr8</value>
+<value>Variable:/SBMLParameter:kr8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R24">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK STAT3Cast complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf11.Value * x10.NumberConc * x17.NumberConc - kr11.Value * x18.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x17</value>
+<value>Variable:/cytosol:x17</value>
+<value>-1</value>
+</value>
+<value>
+<value>x10</value>
+<value>Variable:/cytosol:x10</value>
+<value>-1</value>
+</value>
+<value>
+<value>x18</value>
+<value>Variable:/cytosol:x18</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf11</value>
+<value>Variable:/SBMLParameter:kf11</value>
+<value>0</value>
+</value>
+<value>
+<value>kr11</value>
+<value>Variable:/SBMLParameter:kr11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R25">
+<property name="Name">
+<value>PP1-STAT3C dimer complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf11.Value * x13.NumberConc * x17.NumberConc - kr11.Value * x19.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x17</value>
+<value>Variable:/cytosol:x17</value>
+<value>-1</value>
+</value>
+<value>
+<value>x13</value>
+<value>Variable:/cytosol:x13</value>
+<value>-1</value>
+</value>
+<value>
+<value>x19</value>
+<value>Variable:/cytosol:x19</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf11</value>
+<value>Variable:/SBMLParameter:kf11</value>
+<value>0</value>
+</value>
+<value>
+<value>kr11</value>
+<value>Variable:/SBMLParameter:kr11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R26">
+<property name="Name">
+<value>STAT3C dimer phosphorylation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k14.Value * x13.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x13</value>
+<value>Variable:/cytosol:x13</value>
+<value>-1</value>
+</value>
+<value>
+<value>x20</value>
+<value>Variable:/cytosol/nucleus:x20</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R27">
+<property name="Name">
+<value>PP1-STAT3C dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k12.Value * x19.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x19</value>
+<value>Variable:/cytosol:x19</value>
+<value>-1</value>
+</value>
+<value>
+<value>x17</value>
+<value>Variable:/cytosol:x17</value>
+<value>1</value>
+</value>
+<value>
+<value>x14</value>
+<value>Variable:/cytosol:x14</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R28">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf9.Value * x15.NumberConc * x31.NumberConc - kr9.Value * x32.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x31</value>
+<value>Variable:/cytosol:x31</value>
+<value>-1</value>
+</value>
+<value>
+<value>x15</value>
+<value>Variable:/cytosol:x15</value>
+<value>-1</value>
+</value>
+<value>
+<value>x32</value>
+<value>Variable:/cytosol:x32</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf9</value>
+<value>Variable:/SBMLParameter:kf9</value>
+<value>0</value>
+</value>
+<value>
+<value>kr9</value>
+<value>Variable:/SBMLParameter:kr9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R29">
+<property name="Name">
+<value>SHP2 dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * Vm.Value * x46.NumberConc / (Km.Value + x46.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x46</value>
+<value>Variable:/cytosol:x46</value>
+<value>-1</value>
+</value>
+<value>
+<value>x15</value>
+<value>Variable:/cytosol:x15</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Vm</value>
+<value>Variable:/SBMLParameter:Vm</value>
+<value>0</value>
+</value>
+<value>
+<value>Km</value>
+<value>Variable:/SBMLParameter:Km</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R30">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK-SHP2 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf34.Value * x16.NumberConc - kr34.Value * x39.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x16</value>
+<value>Variable:/cytosol:x16</value>
+<value>-1</value>
+</value>
+<value>
+<value>x39</value>
+<value>Variable:/cytosol:x39</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf34</value>
+<value>Variable:/SBMLParameter:kf34</value>
+<value>0</value>
+</value>
+<value>
+<value>kr34</value>
+<value>Variable:/SBMLParameter:kr34</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R31">
+<property name="Name">
+<value>STAT3N dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (kr8.Value * x20.NumberConc - kf8.Value * pow(x21.NumberConc, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x20</value>
+<value>Variable:/cytosol/nucleus:x20</value>
+<value>-1</value>
+</value>
+<value>
+<value>x21</value>
+<value>Variable:/cytosol/nucleus:x21</value>
+<value>2</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr8</value>
+<value>Variable:/SBMLParameter:kr8</value>
+<value>0</value>
+</value>
+<value>
+<value>kf8</value>
+<value>Variable:/SBMLParameter:kf8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R32">
+<property name="Name">
+<value>PP2-STAT3N dimer complex formation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (kf15.Value * x23.NumberConc * x20.NumberConc - kr15.Value * x27.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x23</value>
+<value>Variable:/cytosol/nucleus:x23</value>
+<value>-1</value>
+</value>
+<value>
+<value>x20</value>
+<value>Variable:/cytosol/nucleus:x20</value>
+<value>-1</value>
+</value>
+<value>
+<value>x27</value>
+<value>Variable:/cytosol/nucleus:x27</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf15</value>
+<value>Variable:/SBMLParameter:kf15</value>
+<value>0</value>
+</value>
+<value>
+<value>kr15</value>
+<value>Variable:/SBMLParameter:kr15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R33">
+<property name="Name">
+<value>PP2-STAT3N complex formation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (kf15.Value * x23.NumberConc * x21.NumberConc - kr15.Value * x28.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x23</value>
+<value>Variable:/cytosol/nucleus:x23</value>
+<value>-1</value>
+</value>
+<value>
+<value>x21</value>
+<value>Variable:/cytosol/nucleus:x21</value>
+<value>-1</value>
+</value>
+<value>
+<value>x28</value>
+<value>Variable:/cytosol/nucleus:x28</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf15</value>
+<value>Variable:/SBMLParameter:kf15</value>
+<value>0</value>
+</value>
+<value>
+<value>kr15</value>
+<value>Variable:/SBMLParameter:kr15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R34">
+<property name="Name">
+<value>STAT3N dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (kr13.Value * x24.NumberConc - kf13.Value * x21.NumberConc * x22.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x24</value>
+<value>Variable:/cytosol/nucleus:x24</value>
+<value>-1</value>
+</value>
+<value>
+<value>x22</value>
+<value>Variable:/cytosol/nucleus:x22</value>
+<value>1</value>
+</value>
+<value>
+<value>x21</value>
+<value>Variable:/cytosol/nucleus:x21</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr13</value>
+<value>Variable:/SBMLParameter:kr13</value>
+<value>0</value>
+</value>
+<value>
+<value>kf13</value>
+<value>Variable:/SBMLParameter:kf13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R35">
+<property name="Name">
+<value>PP2-STAT3N dissociation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k16.Value * x28.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x28</value>
+<value>Variable:/cytosol/nucleus:x28</value>
+<value>-1</value>
+</value>
+<value>
+<value>x23</value>
+<value>Variable:/cytosol/nucleus:x23</value>
+<value>1</value>
+</value>
+<value>
+<value>x22</value>
+<value>Variable:/cytosol/nucleus:x22</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R36">
+<property name="Name">
+<value>PP2-STAT3N dimer dissociation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k16.Value * x27.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x27</value>
+<value>Variable:/cytosol/nucleus:x27</value>
+<value>-1</value>
+</value>
+<value>
+<value>x24</value>
+<value>Variable:/cytosol/nucleus:x24</value>
+<value>1</value>
+</value>
+<value>
+<value>x23</value>
+<value>Variable:/cytosol/nucleus:x23</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R37">
+<property name="Name">
+<value>SOCS3N transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (k18a.Value * x20.NumberConc / (k18b.Value + x20.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x25</value>
+<value>Variable:/cytosol/nucleus:x25</value>
+<value>1</value>
+</value>
+<value>
+<value>x20</value>
+<value>Variable:/cytosol/nucleus:x20</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k18a</value>
+<value>Variable:/SBMLParameter:k18a</value>
+<value>0</value>
+</value>
+<value>
+<value>k18b</value>
+<value>Variable:/SBMLParameter:k18b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R38">
+<property name="Name">
+<value>SOCS3 mRNA translocation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k19.Value * x25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x25</value>
+<value>Variable:/cytosol/nucleus:x25</value>
+<value>-1</value>
+</value>
+<value>
+<value>x26</value>
+<value>Variable:/cytosol/nucleus:x26</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R39">
+<property name="Name">
+<value>SOCS3 mRNA degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k22.Value * x26.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x26</value>
+<value>Variable:/cytosol/nucleus:x26</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k22</value>
+<value>Variable:/SBMLParameter:k22</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R40">
+<property name="Name">
+<value>SOCS3 translation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * k20.Value * x26.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x29</value>
+<value>Variable:/cytosol:x29</value>
+<value>1</value>
+</value>
+<value>
+<value>x26</value>
+<value>Variable:/cytosol/nucleus:x26</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytosol/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k20</value>
+<value>Variable:/SBMLParameter:k20</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R41">
+<property name="Name">
+<value>SOCS3 degradation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k23.Value * x29.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x29</value>
+<value>Variable:/cytosol:x29</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k23</value>
+<value>Variable:/SBMLParameter:k23</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R42">
+<property name="Name">
+<value>Complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k23.Value * x32.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x32</value>
+<value>Variable:/cytosol:x32</value>
+<value>-1</value>
+</value>
+<value>
+<value>x33</value>
+<value>Variable:/cytosol:x33</value>
+<value>1</value>
+</value>
+<value>
+<value>x29</value>
+<value>Variable:/cytosol:x29</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k23</value>
+<value>Variable:/SBMLParameter:k23</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R43">
+<property name="Name">
+<value>SHP2-Grb2 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf38.Value * x34.NumberConc * x46.NumberConc - kr38.Value * x45.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x46</value>
+<value>Variable:/cytosol:x46</value>
+<value>-1</value>
+</value>
+<value>
+<value>x34</value>
+<value>Variable:/cytosol:x34</value>
+<value>-1</value>
+</value>
+<value>
+<value>x45</value>
+<value>Variable:/cytosol:x45</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf38</value>
+<value>Variable:/SBMLParameter:kf38</value>
+<value>0</value>
+</value>
+<value>
+<value>kr38</value>
+<value>Variable:/SBMLParameter:kr38</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R44">
+<property name="Name">
+<value>Grb2-SOS dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf35.Value * x38.NumberConc - kr35.Value * x34.NumberConc * x35.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x38</value>
+<value>Variable:/cytosol:x38</value>
+<value>-1</value>
+</value>
+<value>
+<value>x35</value>
+<value>Variable:/cytosol:x35</value>
+<value>1</value>
+</value>
+<value>
+<value>x34</value>
+<value>Variable:/cytosol:x34</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf35</value>
+<value>Variable:/SBMLParameter:kf35</value>
+<value>0</value>
+</value>
+<value>
+<value>kr35</value>
+<value>Variable:/SBMLParameter:kr35</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R45">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf24.Value * x39.NumberConc * x34.NumberConc - kr24.Value * x40.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x39</value>
+<value>Variable:/cytosol:x39</value>
+<value>-1</value>
+</value>
+<value>
+<value>x34</value>
+<value>Variable:/cytosol:x34</value>
+<value>-1</value>
+</value>
+<value>
+<value>x40</value>
+<value>Variable:/cytosol:x40</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf24</value>
+<value>Variable:/SBMLParameter:kf24</value>
+<value>0</value>
+</value>
+<value>
+<value>kr24</value>
+<value>Variable:/SBMLParameter:kr24</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R46">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf25.Value * x35.NumberConc * x40.NumberConc - kr25.Value * x41.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x40</value>
+<value>Variable:/cytosol:x40</value>
+<value>-1</value>
+</value>
+<value>
+<value>x35</value>
+<value>Variable:/cytosol:x35</value>
+<value>-1</value>
+</value>
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf25</value>
+<value>Variable:/SBMLParameter:kf25</value>
+<value>0</value>
+</value>
+<value>
+<value>kr25</value>
+<value>Variable:/SBMLParameter:kr25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R47">
+<property name="Name">
+<value>SHP2Grb2-SOS complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf40.Value * x35.NumberConc * x45.NumberConc - kr40.Value * x44.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x45</value>
+<value>Variable:/cytosol:x45</value>
+<value>-1</value>
+</value>
+<value>
+<value>x35</value>
+<value>Variable:/cytosol:x35</value>
+<value>-1</value>
+</value>
+<value>
+<value>x44</value>
+<value>Variable:/cytosol:x44</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf40</value>
+<value>Variable:/SBMLParameter:kf40</value>
+<value>0</value>
+</value>
+<value>
+<value>kr40</value>
+<value>Variable:/SBMLParameter:kr40</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R48">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf26.Value * x36.NumberConc * x41.NumberConc - kr26.Value * x42.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>-1</value>
+</value>
+<value>
+<value>x36</value>
+<value>Variable:/cytosol:x36</value>
+<value>-1</value>
+</value>
+<value>
+<value>x42</value>
+<value>Variable:/cytosol:x42</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf26</value>
+<value>Variable:/SBMLParameter:kf26</value>
+<value>0</value>
+</value>
+<value>
+<value>kr26</value>
+<value>Variable:/SBMLParameter:kr26</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R49">
+<property name="Name">
+<value>Complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf31.Value * x43.NumberConc - kr31.Value * x36.NumberConc * x41.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x43</value>
+<value>Variable:/cytosol:x43</value>
+<value>-1</value>
+</value>
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>1</value>
+</value>
+<value>
+<value>x36</value>
+<value>Variable:/cytosol:x36</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf31</value>
+<value>Variable:/SBMLParameter:kf31</value>
+<value>0</value>
+</value>
+<value>
+<value>kr31</value>
+<value>Variable:/SBMLParameter:kr31</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R50">
+<property name="Name">
+<value>Complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf27.Value * x42.NumberConc - kr27.Value * x37.NumberConc * x41.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x42</value>
+<value>Variable:/cytosol:x42</value>
+<value>-1</value>
+</value>
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>1</value>
+</value>
+<value>
+<value>x37</value>
+<value>Variable:/cytosol:x37</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf27</value>
+<value>Variable:/SBMLParameter:kf27</value>
+<value>0</value>
+</value>
+<value>
+<value>kr27</value>
+<value>Variable:/SBMLParameter:kr27</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R51">
+<property name="Name">
+<value>Ras-GTP-Raf complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf28.Value * x37.NumberConc * x47.NumberConc - kr28.Value * x48.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x47</value>
+<value>Variable:/cytosol:x47</value>
+<value>-1</value>
+</value>
+<value>
+<value>x37</value>
+<value>Variable:/cytosol:x37</value>
+<value>-1</value>
+</value>
+<value>
+<value>x48</value>
+<value>Variable:/cytosol:x48</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf28</value>
+<value>Variable:/SBMLParameter:kf28</value>
+<value>0</value>
+</value>
+<value>
+<value>kr28</value>
+<value>Variable:/SBMLParameter:kr28</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R52">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf41.Value * x38.NumberConc * x39.NumberConc - kr41.Value * x41.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x39</value>
+<value>Variable:/cytosol:x39</value>
+<value>-1</value>
+</value>
+<value>
+<value>x38</value>
+<value>Variable:/cytosol:x38</value>
+<value>-1</value>
+</value>
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf41</value>
+<value>Variable:/SBMLParameter:kf41</value>
+<value>0</value>
+</value>
+<value>
+<value>kr41</value>
+<value>Variable:/SBMLParameter:kr41</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R53">
+<property name="Name">
+<value>SHP2-Grb2-SOS dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf33.Value * x44.NumberConc - kr33.Value * x38.NumberConc * x46.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x44</value>
+<value>Variable:/cytosol:x44</value>
+<value>-1</value>
+</value>
+<value>
+<value>x46</value>
+<value>Variable:/cytosol:x46</value>
+<value>1</value>
+</value>
+<value>
+<value>x38</value>
+<value>Variable:/cytosol:x38</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf33</value>
+<value>Variable:/SBMLParameter:kf33</value>
+<value>0</value>
+</value>
+<value>
+<value>kr33</value>
+<value>Variable:/SBMLParameter:kr33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R54">
+<property name="Name">
+<value>Complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf30.Value * x49.NumberConc * x41.NumberConc - kr30.Value * x43.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x49</value>
+<value>Variable:/cytosol:x49</value>
+<value>-1</value>
+</value>
+<value>
+<value>x41</value>
+<value>Variable:/cytosol:x41</value>
+<value>-1</value>
+</value>
+<value>
+<value>x43</value>
+<value>Variable:/cytosol:x43</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf30</value>
+<value>Variable:/SBMLParameter:kf30</value>
+<value>0</value>
+</value>
+<value>
+<value>kr30</value>
+<value>Variable:/SBMLParameter:kr30</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R55">
+<property name="Name">
+<value>Raf-Phosp1 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k43.Value * x52.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x52</value>
+<value>Variable:/cytosol:x52</value>
+<value>-1</value>
+</value>
+<value>
+<value>x47</value>
+<value>Variable:/cytosol:x47</value>
+<value>1</value>
+</value>
+<value>
+<value>x50</value>
+<value>Variable:/cytosol:x50</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k43</value>
+<value>Variable:/SBMLParameter:k43</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R56">
+<property name="Name">
+<value>Raf-Ras-GTP dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf29.Value * x48.NumberConc - kr29.Value * x49.NumberConc * x51.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x48</value>
+<value>Variable:/cytosol:x48</value>
+<value>-1</value>
+</value>
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>1</value>
+</value>
+<value>
+<value>x49</value>
+<value>Variable:/cytosol:x49</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf29</value>
+<value>Variable:/SBMLParameter:kf29</value>
+<value>0</value>
+</value>
+<value>
+<value>kr29</value>
+<value>Variable:/SBMLParameter:kr29</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R57">
+<property name="Name">
+<value>Raf-Phosp1 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf42.Value * x50.NumberConc * x51.NumberConc - kr42.Value * x52.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>-1</value>
+</value>
+<value>
+<value>x50</value>
+<value>Variable:/cytosol:x50</value>
+<value>-1</value>
+</value>
+<value>
+<value>x52</value>
+<value>Variable:/cytosol:x52</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf42</value>
+<value>Variable:/SBMLParameter:kf42</value>
+<value>0</value>
+</value>
+<value>
+<value>kr42</value>
+<value>Variable:/SBMLParameter:kr42</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R58">
+<property name="Name">
+<value>MEK-Raf complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf44.Value * x51.NumberConc * x53.NumberConc - kr44.Value * x54.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x53</value>
+<value>Variable:/cytosol:x53</value>
+<value>-1</value>
+</value>
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>-1</value>
+</value>
+<value>
+<value>x54</value>
+<value>Variable:/cytosol:x54</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf44</value>
+<value>Variable:/SBMLParameter:kf44</value>
+<value>0</value>
+</value>
+<value>
+<value>kr44</value>
+<value>Variable:/SBMLParameter:kr44</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R59">
+<property name="Name">
+<value>MEK-Raf complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k45.Value * x54.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x54</value>
+<value>Variable:/cytosol:x54</value>
+<value>-1</value>
+</value>
+<value>
+<value>x55</value>
+<value>Variable:/cytosol:x55</value>
+<value>1</value>
+</value>
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k45</value>
+<value>Variable:/SBMLParameter:k45</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R60">
+<property name="Name">
+<value>MEK-P-Raf complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf46.Value * x55.NumberConc * x51.NumberConc - kr46.Value * x56.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x55</value>
+<value>Variable:/cytosol:x55</value>
+<value>-1</value>
+</value>
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>-1</value>
+</value>
+<value>
+<value>x56</value>
+<value>Variable:/cytosol:x56</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf46</value>
+<value>Variable:/SBMLParameter:kf46</value>
+<value>0</value>
+</value>
+<value>
+<value>kr46</value>
+<value>Variable:/SBMLParameter:kr46</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R61">
+<property name="Name">
+<value>MEK-P-Phosp2 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k51.Value * x60.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x60</value>
+<value>Variable:/cytosol:x60</value>
+<value>-1</value>
+</value>
+<value>
+<value>x59</value>
+<value>Variable:/cytosol:x59</value>
+<value>1</value>
+</value>
+<value>
+<value>x53</value>
+<value>Variable:/cytosol:x53</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k51</value>
+<value>Variable:/SBMLParameter:k51</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R62">
+<property name="Name">
+<value>MEK-PP-Phosp2 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k49.Value * x58.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x58</value>
+<value>Variable:/cytosol:x58</value>
+<value>-1</value>
+</value>
+<value>
+<value>x59</value>
+<value>Variable:/cytosol:x59</value>
+<value>1</value>
+</value>
+<value>
+<value>x55</value>
+<value>Variable:/cytosol:x55</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k49</value>
+<value>Variable:/SBMLParameter:k49</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R63">
+<property name="Name">
+<value>MEK-P-Phosp2 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf50.Value * x55.NumberConc * x59.NumberConc - kr50.Value * x60.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x59</value>
+<value>Variable:/cytosol:x59</value>
+<value>-1</value>
+</value>
+<value>
+<value>x55</value>
+<value>Variable:/cytosol:x55</value>
+<value>-1</value>
+</value>
+<value>
+<value>x60</value>
+<value>Variable:/cytosol:x60</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf50</value>
+<value>Variable:/SBMLParameter:kf50</value>
+<value>0</value>
+</value>
+<value>
+<value>kr50</value>
+<value>Variable:/SBMLParameter:kr50</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R64">
+<property name="Name">
+<value>MEK-P-Raf complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k47.Value * x56.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x56</value>
+<value>Variable:/cytosol:x56</value>
+<value>-1</value>
+</value>
+<value>
+<value>x51</value>
+<value>Variable:/cytosol:x51</value>
+<value>1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k47</value>
+<value>Variable:/SBMLParameter:k47</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R65">
+<property name="Name">
+<value>MEK-PP-Phosp2 complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf48.Value * x57.NumberConc * x59.NumberConc - kr48.Value * x58.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x59</value>
+<value>Variable:/cytosol:x59</value>
+<value>-1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>-1</value>
+</value>
+<value>
+<value>x58</value>
+<value>Variable:/cytosol:x58</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf48</value>
+<value>Variable:/SBMLParameter:kf48</value>
+<value>0</value>
+</value>
+<value>
+<value>kr48</value>
+<value>Variable:/SBMLParameter:kr48</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R66">
+<property name="Name">
+<value>ERK-MEK-PP complex formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf52.Value * x57.NumberConc * x61.NumberConc - kr52.Value * x62.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x61</value>
+<value>Variable:/cytosol:x61</value>
+<value>-1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>-1</value>
+</value>
+<value>
+<value>x62</value>
+<value>Variable:/cytosol:x62</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf52</value>
+<value>Variable:/SBMLParameter:kf52</value>
+<value>0</value>
+</value>
+<value>
+<value>kr52</value>
+<value>Variable:/SBMLParameter:kr52</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R67">
+<property name="Name">
+<value>ERK-MEK-PP complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k53.Value * x62.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x62</value>
+<value>Variable:/cytosol:x62</value>
+<value>-1</value>
+</value>
+<value>
+<value>x63</value>
+<value>Variable:/cytosol:x63</value>
+<value>1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k53</value>
+<value>Variable:/SBMLParameter:k53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R68">
+<property name="Name">
+<value>ERK-P-MEK-PP complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kr54.Value * x64.NumberConc - kf54.Value * x57.NumberConc * x63.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x64</value>
+<value>Variable:/cytosol:x64</value>
+<value>-1</value>
+</value>
+<value>
+<value>x63</value>
+<value>Variable:/cytosol:x63</value>
+<value>1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kr54</value>
+<value>Variable:/SBMLParameter:kr54</value>
+<value>0</value>
+</value>
+<value>
+<value>kf54</value>
+<value>Variable:/SBMLParameter:kf54</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R69">
+<property name="Name">
+<value>ERK-PP formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k55.Value * x64.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x64</value>
+<value>Variable:/cytosol:x64</value>
+<value>-1</value>
+</value>
+<value>
+<value>x65</value>
+<value>Variable:/cytosol:x65</value>
+<value>1</value>
+</value>
+<value>
+<value>x57</value>
+<value>Variable:/cytosol:x57</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k55</value>
+<value>Variable:/SBMLParameter:k55</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R70">
+<property name="Name">
+<value>ERK-P-Phosp3 complex dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k59.Value * x68.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x68</value>
+<value>Variable:/cytosol:x68</value>
+<value>-1</value>
+</value>
+<value>
+<value>x66</value>
+<value>Variable:/cytosol:x66</value>
+<value>1</value>
+</value>
+<value>
+<value>x61</value>
+<value>Variable:/cytosol:x61</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k59</value>
+<value>Variable:/SBMLParameter:k59</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R71">
+<property name="Name">
+<value>ERK-PP-Phosp3 dissociation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * k57.Value * x67.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x67</value>
+<value>Variable:/cytosol:x67</value>
+<value>-1</value>
+</value>
+<value>
+<value>x66</value>
+<value>Variable:/cytosol:x66</value>
+<value>1</value>
+</value>
+<value>
+<value>x63</value>
+<value>Variable:/cytosol:x63</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k57</value>
+<value>Variable:/SBMLParameter:k57</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R72">
+<property name="Name">
+<value>ERK-P-Phosp3 formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf58.Value * x63.NumberConc * x66.NumberConc - kr58.Value * x68.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x66</value>
+<value>Variable:/cytosol:x66</value>
+<value>-1</value>
+</value>
+<value>
+<value>x63</value>
+<value>Variable:/cytosol:x63</value>
+<value>-1</value>
+</value>
+<value>
+<value>x68</value>
+<value>Variable:/cytosol:x68</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf58</value>
+<value>Variable:/SBMLParameter:kf58</value>
+<value>0</value>
+</value>
+<value>
+<value>kr58</value>
+<value>Variable:/SBMLParameter:kr58</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R73">
+<property name="Name">
+<value>ERK-PP-Phosp3 formation</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (kf56.Value * x65.NumberConc * x66.NumberConc - kr56.Value * x67.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x66</value>
+<value>Variable:/cytosol:x66</value>
+<value>-1</value>
+</value>
+<value>
+<value>x65</value>
+<value>Variable:/cytosol:x65</value>
+<value>-1</value>
+</value>
+<value>
+<value>x67</value>
+<value>Variable:/cytosol:x67</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf56</value>
+<value>Variable:/SBMLParameter:kf56</value>
+<value>0</value>
+</value>
+<value>
+<value>kr56</value>
+<value>Variable:/SBMLParameter:kr56</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x1">
+<property name="Name">
+<value>gp80</value>
+</property>
+<property name="NumberConc">
+<value>8.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x2">
+<property name="Name">
+<value>IL6-gp80</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x6">
+<property name="Name">
+<value>IL6-gp80-gp130-JAK</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x5">
+<property name="Name">
+<value>gp130-JAK</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x7">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x8">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)_ast2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x16">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-JAK</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x15">
+<property name="Name">
+<value>SHP2</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x9">
+<property name="Name">
+<value>STAT3C</value>
+</property>
+<property name="NumberConc">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x11">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-STAT3C</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x10">
+<property name="Name">
+<value>STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x12">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x29">
+<property name="Name">
+<value>SOCS3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x30">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SOCS3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x39">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SHP2ast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x46">
+<property name="Name">
+<value>SHP2ast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x40">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SHP2ast-Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x45">
+<property name="Name">
+<value>SHP2ast-Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x41">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SHP2-Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x44">
+<property name="Name">
+<value>SHP2ast-Grb2-SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x18">
+<property name="Name">
+<value>PP1-STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x17">
+<property name="Name">
+<value>PP1</value>
+</property>
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x14">
+<property name="Name">
+<value>STAT3C-STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x32">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-STAT3C-SOCS3-SHP2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x13">
+<property name="Name">
+<value>STAT3Cast-STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x34">
+<property name="Name">
+<value>Grb2</value>
+</property>
+<property name="NumberConc">
+<value>85.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x36">
+<property name="Name">
+<value>Ras-GDP</value>
+</property>
+<property name="NumberConc">
+<value>19000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x42">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SHP2ast-Grb2-SOS-Ras-GDP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x37">
+<property name="Name">
+<value>Ras-GTP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x47">
+<property name="Name">
+<value>Raf</value>
+</property>
+<property name="NumberConc">
+<value>67.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x48">
+<property name="Name">
+<value>Raf-Ras-GTP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x52">
+<property name="Name">
+<value>Rafast-Phosp1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x51">
+<property name="Name">
+<value>Rafast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x50">
+<property name="Name">
+<value>Phosp1</value>
+</property>
+<property name="NumberConc">
+<value>67.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x53">
+<property name="Name">
+<value>MEK</value>
+</property>
+<property name="NumberConc">
+<value>41667.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x54">
+<property name="Name">
+<value>MEK-Rafast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x55">
+<property name="Name">
+<value>MEK-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x60">
+<property name="Name">
+<value>MEK-P-Phosp2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x59">
+<property name="Name">
+<value>Phosp2</value>
+</property>
+<property name="NumberConc">
+<value>67.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x57">
+<property name="Name">
+<value>MEK-PP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x61">
+<property name="Name">
+<value>ERK</value>
+</property>
+<property name="NumberConc">
+<value>35000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x62">
+<property name="Name">
+<value>ERK-MEK-PP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x63">
+<property name="Name">
+<value>ERK-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x65">
+<property name="Name">
+<value>ERK-PP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x68">
+<property name="Name">
+<value>ERK-P-Phosp3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x35">
+<property name="Name">
+<value>SOS</value>
+</property>
+<property name="NumberConc">
+<value>34.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x31">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-STAT3C-SOCS3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x56">
+<property name="Name">
+<value>MEK-P-Rafast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x43">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-SHP2ast-Grb2-SOS-Ras-GTP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x3">
+<property name="Name">
+<value>gp130</value>
+</property>
+<property name="NumberConc">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x58">
+<property name="Name">
+<value>MEK-PP-Phosp2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x4">
+<property name="Name">
+<value>JAK</value>
+</property>
+<property name="NumberConc">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x49">
+<property name="Name">
+<value>Ras-GTPast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x33">
+<property name="Name">
+<value>(IL6-gp80-gp130-JAK)ast2-STAT3C-SHP2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x64">
+<property name="Name">
+<value>ERK-P-MEK-PP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x19">
+<property name="Name">
+<value>PP1-STAT3Cast-STAT3Cast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x38">
+<property name="Name">
+<value>Grb2-SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x66">
+<property name="Name">
+<value>Phosp3</value>
+</property>
+<property name="NumberConc">
+<value>16667.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x67">
+<property name="Name">
+<value>ERK-PP-Phosp3</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol/nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x22">
+<property name="Name">
+<value>STAT3N</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x20">
+<property name="Name">
+<value>STAT3Nast-STAT3Nast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x21">
+<property name="Name">
+<value>STAT3Nast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x23">
+<property name="Name">
+<value>PP2</value>
+</property>
+<property name="NumberConc">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x27">
+<property name="Name">
+<value>PP2-STAT3Nast-STAT3Nast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x24">
+<property name="Name">
+<value>STAT3N-STAT3Nast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x25">
+<property name="Name">
+<value>Mrna-SOCS3N</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x28">
+<property name="Name">
+<value>PP2-STAT3Nast</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x26">
+<property name="Name">
+<value>Mrna-SOCS3C</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="IL6">
+<property name="Value">
+<value>0.38</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf0">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr0">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf1">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr1">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf2">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr2">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf3">
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr3">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf5">
+<property name="Value">
+<value>0.008</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr5">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf7">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr7">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf9">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr9">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf21">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr21">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf37">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr37">
+<property name="Value">
+<value>0.0009</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf39">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr39">
+<property name="Value">
+<value>0.0009</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf32">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr32">
+<property name="Value">
+<value>0.000245</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf13">
+<property name="Value">
+<value>2e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr13">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf8">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr8">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf11">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr11">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vm">
+<property name="Value">
+<value>1.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km">
+<property name="Value">
+<value>340.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf34">
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr34">
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf60">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr60">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf15">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr15">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf61">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr61">
+<property name="Value">
+<value>2e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18a">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18b">
+<property name="Value">
+<value>400.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k22">
+<property name="Value">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k20">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k23">
+<property name="Value">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf38">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr38">
+<property name="Value">
+<value>0.55</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf35">
+<property name="Value">
+<value>0.0015</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr35">
+<property name="Value">
+<value>0.0045</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf24">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr24">
+<property name="Value">
+<value>0.55</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf25">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr25">
+<property name="Value">
+<value>0.0214</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf40">
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr40">
+<property name="Value">
+<value>0.064</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf26">
+<property name="Value">
+<value>0.015</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr26">
+<property name="Value">
+<value>1.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf31">
+<property name="Value">
+<value>0.023</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr31">
+<property name="Value">
+<value>0.00022</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf27">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr27">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf28">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr28">
+<property name="Value">
+<value>0.0053</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf41">
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr41">
+<property name="Value">
+<value>0.0429</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf33">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr33">
+<property name="Value">
+<value>0.021</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf30">
+<property name="Value">
+<value>0.0079</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr30">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k43">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf29">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr29">
+<property name="Value">
+<value>0.0007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf42">
+<property name="Value">
+<value>0.0717</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr42">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf44">
+<property name="Value">
+<value>0.011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr44">
+<property name="Value">
+<value>0.001833</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k45">
+<property name="Value">
+<value>3.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf46">
+<property name="Value">
+<value>0.011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr46">
+<property name="Value">
+<value>0.001833</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k51">
+<property name="Value">
+<value>0.058</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k49">
+<property name="Value">
+<value>0.058</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf50">
+<property name="Value">
+<value>0.00025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr50">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k47">
+<property name="Value">
+<value>2.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf48">
+<property name="Value">
+<value>0.0143</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr48">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf52">
+<property name="Value">
+<value>0.00011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr52">
+<property name="Value">
+<value>0.033</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k53">
+<property name="Value">
+<value>16.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr54">
+<property name="Value">
+<value>0.033</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf54">
+<property name="Value">
+<value>0.00011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k55">
+<property name="Value">
+<value>6.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k59">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k57">
+<property name="Value">
+<value>0.27</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf58">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr58">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf56">
+<property name="Value">
+<value>0.014</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kr56">
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

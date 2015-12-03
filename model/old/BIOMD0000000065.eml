@@ -1,0 +1,876 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="r_m1">
+<property name="Name">
+<value>Basal_mRNA_Synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * gamma_0.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_0</value>
+<value>Variable:/SBMLParameter:gamma_0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_m2">
+<property name="Name">
+<value>mRNA_Degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * M.NumberConc * (gamma_M.Value + mu.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_M</value>
+<value>Variable:/SBMLParameter:gamma_M</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_m3_i1">
+<property name="Name">
+<value>allolactose_controlled_mRNA_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * I1.NumberConc / tau_M.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I1</value>
+<value>Variable:/cell:I1</value>
+<value>-1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_M</value>
+<value>Variable:/SBMLParameter:tau_M</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_i1">
+<property name="Name">
+<value>allolactose_controlled_partial_mRNA_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * alpha_M.Value * ((K_1.Value * exp(mu.Value * tau_M.Value * -2) * pow(A.NumberConc, 2) + 1) / (K.Value + K_1.Value * exp(-2 * mu.Value * tau_M.Value) * pow(A.NumberConc, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I1</value>
+<value>Variable:/cell:I1</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_M</value>
+<value>Variable:/SBMLParameter:alpha_M</value>
+<value>0</value>
+</value>
+<value>
+<value>K_1</value>
+<value>Variable:/SBMLParameter:K_1</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_M</value>
+<value>Variable:/SBMLParameter:tau_M</value>
+<value>0</value>
+</value>
+<value>
+<value>K</value>
+<value>Variable:/SBMLParameter:K</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_b1">
+<property name="Name">
+<value>Beta_galactosidase_Degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * B.NumberConc * (gamma_B.Value + mu.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_B</value>
+<value>Variable:/SBMLParameter:gamma_B</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_b2_i2">
+<property name="Name">
+<value>Beta_galactosidase_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * I2.NumberConc / tau_B.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I2</value>
+<value>Variable:/cell:I2</value>
+<value>-1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_B</value>
+<value>Variable:/SBMLParameter:tau_B</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_i2">
+<property name="Name">
+<value>Partial_Beta_galactosidase_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * alpha_B.Value * M.NumberConc * exp(-(mu.Value * tau_B.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I2</value>
+<value>Variable:/cell:I2</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_B</value>
+<value>Variable:/SBMLParameter:alpha_B</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_B</value>
+<value>Variable:/SBMLParameter:tau_B</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_a1">
+<property name="Name">
+<value>Basal_Allolactose_Degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * A.NumberConc * (gamma_A.Value + mu.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_A</value>
+<value>Variable:/SBMLParameter:gamma_A</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_a2">
+<property name="Name">
+<value>Betagalactosidase_mediated_Allolactose_Degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * beta_A.Value * B.NumberConc * (A.NumberConc / (K_A.Value + A.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_A</value>
+<value>Variable:/SBMLParameter:beta_A</value>
+<value>0</value>
+</value>
+<value>
+<value>K_A</value>
+<value>Variable:/SBMLParameter:K_A</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_a3_l1">
+<property name="Name">
+<value>Beta_galactosidase_reaction</value>
+</property>
+<property name="Expression">
+<value>cell.Value * alpha_A.Value * B.NumberConc * (L.NumberConc / (K_L.Value + L.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/cell:B</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_A</value>
+<value>Variable:/SBMLParameter:alpha_A</value>
+<value>0</value>
+</value>
+<value>
+<value>K_L</value>
+<value>Variable:/SBMLParameter:K_L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_l2">
+<property name="Name">
+<value>lactose_degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * L.NumberConc * (gamma_L.Value + mu.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_L</value>
+<value>Variable:/SBMLParameter:gamma_L</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_l3">
+<property name="Name">
+<value>Lactose_transport_out</value>
+</property>
+<property name="Expression">
+<value>cell.Value * beta_L1.Value * P.NumberConc * (L.NumberConc / (K_L1.Value + L.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_L1</value>
+<value>Variable:/SBMLParameter:beta_L1</value>
+<value>0</value>
+</value>
+<value>
+<value>K_L1</value>
+<value>Variable:/SBMLParameter:K_L1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_l4">
+<property name="Name">
+<value>Lactose_transport_in</value>
+</property>
+<property name="Expression">
+<value>cell.Value * alpha_L.Value * P.NumberConc * (L_e.NumberConc / (K_Le.Value + L_e.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>0</value>
+</value>
+<value>
+<value>L_e</value>
+<value>Variable:/cell:L_e</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_L</value>
+<value>Variable:/SBMLParameter:alpha_L</value>
+<value>0</value>
+</value>
+<value>
+<value>K_Le</value>
+<value>Variable:/SBMLParameter:K_Le</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_p1">
+<property name="Name">
+<value>permease_degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * P.NumberConc * (gamma_P.Value + mu.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_P</value>
+<value>Variable:/SBMLParameter:gamma_P</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_p2_i3">
+<property name="Name">
+<value>permease_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * I3.NumberConc / (tau_B.Value + tau_P.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I3</value>
+<value>Variable:/cell:I3</value>
+<value>-1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/cell:P</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_B</value>
+<value>Variable:/SBMLParameter:tau_B</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_P</value>
+<value>Variable:/SBMLParameter:tau_P</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r_i3">
+<property name="Name">
+<value>partial_permease_synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * alpha_P.Value * M.NumberConc * exp(-1 * mu.Value * (tau_B.Value + tau_P.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I3</value>
+<value>Variable:/cell:I3</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/cell:M</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_P</value>
+<value>Variable:/SBMLParameter:alpha_P</value>
+<value>0</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_B</value>
+<value>Variable:/SBMLParameter:tau_B</value>
+<value>0</value>
+</value>
+<value>
+<value>tau_P</value>
+<value>Variable:/SBMLParameter:tau_P</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.000626</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="B">
+<property name="Name">
+<value>Betagalactosidase</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="Name">
+<value>allolactose</value>
+</property>
+<property name="NumberConc">
+<value>0.038</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Name">
+<value>lactose_internal</value>
+</property>
+<property name="NumberConc">
+<value>0.372</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>permease</value>
+</property>
+<property name="NumberConc">
+<value>0.0149</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I1">
+<property name="Name">
+<value>PartialmRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I2">
+<property name="Name">
+<value>PartialBetagalactosidase</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I3">
+<property name="Name">
+<value>PartialPermease</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="L_e">
+<property name="Name">
+<value>External_Lactose</value>
+</property>
+<property name="NumberConc">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="mu">
+<property name="Value">
+<value>0.0226</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_M">
+<property name="Value">
+<value>0.411</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_B">
+<property name="Value">
+<value>0.000833</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_A">
+<property name="Value">
+<value>0.52</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_0">
+<property name="Value">
+<value>7.25e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K">
+<property name="Value">
+<value>7200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_M">
+<property name="Value">
+<value>0.000997</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau_B">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_A">
+<property name="Value">
+<value>17600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_L1">
+<property name="Value">
+<value>1.81</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_B">
+<property name="Value">
+<value>0.0166</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_A">
+<property name="Value">
+<value>1.95</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_A">
+<property name="Value">
+<value>21500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau_M">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_L">
+<property name="Value">
+<value>0.97</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_L">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_P">
+<property name="Value">
+<value>0.65</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_L">
+<property name="Value">
+<value>2880.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_P">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau_P">
+<property name="Value">
+<value>0.83</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_L1">
+<property name="Value">
+<value>2650.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_Le">
+<property name="Value">
+<value>0.26</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_1">
+<property name="Value">
+<value>25200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

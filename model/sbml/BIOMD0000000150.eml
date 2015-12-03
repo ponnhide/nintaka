@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Binding">
+<property name="Name">
+<value>[Cdk2] + [CyclinA] &lt;-&gt; [CDK2cycA];</value>
+</property>
+<property name="kf">
+<value>19000000.0</value>
+</property>
+<property name="kb">
+<value>25.0</value>
+</property>
+<property name="Expression">
+<value>kf * Cdk2.NumberConc * CyclinA.NumberConc * geometry.Value - kb * CDK2cycA.NumberConc * geometry.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdk2</value>
+<value>Variable:/geometry:Cdk2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CyclinA</value>
+<value>Variable:/geometry:CyclinA</value>
+<value>-1</value>
+</value>
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>1</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kf &lt;/ci&gt;#x0A      &lt;ci&gt; Cdk2 &lt;/ci&gt;#x0A      &lt;ci&gt; CyclinA &lt;/ci&gt;#x0A      &lt;ci&gt; geometry &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kb &lt;/ci&gt;#x0A      &lt;ci&gt; CDK2cycA &lt;/ci&gt;#x0A      &lt;ci&gt; geometry &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Activation">
+<property name="Name">
+<value>[CDK2cycA] &lt;-&gt; [CDK2cycA_star_];</value>
+</property>
+<property name="kf">
+<value>0.813</value>
+</property>
+<property name="kb">
+<value>0.557</value>
+</property>
+<property name="Expression">
+<value>kf * CDK2cycA.NumberConc * geometry.Value - kb * CDK2cycA_star_.NumberConc * geometry.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>-1</value>
+</value>
+<value>
+<value>CDK2cycA_star_</value>
+<value>Variable:/geometry:CDK2cycA_star_</value>
+<value>1</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kf &lt;/ci&gt;#x0A      &lt;ci&gt; CDK2cycA &lt;/ci&gt;#x0A      &lt;ci&gt; geometry &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; kb &lt;/ci&gt;#x0A      &lt;ci&gt; CDK2cycA_star_ &lt;/ci&gt;#x0A      &lt;ci&gt; geometry &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/geometry">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CDK2cycA">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CyclinA">
+<property name="NumberConc">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdk2">
+<property name="NumberConc">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CDK2cycA_star_">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="basal_fluorescence">
+<property name="Value">
+<value>1.21210648148</value>
+</property>
+</variable>
+<variable class="Variable" id="total_fluorescence">
+<property name="Value">
+<value>1.21210648148</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_total_fluorescence">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'total_fluorescence'</value>
+</property>
+<property name="Expression">
+<value>CDK2cycA.NumberConc * 599990 * 1.000000e+06 / 43200 + CDK2cycA_star_.NumberConc * 599990 * 1.000000e+06 / 43200 + basal_fluorescence.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; CDK2cycA &lt;/ci&gt;#x0A        &lt;cn&gt; 599990 &lt;/cn&gt;#x0A        &lt;cn type='e-notation'&gt; 1 &lt;sep/&gt; 6 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 43200 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; CDK2cycA_star_ &lt;/ci&gt;#x0A        &lt;cn&gt; 599990 &lt;/cn&gt;#x0A        &lt;cn type='e-notation'&gt; 1 &lt;sep/&gt; 6 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 43200 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; basal_fluorescence &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>total_fluorescence</value>
+<value>Variable:/SBMLParameter:total_fluorescence</value>
+<value>1</value>
+</value>
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>0</value>
+</value>
+<value>
+<value>CDK2cycA_star_</value>
+<value>Variable:/geometry:CDK2cycA_star_</value>
+<value>0</value>
+</value>
+<value>
+<value>basal_fluorescence</value>
+<value>Variable:/SBMLParameter:basal_fluorescence</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

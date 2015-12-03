@@ -1,0 +1,646 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="srci">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="srco">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="srca">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="srcc">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cbp_P_CSK">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CSK_cytoplasm">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PTP">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PTP_pY789">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cbp">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cbp_P">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>[srci] &lt;-&gt; [srco]; { Cbp_P_CSK };</value>
+</property>
+<property name="Expression">
+<value>(k2.Value * ptp_activity.Value * srci.NumberConc - k1.Value * Cbp_P_CSK.NumberConc * srco.NumberConc) * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>srci</value>
+<value>Variable:/:srci</value>
+<value>-1</value>
+</value>
+<value>
+<value>srco</value>
+<value>Variable:/:srco</value>
+<value>1</value>
+</value>
+<value>
+<value>Cbp_P_CSK</value>
+<value>Variable:/:Cbp_P_CSK</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>ptp_activity</value>
+<value>Variable:/SBMLParameter:ptp_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>[srco] &lt;-&gt; [srca];</value>
+</property>
+<property name="Expression">
+<value>(k3.Value * src_activity.Value * srco.NumberConc - p1.Value * srca.NumberConc) * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>srco</value>
+<value>Variable:/:srco</value>
+<value>-1</value>
+</value>
+<value>
+<value>srca</value>
+<value>Variable:/:srca</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>src_activity</value>
+<value>Variable:/SBMLParameter:src_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>[srca] &lt;-&gt; [srcc]; { Cbp_P_CSK };</value>
+</property>
+<property name="Expression">
+<value>(k1.Value * Cbp_P_CSK.NumberConc * srca.NumberConc - k2.Value * ptp_activity.Value * srcc.NumberConc) * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>srca</value>
+<value>Variable:/:srca</value>
+<value>-1</value>
+</value>
+<value>
+<value>srcc</value>
+<value>Variable:/:srcc</value>
+<value>1</value>
+</value>
+<value>
+<value>Cbp_P_CSK</value>
+<value>Variable:/:Cbp_P_CSK</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>ptp_activity</value>
+<value>Variable:/SBMLParameter:ptp_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>[srcc] -&gt; [srci];</value>
+</property>
+<property name="Expression">
+<value>default.Value * k4.Value * p1.Value * srcc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>srcc</value>
+<value>Variable:/:srcc</value>
+<value>-1</value>
+</value>
+<value>
+<value>srci</value>
+<value>Variable:/:srci</value>
+<value>1</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CSK_translocation">
+<property name="Name">
+<value>[CSK_cytoplasm] + [Cbp_P] &lt;-&gt; [Cbp_P_CSK];</value>
+</property>
+<property name="Expression">
+<value>(Cbp_P.NumberConc * kCSKon.Value * CSK_cytoplasm.NumberConc - kCSKoff.Value * Cbp_P_CSK.NumberConc) * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CSK_cytoplasm</value>
+<value>Variable:/:CSK_cytoplasm</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cbp_P</value>
+<value>Variable:/:Cbp_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cbp_P_CSK</value>
+<value>Variable:/:Cbp_P_CSK</value>
+<value>1</value>
+</value>
+<value>
+<value>kCSKon</value>
+<value>Variable:/SBMLParameter:kCSKon</value>
+<value>0</value>
+</value>
+<value>
+<value>kCSKoff</value>
+<value>Variable:/SBMLParameter:kCSKoff</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PTP_phosphorylation">
+<property name="Name">
+<value>[PTP] &lt;-&gt; [PTP_pY789];</value>
+</property>
+<property name="Expression">
+<value>default.Value * ((kPTP.Value * src_activity.Value + p3.Value) * PTP.NumberConc - p2.Value * PTP_pY789.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PTP</value>
+<value>Variable:/:PTP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PTP_pY789</value>
+<value>Variable:/:PTP_pY789</value>
+<value>1</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kPTP</value>
+<value>Variable:/SBMLParameter:kPTP</value>
+<value>0</value>
+</value>
+<value>
+<value>src_activity</value>
+<value>Variable:/SBMLParameter:src_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>p3</value>
+<value>Variable:/SBMLParameter:p3</value>
+<value>0</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Cbp_phosphorylation">
+<property name="Name">
+<value>[Cbp] -&gt; [Cbp_P];</value>
+</property>
+<property name="Expression">
+<value>kCbp.Value * src_activity.Value * Cbp.NumberConc * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cbp</value>
+<value>Variable:/:Cbp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cbp_P</value>
+<value>Variable:/:Cbp_P</value>
+<value>1</value>
+</value>
+<value>
+<value>kCbp</value>
+<value>Variable:/SBMLParameter:kCbp</value>
+<value>0</value>
+</value>
+<value>
+<value>src_activity</value>
+<value>Variable:/SBMLParameter:src_activity</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kPTP">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kCbp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p1">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p3">
+<property name="Value">
+<value>0.035</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="src_background">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PTP_background">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kCSKon">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kCSKoff">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rho_srca">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rho_srco">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rho_srcc">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kser">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="acsk0">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ptp_activity">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="src_activity">
+<property name="Value">
+<value>0.0001</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_src_activity">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'src_activity'</value>
+</property>
+<property name="Expression">
+<value>rho_srco.NumberConc * srco.NumberConc + rho_srca.NumberConc * srca.NumberConc + src_background.NumberConc + rho_srcc.NumberConc * srcc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>src_activity</value>
+<value>Variable:/SBMLParameter:src_activity</value>
+<value>1</value>
+</value>
+<value>
+<value>rho_srco</value>
+<value>Variable:/SBMLParameter:rho_srco</value>
+<value>0</value>
+</value>
+<value>
+<value>srco</value>
+<value>Variable:/:srco</value>
+<value>0</value>
+</value>
+<value>
+<value>rho_srca</value>
+<value>Variable:/SBMLParameter:rho_srca</value>
+<value>0</value>
+</value>
+<value>
+<value>srca</value>
+<value>Variable:/:srca</value>
+<value>0</value>
+</value>
+<value>
+<value>src_background</value>
+<value>Variable:/SBMLParameter:src_background</value>
+<value>0</value>
+</value>
+<value>
+<value>rho_srcc</value>
+<value>Variable:/SBMLParameter:rho_srcc</value>
+<value>0</value>
+</value>
+<value>
+<value>srcc</value>
+<value>Variable:/:srcc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_ptp_activity">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ptp_activity'</value>
+</property>
+<property name="Expression">
+<value>PTP_background.NumberConc + Kser.NumberConc * PTP_pY789.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ptp_activity</value>
+<value>Variable:/SBMLParameter:ptp_activity</value>
+<value>1</value>
+</value>
+<value>
+<value>PTP_background</value>
+<value>Variable:/SBMLParameter:PTP_background</value>
+<value>0</value>
+</value>
+<value>
+<value>Kser</value>
+<value>Variable:/SBMLParameter:Kser</value>
+<value>0</value>
+</value>
+<value>
+<value>PTP_pY789</value>
+<value>Variable:/:PTP_pY789</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

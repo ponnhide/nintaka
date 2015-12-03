@@ -1,0 +1,248 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_0">
+<property name="Name">
+<value>Increase of  P</value>
+</property>
+<property name="a">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>body.Value * a * Q.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/body:P</value>
+<value>1</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/body:Q</value>
+<value>0</value>
+</value>
+<value>
+<value>body</value>
+<value>Variable:/body:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; body &lt;/ci&gt;#x0A    &lt;ci&gt; a &lt;/ci&gt;#x0A    &lt;ci&gt; Q &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>Decrease of P</value>
+</property>
+<property name="V">
+<value>0.1</value>
+</property>
+<property name="Km">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>V * P.NumberConc / (Km + P.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P</value>
+<value>Variable:/body:P</value>
+<value>-1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; P &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; P &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>Increase of Q</value>
+</property>
+<property name="V1">
+<value>1.0</value>
+</property>
+<property name="K1">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>V1 * (1 - Q.NumberConc) / (K1 + (1 - Q.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Q</value>
+<value>Variable:/body:Q</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; Q &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; Q &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>Decrease of Q</value>
+</property>
+<property name="V2">
+<value>1.5</value>
+</property>
+<property name="K2">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>V2 * R.NumberConc * Q.NumberConc / (K2 + Q.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Q</value>
+<value>Variable:/body:Q</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/body:R</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V2 &lt;/ci&gt;#x0A      &lt;ci&gt; R &lt;/ci&gt;#x0A      &lt;ci&gt; Q &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K2 &lt;/ci&gt;#x0A      &lt;ci&gt; Q &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>Increase of R</value>
+</property>
+<property name="V3">
+<value>6.0</value>
+</property>
+<property name="k3">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>P.NumberConc * V3 * (1 - R.NumberConc) / (k3 + (1 - R.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/body:R</value>
+<value>1</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/body:P</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; P &lt;/ci&gt;#x0A      &lt;ci&gt; V3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; R &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; k3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;cn&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; R &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>Decrease of R</value>
+</property>
+<property name="V">
+<value>2.5</value>
+</property>
+<property name="Km">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>V * R.NumberConc / (Km + R.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/body:R</value>
+<value>-1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/body">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>body</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>P</value>
+</property>
+<property name="NumberConc">
+<value>0.43</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Q">
+<property name="Name">
+<value>Q</value>
+</property>
+<property name="NumberConc">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="NumberConc">
+<value>0.55</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

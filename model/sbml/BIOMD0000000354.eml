@@ -1,0 +1,793 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="kPLC">
+<property name="Name">
+<value>PLC: Receptor and Ca2+ regulated IP3 production</value>
+</property>
+<property name="Expression">
+<value>R.Value * CaI.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/SBMLParameter:R</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; R &lt;/ci&gt;#x0A    &lt;ci&gt; CaI &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="JPump">
+<property name="Name">
+<value>SERCA: Pumps Ca2+ into ER Ca2+ stores</value>
+</property>
+<property name="Expression">
+<value>B.Value * pow(CaI.NumberConc, 2) / (pow(CaI.NumberConc, 2) + pow(k2.Value, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/SBMLParameter:B</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; B &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; k2 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="JChannel">
+<property name="Name">
+<value>IP3R: IP3 and Ca2+ regulated Ca2+ channel,  plus leak</value>
+</property>
+<property name="Expression">
+<value>(1 - mwc714c217_c8fd_4024_912c_681cd6931f59.Value) * (L.Value + (1 - g.NumberConc) * A.Value * pow(IP3.NumberConc, 2) / (pow(IP3.NumberConc, 2) + pow(kIP3R.Value, 2)) * pow(CaI.NumberConc, 2) / (pow(CaI.NumberConc, 2) + pow(mw78dd80b8_e003_4c62_81d1_547d001767af.Value, 2))) * CaS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>1</value>
+</value>
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>0</value>
+</value>
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>0</value>
+</value>
+<value>
+<value>mwc714c217_c8fd_4024_912c_681cd6931f59</value>
+<value>Variable:/SBMLParameter:mwc714c217_c8fd_4024_912c_681cd6931f59</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/SBMLParameter:A</value>
+<value>0</value>
+</value>
+<value>
+<value>kIP3R</value>
+<value>Variable:/SBMLParameter:kIP3R</value>
+<value>0</value>
+</value>
+<value>
+<value>mw78dd80b8_e003_4c62_81d1_547d001767af</value>
+<value>Variable:/SBMLParameter:mw78dd80b8_e003_4c62_81d1_547d001767af</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; mwc714c217_c8fd_4024_912c_681cd6931f59 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; L &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; g &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; A &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; IP3 &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; IP3 &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; kIP3R &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; CaI &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; CaI &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; mw78dd80b8_e003_4c62_81d1_547d001767af &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; CaS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="kPhosphatase">
+<property name="Name">
+<value>IP3 phosphatase:  Degradation of IP3</value>
+</property>
+<property name="Expression">
+<value>D.Value * IP3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>D</value>
+<value>Variable:/SBMLParameter:D</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; D &lt;/ci&gt;#x0A    &lt;ci&gt; IP3 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="inhibition_parameter1">
+<property name="Name">
+<value>Inhibition of IP3R (mechanism not well understood)</value>
+</property>
+<property name="Expression">
+<value>E.Value * pow(CaI.NumberConc, 4) / (pow(CaI.NumberConc, 4) + pow(mwf998b218_be11_4aa4_81ae_41141861fb42.Value, 4)) * (1 - g.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+<value>
+<value>mwf998b218_be11_4aa4_81ae_41141861fb42</value>
+<value>Variable:/SBMLParameter:mwf998b218_be11_4aa4_81ae_41141861fb42</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; E &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; CaI &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; CaI &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; mwf998b218_be11_4aa4_81ae_41141861fb42 &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; g &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="inhibition_parameter2">
+<property name="Name">
+<value>Recovery of IP3R from Ca2+ iinhibition when Ca2+ drops</value>
+</property>
+<property name="Expression">
+<value>F.Value * g.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>-1</value>
+</value>
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; F &lt;/ci&gt;#x0A    &lt;ci&gt; g &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="mwbdcd6a40_1ae7_4c86_a99f_1fba0b8beaf7">
+<property name="Name">
+<value>Regulation of Orai by STIM, plus leak</value>
+</property>
+<property name="Expression">
+<value>mw004dcb62_da5f_41c7_a7bd_033574894f48.Value * (PMleak.Value + pow(kSTIM.Value, 8) / (pow(CaS.NumberConc, 8) + pow(kSTIM.Value, 8)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>1</value>
+</value>
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>0</value>
+</value>
+<value>
+<value>mw004dcb62_da5f_41c7_a7bd_033574894f48</value>
+<value>Variable:/SBMLParameter:mw004dcb62_da5f_41c7_a7bd_033574894f48</value>
+<value>0</value>
+</value>
+<value>
+<value>PMleak</value>
+<value>Variable:/SBMLParameter:PMleak</value>
+<value>0</value>
+</value>
+<value>
+<value>kSTIM</value>
+<value>Variable:/SBMLParameter:kSTIM</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mw004dcb62_da5f_41c7_a7bd_033574894f48 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; PMleak &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; kSTIM &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; CaS &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; kSTIM &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 8 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="mw530793e3_76b2_4483_be11_e94364306712">
+<property name="Name">
+<value>PMCA:  Pumps Ca2+ across PM out of cell</value>
+</property>
+<property name="Expression">
+<value>mwd21d3f76_d133_4053_8e44_02a538657e0a.Value * pow(CaI.NumberConc, 2) / (pow(CaI.NumberConc, 2) + pow(mw3a93c3a6_623a_44fe_84e9_a47823defd1f.Value, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>-1</value>
+</value>
+<value>
+<value>mwd21d3f76_d133_4053_8e44_02a538657e0a</value>
+<value>Variable:/SBMLParameter:mwd21d3f76_d133_4053_8e44_02a538657e0a</value>
+<value>0</value>
+</value>
+<value>
+<value>mw3a93c3a6_623a_44fe_84e9_a47823defd1f</value>
+<value>Variable:/SBMLParameter:mw3a93c3a6_623a_44fe_84e9_a47823defd1f</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; mwd21d3f76_d133_4053_8e44_02a538657e0a &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; mw3a93c3a6_623a_44fe_84e9_a47823defd1f &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="mwfaf5e05a_b642_4ee2_a069_3c2fc783fba4">
+<property name="Name">
+<value>UniporterFromCytosol</value>
+</property>
+<property name="Expression">
+<value>mw886be93a_22c7_4966_a1fa_113afd832ae3.Value * pow(CaI.NumberConc, 4) / (pow(CaI.NumberConc, 4) + pow(mwc8d6bdb5_59d4_43fa_b96d_7426f4857e0d.Value, 4))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaM</value>
+<value>Variable:/cytosol/mitochondria:CaM</value>
+<value>1</value>
+</value>
+<value>
+<value>mw886be93a_22c7_4966_a1fa_113afd832ae3</value>
+<value>Variable:/SBMLParameter:mw886be93a_22c7_4966_a1fa_113afd832ae3</value>
+<value>0</value>
+</value>
+<value>
+<value>mwc8d6bdb5_59d4_43fa_b96d_7426f4857e0d</value>
+<value>Variable:/SBMLParameter:mwc8d6bdb5_59d4_43fa_b96d_7426f4857e0d</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; mw886be93a_22c7_4966_a1fa_113afd832ae3 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; CaI &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; mwc8d6bdb5_59d4_43fa_b96d_7426f4857e0d &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="mw69f19152_7258_45b0_bf9e_b196f19d7e03">
+<property name="Name">
+<value>MitoToCytosol</value>
+</property>
+<property name="Expression">
+<value>mwd90ce3ea_f8d5_4f0a_8093_e39a2d3dbf33.Value * CaM.NumberConc / (CaM.NumberConc + 0.01)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaM</value>
+<value>Variable:/cytosol/mitochondria:CaM</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>1</value>
+</value>
+<value>
+<value>mwd90ce3ea_f8d5_4f0a_8093_e39a2d3dbf33</value>
+<value>Variable:/SBMLParameter:mwd90ce3ea_f8d5_4f0a_8093_e39a2d3dbf33</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; mwd90ce3ea_f8d5_4f0a_8093_e39a2d3dbf33 &lt;/ci&gt;#x0A      &lt;ci&gt; CaM &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; CaM &lt;/ci&gt;#x0A      &lt;cn&gt; 0.01 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ERtoMito">
+<property name="Name">
+<value>ERtoMito</value>
+</property>
+<property name="Expression">
+<value>mwc714c217_c8fd_4024_912c_681cd6931f59.Value * (L.Value + (1 - g.NumberConc) * A.Value * pow(IP3.NumberConc, 2) / (pow(IP3.NumberConc, 2) + pow(kIP3R.Value, 2)) * pow(CaI.NumberConc, 2) / (pow(CaI.NumberConc, 2) + pow(mw78dd80b8_e003_4c62_81d1_547d001767af.Value, 2))) * CaS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaM</value>
+<value>Variable:/cytosol/mitochondria:CaM</value>
+<value>1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>0</value>
+</value>
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>0</value>
+</value>
+<value>
+<value>mwc714c217_c8fd_4024_912c_681cd6931f59</value>
+<value>Variable:/SBMLParameter:mwc714c217_c8fd_4024_912c_681cd6931f59</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/SBMLParameter:A</value>
+<value>0</value>
+</value>
+<value>
+<value>kIP3R</value>
+<value>Variable:/SBMLParameter:kIP3R</value>
+<value>0</value>
+</value>
+<value>
+<value>mw78dd80b8_e003_4c62_81d1_547d001767af</value>
+<value>Variable:/SBMLParameter:mw78dd80b8_e003_4c62_81d1_547d001767af</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; mwc714c217_c8fd_4024_912c_681cd6931f59 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; L &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;minus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;ci&gt; g &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; A &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; IP3 &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; IP3 &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;ci&gt; kIP3R &lt;/ci&gt;#x0A                &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; CaI &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; CaI &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; mw78dd80b8_e003_4c62_81d1_547d001767af &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; CaS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="CaI">
+<property name="Name">
+<value>CaI</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IP3">
+<property name="Name">
+<value>IP3</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="g">
+<property name="Name">
+<value>g</value>
+</property>
+<property name="Value">
+<value>0.002</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/outside">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Outside</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CaO">
+<property name="Name">
+<value>CaO</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol/ER_store">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>ER_store</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="CaS">
+<property name="Name">
+<value>CaS</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol/mitochondria">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>mito</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CaM">
+<property name="Name">
+<value>CaM</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="A">
+<property name="Name">
+<value>IP3R</value>
+</property>
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="B">
+<property name="Name">
+<value>SERCA</value>
+</property>
+<property name="Value">
+<value>0.266</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="D">
+<property name="Name">
+<value>IP3degradation</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>IP3Rinhibition</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F">
+<property name="Name">
+<value>IP3Rrecovery</value>
+</property>
+<property name="Value">
+<value>0.018</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>kSERCA</value>
+</property>
+<property name="Value">
+<value>0.175</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Name">
+<value>ERleak</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kIP3R">
+<property name="Name">
+<value>kIP3R</value>
+</property>
+<property name="Value">
+<value>0.175</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PMleak">
+<property name="Name">
+<value>PMleak</value>
+</property>
+<property name="Value">
+<value>0.0346</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kSTIM">
+<property name="Name">
+<value>kSTIM</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mw004dcb62_da5f_41c7_a7bd_033574894f48">
+<property name="Name">
+<value>STIM</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mw78dd80b8_e003_4c62_81d1_547d001767af">
+<property name="Name">
+<value>kIP3Rca</value>
+</property>
+<property name="Value">
+<value>0.13</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mw3a93c3a6_623a_44fe_84e9_a47823defd1f">
+<property name="Name">
+<value>kPMCA</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mwd21d3f76_d133_4053_8e44_02a538657e0a">
+<property name="Name">
+<value>PMCA</value>
+</property>
+<property name="Value">
+<value>0.013</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mwf998b218_be11_4aa4_81ae_41141861fb42">
+<property name="Name">
+<value>kG</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mwc714c217_c8fd_4024_912c_681cd6931f59">
+<property name="Name">
+<value>DirTransf</value>
+</property>
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mwd90ce3ea_f8d5_4f0a_8093_e39a2d3dbf33">
+<property name="Name">
+<value>MitNaCaEx</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mw886be93a_22c7_4966_a1fa_113afd832ae3">
+<property name="Name">
+<value>UniPort</value>
+</property>
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mwc8d6bdb5_59d4_43fa_b96d_7426f4857e0d">
+<property name="Name">
+<value>kUniP</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

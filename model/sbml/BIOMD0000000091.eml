@@ -1,0 +1,1170 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="proteinSynthesis">
+<property name="Name">
+<value>proteinSynthesis</value>
+</property>
+<property name="Expression">
+<value>k1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>source</value>
+<value>Variable:/compartment:source</value>
+<value>0</value>
+</value>
+<value>
+<value>NatP</value>
+<value>Variable:/compartment:NatP</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; k1 &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="misfolding">
+<property name="Name">
+<value>misfolding</value>
+</property>
+<property name="Expression">
+<value>k2.Value * NatP.NumberConc * ROS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NatP</value>
+<value>Variable:/compartment:NatP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/compartment:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; NatP &lt;/ci&gt;#x0A    &lt;ci&gt; ROS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Hsp90MisPBinding">
+<property name="Name">
+<value>Hsp90MisPBinding</value>
+</property>
+<property name="Expression">
+<value>k3.Value * MisP.NumberConc * Hsp90.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>-1</value>
+</value>
+<value>
+<value>MCom</value>
+<value>Variable:/compartment:MCom</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k3 &lt;/ci&gt;#x0A    &lt;ci&gt; MisP &lt;/ci&gt;#x0A    &lt;ci&gt; Hsp90 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="unsuccessulRefolding">
+<property name="Name">
+<value>unsuccessfulRefolding</value>
+</property>
+<property name="Expression">
+<value>k4.Value * MCom.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MCom</value>
+<value>Variable:/compartment:MCom</value>
+<value>-1</value>
+</value>
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>1</value>
+</value>
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k4 &lt;/ci&gt;#x0A    &lt;ci&gt; MCom &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="refolding">
+<property name="Name">
+<value>refolding</value>
+</property>
+<property name="Expression">
+<value>k5.Value * MCom.NumberConc * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MCom</value>
+<value>Variable:/compartment:MCom</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>1</value>
+</value>
+<value>
+<value>NatP</value>
+<value>Variable:/compartment:NatP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k5 &lt;/ci&gt;#x0A    &lt;ci&gt; MCom &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="proteinDegradation">
+<property name="Name">
+<value>proteinDegradation</value>
+</property>
+<property name="Expression">
+<value>k6.Value * MisP.NumberConc * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k6 &lt;/ci&gt;#x0A    &lt;ci&gt; MisP &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="proteinAggregation1">
+<property name="Name">
+<value>2 x [MisP] -&gt; [AggP];</value>
+</property>
+<property name="Expression">
+<value>(MisP.NumberConc - 1) * k7.Value * MisP.NumberConc / 2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggP</value>
+<value>Variable:/compartment:AggP</value>
+<value>1</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; MisP &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; k7 &lt;/ci&gt;#x0A      &lt;ci&gt; MisP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="proteinAggregation2">
+<property name="Name">
+<value>[MisP] + [AggP] -&gt; 2 x [AggP];</value>
+</property>
+<property name="Expression">
+<value>k7.Value * MisP.NumberConc * AggP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MisP</value>
+<value>Variable:/compartment:MisP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggP</value>
+<value>Variable:/compartment:AggP</value>
+<value>1</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k7 &lt;/ci&gt;#x0A    &lt;ci&gt; MisP &lt;/ci&gt;#x0A    &lt;ci&gt; AggP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Hsp90HSF1Binding">
+<property name="Name">
+<value>Hsp90HSF1Binding</value>
+</property>
+<property name="Expression">
+<value>k8.Value * Hsp90.NumberConc * HSF1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>-1</value>
+</value>
+<value>
+<value>HCom</value>
+<value>Variable:/compartment:HCom</value>
+<value>1</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k8 &lt;/ci&gt;#x0A    &lt;ci&gt; Hsp90 &lt;/ci&gt;#x0A    &lt;ci&gt; HSF1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Hsp90HSF1Release">
+<property name="Name">
+<value>Hsp90HSF1Release</value>
+</property>
+<property name="Expression">
+<value>k9.Value * HCom.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HCom</value>
+<value>Variable:/compartment:HCom</value>
+<value>-1</value>
+</value>
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>1</value>
+</value>
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>1</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k9 &lt;/ci&gt;#x0A    &lt;ci&gt; HCom &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="dimerisation">
+<property name="Name">
+<value>dimerisation</value>
+</property>
+<property name="Expression">
+<value>(HSF1.NumberConc - 1) * k10.Value * HSF1.NumberConc / 2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>-2</value>
+</value>
+<value>
+<value>DiH</value>
+<value>Variable:/compartment:DiH</value>
+<value>1</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; HSF1 &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; k10 &lt;/ci&gt;#x0A      &lt;ci&gt; HSF1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="trimerisation">
+<property name="Name">
+<value>trimerisation</value>
+</property>
+<property name="Expression">
+<value>k11.Value * HSF1.NumberConc * DiH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>-1</value>
+</value>
+<value>
+<value>DiH</value>
+<value>Variable:/compartment:DiH</value>
+<value>-1</value>
+</value>
+<value>
+<value>TriH</value>
+<value>Variable:/compartment:TriH</value>
+<value>1</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k11 &lt;/ci&gt;#x0A    &lt;ci&gt; HSF1 &lt;/ci&gt;#x0A    &lt;ci&gt; DiH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="deTrimerisation">
+<property name="Name">
+<value>deTrimerisation</value>
+</property>
+<property name="Expression">
+<value>k12.Value * TriH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TriH</value>
+<value>Variable:/compartment:TriH</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>1</value>
+</value>
+<value>
+<value>DiH</value>
+<value>Variable:/compartment:DiH</value>
+<value>1</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k12 &lt;/ci&gt;#x0A    &lt;ci&gt; TriH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="deDimerisation">
+<property name="Name">
+<value>deDimerisation</value>
+</property>
+<property name="Expression">
+<value>k13.Value * DiH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DiH</value>
+<value>Variable:/compartment:DiH</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSF1</value>
+<value>Variable:/compartment:HSF1</value>
+<value>2</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k13 &lt;/ci&gt;#x0A    &lt;ci&gt; DiH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="HSETriHBinding">
+<property name="Name">
+<value>HSETriHBinding</value>
+</property>
+<property name="Expression">
+<value>k14.Value * HSE.NumberConc * TriH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TriH</value>
+<value>Variable:/compartment:TriH</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSE</value>
+<value>Variable:/compartment:HSE</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSETriH</value>
+<value>Variable:/compartment:HSETriH</value>
+<value>1</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k14 &lt;/ci&gt;#x0A    &lt;ci&gt; HSE &lt;/ci&gt;#x0A    &lt;ci&gt; TriH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="HSETriHRelease">
+<property name="Name">
+<value>HSETriHRelease</value>
+</property>
+<property name="Expression">
+<value>k15.Value * HSETriH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HSETriH</value>
+<value>Variable:/compartment:HSETriH</value>
+<value>-1</value>
+</value>
+<value>
+<value>HSE</value>
+<value>Variable:/compartment:HSE</value>
+<value>1</value>
+</value>
+<value>
+<value>TriH</value>
+<value>Variable:/compartment:TriH</value>
+<value>1</value>
+</value>
+<value>
+<value>k15</value>
+<value>Variable:/SBMLParameter:k15</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k15 &lt;/ci&gt;#x0A    &lt;ci&gt; HSETriH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Hsp90Transcription">
+<property name="Name">
+<value>Hsp90Transcription</value>
+</property>
+<property name="Expression">
+<value>k16.Value * HSETriH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HSETriH</value>
+<value>Variable:/compartment:HSETriH</value>
+<value>0</value>
+</value>
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>1</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k16 &lt;/ci&gt;#x0A    &lt;ci&gt; HSETriH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Hsp90Degradation">
+<property name="Name">
+<value>Hsp90Degradation</value>
+</property>
+<property name="Expression">
+<value>k17.Value * Hsp90.NumberConc * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Hsp90</value>
+<value>Variable:/compartment:Hsp90</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k17 &lt;/ci&gt;#x0A    &lt;ci&gt; Hsp90 &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="countTime">
+<property name="Name">
+<value>countTime</value>
+</property>
+<property name="Expression">
+<value>None</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>source</value>
+<value>Variable:/compartment:source</value>
+<value>0</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ATPformation">
+<property name="Name">
+<value>ATPformation</value>
+</property>
+<property name="Expression">
+<value>k18.Value * ADP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>k18</value>
+<value>Variable:/SBMLParameter:k18</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k18 &lt;/ci&gt;#x0A    &lt;ci&gt; ADP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ATPconsumption">
+<property name="Name">
+<value>ATPconsumption</value>
+</property>
+<property name="Expression">
+<value>k19.Value * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k19 &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="radicalFormation">
+<property name="Name">
+<value>radicalFormation</value>
+</property>
+<property name="Expression">
+<value>k20.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>source</value>
+<value>Variable:/compartment:source</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/compartment:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>k20</value>
+<value>Variable:/SBMLParameter:k20</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; k20 &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="radicalScavenging">
+<property name="Name">
+<value>radicalScavenging</value>
+</property>
+<property name="Expression">
+<value>k21.Value * ROS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ROS</value>
+<value>Variable:/compartment:ROS</value>
+<value>-1</value>
+</value>
+<value>
+<value>k21</value>
+<value>Variable:/SBMLParameter:k21</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k21 &lt;/ci&gt;#x0A    &lt;ci&gt; ROS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Hsp90">
+<property name="Name">
+<value>Hsp90</value>
+</property>
+<property name="Value">
+<value>300000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HCom">
+<property name="Name">
+<value>HCom</value>
+</property>
+<property name="Value">
+<value>5900.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HSF1">
+<property name="Name">
+<value>HSF1</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MisP">
+<property name="Name">
+<value>MisP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MCom">
+<property name="Name">
+<value>MCom</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TriH">
+<property name="Name">
+<value>TriH</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DiH">
+<property name="Name">
+<value>DiH</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NatP">
+<property name="Name">
+<value>NatP</value>
+</property>
+<property name="Value">
+<value>6000000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggP">
+<property name="Name">
+<value>AggP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HSE">
+<property name="Name">
+<value>HSE</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HSETriH">
+<property name="Name">
+<value>HSETriH</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="Name">
+<value>X</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ROS">
+<property name="Name">
+<value>ROS</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="source">
+<property name="Name">
+<value>source</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>2e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>4e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>6e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Name">
+<value>k14</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15">
+<property name="Name">
+<value>k15</value>
+</property>
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Name">
+<value>k16</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Name">
+<value>k17</value>
+</property>
+<property name="Value">
+<value>8.02e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18">
+<property name="Name">
+<value>k18</value>
+</property>
+<property name="Value">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Name">
+<value>k19</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k20">
+<property name="Name">
+<value>k20</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k21">
+<property name="Name">
+<value>k21</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

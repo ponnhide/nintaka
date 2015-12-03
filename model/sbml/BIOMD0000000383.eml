@@ -1,0 +1,611 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="PGA_prod_Vc">
+<property name="Name">
+<value>PGA production - v_c</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * ((kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * E.Value + kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * RuBP.NumberConc - abs(kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * E.Value - kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * RuBP.NumberConc)) / 2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/chloroplast:CO2</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>-2</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>2</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/chloroplast:O2</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kc</value>
+<value>Variable:/SBMLParameter:kc</value>
+<value>0</value>
+</value>
+<value>
+<value>Kc</value>
+<value>Variable:/SBMLParameter:Kc</value>
+<value>0</value>
+</value>
+<value>
+<value>Ko</value>
+<value>Variable:/SBMLParameter:Ko</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; kc &lt;/ci&gt;#x0A                &lt;ci&gt; CO2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Kc &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; O2 &lt;/ci&gt;#x0A                      &lt;ci&gt; Ko &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; E &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; kc &lt;/ci&gt;#x0A                &lt;ci&gt; CO2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Kc &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; O2 &lt;/ci&gt;#x0A                      &lt;ci&gt; Ko &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; RuBP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;abs/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; kc &lt;/ci&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kc &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;cn&gt; 1 &lt;/cn&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;divide/&gt;#x0A                        &lt;ci&gt; O2 &lt;/ci&gt;#x0A                        &lt;ci&gt; Ko &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; E &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; kc &lt;/ci&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kc &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;cn&gt; 1 &lt;/cn&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;divide/&gt;#x0A                        &lt;ci&gt; O2 &lt;/ci&gt;#x0A                        &lt;ci&gt; Ko &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; RuBP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PGA_prod_Vo">
+<property name="Name">
+<value>PGA production - v_o, ( denominatior = 2 )</value>
+</property>
+<property name="Expression">
+<value>1 / 2 * chloroplast.Value * (phi.Value * (kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * E.Value + kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * RuBP.NumberConc - abs(kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * E.Value - kc.Value * CO2.NumberConc / (CO2.NumberConc + Kc.Value * (1 + O2.NumberConc / Ko.Value)) * RuBP.NumberConc)) / 2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/chloroplast:CO2</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>-4</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>3</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/chloroplast:O2</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi</value>
+<value>Variable:/SBMLParameter:phi</value>
+<value>0</value>
+</value>
+<value>
+<value>kc</value>
+<value>Variable:/SBMLParameter:kc</value>
+<value>0</value>
+</value>
+<value>
+<value>Kc</value>
+<value>Variable:/SBMLParameter:Kc</value>
+<value>0</value>
+</value>
+<value>
+<value>Ko</value>
+<value>Variable:/SBMLParameter:Ko</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; phi &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; kc &lt;/ci&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kc &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;cn&gt; 1 &lt;/cn&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;divide/&gt;#x0A                        &lt;ci&gt; O2 &lt;/ci&gt;#x0A                        &lt;ci&gt; Ko &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; E &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; kc &lt;/ci&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; Kc &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;cn&gt; 1 &lt;/cn&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;divide/&gt;#x0A                        &lt;ci&gt; O2 &lt;/ci&gt;#x0A                        &lt;ci&gt; Ko &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; RuBP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;abs/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; kc &lt;/ci&gt;#x0A                    &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; Kc &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;cn&gt; 1 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;divide/&gt;#x0A                          &lt;ci&gt; O2 &lt;/ci&gt;#x0A                          &lt;ci&gt; Ko &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; E &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; kc &lt;/ci&gt;#x0A                    &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;ci&gt; CO2 &lt;/ci&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;times/&gt;#x0A                      &lt;ci&gt; Kc &lt;/ci&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;cn&gt; 1 &lt;/cn&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;divide/&gt;#x0A                          &lt;ci&gt; O2 &lt;/ci&gt;#x0A                          &lt;ci&gt; Ko &lt;/ci&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; RuBP &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PGA_cons">
+<property name="Name">
+<value>PGA consumption</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * PGA.NumberConc / Rp.Value * (NADPH.NumberConc / Nt.Value) * kc.Value * E.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>-1</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Rp</value>
+<value>Variable:/SBMLParameter:Rp</value>
+<value>0</value>
+</value>
+<value>
+<value>Nt</value>
+<value>Variable:/SBMLParameter:Nt</value>
+<value>0</value>
+</value>
+<value>
+<value>kc</value>
+<value>Variable:/SBMLParameter:kc</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; PGA &lt;/ci&gt;#x0A      &lt;ci&gt; Rp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; NADPH &lt;/ci&gt;#x0A      &lt;ci&gt; Nt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; kc &lt;/ci&gt;#x0A    &lt;ci&gt; E &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="NADPH_prod">
+<property name="Name">
+<value>NADPH production</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * j.Value / 2 * (NADP.NumberConc / Nt.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADP</value>
+<value>Variable:/chloroplast:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>j</value>
+<value>Variable:/SBMLParameter:j</value>
+<value>0</value>
+</value>
+<value>
+<value>Nt</value>
+<value>Variable:/SBMLParameter:Nt</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; j &lt;/ci&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; NADP &lt;/ci&gt;#x0A      &lt;ci&gt; Nt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/chloroplast">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>chloroplast</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RuBP">
+<property name="Name">
+<value>RuBP</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PGA">
+<property name="Name">
+<value>PGA</value>
+</property>
+<property name="NumberConc">
+<value>2.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.21</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CO2">
+<property name="Name">
+<value>CO2</value>
+</property>
+<property name="NumberConc">
+<value>230.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="O2">
+<property name="Name">
+<value>O2</value>
+</property>
+<property name="NumberConc">
+<value>210.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NADP">
+<property name="Name">
+<value>NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.29</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="Value">
+<value>1.33846153846</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rp">
+<property name="Name">
+<value>Rp</value>
+</property>
+<property name="Value">
+<value>3.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Nt">
+<property name="Name">
+<value>Nt</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f">
+<property name="Name">
+<value>f</value>
+</property>
+<property name="Value">
+<value>0.23</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="I">
+<property name="Name">
+<value>I</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="jp">
+<property name="Name">
+<value>jp</value>
+</property>
+<property name="Value">
+<value>385.0</value>
+</property>
+</variable>
+<variable class="Variable" id="j">
+<property name="Name">
+<value>j</value>
+</property>
+<property name="Value">
+<value>5.92307692308</value>
+</property>
+</variable>
+<variable class="Variable" id="phi">
+<property name="Name">
+<value>phi</value>
+</property>
+<property name="Value">
+<value>0.267272727273</value>
+</property>
+</variable>
+<variable class="Variable" id="kc">
+<property name="Name">
+<value>kc</value>
+</property>
+<property name="Value">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kc">
+<property name="Name">
+<value>Kc</value>
+</property>
+<property name="Value">
+<value>460.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ko">
+<property name="Name">
+<value>Ko</value>
+</property>
+<property name="Value">
+<value>330.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jp'</value>
+</property>
+<property name="Expression">
+<value>1 / 2 * (1 - f.NumberConc) * I.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; f &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; I &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jp</value>
+<value>Variable:/SBMLParameter:jp</value>
+<value>1</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>I</value>
+<value>Variable:/SBMLParameter:I</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_NADP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'NADP'</value>
+</property>
+<property name="Expression">
+<value>Nt.NumberConc - NADPH.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; Nt &lt;/ci&gt;#x0A    &lt;ci&gt; NADPH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADP</value>
+<value>Variable:/chloroplast:NADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Nt</value>
+<value>Variable:/SBMLParameter:Nt</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_phi">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'phi'</value>
+</property>
+<property name="Expression">
+<value>0.21 * (O2.NumberConc / Ko.NumberConc) / (CO2.NumberConc / Kc.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn&gt; 0.21 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; O2 &lt;/ci&gt;#x0A        &lt;ci&gt; Ko &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; CO2 &lt;/ci&gt;#x0A      &lt;ci&gt; Kc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phi</value>
+<value>Variable:/SBMLParameter:phi</value>
+<value>1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/chloroplast:O2</value>
+<value>0</value>
+</value>
+<value>
+<value>Ko</value>
+<value>Variable:/SBMLParameter:Ko</value>
+<value>0</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/chloroplast:CO2</value>
+<value>0</value>
+</value>
+<value>
+<value>Kc</value>
+<value>Variable:/SBMLParameter:Kc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_j">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'j'</value>
+</property>
+<property name="Expression">
+<value>(abs(jp.NumberConc + 467) - abs(jp.NumberConc - 467)) / 2 / 65</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;abs/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; jp &lt;/ci&gt;#x0A            &lt;cn&gt; 467 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;abs/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;ci&gt; jp &lt;/ci&gt;#x0A            &lt;cn&gt; 467 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn&gt; 65 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>j</value>
+<value>Variable:/SBMLParameter:j</value>
+<value>1</value>
+</value>
+<value>
+<value>jp</value>
+<value>Variable:/SBMLParameter:jp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

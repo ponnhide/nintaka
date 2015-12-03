@@ -1,0 +1,698 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="v1">
+<property name="Name">
+<value>[Fruex] &lt;-&gt; [Fru];</value>
+</property>
+<property name="Vmax1">
+<value>0.286</value>
+</property>
+<property name="Km1Fruex">
+<value>0.2</value>
+</property>
+<property name="Ki1Fru">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax1 * Fruex.NumberConc / (Km1Fruex * (1 + Fru.NumberConc / Ki1Fru) + Fruex.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fruex</value>
+<value>Variable:/compartment:Fruex</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax1 &lt;/ci&gt;#x0A        &lt;ci&gt; Fruex &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km1Fruex &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;ci&gt; Ki1Fru &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Fruex &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v2">
+<property name="Name">
+<value>[Glcex] &lt;-&gt; [Glc];</value>
+</property>
+<property name="Vmax2">
+<value>0.286</value>
+</property>
+<property name="Km2Glcex">
+<value>0.2</value>
+</property>
+<property name="Ki2Glc">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax2 * Glcex.NumberConc / (Km2Glcex * (1 + Glc.NumberConc / Ki2Glc) + Glcex.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glcex</value>
+<value>Variable:/compartment:Glcex</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/compartment:Glc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax2 &lt;/ci&gt;#x0A        &lt;ci&gt; Glcex &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km2Glcex &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Glc &lt;/ci&gt;#x0A              &lt;ci&gt; Ki2Glc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Glcex &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v3">
+<property name="Name">
+<value>[ATP] + [Glc] &lt;-&gt; [HexP] + [ADP]; { Fru };</value>
+</property>
+<property name="Vmax3">
+<value>0.197</value>
+</property>
+<property name="Km3Glc">
+<value>0.07</value>
+</property>
+<property name="Km3ATP">
+<value>0.25</value>
+</property>
+<property name="Km4Fru">
+<value>10.0</value>
+</property>
+<property name="Ki3G6P">
+<value>0.1</value>
+</property>
+<property name="Ki4F6P">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax3 * (Glc.NumberConc / Km3Glc) * (ATP.NumberConc / Km3ATP) / ((1 + ATP.NumberConc / Km3ATP) * (1 + Glc.NumberConc / Km3Glc + Fru.NumberConc / Km4Fru + 0.113 * HexP.NumberConc / Ki3G6P + 0.0575 * HexP.NumberConc / Ki4F6P)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/compartment:Glc</value>
+<value>-1</value>
+</value>
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax3 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Glc &lt;/ci&gt;#x0A          &lt;ci&gt; Km3Glc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;ci&gt; Km3ATP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; Km3ATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Glc &lt;/ci&gt;#x0A            &lt;ci&gt; Km3Glc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Fru &lt;/ci&gt;#x0A            &lt;ci&gt; Km4Fru &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.113 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Ki3G6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Ki4F6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v4">
+<property name="Name">
+<value>[Fru] + [ATP] &lt;-&gt; [HexP] + [ADP]; { Glc };</value>
+</property>
+<property name="Vmax4">
+<value>0.197</value>
+</property>
+<property name="Km4Fru">
+<value>10.0</value>
+</property>
+<property name="Km4ATP">
+<value>0.25</value>
+</property>
+<property name="Km3Glc">
+<value>0.07</value>
+</property>
+<property name="Ki3G6P">
+<value>0.1</value>
+</property>
+<property name="Ki4F6P">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax4 * (Fru.NumberConc / Km4Fru) * (ATP.NumberConc / Km4ATP) / ((1 + ATP.NumberConc / Km4ATP) * (1 + Glc.NumberConc / Km3Glc + Fru.NumberConc / Km4Fru + 0.113 * HexP.NumberConc / Ki3G6P + 0.0575 * HexP.NumberConc / Ki4F6P)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/compartment:Glc</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax4 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Fru &lt;/ci&gt;#x0A          &lt;ci&gt; Km4Fru &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;ci&gt; Km4ATP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; Km4ATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Glc &lt;/ci&gt;#x0A            &lt;ci&gt; Km3Glc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Fru &lt;/ci&gt;#x0A            &lt;ci&gt; Km4Fru &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.113 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Ki3G6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Ki4F6P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v5">
+<property name="Name">
+<value>[Fru] + [ATP] &lt;-&gt; [HexP] + [ADP];</value>
+</property>
+<property name="Vmax5">
+<value>0.164</value>
+</property>
+<property name="Ki5Fru">
+<value>12.0</value>
+</property>
+<property name="Km5Fru">
+<value>0.1</value>
+</property>
+<property name="Km5ATP">
+<value>0.085</value>
+</property>
+<property name="Ki5ADP">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax5 / (1 + Fru.NumberConc / Ki5Fru) * (Fru.NumberConc / Km5Fru) * (ATP.NumberConc / Km5ATP) / (1 + Fru.NumberConc / Km5Fru + ATP.NumberConc / Km5ATP + Fru.NumberConc * ATP.NumberConc / (Km5Fru * Km5ATP) + ADP.NumberConc / Ki5ADP))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/compartment:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/compartment:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmax5 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;ci&gt; Ki5Fru &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Fru &lt;/ci&gt;#x0A          &lt;ci&gt; Km5Fru &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;ci&gt; Km5ATP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Fru &lt;/ci&gt;#x0A          &lt;ci&gt; Km5Fru &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;ci&gt; Km5ATP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Fru &lt;/ci&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Km5Fru &lt;/ci&gt;#x0A            &lt;ci&gt; Km5ATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; ADP &lt;/ci&gt;#x0A          &lt;ci&gt; Ki5ADP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v6">
+<property name="Name">
+<value>2 x [HexP] &lt;-&gt; [UDP] + [Suc6P]; { phos };</value>
+</property>
+<property name="Vmax6f">
+<value>0.379</value>
+</property>
+<property name="Keq6">
+<value>10.0</value>
+</property>
+<property name="Ki6Suc6P">
+<value>0.07</value>
+</property>
+<property name="Km6F6P">
+<value>0.6</value>
+</property>
+<property name="Ki6Pi">
+<value>3.0</value>
+</property>
+<property name="Ki6UDPGlc">
+<value>1.4</value>
+</property>
+<property name="Km6UDPGlc">
+<value>1.8</value>
+</property>
+<property name="Vmax6r">
+<value>0.2</value>
+</property>
+<property name="Km6UDP">
+<value>0.3</value>
+</property>
+<property name="Km6Suc6P">
+<value>0.1</value>
+</property>
+<property name="Ki6F6P">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax6f * (0.0575 * HexP.NumberConc * 0.8231 * HexP.NumberConc - Suc6P.NumberConc * UDP.NumberConc / Keq6) / (0.0575 * HexP.NumberConc * 0.8231 * HexP.NumberConc * (1 + Suc6P.NumberConc / Ki6Suc6P) + Km6F6P * (1 + phos.NumberConc / Ki6Pi) * (0.8231 * HexP.NumberConc + Ki6UDPGlc) + Km6UDPGlc * 0.0575 * HexP.NumberConc + Vmax6f / (Vmax6r * Keq6) * (Km6UDP * Suc6P.NumberConc * (1 + 0.8231 * HexP.NumberConc / Ki6UDPGlc) + UDP.NumberConc * (Km6Suc6P * (1 + Km6UDPGlc * 0.0575 * HexP.NumberConc / (Ki6UDPGlc * Km6F6P * (1 + phos.NumberConc / Ki6Pi))) + Suc6P.NumberConc * (1 + 0.0575 * HexP.NumberConc / Ki6F6P)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>-2</value>
+</value>
+<value>
+<value>UDP</value>
+<value>Variable:/compartment:UDP</value>
+<value>1</value>
+</value>
+<value>
+<value>Suc6P</value>
+<value>Variable:/compartment:Suc6P</value>
+<value>1</value>
+</value>
+<value>
+<value>phos</value>
+<value>Variable:/compartment:phos</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax6f &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A            &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A            &lt;ci&gt; HexP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A              &lt;ci&gt; UDP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keq6 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A          &lt;ci&gt; HexP &lt;/ci&gt;#x0A          &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A          &lt;ci&gt; HexP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A              &lt;ci&gt; Ki6Suc6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km6F6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; phos &lt;/ci&gt;#x0A              &lt;ci&gt; Ki6Pi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Ki6UDPGlc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km6UDPGlc &lt;/ci&gt;#x0A          &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A          &lt;ci&gt; HexP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Vmax6f &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Vmax6r &lt;/ci&gt;#x0A              &lt;ci&gt; Keq6 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Km6UDP &lt;/ci&gt;#x0A              &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A                    &lt;ci&gt; HexP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;ci&gt; Ki6UDPGlc &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; UDP &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Km6Suc6P &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;ci&gt; Km6UDPGlc &lt;/ci&gt;#x0A                        &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A                        &lt;ci&gt; HexP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;ci&gt; Ki6UDPGlc &lt;/ci&gt;#x0A                        &lt;ci&gt; Km6F6P &lt;/ci&gt;#x0A                        &lt;apply&gt;#x0A                          &lt;plus/&gt;#x0A                          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                          &lt;apply&gt;#x0A                            &lt;divide/&gt;#x0A                            &lt;ci&gt; phos &lt;/ci&gt;#x0A                            &lt;ci&gt; Ki6Pi &lt;/ci&gt;#x0A                          &lt;/apply&gt;#x0A                        &lt;/apply&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A                        &lt;ci&gt; HexP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; Ki6F6P &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v7">
+<property name="Name">
+<value>[Suc6P] &lt;-&gt; [Suc] + [phos];</value>
+</property>
+<property name="Vmax7">
+<value>0.5</value>
+</property>
+<property name="Km7Suc6P">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax7 * Suc6P.NumberConc / (Km7Suc6P + Suc6P.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Suc6P</value>
+<value>Variable:/compartment:Suc6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Suc</value>
+<value>Variable:/compartment:Suc</value>
+<value>1</value>
+</value>
+<value>
+<value>phos</value>
+<value>Variable:/compartment:phos</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax7 &lt;/ci&gt;#x0A        &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km7Suc6P &lt;/ci&gt;#x0A        &lt;ci&gt; Suc6P &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v8">
+<property name="Name">
+<value>[HexP] + [Fru] &lt;-&gt; [Suc] + [UDP];</value>
+</property>
+<property name="Vmax8f">
+<value>0.677</value>
+</property>
+<property name="Keq8">
+<value>5.0</value>
+</property>
+<property name="Ki8Fru">
+<value>4.0</value>
+</property>
+<property name="Km8Suc">
+<value>50.0</value>
+</property>
+<property name="Ki8UDP">
+<value>0.3</value>
+</property>
+<property name="Km8UDP">
+<value>0.3</value>
+</property>
+<property name="Vmax8r">
+<value>0.3</value>
+</property>
+<property name="Km8UDPGlc">
+<value>0.3</value>
+</property>
+<property name="Km8Fru">
+<value>4.0</value>
+</property>
+<property name="Ki8Suc">
+<value>40.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (-Vmax8f * (Suc.NumberConc * UDP.NumberConc - Fru.NumberConc * 0.8231 * HexP.NumberConc / Keq8) / (Suc.NumberConc * UDP.NumberConc * (1 + Fru.NumberConc / Ki8Fru) + Km8Suc * (UDP.NumberConc + Ki8UDP) + Km8UDP * Suc.NumberConc + Vmax8f / (Vmax8r * Keq8) * (Km8UDPGlc * Fru.NumberConc * (1 + UDP.NumberConc / Ki8UDP) + 0.8231 * HexP.NumberConc * (Km8Fru * (1 + Km8UDP * Suc.NumberConc / (Ki8UDP * Km8Suc)) + Fru.NumberConc * (1 + Suc.NumberConc / Ki8Suc)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>-1</value>
+</value>
+<value>
+<value>Suc</value>
+<value>Variable:/compartment:Suc</value>
+<value>1</value>
+</value>
+<value>
+<value>UDP</value>
+<value>Variable:/compartment:UDP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Vmax8f &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Suc &lt;/ci&gt;#x0A            &lt;ci&gt; UDP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keq8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Suc &lt;/ci&gt;#x0A          &lt;ci&gt; UDP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;ci&gt; Ki8Fru &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km8Suc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; UDP &lt;/ci&gt;#x0A            &lt;ci&gt; Ki8UDP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km8UDP &lt;/ci&gt;#x0A          &lt;ci&gt; Suc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Vmax8f &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Vmax8r &lt;/ci&gt;#x0A              &lt;ci&gt; Keq8 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Km8UDPGlc &lt;/ci&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; UDP &lt;/ci&gt;#x0A                  &lt;ci&gt; Ki8UDP &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn&gt; 0.8231 &lt;/cn&gt;#x0A              &lt;ci&gt; HexP &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Km8Fru &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;ci&gt; Km8UDP &lt;/ci&gt;#x0A                        &lt;ci&gt; Suc &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;times/&gt;#x0A                        &lt;ci&gt; Ki8UDP &lt;/ci&gt;#x0A                        &lt;ci&gt; Km8Suc &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; Fru &lt;/ci&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; Suc &lt;/ci&gt;#x0A                      &lt;ci&gt; Ki8Suc &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v9">
+<property name="Name">
+<value>[Suc] &lt;-&gt; [Fru] + [Glc];</value>
+</property>
+<property name="Vmax9">
+<value>0.372</value>
+</property>
+<property name="Ki9Glc">
+<value>15.0</value>
+</property>
+<property name="Km9Suc">
+<value>10.0</value>
+</property>
+<property name="Ki9Fru">
+<value>15.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax9 / (1 + Glc.NumberConc / Ki9Glc) * Suc.NumberConc / (Km9Suc * (1 + Fru.NumberConc / Ki9Fru) + Suc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Suc</value>
+<value>Variable:/compartment:Suc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru</value>
+<value>Variable:/compartment:Fru</value>
+<value>1</value>
+</value>
+<value>
+<value>Glc</value>
+<value>Variable:/compartment:Glc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmax9 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Glc &lt;/ci&gt;#x0A              &lt;ci&gt; Ki9Glc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Suc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km9Suc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Fru &lt;/ci&gt;#x0A              &lt;ci&gt; Ki9Fru &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Suc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v10">
+<property name="Name">
+<value>[HexP] &lt;-&gt; [glycolysis];</value>
+</property>
+<property name="Vmax10">
+<value>0.1</value>
+</property>
+<property name="Km10F6P">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax10 * 0.0575 * HexP.NumberConc / (Km10F6P + 0.0575 * HexP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HexP</value>
+<value>Variable:/compartment:HexP</value>
+<value>-1</value>
+</value>
+<value>
+<value>glycolysis</value>
+<value>Variable:/compartment:glycolysis</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax10 &lt;/ci&gt;#x0A        &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A        &lt;ci&gt; HexP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km10F6P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.0575 &lt;/cn&gt;#x0A          &lt;ci&gt; HexP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v11">
+<property name="Name">
+<value>[Suc] &lt;-&gt; [Sucvac];</value>
+</property>
+<property name="Vmax11">
+<value>1.0</value>
+</property>
+<property name="Km11Suc">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmax11 * Suc.NumberConc / (Km11Suc + Suc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Suc</value>
+<value>Variable:/compartment:Suc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sucvac</value>
+<value>Variable:/compartment:Sucvac</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmax11 &lt;/ci&gt;#x0A        &lt;ci&gt; Suc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km11Suc &lt;/ci&gt;#x0A        &lt;ci&gt; Suc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Fru">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HexP">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Suc6P">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Suc">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Sucvac">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="glycolysis">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="phos">
+<property name="NumberConc">
+<value>5.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UDP">
+<property name="NumberConc">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="NumberConc">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glcex">
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fruex">
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

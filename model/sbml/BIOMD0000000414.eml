@@ -1,0 +1,183 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="VENUSproduction">
+<property name="Name">
+<value>-&gt; [VENUS];</value>
+</property>
+<property name="Expression">
+<value>p2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VENUS</value>
+<value>Variable:/cell:VENUS</value>
+<value>1</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; p2 &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="VENUSdecayduetophotobleaching">
+<property name="Name">
+<value>[VENUS] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>lambda_star.Value * p2.Value * VENUS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VENUS</value>
+<value>Variable:/cell:VENUS</value>
+<value>-1</value>
+</value>
+<value>
+<value>lambda_star</value>
+<value>Variable:/SBMLParameter:lambda_star</value>
+<value>0</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; lambda_star &lt;/ci&gt;#x0A    &lt;ci&gt; p2 &lt;/ci&gt;#x0A    &lt;ci&gt; VENUS &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="VENUSdecayduetoauxin">
+<property name="Name">
+<value>[VENUS] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>p2.Value * VENUS.NumberConc / (p1_star.Value * VENUS.NumberConc + qj_star.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>VENUS</value>
+<value>Variable:/cell:VENUS</value>
+<value>-1</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+<value>
+<value>p1_star</value>
+<value>Variable:/SBMLParameter:p1_star</value>
+<value>0</value>
+</value>
+<value>
+<value>qj_star</value>
+<value>Variable:/SBMLParameter:qj_star</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; p2 &lt;/ci&gt;#x0A      &lt;ci&gt; VENUS &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; p1_star &lt;/ci&gt;#x0A        &lt;ci&gt; VENUS &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; qj_star &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="VENUS">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="p1_star">
+<property name="Value">
+<value>0.056</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Value">
+<value>0.0053</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lambda_star">
+<property name="Value">
+<value>0.52</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qj_star">
+<property name="Value">
+<value>0.16</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

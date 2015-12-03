@@ -1,0 +1,301 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Brain">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Brain</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Amyloid">
+<property name="Name">
+<value>Amyloid</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="omega">
+<property name="Name">
+<value>omega</value>
+</property>
+<property name="Value">
+<value>35.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>n</value>
+</property>
+<property name="Value">
+<value>7.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a">
+<property name="Name">
+<value>a</value>
+</property>
+<property name="Value">
+<value>7.27277427182</value>
+</property>
+</variable>
+<variable class="Variable" id="e">
+<property name="Name">
+<value>e</value>
+</property>
+<property name="Value">
+<value>2.718</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k">
+<property name="Name">
+<value>k</value>
+</property>
+<property name="Value">
+<value>0.205</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Name">
+<value>ka</value>
+</property>
+<property name="Value">
+<value>0.0754231052244</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="Name">
+<value>C+</value>
+</property>
+<property name="Value">
+<value>0.00069</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="t1">
+<property name="Name">
+<value>t1</value>
+</property>
+<property name="Value">
+<value>27.1259461482</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Amyloid">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Amyloid'</value>
+</property>
+<property name="Expression">
+<value>1 - exp(-pow(time.Value / omega.NumberConc, n.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;cn&gt; 1 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;exp/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A            &lt;ci&gt; omega &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Amyloid</value>
+<value>Variable:/Brain:Amyloid</value>
+<value>1</value>
+</value>
+<value>
+<value>omega</value>
+<value>Variable:/SBMLParameter:omega</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_a">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'a'</value>
+</property>
+<property name="Expression">
+<value>n.NumberConc * exp(-(n.NumberConc - 1) / n.NumberConc) - 1</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;exp/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;minus/&gt;#x0A              &lt;ci&gt; n &lt;/ci&gt;#x0A              &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; n &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;cn&gt; 1 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>1</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ka">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ka'</value>
+</property>
+<property name="Expression">
+<value>k.NumberConc / e.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; k &lt;/ci&gt;#x0A    &lt;ci&gt; e &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>1</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+<value>
+<value>e</value>
+<value>Variable:/SBMLParameter:e</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_t1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 't1'</value>
+</property>
+<property name="Expression">
+<value>(log(1 / C.NumberConc) - e.NumberConc + 1) * (1 / k.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;ln/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;cn&gt; 1 &lt;/cn&gt;#x0A            &lt;ci&gt; C &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; e &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; k &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>t1</value>
+<value>Variable:/SBMLParameter:t1</value>
+<value>1</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/SBMLParameter:C</value>
+<value>0</value>
+</value>
+<value>
+<value>e</value>
+<value>Variable:/SBMLParameter:e</value>
+<value>0</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

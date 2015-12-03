@@ -1,0 +1,756 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="reaction_1">
+<property name="Name">
+<value>[Rec] -&gt; [IL13_Rec]; { IL13 };</value>
+</property>
+<property name="Expression">
+<value>Kon_IL13Rec.Value * IL13.NumberConc * Rec.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rec</value>
+<value>Variable:/cell:Rec</value>
+<value>-1</value>
+</value>
+<value>
+<value>IL13_Rec</value>
+<value>Variable:/cell:IL13_Rec</value>
+<value>1</value>
+</value>
+<value>
+<value>IL13</value>
+<value>Variable:/cell:IL13</value>
+<value>0</value>
+</value>
+<value>
+<value>Kon_IL13Rec</value>
+<value>Variable:/SBMLParameter:Kon_IL13Rec</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Kon_IL13Rec &lt;/ci&gt;#x0A    &lt;ci&gt; IL13 &lt;/ci&gt;#x0A    &lt;ci&gt; Rec &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_2">
+<property name="Name">
+<value>[Rec] -&gt; [Rec_i];</value>
+</property>
+<property name="Expression">
+<value>Rec_intern.Value * Rec.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rec</value>
+<value>Variable:/cell:Rec</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rec_i</value>
+<value>Variable:/cell:Rec_i</value>
+<value>1</value>
+</value>
+<value>
+<value>Rec_intern</value>
+<value>Variable:/SBMLParameter:Rec_intern</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Rec_intern &lt;/ci&gt;#x0A    &lt;ci&gt; Rec &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_3">
+<property name="Name">
+<value>[Rec_i] -&gt; [Rec];</value>
+</property>
+<property name="Expression">
+<value>Rec_recycle.Value * Rec_i.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rec_i</value>
+<value>Variable:/cell:Rec_i</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rec</value>
+<value>Variable:/cell:Rec</value>
+<value>1</value>
+</value>
+<value>
+<value>Rec_recycle</value>
+<value>Variable:/SBMLParameter:Rec_recycle</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Rec_recycle &lt;/ci&gt;#x0A    &lt;ci&gt; Rec_i &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_4">
+<property name="Name">
+<value>[IL13_Rec] -&gt; [p_IL13_Rec]; { pJAK2 };</value>
+</property>
+<property name="Expression">
+<value>Rec_phosphorylation.Value * IL13_Rec.NumberConc * pJAK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IL13_Rec</value>
+<value>Variable:/cell:IL13_Rec</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_IL13_Rec</value>
+<value>Variable:/cell:p_IL13_Rec</value>
+<value>1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>Rec_phosphorylation</value>
+<value>Variable:/SBMLParameter:Rec_phosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Rec_phosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; IL13_Rec &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_5">
+<property name="Name">
+<value>[JAK2] -&gt; [pJAK2]; { IL13_Rec };</value>
+</property>
+<property name="Expression">
+<value>JAK2_phosphorylation.Value * JAK2.NumberConc * IL13_Rec.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>JAK2</value>
+<value>Variable:/cell:JAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>IL13_Rec</value>
+<value>Variable:/cell:IL13_Rec</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2_phosphorylation</value>
+<value>Variable:/SBMLParameter:JAK2_phosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; JAK2_phosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; JAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; IL13_Rec &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_6">
+<property name="Name">
+<value>[JAK2] -&gt; [pJAK2]; { p_IL13_Rec };</value>
+</property>
+<property name="Expression">
+<value>JAK2_phosphorylation.Value * JAK2.NumberConc * p_IL13_Rec.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>JAK2</value>
+<value>Variable:/cell:JAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>p_IL13_Rec</value>
+<value>Variable:/cell:p_IL13_Rec</value>
+<value>0</value>
+</value>
+<value>
+<value>JAK2_phosphorylation</value>
+<value>Variable:/SBMLParameter:JAK2_phosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; JAK2_phosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; JAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; p_IL13_Rec &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_7">
+<property name="Name">
+<value>[p_IL13_Rec] -&gt; [p_IL13_Rec_i];</value>
+</property>
+<property name="Expression">
+<value>pRec_intern.Value * p_IL13_Rec.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_IL13_Rec</value>
+<value>Variable:/cell:p_IL13_Rec</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_IL13_Rec_i</value>
+<value>Variable:/cell:p_IL13_Rec_i</value>
+<value>1</value>
+</value>
+<value>
+<value>pRec_intern</value>
+<value>Variable:/SBMLParameter:pRec_intern</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pRec_intern &lt;/ci&gt;#x0A    &lt;ci&gt; p_IL13_Rec &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_8">
+<property name="Name">
+<value>[p_IL13_Rec_i] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>pRec_degradation.Value * p_IL13_Rec_i.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_IL13_Rec_i</value>
+<value>Variable:/cell:p_IL13_Rec_i</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRec_degradation</value>
+<value>Variable:/SBMLParameter:pRec_degradation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pRec_degradation &lt;/ci&gt;#x0A    &lt;ci&gt; p_IL13_Rec_i &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_9">
+<property name="Name">
+<value>[pJAK2] -&gt; [JAK2]; { SHP1 };</value>
+</property>
+<property name="Expression">
+<value>pJAK2_dephosphorylation.Value * pJAK2.NumberConc * SHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>-1</value>
+</value>
+<value>
+<value>JAK2</value>
+<value>Variable:/cell:JAK2</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1</value>
+<value>Variable:/cell:SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>pJAK2_dephosphorylation</value>
+<value>Variable:/SBMLParameter:pJAK2_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pJAK2_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; SHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_10">
+<property name="Name">
+<value>[STAT5] -&gt; [pSTAT5]; { pJAK2 };</value>
+</property>
+<property name="Expression">
+<value>STAT5_phosphorylation.Value * STAT5.NumberConc * pJAK2.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>STAT5</value>
+<value>Variable:/cell:STAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cell:pSTAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>pJAK2</value>
+<value>Variable:/cell:pJAK2</value>
+<value>0</value>
+</value>
+<value>
+<value>STAT5_phosphorylation</value>
+<value>Variable:/SBMLParameter:STAT5_phosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; STAT5_phosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; STAT5 &lt;/ci&gt;#x0A    &lt;ci&gt; pJAK2 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_11">
+<property name="Name">
+<value>[pSTAT5] -&gt; [STAT5]; { SHP1 };</value>
+</property>
+<property name="Expression">
+<value>pSTAT5_dephosphorylation.Value * pSTAT5.NumberConc * SHP1.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cell:pSTAT5</value>
+<value>-1</value>
+</value>
+<value>
+<value>STAT5</value>
+<value>Variable:/cell:STAT5</value>
+<value>1</value>
+</value>
+<value>
+<value>SHP1</value>
+<value>Variable:/cell:SHP1</value>
+<value>0</value>
+</value>
+<value>
+<value>pSTAT5_dephosphorylation</value>
+<value>Variable:/SBMLParameter:pSTAT5_dephosphorylation</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pSTAT5_dephosphorylation &lt;/ci&gt;#x0A    &lt;ci&gt; pSTAT5 &lt;/ci&gt;#x0A    &lt;ci&gt; SHP1 &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="reaction_12">
+<property name="Name">
+<value>-&gt; [CD274mRNA]; { pSTAT5 };</value>
+</property>
+<property name="Expression">
+<value>pSTAT5.NumberConc * CD274mRNA_production.Value * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CD274mRNA</value>
+<value>Variable:/cell:CD274mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>pSTAT5</value>
+<value>Variable:/cell:pSTAT5</value>
+<value>0</value>
+</value>
+<value>
+<value>CD274mRNA_production</value>
+<value>Variable:/SBMLParameter:CD274mRNA_production</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; pSTAT5 &lt;/ci&gt;#x0A    &lt;ci&gt; CD274mRNA_production &lt;/ci&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rec">
+<property name="Name">
+<value>Rec</value>
+</property>
+<property name="NumberConc">
+<value>1.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rec_i">
+<property name="Name">
+<value>Rec_i</value>
+</property>
+<property name="NumberConc">
+<value>118.598</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IL13_Rec">
+<property name="Name">
+<value>IL13_Rec</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p_IL13_Rec">
+<property name="Name">
+<value>p_IL13_Rec</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p_IL13_Rec_i">
+<property name="Name">
+<value>p_IL13_Rec_i</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="JAK2">
+<property name="Name">
+<value>JAK2</value>
+</property>
+<property name="NumberConc">
+<value>24.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pJAK2">
+<property name="Name">
+<value>pJAK2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SHP1">
+<property name="Name">
+<value>SHP1</value>
+</property>
+<property name="NumberConc">
+<value>9.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5">
+<property name="Name">
+<value>STAT5</value>
+</property>
+<property name="NumberConc">
+<value>209.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pSTAT5">
+<property name="Name">
+<value>pSTAT5</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CD274mRNA">
+<property name="Name">
+<value>CD274mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IL13">
+<property name="Name">
+<value>IL13</value>
+</property>
+<property name="Value">
+<value>3.776</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="IL13stimulation">
+<property name="Name">
+<value>IL13stimulation</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kon_IL13Rec">
+<property name="Value">
+<value>0.00174087</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rec_phosphorylation">
+<property name="Value">
+<value>9.07541</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pRec_intern">
+<property name="Value">
+<value>0.324132</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pRec_degradation">
+<property name="Value">
+<value>0.417538</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rec_intern">
+<property name="Value">
+<value>0.259686</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rec_recycle">
+<property name="Value">
+<value>0.0039243</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="JAK2_phosphorylation">
+<property name="Value">
+<value>0.300019</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pJAK2_dephosphorylation">
+<property name="Value">
+<value>0.0981611</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="STAT5_phosphorylation">
+<property name="Value">
+<value>0.00426767</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pSTAT5_dephosphorylation">
+<property name="Value">
+<value>0.0116389</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CD274mRNA_production">
+<property name="Value">
+<value>0.0115928</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_IL13">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'IL13'</value>
+</property>
+<property name="Expression">
+<value>3.776 * IL13stimulation.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;cn&gt; 3.776 &lt;/cn&gt;#x0A    &lt;ci&gt; IL13stimulation &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IL13</value>
+<value>Variable:/cell:IL13</value>
+<value>1</value>
+</value>
+<value>
+<value>IL13stimulation</value>
+<value>Variable:/SBMLParameter:IL13stimulation</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

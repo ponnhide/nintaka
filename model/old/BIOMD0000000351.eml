@@ -1,0 +1,836 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reac_DIA">
+<property name="Name">
+<value>reac_DIA</value>
+</property>
+<property name="Expression">
+<value>k_IA.Value * I.NumberConc * A.NumberConc - kprime_IA.Value * D_IA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/compartment_0000001:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>-1</value>
+</value>
+<value>
+<value>D_IA</value>
+<value>Variable:/compartment_0000001:D_IA</value>
+<value>1</value>
+</value>
+<value>
+<value>k_IA</value>
+<value>Variable:/SBMLParameter:k_IA</value>
+<value>0</value>
+</value>
+<value>
+<value>kprime_IA</value>
+<value>Variable:/SBMLParameter:kprime_IA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_DII">
+<property name="Name">
+<value>reac_DII</value>
+</property>
+<property name="Expression">
+<value>k_II.Value * I.NumberConc * I.NumberConc - kprime_II.Value * D_II.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>-2</value>
+</value>
+<value>
+<value>D_II</value>
+<value>Variable:/compartment_0000001:D_II</value>
+<value>1</value>
+</value>
+<value>
+<value>k_II</value>
+<value>Variable:/SBMLParameter:k_II</value>
+<value>0</value>
+</value>
+<value>
+<value>kprime_II</value>
+<value>Variable:/SBMLParameter:kprime_II</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_degrI">
+<property name="Name">
+<value>reac_degrI</value>
+</property>
+<property name="Expression">
+<value>gamma_I.Value * d_I.Value * K_aux.Value * aux.NumberConc / (K_aux.Value * aux.NumberConc + 1) * I.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>-1</value>
+</value>
+<value>
+<value>aux</value>
+<value>Variable:/compartment_0000001:aux</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_I</value>
+<value>Variable:/SBMLParameter:gamma_I</value>
+<value>0</value>
+</value>
+<value>
+<value>d_I</value>
+<value>Variable:/SBMLParameter:d_I</value>
+<value>0</value>
+</value>
+<value>
+<value>K_aux</value>
+<value>Variable:/SBMLParameter:K_aux</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_degrA">
+<property name="Name">
+<value>reac_degrA</value>
+</property>
+<property name="Expression">
+<value>d_A.Value * A.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/compartment_0000001:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_A</value>
+<value>Variable:/SBMLParameter:d_A</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_degrDIA">
+<property name="Name">
+<value>reac_degrDIA</value>
+</property>
+<property name="Expression">
+<value>d_IA.Value * D_IA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_IA</value>
+<value>Variable:/compartment_0000001:D_IA</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_IA</value>
+<value>Variable:/SBMLParameter:d_IA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_degrDII">
+<property name="Name">
+<value>reac_degrDII</value>
+</property>
+<property name="Expression">
+<value>d_II.Value * D_II.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_II</value>
+<value>Variable:/compartment_0000001:D_II</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_II</value>
+<value>Variable:/SBMLParameter:d_II</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_DIAxA">
+<property name="Name">
+<value>reac_DIAxA</value>
+</property>
+<property name="Expression">
+<value>gamma_I.Value * d_I.Value * K_aux.Value * aux.NumberConc / (K_aux.Value * aux.NumberConc + 1) * D_IA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_IA</value>
+<value>Variable:/compartment_0000001:D_IA</value>
+<value>-1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/compartment_0000001:A</value>
+<value>1</value>
+</value>
+<value>
+<value>aux</value>
+<value>Variable:/compartment_0000001:aux</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_I</value>
+<value>Variable:/SBMLParameter:gamma_I</value>
+<value>0</value>
+</value>
+<value>
+<value>d_I</value>
+<value>Variable:/SBMLParameter:d_I</value>
+<value>0</value>
+</value>
+<value>
+<value>K_aux</value>
+<value>Variable:/SBMLParameter:K_aux</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_DIIxI">
+<property name="Name">
+<value>reac_DIIxI</value>
+</property>
+<property name="Expression">
+<value>gamma_I.Value * d_I.Value * K_aux.Value * aux.NumberConc / (K_aux.Value * aux.NumberConc + 1) * D_II.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>D_II</value>
+<value>Variable:/compartment_0000001:D_II</value>
+<value>-1</value>
+</value>
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>1</value>
+</value>
+<value>
+<value>aux</value>
+<value>Variable:/compartment_0000001:aux</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_I</value>
+<value>Variable:/SBMLParameter:gamma_I</value>
+<value>0</value>
+</value>
+<value>
+<value>d_I</value>
+<value>Variable:/SBMLParameter:d_I</value>
+<value>0</value>
+</value>
+<value>
+<value>K_aux</value>
+<value>Variable:/SBMLParameter:K_aux</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_degrR">
+<property name="Name">
+<value>reac_degrR</value>
+</property>
+<property name="Expression">
+<value>d_r.Value * R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment_0000001:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>d_r</value>
+<value>Variable:/SBMLParameter:d_r</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_prodI">
+<property name="Name">
+<value>reac_prodI</value>
+</property>
+<property name="Expression">
+<value>pi_I.Value * R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/compartment_0000001:R</value>
+<value>0</value>
+</value>
+<value>
+<value>pi_I</value>
+<value>Variable:/SBMLParameter:pi_I</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_prodA">
+<property name="Name">
+<value>reac_prodA</value>
+</property>
+<property name="Expression">
+<value>pi_A.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/compartment_0000001:A</value>
+<value>1</value>
+</value>
+<value>
+<value>pi_A</value>
+<value>Variable:/SBMLParameter:pi_A</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reac_prodR">
+<property name="Name">
+<value>reac_prodR</value>
+</property>
+<property name="Expression">
+<value>(1 + f_c.Value / B_d.Value * A.NumberConc * (1 + w_A.Value * f_A.Value * A.NumberConc / B_d.Value)) / (1 + A.NumberConc / B_d.Value * (1 + w_A.Value * A.NumberConc / B_d.Value) + w_I.Value * A.NumberConc * I.NumberConc / (K_IA.Value * B_d.Value) + w_D.Value * D_IA.NumberConc / B_d.Value + k_Am.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment_0000001:R</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/compartment_0000001:A</value>
+<value>0</value>
+</value>
+<value>
+<value>D_IA</value>
+<value>Variable:/compartment_0000001:D_IA</value>
+<value>0</value>
+</value>
+<value>
+<value>I</value>
+<value>Variable:/compartment_0000001:I</value>
+<value>0</value>
+</value>
+<value>
+<value>f_c</value>
+<value>Variable:/SBMLParameter:f_c</value>
+<value>0</value>
+</value>
+<value>
+<value>B_d</value>
+<value>Variable:/SBMLParameter:B_d</value>
+<value>0</value>
+</value>
+<value>
+<value>w_A</value>
+<value>Variable:/SBMLParameter:w_A</value>
+<value>0</value>
+</value>
+<value>
+<value>f_A</value>
+<value>Variable:/SBMLParameter:f_A</value>
+<value>0</value>
+</value>
+<value>
+<value>w_I</value>
+<value>Variable:/SBMLParameter:w_I</value>
+<value>0</value>
+</value>
+<value>
+<value>K_IA</value>
+<value>Variable:/SBMLParameter:K_IA</value>
+<value>0</value>
+</value>
+<value>
+<value>w_D</value>
+<value>Variable:/SBMLParameter:w_D</value>
+<value>0</value>
+</value>
+<value>
+<value>k_Am</value>
+<value>Variable:/SBMLParameter:k_Am</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment_0000001">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>c_1</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="I">
+<property name="Name">
+<value>Aux/IAA</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="Name">
+<value>ARF</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="D_II">
+<property name="Name">
+<value>Aux/IAA:Aux/IAA</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="D_IA">
+<property name="Name">
+<value>Aux/IAA:ARF</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>mRNA</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="aux">
+<property name="Name">
+<value>auxin</value>
+</property>
+<property name="NumberConc">
+<value>0.11</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="pi_I">
+<property name="Name">
+<value>pi_I</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_r">
+<property name="Name">
+<value>d_r</value>
+</property>
+<property name="Value">
+<value>0.007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_A">
+<property name="Name">
+<value>d_A</value>
+</property>
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_II">
+<property name="Name">
+<value>d_II</value>
+</property>
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_IA">
+<property name="Name">
+<value>d_IA</value>
+</property>
+<property name="Value">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_II">
+<property name="Name">
+<value>k_II</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_IA">
+<property name="Name">
+<value>k_IA</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="B_d">
+<property name="Name">
+<value>B_d</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_A">
+<property name="Name">
+<value>f_A</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma_I">
+<property name="Name">
+<value>gamma_I</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_aux">
+<property name="Name">
+<value>K_aux</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_II">
+<property name="Name">
+<value>K_II</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_IA">
+<property name="Name">
+<value>K_IA</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_c">
+<property name="Name">
+<value>f_c</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="w_A">
+<property name="Name">
+<value>w_A</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="w_I">
+<property name="Name">
+<value>w_I</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="w_D">
+<property name="Name">
+<value>w_D</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d_I">
+<property name="Name">
+<value>d_I</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pi_A">
+<property name="Name">
+<value>pi_A</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_Am">
+<property name="Name">
+<value>k_Am</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kprime_IA">
+<property name="Name">
+<value>kprime_IA</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+</variable>
+<variable class="Variable" id="kprime_II">
+<property name="Name">
+<value>kprime_II</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+</variable>
+<variable class="Variable" id="aux_basal">
+<property name="Name">
+<value>aux_basal</value>
+</property>
+<property name="Value">
+<value>0.111111111111</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_aux">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'aux'</value>
+</property>
+<property name="Expression">
+<value>piecewise(5, gt(&lt;t&gt;, 1000), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>aux</value>
+<value>Variable:/compartment_0000001:aux</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_kprime_IA">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kprime_IA'</value>
+</property>
+<property name="Expression">
+<value>K_IA.NumberConc * k_IA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kprime_IA</value>
+<value>Variable:/SBMLParameter:kprime_IA</value>
+<value>1</value>
+</value>
+<value>
+<value>K_IA</value>
+<value>Variable:/SBMLParameter:K_IA</value>
+<value>0</value>
+</value>
+<value>
+<value>k_IA</value>
+<value>Variable:/SBMLParameter:k_IA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_kprime_II">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kprime_II'</value>
+</property>
+<property name="Expression">
+<value>K_II.NumberConc * k_II.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kprime_II</value>
+<value>Variable:/SBMLParameter:kprime_II</value>
+<value>1</value>
+</value>
+<value>
+<value>K_II</value>
+<value>Variable:/SBMLParameter:K_II</value>
+<value>0</value>
+</value>
+<value>
+<value>k_II</value>
+<value>Variable:/SBMLParameter:k_II</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_aux_basal">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'aux_basal'</value>
+</property>
+<property name="Expression">
+<value>1 / (K_aux.NumberConc * (gamma_I.NumberConc - 1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>aux_basal</value>
+<value>Variable:/SBMLParameter:aux_basal</value>
+<value>1</value>
+</value>
+<value>
+<value>K_aux</value>
+<value>Variable:/SBMLParameter:K_aux</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma_I</value>
+<value>Variable:/SBMLParameter:gamma_I</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

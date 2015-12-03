@@ -1,0 +1,1848 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="nbc">
+<property name="Name">
+<value>2 x [bb] + [nb] &lt;-&gt; 2 x [bi] + [ni];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * japl.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bb</value>
+<value>Variable:/plasma:bb</value>
+<value>0</value>
+</value>
+<value>
+<value>nb</value>
+<value>Variable:/plasma:nb</value>
+<value>0</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>2</value>
+</value>
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>japl</value>
+<value>Variable:/SBMLParameter:japl</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; japl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="bcftr">
+<property name="Name">
+<value>[bl] &lt;-&gt; [bi];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * jbcftr.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>-1</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jbcftr</value>
+<value>Variable:/SBMLParameter:jbcftr</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jbcftr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ccftr">
+<property name="Name">
+<value>[cl] &lt;-&gt; [ci];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * jccftr.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>-1</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jccftr</value>
+<value>Variable:/SBMLParameter:jccftr</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jccftr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="apl">
+<property name="Name">
+<value>[bl] + [ci] &lt;-&gt; [bi] + [cl];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * japl.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>-1</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>-1</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>1</value>
+</value>
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>japl</value>
+<value>Variable:/SBMLParameter:japl</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; japl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="apbl">
+<property name="Name">
+<value>[bb] + [ci] &lt;-&gt; [bi] + [cb];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * japbl.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bb</value>
+<value>Variable:/plasma:bb</value>
+<value>0</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>-1</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>1</value>
+</value>
+<value>
+<value>cb</value>
+<value>Variable:/plasma:cb</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>japbl</value>
+<value>Variable:/SBMLParameter:japbl</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; japbl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="nak">
+<property name="Name">
+<value>[ni] &lt;-&gt; [nb];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * jnak.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>-1</value>
+</value>
+<value>
+<value>nb</value>
+<value>Variable:/plasma:nb</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jnak</value>
+<value>Variable:/SBMLParameter:jnak</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jnak &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="naleak">
+<property name="Name">
+<value>[ni] &lt;-&gt; [nb];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * jnaleak.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>-1</value>
+</value>
+<value>
+<value>nb</value>
+<value>Variable:/plasma:nb</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jnaleak</value>
+<value>Variable:/SBMLParameter:jnaleak</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jnaleak &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="buffering">
+<property name="Name">
+<value>&lt;-&gt; [bi];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * zeta.Value * buf.Value * (bi0.Value - bi.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>buf</value>
+<value>Variable:/SBMLParameter:buf</value>
+<value>0</value>
+</value>
+<value>
+<value>bi0</value>
+<value>Variable:/SBMLParameter:bi0</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cell &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; buf &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; bi0 &lt;/ci&gt;#x0A      &lt;ci&gt; bi &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="bac">
+<property name="Name">
+<value>&lt;-&gt; [bl];</value>
+</property>
+<property name="Expression">
+<value>lumen.Value * zeta.Value * jac.Value * rat.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>1</value>
+</value>
+<value>
+<value>lumen</value>
+<value>Variable:/lumen:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jac</value>
+<value>Variable:/SBMLParameter:jac</value>
+<value>0</value>
+</value>
+<value>
+<value>rat</value>
+<value>Variable:/SBMLParameter:rat</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; lumen &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jac &lt;/ci&gt;#x0A    &lt;ci&gt; rat &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="cac">
+<property name="Name">
+<value>&lt;-&gt; [cl];</value>
+</property>
+<property name="Expression">
+<value>lumen.Value * zeta.Value * jac.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>1</value>
+</value>
+<value>
+<value>lumen</value>
+<value>Variable:/lumen:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jac</value>
+<value>Variable:/SBMLParameter:jac</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; lumen &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jac &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="outflow">
+<property name="Name">
+<value>[bl] &lt;-&gt; ;</value>
+</property>
+<property name="Expression">
+<value>lumen.Value * zeta.Value * jlum.Value * bl.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>-1</value>
+</value>
+<value>
+<value>lumen</value>
+<value>Variable:/lumen:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>jlum</value>
+<value>Variable:/SBMLParameter:jlum</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; lumen &lt;/ci&gt;#x0A    &lt;ci&gt; zeta &lt;/ci&gt;#x0A    &lt;ci&gt; jlum &lt;/ci&gt;#x0A    &lt;ci&gt; bl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/plasma">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>plasma</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bb">
+<property name="Name">
+<value>HCO3-</value>
+</property>
+<property name="NumberConc">
+<value>22.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cb">
+<property name="Name">
+<value>CL-</value>
+</property>
+<property name="NumberConc">
+<value>130.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="nb">
+<property name="Name">
+<value>Na+</value>
+</property>
+<property name="NumberConc">
+<value>140.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bi">
+<property name="Name">
+<value>HCO3-</value>
+</property>
+<property name="NumberConc">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ci">
+<property name="Name">
+<value>CL-</value>
+</property>
+<property name="NumberConc">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ni">
+<property name="Name">
+<value>Na+</value>
+</property>
+<property name="NumberConc">
+<value>14.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/lumen">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>lumen</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bl">
+<property name="Name">
+<value>HCO3-</value>
+</property>
+<property name="NumberConc">
+<value>32.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cl">
+<property name="Name">
+<value>CL-</value>
+</property>
+<property name="Value">
+<value>156.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="g_bi">
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g_cl">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="zeta">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbi">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcl">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gnbc">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gapl">
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gapbl">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vr">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bi0">
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="buf">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gcftron">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gcftrbase">
+<property name="Value">
+<value>7e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ek">
+<property name="Value">
+<value>-0.085</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gk">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r">
+<property name="Name">
+<value>gas constant</value>
+</property>
+<property name="Value">
+<value>8.31451</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f">
+<property name="Name">
+<value>Faraday constant</value>
+</property>
+<property name="Value">
+<value>96485.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="temp">
+<property name="Value">
+<value>310.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ionstr">
+<property name="Value">
+<value>160.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gnak">
+<property name="Value">
+<value>3.125</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="np0">
+<property name="Value">
+<value>25.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="epump">
+<property name="Value">
+<value>-0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gnaleak">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="jac">
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rat">
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ton">
+<property name="Value">
+<value>60.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="toff">
+<property name="Value">
+<value>360.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gcftr">
+<property name="Value">
+<value>7e-05</value>
+</property>
+</variable>
+<variable class="Variable" id="eb">
+<property name="Value">
+<value>0.0412704072732</value>
+</property>
+</variable>
+<variable class="Variable" id="enbc">
+<property name="Value">
+<value>-0.0819736985779</value>
+</property>
+</variable>
+<variable class="Variable" id="ec">
+<property name="Value">
+<value>-0.0256621557375</value>
+</property>
+</variable>
+<variable class="Variable" id="ena">
+<property name="Value">
+<value>0.0615112059106</value>
+</property>
+</variable>
+<variable class="Variable" id="kccf">
+<property name="Value">
+<value>0.00653543613567</value>
+</property>
+</variable>
+<variable class="Variable" id="kbcf">
+<property name="Value">
+<value>8.79807110976e-05</value>
+</property>
+</variable>
+<variable class="Variable" id="knbc">
+<property name="Value">
+<value>2.0</value>
+</property>
+</variable>
+<variable class="Variable" id="v">
+<property name="Value">
+<value>-0.0746708070967</value>
+</property>
+</variable>
+<variable class="Variable" id="jnbc">
+<property name="Value">
+<value>0.0146057829625</value>
+</property>
+</variable>
+<variable class="Variable" id="jbcftr">
+<property name="Value">
+<value>-1.02005904858e-05</value>
+</property>
+</variable>
+<variable class="Variable" id="jccftr">
+<property name="Value">
+<value>-0.000320292911053</value>
+</property>
+</variable>
+<variable class="Variable" id="japl">
+<property name="Value">
+<value>-0.0894048986434</value>
+</property>
+</variable>
+<variable class="Variable" id="japbl">
+<property name="Value">
+<value>-0.000686295276424</value>
+</property>
+</variable>
+<variable class="Variable" id="jlum">
+<property name="Value">
+<value>0.0626953125</value>
+</property>
+</variable>
+<variable class="Variable" id="jnak">
+<property name="Value">
+<value>0.0687806610653</value>
+</property>
+</variable>
+<variable class="Variable" id="jnaleak">
+<property name="Value">
+<value>-0.0544728052029</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_cl">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cl'</value>
+</property>
+<property name="Expression">
+<value>160 - bl.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;cn type='integer'&gt; 160 &lt;/cn&gt;#x0A    &lt;ci&gt; bl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>1</value>
+</value>
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_eb">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'eb'</value>
+</property>
+<property name="Expression">
+<value>r.NumberConc * temp.NumberConc / f.NumberConc * log(bi.NumberConc / bl.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; r &lt;/ci&gt;#x0A        &lt;ci&gt; temp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; f &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;ln/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; bi &lt;/ci&gt;#x0A        &lt;ci&gt; bl &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>eb</value>
+<value>Variable:/SBMLParameter:eb</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>temp</value>
+<value>Variable:/SBMLParameter:temp</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>0</value>
+</value>
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_enbc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'enbc'</value>
+</property>
+<property name="Expression">
+<value>r.NumberConc * temp.NumberConc / f.NumberConc * log(pow(bi.NumberConc, 2) * ni.NumberConc / (pow(bb.NumberConc, 2) * nb.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; r &lt;/ci&gt;#x0A        &lt;ci&gt; temp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; f &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;ln/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; bi &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; ni &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; bb &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; nb &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>enbc</value>
+<value>Variable:/SBMLParameter:enbc</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>temp</value>
+<value>Variable:/SBMLParameter:temp</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>0</value>
+</value>
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>0</value>
+</value>
+<value>
+<value>bb</value>
+<value>Variable:/plasma:bb</value>
+<value>0</value>
+</value>
+<value>
+<value>nb</value>
+<value>Variable:/plasma:nb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ec">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ec'</value>
+</property>
+<property name="Expression">
+<value>r.NumberConc * temp.NumberConc / f.NumberConc * log(ci.NumberConc / cl.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; r &lt;/ci&gt;#x0A        &lt;ci&gt; temp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; f &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;ln/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;ci&gt; cl &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ec</value>
+<value>Variable:/SBMLParameter:ec</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>temp</value>
+<value>Variable:/SBMLParameter:temp</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>0</value>
+</value>
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ena">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ena'</value>
+</property>
+<property name="Expression">
+<value>r.NumberConc * temp.NumberConc / f.NumberConc * log(nb.NumberConc / ni.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; r &lt;/ci&gt;#x0A        &lt;ci&gt; temp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; f &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;ln/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; nb &lt;/ci&gt;#x0A        &lt;ci&gt; ni &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ena</value>
+<value>Variable:/SBMLParameter:ena</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>temp</value>
+<value>Variable:/SBMLParameter:temp</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>nb</value>
+<value>Variable:/plasma:nb</value>
+<value>0</value>
+</value>
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_kccf">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kccf'</value>
+</property>
+<property name="Expression">
+<value>ci.NumberConc * cl.NumberConc * log(ci.NumberConc / cl.NumberConc) / (ci.NumberConc - cl.NumberConc) * gcftr.NumberConc * g_cl.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;ci&gt; cl &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;ln/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ci &lt;/ci&gt;#x0A            &lt;ci&gt; cl &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;ci&gt; cl &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; gcftr &lt;/ci&gt;#x0A    &lt;ci&gt; g_cl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kccf</value>
+<value>Variable:/SBMLParameter:kccf</value>
+<value>1</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>0</value>
+</value>
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>0</value>
+</value>
+<value>
+<value>gcftr</value>
+<value>Variable:/SBMLParameter:gcftr</value>
+<value>0</value>
+</value>
+<value>
+<value>g_cl</value>
+<value>Variable:/SBMLParameter:g_cl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_kbcf">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kbcf'</value>
+</property>
+<property name="Expression">
+<value>bi.NumberConc * bl.NumberConc * log(bi.NumberConc / bl.NumberConc) / (bi.NumberConc - bl.NumberConc) * gcftr.NumberConc * g_bi.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; bi &lt;/ci&gt;#x0A        &lt;ci&gt; bl &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;ln/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; bi &lt;/ci&gt;#x0A            &lt;ci&gt; bl &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; bi &lt;/ci&gt;#x0A        &lt;ci&gt; bl &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; gcftr &lt;/ci&gt;#x0A    &lt;ci&gt; g_bi &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kbcf</value>
+<value>Variable:/SBMLParameter:kbcf</value>
+<value>1</value>
+</value>
+<value>
+<value>bi</value>
+<value>Variable:/cell:bi</value>
+<value>0</value>
+</value>
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>0</value>
+</value>
+<value>
+<value>gcftr</value>
+<value>Variable:/SBMLParameter:gcftr</value>
+<value>0</value>
+</value>
+<value>
+<value>g_bi</value>
+<value>Variable:/SBMLParameter:g_bi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_knbc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'knbc'</value>
+</property>
+<property name="Expression">
+<value>gnbc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; gnbc &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>knbc</value>
+<value>Variable:/SBMLParameter:knbc</value>
+<value>1</value>
+</value>
+<value>
+<value>gnbc</value>
+<value>Variable:/SBMLParameter:gnbc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_v">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'v'</value>
+</property>
+<property name="Expression">
+<value>(knbc.NumberConc * enbc.NumberConc + kbcf.NumberConc * eb.NumberConc + kccf.NumberConc * ec.NumberConc + gk.NumberConc * ek.NumberConc + gnaleak.NumberConc * ena.NumberConc) / (knbc.NumberConc + kbcf.NumberConc + kccf.NumberConc + gk.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; knbc &lt;/ci&gt;#x0A        &lt;ci&gt; enbc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kbcf &lt;/ci&gt;#x0A        &lt;ci&gt; eb &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kccf &lt;/ci&gt;#x0A        &lt;ci&gt; ec &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; gk &lt;/ci&gt;#x0A        &lt;ci&gt; ek &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; gnaleak &lt;/ci&gt;#x0A        &lt;ci&gt; ena &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; knbc &lt;/ci&gt;#x0A      &lt;ci&gt; kbcf &lt;/ci&gt;#x0A      &lt;ci&gt; kccf &lt;/ci&gt;#x0A      &lt;ci&gt; gk &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>1</value>
+</value>
+<value>
+<value>knbc</value>
+<value>Variable:/SBMLParameter:knbc</value>
+<value>0</value>
+</value>
+<value>
+<value>enbc</value>
+<value>Variable:/SBMLParameter:enbc</value>
+<value>0</value>
+</value>
+<value>
+<value>kbcf</value>
+<value>Variable:/SBMLParameter:kbcf</value>
+<value>0</value>
+</value>
+<value>
+<value>eb</value>
+<value>Variable:/SBMLParameter:eb</value>
+<value>0</value>
+</value>
+<value>
+<value>kccf</value>
+<value>Variable:/SBMLParameter:kccf</value>
+<value>0</value>
+</value>
+<value>
+<value>ec</value>
+<value>Variable:/SBMLParameter:ec</value>
+<value>0</value>
+</value>
+<value>
+<value>gk</value>
+<value>Variable:/SBMLParameter:gk</value>
+<value>0</value>
+</value>
+<value>
+<value>ek</value>
+<value>Variable:/SBMLParameter:ek</value>
+<value>0</value>
+</value>
+<value>
+<value>gnaleak</value>
+<value>Variable:/SBMLParameter:gnaleak</value>
+<value>0</value>
+</value>
+<value>
+<value>ena</value>
+<value>Variable:/SBMLParameter:ena</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jnbc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jnbc'</value>
+</property>
+<property name="Expression">
+<value>knbc.NumberConc * (v.NumberConc - enbc.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; knbc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;ci&gt; enbc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jnbc</value>
+<value>Variable:/SBMLParameter:jnbc</value>
+<value>1</value>
+</value>
+<value>
+<value>knbc</value>
+<value>Variable:/SBMLParameter:knbc</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>enbc</value>
+<value>Variable:/SBMLParameter:enbc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jbcftr">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jbcftr'</value>
+</property>
+<property name="Expression">
+<value>kbcf.NumberConc * (v.NumberConc - eb.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kbcf &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;ci&gt; eb &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jbcftr</value>
+<value>Variable:/SBMLParameter:jbcftr</value>
+<value>1</value>
+</value>
+<value>
+<value>kbcf</value>
+<value>Variable:/SBMLParameter:kbcf</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>eb</value>
+<value>Variable:/SBMLParameter:eb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jccftr">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jccftr'</value>
+</property>
+<property name="Expression">
+<value>kccf.NumberConc * (v.NumberConc - ec.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kccf &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;ci&gt; ec &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jccftr</value>
+<value>Variable:/SBMLParameter:jccftr</value>
+<value>1</value>
+</value>
+<value>
+<value>kccf</value>
+<value>Variable:/SBMLParameter:kccf</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>ec</value>
+<value>Variable:/SBMLParameter:ec</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_japl">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'japl'</value>
+</property>
+<property name="Expression">
+<value>(bl.NumberConc * ci.NumberConc - cl.NumberConc * ci.NumberConc) / (kbi.NumberConc * kcl.NumberConc * ((1 + ci.NumberConc / kbi.NumberConc + ci.NumberConc / kcl.NumberConc) * (bl.NumberConc / kbi.NumberConc + cl.NumberConc / kcl.NumberConc) + (1 + bl.NumberConc / kbi.NumberConc + cl.NumberConc / kcl.NumberConc) * (ci.NumberConc / kbi.NumberConc + ci.NumberConc / kcl.NumberConc))) * gapl.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; bl &lt;/ci&gt;#x0A          &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; cl &lt;/ci&gt;#x0A          &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kbi &lt;/ci&gt;#x0A        &lt;ci&gt; kcl &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; bl &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; cl &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; bl &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; cl &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; gapl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>japl</value>
+<value>Variable:/SBMLParameter:japl</value>
+<value>1</value>
+</value>
+<value>
+<value>bl</value>
+<value>Variable:/lumen:bl</value>
+<value>0</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>0</value>
+</value>
+<value>
+<value>cl</value>
+<value>Variable:/lumen:cl</value>
+<value>0</value>
+</value>
+<value>
+<value>kbi</value>
+<value>Variable:/SBMLParameter:kbi</value>
+<value>0</value>
+</value>
+<value>
+<value>kcl</value>
+<value>Variable:/SBMLParameter:kcl</value>
+<value>0</value>
+</value>
+<value>
+<value>gapl</value>
+<value>Variable:/SBMLParameter:gapl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_japbl">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'japbl'</value>
+</property>
+<property name="Expression">
+<value>(bb.NumberConc * ci.NumberConc - cb.NumberConc * ci.NumberConc) / (kbi.NumberConc * kcl.NumberConc * ((1 + ci.NumberConc / kbi.NumberConc + ci.NumberConc / kcl.NumberConc) * (bb.NumberConc / kbi.NumberConc + cb.NumberConc / kcl.NumberConc) + (1 + bb.NumberConc / kbi.NumberConc + cb.NumberConc / kcl.NumberConc) * (ci.NumberConc / kbi.NumberConc + ci.NumberConc / kcl.NumberConc))) * gapbl.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; bb &lt;/ci&gt;#x0A          &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; cb &lt;/ci&gt;#x0A          &lt;ci&gt; ci &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kbi &lt;/ci&gt;#x0A        &lt;ci&gt; kcl &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; bb &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; cb &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; bb &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; cb &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kbi &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ci &lt;/ci&gt;#x0A                &lt;ci&gt; kcl &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; gapbl &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>japbl</value>
+<value>Variable:/SBMLParameter:japbl</value>
+<value>1</value>
+</value>
+<value>
+<value>bb</value>
+<value>Variable:/plasma:bb</value>
+<value>0</value>
+</value>
+<value>
+<value>ci</value>
+<value>Variable:/cell:ci</value>
+<value>0</value>
+</value>
+<value>
+<value>cb</value>
+<value>Variable:/plasma:cb</value>
+<value>0</value>
+</value>
+<value>
+<value>kbi</value>
+<value>Variable:/SBMLParameter:kbi</value>
+<value>0</value>
+</value>
+<value>
+<value>kcl</value>
+<value>Variable:/SBMLParameter:kcl</value>
+<value>0</value>
+</value>
+<value>
+<value>gapbl</value>
+<value>Variable:/SBMLParameter:gapbl</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jlum">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jlum'</value>
+</property>
+<property name="Expression">
+<value>(-(jccftr.NumberConc + jbcftr.NumberConc) * vr.NumberConc + jac.NumberConc * (1 + rat.NumberConc)) / ionstr.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; jccftr &lt;/ci&gt;#x0A            &lt;ci&gt; jbcftr &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; vr &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; jac &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;ci&gt; rat &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; ionstr &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jlum</value>
+<value>Variable:/SBMLParameter:jlum</value>
+<value>1</value>
+</value>
+<value>
+<value>jccftr</value>
+<value>Variable:/SBMLParameter:jccftr</value>
+<value>0</value>
+</value>
+<value>
+<value>jbcftr</value>
+<value>Variable:/SBMLParameter:jbcftr</value>
+<value>0</value>
+</value>
+<value>
+<value>vr</value>
+<value>Variable:/SBMLParameter:vr</value>
+<value>0</value>
+</value>
+<value>
+<value>jac</value>
+<value>Variable:/SBMLParameter:jac</value>
+<value>0</value>
+</value>
+<value>
+<value>rat</value>
+<value>Variable:/SBMLParameter:rat</value>
+<value>0</value>
+</value>
+<value>
+<value>ionstr</value>
+<value>Variable:/SBMLParameter:ionstr</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jnak">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jnak'</value>
+</property>
+<property name="Expression">
+<value>gnak.NumberConc * (v.NumberConc - epump.NumberConc) * pow(ni.NumberConc / np0.NumberConc, 3)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gnak &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;ci&gt; epump &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;power/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ni &lt;/ci&gt;#x0A        &lt;ci&gt; np0 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn type='integer'&gt; 3 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jnak</value>
+<value>Variable:/SBMLParameter:jnak</value>
+<value>1</value>
+</value>
+<value>
+<value>gnak</value>
+<value>Variable:/SBMLParameter:gnak</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>epump</value>
+<value>Variable:/SBMLParameter:epump</value>
+<value>0</value>
+</value>
+<value>
+<value>ni</value>
+<value>Variable:/cell:ni</value>
+<value>0</value>
+</value>
+<value>
+<value>np0</value>
+<value>Variable:/SBMLParameter:np0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_jnaleak">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'jnaleak'</value>
+</property>
+<property name="Expression">
+<value>gnaleak.NumberConc * (v.NumberConc - ena.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; gnaleak &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; v &lt;/ci&gt;#x0A      &lt;ci&gt; ena &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>jnaleak</value>
+<value>Variable:/SBMLParameter:jnaleak</value>
+<value>1</value>
+</value>
+<value>
+<value>gnaleak</value>
+<value>Variable:/SBMLParameter:gnaleak</value>
+<value>0</value>
+</value>
+<value>
+<value>v</value>
+<value>Variable:/SBMLParameter:v</value>
+<value>0</value>
+</value>
+<value>
+<value>ena</value>
+<value>Variable:/SBMLParameter:ena</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="event_0">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>gcftr</value>
+<value>gcftron.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A    &lt;ci&gt; ton &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, ton.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gcftr</value>
+<value>Variable:/SBMLParameter:gcftr</value>
+<value>1</value>
+</value>
+<value>
+<value>gcftron</value>
+<value>Variable:/SBMLParameter:gcftron</value>
+<value>0</value>
+</value>
+<value>
+<value>ton</value>
+<value>Variable:/SBMLParameter:ton</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_1">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_1</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>gcftr</value>
+<value>gcftrbase.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A    &lt;ci&gt; toff &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, toff.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gcftr</value>
+<value>Variable:/SBMLParameter:gcftr</value>
+<value>1</value>
+</value>
+<value>
+<value>gcftrbase</value>
+<value>Variable:/SBMLParameter:gcftrbase</value>
+<value>0</value>
+</value>
+<value>
+<value>toff</value>
+<value>Variable:/SBMLParameter:toff</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

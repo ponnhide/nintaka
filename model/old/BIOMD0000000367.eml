@@ -1,0 +1,312 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment_1</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>x</value>
+</property>
+<property name="NumberConc">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y">
+<property name="Name">
+<value>y</value>
+</property>
+<property name="NumberConc">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z">
+<property name="Name">
+<value>z</value>
+</property>
+<property name="NumberConc">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="r">
+<property name="Name">
+<value>r</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mu_x">
+<property name="Name">
+<value>mu_x</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="zeta">
+<property name="Name">
+<value>zeta</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b">
+<property name="Name">
+<value>b</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mu_z">
+<property name="Name">
+<value>mu_z</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+</variable>
+<variable class="Variable" id="epsilon">
+<property name="Name">
+<value>epsilon</value>
+</property>
+<property name="Value">
+<value>0.002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k">
+<property name="Name">
+<value>k</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="mu_z_star">
+<property name="Name">
+<value>mu_z_star</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_x">
+<property name="Name">
+<value>Rate rule for 'x'</value>
+</property>
+<property name="Expression">
+<value>-r.NumberConc * x.NumberConc * y.NumberConc + zeta.NumberConc * mu_x.NumberConc - zeta.NumberConc * x.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment_1:x</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment_1:y</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>mu_x</value>
+<value>Variable:/SBMLParameter:mu_x</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_y">
+<property name="Name">
+<value>Rate rule for 'y'</value>
+</property>
+<property name="Expression">
+<value>r.NumberConc * x.NumberConc * y.NumberConc - b.NumberConc * y.NumberConc * z.NumberConc - zeta.NumberConc * y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/compartment_1:y</value>
+<value>1</value>
+</value>
+<value>
+<value>r</value>
+<value>Variable:/SBMLParameter:r</value>
+<value>0</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment_1:x</value>
+<value>0</value>
+</value>
+<value>
+<value>b</value>
+<value>Variable:/SBMLParameter:b</value>
+<value>0</value>
+</value>
+<value>
+<value>z</value>
+<value>Variable:/compartment_1:z</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_z">
+<property name="Name">
+<value>Rate rule for 'z'</value>
+</property>
+<property name="Expression">
+<value>-b.NumberConc * y.NumberConc * z.NumberConc + zeta.NumberConc * mu_z.NumberConc - zeta.NumberConc * z.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z</value>
+<value>Variable:/compartment_1:z</value>
+<value>1</value>
+</value>
+<value>
+<value>b</value>
+<value>Variable:/SBMLParameter:b</value>
+<value>0</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment_1:y</value>
+<value>0</value>
+</value>
+<value>
+<value>zeta</value>
+<value>Variable:/SBMLParameter:zeta</value>
+<value>0</value>
+</value>
+<value>
+<value>mu_z</value>
+<value>Variable:/SBMLParameter:mu_z</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_mu_z">
+<property name="Name">
+<value>Rate rule for 'mu_z'</value>
+</property>
+<property name="Expression">
+<value>epsilon.NumberConc * (y.NumberConc - k.NumberConc * (mu_z.NumberConc - mu_z_star.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mu_z</value>
+<value>Variable:/SBMLParameter:mu_z</value>
+<value>1</value>
+</value>
+<value>
+<value>epsilon</value>
+<value>Variable:/SBMLParameter:epsilon</value>
+<value>0</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment_1:y</value>
+<value>0</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+<value>
+<value>mu_z_star</value>
+<value>Variable:/SBMLParameter:mu_z_star</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

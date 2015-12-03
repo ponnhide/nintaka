@@ -1,0 +1,916 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="J0">
+<property name="Name">
+<value>[OCT4_Gene] -&gt; [OCT4]; { A, OCT4_SOX2, NANOG };</value>
+</property>
+<property name="Expression">
+<value>(eta1.Value + a1.Value * A.NumberConc + a2.Value * OCT4_SOX2.NumberConc + a3.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc) / (1 + eta1.Value / f.Value + b1.Value * A.NumberConc + b2.Value * OCT4_SOX2.NumberConc + b3.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>OCT4_Gene</value>
+<value>Variable:/compartment:OCT4_Gene</value>
+<value>-1</value>
+</value>
+<value>
+<value>OCT4</value>
+<value>Variable:/compartment:OCT4</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/compartment:A</value>
+<value>0</value>
+</value>
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>0</value>
+</value>
+<value>
+<value>NANOG</value>
+<value>Variable:/compartment:NANOG</value>
+<value>0</value>
+</value>
+<value>
+<value>eta1</value>
+<value>Variable:/SBMLParameter:eta1</value>
+<value>0</value>
+</value>
+<value>
+<value>a1</value>
+<value>Variable:/SBMLParameter:a1</value>
+<value>0</value>
+</value>
+<value>
+<value>a2</value>
+<value>Variable:/SBMLParameter:a2</value>
+<value>0</value>
+</value>
+<value>
+<value>a3</value>
+<value>Variable:/SBMLParameter:a3</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>b1</value>
+<value>Variable:/SBMLParameter:b1</value>
+<value>0</value>
+</value>
+<value>
+<value>b2</value>
+<value>Variable:/SBMLParameter:b2</value>
+<value>0</value>
+</value>
+<value>
+<value>b3</value>
+<value>Variable:/SBMLParameter:b3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J1">
+<property name="Name">
+<value>[OCT4] -&gt; [degradation];</value>
+</property>
+<property name="Expression">
+<value>gamma1.Value * OCT4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>OCT4</value>
+<value>Variable:/compartment:OCT4</value>
+<value>-1</value>
+</value>
+<value>
+<value>degradation</value>
+<value>Variable:/compartment:degradation</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma1</value>
+<value>Variable:/SBMLParameter:gamma1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J2">
+<property name="Name">
+<value>[NANOG_Gene] -&gt; [NANOG]; { OCT4_SOX2, p53 };</value>
+</property>
+<property name="Expression">
+<value>(eta5.Value + e1.Value * OCT4_SOX2.NumberConc + e2.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc) / (1 + eta5.Value / f.Value + f2.Value * OCT4_SOX2.NumberConc + f1.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc + f3.Value * p53.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NANOG_Gene</value>
+<value>Variable:/compartment:NANOG_Gene</value>
+<value>-1</value>
+</value>
+<value>
+<value>NANOG</value>
+<value>Variable:/compartment:NANOG</value>
+<value>1</value>
+</value>
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>0</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/compartment:p53</value>
+<value>0</value>
+</value>
+<value>
+<value>eta5</value>
+<value>Variable:/SBMLParameter:eta5</value>
+<value>0</value>
+</value>
+<value>
+<value>e1</value>
+<value>Variable:/SBMLParameter:e1</value>
+<value>0</value>
+</value>
+<value>
+<value>e2</value>
+<value>Variable:/SBMLParameter:e2</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>f2</value>
+<value>Variable:/SBMLParameter:f2</value>
+<value>0</value>
+</value>
+<value>
+<value>f1</value>
+<value>Variable:/SBMLParameter:f1</value>
+<value>0</value>
+</value>
+<value>
+<value>f3</value>
+<value>Variable:/SBMLParameter:f3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J3">
+<property name="Name">
+<value>[NANOG] -&gt; [degradation];</value>
+</property>
+<property name="Expression">
+<value>gamma2.Value * NANOG.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NANOG</value>
+<value>Variable:/compartment:NANOG</value>
+<value>-1</value>
+</value>
+<value>
+<value>degradation</value>
+<value>Variable:/compartment:degradation</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma2</value>
+<value>Variable:/SBMLParameter:gamma2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J4">
+<property name="Name">
+<value>[OCT4] + [SOX2] -&gt; [OCT4_SOX2];</value>
+</property>
+<property name="Expression">
+<value>k1c.Value * OCT4.NumberConc * SOX2.NumberConc - k2c.Value * OCT4_SOX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>OCT4</value>
+<value>Variable:/compartment:OCT4</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOX2</value>
+<value>Variable:/compartment:SOX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>1</value>
+</value>
+<value>
+<value>k1c</value>
+<value>Variable:/SBMLParameter:k1c</value>
+<value>0</value>
+</value>
+<value>
+<value>k2c</value>
+<value>Variable:/SBMLParameter:k2c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J5">
+<property name="Name">
+<value>[OCT4_SOX2] -&gt; [degradation];</value>
+</property>
+<property name="Expression">
+<value>k3c.Value * OCT4_SOX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>degradation</value>
+<value>Variable:/compartment:degradation</value>
+<value>1</value>
+</value>
+<value>
+<value>k3c</value>
+<value>Variable:/SBMLParameter:k3c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J6">
+<property name="Name">
+<value>[SOX2_Gene] -&gt; [SOX2]; { A, OCT4_SOX2, NANOG };</value>
+</property>
+<property name="Expression">
+<value>(eta3.Value + c1.Value * A.NumberConc + c2.Value * OCT4_SOX2.NumberConc + c3.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc) / (1 + eta3.Value / f.Value + d1.Value * A.NumberConc + d2.Value * OCT4_SOX2.NumberConc + d3.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOX2_Gene</value>
+<value>Variable:/compartment:SOX2_Gene</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOX2</value>
+<value>Variable:/compartment:SOX2</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/compartment:A</value>
+<value>0</value>
+</value>
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>0</value>
+</value>
+<value>
+<value>NANOG</value>
+<value>Variable:/compartment:NANOG</value>
+<value>0</value>
+</value>
+<value>
+<value>eta3</value>
+<value>Variable:/SBMLParameter:eta3</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/SBMLParameter:c1</value>
+<value>0</value>
+</value>
+<value>
+<value>c2</value>
+<value>Variable:/SBMLParameter:c2</value>
+<value>0</value>
+</value>
+<value>
+<value>c3</value>
+<value>Variable:/SBMLParameter:c3</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+<value>
+<value>d1</value>
+<value>Variable:/SBMLParameter:d1</value>
+<value>0</value>
+</value>
+<value>
+<value>d2</value>
+<value>Variable:/SBMLParameter:d2</value>
+<value>0</value>
+</value>
+<value>
+<value>d3</value>
+<value>Variable:/SBMLParameter:d3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J7">
+<property name="Name">
+<value>[SOX2] -&gt; [degradation];</value>
+</property>
+<property name="Expression">
+<value>gamma3.Value * SOX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOX2</value>
+<value>Variable:/compartment:SOX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>degradation</value>
+<value>Variable:/compartment:degradation</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma3</value>
+<value>Variable:/SBMLParameter:gamma3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J8">
+<property name="Name">
+<value>[targetGene] -&gt; [Protein]; { OCT4_SOX2, NANOG };</value>
+</property>
+<property name="Expression">
+<value>(g1.Value * OCT4_SOX2.NumberConc + eta7.Value) / (1 + eta7.Value / f2.Value + h1.Value * OCT4_SOX2.NumberConc + h2.Value * OCT4_SOX2.NumberConc * NANOG.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>targetGene</value>
+<value>Variable:/compartment:targetGene</value>
+<value>-1</value>
+</value>
+<value>
+<value>Protein</value>
+<value>Variable:/compartment:Protein</value>
+<value>1</value>
+</value>
+<value>
+<value>OCT4_SOX2</value>
+<value>Variable:/compartment:OCT4_SOX2</value>
+<value>0</value>
+</value>
+<value>
+<value>NANOG</value>
+<value>Variable:/compartment:NANOG</value>
+<value>0</value>
+</value>
+<value>
+<value>g1</value>
+<value>Variable:/SBMLParameter:g1</value>
+<value>0</value>
+</value>
+<value>
+<value>eta7</value>
+<value>Variable:/SBMLParameter:eta7</value>
+<value>0</value>
+</value>
+<value>
+<value>f2</value>
+<value>Variable:/SBMLParameter:f2</value>
+<value>0</value>
+</value>
+<value>
+<value>h1</value>
+<value>Variable:/SBMLParameter:h1</value>
+<value>0</value>
+</value>
+<value>
+<value>h2</value>
+<value>Variable:/SBMLParameter:h2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="J9">
+<property name="Name">
+<value>[Protein] -&gt; [degradation];</value>
+</property>
+<property name="Expression">
+<value>gamma4.Value * Protein.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Protein</value>
+<value>Variable:/compartment:Protein</value>
+<value>-1</value>
+</value>
+<value>
+<value>degradation</value>
+<value>Variable:/compartment:degradation</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma4</value>
+<value>Variable:/SBMLParameter:gamma4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="OCT4_Gene">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NANOG_Gene">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOX2_Gene">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="targetGene">
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="degradation">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="OCT4">
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOX2">
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NANOG">
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="OCT4_SOX2">
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Protein">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="eta1">
+<property name="Name">
+<value>eta1</value>
+</property>
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a1">
+<property name="Name">
+<value>a1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a2">
+<property name="Name">
+<value>a2</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a3">
+<property name="Name">
+<value>a3</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f">
+<property name="Name">
+<value>f</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b1">
+<property name="Name">
+<value>b1</value>
+</property>
+<property name="Value">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b2">
+<property name="Name">
+<value>b2</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b3">
+<property name="Name">
+<value>b3</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma1">
+<property name="Name">
+<value>gamma1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="eta5">
+<property name="Name">
+<value>eta5</value>
+</property>
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e1">
+<property name="Name">
+<value>e1</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e2">
+<property name="Name">
+<value>e2</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f2">
+<property name="Name">
+<value>f2</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f1">
+<property name="Name">
+<value>f1</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f3">
+<property name="Name">
+<value>f3</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma2">
+<property name="Name">
+<value>gamma2</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1c">
+<property name="Name">
+<value>k1c</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2c">
+<property name="Name">
+<value>k2c</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3c">
+<property name="Name">
+<value>k3c</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="eta3">
+<property name="Name">
+<value>eta3</value>
+</property>
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c1">
+<property name="Name">
+<value>c1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c2">
+<property name="Name">
+<value>c2</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c3">
+<property name="Name">
+<value>c3</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d1">
+<property name="Name">
+<value>d1</value>
+</property>
+<property name="Value">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d2">
+<property name="Name">
+<value>d2</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d3">
+<property name="Name">
+<value>d3</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma3">
+<property name="Name">
+<value>gamma3</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g1">
+<property name="Name">
+<value>g1</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="eta7">
+<property name="Name">
+<value>eta7</value>
+</property>
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h1">
+<property name="Name">
+<value>h1</value>
+</property>
+<property name="Value">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h2">
+<property name="Name">
+<value>h2</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma4">
+<property name="Name">
+<value>gamma4</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

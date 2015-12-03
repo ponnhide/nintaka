@@ -1,0 +1,1130 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="P0_to_P1">
+<property name="Name">
+<value>First Phosphorylation of PER</value>
+</property>
+<property name="K1_P">
+<value>2.0</value>
+</property>
+<property name="V_1P">
+<value>8.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_1P * P0.NumberConc / (K1_P + P0.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P0</value>
+<value>Variable:/Cell:P0</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_1P &lt;/ci&gt;#x0A      &lt;ci&gt; P0 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K1_P &lt;/ci&gt;#x0A      &lt;ci&gt; P0 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T0_to_T1">
+<property name="Name">
+<value>First Phosphorylation of TIM</value>
+</property>
+<property name="K_1T">
+<value>2.0</value>
+</property>
+<property name="V_1T">
+<value>8.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_1T * T0.NumberConc / (K_1T + T0.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T0</value>
+<value>Variable:/Cell:T0</value>
+<value>-1</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_1T &lt;/ci&gt;#x0A      &lt;ci&gt; T0 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_1T &lt;/ci&gt;#x0A      &lt;ci&gt; T0 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P1_to_P0">
+<property name="Name">
+<value>Dephosphorylation of PER (1st P)</value>
+</property>
+<property name="K_2P">
+<value>2.0</value>
+</property>
+<property name="V_2P">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_2P * P1.NumberConc / (K_2P + P1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>P0</value>
+<value>Variable:/Cell:P0</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_2P &lt;/ci&gt;#x0A      &lt;ci&gt; P1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_2P &lt;/ci&gt;#x0A      &lt;ci&gt; P1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T1_to_T0">
+<property name="Name">
+<value>Dephosphorylation of TIM (1st P)</value>
+</property>
+<property name="K_2T">
+<value>2.0</value>
+</property>
+<property name="V_2T">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_2T * T1.NumberConc / (K_2T + T1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>-1</value>
+</value>
+<value>
+<value>T0</value>
+<value>Variable:/Cell:T0</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_2T &lt;/ci&gt;#x0A      &lt;ci&gt; T1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_2T &lt;/ci&gt;#x0A      &lt;ci&gt; T1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P1_to_P2">
+<property name="Name">
+<value>Second Phosphorylation of PER</value>
+</property>
+<property name="K_3P">
+<value>2.0</value>
+</property>
+<property name="V_3P">
+<value>8.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_3P * P1.NumberConc / (K_3P + P1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/Cell:P2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_3P &lt;/ci&gt;#x0A      &lt;ci&gt; P1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_3P &lt;/ci&gt;#x0A      &lt;ci&gt; P1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T1_to_T2">
+<property name="Name">
+<value>Second Phosphorylation of TIM</value>
+</property>
+<property name="K_3T">
+<value>2.0</value>
+</property>
+<property name="V_3T">
+<value>8.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_3T * T1.NumberConc / (K_3T + T1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>-1</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/Cell:T2</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_3T &lt;/ci&gt;#x0A      &lt;ci&gt; T1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_3T &lt;/ci&gt;#x0A      &lt;ci&gt; T1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P2_to_P1">
+<property name="Name">
+<value>Dephosphorylation of PER (2nd P)</value>
+</property>
+<property name="K_4P">
+<value>2.0</value>
+</property>
+<property name="V_4P">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_4P * P2.NumberConc / (K_4P + P2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/Cell:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_4P &lt;/ci&gt;#x0A      &lt;ci&gt; P2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_4P &lt;/ci&gt;#x0A      &lt;ci&gt; P2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T2_to_T1">
+<property name="Name">
+<value>Dephosphorylation of TIM (2nd P)</value>
+</property>
+<property name="K_4T">
+<value>2.0</value>
+</property>
+<property name="V_4T">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_4T * T2.NumberConc / (K_4T + T2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T2</value>
+<value>Variable:/Cell:T2</value>
+<value>-1</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_4T &lt;/ci&gt;#x0A      &lt;ci&gt; T2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; K_4T &lt;/ci&gt;#x0A      &lt;ci&gt; T2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P0_degradation">
+<property name="Name">
+<value>PER degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * P0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P0</value>
+<value>Variable:/Cell:P0</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_d &lt;/ci&gt;#x0A    &lt;ci&gt; P0 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T0_degradation">
+<property name="Name">
+<value>TIM degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * T0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T0</value>
+<value>Variable:/Cell:T0</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_d &lt;/ci&gt;#x0A    &lt;ci&gt; T0 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P1_degradation">
+<property name="Name">
+<value>PER-1 degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_d &lt;/ci&gt;#x0A    &lt;ci&gt; P1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T1_degradation">
+<property name="Name">
+<value>TIM-1 degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * T1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_d &lt;/ci&gt;#x0A    &lt;ci&gt; T1 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P2_degradation">
+<property name="Name">
+<value>PER-2 degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="V_dP">
+<value>2.0</value>
+</property>
+<property name="K_dP">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * P2.NumberConc + Cell.Value * V_dP * P2.NumberConc / (K_dP + P2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/Cell:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k_d &lt;/ci&gt;#x0A      &lt;ci&gt; P2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Cell &lt;/ci&gt;#x0A        &lt;ci&gt; V_dP &lt;/ci&gt;#x0A        &lt;ci&gt; P2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K_dP &lt;/ci&gt;#x0A        &lt;ci&gt; P2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T2_degradation">
+<property name="Name">
+<value>TIM-2 degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="K_dT">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * T2.NumberConc + Cell.Value * V_dT.Value * T2.NumberConc / (K_dT + T2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T2</value>
+<value>Variable:/Cell:T2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V_dT</value>
+<value>Variable:/SBMLParameter:V_dT</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k_d &lt;/ci&gt;#x0A      &lt;ci&gt; T2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Cell &lt;/ci&gt;#x0A        &lt;ci&gt; V_dT &lt;/ci&gt;#x0A        &lt;ci&gt; T2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K_dT &lt;/ci&gt;#x0A        &lt;ci&gt; T2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PT_complex_formation">
+<property name="Name">
+<value>PER-TIM complex formation</value>
+</property>
+<property name="k3">
+<value>1.2</value>
+</property>
+<property name="k4">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k3 * P2.NumberConc * T2.NumberConc - Cell.Value * k4 * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/Cell:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/Cell:T2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/Cell:CC</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k3 &lt;/ci&gt;#x0A      &lt;ci&gt; P2 &lt;/ci&gt;#x0A      &lt;ci&gt; T2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k4 &lt;/ci&gt;#x0A      &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PT_complex_nucleation">
+<property name="Name">
+<value>PER-TIM complex nucleation</value>
+</property>
+<property name="k1">
+<value>0.6</value>
+</property>
+<property name="k2">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * CC.NumberConc - compartment_0000002.Value * k2 * Cn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CC</value>
+<value>Variable:/Cell:CC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/Cell/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k1 &lt;/ci&gt;#x0A      &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; compartment_0000002 &lt;/ci&gt;#x0A      &lt;ci&gt; k2 &lt;/ci&gt;#x0A      &lt;ci&gt; Cn &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PT_complex_degradation">
+<property name="Name">
+<value>PER-TIM complex degradation (cytosol)</value>
+</property>
+<property name="k_dC">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_dC * CC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CC</value>
+<value>Variable:/Cell:CC</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_dC &lt;/ci&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PTnucl_complex_degradation">
+<property name="Name">
+<value>PER-TIM complex degradation (nuclear)</value>
+</property>
+<property name="k_dN">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>compartment_0000002.Value * k_dN * Cn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment_0000002</value>
+<value>Variable:/Cell/compartment_0000002:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment_0000002 &lt;/ci&gt;#x0A    &lt;ci&gt; k_dN &lt;/ci&gt;#x0A    &lt;ci&gt; Cn &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Mp_production">
+<property name="Name">
+<value>PER mRNA production</value>
+</property>
+<property name="v_sP">
+<value>1.0</value>
+</property>
+<property name="K_IP">
+<value>1.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * v_sP * pow(K_IP, n) / (pow(K_IP, n) + pow(Cn.NumberConc, n))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mp</value>
+<value>Variable:/Cell:Mp</value>
+<value>1</value>
+</value>
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; v_sP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K_IP &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K_IP &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Cn &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Mt_production">
+<property name="Name">
+<value>TIM mRNA production</value>
+</property>
+<property name="V_sT">
+<value>1.0</value>
+</property>
+<property name="K_IT">
+<value>1.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * V_sT * pow(K_IT, n) / (pow(K_IT, n) + pow(Cn.NumberConc, n))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mt</value>
+<value>Variable:/Cell:Mt</value>
+<value>1</value>
+</value>
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; V_sT &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K_IT &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; K_IT &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; Cn &lt;/ci&gt;#x0A        &lt;ci&gt; n &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="P0_production">
+<property name="Name">
+<value>PER production</value>
+</property>
+<property name="k_sP">
+<value>0.9</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_sP * Mp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P0</value>
+<value>Variable:/Cell:P0</value>
+<value>1</value>
+</value>
+<value>
+<value>Mp</value>
+<value>Variable:/Cell:Mp</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_sP &lt;/ci&gt;#x0A    &lt;ci&gt; Mp &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="T0_production">
+<property name="Name">
+<value>TIM production</value>
+</property>
+<property name="k_sT">
+<value>0.9</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_sT * Mt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T0</value>
+<value>Variable:/Cell:T0</value>
+<value>1</value>
+</value>
+<value>
+<value>Mt</value>
+<value>Variable:/Cell:Mt</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Cell &lt;/ci&gt;#x0A    &lt;ci&gt; k_sT &lt;/ci&gt;#x0A    &lt;ci&gt; Mt &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Mp_degradation">
+<property name="Name">
+<value>PER mRNA degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="V_mP">
+<value>0.7</value>
+</property>
+<property name="K_mP">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * Mp.NumberConc + Cell.Value * V_mP * Mp.NumberConc / (K_mP + Mp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mp</value>
+<value>Variable:/Cell:Mp</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k_d &lt;/ci&gt;#x0A      &lt;ci&gt; Mp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Cell &lt;/ci&gt;#x0A        &lt;ci&gt; V_mP &lt;/ci&gt;#x0A        &lt;ci&gt; Mp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K_mP &lt;/ci&gt;#x0A        &lt;ci&gt; Mp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Mt_degradation">
+<property name="Name">
+<value>TIM mRNA degradation</value>
+</property>
+<property name="k_d">
+<value>0.01</value>
+</property>
+<property name="K_mT">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k_d * Mt.NumberConc + Cell.Value * V_mT.Value * Mt.NumberConc / (K_mT + Mt.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mt</value>
+<value>Variable:/Cell:Mt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V_mT</value>
+<value>Variable:/SBMLParameter:V_mT</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Cell &lt;/ci&gt;#x0A      &lt;ci&gt; k_d &lt;/ci&gt;#x0A      &lt;ci&gt; Mt &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Cell &lt;/ci&gt;#x0A        &lt;ci&gt; V_mT &lt;/ci&gt;#x0A        &lt;ci&gt; Mt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K_mT &lt;/ci&gt;#x0A        &lt;ci&gt; Mt &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P0">
+<property name="Name">
+<value>PER Protein (unphosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="T0">
+<property name="Name">
+<value>TIM Protein (unphosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1">
+<property name="Name">
+<value>PER Protein (mono-phosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="T1">
+<property name="Name">
+<value>TIM Protein (mono-phosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2">
+<property name="Name">
+<value>PER Protein (bi-phosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="T2">
+<property name="Name">
+<value>TIM Protein (bi-phosphorylated)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CC">
+<property name="Name">
+<value>Cytosolic PER-TIM Complex</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mp">
+<property name="Name">
+<value>PER mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mt">
+<property name="Name">
+<value>TIM mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Cell/compartment_0000002">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Cn">
+<property name="Name">
+<value>Nuclear PER-TIM Complex</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Pt">
+<property name="Name">
+<value>Total Per</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tt">
+<property name="Name">
+<value>Total Tim</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="V_mT">
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V_dT">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Pt">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Pt'</value>
+</property>
+<property name="Expression">
+<value>CC.NumberConc + Cn.NumberConc + P0.NumberConc + P1.NumberConc + P2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;ci&gt; Cn &lt;/ci&gt;#x0A    &lt;ci&gt; P0 &lt;/ci&gt;#x0A    &lt;ci&gt; P1 &lt;/ci&gt;#x0A    &lt;ci&gt; P2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pt</value>
+<value>Variable:/SBMLParameter:Pt</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/Cell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>0</value>
+</value>
+<value>
+<value>P0</value>
+<value>Variable:/Cell:P0</value>
+<value>0</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/Cell:P1</value>
+<value>0</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/Cell:P2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Tt">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Tt'</value>
+</property>
+<property name="Expression">
+<value>CC.NumberConc + Cn.NumberConc + T0.NumberConc + T1.NumberConc + T2.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; CC &lt;/ci&gt;#x0A    &lt;ci&gt; Cn &lt;/ci&gt;#x0A    &lt;ci&gt; T0 &lt;/ci&gt;#x0A    &lt;ci&gt; T1 &lt;/ci&gt;#x0A    &lt;ci&gt; T2 &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tt</value>
+<value>Variable:/SBMLParameter:Tt</value>
+<value>1</value>
+</value>
+<value>
+<value>CC</value>
+<value>Variable:/Cell:CC</value>
+<value>0</value>
+</value>
+<value>
+<value>Cn</value>
+<value>Variable:/Cell/compartment_0000002:Cn</value>
+<value>0</value>
+</value>
+<value>
+<value>T0</value>
+<value>Variable:/Cell:T0</value>
+<value>0</value>
+</value>
+<value>
+<value>T1</value>
+<value>Variable:/Cell:T1</value>
+<value>0</value>
+</value>
+<value>
+<value>T2</value>
+<value>Variable:/Cell:T2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

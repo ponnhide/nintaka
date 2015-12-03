@@ -1,0 +1,1238 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyr_e">
+<property name="Name">
+<value>Pyr_e</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly_e">
+<property name="Name">
+<value>Gly_e</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="O2_c">
+<property name="Name">
+<value>O2_c</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc_e">
+<property name="Name">
+<value>Glc_e</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="GlyT_g">
+<property name="Name">
+<value>GlyT_g</value>
+</property>
+<property name="GlyT_g_k">
+<value>9000.0</value>
+</property>
+<property name="Expression">
+<value>GlyT_g_k * Gly_g.NumberConc - GlyT_g_k * Gly_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gly_g</value>
+<value>Variable:/glycosome:Gly_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly_c</value>
+<value>Variable:/cytosol:Gly_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PYK_c">
+<property name="Name">
+<value>PYK_c</value>
+</property>
+<property name="PYK_c_Vmax">
+<value>1020.0</value>
+</property>
+<property name="PYK_c_KmPEP">
+<value>0.34</value>
+</property>
+<property name="PYK_c_KiATP">
+<value>0.57</value>
+</property>
+<property name="PYK_c_KiADP">
+<value>0.64</value>
+</property>
+<property name="PYK_c_n">
+<value>2.5</value>
+</property>
+<property name="PYK_c_KmADP">
+<value>0.114</value>
+</property>
+<property name="Expression">
+<value>ADP_c.NumberConc * PYK_c_Vmax * pow(PEP_c.NumberConc / (PYK_c_KmPEP * (1 + ADP_c.NumberConc / PYK_c_KiADP + ATP_c.NumberConc / PYK_c_KiATP)), PYK_c_n) / (PYK_c_KmADP * (1 + ADP_c.NumberConc / PYK_c_KmADP) * (1 + pow(PEP_c.NumberConc / (PYK_c_KmPEP * (1 + ADP_c.NumberConc / PYK_c_KiADP + ATP_c.NumberConc / PYK_c_KiATP)), PYK_c_n)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PEP_c</value>
+<value>Variable:/cytosol:PEP_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP_c</value>
+<value>Variable:/cytosol:ADP_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pyr_c</value>
+<value>Variable:/cytosol:Pyr_c</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_c</value>
+<value>Variable:/cytosol:ATP_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GlyT_c">
+<property name="Name">
+<value>GlyT_c</value>
+</property>
+<property name="GlyT_c_Vmax">
+<value>85.0</value>
+</property>
+<property name="GlyT_c_KmGly">
+<value>0.17</value>
+</property>
+<property name="GlyT_c_k">
+<value>9.0</value>
+</property>
+<property name="Expression">
+<value>GlyT_c_k * (Gly_c.NumberConc - Gly_e.NumberConc) + GlyT_c_Vmax * (Gly_c.NumberConc - Gly_e.NumberConc) / (GlyT_c_KmGly * (1 + Gly_c.NumberConc / GlyT_c_KmGly) * (1 + Gly_e.NumberConc / GlyT_c_KmGly))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gly_c</value>
+<value>Variable:/cytosol:Gly_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly_e</value>
+<value>Variable:/:Gly_e</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GlcT_g">
+<property name="Name">
+<value>GlcT_g</value>
+</property>
+<property name="GlcT_g_k">
+<value>250000.0</value>
+</property>
+<property name="Expression">
+<value>GlcT_g_k * Glc_c.NumberConc - GlcT_g_k * Glc_g.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glc_c</value>
+<value>Variable:/cytosol:Glc_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc_g</value>
+<value>Variable:/glycosome:Glc_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PyrT_c">
+<property name="Name">
+<value>PyrT_c</value>
+</property>
+<property name="PyrT_c_Vmax">
+<value>200.0</value>
+</property>
+<property name="PyrT_c_KmPyr">
+<value>1.96</value>
+</property>
+<property name="Expression">
+<value>PyrT_c_Vmax * Pyr_c.NumberConc / (PyrT_c_KmPyr * (1 + Pyr_c.NumberConc / PyrT_c_KmPyr))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pyr_c</value>
+<value>Variable:/cytosol:Pyr_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pyr_e</value>
+<value>Variable:/:Pyr_e</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GlcT_c">
+<property name="Name">
+<value>GlcT_c</value>
+</property>
+<property name="GlcT_c_Vmax">
+<value>108.9</value>
+</property>
+<property name="GlcT_c_KmGlc">
+<value>1.0</value>
+</property>
+<property name="GlcT_c_alpha">
+<value>0.75</value>
+</property>
+<property name="Expression">
+<value>GlcT_c_Vmax * (Glc_e.NumberConc - Glc_c.NumberConc) / (Glc_e.NumberConc + Glc_c.NumberConc + GlcT_c_KmGlc + Glc_e.NumberConc * Glc_c.NumberConc * GlcT_c_alpha / GlcT_c_KmGlc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glc_e</value>
+<value>Variable:/:Glc_e</value>
+<value>0</value>
+</value>
+<value>
+<value>Glc_c</value>
+<value>Variable:/cytosol:Glc_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PFK_g">
+<property name="Name">
+<value>PFK_g</value>
+</property>
+<property name="PFK_g_Vmax">
+<value>1708.0</value>
+</property>
+<property name="PFK_g_Ki1">
+<value>15.8</value>
+</property>
+<property name="PFK_g_KmFru6P">
+<value>0.82</value>
+</property>
+<property name="PFK_g_KmATP">
+<value>0.026</value>
+</property>
+<property name="PFK_g_Ki2">
+<value>10.7</value>
+</property>
+<property name="Expression">
+<value>ATP_g.NumberConc * Fru6P_g.NumberConc * PFK_g_Vmax * PFK_g_Ki1 / (PFK_g_KmFru6P * PFK_g_KmATP * (1 + ATP_g.NumberConc / PFK_g_KmATP) * (Fru16BP_g.NumberConc + PFK_g_Ki1) * (1 + Fru6P_g.NumberConc / PFK_g_KmFru6P + Fru16BP_g.NumberConc / PFK_g_Ki2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru6P_g</value>
+<value>Variable:/glycosome:Fru6P_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru16BP_g</value>
+<value>Variable:/glycosome:Fru16BP_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ENO_c">
+<property name="Name">
+<value>ENO_c</value>
+</property>
+<property name="ENO_c_Vmax">
+<value>598.0</value>
+</property>
+<property name="ENO_c_Keq">
+<value>6.7</value>
+</property>
+<property name="ENO_c_Km2PGA">
+<value>0.054</value>
+</property>
+<property name="ENO_c_KmPEP">
+<value>0.24</value>
+</property>
+<property name="Expression">
+<value>ENO_c_Vmax * _2PGA_c.NumberConc * (1 - PEP_c.NumberConc / (ENO_c_Keq * _2PGA_c.NumberConc)) / (ENO_c_Km2PGA * (1 + _2PGA_c.NumberConc / ENO_c_Km2PGA + PEP_c.NumberConc / ENO_c_KmPEP))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_2PGA_c</value>
+<value>Variable:/cytosol:_2PGA_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP_c</value>
+<value>Variable:/cytosol:PEP_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="HXK_g">
+<property name="Name">
+<value>HXK_g</value>
+</property>
+<property name="HXK_g_Vmax">
+<value>1929.0</value>
+</property>
+<property name="HXK_g_KmGlc">
+<value>0.1</value>
+</property>
+<property name="HXK_g_KmATP">
+<value>0.116</value>
+</property>
+<property name="HXK_g_KmADP">
+<value>0.126</value>
+</property>
+<property name="HXK_g_KmGlc6P">
+<value>12.0</value>
+</property>
+<property name="Expression">
+<value>ATP_g.NumberConc * Glc_g.NumberConc * HXK_g_Vmax / (HXK_g_KmGlc * HXK_g_KmATP * (1 + Glc_g.NumberConc / HXK_g_KmGlc + Glc6P_g.NumberConc / HXK_g_KmGlc6P) * (1 + ATP_g.NumberConc / HXK_g_KmATP + ADP_g.NumberConc / HXK_g_KmADP))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc_g</value>
+<value>Variable:/glycosome:Glc_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc6P_g</value>
+<value>Variable:/glycosome:Glc6P_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="_3PGAT_g">
+<property name="Name">
+<value>_3PGAT_g</value>
+</property>
+<property name="_3PGAT_g_k">
+<value>250.0</value>
+</property>
+<property name="Expression">
+<value>_3PGAT_g_k * _3PGA_g.NumberConc - _3PGAT_g_k * _3PGA_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_3PGA_g</value>
+<value>Variable:/glycosome:_3PGA_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>_3PGA_c</value>
+<value>Variable:/cytosol:_3PGA_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGK_g">
+<property name="Name">
+<value>PGK_g</value>
+</property>
+<property name="PGK_g_Vmax">
+<value>2862.0</value>
+</property>
+<property name="PGK_g_Keq">
+<value>3332.0</value>
+</property>
+<property name="PGK_g_Km13BPGA">
+<value>0.003</value>
+</property>
+<property name="PGK_g_KmADP">
+<value>0.1</value>
+</property>
+<property name="PGK_g_Km3PGA">
+<value>1.62</value>
+</property>
+<property name="PGK_g_KmATP">
+<value>0.29</value>
+</property>
+<property name="Expression">
+<value>PGK_g_Vmax * _13BPGA_g.NumberConc * ADP_g.NumberConc * (1 - _3PGA_g.NumberConc * ATP_g.NumberConc / (PGK_g_Keq * _13BPGA_g.NumberConc * ADP_g.NumberConc)) / (PGK_g_Km13BPGA * PGK_g_KmADP * (1 + ADP_g.NumberConc / PGK_g_KmADP + ATP_g.NumberConc / PGK_g_KmATP) * (1 + _13BPGA_g.NumberConc / PGK_g_Km13BPGA + _3PGA_g.NumberConc / PGK_g_Km3PGA))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_13BPGA_g</value>
+<value>Variable:/glycosome:_13BPGA_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>_3PGA_g</value>
+<value>Variable:/glycosome:_3PGA_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGAM_c">
+<property name="Name">
+<value>PGAM_c</value>
+</property>
+<property name="PGAM_c_Vmax">
+<value>225.0</value>
+</property>
+<property name="PGAM_c_Keq">
+<value>0.185</value>
+</property>
+<property name="PGAM_c_Km3PGA">
+<value>0.15</value>
+</property>
+<property name="PGAM_c_Km2PGA">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>PGAM_c_Vmax * _3PGA_c.NumberConc * (1 - _2PGA_c.NumberConc / (PGAM_c_Keq * _3PGA_c.NumberConc)) / (PGAM_c_Km3PGA * (1 + _3PGA_c.NumberConc / PGAM_c_Km3PGA + _2PGA_c.NumberConc / PGAM_c_Km2PGA))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>_3PGA_c</value>
+<value>Variable:/cytosol:_3PGA_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>_2PGA_c</value>
+<value>Variable:/cytosol:_2PGA_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G3PDH_g">
+<property name="Name">
+<value>G3PDH_g</value>
+</property>
+<property name="G3PDH_g_Vmax">
+<value>465.0</value>
+</property>
+<property name="G3PDH_g_Keq">
+<value>2857.0</value>
+</property>
+<property name="G3PDH_g_KmDHAP">
+<value>0.1</value>
+</property>
+<property name="G3PDH_g_KmNADH">
+<value>0.01</value>
+</property>
+<property name="G3PDH_g_KmGly3P">
+<value>2.0</value>
+</property>
+<property name="G3PDH_g_KmNAD">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>G3PDH_g_Vmax * DHAP_g.NumberConc * NADH_g.NumberConc * (1 - Gly3P_g.NumberConc * NAD_g.NumberConc / (G3PDH_g_Keq * DHAP_g.NumberConc * NADH_g.NumberConc)) / (G3PDH_g_KmDHAP * G3PDH_g_KmNADH * (1 + NADH_g.NumberConc / G3PDH_g_KmNADH + NAD_g.NumberConc / G3PDH_g_KmNAD) * (1 + DHAP_g.NumberConc / G3PDH_g_KmDHAP + Gly3P_g.NumberConc / G3PDH_g_KmGly3P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADH_g</value>
+<value>Variable:/glycosome:NADH_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP_g</value>
+<value>Variable:/glycosome:DHAP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly3P_g</value>
+<value>Variable:/glycosome:Gly3P_g</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD_g</value>
+<value>Variable:/glycosome:NAD_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATPu_c">
+<property name="Name">
+<value>ATPu_c</value>
+</property>
+<property name="ATPu_c_k">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>ATP_c.NumberConc * ATPu_c_k / ADP_c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP_c</value>
+<value>Variable:/cytosol:ATP_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP_c</value>
+<value>Variable:/cytosol:ADP_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GK_g">
+<property name="Name">
+<value>GK_g</value>
+</property>
+<property name="GK_g_Vmax">
+<value>200.0</value>
+</property>
+<property name="GK_g_Keq">
+<value>0.0008</value>
+</property>
+<property name="GK_g_KmGly3P">
+<value>3.83</value>
+</property>
+<property name="GK_g_KmADP">
+<value>0.56</value>
+</property>
+<property name="GK_g_KmGly">
+<value>0.44</value>
+</property>
+<property name="GK_g_KmATP">
+<value>0.24</value>
+</property>
+<property name="Expression">
+<value>GK_g_Vmax * Gly3P_g.NumberConc * ADP_g.NumberConc * (1 - Gly_g.NumberConc * ATP_g.NumberConc / (GK_g_Keq * Gly3P_g.NumberConc * ADP_g.NumberConc)) / (GK_g_KmGly3P * GK_g_KmADP * (1 + ADP_g.NumberConc / GK_g_KmADP + ATP_g.NumberConc / GK_g_KmATP) * (1 + Gly3P_g.NumberConc / GK_g_KmGly3P + Gly_g.NumberConc / GK_g_KmGly))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gly3P_g</value>
+<value>Variable:/glycosome:Gly3P_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly_g</value>
+<value>Variable:/glycosome:Gly_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ALD_g">
+<property name="Name">
+<value>ALD_g</value>
+</property>
+<property name="ALD_g_Vmax">
+<value>560.0</value>
+</property>
+<property name="ALD_g_KmFru16BP">
+<value>0.009</value>
+</property>
+<property name="ALD_g_KiATP">
+<value>0.68</value>
+</property>
+<property name="ALD_g_KiADP">
+<value>1.51</value>
+</property>
+<property name="ALD_g_KiAMP">
+<value>3.65</value>
+</property>
+<property name="ALD_g_Keq">
+<value>0.093</value>
+</property>
+<property name="ALD_g_KmGA3P">
+<value>0.067</value>
+</property>
+<property name="ALD_g_KmDHAP">
+<value>0.015</value>
+</property>
+<property name="ALD_g_KiGA3P">
+<value>0.098</value>
+</property>
+<property name="Expression">
+<value>Fru16BP_g.NumberConc * ALD_g_Vmax * (1 - GA3P_g.NumberConc * DHAP_g.NumberConc / (Fru16BP_g.NumberConc * ALD_g_Keq)) / (ALD_g_KmFru16BP * (1 + ATP_g.NumberConc / ALD_g_KiATP + ADP_g.NumberConc / ALD_g_KiADP + AMP_g.NumberConc / ALD_g_KiAMP) * (1 + GA3P_g.NumberConc / ALD_g_KmGA3P + DHAP_g.NumberConc / ALD_g_KmDHAP + Fru16BP_g.NumberConc / (ALD_g_KmFru16BP * (1 + ATP_g.NumberConc / ALD_g_KiATP + ADP_g.NumberConc / ALD_g_KiADP + AMP_g.NumberConc / ALD_g_KiAMP)) + GA3P_g.NumberConc * DHAP_g.NumberConc / (ALD_g_KmGA3P * ALD_g_KmDHAP) + Fru16BP_g.NumberConc * GA3P_g.NumberConc / (ALD_g_KmFru16BP * ALD_g_KiGA3P * (1 + ATP_g.NumberConc / ALD_g_KiATP + ADP_g.NumberConc / ALD_g_KiADP + AMP_g.NumberConc / ALD_g_KiAMP))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fru16BP_g</value>
+<value>Variable:/glycosome:Fru16BP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>GA3P_g</value>
+<value>Variable:/glycosome:GA3P_g</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP_g</value>
+<value>Variable:/glycosome:DHAP_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>0</value>
+</value>
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>0</value>
+</value>
+<value>
+<value>AMP_g</value>
+<value>Variable:/glycosome:AMP_g</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AK_c">
+<property name="Name">
+<value>AK_c</value>
+</property>
+<property name="AK_c_k1">
+<value>442.0</value>
+</property>
+<property name="AK_c_k2">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>AK_c_k1 * pow(ADP_c.NumberConc, 2) - AMP_c.NumberConc * ATP_c.NumberConc * AK_c_k2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP_c</value>
+<value>Variable:/cytosol:ADP_c</value>
+<value>-2</value>
+</value>
+<value>
+<value>AMP_c</value>
+<value>Variable:/cytosol:AMP_c</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_c</value>
+<value>Variable:/cytosol:ATP_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGI_g">
+<property name="Name">
+<value>PGI_g</value>
+</property>
+<property name="PGI_g_Vmax">
+<value>1305.0</value>
+</property>
+<property name="PGI_g_Keq">
+<value>0.3</value>
+</property>
+<property name="PGI_g_KmGlc6P">
+<value>0.4</value>
+</property>
+<property name="PGI_g_KmFru6P">
+<value>0.12</value>
+</property>
+<property name="Expression">
+<value>PGI_g_Vmax * Glc6P_g.NumberConc * (1 - Fru6P_g.NumberConc / (PGI_g_Keq * Glc6P_g.NumberConc)) / (PGI_g_KmGlc6P * (1 + Glc6P_g.NumberConc / PGI_g_KmGlc6P + Fru6P_g.NumberConc / PGI_g_KmFru6P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glc6P_g</value>
+<value>Variable:/glycosome:Glc6P_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru6P_g</value>
+<value>Variable:/glycosome:Fru6P_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GAPDH_g">
+<property name="Name">
+<value>GAPDH_g</value>
+</property>
+<property name="GAPDH_g_Vmax">
+<value>720.9</value>
+</property>
+<property name="GAPDH_g_Keq">
+<value>0.044</value>
+</property>
+<property name="GAPDH_g_KmGA3P">
+<value>0.15</value>
+</property>
+<property name="GAPDH_g_KmNAD">
+<value>0.45</value>
+</property>
+<property name="GAPDH_g_Km13BPGA">
+<value>0.1</value>
+</property>
+<property name="GAPDH_g_KmNADH">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>GAPDH_g_Vmax * GA3P_g.NumberConc * NAD_g.NumberConc * (1 - _13BPGA_g.NumberConc * NADH_g.NumberConc / (GAPDH_g_Keq * GA3P_g.NumberConc * NAD_g.NumberConc)) / (GAPDH_g_KmGA3P * GAPDH_g_KmNAD * (1 + NAD_g.NumberConc / GAPDH_g_KmNAD + NADH_g.NumberConc / GAPDH_g_KmNADH) * (1 + GA3P_g.NumberConc / GAPDH_g_KmGA3P + _13BPGA_g.NumberConc / GAPDH_g_Km13BPGA))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GA3P_g</value>
+<value>Variable:/glycosome:GA3P_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD_g</value>
+<value>Variable:/glycosome:NAD_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pi_g</value>
+<value>Variable:/glycosome:Pi_g</value>
+<value>0</value>
+</value>
+<value>
+<value>NADH_g</value>
+<value>Variable:/glycosome:NADH_g</value>
+<value>1</value>
+</value>
+<value>
+<value>_13BPGA_g</value>
+<value>Variable:/glycosome:_13BPGA_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AK_g">
+<property name="Name">
+<value>AK_g</value>
+</property>
+<property name="AK_g_k1">
+<value>442.0</value>
+</property>
+<property name="AK_g_k2">
+<value>1000.0</value>
+</property>
+<property name="Expression">
+<value>AK_g_k1 * pow(ADP_g.NumberConc, 2) - AMP_g.NumberConc * ATP_g.NumberConc * AK_g_k2</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP_g</value>
+<value>Variable:/glycosome:ADP_g</value>
+<value>-2</value>
+</value>
+<value>
+<value>AMP_g</value>
+<value>Variable:/glycosome:AMP_g</value>
+<value>1</value>
+</value>
+<value>
+<value>ATP_g</value>
+<value>Variable:/glycosome:ATP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GDA_g">
+<property name="Name">
+<value>GDA_g</value>
+</property>
+<property name="GDA_g_k">
+<value>600.0</value>
+</property>
+<property name="Expression">
+<value>Gly3P_g.NumberConc * DHAP_c.NumberConc * GDA_g_k - Gly3P_c.NumberConc * DHAP_g.NumberConc * GDA_g_k</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gly3P_g</value>
+<value>Variable:/glycosome:Gly3P_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP_c</value>
+<value>Variable:/cytosol:DHAP_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly3P_c</value>
+<value>Variable:/cytosol:Gly3P_c</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP_g</value>
+<value>Variable:/glycosome:DHAP_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GPO_c">
+<property name="Name">
+<value>GPO_c</value>
+</property>
+<property name="GPO_c_Vmax">
+<value>368.0</value>
+</property>
+<property name="GPO_c_KmGly3P">
+<value>1.7</value>
+</property>
+<property name="Expression">
+<value>GPO_c_Vmax * Gly3P_c.NumberConc / (GPO_c_KmGly3P * (1 + Gly3P_c.NumberConc / GPO_c_KmGly3P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gly3P_c</value>
+<value>Variable:/cytosol:Gly3P_c</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP_c</value>
+<value>Variable:/cytosol:DHAP_c</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TPI_g">
+<property name="Name">
+<value>TPI_g</value>
+</property>
+<property name="TPI_g_Vmax">
+<value>999.3</value>
+</property>
+<property name="TPI_g_Keq">
+<value>0.045</value>
+</property>
+<property name="TPI_g_KmDHAP">
+<value>1.2</value>
+</property>
+<property name="TPI_g_KmGA3P">
+<value>0.25</value>
+</property>
+<property name="Expression">
+<value>TPI_g_Vmax * DHAP_g.NumberConc * (1 - GA3P_g.NumberConc / (TPI_g_Keq * DHAP_g.NumberConc)) / (TPI_g_KmDHAP * (1 + DHAP_g.NumberConc / TPI_g_KmDHAP + GA3P_g.NumberConc / TPI_g_KmGA3P))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP_g</value>
+<value>Variable:/glycosome:DHAP_g</value>
+<value>-1</value>
+</value>
+<value>
+<value>GA3P_g</value>
+<value>Variable:/glycosome:GA3P_g</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>5.4549</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="_2PGA_c">
+<property name="Name">
+<value>_2PGA_c</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP_c">
+<property name="Name">
+<value>ATP_c</value>
+</property>
+<property name="NumberConc">
+<value>0.3417</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyr_c">
+<property name="Name">
+<value>Pyr_c</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP_c">
+<property name="Name">
+<value>DHAP_c</value>
+</property>
+<property name="NumberConc">
+<value>2.23132912</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly3P_c">
+<property name="Name">
+<value>Gly3P_c</value>
+</property>
+<property name="NumberConc">
+<value>2.76867088</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP_c">
+<property name="Name">
+<value>ADP_c</value>
+</property>
+<property name="NumberConc">
+<value>1.3165</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_3PGA_c">
+<property name="Name">
+<value>_3PGA_c</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly_c">
+<property name="Name">
+<value>Gly_c</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AMP_c">
+<property name="Name">
+<value>AMP_c</value>
+</property>
+<property name="NumberConc">
+<value>2.2418</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP_c">
+<property name="Name">
+<value>PEP_c</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc_c">
+<property name="Name">
+<value>Glc_c</value>
+</property>
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/glycosome">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>glycosome</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.2451</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP_g">
+<property name="Name">
+<value>ATP_g</value>
+</property>
+<property name="NumberConc">
+<value>0.2405</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP_g">
+<property name="Name">
+<value>DHAP_g</value>
+</property>
+<property name="NumberConc">
+<value>8.483130623</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD_g">
+<property name="Name">
+<value>NAD_g</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc6P_g">
+<property name="Name">
+<value>Glc6P_g</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fru16BP_g">
+<property name="Name">
+<value>Fru16BP_g</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly_g">
+<property name="Name">
+<value>Gly_g</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fru6P_g">
+<property name="Name">
+<value>Fru6P_g</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_3PGA_g">
+<property name="Name">
+<value>_3PGA_g</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pi_g">
+<property name="Name">
+<value>Pi_g</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GA3P_g">
+<property name="Name">
+<value>GA3P_g</value>
+</property>
+<property name="NumberConc">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly3P_g">
+<property name="Name">
+<value>Gly3P_g</value>
+</property>
+<property name="NumberConc">
+<value>10.51686938</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP_g">
+<property name="Name">
+<value>ADP_g</value>
+</property>
+<property name="NumberConc">
+<value>1.519</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AMP_g">
+<property name="Name">
+<value>AMP_g</value>
+</property>
+<property name="NumberConc">
+<value>4.2405</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="_13BPGA_g">
+<property name="Name">
+<value>_13BPGA_g</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc_g">
+<property name="Name">
+<value>Glc_g</value>
+</property>
+<property name="NumberConc">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH_g">
+<property name="Name">
+<value>NADH_g</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,1842 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GP">
+<property name="Name">
+<value>GP</value>
+</property>
+<property name="Value">
+<value>0.4726</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pGP">
+<property name="Name">
+<value>pGP</value>
+</property>
+<property name="Value">
+<value>0.1723</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mRNA">
+<property name="Name">
+<value>mRNA</value>
+</property>
+<property name="Value">
+<value>2.905</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEPCK">
+<property name="Name">
+<value>PEPCK</value>
+</property>
+<property name="Value">
+<value>0.7686</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IRS">
+<property name="Name">
+<value>IRS</value>
+</property>
+<property name="Value">
+<value>888.77</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p1IRS">
+<property name="Name">
+<value>p1IRS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p2IRS">
+<property name="Name">
+<value>p2IRS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p1p2IRS">
+<property name="Name">
+<value>p1p2IRS</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Akt">
+<property name="Name">
+<value>Akt</value>
+</property>
+<property name="Value">
+<value>1.1182</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pAkt">
+<property name="Name">
+<value>pAkt</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mTOR">
+<property name="Name">
+<value>mTOR</value>
+</property>
+<property name="Value">
+<value>880.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pmTOR">
+<property name="Name">
+<value>pmTOR</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Foxo">
+<property name="Name">
+<value>Foxo</value>
+</property>
+<property name="Value">
+<value>1.069e-05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pFoxo">
+<property name="Name">
+<value>pFoxo</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>v1</value>
+</property>
+<property name="Expression">
+<value>(V1.Value * (GLCex.NumberConc / K1.Value) - V1.Value * (G6P.NumberConc / K1.Value)) / (1 + GLCex.NumberConc / K1.Value + G6P.NumberConc / K1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLCex</value>
+<value>Variable:/Vex:GLCex</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/Vin:G6P</value>
+<value>1</value>
+</value>
+<value>
+<value>V1</value>
+<value>Variable:/SBMLParameter:V1</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>v2</value>
+</property>
+<property name="Expression">
+<value>((1 + s1.Value * pAkt.NumberConc) * V2_G6P.Value * G6P.NumberConc / K2_G6P.Value - V2_F16P.Value * F16P.NumberConc / K2_F16P.Value) / (1 + G6P.NumberConc / K2_G6P.Value + F16P.NumberConc / K2_F16P.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/Vin:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F16P</value>
+<value>Variable:/Vin:F16P</value>
+<value>1</value>
+</value>
+<value>
+<value>s1</value>
+<value>Variable:/SBMLParameter:s1</value>
+<value>0</value>
+</value>
+<value>
+<value>V2_G6P</value>
+<value>Variable:/SBMLParameter:V2_G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>K2_G6P</value>
+<value>Variable:/SBMLParameter:K2_G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>V2_F16P</value>
+<value>Variable:/SBMLParameter:V2_F16P</value>
+<value>0</value>
+</value>
+<value>
+<value>K2_F16P</value>
+<value>Variable:/SBMLParameter:K2_F16P</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>v3</value>
+</property>
+<property name="Expression">
+<value>V3.Value * F16P.NumberConc / (K3.Value + F16P.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F16P</value>
+<value>Variable:/Vin:F16P</value>
+<value>-1</value>
+</value>
+<value>
+<value>PYRin</value>
+<value>Variable:/Vin:PYRin</value>
+<value>1</value>
+</value>
+<value>
+<value>V3</value>
+<value>Variable:/SBMLParameter:V3</value>
+<value>0</value>
+</value>
+<value>
+<value>K3</value>
+<value>Variable:/SBMLParameter:K3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>v4</value>
+</property>
+<property name="Expression">
+<value>(V4_PYR.Value * PYRin.NumberConc / K4_PYR.Value - V4_LAC.Value * LAC.NumberConc / K4_LAC.Value) / (1 + PYRin.NumberConc / K4_PYR.Value + LAC.NumberConc / K4_LAC.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYRin</value>
+<value>Variable:/Vin:PYRin</value>
+<value>-1</value>
+</value>
+<value>
+<value>LAC</value>
+<value>Variable:/Vin:LAC</value>
+<value>1</value>
+</value>
+<value>
+<value>V4_PYR</value>
+<value>Variable:/SBMLParameter:V4_PYR</value>
+<value>0</value>
+</value>
+<value>
+<value>K4_PYR</value>
+<value>Variable:/SBMLParameter:K4_PYR</value>
+<value>0</value>
+</value>
+<value>
+<value>V4_LAC</value>
+<value>Variable:/SBMLParameter:V4_LAC</value>
+<value>0</value>
+</value>
+<value>
+<value>K4_LAC</value>
+<value>Variable:/SBMLParameter:K4_LAC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>v5</value>
+</property>
+<property name="Expression">
+<value>(V5.Value * PYRout.NumberConc / K5.Value - V5.Value * PYRin.NumberConc / K5.Value) / (1 + PYRout.NumberConc / K5.Value + PYRin.NumberConc / K5.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYRout</value>
+<value>Variable:/Vex:PYRout</value>
+<value>-1</value>
+</value>
+<value>
+<value>PYRin</value>
+<value>Variable:/Vin:PYRin</value>
+<value>1</value>
+</value>
+<value>
+<value>V5</value>
+<value>Variable:/SBMLParameter:V5</value>
+<value>0</value>
+</value>
+<value>
+<value>K5</value>
+<value>Variable:/SBMLParameter:K5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>v6</value>
+</property>
+<property name="Expression">
+<value>V6.Value * PYRin.NumberConc / (K6.Value + PYRin.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYRin</value>
+<value>Variable:/Vin:PYRin</value>
+<value>-1</value>
+</value>
+<value>
+<value>OAA</value>
+<value>Variable:/Vin:OAA</value>
+<value>1</value>
+</value>
+<value>
+<value>V6</value>
+<value>Variable:/SBMLParameter:V6</value>
+<value>0</value>
+</value>
+<value>
+<value>K6</value>
+<value>Variable:/SBMLParameter:K6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7">
+<property name="Name">
+<value>v7</value>
+</property>
+<property name="Expression">
+<value>(1 + s3.Value * PEPCK.NumberConc) * V7.Value * OAA.NumberConc / (K7.Value + OAA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PEPCK</value>
+<value>Variable:/:PEPCK</value>
+<value>0</value>
+</value>
+<value>
+<value>OAA</value>
+<value>Variable:/Vin:OAA</value>
+<value>-1</value>
+</value>
+<value>
+<value>F16P</value>
+<value>Variable:/Vin:F16P</value>
+<value>1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/SBMLParameter:s3</value>
+<value>0</value>
+</value>
+<value>
+<value>V7</value>
+<value>Variable:/SBMLParameter:V7</value>
+<value>0</value>
+</value>
+<value>
+<value>K7</value>
+<value>Variable:/SBMLParameter:K7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v8">
+<property name="Name">
+<value>v8</value>
+</property>
+<property name="Expression">
+<value>((1 + s4.Value * pAkt.NumberConc) * V8_G6P.Value * G6P.NumberConc / K8_G6P.Value - V8_G1P.Value * G1P.NumberConc / K8_G1P.Value) / (1 + G6P.NumberConc / K8_G6P.Value + G1P.NumberConc / K8_G1P.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/Vin:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1P</value>
+<value>Variable:/Vin:G1P</value>
+<value>1</value>
+</value>
+<value>
+<value>s4</value>
+<value>Variable:/SBMLParameter:s4</value>
+<value>0</value>
+</value>
+<value>
+<value>V8_G6P</value>
+<value>Variable:/SBMLParameter:V8_G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>K8_G6P</value>
+<value>Variable:/SBMLParameter:K8_G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>V8_G1P</value>
+<value>Variable:/SBMLParameter:V8_G1P</value>
+<value>0</value>
+</value>
+<value>
+<value>K8_G1P</value>
+<value>Variable:/SBMLParameter:K8_G1P</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v9">
+<property name="Name">
+<value>v9</value>
+</property>
+<property name="Expression">
+<value>(V9_G1P.Value * G1P.NumberConc / K9_G1P.Value - (1 + s2.Value * pGP.NumberConc) * V9_GLY.Value * GLY.NumberConc / K9_GLY.Value) / (1 + G1P.NumberConc / K9_G1P.Value + GLY.NumberConc / K9_GLY.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pGP</value>
+<value>Variable:/:pGP</value>
+<value>0</value>
+</value>
+<value>
+<value>G1P</value>
+<value>Variable:/Vin:G1P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GLY</value>
+<value>Variable:/Vin:GLY</value>
+<value>1</value>
+</value>
+<value>
+<value>V9_G1P</value>
+<value>Variable:/SBMLParameter:V9_G1P</value>
+<value>0</value>
+</value>
+<value>
+<value>K9_G1P</value>
+<value>Variable:/SBMLParameter:K9_G1P</value>
+<value>0</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/SBMLParameter:s2</value>
+<value>0</value>
+</value>
+<value>
+<value>V9_GLY</value>
+<value>Variable:/SBMLParameter:V9_GLY</value>
+<value>0</value>
+</value>
+<value>
+<value>K9_GLY</value>
+<value>Variable:/SBMLParameter:K9_GLY</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="metabolicENZ">
+<property name="Name">
+<value>metabolicENZ1</value>
+</property>
+<property name="Expression">
+<value>pGP.NumberConc * G6P.NumberConc * k4.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pGP</value>
+<value>Variable:/:pGP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/Vin:G6P</value>
+<value>0</value>
+</value>
+<value>
+<value>GP</value>
+<value>Variable:/:GP</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction1">
+<property name="Name">
+<value>reaction1</value>
+</property>
+<property name="Expression">
+<value>(proIRS.Value - IRS.NumberConc) * param1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IRS</value>
+<value>Variable:/:IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>proIRS</value>
+<value>Variable:/SBMLParameter:proIRS</value>
+<value>0</value>
+</value>
+<value>
+<value>param1</value>
+<value>Variable:/SBMLParameter:param1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction2">
+<property name="Name">
+<value>reaction2</value>
+</property>
+<property name="Expression">
+<value>IRS.NumberConc * insulin.Value * param2.Value - p1IRS.NumberConc * param3.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IRS</value>
+<value>Variable:/:IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>p1IRS</value>
+<value>Variable:/:p1IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>insulin</value>
+<value>Variable:/SBMLParameter:insulin</value>
+<value>0</value>
+</value>
+<value>
+<value>param2</value>
+<value>Variable:/SBMLParameter:param2</value>
+<value>0</value>
+</value>
+<value>
+<value>param3</value>
+<value>Variable:/SBMLParameter:param3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction3">
+<property name="Name">
+<value>reaction3</value>
+</property>
+<property name="Expression">
+<value>p1IRS.NumberConc * param4.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1IRS</value>
+<value>Variable:/:p1IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>param4</value>
+<value>Variable:/SBMLParameter:param4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction4">
+<property name="Name">
+<value>reaction4</value>
+</property>
+<property name="Expression">
+<value>p1IRS.NumberConc * pmTOR.NumberConc * param5.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1IRS</value>
+<value>Variable:/:p1IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>pmTOR</value>
+<value>Variable:/:pmTOR</value>
+<value>0</value>
+</value>
+<value>
+<value>p1p2IRS</value>
+<value>Variable:/:p1p2IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>param5</value>
+<value>Variable:/SBMLParameter:param5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction5">
+<property name="Name">
+<value>reaction5</value>
+</property>
+<property name="Expression">
+<value>p1p2IRS.NumberConc * param6.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1p2IRS</value>
+<value>Variable:/:p1p2IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>p1IRS</value>
+<value>Variable:/:p1IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>param6</value>
+<value>Variable:/SBMLParameter:param6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction6">
+<property name="Name">
+<value>reaction6</value>
+</property>
+<property name="Expression">
+<value>IRS.NumberConc * pmTOR.NumberConc * param7.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IRS</value>
+<value>Variable:/:IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>pmTOR</value>
+<value>Variable:/:pmTOR</value>
+<value>0</value>
+</value>
+<value>
+<value>p2IRS</value>
+<value>Variable:/:p2IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>param7</value>
+<value>Variable:/SBMLParameter:param7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction7">
+<property name="Name">
+<value>reaction7</value>
+</property>
+<property name="Expression">
+<value>p2IRS.NumberConc * param8.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2IRS</value>
+<value>Variable:/:p2IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>IRS</value>
+<value>Variable:/:IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>param8</value>
+<value>Variable:/SBMLParameter:param8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction8">
+<property name="Name">
+<value>reaction8</value>
+</property>
+<property name="Expression">
+<value>p2IRS.NumberConc * param9.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2IRS</value>
+<value>Variable:/:p2IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>param9</value>
+<value>Variable:/SBMLParameter:param9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction9">
+<property name="Name">
+<value>reaction9</value>
+</property>
+<property name="Expression">
+<value>p2IRS.NumberConc * insulin.Value * param10.Value - p1p2IRS.NumberConc * param11.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p2IRS</value>
+<value>Variable:/:p2IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>p1p2IRS</value>
+<value>Variable:/:p1p2IRS</value>
+<value>1</value>
+</value>
+<value>
+<value>insulin</value>
+<value>Variable:/SBMLParameter:insulin</value>
+<value>0</value>
+</value>
+<value>
+<value>param10</value>
+<value>Variable:/SBMLParameter:param10</value>
+<value>0</value>
+</value>
+<value>
+<value>param11</value>
+<value>Variable:/SBMLParameter:param11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction10">
+<property name="Name">
+<value>reaction10</value>
+</property>
+<property name="Expression">
+<value>p1p2IRS.NumberConc * param12.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p1p2IRS</value>
+<value>Variable:/:p1p2IRS</value>
+<value>-1</value>
+</value>
+<value>
+<value>param12</value>
+<value>Variable:/SBMLParameter:param12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction11">
+<property name="Name">
+<value>reaction11</value>
+</property>
+<property name="Expression">
+<value>p1IRS.NumberConc * Akt.NumberConc * param13.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Akt</value>
+<value>Variable:/:Akt</value>
+<value>-1</value>
+</value>
+<value>
+<value>p1IRS</value>
+<value>Variable:/:p1IRS</value>
+<value>0</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>1</value>
+</value>
+<value>
+<value>param13</value>
+<value>Variable:/SBMLParameter:param13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction12">
+<property name="Name">
+<value>reaction12</value>
+</property>
+<property name="Expression">
+<value>pAkt.NumberConc * param14.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>-1</value>
+</value>
+<value>
+<value>Akt</value>
+<value>Variable:/:Akt</value>
+<value>1</value>
+</value>
+<value>
+<value>param14</value>
+<value>Variable:/SBMLParameter:param14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction13">
+<property name="Name">
+<value>reaction13</value>
+</property>
+<property name="Expression">
+<value>mTOR.NumberConc * pAkt.NumberConc * param15.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mTOR</value>
+<value>Variable:/:mTOR</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>pmTOR</value>
+<value>Variable:/:pmTOR</value>
+<value>1</value>
+</value>
+<value>
+<value>param15</value>
+<value>Variable:/SBMLParameter:param15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction14">
+<property name="Name">
+<value>reaction14</value>
+</property>
+<property name="Expression">
+<value>pmTOR.NumberConc * param16.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pmTOR</value>
+<value>Variable:/:pmTOR</value>
+<value>-1</value>
+</value>
+<value>
+<value>mTOR</value>
+<value>Variable:/:mTOR</value>
+<value>1</value>
+</value>
+<value>
+<value>param16</value>
+<value>Variable:/SBMLParameter:param16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction15">
+<property name="Name">
+<value>reaction15</value>
+</property>
+<property name="Expression">
+<value>pAkt.NumberConc * Foxo.NumberConc * k1_PEPCK.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Foxo</value>
+<value>Variable:/:Foxo</value>
+<value>-1</value>
+</value>
+<value>
+<value>pAkt</value>
+<value>Variable:/:pAkt</value>
+<value>0</value>
+</value>
+<value>
+<value>pFoxo</value>
+<value>Variable:/:pFoxo</value>
+<value>1</value>
+</value>
+<value>
+<value>k1_PEPCK</value>
+<value>Variable:/SBMLParameter:k1_PEPCK</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reactionPEP1">
+<property name="Name">
+<value>reactionPEP1</value>
+</property>
+<property name="Expression">
+<value>Foxo.NumberConc * k3_PEPCK.Value - mRNA.NumberConc * k4_PEPCK.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Foxo</value>
+<value>Variable:/:Foxo</value>
+<value>0</value>
+</value>
+<value>
+<value>mRNA</value>
+<value>Variable:/:mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>k3_PEPCK</value>
+<value>Variable:/SBMLParameter:k3_PEPCK</value>
+<value>0</value>
+</value>
+<value>
+<value>k4_PEPCK</value>
+<value>Variable:/SBMLParameter:k4_PEPCK</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reactionPEP2">
+<property name="Name">
+<value>reactionPEP2</value>
+</property>
+<property name="Expression">
+<value>k5_PEPCK.Value * mRNA.NumberConc - k6_PEPCK.Value * PEPCK.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mRNA</value>
+<value>Variable:/:mRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>PEPCK</value>
+<value>Variable:/:PEPCK</value>
+<value>1</value>
+</value>
+<value>
+<value>k5_PEPCK</value>
+<value>Variable:/SBMLParameter:k5_PEPCK</value>
+<value>0</value>
+</value>
+<value>
+<value>k6_PEPCK</value>
+<value>Variable:/SBMLParameter:k6_PEPCK</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mw7c079c91_51e3_4732_8dca_23fb3cd716a7">
+<property name="Name">
+<value>reaction16</value>
+</property>
+<property name="Expression">
+<value>pFoxo.NumberConc * k2_PEPCK.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pFoxo</value>
+<value>Variable:/:pFoxo</value>
+<value>-1</value>
+</value>
+<value>
+<value>Foxo</value>
+<value>Variable:/:Foxo</value>
+<value>1</value>
+</value>
+<value>
+<value>k2_PEPCK</value>
+<value>Variable:/SBMLParameter:k2_PEPCK</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mwfc720c89_b1b3_416a_8958_e9d0aff9f4a6">
+<property name="Name">
+<value>metabolicENZ2</value>
+</property>
+<property name="Expression">
+<value>GP.NumberConc * k3.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GP</value>
+<value>Variable:/:GP</value>
+<value>-1</value>
+</value>
+<value>
+<value>pGP</value>
+<value>Variable:/:pGP</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Vex">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Vex</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.004</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PYRout">
+<property name="Name">
+<value>PYRout</value>
+</property>
+<property name="Value">
+<value>137.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLCex">
+<property name="Name">
+<value>GLCex</value>
+</property>
+<property name="Value">
+<value>114.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Vin">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Vin</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>2.64e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F16P">
+<property name="Name">
+<value>F16P</value>
+</property>
+<property name="Value">
+<value>9.571</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PYRin">
+<property name="Name">
+<value>PYRin</value>
+</property>
+<property name="Value">
+<value>0.9872</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LAC">
+<property name="Name">
+<value>LAC</value>
+</property>
+<property name="Value">
+<value>1001.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="OAA">
+<property name="Name">
+<value>OAA</value>
+</property>
+<property name="Value">
+<value>0.0022</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLY">
+<property name="Name">
+<value>GLY</value>
+</property>
+<property name="Value">
+<value>4.8248</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1P">
+<property name="Name">
+<value>G1P</value>
+</property>
+<property name="Value">
+<value>5.303</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="Name">
+<value>G6P</value>
+</property>
+<property name="Value">
+<value>0.5188</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="V1">
+<property name="Name">
+<value>V1</value>
+</property>
+<property name="Value">
+<value>8.97</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Name">
+<value>K1</value>
+</property>
+<property name="Value">
+<value>0.0451</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V2_G6P">
+<property name="Name">
+<value>V2_G6P</value>
+</property>
+<property name="Value">
+<value>7.71</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2_G6P">
+<property name="Name">
+<value>K2_G6P</value>
+</property>
+<property name="Value">
+<value>925.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V2_F16P">
+<property name="Name">
+<value>V2_F16P</value>
+</property>
+<property name="Value">
+<value>0.0839</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2_F16P">
+<property name="Name">
+<value>K2_F16P</value>
+</property>
+<property name="Value">
+<value>0.597</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V3">
+<property name="Name">
+<value>V3</value>
+</property>
+<property name="Value">
+<value>0.00229</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K3">
+<property name="Name">
+<value>K3</value>
+</property>
+<property name="Value">
+<value>2.92</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V6">
+<property name="Name">
+<value>V6</value>
+</property>
+<property name="Value">
+<value>0.00247</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K6">
+<property name="Name">
+<value>K6</value>
+</property>
+<property name="Value">
+<value>0.996</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V7">
+<property name="Name">
+<value>V7</value>
+</property>
+<property name="Value">
+<value>2.84e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K7">
+<property name="Name">
+<value>K7</value>
+</property>
+<property name="Value">
+<value>8.43</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V4_PYR">
+<property name="Name">
+<value>V4_PYR</value>
+</property>
+<property name="Value">
+<value>23.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K4_PYR">
+<property name="Name">
+<value>K4_PYR</value>
+</property>
+<property name="Value">
+<value>56.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V4_LAC">
+<property name="Name">
+<value>V4_LAC</value>
+</property>
+<property name="Value">
+<value>1.2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K4_LAC">
+<property name="Name">
+<value>K4_LAC</value>
+</property>
+<property name="Value">
+<value>0.0154</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V8_G6P">
+<property name="Name">
+<value>V8_G6P</value>
+</property>
+<property name="Value">
+<value>2.02e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K8_G6P">
+<property name="Name">
+<value>K8_G6P</value>
+</property>
+<property name="Value">
+<value>0.791</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V8_G1P">
+<property name="Name">
+<value>V8_G1P</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K8_G1P">
+<property name="Name">
+<value>K8_G1P</value>
+</property>
+<property name="Value">
+<value>69.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V5">
+<property name="Name">
+<value>V5</value>
+</property>
+<property name="Value">
+<value>0.00112</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K5">
+<property name="Name">
+<value>K5</value>
+</property>
+<property name="Value">
+<value>0.228</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V9_G1P">
+<property name="Name">
+<value>V9_G1P</value>
+</property>
+<property name="Value">
+<value>0.488</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K9_G1P">
+<property name="Name">
+<value>K9_G1P</value>
+</property>
+<property name="Value">
+<value>2.69</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V9_GLY">
+<property name="Name">
+<value>V9_GLY</value>
+</property>
+<property name="Value">
+<value>1.02e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K9_GLY">
+<property name="Name">
+<value>K9_GLY</value>
+</property>
+<property name="Value">
+<value>0.000623</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>112.76</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>1.9448</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s1">
+<property name="Name">
+<value>s1</value>
+</property>
+<property name="Value">
+<value>1.722</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s2">
+<property name="Name">
+<value>s4</value>
+</property>
+<property name="Value">
+<value>214.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s3">
+<property name="Name">
+<value>s2</value>
+</property>
+<property name="Value">
+<value>46.54</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s4">
+<property name="Name">
+<value>s3</value>
+</property>
+<property name="Value">
+<value>1.19</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_PEPCK">
+<property name="Name">
+<value>k1_PEPCK</value>
+</property>
+<property name="Value">
+<value>0.12225</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2_PEPCK">
+<property name="Name">
+<value>k2_PEPCK</value>
+</property>
+<property name="Value">
+<value>0.0045985</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3_PEPCK">
+<property name="Name">
+<value>k3_PEPCK</value>
+</property>
+<property name="Value">
+<value>486.28</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4_PEPCK">
+<property name="Name">
+<value>k4_PEPCK</value>
+</property>
+<property name="Value">
+<value>0.0046101</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5_PEPCK">
+<property name="Name">
+<value>k5_PEPCK</value>
+</property>
+<property name="Value">
+<value>0.00010958</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6_PEPCK">
+<property name="Name">
+<value>k6_PEPCK</value>
+</property>
+<property name="Value">
+<value>0.0018592</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param1">
+<property name="Name">
+<value>param1</value>
+</property>
+<property name="Value">
+<value>5.5702</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param2">
+<property name="Name">
+<value>param2</value>
+</property>
+<property name="Value">
+<value>2.3969</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param3">
+<property name="Name">
+<value>param3</value>
+</property>
+<property name="Value">
+<value>0.020934</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param4">
+<property name="Name">
+<value>param4</value>
+</property>
+<property name="Value">
+<value>1.214e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param5">
+<property name="Name">
+<value>param5</value>
+</property>
+<property name="Value">
+<value>0.2751</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param6">
+<property name="Name">
+<value>param6</value>
+</property>
+<property name="Value">
+<value>0.0072509</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param7">
+<property name="Name">
+<value>param7</value>
+</property>
+<property name="Value">
+<value>758.12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param8">
+<property name="Name">
+<value>param8</value>
+</property>
+<property name="Value">
+<value>0.91758</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param9">
+<property name="Name">
+<value>param9</value>
+</property>
+<property name="Value">
+<value>0.041292</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param10">
+<property name="Name">
+<value>param10</value>
+</property>
+<property name="Value">
+<value>0.00013032</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param11">
+<property name="Name">
+<value>param11</value>
+</property>
+<property name="Value">
+<value>0.000192</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param12">
+<property name="Name">
+<value>param12</value>
+</property>
+<property name="Value">
+<value>0.029311</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param13">
+<property name="Name">
+<value>param13</value>
+</property>
+<property name="Value">
+<value>4.4307e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param14">
+<property name="Name">
+<value>param14</value>
+</property>
+<property name="Value">
+<value>0.35211</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param15">
+<property name="Name">
+<value>param15</value>
+</property>
+<property name="Value">
+<value>3.1385e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="param16">
+<property name="Name">
+<value>param16</value>
+</property>
+<property name="Value">
+<value>0.0095934</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="proIRS">
+<property name="Name">
+<value>proIRS</value>
+</property>
+<property name="Value">
+<value>888.77</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="insulin">
+<property name="Name">
+<value>insulin</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

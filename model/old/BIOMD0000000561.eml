@@ -1,0 +1,241 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/Brain">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Brain</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Amyloid">
+<property name="Name">
+<value>Amyloid</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kb">
+<property name="Name">
+<value>kb</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Name">
+<value>ka</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sigmao">
+<property name="Name">
+<value>sigmao</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V">
+<property name="Name">
+<value>V</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="Name">
+<value>C*</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma">
+<property name="Name">
+<value>gamma</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="deltamt">
+<property name="Name">
+<value>deltamt</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="C_0">
+<property name="Name">
+<value>C</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_gamma">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'gamma'</value>
+</property>
+<property name="Expression">
+<value>(C_0.NumberConc - C.NumberConc) / C.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>1</value>
+</value>
+<value>
+<value>C_0</value>
+<value>Variable:/SBMLParameter:C_0</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/SBMLParameter:C</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_deltamt">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'deltamt'</value>
+</property>
+<property name="Expression">
+<value>sigmao.NumberConc * V.NumberConc * C.NumberConc * gamma.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>deltamt</value>
+<value>Variable:/SBMLParameter:deltamt</value>
+<value>1</value>
+</value>
+<value>
+<value>sigmao</value>
+<value>Variable:/SBMLParameter:sigmao</value>
+<value>0</value>
+</value>
+<value>
+<value>V</value>
+<value>Variable:/SBMLParameter:V</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/SBMLParameter:C</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Amyloid">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Amyloid'</value>
+</property>
+<property name="Expression">
+<value>(1 - 1 / (kb.NumberConc * (exp(ka.NumberConc * &lt;t&gt;) - 1) + 1)) * deltamt.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Amyloid</value>
+<value>Variable:/Brain:Amyloid</value>
+<value>1</value>
+</value>
+<value>
+<value>kb</value>
+<value>Variable:/SBMLParameter:kb</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>deltamt</value>
+<value>Variable:/SBMLParameter:deltamt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

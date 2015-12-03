@@ -1,0 +1,3588 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="RuBisCO_CO2">
+<property name="Name">
+<value>RuBisCO - CO2</value>
+</property>
+<property name="K">
+<value>0.02</value>
+</property>
+<property name="KR1">
+<value>0.84</value>
+</property>
+<property name="KR2">
+<value>0.04</value>
+</property>
+<property name="KR3">
+<value>0.075</value>
+</property>
+<property name="KR4">
+<value>0.9</value>
+</property>
+<property name="KR5">
+<value>0.07</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Wc_min.Value * RuBP.NumberConc / (RuBP.NumberConc + K * (1 + PGA.NumberConc / KR1 + FBP.NumberConc / KR2 + SBP.NumberConc / KR3 + Pi.NumberConc / KR4 + NADPH.NumberConc / KR5)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>2</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>0</value>
+</value>
+<value>
+<value>SBP</value>
+<value>Variable:/chloroplast:SBP</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Wc_min</value>
+<value>Variable:/SBMLParameter:Wc_min</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Wc_min &lt;/ci&gt;#x0A        &lt;ci&gt; RuBP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; RuBP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; PGA &lt;/ci&gt;#x0A              &lt;ci&gt; KR1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; FBP &lt;/ci&gt;#x0A              &lt;ci&gt; KR2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; SBP &lt;/ci&gt;#x0A              &lt;ci&gt; KR3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A              &lt;ci&gt; KR4 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NADPH &lt;/ci&gt;#x0A              &lt;ci&gt; KR5 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PGA_K">
+<property name="Name">
+<value>PGA kinase</value>
+</property>
+<property name="Vm">
+<value>30.1408</value>
+</property>
+<property name="Ks1">
+<value>0.24</value>
+</property>
+<property name="Ks2">
+<value>0.39</value>
+</property>
+<property name="Kr1">
+<value>0.23</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * PGA.NumberConc * ATP.NumberConc / ((PGA.NumberConc + Ks1) * (ATP.NumberConc + Ks2 * (1 + ADP.NumberConc / Kr1))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>DPGA</value>
+<value>Variable:/chloroplast:DPGA</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; PGA &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; PGA &lt;/ci&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ADP &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GAP_DH">
+<property name="Name">
+<value>GAP dehydrogenase</value>
+</property>
+<property name="Vm">
+<value>4.03948</value>
+</property>
+<property name="K1">
+<value>0.004</value>
+</property>
+<property name="K2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * DPGA.NumberConc * NADPH.NumberConc / ((DPGA.NumberConc + K1) * (NADPH.NumberConc + K2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DPGA</value>
+<value>Variable:/chloroplast:DPGA</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/chloroplast:NADP</value>
+<value>0</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; DPGA &lt;/ci&gt;#x0A        &lt;ci&gt; NADPH &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; DPGA &lt;/ci&gt;#x0A          &lt;ci&gt; K1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; NADPH &lt;/ci&gt;#x0A          &lt;ci&gt; K2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="FBP_A">
+<property name="Name">
+<value>FBP aldolase</value>
+</property>
+<property name="q">
+<value>7.1</value>
+</property>
+<property name="Ks1">
+<value>0.3</value>
+</property>
+<property name="Ks2">
+<value>0.4</value>
+</property>
+<property name="Kp1">
+<value>0.02</value>
+</property>
+<property name="Vm">
+<value>1.21889</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (GAP.NumberConc * DHAP.NumberConc - FBP.NumberConc / q) / (Ks1 * Ks2 * ((1 + GAP.NumberConc / Ks1) * (1 + DHAP.NumberConc / Ks2) + FBP.NumberConc / Kp1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-2</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; FBP &lt;/ci&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GAP &lt;/ci&gt;#x0A                &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; DHAP &lt;/ci&gt;#x0A                &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; FBP &lt;/ci&gt;#x0A            &lt;ci&gt; Kp1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="FBPase">
+<property name="Name">
+<value>FBPase</value>
+</property>
+<property name="Vm">
+<value>0.72626</value>
+</property>
+<property name="q">
+<value>666000.0</value>
+</property>
+<property name="Ks1">
+<value>0.033</value>
+</property>
+<property name="Kr1">
+<value>0.7</value>
+</property>
+<property name="Kr2">
+<value>12.0</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (FBP.NumberConc - F6P.NumberConc * Pi.NumberConc / q) / (FBP.NumberConc + Ks1 * (1 + F6P.NumberConc / Kr1 + Pi.NumberConc / Kr2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/chloroplast:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; FBP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; F6P &lt;/ci&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; FBP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; F6P &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A              &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="F6P_TK">
+<property name="Name">
+<value>F6P transketolase</value>
+</property>
+<property name="Vm">
+<value>3.12207</value>
+</property>
+<property name="Ks1">
+<value>0.1</value>
+</property>
+<property name="Ks2">
+<value>0.1</value>
+</property>
+<property name="Kr1">
+<value>0.1</value>
+</property>
+<property name="Kr2">
+<value>0.1</value>
+</property>
+<property name="q">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (F6P.NumberConc * GAP.NumberConc - X5P.NumberConc * E4P.NumberConc / q) / ((F6P.NumberConc + Ks1 * (1 + X5P.NumberConc / Kr1 + E4P.NumberConc / Kr2)) * (GAP.NumberConc + Ks2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>-1</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/chloroplast:E4P</value>
+<value>1</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/chloroplast:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>X5P</value>
+<value>Variable:/chloroplast:X5P</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; F6P &lt;/ci&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; X5P &lt;/ci&gt;#x0A              &lt;ci&gt; E4P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; F6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; X5P &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; E4P &lt;/ci&gt;#x0A                &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; GAP &lt;/ci&gt;#x0A          &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SBP_A">
+<property name="Name">
+<value>SBP aldolase</value>
+</property>
+<property name="Vm">
+<value>1.21889</value>
+</property>
+<property name="q">
+<value>1.017</value>
+</property>
+<property name="Ks1">
+<value>0.4</value>
+</property>
+<property name="Ks2">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (DHAP.NumberConc * E4P.NumberConc - SBP.NumberConc / q) / ((DHAP.NumberConc + Ks1) * (E4P.NumberConc + Ks2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/chloroplast:E4P</value>
+<value>-1</value>
+</value>
+<value>
+<value>SBP</value>
+<value>Variable:/chloroplast:SBP</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;ci&gt; E4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; SBP &lt;/ci&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; E4P &lt;/ci&gt;#x0A          &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SBPase">
+<property name="Name">
+<value>SBPase</value>
+</property>
+<property name="Vm">
+<value>0.324191</value>
+</property>
+<property name="q">
+<value>666000.0</value>
+</property>
+<property name="Ks1">
+<value>0.05</value>
+</property>
+<property name="Kr1">
+<value>12.0</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (SBP.NumberConc - S7P.NumberConc * Pi.NumberConc / q) / (SBP.NumberConc + Ks1 * (1 + Pi.NumberConc / Kr1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SBP</value>
+<value>Variable:/chloroplast:SBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/chloroplast:S7P</value>
+<value>1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; SBP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; S7P &lt;/ci&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; SBP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="S7P_TK">
+<property name="Name">
+<value>S7P transketolase</value>
+</property>
+<property name="Vm">
+<value>3.12207</value>
+</property>
+<property name="Ks1">
+<value>0.072</value>
+</property>
+<property name="Ks2">
+<value>0.46</value>
+</property>
+<property name="Kr1">
+<value>0.1</value>
+</property>
+<property name="Kr2">
+<value>1.5</value>
+</property>
+<property name="q">
+<value>1.17647</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (GAP.NumberConc * S7P.NumberConc - X5P.NumberConc * R5P.NumberConc / q) / ((GAP.NumberConc + Ks1 * (1 + X5P.NumberConc / Kr1 + R5P.NumberConc / Kr2)) * (S7P.NumberConc + Ks2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/chloroplast:S7P</value>
+<value>-1</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>2</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>X5P</value>
+<value>Variable:/chloroplast:X5P</value>
+<value>0</value>
+</value>
+<value>
+<value>R5P</value>
+<value>Variable:/chloroplast:R5P</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GAP &lt;/ci&gt;#x0A            &lt;ci&gt; S7P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; X5P &lt;/ci&gt;#x0A              &lt;ci&gt; R5P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; GAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; X5P &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; R5P &lt;/ci&gt;#x0A                &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; S7P &lt;/ci&gt;#x0A          &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Ru5P_K">
+<property name="Name">
+<value>Ru5P kinase</value>
+</property>
+<property name="Vm">
+<value>10.8348</value>
+</property>
+<property name="q">
+<value>6846.0</value>
+</property>
+<property name="Ks1">
+<value>0.05</value>
+</property>
+<property name="Kr1">
+<value>2.0</value>
+</property>
+<property name="Kr2">
+<value>0.7</value>
+</property>
+<property name="Kr3">
+<value>4.0</value>
+</property>
+<property name="Kr41">
+<value>2.5</value>
+</property>
+<property name="Ks2">
+<value>0.059</value>
+</property>
+<property name="Kr42">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (Ru5P.NumberConc * ATP.NumberConc - RuBP.NumberConc * ADP.NumberConc / q) / ((Ru5P.NumberConc + Ks1 * (1 + PGA.NumberConc / Kr1 + RuBP.NumberConc / Kr2 + Pi.NumberConc / Kr3)) * (ATP.NumberConc * (1 + ADP.NumberConc / Kr41) + Ks2 * (1 + ADP.NumberConc / Kr42))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Ru5P</value>
+<value>Variable:/chloroplast:Ru5P</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ru5P &lt;/ci&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; RuBP &lt;/ci&gt;#x0A              &lt;ci&gt; ADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; Ru5P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; PGA &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; RuBP &lt;/ci&gt;#x0A                &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;ci&gt; Kr3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ADP &lt;/ci&gt;#x0A                &lt;ci&gt; Kr41 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ADP &lt;/ci&gt;#x0A                &lt;ci&gt; Kr42 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="ATP_S">
+<property name="Name">
+<value>ATP synthetase</value>
+</property>
+<property name="q">
+<value>5.734</value>
+</property>
+<property name="Ks1">
+<value>0.014</value>
+</property>
+<property name="Ks2">
+<value>0.3</value>
+</property>
+<property name="Kp1">
+<value>0.3</value>
+</property>
+<property name="Vm">
+<value>15.0</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (ADP.NumberConc * Pi.NumberConc - ATP.NumberConc / q) / (Ks1 * Ks2 * ((1 + ADP.NumberConc / Ks1) * (1 + Pi.NumberConc / Ks2) + ATP.NumberConc / Kp1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ADP &lt;/ci&gt;#x0A            &lt;ci&gt; Pi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ADP &lt;/ci&gt;#x0A                &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; Kp1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="AGPase">
+<property name="Name">
+<value>AGPase</value>
+</property>
+<property name="Vm">
+<value>0.266843</value>
+</property>
+<property name="K1">
+<value>0.08</value>
+</property>
+<property name="K2">
+<value>0.08</value>
+</property>
+<property name="KR1">
+<value>10.0</value>
+</property>
+<property name="KA1">
+<value>0.1</value>
+</property>
+<property name="KA2">
+<value>0.02</value>
+</property>
+<property name="KA3">
+<value>0.02</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * G1P.NumberConc * ATP.NumberConc / ((G1P.NumberConc + K1) * (1 + ADP.NumberConc / KR1) * (ATP.NumberConc + K2 * (1 + K2 * Pi.NumberConc / (KA1 * PGA.NumberConc + KA2 * F6P.NumberConc + KA3 * FBP.NumberConc)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1P</value>
+<value>Variable:/chloroplast:G1P</value>
+<value>0</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/chloroplast:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; G1P &lt;/ci&gt;#x0A        &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; G1P &lt;/ci&gt;#x0A          &lt;ci&gt; K1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; ADP &lt;/ci&gt;#x0A            &lt;ci&gt; KR1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; K2 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;ci&gt; K2 &lt;/ci&gt;#x0A                  &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; KA1 &lt;/ci&gt;#x0A                    &lt;ci&gt; PGA &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; KA2 &lt;/ci&gt;#x0A                    &lt;ci&gt; F6P &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;times/&gt;#x0A                    &lt;ci&gt; KA3 &lt;/ci&gt;#x0A                    &lt;ci&gt; FBP &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="TPT_PGA">
+<property name="Name">
+<value>TPT - PGA</value>
+</property>
+<property name="Vm">
+<value>1.24333</value>
+</property>
+<property name="KA">
+<value>0.74</value>
+</property>
+<property name="K">
+<value>0.25</value>
+</property>
+<property name="KR1">
+<value>0.63</value>
+</property>
+<property name="KR2">
+<value>0.075</value>
+</property>
+<property name="KR3">
+<value>0.077</value>
+</property>
+<property name="Expression">
+<value>Vm * PGA.NumberConc / (PGA.NumberConc * (1 + KA / Pic.NumberConc) + K * (1 + (1 + KA / Pic.NumberConc) * (Pi.NumberConc / KR1 + GAP.NumberConc / KR2 + DHAP.NumberConc / KR3)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>-1</value>
+</value>
+<value>
+<value>PGAc</value>
+<value>Variable:/cytosol:PGAc</value>
+<value>1</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;ci&gt; PGA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; PGA &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KA &lt;/ci&gt;#x0A            &lt;ci&gt; Pic &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; KA &lt;/ci&gt;#x0A                &lt;ci&gt; Pic &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;ci&gt; KR1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GAP &lt;/ci&gt;#x0A                &lt;ci&gt; KR2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; DHAP &lt;/ci&gt;#x0A                &lt;ci&gt; KR3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="TPT_GAP">
+<property name="Name">
+<value>TPT - GAP</value>
+</property>
+<property name="Vm">
+<value>1.24333</value>
+</property>
+<property name="KA">
+<value>0.74</value>
+</property>
+<property name="K">
+<value>0.075</value>
+</property>
+<property name="KR1">
+<value>0.63</value>
+</property>
+<property name="KR2">
+<value>0.25</value>
+</property>
+<property name="KR3">
+<value>0.077</value>
+</property>
+<property name="Expression">
+<value>Vm * GAP.NumberConc / (GAP.NumberConc * (1 + KA / Pic.NumberConc) + K * (1 + (1 + KA / Pic.NumberConc) * (Pi.NumberConc / KR1 + PGA.NumberConc / KR2 + DHAP.NumberConc / KR3)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>GAPc</value>
+<value>Variable:/cytosol:GAPc</value>
+<value>0</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;ci&gt; GAP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; GAP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KA &lt;/ci&gt;#x0A            &lt;ci&gt; Pic &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; KA &lt;/ci&gt;#x0A                &lt;ci&gt; Pic &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;ci&gt; KR1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; PGA &lt;/ci&gt;#x0A                &lt;ci&gt; KR2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; DHAP &lt;/ci&gt;#x0A                &lt;ci&gt; KR3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="TPT_DHAP">
+<property name="Name">
+<value>TPT - DHAP</value>
+</property>
+<property name="Vm">
+<value>1.24333</value>
+</property>
+<property name="KA">
+<value>0.74</value>
+</property>
+<property name="K">
+<value>0.077</value>
+</property>
+<property name="KR1">
+<value>0.63</value>
+</property>
+<property name="KR2">
+<value>0.25</value>
+</property>
+<property name="KR3">
+<value>0.075</value>
+</property>
+<property name="Expression">
+<value>Vm * DHAP.NumberConc / (DHAP.NumberConc * (1 + KA / Pic.NumberConc) + K * (1 + (1 + KA / Pic.NumberConc) * (Pi.NumberConc / KR1 + PGA.NumberConc / KR2 + GAP.NumberConc / KR3)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAPc</value>
+<value>Variable:/cytosol:DHAPc</value>
+<value>0</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;ci&gt; DHAP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; DHAP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; KA &lt;/ci&gt;#x0A            &lt;ci&gt; Pic &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; KA &lt;/ci&gt;#x0A                &lt;ci&gt; Pic &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pi &lt;/ci&gt;#x0A                &lt;ci&gt; KR1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; PGA &lt;/ci&gt;#x0A                &lt;ci&gt; KR2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GAP &lt;/ci&gt;#x0A                &lt;ci&gt; KR3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="FBPc_A">
+<property name="Name">
+<value>FBPc aldolase</value>
+</property>
+<property name="q">
+<value>12.0</value>
+</property>
+<property name="Ks1">
+<value>0.3</value>
+</property>
+<property name="Ks2">
+<value>0.4</value>
+</property>
+<property name="Kp1">
+<value>0.02</value>
+</property>
+<property name="Vm">
+<value>0.107377</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (GAPc.NumberConc * DHAPc.NumberConc - FBPc.NumberConc / q) / (Ks1 * Ks2 * ((1 + GAPc.NumberConc / Ks1) * (1 + DHAPc.NumberConc / Ks2) + FBPc.NumberConc / Kp1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>-2</value>
+</value>
+<value>
+<value>FBPc</value>
+<value>Variable:/cytosol:FBPc</value>
+<value>1</value>
+</value>
+<value>
+<value>GAPc</value>
+<value>Variable:/cytosol:GAPc</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAPc</value>
+<value>Variable:/cytosol:DHAPc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GAPc &lt;/ci&gt;#x0A            &lt;ci&gt; DHAPc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; FBPc &lt;/ci&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GAPc &lt;/ci&gt;#x0A                &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; DHAPc &lt;/ci&gt;#x0A                &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; FBPc &lt;/ci&gt;#x0A            &lt;ci&gt; Kp1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="FBPcase">
+<property name="Name">
+<value>FBPcase</value>
+</property>
+<property name="q">
+<value>6663.0</value>
+</property>
+<property name="Kp1">
+<value>0.7</value>
+</property>
+<property name="Kp2">
+<value>12.0</value>
+</property>
+<property name="Vm">
+<value>0.063979</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (FBPc.NumberConc - F6Pc.NumberConc * Pic.NumberConc / q) / (K52a.Value * (FBPc.NumberConc / K52a.Value + (1 + F6Pc.NumberConc / Kp1) * (1 + Pic.NumberConc / Kp2))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FBPc</value>
+<value>Variable:/cytosol:FBPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>1</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>1</value>
+</value>
+<value>
+<value>F6Pc</value>
+<value>Variable:/cytosol:F6Pc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>K52a</value>
+<value>Variable:/SBMLParameter:K52a</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; FBPc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A              &lt;ci&gt; Pic &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; K52a &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; FBPc &lt;/ci&gt;#x0A            &lt;ci&gt; K52a &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A                &lt;ci&gt; Kp1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pic &lt;/ci&gt;#x0A                &lt;ci&gt; Kp2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="UGPase">
+<property name="Name">
+<value>UGPase</value>
+</property>
+<property name="q">
+<value>0.31</value>
+</property>
+<property name="Ks1">
+<value>0.14</value>
+</property>
+<property name="Ks2">
+<value>0.1</value>
+</property>
+<property name="Kp1">
+<value>0.12</value>
+</property>
+<property name="Kp2">
+<value>0.11</value>
+</property>
+<property name="Vm">
+<value>0.115403</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (G1Pc.NumberConc * UTPc.NumberConc - UDPGc.NumberConc * PiPic.NumberConc / q) / (Ks1 * Ks2 * ((1 + G1Pc.NumberConc / Ks1) * (1 + UTPc.NumberConc / Ks2) + (1 + UDPGc.NumberConc / Kp1) * (1 + PiPic.NumberConc / Kp2) - 1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>-1</value>
+</value>
+<value>
+<value>UTPc</value>
+<value>Variable:/cytosol:UTPc</value>
+<value>0</value>
+</value>
+<value>
+<value>UDPGc</value>
+<value>Variable:/cytosol:UDPGc</value>
+<value>1</value>
+</value>
+<value>
+<value>PiPic</value>
+<value>Variable:/cytosol:PiPic</value>
+<value>1</value>
+</value>
+<value>
+<value>G1Pc</value>
+<value>Variable:/cytosol:G1Pc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; G1Pc &lt;/ci&gt;#x0A            &lt;ci&gt; UTPc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; UDPGc &lt;/ci&gt;#x0A              &lt;ci&gt; PiPic &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; G1Pc &lt;/ci&gt;#x0A                  &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; UTPc &lt;/ci&gt;#x0A                  &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; UDPGc &lt;/ci&gt;#x0A                  &lt;ci&gt; Kp1 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; PiPic &lt;/ci&gt;#x0A                  &lt;ci&gt; Kp2 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SucPc_S">
+<property name="Name">
+<value>SucPc synthase</value>
+</property>
+<property name="Vm">
+<value>0.0555034</value>
+</property>
+<property name="q">
+<value>10.0</value>
+</property>
+<property name="Ks1">
+<value>0.8</value>
+</property>
+<property name="Kr1">
+<value>0.8</value>
+</property>
+<property name="Ks2">
+<value>2.4</value>
+</property>
+<property name="Kr2">
+<value>0.7</value>
+</property>
+<property name="Kr3">
+<value>0.4</value>
+</property>
+<property name="Kr4">
+<value>50.0</value>
+</property>
+<property name="Kr5">
+<value>11.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (F6Pc.NumberConc * UDPGc.NumberConc - SucPc.NumberConc * UDPc.NumberConc / q) / ((F6Pc.NumberConc + Ks1 * (1 + FBPc.NumberConc / Kr1)) * (UDPGc.NumberConc + Ks2 * (1 + UDPc.NumberConc / Kr2) * (1 + SucPc.NumberConc / Kr3) * (1 + Succ.NumberConc / Kr4) * (1 + Pic.NumberConc / Kr5))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>-1</value>
+</value>
+<value>
+<value>UDPGc</value>
+<value>Variable:/cytosol:UDPGc</value>
+<value>-1</value>
+</value>
+<value>
+<value>SucPc</value>
+<value>Variable:/cytosol:SucPc</value>
+<value>1</value>
+</value>
+<value>
+<value>UDPc</value>
+<value>Variable:/cytosol:UDPc</value>
+<value>1</value>
+</value>
+<value>
+<value>F6Pc</value>
+<value>Variable:/cytosol:F6Pc</value>
+<value>0</value>
+</value>
+<value>
+<value>FBPc</value>
+<value>Variable:/cytosol:FBPc</value>
+<value>0</value>
+</value>
+<value>
+<value>Succ</value>
+<value>Variable:/cytosol:Succ</value>
+<value>0</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A            &lt;ci&gt; UDPGc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; SucPc &lt;/ci&gt;#x0A              &lt;ci&gt; UDPc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; FBPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; UDPGc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; UDPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; SucPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Succ &lt;/ci&gt;#x0A                &lt;ci&gt; Kr4 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Pic &lt;/ci&gt;#x0A                &lt;ci&gt; Kr5 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SucPc_P">
+<property name="Name">
+<value>SucPc phosphatase</value>
+</property>
+<property name="Vm">
+<value>0.555034</value>
+</property>
+<property name="q">
+<value>780.0</value>
+</property>
+<property name="Ks1">
+<value>0.35</value>
+</property>
+<property name="Kr1">
+<value>80.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (SucPc.NumberConc - Succ.NumberConc * Pic.NumberConc / q) / (SucPc.NumberConc + Ks1 * (1 + Succ.NumberConc / Kr1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SucPc</value>
+<value>Variable:/cytosol:SucPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>Succ</value>
+<value>Variable:/cytosol:Succ</value>
+<value>1</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; SucPc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Succ &lt;/ci&gt;#x0A              &lt;ci&gt; Pic &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; SucPc &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Succ &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="F6Pc_K">
+<property name="Name">
+<value>F6Pc kinase</value>
+</property>
+<property name="Vm">
+<value>0.100915</value>
+</property>
+<property name="q">
+<value>590.0</value>
+</property>
+<property name="Ks1">
+<value>0.5</value>
+</property>
+<property name="Kr1">
+<value>0.021</value>
+</property>
+<property name="Kr2">
+<value>0.7</value>
+</property>
+<property name="Ks2">
+<value>0.5</value>
+</property>
+<property name="Kr3">
+<value>0.16</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (F6Pc.NumberConc * ATPc.NumberConc - F26BPc.NumberConc * ADPc.NumberConc / q) / ((F6Pc.NumberConc + Ks1 * (1 + F26BPc.NumberConc / Kr1) * (1 + DHAPc.NumberConc / Kr2)) * (ATPc.NumberConc + Ks2 * (1 + ADPc.NumberConc / Kr3))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATPc</value>
+<value>Variable:/cytosol:ATPc</value>
+<value>0</value>
+</value>
+<value>
+<value>F26BPc</value>
+<value>Variable:/cytosol:F26BPc</value>
+<value>1</value>
+</value>
+<value>
+<value>ADPc</value>
+<value>Variable:/cytosol:ADPc</value>
+<value>1</value>
+</value>
+<value>
+<value>F6Pc</value>
+<value>Variable:/cytosol:F6Pc</value>
+<value>0</value>
+</value>
+<value>
+<value>DHAPc</value>
+<value>Variable:/cytosol:DHAPc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A            &lt;ci&gt; ATPc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A              &lt;ci&gt; ADPc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; DHAPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ATPc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; ADPc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr3 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="F26BPc_P">
+<property name="Name">
+<value>F26BPc phosphatase</value>
+</property>
+<property name="Vm">
+<value>0.0168192</value>
+</property>
+<property name="Kr1">
+<value>0.5</value>
+</property>
+<property name="Kr2">
+<value>0.1</value>
+</property>
+<property name="Ks1">
+<value>0.032</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * F26BPc.NumberConc / ((F26BPc.NumberConc + Ks1) * (1 + Pic.NumberConc / Kr1) * (1 + F6Pc.NumberConc / Kr2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F26BPc</value>
+<value>Variable:/cytosol:F26BPc</value>
+<value>-1</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>1</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>1</value>
+</value>
+<value>
+<value>F6Pc</value>
+<value>Variable:/cytosol:F6Pc</value>
+<value>0</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Pic &lt;/ci&gt;#x0A            &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; F6Pc &lt;/ci&gt;#x0A            &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Succ_Deg">
+<property name="Name">
+<value>Succ degradation</value>
+</property>
+<property name="Km">
+<value>5.0</value>
+</property>
+<property name="V">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V * Succ.NumberConc / (Km + Succ.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Succ</value>
+<value>Variable:/cytosol:Succ</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V &lt;/ci&gt;#x0A        &lt;ci&gt; Succ &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km &lt;/ci&gt;#x0A        &lt;ci&gt; Succ &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PGAc_Deg">
+<property name="Name">
+<value>PGAc degradation</value>
+</property>
+<property name="Km">
+<value>1.0</value>
+</property>
+<property name="V">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V * PGAc.NumberConc / (Km + PGAc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGAc</value>
+<value>Variable:/cytosol:PGAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V &lt;/ci&gt;#x0A        &lt;ci&gt; PGAc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km &lt;/ci&gt;#x0A        &lt;ci&gt; PGAc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GPT_GCEAc">
+<property name="Name">
+<value>GPT - GCEAc</value>
+</property>
+<property name="Km">
+<value>0.39</value>
+</property>
+<property name="V">
+<value>5.0</value>
+</property>
+<property name="Ki">
+<value>0.28</value>
+</property>
+<property name="Expression">
+<value>V * GCEAc.NumberConc / (Km + GCEAc.NumberConc + Km * GCAc.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GCEAc</value>
+<value>Variable:/cytosol:GCEAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCEA</value>
+<value>Variable:/chloroplast:GCEA</value>
+<value>1</value>
+</value>
+<value>
+<value>GCAc</value>
+<value>Variable:/cytosol:GCAc</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; GCEAc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; GCEAc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km &lt;/ci&gt;#x0A          &lt;ci&gt; GCAc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GPT_GCEA">
+<property name="Name">
+<value>GPT - GCEA</value>
+</property>
+<property name="Km">
+<value>0.39</value>
+</property>
+<property name="V">
+<value>5.0</value>
+</property>
+<property name="Ki">
+<value>0.28</value>
+</property>
+<property name="Expression">
+<value>V * GCEA.NumberConc / (Km + GCEA.NumberConc + Km * GCA.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GCEA</value>
+<value>Variable:/chloroplast:GCEA</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCEAc</value>
+<value>Variable:/cytosol:GCEAc</value>
+<value>1</value>
+</value>
+<value>
+<value>GCA</value>
+<value>Variable:/chloroplast:GCA</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; GCEA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; GCEA &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km &lt;/ci&gt;#x0A          &lt;ci&gt; GCA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GPT_GCA">
+<property name="Name">
+<value>GPT - GCA</value>
+</property>
+<property name="Km">
+<value>0.2</value>
+</property>
+<property name="V">
+<value>6.0</value>
+</property>
+<property name="Ki">
+<value>0.22</value>
+</property>
+<property name="Expression">
+<value>V * GCA.NumberConc / (Km + GCA.NumberConc + Km * GCEA.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GCA</value>
+<value>Variable:/chloroplast:GCA</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCAc</value>
+<value>Variable:/cytosol:GCAc</value>
+<value>1</value>
+</value>
+<value>
+<value>GCEA</value>
+<value>Variable:/chloroplast:GCEA</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; GCA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; GCA &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km &lt;/ci&gt;#x0A          &lt;ci&gt; GCEA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GPT_GCAc">
+<property name="Name">
+<value>GPT - GCAc</value>
+</property>
+<property name="Km">
+<value>0.2</value>
+</property>
+<property name="V">
+<value>6.0</value>
+</property>
+<property name="Ki">
+<value>0.22</value>
+</property>
+<property name="Expression">
+<value>V * GCAc.NumberConc / (Km + GCAc.NumberConc + Km * GCEAc.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GCAc</value>
+<value>Variable:/cytosol:GCAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCA</value>
+<value>Variable:/chloroplast:GCA</value>
+<value>1</value>
+</value>
+<value>
+<value>GCEAc</value>
+<value>Variable:/cytosol:GCEAc</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; V &lt;/ci&gt;#x0A      &lt;ci&gt; GCAc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; Km &lt;/ci&gt;#x0A      &lt;ci&gt; GCAc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Km &lt;/ci&gt;#x0A          &lt;ci&gt; GCEAc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Ki &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="RuBisCO_O2">
+<property name="Name">
+<value>RuBisC0 - O2</value>
+</property>
+<property name="K">
+<value>0.02</value>
+</property>
+<property name="KR1">
+<value>0.84</value>
+</property>
+<property name="KR2">
+<value>0.04</value>
+</property>
+<property name="KR3">
+<value>0.075</value>
+</property>
+<property name="KR4">
+<value>0.9</value>
+</property>
+<property name="KR5">
+<value>0.07</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Wo_min.Value * RuBP.NumberConc / (RuBP.NumberConc + K * (1 + PGA.NumberConc / KR1 + FBP.NumberConc / KR2 + SBP.NumberConc / KR3 + Pi.NumberConc / KR4 + NADPH.NumberConc / KR5)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>1</value>
+</value>
+<value>
+<value>PGCA</value>
+<value>Variable:/chloroplast:PGCA</value>
+<value>1</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>0</value>
+</value>
+<value>
+<value>SBP</value>
+<value>Variable:/chloroplast:SBP</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/chloroplast:NADPH</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Wo_min</value>
+<value>Variable:/SBMLParameter:Wo_min</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Wo_min &lt;/ci&gt;#x0A        &lt;ci&gt; RuBP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; RuBP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; PGA &lt;/ci&gt;#x0A              &lt;ci&gt; KR1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; FBP &lt;/ci&gt;#x0A              &lt;ci&gt; KR2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; SBP &lt;/ci&gt;#x0A              &lt;ci&gt; KR3 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A              &lt;ci&gt; KR4 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NADPH &lt;/ci&gt;#x0A              &lt;ci&gt; KR5 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="PGCA_P">
+<property name="Name">
+<value>PGCA phosphatase</value>
+</property>
+<property name="Vm">
+<value>52.4199</value>
+</property>
+<property name="Ks1">
+<value>0.026</value>
+</property>
+<property name="Kr1">
+<value>94.0</value>
+</property>
+<property name="Kr2">
+<value>2.55</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * PGCA.NumberConc / (PGCA.NumberConc + Ks1 * (1 + GCA.NumberConc / Kr1) * (1 + Pi.NumberConc / Kr2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGCA</value>
+<value>Variable:/chloroplast:PGCA</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCA</value>
+<value>Variable:/chloroplast:GCA</value>
+<value>1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; PGCA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; PGCA &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GCA &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Pi &lt;/ci&gt;#x0A              &lt;ci&gt; Kr2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GCEA_K">
+<property name="Name">
+<value>GCEA kinase</value>
+</property>
+<property name="Vm">
+<value>5.71579</value>
+</property>
+<property name="q">
+<value>300.0</value>
+</property>
+<property name="Ks1">
+<value>0.21</value>
+</property>
+<property name="Kr1">
+<value>0.36</value>
+</property>
+<property name="Ks2">
+<value>0.25</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (ATP.NumberConc * GCEA.NumberConc - PGA.NumberConc * ADP.NumberConc / q) / ((ATP.NumberConc + Ks1 * (1 + PGA.NumberConc / Kr1)) * (GCEA.NumberConc + Ks2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GCEA</value>
+<value>Variable:/chloroplast:GCEA</value>
+<value>-1</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; chloroplast &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ATP &lt;/ci&gt;#x0A            &lt;ci&gt; GCEA &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; PGA &lt;/ci&gt;#x0A              &lt;ci&gt; ADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ATP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; PGA &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; GCEA &lt;/ci&gt;#x0A          &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GCAc_Ox">
+<property name="Name">
+<value>GCAc oxidase</value>
+</property>
+<property name="Km">
+<value>0.1</value>
+</property>
+<property name="V">
+<value>1.45611</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (V * GCAc.NumberConc / (Km + GCAc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GCAc</value>
+<value>Variable:/cytosol:GCAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>GOAc</value>
+<value>Variable:/cytosol:GOAc</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; V &lt;/ci&gt;#x0A        &lt;ci&gt; GCAc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Km &lt;/ci&gt;#x0A        &lt;ci&gt; GCAc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="SERcGOAc_AT">
+<property name="Name">
+<value>SERc:GOAc aminotransferase</value>
+</property>
+<property name="Vm">
+<value>3.30619</value>
+</property>
+<property name="q">
+<value>0.24</value>
+</property>
+<property name="Ks1">
+<value>2.7</value>
+</property>
+<property name="Kr1">
+<value>33.0</value>
+</property>
+<property name="Ks2">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>Vm * (SERc.NumberConc * GOAc.NumberConc - HPRc.NumberConc * GLYc.NumberConc / q) / ((SERc.NumberConc + Ks1 * (1 + GLYc.NumberConc / Kr1)) * (GOAc.NumberConc + Ks2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SERc</value>
+<value>Variable:/cytosol:SERc</value>
+<value>-1</value>
+</value>
+<value>
+<value>GOAc</value>
+<value>Variable:/cytosol:GOAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>HPRc</value>
+<value>Variable:/chloroplast:HPRc</value>
+<value>1</value>
+</value>
+<value>
+<value>GLYc</value>
+<value>Variable:/cytosol:GLYc</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; SERc &lt;/ci&gt;#x0A          &lt;ci&gt; GOAc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; HPRc &lt;/ci&gt;#x0A            &lt;ci&gt; GLYc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; q &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; SERc &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GLYc &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; GOAc &lt;/ci&gt;#x0A        &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GCEA_DH">
+<property name="Name">
+<value>GCEA dehydrogenase</value>
+</property>
+<property name="Vm">
+<value>10.0098</value>
+</property>
+<property name="q">
+<value>250000.0</value>
+</property>
+<property name="Ks1">
+<value>0.09</value>
+</property>
+<property name="Kr1">
+<value>12.0</value>
+</property>
+<property name="Expression">
+<value>Vm * (HPRc.NumberConc * NADH.NumberConc - GCEAc.NumberConc * NAD.NumberConc / q) / (HPRc.NumberConc + Ks1 * (1 + HPRc.NumberConc / Kr1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>HPRc</value>
+<value>Variable:/chloroplast:HPRc</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cytosol:NADH</value>
+<value>0</value>
+</value>
+<value>
+<value>GCEAc</value>
+<value>Variable:/cytosol:GCEAc</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/cytosol:NAD</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; Vm &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; HPRc &lt;/ci&gt;#x0A          &lt;ci&gt; NADH &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GCEAc &lt;/ci&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; q &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; HPRc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; HPRc &lt;/ci&gt;#x0A            &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GLUcGOAc_AT">
+<property name="Name">
+<value>GLUc:GOAc aminotransferase</value>
+</property>
+<property name="Vm">
+<value>2.74582</value>
+</property>
+<property name="q">
+<value>607.0</value>
+</property>
+<property name="Ks1">
+<value>1.7</value>
+</property>
+<property name="Kr1">
+<value>2.0</value>
+</property>
+<property name="Ks2">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * (GLUc.NumberConc * GOAc.NumberConc - KGc.NumberConc * GLYc.NumberConc / q) / ((GLUc.NumberConc + Ks1 * (1 + GLYc.NumberConc / Kr1)) * (GOAc.NumberConc + Ks2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLUc</value>
+<value>Variable:/cytosol:GLUc</value>
+<value>0</value>
+</value>
+<value>
+<value>GOAc</value>
+<value>Variable:/cytosol:GOAc</value>
+<value>-1</value>
+</value>
+<value>
+<value>KGc</value>
+<value>Variable:/cytosol:KGc</value>
+<value>0</value>
+</value>
+<value>
+<value>GLYc</value>
+<value>Variable:/cytosol:GLYc</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GLUc &lt;/ci&gt;#x0A            &lt;ci&gt; GOAc &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KGc &lt;/ci&gt;#x0A              &lt;ci&gt; GLYc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; q &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; GLUc &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GLYc &lt;/ci&gt;#x0A                &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; GOAc &lt;/ci&gt;#x0A          &lt;ci&gt; Ks2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="GLYc_DC">
+<property name="Name">
+<value>GLYc decarboxylase</value>
+</property>
+<property name="Vm">
+<value>2.49475</value>
+</property>
+<property name="Ks1">
+<value>6.0</value>
+</property>
+<property name="Kr1">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>cytosol.Value * (Vm * GLYc.NumberConc / (GLYc.NumberConc + Ks1 * (1 + SERc.NumberConc / Kr1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLYc</value>
+<value>Variable:/cytosol:GLYc</value>
+<value>-2</value>
+</value>
+<value>
+<value>SERc</value>
+<value>Variable:/cytosol:SERc</value>
+<value>1</value>
+</value>
+<value>
+<value>cytosol</value>
+<value>Variable:/cytosol:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; cytosol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vm &lt;/ci&gt;#x0A        &lt;ci&gt; GLYc &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; GLYc &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Ks1 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; SERc &lt;/ci&gt;#x0A              &lt;ci&gt; Kr1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/chloroplast">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>chloroplast</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PGA">
+<property name="Name">
+<value>PGA</value>
+</property>
+<property name="NumberConc">
+<value>2.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DPGA">
+<property name="Name">
+<value>DPGA</value>
+</property>
+<property name="NumberConc">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAP">
+<property name="Name">
+<value>GAP</value>
+</property>
+<property name="NumberConc">
+<value>0.0238095238095</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="Name">
+<value>DHAP</value>
+</property>
+<property name="NumberConc">
+<value>0.47619047619</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TP">
+<property name="Name">
+<value>TP</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FBP">
+<property name="Name">
+<value>FBP</value>
+</property>
+<property name="NumberConc">
+<value>0.67</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6P">
+<property name="Name">
+<value>F6P</value>
+</property>
+<property name="NumberConc">
+<value>0.640764257005</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="Name">
+<value>G6P</value>
+</property>
+<property name="NumberConc">
+<value>1.47375779111</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1P">
+<property name="Name">
+<value>G1P</value>
+</property>
+<property name="NumberConc">
+<value>0.0854779518844</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HeP">
+<property name="Name">
+<value>HeP</value>
+</property>
+<property name="NumberConc">
+<value>2.2</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E4P">
+<property name="Name">
+<value>E4P</value>
+</property>
+<property name="NumberConc">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SBP">
+<property name="Name">
+<value>SBP</value>
+</property>
+<property name="NumberConc">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S7P">
+<property name="Name">
+<value>S7P</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X5P">
+<property name="Name">
+<value>X5P</value>
+</property>
+<property name="NumberConc">
+<value>0.0747384155456</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R5P">
+<property name="Name">
+<value>R5P</value>
+</property>
+<property name="NumberConc">
+<value>0.125186846039</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ru5P">
+<property name="Name">
+<value>Ru5P</value>
+</property>
+<property name="NumberConc">
+<value>0.0500747384155</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PeP">
+<property name="Name">
+<value>PeP</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RuBP">
+<property name="Name">
+<value>RuBP</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>0.68</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="NumberConc">
+<value>0.82</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.21</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pi">
+<property name="Name">
+<value>Pi</value>
+</property>
+<property name="NumberConc">
+<value>1.4749</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PGCA">
+<property name="Name">
+<value>PGCA</value>
+</property>
+<property name="NumberConc">
+<value>0.0029</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GCA">
+<property name="Name">
+<value>GCA</value>
+</property>
+<property name="NumberConc">
+<value>0.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GCEA">
+<property name="Name">
+<value>GCEA</value>
+</property>
+<property name="NumberConc">
+<value>0.1812</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CO2">
+<property name="Name">
+<value>CO2</value>
+</property>
+<property name="NumberConc">
+<value>0.009</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="O2">
+<property name="Name">
+<value>O2</value>
+</property>
+<property name="NumberConc">
+<value>0.2646</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NADP">
+<property name="Name">
+<value>NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.29</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="HPRc">
+<property name="Name">
+<value>HPRc</value>
+</property>
+<property name="NumberConc">
+<value>0.0035</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GCAc">
+<property name="Name">
+<value>GCAc</value>
+</property>
+<property name="NumberConc">
+<value>0.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GOAc">
+<property name="Name">
+<value>GOAc</value>
+</property>
+<property name="NumberConc">
+<value>0.028</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLYc">
+<property name="Name">
+<value>GLYc</value>
+</property>
+<property name="NumberConc">
+<value>1.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SERc">
+<property name="Name">
+<value>SERc</value>
+</property>
+<property name="NumberConc">
+<value>7.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GCEAc">
+<property name="Name">
+<value>GCEAc</value>
+</property>
+<property name="NumberConc">
+<value>0.1812</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PGAc">
+<property name="Name">
+<value>PGAc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAPc">
+<property name="Name">
+<value>GAPc</value>
+</property>
+<property name="NumberConc">
+<value>0.109523809524</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAPc">
+<property name="Name">
+<value>DHAPc</value>
+</property>
+<property name="NumberConc">
+<value>2.19047619048</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TPc">
+<property name="Name">
+<value>TPc</value>
+</property>
+<property name="NumberConc">
+<value>2.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FBPc">
+<property name="Name">
+<value>FBPc</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6Pc">
+<property name="Name">
+<value>F6Pc</value>
+</property>
+<property name="NumberConc">
+<value>1.68883505323</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6Pc">
+<property name="Name">
+<value>G6Pc</value>
+</property>
+<property name="NumberConc">
+<value>3.88432062242</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1Pc">
+<property name="Name">
+<value>G1Pc</value>
+</property>
+<property name="NumberConc">
+<value>0.22684432435</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HePc">
+<property name="Name">
+<value>HePc</value>
+</property>
+<property name="NumberConc">
+<value>5.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F26BPc">
+<property name="Name">
+<value>F26BPc</value>
+</property>
+<property name="NumberConc">
+<value>7.8e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UDPGc">
+<property name="Name">
+<value>UDPGc</value>
+</property>
+<property name="NumberConc">
+<value>0.57</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SucPc">
+<property name="Name">
+<value>SucPc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Succ">
+<property name="Name">
+<value>Succ</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UTPc">
+<property name="Name">
+<value>UTPc</value>
+</property>
+<property name="NumberConc">
+<value>0.75</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="UDPc">
+<property name="Name">
+<value>UDPc</value>
+</property>
+<property name="NumberConc">
+<value>0.18</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="Name">
+<value>NAD</value>
+</property>
+<property name="NumberConc">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="Name">
+<value>NADH</value>
+</property>
+<property name="NumberConc">
+<value>0.47</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GLUc">
+<property name="Name">
+<value>GLUc</value>
+</property>
+<property name="NumberConc">
+<value>24.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KGc">
+<property name="Name">
+<value>KGc</value>
+</property>
+<property name="NumberConc">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pic">
+<property name="Name">
+<value>Pic</value>
+</property>
+<property name="NumberConc">
+<value>4.09998299977</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PiTc">
+<property name="Name">
+<value>PiTc</value>
+</property>
+<property name="NumberConc">
+<value>4.0999844</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATPc">
+<property name="Name">
+<value>ATPc</value>
+</property>
+<property name="NumberConc">
+<value>0.35</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ADPc">
+<property name="Name">
+<value>ADPc</value>
+</property>
+<property name="NumberConc">
+<value>0.65</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PiPic">
+<property name="Name">
+<value>PiPic</value>
+</property>
+<property name="NumberConc">
+<value>1.40022767958e-06</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="cA">
+<property name="Name">
+<value>cA</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cP">
+<property name="Name">
+<value>cP</value>
+</property>
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cAc">
+<property name="Name">
+<value>cAc</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cPc">
+<property name="Name">
+<value>cPc</value>
+</property>
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cNc">
+<property name="Name">
+<value>cNc</value>
+</property>
+<property name="Value">
+<value>0.87</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cUc">
+<property name="Name">
+<value>cUc</value>
+</property>
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="Value">
+<value>1.456965457</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Wc_min">
+<property name="Name">
+<value>Wc*min</value>
+</property>
+<property name="Value">
+<value>0.766672456336</value>
+</property>
+</variable>
+<variable class="Variable" id="Wo_min">
+<property name="Name">
+<value>Wo*min</value>
+</property>
+<property name="Value">
+<value>0.28022914323</value>
+</property>
+</variable>
+<variable class="Variable" id="K52a">
+<property name="Name">
+<value>K52a</value>
+</property>
+<property name="Value">
+<value>0.00277857142857</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_K52a">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'K52a'</value>
+</property>
+<property name="Expression">
+<value>0.0025 * (1 + F26BPc.NumberConc / 7.000000e-05)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;cn&gt; 0.0025 &lt;/cn&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A        &lt;cn type='e-notation'&gt; 7 &lt;sep/&gt; -5 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>K52a</value>
+<value>Variable:/SBMLParameter:K52a</value>
+<value>1</value>
+</value>
+<value>
+<value>F26BPc</value>
+<value>Variable:/cytosol:F26BPc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_R5P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'R5P'</value>
+</property>
+<property name="Expression">
+<value>PeP.NumberConc / 0.4 / (1 + 1 / 0.4 + 1 / 0.67)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; PeP &lt;/ci&gt;#x0A      &lt;cn&gt; 0.4 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.67 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R5P</value>
+<value>Variable:/chloroplast:R5P</value>
+<value>1</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_G6P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'G6P'</value>
+</property>
+<property name="Expression">
+<value>HeP.NumberConc / (1 + 1 / 2.3 + 0.058)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; HeP &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.058 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/chloroplast:G6P</value>
+<value>1</value>
+</value>
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_DHAP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'DHAP'</value>
+</property>
+<property name="Expression">
+<value>TP.NumberConc / (1 + 0.05)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; TP &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/chloroplast:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_GAP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'GAP'</value>
+</property>
+<property name="Expression">
+<value>0.05 * TP.NumberConc / (1 + 0.05)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A      &lt;ci&gt; TP &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GAP</value>
+<value>Variable:/chloroplast:GAP</value>
+<value>1</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_G1P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'G1P'</value>
+</property>
+<property name="Expression">
+<value>HeP.NumberConc * 0.058 / (1 + 1 / 2.3 + 0.058)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; HeP &lt;/ci&gt;#x0A      &lt;cn&gt; 0.058 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.058 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1P</value>
+<value>Variable:/chloroplast:G1P</value>
+<value>1</value>
+</value>
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_X5P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'X5P'</value>
+</property>
+<property name="Expression">
+<value>PeP.NumberConc / 0.67 / (1 + 1 / 0.4 + 1 / 0.67)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; PeP &lt;/ci&gt;#x0A      &lt;cn&gt; 0.67 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.67 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X5P</value>
+<value>Variable:/chloroplast:X5P</value>
+<value>1</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Pi">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Pi'</value>
+</property>
+<property name="Expression">
+<value>cP.NumberConc - 2 * (RuBP.NumberConc + DPGA.NumberConc + FBP.NumberConc + SBP.NumberConc) - (PGA.NumberConc + TP.NumberConc + HeP.NumberConc + E4P.NumberConc + S7P.NumberConc + PeP.NumberConc + ATP.NumberConc + PGCA.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; cP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; RuBP &lt;/ci&gt;#x0A          &lt;ci&gt; DPGA &lt;/ci&gt;#x0A          &lt;ci&gt; FBP &lt;/ci&gt;#x0A          &lt;ci&gt; SBP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; PGA &lt;/ci&gt;#x0A      &lt;ci&gt; TP &lt;/ci&gt;#x0A      &lt;ci&gt; HeP &lt;/ci&gt;#x0A      &lt;ci&gt; E4P &lt;/ci&gt;#x0A      &lt;ci&gt; S7P &lt;/ci&gt;#x0A      &lt;ci&gt; PeP &lt;/ci&gt;#x0A      &lt;ci&gt; ATP &lt;/ci&gt;#x0A      &lt;ci&gt; PGCA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>1</value>
+</value>
+<value>
+<value>cP</value>
+<value>Variable:/SBMLParameter:cP</value>
+<value>0</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>DPGA</value>
+<value>Variable:/chloroplast:DPGA</value>
+<value>0</value>
+</value>
+<value>
+<value>FBP</value>
+<value>Variable:/chloroplast:FBP</value>
+<value>0</value>
+</value>
+<value>
+<value>SBP</value>
+<value>Variable:/chloroplast:SBP</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>0</value>
+</value>
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>0</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/chloroplast:E4P</value>
+<value>0</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/chloroplast:S7P</value>
+<value>0</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>0</value>
+</value>
+<value>
+<value>PGCA</value>
+<value>Variable:/chloroplast:PGCA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Ru5P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Ru5P'</value>
+</property>
+<property name="Expression">
+<value>PeP.NumberConc / (1 + 1 / 0.4 + 1 / 0.67)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; PeP &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.4 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 0.67 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ru5P</value>
+<value>Variable:/chloroplast:Ru5P</value>
+<value>1</value>
+</value>
+<value>
+<value>PeP</value>
+<value>Variable:/chloroplast:PeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F6P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F6P'</value>
+</property>
+<property name="Expression">
+<value>HeP.NumberConc / 2.3 / (1 + 1 / 2.3 + 0.058)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; HeP &lt;/ci&gt;#x0A      &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.058 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6P</value>
+<value>Variable:/chloroplast:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>HeP</value>
+<value>Variable:/chloroplast:HeP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ADP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ADP'</value>
+</property>
+<property name="Expression">
+<value>cA.NumberConc - ATP.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; cA &lt;/ci&gt;#x0A    &lt;ci&gt; ATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cA</value>
+<value>Variable:/SBMLParameter:cA</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_G6Pc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'G6Pc'</value>
+</property>
+<property name="Expression">
+<value>HePc.NumberConc / (1 + 1 / 2.3 + 0.0584)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; HePc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.0584 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6Pc</value>
+<value>Variable:/cytosol:G6Pc</value>
+<value>1</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_GAPc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'GAPc'</value>
+</property>
+<property name="Expression">
+<value>0.05 * TPc.NumberConc / (1 + 0.05)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A      &lt;ci&gt; TPc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GAPc</value>
+<value>Variable:/cytosol:GAPc</value>
+<value>1</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_PiTc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'PiTc'</value>
+</property>
+<property name="Expression">
+<value>cPc.NumberConc - 2 * (FBPc.NumberConc + F26BPc.NumberConc) - (PGAc.NumberConc + TPc.NumberConc + HePc.NumberConc + SucPc.NumberConc + ATPc.NumberConc + UTPc.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; cPc &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; FBPc &lt;/ci&gt;#x0A          &lt;ci&gt; F26BPc &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;ci&gt; PGAc &lt;/ci&gt;#x0A      &lt;ci&gt; TPc &lt;/ci&gt;#x0A      &lt;ci&gt; HePc &lt;/ci&gt;#x0A      &lt;ci&gt; SucPc &lt;/ci&gt;#x0A      &lt;ci&gt; ATPc &lt;/ci&gt;#x0A      &lt;ci&gt; UTPc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PiTc</value>
+<value>Variable:/cytosol:PiTc</value>
+<value>1</value>
+</value>
+<value>
+<value>cPc</value>
+<value>Variable:/SBMLParameter:cPc</value>
+<value>0</value>
+</value>
+<value>
+<value>FBPc</value>
+<value>Variable:/cytosol:FBPc</value>
+<value>0</value>
+</value>
+<value>
+<value>F26BPc</value>
+<value>Variable:/cytosol:F26BPc</value>
+<value>0</value>
+</value>
+<value>
+<value>PGAc</value>
+<value>Variable:/cytosol:PGAc</value>
+<value>0</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>0</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>0</value>
+</value>
+<value>
+<value>SucPc</value>
+<value>Variable:/cytosol:SucPc</value>
+<value>0</value>
+</value>
+<value>
+<value>ATPc</value>
+<value>Variable:/cytosol:ATPc</value>
+<value>0</value>
+</value>
+<value>
+<value>UTPc</value>
+<value>Variable:/cytosol:UTPc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F6Pc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F6Pc'</value>
+</property>
+<property name="Expression">
+<value>HePc.NumberConc / 2.3 / (1 + 1 / 2.3 + 0.0584)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; HePc &lt;/ci&gt;#x0A      &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.0584 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6Pc</value>
+<value>Variable:/cytosol:F6Pc</value>
+<value>1</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Pic">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Pic'</value>
+</property>
+<property name="Expression">
+<value>12000000 / 2 * (sqrt(1 + 4 * PiTc.NumberConc / 12000000) - 1)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 12000000 &lt;/cn&gt;#x0A      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;root/&gt;#x0A        &lt;degree&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/degree&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A              &lt;ci&gt; PiTc &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;cn type='integer'&gt; 12000000 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>1</value>
+</value>
+<value>
+<value>PiTc</value>
+<value>Variable:/cytosol:PiTc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_PiPic">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'PiPic'</value>
+</property>
+<property name="Expression">
+<value>PiTc.NumberConc - Pic.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; PiTc &lt;/ci&gt;#x0A    &lt;ci&gt; Pic &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PiPic</value>
+<value>Variable:/cytosol:PiPic</value>
+<value>1</value>
+</value>
+<value>
+<value>PiTc</value>
+<value>Variable:/cytosol:PiTc</value>
+<value>0</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Wc_min">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Wc_min'</value>
+</property>
+<property name="Expression">
+<value>2.913930914 * CO2.NumberConc / (CO2.NumberConc + 0.0115 * (1 + O2.NumberConc / 0.222)) * ((1 + RuBP.NumberConc / E.NumberConc - abs(1 - RuBP.NumberConc / E.NumberConc)) / 2)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 2.913930914 &lt;/cn&gt;#x0A        &lt;ci&gt; CO2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; CO2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.0115 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; O2 &lt;/ci&gt;#x0A              &lt;cn&gt; 0.222 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; RuBP &lt;/ci&gt;#x0A            &lt;ci&gt; E &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;abs/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; RuBP &lt;/ci&gt;#x0A              &lt;ci&gt; E &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Wc_min</value>
+<value>Variable:/SBMLParameter:Wc_min</value>
+<value>1</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/chloroplast:CO2</value>
+<value>0</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/chloroplast:O2</value>
+<value>0</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_G1Pc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'G1Pc'</value>
+</property>
+<property name="Expression">
+<value>HePc.NumberConc * 0.0584 / (1 + 1 / 2.3 + 0.0584)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; HePc &lt;/ci&gt;#x0A      &lt;cn&gt; 0.0584 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.3 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn&gt; 0.0584 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1Pc</value>
+<value>Variable:/cytosol:G1Pc</value>
+<value>1</value>
+</value>
+<value>
+<value>HePc</value>
+<value>Variable:/cytosol:HePc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_DHAPc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'DHAPc'</value>
+</property>
+<property name="Expression">
+<value>TPc.NumberConc / (1 + 0.05)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;ci&gt; TPc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;cn&gt; 0.05 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAPc</value>
+<value>Variable:/cytosol:DHAPc</value>
+<value>1</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_UDPc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'UDPc'</value>
+</property>
+<property name="Expression">
+<value>cUc.NumberConc - UTPc.NumberConc - UDPGc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; cUc &lt;/ci&gt;#x0A      &lt;ci&gt; UTPc &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; UDPGc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UDPc</value>
+<value>Variable:/cytosol:UDPc</value>
+<value>1</value>
+</value>
+<value>
+<value>cUc</value>
+<value>Variable:/SBMLParameter:cUc</value>
+<value>0</value>
+</value>
+<value>
+<value>UTPc</value>
+<value>Variable:/cytosol:UTPc</value>
+<value>0</value>
+</value>
+<value>
+<value>UDPGc</value>
+<value>Variable:/cytosol:UDPGc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_Wo_min">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Wo_min'</value>
+</property>
+<property name="Expression">
+<value>0.24 * 2.913930914 * O2.NumberConc / (O2.NumberConc + 0.222 * (1 + CO2.NumberConc / 0.0115)) * ((1 + RuBP.NumberConc / E.NumberConc - abs(1 - RuBP.NumberConc / E.NumberConc)) / 2)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn&gt; 0.24 &lt;/cn&gt;#x0A        &lt;cn&gt; 2.913930914 &lt;/cn&gt;#x0A        &lt;ci&gt; O2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; O2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;cn&gt; 0.222 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; CO2 &lt;/ci&gt;#x0A              &lt;cn&gt; 0.0115 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; RuBP &lt;/ci&gt;#x0A            &lt;ci&gt; E &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;abs/&gt;#x0A          &lt;apply&gt;#x0A            &lt;minus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; RuBP &lt;/ci&gt;#x0A              &lt;ci&gt; E &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Wo_min</value>
+<value>Variable:/SBMLParameter:Wo_min</value>
+<value>1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/chloroplast:O2</value>
+<value>0</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/chloroplast:CO2</value>
+<value>0</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ADPc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ADPc'</value>
+</property>
+<property name="Expression">
+<value>cAc.NumberConc - ATPc.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; cAc &lt;/ci&gt;#x0A    &lt;ci&gt; ATPc &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADPc</value>
+<value>Variable:/cytosol:ADPc</value>
+<value>1</value>
+</value>
+<value>
+<value>cAc</value>
+<value>Variable:/SBMLParameter:cAc</value>
+<value>0</value>
+</value>
+<value>
+<value>ATPc</value>
+<value>Variable:/cytosol:ATPc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,1340 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="pRB_synthesis">
+<property name="Name">
+<value>pRB synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k1.Value * (E2F1.NumberConc / (Km1.Value + E2F1.NumberConc)) * (J11.Value / (J11.Value + pRB.NumberConc)) * (J61.Value / (J61.Value + pRBp.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>1</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>Km1</value>
+<value>Variable:/SBMLParameter:Km1</value>
+<value>0</value>
+</value>
+<value>
+<value>J11</value>
+<value>Variable:/SBMLParameter:J11</value>
+<value>0</value>
+</value>
+<value>
+<value>J61</value>
+<value>Variable:/SBMLParameter:J61</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRB_phosphorylation">
+<property name="Name">
+<value>pRB phosphorylation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k16.Value * pRB.NumberConc * CycDa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>1</value>
+</value>
+<value>
+<value>CycDa</value>
+<value>Variable:/cell:CycDa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRBp_dephosphorylation">
+<property name="Name">
+<value>pRBp dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k61.Value * pRBp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k61</value>
+<value>Variable:/SBMLParameter:k61</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRB_degradation">
+<property name="Name">
+<value>pRB degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_pRB.Value * pRB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_pRB</value>
+<value>Variable:/SBMLParameter:phi_pRB</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E2F1_synthesis">
+<property name="Name">
+<value>E2F1 synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kp.Value + k2.Value * (pow(a.Value, 2) + pow(E2F1.NumberConc, 2)) / (pow(Km2.Value, 2) + pow(E2F1.NumberConc, 2)) * (J12.Value / (J12.Value + pRB.NumberConc)) * (J62.Value / (J62.Value + pRBp.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>1</value>
+</value>
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>0</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>0</value>
+</value>
+<value>
+<value>Km2</value>
+<value>Variable:/SBMLParameter:Km2</value>
+<value>0</value>
+</value>
+<value>
+<value>J12</value>
+<value>Variable:/SBMLParameter:J12</value>
+<value>0</value>
+</value>
+<value>
+<value>J62</value>
+<value>Variable:/SBMLParameter:J62</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E2F1_degradation">
+<property name="Name">
+<value>E2F1 degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_E2F1.Value * E2F1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_E2F1</value>
+<value>Variable:/SBMLParameter:phi_E2F1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycD_synthesis">
+<property name="Name">
+<value>CycD synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k3.Value * AP1.NumberConc + k23.Value * E2F1.NumberConc * (J13.Value / (J13.Value + pRB.NumberConc)) * (J63.Value / (J63.Value + pRBp.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycDi</value>
+<value>Variable:/cell:CycDi</value>
+<value>1</value>
+</value>
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>0</value>
+</value>
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>0</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>AP1</value>
+<value>Variable:/cell:AP1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>k23</value>
+<value>Variable:/SBMLParameter:k23</value>
+<value>0</value>
+</value>
+<value>
+<value>J13</value>
+<value>Variable:/SBMLParameter:J13</value>
+<value>0</value>
+</value>
+<value>
+<value>J63</value>
+<value>Variable:/SBMLParameter:J63</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycD_inibition">
+<property name="Name">
+<value>CycD inibition</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k43.Value * CycDa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycDa</value>
+<value>Variable:/cell:CycDa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CycDi</value>
+<value>Variable:/cell:CycDi</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k43</value>
+<value>Variable:/SBMLParameter:k43</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycD_activation">
+<property name="Name">
+<value>CycD activation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k34.Value * CycDi.NumberConc * (CycDa.NumberConc / (Km4.Value + CycDa.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycDi</value>
+<value>Variable:/cell:CycDi</value>
+<value>-1</value>
+</value>
+<value>
+<value>CycDa</value>
+<value>Variable:/cell:CycDa</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k34</value>
+<value>Variable:/SBMLParameter:k34</value>
+<value>0</value>
+</value>
+<value>
+<value>Km4</value>
+<value>Variable:/SBMLParameter:Km4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycD_degradation">
+<property name="Name">
+<value>CycD degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_CycDi.Value * CycDi.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycDi</value>
+<value>Variable:/cell:CycDi</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_CycDi</value>
+<value>Variable:/SBMLParameter:phi_CycDi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycD_degradation2">
+<property name="Name">
+<value>CycD degradation2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_CycDa.Value * CycDa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycDa</value>
+<value>Variable:/cell:CycDa</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_CycDa</value>
+<value>Variable:/SBMLParameter:phi_CycDa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AP1_synthesis">
+<property name="Name">
+<value>AP1 synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Fm.Value + k25.Value * E2F1.NumberConc * (J15.Value / (J15.Value + pRB.NumberConc)) * (J65.Value / (J65.Value + pRBp.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AP1</value>
+<value>Variable:/cell:AP1</value>
+<value>1</value>
+</value>
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>0</value>
+</value>
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>0</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Fm</value>
+<value>Variable:/SBMLParameter:Fm</value>
+<value>0</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+<value>
+<value>J15</value>
+<value>Variable:/SBMLParameter:J15</value>
+<value>0</value>
+</value>
+<value>
+<value>J65</value>
+<value>Variable:/SBMLParameter:J65</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Ap1_degradation">
+<property name="Name">
+<value>Ap1 degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_AP1.Value * AP1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AP1</value>
+<value>Variable:/cell:AP1</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_AP1</value>
+<value>Variable:/SBMLParameter:phi_AP1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRBp_phosphorylation">
+<property name="Name">
+<value>pRBp phosphorylation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k67.Value * pRBp.NumberConc * CycEa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRBpp</value>
+<value>Variable:/cell:pRBpp</value>
+<value>1</value>
+</value>
+<value>
+<value>CycEa</value>
+<value>Variable:/cell:CycEa</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k67</value>
+<value>Variable:/SBMLParameter:k67</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRBpp_dephosphorylation">
+<property name="Name">
+<value>pRBpp dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k76.Value * pRBpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRBpp</value>
+<value>Variable:/cell:pRBpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k76</value>
+<value>Variable:/SBMLParameter:k76</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRBpp_degradation">
+<property name="Name">
+<value>pRBpp degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_pRBpp.Value * pRBpp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRBpp</value>
+<value>Variable:/cell:pRBpp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_pRBpp</value>
+<value>Variable:/SBMLParameter:phi_pRBpp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="pRBp_degradation">
+<property name="Name">
+<value>pRBp degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_pRBp.Value * pRBp.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_pRBp</value>
+<value>Variable:/SBMLParameter:phi_pRBp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycE_synthesis">
+<property name="Name">
+<value>CycE synthesis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k28.Value * E2F1.NumberConc * (J18.Value / (J18.Value + pRB.NumberConc)) * (J68.Value / (J68.Value + pRBp.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycEi</value>
+<value>Variable:/cell:CycEi</value>
+<value>1</value>
+</value>
+<value>
+<value>E2F1</value>
+<value>Variable:/cell:E2F1</value>
+<value>0</value>
+</value>
+<value>
+<value>pRB</value>
+<value>Variable:/cell:pRB</value>
+<value>0</value>
+</value>
+<value>
+<value>pRBp</value>
+<value>Variable:/cell:pRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k28</value>
+<value>Variable:/SBMLParameter:k28</value>
+<value>0</value>
+</value>
+<value>
+<value>J18</value>
+<value>Variable:/SBMLParameter:J18</value>
+<value>0</value>
+</value>
+<value>
+<value>J68</value>
+<value>Variable:/SBMLParameter:J68</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycE_activation">
+<property name="Name">
+<value>CycE activation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k89.Value * CycEi.NumberConc * CycEa.NumberConc / (Km9.Value + CycEa.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycEi</value>
+<value>Variable:/cell:CycEi</value>
+<value>-1</value>
+</value>
+<value>
+<value>CycEa</value>
+<value>Variable:/cell:CycEa</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k89</value>
+<value>Variable:/SBMLParameter:k89</value>
+<value>0</value>
+</value>
+<value>
+<value>Km9</value>
+<value>Variable:/SBMLParameter:Km9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycE_inibition">
+<property name="Name">
+<value>CycE inibition</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k98.Value * CycEa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycEa</value>
+<value>Variable:/cell:CycEa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CycEi</value>
+<value>Variable:/cell:CycEi</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k98</value>
+<value>Variable:/SBMLParameter:k98</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycE_degradation">
+<property name="Name">
+<value>CycE degradation</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_CycEi.Value * CycEi.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycEi</value>
+<value>Variable:/cell:CycEi</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_CycEi</value>
+<value>Variable:/SBMLParameter:phi_CycEi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CycE_degradation2">
+<property name="Name">
+<value>CycE degradation2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * phi_CycEa.Value * CycEa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CycEa</value>
+<value>Variable:/cell:CycEa</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>phi_CycEa</value>
+<value>Variable:/SBMLParameter:phi_CycEa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pRB">
+<property name="Name">
+<value>pRB</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pRBp">
+<property name="Name">
+<value>pRBp</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E2F1">
+<property name="Name">
+<value>E2F1</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CycDi">
+<property name="Name">
+<value>CycD/cdk4,6(i)</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CycDa">
+<property name="Name">
+<value>CycD/cdk4,6(a)</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AP1">
+<property name="Name">
+<value>AP1</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pRBpp">
+<property name="Name">
+<value>pRBpp</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CycEi">
+<property name="Name">
+<value>CycE/cdk2(i)</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CycEa">
+<property name="Name">
+<value>CycEa/cdk2(a)</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km1">
+<property name="Name">
+<value>Km1</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J11">
+<property name="Name">
+<value>J11</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J61">
+<property name="Name">
+<value>J61</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Name">
+<value>k16</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k61">
+<property name="Name">
+<value>k61</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_pRB">
+<property name="Name">
+<value>phi_pRB</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp">
+<property name="Name">
+<value>kp</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a">
+<property name="Name">
+<value>a</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km2">
+<property name="Name">
+<value>Km2</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J12">
+<property name="Name">
+<value>J12</value>
+</property>
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J62">
+<property name="Name">
+<value>J62</value>
+</property>
+<property name="Value">
+<value>8.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_E2F1">
+<property name="Name">
+<value>phi_E2F1</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k23">
+<property name="Name">
+<value>k23</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J13">
+<property name="Name">
+<value>J13</value>
+</property>
+<property name="Value">
+<value>0.002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J63">
+<property name="Name">
+<value>J63</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k34">
+<property name="Name">
+<value>k34</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km4">
+<property name="Name">
+<value>Km4</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_CycDi">
+<property name="Name">
+<value>phi_CycDi</value>
+</property>
+<property name="Value">
+<value>0.023</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k43">
+<property name="Name">
+<value>k43</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_CycDa">
+<property name="Name">
+<value>phi_CycDa</value>
+</property>
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Fm">
+<property name="Name">
+<value>Fm</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k25">
+<property name="Name">
+<value>k25</value>
+</property>
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J15">
+<property name="Name">
+<value>J15</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J65">
+<property name="Name">
+<value>J65</value>
+</property>
+<property name="Value">
+<value>6.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_AP1">
+<property name="Name">
+<value>phi_AP1</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k67">
+<property name="Name">
+<value>k67</value>
+</property>
+<property name="Value">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k76">
+<property name="Name">
+<value>k76</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_pRBpp">
+<property name="Name">
+<value>phi_pRBpp</value>
+</property>
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_pRBp">
+<property name="Name">
+<value>phi_pRBp</value>
+</property>
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k28">
+<property name="Name">
+<value>k28</value>
+</property>
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J18">
+<property name="Name">
+<value>J18</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J68">
+<property name="Name">
+<value>J68</value>
+</property>
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k89">
+<property name="Name">
+<value>k89</value>
+</property>
+<property name="Value">
+<value>0.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Km9">
+<property name="Name">
+<value>Km9</value>
+</property>
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k98">
+<property name="Name">
+<value>k98</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_CycEi">
+<property name="Name">
+<value>phi_CycEi</value>
+</property>
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi_CycEa">
+<property name="Name">
+<value>phi_CycEa</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

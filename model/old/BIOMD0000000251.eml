@@ -1,0 +1,611 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>1 PhIM 1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (-x1.NumberConc / tau1.Value + K1.Value * L.Value / tau1.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/compartment:x1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tau1</value>
+<value>Variable:/SBMLParameter:tau1</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>1 PhIM 2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (-x2.NumberConc / tau2.Value + K2.Value * L.Value / tau2.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/compartment:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>tau2</value>
+<value>Variable:/SBMLParameter:tau2</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>2a ppERKn</value>
+</property>
+<property name="k1">
+<value>15.0</value>
+</property>
+<property name="k2">
+<value>50.0</value>
+</property>
+<property name="k3">
+<value>14.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k1 * ppERKc.NumberConc - k2 * ppERKn.NumberConc - k3 * DUSP.NumberConc * ppERKn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKn</value>
+<value>Variable:/compartment:ppERKn</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKc</value>
+<value>Variable:/compartment:ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>DUSP</value>
+<value>Variable:/compartment:DUSP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>2b DUSP</value>
+</property>
+<property name="k">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k * ppERKn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DUSP</value>
+<value>Variable:/compartment:DUSP</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKn</value>
+<value>Variable:/compartment:ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>3 pRSKn</value>
+</property>
+<property name="k4">
+<value>0.1</value>
+</property>
+<property name="k5">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k4 * ppERKn.NumberConc - k5 * pRSKn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pRSKn</value>
+<value>Variable:/compartment:pRSKn</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKn</value>
+<value>Variable:/compartment:ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>4 cFOSp</value>
+</property>
+<property name="k6">
+<value>0.13</value>
+</property>
+<property name="n">
+<value>1.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (pow(ppERKn.NumberConc * pRSKn.NumberConc, n) / (pow(k6, n) + pow(ppERKn.NumberConc * pRSKn.NumberConc, n)) - k7.Value * cFOSp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cFOSp</value>
+<value>Variable:/compartment:cFOSp</value>
+<value>1</value>
+</value>
+<value>
+<value>ppERKn</value>
+<value>Variable:/compartment:ppERKn</value>
+<value>0</value>
+</value>
+<value>
+<value>pRSKn</value>
+<value>Variable:/compartment:pRSKn</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>5 cFOSm</value>
+</property>
+<property name="k8">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k7.Value * cFOSp.NumberConc - k8 * cFOSm.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cFOSm</value>
+<value>Variable:/compartment:cFOSm</value>
+<value>1</value>
+</value>
+<value>
+<value>cFOSp</value>
+<value>Variable:/compartment:cFOSp</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>6 cFOS</value>
+</property>
+<property name="k10">
+<value>0.3</value>
+</property>
+<property name="k9">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k9 * cFOSm.NumberConc - k10 * cFOS.NumberConc - k11.Value * cFOS.NumberConc * ppERKc.NumberConc + k13.Value * pcFOS.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cFOS</value>
+<value>Variable:/compartment:cFOS</value>
+<value>1</value>
+</value>
+<value>
+<value>cFOSm</value>
+<value>Variable:/compartment:cFOSm</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERKc</value>
+<value>Variable:/compartment:ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>pcFOS</value>
+<value>Variable:/compartment:pcFOS</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_9">
+<property name="Name">
+<value>7 pcFOS</value>
+</property>
+<property name="k12">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (k11.Value * cFOS.NumberConc * ppERKc.NumberConc - k12 * pcFOS.NumberConc - k13.Value * pcFOS.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pcFOS</value>
+<value>Variable:/compartment:pcFOS</value>
+<value>1</value>
+</value>
+<value>
+<value>cFOS</value>
+<value>Variable:/compartment:cFOS</value>
+<value>0</value>
+</value>
+<value>
+<value>ppERKc</value>
+<value>Variable:/compartment:ppERKc</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x1">
+<property name="Name">
+<value>x1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x2">
+<property name="Name">
+<value>x2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERKn">
+<property name="Name">
+<value>ppERK(nucleus)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DUSP">
+<property name="Name">
+<value>DUSP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pRSKn">
+<property name="Name">
+<value>pRSKn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cFOSp">
+<property name="Name">
+<value>cFOS preRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cFOS">
+<property name="Name">
+<value>cFOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pcFOS">
+<property name="Name">
+<value>pc-FOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cFOSm">
+<property name="Name">
+<value>cFOSmRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ppERKc">
+<property name="Name">
+<value>ppERK(cytosol)</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>0.11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>0.06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Name">
+<value>L</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Name">
+<value>K1</value>
+</property>
+<property name="Value">
+<value>1.09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau1">
+<property name="Name">
+<value>tau1</value>
+</property>
+<property name="Value">
+<value>3.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2">
+<property name="Name">
+<value>K</value>
+</property>
+<property name="Value">
+<value>2.89</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau2">
+<property name="Name">
+<value>tau</value>
+</property>
+<property name="Value">
+<value>472.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_ppERKc">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ppERKc'</value>
+</property>
+<property name="Expression">
+<value>x1.NumberConc - x2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ppERKc</value>
+<value>Variable:/compartment:ppERKc</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/compartment:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/compartment:x2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

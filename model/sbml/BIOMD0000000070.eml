@@ -1,0 +1,2416 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="vGLT">
+<property name="Name">
+<value>Glucose transport</value>
+</property>
+<property name="Vmaxv0">
+<value>33.6</value>
+</property>
+<property name="KMoutv0">
+<value>1.7</value>
+</property>
+<property name="Keqv0">
+<value>1.0</value>
+</property>
+<property name="KMinv0">
+<value>6.9</value>
+</property>
+<property name="alfav0">
+<value>0.54</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv0 / KMoutv0 * (Glcout.NumberConc - Glcin.NumberConc / Keqv0) / (1 + Glcout.NumberConc / KMoutv0 + Glcin.NumberConc / KMinv0 + alfav0 * Glcout.NumberConc * Glcin.NumberConc / KMoutv0 / KMinv0))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glcout</value>
+<value>Variable:/compartment:Glcout</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glcin</value>
+<value>Variable:/compartment:Glcin</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmaxv0 &lt;/ci&gt;#x0A          &lt;ci&gt; KMoutv0 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Glcout &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Glcin &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv0 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Glcout &lt;/ci&gt;#x0A          &lt;ci&gt; KMoutv0 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Glcin &lt;/ci&gt;#x0A          &lt;ci&gt; KMinv0 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; alfav0 &lt;/ci&gt;#x0A              &lt;ci&gt; Glcout &lt;/ci&gt;#x0A              &lt;ci&gt; Glcin &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; KMoutv0 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KMinv0 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vHEX">
+<property name="Name">
+<value>Hexokinase</value>
+</property>
+<property name="Inhibv1">
+<value>1.0</value>
+</property>
+<property name="KMGlcv1">
+<value>0.1</value>
+</property>
+<property name="Vmax1v1">
+<value>15.8</value>
+</property>
+<property name="KMgATPv1">
+<value>1.44</value>
+</property>
+<property name="Vmax2v1">
+<value>33.2</value>
+</property>
+<property name="KMgATPMgv1">
+<value>1.14</value>
+</property>
+<property name="Keqv1">
+<value>3900.0</value>
+</property>
+<property name="KMgv1">
+<value>1.03</value>
+</property>
+<property name="KGlc6Pv1">
+<value>0.0045</value>
+</property>
+<property name="K23P2Gv1">
+<value>2.7</value>
+</property>
+<property name="KMg23P2Gv1">
+<value>3.44</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Inhibv1 * Glcin.NumberConc / (Glcin.NumberConc + KMGlcv1) * (Vmax1v1 / KMgATPv1) * (MgATP.NumberConc + Vmax2v1 / Vmax1v1 * MgATP.NumberConc * Mgf.NumberConc / KMgATPMgv1 - Glc6P.NumberConc * MgADP.NumberConc / Keqv1) / (1 + MgATP.NumberConc / KMgATPv1 * (1 + Mgf.NumberConc / KMgATPMgv1) + Mgf.NumberConc / KMgv1 + (1.55 + Glc6P.NumberConc / KGlc6Pv1) * (1 + Mgf.NumberConc / KMgv1) + (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / K23P2Gv1 + Mgf.NumberConc * (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / (KMgv1 * KMg23P2Gv1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glcin</value>
+<value>Variable:/compartment:Glcin</value>
+<value>-1</value>
+</value>
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glc6P</value>
+<value>Variable:/compartment:Glc6P</value>
+<value>1</value>
+</value>
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>0</value>
+</value>
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>0</value>
+</value>
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Inhibv1 &lt;/ci&gt;#x0A            &lt;ci&gt; Glcin &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Glcin &lt;/ci&gt;#x0A            &lt;ci&gt; KMGlcv1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmax1v1 &lt;/ci&gt;#x0A          &lt;ci&gt; KMgATPv1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;divide/&gt;#x0A                  &lt;ci&gt; Vmax2v1 &lt;/ci&gt;#x0A                  &lt;ci&gt; Vmax1v1 &lt;/ci&gt;#x0A                &lt;/apply&gt;#x0A                &lt;ci&gt; MgATP &lt;/ci&gt;#x0A                &lt;ci&gt; Mgf &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KMgATPMgv1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A              &lt;ci&gt; MgADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A            &lt;ci&gt; KMgATPv1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Mgf &lt;/ci&gt;#x0A              &lt;ci&gt; KMgATPMgv1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Mgf &lt;/ci&gt;#x0A          &lt;ci&gt; KMgv1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn&gt; 1.55 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A              &lt;ci&gt; KGlc6Pv1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Mgf &lt;/ci&gt;#x0A              &lt;ci&gt; KMgv1 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A            &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; K23P2Gv1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Mgf &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A              &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KMgv1 &lt;/ci&gt;#x0A            &lt;ci&gt; KMg23P2Gv1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGPI">
+<property name="Name">
+<value>Glucosephosphate isomerase</value>
+</property>
+<property name="Vmaxv2">
+<value>935.0</value>
+</property>
+<property name="Keqv2">
+<value>0.3925</value>
+</property>
+<property name="KGlc6Pv2">
+<value>0.182</value>
+</property>
+<property name="KFru6Pv2">
+<value>0.071</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv2 * (Glc6P.NumberConc - Fru6P.NumberConc / Keqv2) / (Glc6P.NumberConc + KGlc6Pv2 * (1 + Fru6P.NumberConc / KFru6Pv2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glc6P</value>
+<value>Variable:/compartment:Glc6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru6P</value>
+<value>Variable:/compartment:Fru6P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KGlc6Pv2 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A              &lt;ci&gt; KFru6Pv2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPFK">
+<property name="Name">
+<value>Phosphofructokinase</value>
+</property>
+<property name="Vmaxv3">
+<value>239.0</value>
+</property>
+<property name="Keqv3">
+<value>100000.0</value>
+</property>
+<property name="KFru6Pv3">
+<value>0.1</value>
+</property>
+<property name="KMgATPv3">
+<value>0.068</value>
+</property>
+<property name="L0v3">
+<value>0.001072</value>
+</property>
+<property name="KATPv3">
+<value>0.01</value>
+</property>
+<property name="KMgv3">
+<value>0.44</value>
+</property>
+<property name="KAMPv3">
+<value>0.033</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv3 * (Fru6P.NumberConc * MgATP.NumberConc - Fru16P2.NumberConc * MgADP.NumberConc / Keqv3) / ((Fru6P.NumberConc + KFru6Pv3) * (MgATP.NumberConc + KMgATPv3) * (1 + L0v3 * pow((1 + ATPf.NumberConc / KATPv3) * (1 + Mgf.NumberConc / KMgv3) / ((1 + (AMPf.NumberConc + MgAMP.NumberConc) / KAMPv3) * (1 + Fru6P.NumberConc / KFru6Pv3)), 4))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru6P</value>
+<value>Variable:/compartment:Fru6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Fru16P2</value>
+<value>Variable:/compartment:Fru16P2</value>
+<value>1</value>
+</value>
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>1</value>
+</value>
+<value>
+<value>ATPf</value>
+<value>Variable:/compartment:ATPf</value>
+<value>0</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>0</value>
+</value>
+<value>
+<value>AMPf</value>
+<value>Variable:/compartment:AMPf</value>
+<value>0</value>
+</value>
+<value>
+<value>MgAMP</value>
+<value>Variable:/compartment:MgAMP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv3 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Fru16P2 &lt;/ci&gt;#x0A              &lt;ci&gt; MgADP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv3 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A          &lt;ci&gt; KFru6Pv3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; MgATP &lt;/ci&gt;#x0A          &lt;ci&gt; KMgATPv3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; L0v3 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;power/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; ATPf &lt;/ci&gt;#x0A                      &lt;ci&gt; KATPv3 &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; Mgf &lt;/ci&gt;#x0A                      &lt;ci&gt; KMgv3 &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;times/&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;apply&gt;#x0A                        &lt;plus/&gt;#x0A                        &lt;ci&gt; AMPf &lt;/ci&gt;#x0A                        &lt;ci&gt; MgAMP &lt;/ci&gt;#x0A                      &lt;/apply&gt;#x0A                      &lt;ci&gt; KAMPv3 &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;plus/&gt;#x0A                    &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;divide/&gt;#x0A                      &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A                      &lt;ci&gt; KFru6Pv3 &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vALD">
+<property name="Name">
+<value>Aldolase</value>
+</property>
+<property name="Vmaxv4">
+<value>98.91000366</value>
+</property>
+<property name="KFru16P2v4">
+<value>0.0071</value>
+</property>
+<property name="Keqv4">
+<value>0.114</value>
+</property>
+<property name="KiGraPv4">
+<value>0.0572</value>
+</property>
+<property name="KGraPv4">
+<value>0.1906</value>
+</property>
+<property name="KDHAPv4">
+<value>0.0364</value>
+</property>
+<property name="KiiGraPv4">
+<value>0.176</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv4 / KFru16P2v4 * (Fru16P2.NumberConc - GraP.NumberConc * DHAP.NumberConc / Keqv4) / (1 + Fru16P2.NumberConc / KFru16P2v4 + GraP.NumberConc / KiGraPv4 + DHAP.NumberConc * (GraP.NumberConc + KGraPv4) / (KDHAPv4 * KiGraPv4) + Fru16P2.NumberConc * GraP.NumberConc / (KFru16P2v4 * KiiGraPv4)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fru16P2</value>
+<value>Variable:/compartment:Fru16P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/compartment:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmaxv4 &lt;/ci&gt;#x0A          &lt;ci&gt; KFru16P2v4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Fru16P2 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GraP &lt;/ci&gt;#x0A              &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Fru16P2 &lt;/ci&gt;#x0A          &lt;ci&gt; KFru16P2v4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A          &lt;ci&gt; KiGraPv4 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; DHAP &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; GraP &lt;/ci&gt;#x0A              &lt;ci&gt; KGraPv4 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KDHAPv4 &lt;/ci&gt;#x0A            &lt;ci&gt; KiGraPv4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Fru16P2 &lt;/ci&gt;#x0A            &lt;ci&gt; GraP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KFru16P2v4 &lt;/ci&gt;#x0A            &lt;ci&gt; KiiGraPv4 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTPI">
+<property name="Name">
+<value>Triosephosphate isomerase</value>
+</property>
+<property name="Vmaxv5">
+<value>5456.600098</value>
+</property>
+<property name="Keqv5">
+<value>0.0407</value>
+</property>
+<property name="KDHAPv5">
+<value>0.838</value>
+</property>
+<property name="KGraPv5">
+<value>0.428</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv5 * (DHAP.NumberConc - GraP.NumberConc / Keqv5) / (DHAP.NumberConc + KDHAPv5 * (1 + GraP.NumberConc / KGraPv5)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/compartment:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv5 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; DHAP &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; GraP &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv5 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; DHAP &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KDHAPv5 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GraP &lt;/ci&gt;#x0A              &lt;ci&gt; KGraPv5 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGAPDH">
+<property name="Name">
+<value>Glyceraldehyde 3-phosphate dehydrogenase</value>
+</property>
+<property name="Vmaxv6">
+<value>4300.0</value>
+</property>
+<property name="KNADv6">
+<value>0.05</value>
+</property>
+<property name="KGraPv6">
+<value>0.005</value>
+</property>
+<property name="KPv6">
+<value>3.9</value>
+</property>
+<property name="Keqv6">
+<value>0.000192</value>
+</property>
+<property name="KNADHv6">
+<value>0.0083</value>
+</property>
+<property name="K13P2Gv6">
+<value>0.0035</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv6 / (KNADv6 * KGraPv6 * KPv6) * (NAD.NumberConc * GraP.NumberConc * Phi.NumberConc - Gri13P2.NumberConc * NADH.NumberConc / Keqv6) / ((1 + NAD.NumberConc / KNADv6) * (1 + GraP.NumberConc / KGraPv6) * (1 + Phi.NumberConc / KPv6) + (1 + NADH.NumberConc / KNADHv6) * (1 + Gri13P2.NumberConc / K13P2Gv6) - 1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/compartment:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>Gri13P2</value>
+<value>Variable:/compartment:Gri13P2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmaxv6 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KNADv6 &lt;/ci&gt;#x0A            &lt;ci&gt; KGraPv6 &lt;/ci&gt;#x0A            &lt;ci&gt; KPv6 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; NAD &lt;/ci&gt;#x0A            &lt;ci&gt; GraP &lt;/ci&gt;#x0A            &lt;ci&gt; Phi &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Gri13P2 &lt;/ci&gt;#x0A              &lt;ci&gt; NADH &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv6 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; NAD &lt;/ci&gt;#x0A                &lt;ci&gt; KNADv6 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GraP &lt;/ci&gt;#x0A                &lt;ci&gt; KGraPv6 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Phi &lt;/ci&gt;#x0A                &lt;ci&gt; KPv6 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; NADH &lt;/ci&gt;#x0A                &lt;ci&gt; KNADHv6 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Gri13P2 &lt;/ci&gt;#x0A                &lt;ci&gt; K13P2Gv6 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGK">
+<property name="Name">
+<value>Phosphoglycerate kinase</value>
+</property>
+<property name="Vmaxv7">
+<value>5000.0</value>
+</property>
+<property name="KMgADPv7">
+<value>0.35</value>
+</property>
+<property name="K13P2Gv7">
+<value>0.002</value>
+</property>
+<property name="Keqv7">
+<value>1455.0</value>
+</property>
+<property name="KMgATPv7">
+<value>0.48</value>
+</property>
+<property name="K3PGv7">
+<value>1.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv7 / (KMgADPv7 * K13P2Gv7) * (MgADP.NumberConc * Gri13P2.NumberConc - MgATP.NumberConc * Gri3P.NumberConc / Keqv7) / ((1 + MgADP.NumberConc / KMgADPv7) * (1 + Gri13P2.NumberConc / K13P2Gv7) + (1 + MgATP.NumberConc / KMgATPv7) * (1 + Gri3P.NumberConc / K3PGv7) - 1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gri13P2</value>
+<value>Variable:/compartment:Gri13P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>1</value>
+</value>
+<value>
+<value>Gri3P</value>
+<value>Variable:/compartment:Gri3P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmaxv7 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KMgADPv7 &lt;/ci&gt;#x0A            &lt;ci&gt; K13P2Gv7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; MgADP &lt;/ci&gt;#x0A            &lt;ci&gt; Gri13P2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; MgATP &lt;/ci&gt;#x0A              &lt;ci&gt; Gri3P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv7 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; MgADP &lt;/ci&gt;#x0A                &lt;ci&gt; KMgADPv7 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Gri13P2 &lt;/ci&gt;#x0A                &lt;ci&gt; K13P2Gv7 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; MgATP &lt;/ci&gt;#x0A                &lt;ci&gt; KMgATPv7 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Gri3P &lt;/ci&gt;#x0A                &lt;ci&gt; K3PGv7 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vBPGM">
+<property name="Name">
+<value>Bisphosphoglycerate mutase</value>
+</property>
+<property name="kDPGMv8">
+<value>76000.0</value>
+</property>
+<property name="Keqv8">
+<value>100000.0</value>
+</property>
+<property name="K23P2Gv8">
+<value>0.04</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (kDPGMv8 * (Gri13P2.NumberConc - (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / Keqv8) / (1 + (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / K23P2Gv8))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gri13P2</value>
+<value>Variable:/compartment:Gri13P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>1</value>
+</value>
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; kDPGMv8 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Gri13P2 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A              &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv8 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A            &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; K23P2Gv8 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vBPGP">
+<property name="Name">
+<value>Bisphosphoglycerate phosphatase</value>
+</property>
+<property name="Vmaxv9">
+<value>0.53</value>
+</property>
+<property name="Keqv9">
+<value>100000.0</value>
+</property>
+<property name="K23P2Gv9">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv9 * (Gri23P2f.NumberConc + MgGri23P2.NumberConc - Gri3P.NumberConc / Keqv9) / (Gri23P2f.NumberConc + MgGri23P2.NumberConc + K23P2Gv9))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gri3P</value>
+<value>Variable:/compartment:Gri3P</value>
+<value>1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>1</value>
+</value>
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv9 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A            &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Gri3P &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv9 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A        &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A        &lt;ci&gt; K23P2Gv9 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGM">
+<property name="Name">
+<value>Phosphoglycerate mutase</value>
+</property>
+<property name="Vmaxv10">
+<value>2000.0</value>
+</property>
+<property name="Keqv10">
+<value>0.145</value>
+</property>
+<property name="K3PGv10">
+<value>5.0</value>
+</property>
+<property name="K2PGv10">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv10 * (Gri3P.NumberConc - Gri2P.NumberConc / Keqv10) / (Gri3P.NumberConc + K3PGv10 * (1 + Gri2P.NumberConc / K2PGv10)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gri3P</value>
+<value>Variable:/compartment:Gri3P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gri2P</value>
+<value>Variable:/compartment:Gri2P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv10 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Gri3P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Gri2P &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv10 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Gri3P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K3PGv10 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Gri2P &lt;/ci&gt;#x0A              &lt;ci&gt; K2PGv10 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vENO">
+<property name="Name">
+<value>Enolase</value>
+</property>
+<property name="Vmaxv11">
+<value>1500.0</value>
+</property>
+<property name="Keqv11">
+<value>1.7</value>
+</property>
+<property name="K2PGv11">
+<value>1.0</value>
+</property>
+<property name="KPEPv11">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv11 * (Gri2P.NumberConc - PEP.NumberConc / Keqv11) / (Gri2P.NumberConc + K2PGv11 * (1 + PEP.NumberConc / KPEPv11)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Gri2P</value>
+<value>Variable:/compartment:Gri2P</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/compartment:PEP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv11 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Gri2P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; PEP &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv11 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Gri2P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K2PGv11 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; PEP &lt;/ci&gt;#x0A              &lt;ci&gt; KPEPv11 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPK">
+<property name="Name">
+<value>Pyruvate kinase</value>
+</property>
+<property name="Vmaxv12">
+<value>570.0</value>
+</property>
+<property name="Keqv12">
+<value>13790.0</value>
+</property>
+<property name="KPEPv12">
+<value>0.225</value>
+</property>
+<property name="KMgADPv12">
+<value>0.474</value>
+</property>
+<property name="L0v12">
+<value>19.0</value>
+</property>
+<property name="KATPv12">
+<value>3.39</value>
+</property>
+<property name="KFru16P2v12">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv12 * (PEP.NumberConc * MgADP.NumberConc - Pyr.NumberConc * MgATP.NumberConc / Keqv12) / ((PEP.NumberConc + KPEPv12) * (MgADP.NumberConc + KMgADPv12) * (1 + L0v12 * pow(1 + (ATPf.NumberConc + MgATP.NumberConc) / KATPv12, 4) / (pow(1 + PEP.NumberConc / KPEPv12, 4) * pow(1 + Fru16P2.NumberConc / KFru16P2v12, 4)))))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PEP</value>
+<value>Variable:/compartment:PEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>1</value>
+</value>
+<value>
+<value>Pyr</value>
+<value>Variable:/compartment:Pyr</value>
+<value>1</value>
+</value>
+<value>
+<value>ATPf</value>
+<value>Variable:/compartment:ATPf</value>
+<value>0</value>
+</value>
+<value>
+<value>Fru16P2</value>
+<value>Variable:/compartment:Fru16P2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv12 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; PEP &lt;/ci&gt;#x0A            &lt;ci&gt; MgADP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Pyr &lt;/ci&gt;#x0A              &lt;ci&gt; MgATP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv12 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; PEP &lt;/ci&gt;#x0A          &lt;ci&gt; KPEPv12 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; MgADP &lt;/ci&gt;#x0A          &lt;ci&gt; KMgADPv12 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; L0v12 &lt;/ci&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;apply&gt;#x0A                      &lt;plus/&gt;#x0A                      &lt;ci&gt; ATPf &lt;/ci&gt;#x0A                      &lt;ci&gt; MgATP &lt;/ci&gt;#x0A                    &lt;/apply&gt;#x0A                    &lt;ci&gt; KATPv12 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; PEP &lt;/ci&gt;#x0A                    &lt;ci&gt; KPEPv12 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A              &lt;apply&gt;#x0A                &lt;power/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; Fru16P2 &lt;/ci&gt;#x0A                    &lt;ci&gt; KFru16P2v12 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A                &lt;cn type='integer'&gt; 4 &lt;/cn&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vLDHNADH">
+<property name="Name">
+<value>Lactate dehydrogenase</value>
+</property>
+<property name="Vmaxv13">
+<value>2800000.0</value>
+</property>
+<property name="Keqv13">
+<value>9090.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vmaxv13 * (Pyr.NumberConc * NADH.NumberConc - Lac.NumberConc * NAD.NumberConc / Keqv13)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADH</value>
+<value>Variable:/compartment:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pyr</value>
+<value>Variable:/compartment:Pyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lac</value>
+<value>Variable:/compartment:Lac</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Vmaxv13 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Pyr &lt;/ci&gt;#x0A        &lt;ci&gt; NADH &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Lac &lt;/ci&gt;#x0A          &lt;ci&gt; NAD &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Keqv13 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vLDHNADPH">
+<property name="Name">
+<value>Lactate dehydrogenase</value>
+</property>
+<property name="kLDHv14">
+<value>243.4</value>
+</property>
+<property name="Keqv14">
+<value>14181.8</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kLDHv14 * (Pyr.NumberConc * NADPHf.NumberConc - Lac.NumberConc * NADPf.NumberConc / Keqv14)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pyr</value>
+<value>Variable:/compartment:Pyr</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lac</value>
+<value>Variable:/compartment:Lac</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; kLDHv14 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Pyr &lt;/ci&gt;#x0A        &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Lac &lt;/ci&gt;#x0A          &lt;ci&gt; NADPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Keqv14 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vATPase">
+<property name="Name">
+<value>ATPase</value>
+</property>
+<property name="kATPasev15">
+<value>1.68</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kATPasev15 * MgATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>1</value>
+</value>
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; kATPasev15 &lt;/ci&gt;#x0A    &lt;ci&gt; MgATP &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vAK">
+<property name="Name">
+<value>Adenylate kinase</value>
+</property>
+<property name="Vmaxv16">
+<value>1380.0</value>
+</property>
+<property name="KATPv16">
+<value>0.09</value>
+</property>
+<property name="KAMPv16">
+<value>0.08</value>
+</property>
+<property name="Keqv16">
+<value>0.25</value>
+</property>
+<property name="KADPv16">
+<value>0.11</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv16 / (KATPv16 * KAMPv16) * (MgATP.NumberConc * AMPf.NumberConc - MgADP.NumberConc * ADPf.NumberConc / Keqv16) / ((1 + MgATP.NumberConc / KATPv16) * (1 + AMPf.NumberConc / KAMPv16) + (MgADP.NumberConc + ADPf.NumberConc) / KADPv16 + MgADP.NumberConc * ADPf.NumberConc / pow(KADPv16, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>AMPf</value>
+<value>Variable:/compartment:AMPf</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADPf</value>
+<value>Variable:/compartment:ADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; Vmaxv16 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; KATPv16 &lt;/ci&gt;#x0A            &lt;ci&gt; KAMPv16 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A            &lt;ci&gt; AMPf &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; MgADP &lt;/ci&gt;#x0A              &lt;ci&gt; ADPf &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv16 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; MgATP &lt;/ci&gt;#x0A              &lt;ci&gt; KATPv16 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; AMPf &lt;/ci&gt;#x0A              &lt;ci&gt; KAMPv16 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; MgADP &lt;/ci&gt;#x0A            &lt;ci&gt; ADPf &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KADPv16 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; MgADP &lt;/ci&gt;#x0A            &lt;ci&gt; ADPf &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;power/&gt;#x0A            &lt;ci&gt; KADPv16 &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vG6PDH">
+<property name="Name">
+<value>Glucose 6-phosphate dehydrogenase</value>
+</property>
+<property name="Vmaxv17">
+<value>162.0</value>
+</property>
+<property name="KG6Pv17">
+<value>0.0667</value>
+</property>
+<property name="KNADPv17">
+<value>0.00367</value>
+</property>
+<property name="Keqv17">
+<value>2000.0</value>
+</property>
+<property name="KATPv17">
+<value>0.749</value>
+</property>
+<property name="KNADPHv17">
+<value>0.00312</value>
+</property>
+<property name="KPGA23v17">
+<value>2.289</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv17 / KG6Pv17 / KNADPv17 * (Glc6P.NumberConc * NADPf.NumberConc - GlcA6P.NumberConc * NADPHf.NumberConc / Keqv17) / (1 + NADPf.NumberConc * (1 + Glc6P.NumberConc / KG6Pv17) / KNADPv17 + (ATPf.NumberConc + MgATP.NumberConc) / KATPv17 + NADPHf.NumberConc / KNADPHv17 + (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / KPGA23v17))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glc6P</value>
+<value>Variable:/compartment:Glc6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>-1</value>
+</value>
+<value>
+<value>GlcA6P</value>
+<value>Variable:/compartment:GlcA6P</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>1</value>
+</value>
+<value>
+<value>ATPf</value>
+<value>Variable:/compartment:ATPf</value>
+<value>0</value>
+</value>
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>0</value>
+</value>
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>0</value>
+</value>
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Vmaxv17 &lt;/ci&gt;#x0A            &lt;ci&gt; KG6Pv17 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KNADPv17 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A            &lt;ci&gt; NADPf &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GlcA6P &lt;/ci&gt;#x0A              &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv17 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; NADPf &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; Glc6P &lt;/ci&gt;#x0A                &lt;ci&gt; KG6Pv17 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KNADPv17 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; ATPf &lt;/ci&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KATPv17 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A          &lt;ci&gt; KNADPHv17 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A            &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KPGA23v17 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPGLDH">
+<property name="Name">
+<value>Phosphogluconate dehydrogenase</value>
+</property>
+<property name="Vmaxv18">
+<value>1575.0</value>
+</property>
+<property name="K6PG1v18">
+<value>0.01</value>
+</property>
+<property name="KNADPv18">
+<value>0.018</value>
+</property>
+<property name="Keqv18">
+<value>141.7</value>
+</property>
+<property name="KPGA23v18">
+<value>0.12</value>
+</property>
+<property name="KATPv18">
+<value>0.154</value>
+</property>
+<property name="K6PG2v18">
+<value>0.058</value>
+</property>
+<property name="KNADPHv18">
+<value>0.0045</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv18 / K6PG1v18 / KNADPv18 * (GlcA6P.NumberConc * NADPf.NumberConc - Rul5P.NumberConc * NADPHf.NumberConc / Keqv18) / ((1 + NADPf.NumberConc / KNADPv18) * (1 + GlcA6P.NumberConc / K6PG1v18 + (Gri23P2f.NumberConc + MgGri23P2.NumberConc) / KPGA23v18) + (ATPf.NumberConc + MgATP.NumberConc) / KATPv18 + NADPHf.NumberConc * (1 + GlcA6P.NumberConc / K6PG2v18) / KNADPHv18))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GlcA6P</value>
+<value>Variable:/compartment:GlcA6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rul5P</value>
+<value>Variable:/compartment:Rul5P</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>1</value>
+</value>
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>0</value>
+</value>
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>0</value>
+</value>
+<value>
+<value>ATPf</value>
+<value>Variable:/compartment:ATPf</value>
+<value>0</value>
+</value>
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Vmaxv18 &lt;/ci&gt;#x0A            &lt;ci&gt; K6PG1v18 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KNADPv18 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; GlcA6P &lt;/ci&gt;#x0A            &lt;ci&gt; NADPf &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; Rul5P &lt;/ci&gt;#x0A              &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv18 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; NADPf &lt;/ci&gt;#x0A              &lt;ci&gt; KNADPv18 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; GlcA6P &lt;/ci&gt;#x0A              &lt;ci&gt; K6PG1v18 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;plus/&gt;#x0A                &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A                &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KPGA23v18 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; ATPf &lt;/ci&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KATPv18 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GlcA6P &lt;/ci&gt;#x0A                &lt;ci&gt; K6PG2v18 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KNADPHv18 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGSSGRD">
+<property name="Name">
+<value>Glutathione reductase</value>
+</property>
+<property name="Vmaxv19">
+<value>90.0</value>
+</property>
+<property name="KGSSGv19">
+<value>0.0652</value>
+</property>
+<property name="KNADPHv19">
+<value>0.00852</value>
+</property>
+<property name="KGSHv19">
+<value>20.0</value>
+</property>
+<property name="KNADPv19">
+<value>0.07</value>
+</property>
+<property name="Keqv19">
+<value>1.04</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv19 * (GSSG.NumberConc * NADPHf.NumberConc / (KGSSGv19 * KNADPHv19) - pow(GSH.NumberConc, 2) / pow(KGSHv19, 2) * NADPf.NumberConc / (KNADPv19 * Keqv19)) / (1 + NADPHf.NumberConc * (1 + GSSG.NumberConc / KGSSGv19) / KNADPHv19 + NADPf.NumberConc / KNADPv19 * (1 + GSH.NumberConc * (1 + GSH.NumberConc / KGSHv19) / KGSHv19)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSSG</value>
+<value>Variable:/compartment:GSSG</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSH</value>
+<value>Variable:/compartment:GSH</value>
+<value>2</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv19 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GSSG &lt;/ci&gt;#x0A              &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KGSSGv19 &lt;/ci&gt;#x0A              &lt;ci&gt; KNADPHv19 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;ci&gt; GSH &lt;/ci&gt;#x0A                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A                &lt;apply&gt;#x0A                  &lt;power/&gt;#x0A                  &lt;ci&gt; KGSHv19 &lt;/ci&gt;#x0A                  &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; NADPf &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; KNADPv19 &lt;/ci&gt;#x0A              &lt;ci&gt; Keqv19 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;plus/&gt;#x0A              &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A              &lt;apply&gt;#x0A                &lt;divide/&gt;#x0A                &lt;ci&gt; GSSG &lt;/ci&gt;#x0A                &lt;ci&gt; KGSSGv19 &lt;/ci&gt;#x0A              &lt;/apply&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; KNADPHv19 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; NADPf &lt;/ci&gt;#x0A            &lt;ci&gt; KNADPv19 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;apply&gt;#x0A                &lt;times/&gt;#x0A                &lt;ci&gt; GSH &lt;/ci&gt;#x0A                &lt;apply&gt;#x0A                  &lt;plus/&gt;#x0A                  &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A                  &lt;apply&gt;#x0A                    &lt;divide/&gt;#x0A                    &lt;ci&gt; GSH &lt;/ci&gt;#x0A                    &lt;ci&gt; KGSHv19 &lt;/ci&gt;#x0A                  &lt;/apply&gt;#x0A                &lt;/apply&gt;#x0A              &lt;/apply&gt;#x0A              &lt;ci&gt; KGSHv19 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vGSHox">
+<property name="Name">
+<value>Glutathione oxidation</value>
+</property>
+<property name="Kv20">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Kv20 * GSH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSH</value>
+<value>Variable:/compartment:GSH</value>
+<value>-2</value>
+</value>
+<value>
+<value>GSSG</value>
+<value>Variable:/compartment:GSSG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Kv20 &lt;/ci&gt;#x0A    &lt;ci&gt; GSH &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vRibPepi">
+<property name="Name">
+<value>Phosphoribulose epimerase</value>
+</property>
+<property name="Vmaxv21">
+<value>4634.0</value>
+</property>
+<property name="Keqv21">
+<value>2.7</value>
+</property>
+<property name="KRu5Pv21">
+<value>0.19</value>
+</property>
+<property name="KX5Pv21">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv21 * (Rul5P.NumberConc - Xul5P.NumberConc / Keqv21) / (Rul5P.NumberConc + KRu5Pv21 * (1 + Xul5P.NumberConc / KX5Pv21)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rul5P</value>
+<value>Variable:/compartment:Rul5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Xul5P</value>
+<value>Variable:/compartment:Xul5P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv21 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Rul5P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv21 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Rul5P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KRu5Pv21 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A              &lt;ci&gt; KX5Pv21 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vRibPiso">
+<property name="Name">
+<value>Ribose phosphate isomerase</value>
+</property>
+<property name="Vmaxv22">
+<value>730.0</value>
+</property>
+<property name="Keqv22">
+<value>3.0</value>
+</property>
+<property name="KRu5Pv22">
+<value>0.78</value>
+</property>
+<property name="KR5Pv22">
+<value>2.2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv22 * (Rul5P.NumberConc - Rib5P.NumberConc / Keqv22) / (Rul5P.NumberConc + KRu5Pv22 * (1 + Rib5P.NumberConc / KR5Pv22)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rul5P</value>
+<value>Variable:/compartment:Rul5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rib5P</value>
+<value>Variable:/compartment:Rib5P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv22 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; Rul5P &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A            &lt;ci&gt; Keqv22 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; Rul5P &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; KRu5Pv22 &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A            &lt;apply&gt;#x0A              &lt;divide/&gt;#x0A              &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A              &lt;ci&gt; KR5Pv22 &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTrKet1">
+<property name="Name">
+<value>Transketolase 1</value>
+</property>
+<property name="Vmaxv23">
+<value>23.5</value>
+</property>
+<property name="Keqv23">
+<value>1.05</value>
+</property>
+<property name="K1v23">
+<value>0.4177</value>
+</property>
+<property name="K2v23">
+<value>0.3055</value>
+</property>
+<property name="K6v23">
+<value>0.00774</value>
+</property>
+<property name="K3v23">
+<value>12.432</value>
+</property>
+<property name="K5v23">
+<value>0.41139</value>
+</property>
+<property name="K4v23">
+<value>0.00496</value>
+</property>
+<property name="K7v23">
+<value>48.8</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv23 * (Rib5P.NumberConc * Xul5P.NumberConc - GraP.NumberConc * Sed7P.NumberConc / Keqv23) / ((K1v23 + Rib5P.NumberConc) * Xul5P.NumberConc + (K2v23 + K6v23 * Sed7P.NumberConc) * Rib5P.NumberConc + (K3v23 + K5v23 * Sed7P.NumberConc) * GraP.NumberConc + K4v23 * Sed7P.NumberConc + K7v23 * Xul5P.NumberConc * GraP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Xul5P</value>
+<value>Variable:/compartment:Xul5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rib5P</value>
+<value>Variable:/compartment:Rib5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>1</value>
+</value>
+<value>
+<value>Sed7P</value>
+<value>Variable:/compartment:Sed7P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv23 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A            &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GraP &lt;/ci&gt;#x0A              &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv23 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K1v23 &lt;/ci&gt;#x0A            &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K2v23 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6v23 &lt;/ci&gt;#x0A              &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K3v23 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K5v23 &lt;/ci&gt;#x0A              &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K4v23 &lt;/ci&gt;#x0A          &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K7v23 &lt;/ci&gt;#x0A          &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTrAld">
+<property name="Name">
+<value>Transaldolase</value>
+</property>
+<property name="Vmaxv24">
+<value>27.2</value>
+</property>
+<property name="Keqv24">
+<value>1.05</value>
+</property>
+<property name="K1v24">
+<value>0.00823</value>
+</property>
+<property name="K2v24">
+<value>0.04765</value>
+</property>
+<property name="K6v24">
+<value>0.4653</value>
+</property>
+<property name="K3v24">
+<value>0.1733</value>
+</property>
+<property name="K5v24">
+<value>0.8683</value>
+</property>
+<property name="K4v24">
+<value>0.006095</value>
+</property>
+<property name="K7v24">
+<value>2.524</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv24 * (Sed7P.NumberConc * GraP.NumberConc - E4P.NumberConc * Fru6P.NumberConc / Keqv24) / ((K1v24 + GraP.NumberConc) * Sed7P.NumberConc + (K2v24 + K6v24 * Fru6P.NumberConc) * GraP.NumberConc + (K3v24 + K5v24 * Fru6P.NumberConc) * E4P.NumberConc + K4v24 * Fru6P.NumberConc + K7v24 * Sed7P.NumberConc * E4P.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sed7P</value>
+<value>Variable:/compartment:Sed7P</value>
+<value>-1</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/compartment:E4P</value>
+<value>1</value>
+</value>
+<value>
+<value>Fru6P</value>
+<value>Variable:/compartment:Fru6P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv24 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A            &lt;ci&gt; GraP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; E4P &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv24 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K1v24 &lt;/ci&gt;#x0A            &lt;ci&gt; GraP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K2v24 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6v24 &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K3v24 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K5v24 &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; E4P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K4v24 &lt;/ci&gt;#x0A          &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K7v24 &lt;/ci&gt;#x0A          &lt;ci&gt; Sed7P &lt;/ci&gt;#x0A          &lt;ci&gt; E4P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPPRPPS">
+<property name="Name">
+<value>Phosphoribosylpyrophosphate synthetase</value>
+</property>
+<property name="Vmaxv25">
+<value>1.1</value>
+</property>
+<property name="Keqv25">
+<value>100000.0</value>
+</property>
+<property name="KATPv25">
+<value>0.03</value>
+</property>
+<property name="KR5Pv25">
+<value>0.57</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv25 * (Rib5P.NumberConc * MgATP.NumberConc - PRPP.NumberConc * MgAMP.NumberConc / Keqv25) / ((KATPv25 + MgATP.NumberConc) * (KR5Pv25 + Rib5P.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Rib5P</value>
+<value>Variable:/compartment:Rib5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>MgAMP</value>
+<value>Variable:/compartment:MgAMP</value>
+<value>1</value>
+</value>
+<value>
+<value>PRPP</value>
+<value>Variable:/compartment:PRPP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv25 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A            &lt;ci&gt; MgATP &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; PRPP &lt;/ci&gt;#x0A              &lt;ci&gt; MgAMP &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv25 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; KATPv25 &lt;/ci&gt;#x0A          &lt;ci&gt; MgATP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; KR5Pv25 &lt;/ci&gt;#x0A          &lt;ci&gt; Rib5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vTrKet2">
+<property name="Name">
+<value>Transketolase 2</value>
+</property>
+<property name="Vmaxv26">
+<value>23.5</value>
+</property>
+<property name="Keqv26">
+<value>1.2</value>
+</property>
+<property name="K1v26">
+<value>0.00184</value>
+</property>
+<property name="K2v26">
+<value>0.3055</value>
+</property>
+<property name="K6v26">
+<value>0.122</value>
+</property>
+<property name="K3v26">
+<value>0.0548</value>
+</property>
+<property name="K5v26">
+<value>0.0287</value>
+</property>
+<property name="K4v26">
+<value>0.0003</value>
+</property>
+<property name="K7v26">
+<value>0.215</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * (Vmaxv26 * (E4P.NumberConc * Xul5P.NumberConc - GraP.NumberConc * Fru6P.NumberConc / Keqv26) / ((K1v26 + E4P.NumberConc) * Xul5P.NumberConc + (K2v26 + K6v26 * Fru6P.NumberConc) * E4P.NumberConc + (K3v26 + K5v26 * Fru6P.NumberConc) * GraP.NumberConc + K4v26 * Fru6P.NumberConc + K7v26 * Xul5P.NumberConc * GraP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Xul5P</value>
+<value>Variable:/compartment:Xul5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/compartment:E4P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GraP</value>
+<value>Variable:/compartment:GraP</value>
+<value>1</value>
+</value>
+<value>
+<value>Fru6P</value>
+<value>Variable:/compartment:Fru6P</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; Vmaxv26 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; E4P &lt;/ci&gt;#x0A            &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;divide/&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; GraP &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A            &lt;ci&gt; Keqv26 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K1v26 &lt;/ci&gt;#x0A            &lt;ci&gt; E4P &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K2v26 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K6v26 &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; E4P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; K3v26 &lt;/ci&gt;#x0A            &lt;apply&gt;#x0A              &lt;times/&gt;#x0A              &lt;ci&gt; K5v26 &lt;/ci&gt;#x0A              &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A            &lt;/apply&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K4v26 &lt;/ci&gt;#x0A          &lt;ci&gt; Fru6P &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; K7v26 &lt;/ci&gt;#x0A          &lt;ci&gt; Xul5P &lt;/ci&gt;#x0A          &lt;ci&gt; GraP &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPhiexch">
+<property name="Name">
+<value>Phosphate exchange</value>
+</property>
+<property name="Vmaxv27">
+<value>100.0</value>
+</property>
+<property name="Keqv27">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vmaxv27 * (Phiex.NumberConc - Phi.NumberConc / Keqv27)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Phiex</value>
+<value>Variable:/compartment:Phiex</value>
+<value>-1</value>
+</value>
+<value>
+<value>Phi</value>
+<value>Variable:/compartment:Phi</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Vmaxv27 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; Phiex &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Phi &lt;/ci&gt;#x0A        &lt;ci&gt; Keqv27 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vLacexch">
+<property name="Name">
+<value>Lactate exchange</value>
+</property>
+<property name="Vmaxv28">
+<value>10000.0</value>
+</property>
+<property name="Keqv28">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vmaxv28 * (Lacex.NumberConc - Lac.NumberConc / Keqv28)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lacex</value>
+<value>Variable:/compartment:Lacex</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lac</value>
+<value>Variable:/compartment:Lac</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Vmaxv28 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; Lacex &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Lac &lt;/ci&gt;#x0A        &lt;ci&gt; Keqv28 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vPyrexch">
+<property name="Name">
+<value>Pyruvate exchange</value>
+</property>
+<property name="Vmaxv29">
+<value>10000.0</value>
+</property>
+<property name="Keqv29">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * Vmaxv29 * (Pyrex.NumberConc - Pyr.NumberConc / Keqv29)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pyrex</value>
+<value>Variable:/compartment:Pyrex</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pyr</value>
+<value>Variable:/compartment:Pyr</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; Vmaxv29 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; Pyrex &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; Pyr &lt;/ci&gt;#x0A        &lt;ci&gt; Keqv29 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vMgATP">
+<property name="Name">
+<value>MgATP dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="KdATP">
+<value>0.072</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (MgATP.NumberConc - Mgf.NumberConc * ATPf.NumberConc / KdATP)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgATP</value>
+<value>Variable:/compartment:MgATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>1</value>
+</value>
+<value>
+<value>ATPf</value>
+<value>Variable:/compartment:ATPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; MgATP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Mgf &lt;/ci&gt;#x0A          &lt;ci&gt; ATPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; KdATP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vMgADP">
+<property name="Name">
+<value>MgADP dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="KdADP">
+<value>0.76</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (MgADP.NumberConc - Mgf.NumberConc * ADPf.NumberConc / KdADP)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgADP</value>
+<value>Variable:/compartment:MgADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>1</value>
+</value>
+<value>
+<value>ADPf</value>
+<value>Variable:/compartment:ADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; MgADP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Mgf &lt;/ci&gt;#x0A          &lt;ci&gt; ADPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; KdADP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vMgAMP">
+<property name="Name">
+<value>MgAMP dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="KdAMP">
+<value>16.64</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (MgAMP.NumberConc - Mgf.NumberConc * AMPf.NumberConc / KdAMP)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgAMP</value>
+<value>Variable:/compartment:MgAMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>1</value>
+</value>
+<value>
+<value>AMPf</value>
+<value>Variable:/compartment:AMPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; MgAMP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Mgf &lt;/ci&gt;#x0A          &lt;ci&gt; AMPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; KdAMP &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vMgGri23P2">
+<property name="Name">
+<value>MgGri23P2 dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="Kd23P2G">
+<value>1.667</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (MgGri23P2.NumberConc - Mgf.NumberConc * Gri23P2f.NumberConc / Kd23P2G)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MgGri23P2</value>
+<value>Variable:/compartment:MgGri23P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mgf</value>
+<value>Variable:/compartment:Mgf</value>
+<value>1</value>
+</value>
+<value>
+<value>Gri23P2f</value>
+<value>Variable:/compartment:Gri23P2f</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; MgGri23P2 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; Mgf &lt;/ci&gt;#x0A          &lt;ci&gt; Gri23P2f &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Kd23P2G &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vP1NADP">
+<property name="Name">
+<value>P1NADP dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="Kd1">
+<value>0.0002</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (P1NADP.NumberConc - P1f.NumberConc * NADPf.NumberConc / Kd1)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1NADP</value>
+<value>Variable:/compartment:P1NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1f</value>
+<value>Variable:/compartment:P1f</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; P1NADP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; P1f &lt;/ci&gt;#x0A          &lt;ci&gt; NADPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Kd1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vP1NADPH">
+<property name="Name">
+<value>P1NADPH dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="Kd3">
+<value>1e-05</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (P1NADPH.NumberConc - P1f.NumberConc * NADPHf.NumberConc / Kd3)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1NADPH</value>
+<value>Variable:/compartment:P1NADPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1f</value>
+<value>Variable:/compartment:P1f</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; P1NADPH &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; P1f &lt;/ci&gt;#x0A          &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Kd3 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vP2NADP">
+<property name="Name">
+<value>P2NADP dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="Kd2">
+<value>1e-05</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (P2NADP.NumberConc - P2f.NumberConc * NADPf.NumberConc / Kd2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2NADP</value>
+<value>Variable:/compartment:P2NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2f</value>
+<value>Variable:/compartment:P2f</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPf</value>
+<value>Variable:/compartment:NADPf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; P2NADP &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; P2f &lt;/ci&gt;#x0A          &lt;ci&gt; NADPf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Kd2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="vP2NADPH">
+<property name="Name">
+<value>P2NADPH dissociation</value>
+</property>
+<property name="EqMult">
+<value>10000000.0</value>
+</property>
+<property name="Kd4">
+<value>0.0002</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * EqMult * (P2NADPH.NumberConc - P2f.NumberConc * NADPHf.NumberConc / Kd4)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2NADPH</value>
+<value>Variable:/compartment:P2NADPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2f</value>
+<value>Variable:/compartment:P2f</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPHf</value>
+<value>Variable:/compartment:NADPHf</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; compartment &lt;/ci&gt;#x0A    &lt;ci&gt; EqMult &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; P2NADPH &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; P2f &lt;/ci&gt;#x0A          &lt;ci&gt; NADPHf &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; Kd4 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Glcin">
+<property name="Name">
+<value>Glucose in</value>
+</property>
+<property name="NumberConc">
+<value>4.5663</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MgATP">
+<property name="Name">
+<value>MgATP</value>
+</property>
+<property name="NumberConc">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glc6P">
+<property name="Name">
+<value>Glucose 6-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0394</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MgADP">
+<property name="Name">
+<value>MgADP</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fru6P">
+<property name="Name">
+<value>Fructose 6-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0153</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fru16P2">
+<property name="Name">
+<value>Fructose 1,6-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0097</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GraP">
+<property name="Name">
+<value>Glyceraldehyde 3-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0061</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="Name">
+<value>Dihydroxyacetone phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.1492</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Phi">
+<property name="Name">
+<value>Phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.9992</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="Name">
+<value>NAD</value>
+</property>
+<property name="NumberConc">
+<value>0.0653</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gri13P2">
+<property name="Name">
+<value>1,3-Bisphospho-D-glycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="Name">
+<value>NADH</value>
+</property>
+<property name="NumberConc">
+<value>0.0002</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gri3P">
+<property name="Name">
+<value>3-Phospho-D-glycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.0658</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gri23P2f">
+<property name="Name">
+<value>2,3-Bisphospho-D-glycerate</value>
+</property>
+<property name="NumberConc">
+<value>2.0601</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gri2P">
+<property name="Name">
+<value>2-Phospho-D-glycerate</value>
+</property>
+<property name="NumberConc">
+<value>0.0084</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP">
+<property name="Name">
+<value>Phosphoenolpyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.0109</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyr">
+<property name="Name">
+<value>Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.084</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Lac">
+<property name="Name">
+<value>Lactate</value>
+</property>
+<property name="NumberConc">
+<value>1.6803</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPHf">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.004</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPf">
+<property name="Name">
+<value>NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AMPf">
+<property name="Name">
+<value>AMP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADPf">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GlcA6P">
+<property name="Name">
+<value>Phospho-D-glucono-1,5-lactone</value>
+</property>
+<property name="NumberConc">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rul5P">
+<property name="Name">
+<value>Ribulose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0047</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GSSG">
+<property name="Name">
+<value>Oxidized Glutathione</value>
+</property>
+<property name="NumberConc">
+<value>0.0004</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GSH">
+<property name="Name">
+<value>Reduced Glutathione</value>
+</property>
+<property name="NumberConc">
+<value>3.1136</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Xul5P">
+<property name="Name">
+<value>Xylulose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0127</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rib5P">
+<property name="Name">
+<value>Ribose 5-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.014</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Sed7P">
+<property name="Name">
+<value>Sedoheptulose 7-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0154</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E4P">
+<property name="Name">
+<value>Erythrose 4-phosphate</value>
+</property>
+<property name="NumberConc">
+<value>0.0063</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MgAMP">
+<property name="Name">
+<value>MgAMP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATPf">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mgf">
+<property name="Name">
+<value>Mg</value>
+</property>
+<property name="NumberConc">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MgGri23P2">
+<property name="Name">
+<value>MgGri23P2</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1NADP">
+<property name="Name">
+<value>Protein1 bound NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1f">
+<property name="Name">
+<value>Protein1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1NADPH">
+<property name="Name">
+<value>Protein1 bound NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.024</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2NADP">
+<property name="Name">
+<value>Protein2 bound NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2f">
+<property name="Name">
+<value>Protein2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2NADPH">
+<property name="Name">
+<value>Protein2 bound NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.024</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PRPP">
+<property name="Name">
+<value>PRPP</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Lacex">
+<property name="Name">
+<value>External Lactate</value>
+</property>
+<property name="NumberConc">
+<value>1.68</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pyrex">
+<property name="Name">
+<value>External Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.084</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glcout">
+<property name="Name">
+<value>Glucose outside</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Phiex">
+<property name="Name">
+<value>Phosphate external</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

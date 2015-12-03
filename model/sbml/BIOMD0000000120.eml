@@ -1,0 +1,609 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="v1">
+<property name="Name">
+<value>Kinase recruitment to T-cell receptor</value>
+</property>
+<property name="Expression">
+<value>r_l.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>1</value>
+</value>
+<value>
+<value>r_l</value>
+<value>Variable:/SBMLParameter:r_l</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;ci&gt; r_l &lt;/ci&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v2">
+<property name="Name">
+<value>Kinase inactivation</value>
+</property>
+<property name="Expression">
+<value>n1.Value * lck_active.NumberConc * phosphatase_active.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>-1</value>
+</value>
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>1</value>
+</value>
+<value>
+<value>phosphatase_active</value>
+<value>Variable:/compartment:phosphatase_active</value>
+<value>0</value>
+</value>
+<value>
+<value>n1</value>
+<value>Variable:/SBMLParameter:n1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; n1 &lt;/ci&gt;#x0A    &lt;ci&gt; lck_active &lt;/ci&gt;#x0A    &lt;ci&gt; phosphatase_active &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v3">
+<property name="Name">
+<value>Basal kinase activation</value>
+</property>
+<property name="Expression">
+<value>k1.Value * lck_inactive.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>-1</value>
+</value>
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k1 &lt;/ci&gt;#x0A    &lt;ci&gt; lck_inactive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v4">
+<property name="Name">
+<value>Catalytic kinase activation</value>
+</property>
+<property name="Expression">
+<value>m1.Value * pow(lck_active.NumberConc, n.Value) * lck_inactive.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>-1</value>
+</value>
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>1</value>
+</value>
+<value>
+<value>m1</value>
+<value>Variable:/SBMLParameter:m1</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; m1 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;power/&gt;#x0A      &lt;ci&gt; lck_active &lt;/ci&gt;#x0A      &lt;ci&gt; n &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; lck_inactive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v5">
+<property name="Name">
+<value>Inactive kinase diffusion</value>
+</property>
+<property name="Expression">
+<value>d0.Value * lck_inactive.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>-1</value>
+</value>
+<value>
+<value>d0</value>
+<value>Variable:/SBMLParameter:d0</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d0 &lt;/ci&gt;#x0A    &lt;ci&gt; lck_inactive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v6">
+<property name="Name">
+<value>Active kinase diffusion</value>
+</property>
+<property name="Expression">
+<value>d1.Value * lck_active.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>-1</value>
+</value>
+<value>
+<value>d1</value>
+<value>Variable:/SBMLParameter:d1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d1 &lt;/ci&gt;#x0A    &lt;ci&gt; lck_active &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v7">
+<property name="Name">
+<value>Basal phosphatase activation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * phosphatase_inactive.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phosphatase_inactive</value>
+<value>Variable:/compartment:phosphatase_inactive</value>
+<value>-1</value>
+</value>
+<value>
+<value>phosphatase_active</value>
+<value>Variable:/compartment:phosphatase_active</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k2 &lt;/ci&gt;#x0A    &lt;ci&gt; phosphatase_inactive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v8">
+<property name="Name">
+<value>Catalyzed phosphatase activation</value>
+</property>
+<property name="Expression">
+<value>m2.Value * lck_active.NumberConc * phosphatase_inactive.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phosphatase_inactive</value>
+<value>Variable:/compartment:phosphatase_inactive</value>
+<value>-1</value>
+</value>
+<value>
+<value>phosphatase_active</value>
+<value>Variable:/compartment:phosphatase_active</value>
+<value>1</value>
+</value>
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>0</value>
+</value>
+<value>
+<value>m2</value>
+<value>Variable:/SBMLParameter:m2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; m2 &lt;/ci&gt;#x0A    &lt;ci&gt; lck_active &lt;/ci&gt;#x0A    &lt;ci&gt; phosphatase_inactive &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v9">
+<property name="Name">
+<value>Phosphatase inactivation</value>
+</property>
+<property name="Expression">
+<value>n2.Value * phosphatase_active.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phosphatase_active</value>
+<value>Variable:/compartment:phosphatase_active</value>
+<value>-1</value>
+</value>
+<value>
+<value>phosphatase_inactive</value>
+<value>Variable:/compartment:phosphatase_inactive</value>
+<value>1</value>
+</value>
+<value>
+<value>n2</value>
+<value>Variable:/SBMLParameter:n2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; n2 &lt;/ci&gt;#x0A    &lt;ci&gt; phosphatase_active &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="v10">
+<property name="Name">
+<value>Active phosphatase diffusion</value>
+</property>
+<property name="Expression">
+<value>d2.Value * phosphatase_active.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>phosphatase_active</value>
+<value>Variable:/compartment:phosphatase_active</value>
+<value>-1</value>
+</value>
+<value>
+<value>d2</value>
+<value>Variable:/SBMLParameter:d2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; d2 &lt;/ci&gt;#x0A    &lt;ci&gt; phosphatase_active &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lck_inactive">
+<property name="Name">
+<value>Inactive lck</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="lck_active">
+<property name="Name">
+<value>Active lck</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="phosphatase_inactive">
+<property name="Name">
+<value>Inactive phosphatase</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="phosphatase_active">
+<property name="Name">
+<value>Active phosphatase</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="lck_total">
+<property name="Name">
+<value>Total kinase</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="n1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d0">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d1">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m2">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n2">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>1.95</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r_l">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_lck_total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'lck_total'</value>
+</property>
+<property name="Expression">
+<value>lck_inactive.NumberConc + lck_active.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; lck_inactive &lt;/ci&gt;#x0A    &lt;ci&gt; lck_active &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>lck_total</value>
+<value>Variable:/compartment:lck_total</value>
+<value>1</value>
+</value>
+<value>
+<value>lck_inactive</value>
+<value>Variable:/compartment:lck_inactive</value>
+<value>0</value>
+</value>
+<value>
+<value>lck_active</value>
+<value>Variable:/compartment:lck_active</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="event_0000001">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000001</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>r_l</value>
+<value>1</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A    &lt;cn type='integer'&gt; 10 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, 10)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>r_l</value>
+<value>Variable:/SBMLParameter:r_l</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventRepeatableProcess" id="event_0000002">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000002</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>r_l</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; t &lt;/csymbol&gt;#x0A    &lt;cn type='integer'&gt; 24 &lt;/cn&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, 24)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>r_l</value>
+<value>Variable:/SBMLParameter:r_l</value>
+<value>1</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

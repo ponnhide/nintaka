@@ -1,0 +1,2105 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="G2K_Creation">
+<property name="Name">
+<value>Cdc13_Cdc2 creation</value>
+</property>
+<property name="Expression">
+<value>k1.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>1</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G1K_Creation">
+<property name="Name">
+<value>Cig2_Cdc2 creation</value>
+</property>
+<property name="Expression">
+<value>k5.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>1</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Cdc2Phos">
+<property name="Name">
+<value>Cdc2 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>G2K.NumberConc * kwee.Value - k25.Value * PG2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>-1</value>
+</value>
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>1</value>
+</value>
+<value>
+<value>Wee1</value>
+<value>Variable:/Cell:Wee1</value>
+<value>0</value>
+</value>
+<value>
+<value>Cdc25</value>
+<value>Variable:/Cell:Cdc25</value>
+<value>0</value>
+</value>
+<value>
+<value>kwee</value>
+<value>Variable:/SBMLParameter:kwee</value>
+<value>0</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G2R_Creation">
+<property name="Name">
+<value>binding of Rum1 with Cdc13_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G2K.NumberConc * k7.Value * R.NumberConc - G2R.NumberConc * k7r.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>1</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>k7r</value>
+<value>Variable:/SBMLParameter:k7r</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PG2R_Creation">
+<property name="Name">
+<value>binding of Rum1 with Cdc13_P-Cdc2</value>
+</property>
+<property name="Expression">
+<value>k7.Value * PG2.NumberConc * R.NumberConc - k7r.Value * PG2R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>1</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+<value>
+<value>k7r</value>
+<value>Variable:/SBMLParameter:k7r</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rum1DegInG2R">
+<property name="Name">
+<value>Rum1 degradation in Rum1_Cdc13_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G2R.NumberConc * k4.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rum1Deg">
+<property name="Name">
+<value>Rum1 degradation in solution</value>
+</property>
+<property name="Expression">
+<value>k4.Value * R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rum1DegInPG2R">
+<property name="Name">
+<value>Rum1 degradation in Rum1_Cdc13_P-Cdc2</value>
+</property>
+<property name="Expression">
+<value>k4.Value * PG2R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="RumDegInG1R">
+<property name="Name">
+<value>Rum1 degradation in Rum1_Cig2_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G1R.NumberConc * k4.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1R</value>
+<value>Variable:/Cell:G1R</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>1</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G2K_dissoc">
+<property name="Name">
+<value>Cdc13 degradation in Cdc13_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G2K.NumberConc * k2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>-1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PG2_dissoc">
+<property name="Name">
+<value>Cdc13 degradation in Cdc13_P-Cdc2</value>
+</property>
+<property name="Expression">
+<value>k2.Value * PG2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>-1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G1K_Dissociation">
+<property name="Name">
+<value>Cig2 degradation in Cig2_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G1K.NumberConc * k6.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>-1</value>
+</value>
+<value>
+<value>UbE2</value>
+<value>Variable:/Cell:UbE2</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PG2R_Dissociation">
+<property name="Name">
+<value>Cdc13 degradation in Rum1_Cdc13_P-Cdc2</value>
+</property>
+<property name="Expression">
+<value>k2prime.Value * PG2R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>k2prime</value>
+<value>Variable:/SBMLParameter:k2prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G2R_Dissociation">
+<property name="Name">
+<value>Cdc13 degradation in Rum1_Cdc13_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G2R.NumberConc * k2prime.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>k2prime</value>
+<value>Variable:/SBMLParameter:k2prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G1R_Dissociation">
+<property name="Name">
+<value>Cig2 degradation in Rum1_Cig2_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G1R.NumberConc * k6prime.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1R</value>
+<value>Variable:/Cell:G1R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>k6prime</value>
+<value>Variable:/SBMLParameter:k6prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G1R_Binding">
+<property name="Name">
+<value>Binding of Rum1 to Cig2_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G1K.NumberConc * k8.Value * R.NumberConc - G1R.NumberConc * k8r.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>G1R</value>
+<value>Variable:/Cell:G1R</value>
+<value>1</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>k8r</value>
+<value>Variable:/SBMLParameter:k8r</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G2R_Dissociation_UbE">
+<property name="Name">
+<value>UbE mediated degradation of Cdc13_Cdc2 in Rum1_Cdc13_Cdc2</value>
+</property>
+<property name="Expression">
+<value>G2R.NumberConc * k2.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PG2R_Dissociation_UbE">
+<property name="Name">
+<value>UbE mediated degradation of Cdc13_Cdc2 in Rum1_Cdc13_P-Cdc2</value>
+</property>
+<property name="Expression">
+<value>k2.Value * PG2R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>-1</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rum1_Production">
+<property name="Name">
+<value>Rum1 creation</value>
+</property>
+<property name="Expression">
+<value>k3.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rum1_Deg_SPF">
+<property name="Name">
+<value>Rum1 degradation by SPF</value>
+</property>
+<property name="Expression">
+<value>kp.Value * Mass.Value * R.NumberConc * SPF.NumberConc / (Kmp.Value + R.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>SPF</value>
+<value>Variable:/Cell:SPF</value>
+<value>0</value>
+</value>
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>0</value>
+</value>
+<value>
+<value>Mass</value>
+<value>Variable:/SBMLParameter:Mass</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmp</value>
+<value>Variable:/SBMLParameter:Kmp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="IE_Reaction">
+<property name="Name">
+<value>IE production &amp; degradation</value>
+</property>
+<property name="Expression">
+<value>IEB.NumberConc * ki.Value * MPF.NumberConc / (IEB.NumberConc + Kmi.Value) - IE.NumberConc * kir.Value / (IE.NumberConc + Kmir.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IEB</value>
+<value>Variable:/Cell:IEB</value>
+<value>-1</value>
+</value>
+<value>
+<value>IE</value>
+<value>Variable:/Cell:IE</value>
+<value>1</value>
+</value>
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>0</value>
+</value>
+<value>
+<value>ki</value>
+<value>Variable:/SBMLParameter:ki</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmi</value>
+<value>Variable:/SBMLParameter:Kmi</value>
+<value>0</value>
+</value>
+<value>
+<value>kir</value>
+<value>Variable:/SBMLParameter:kir</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmir</value>
+<value>Variable:/SBMLParameter:Kmir</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="UbE_Reaction">
+<property name="Name">
+<value>UbE production &amp; degradation</value>
+</property>
+<property name="Expression">
+<value>IE.NumberConc * ku.Value * UbEB.NumberConc / (Kmu.Value + UbEB.NumberConc) - kur.Value * UbE.NumberConc / (Kmur.Value + UbE.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbEB</value>
+<value>Variable:/Cell:UbEB</value>
+<value>-1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>1</value>
+</value>
+<value>
+<value>IE</value>
+<value>Variable:/Cell:IE</value>
+<value>0</value>
+</value>
+<value>
+<value>ku</value>
+<value>Variable:/SBMLParameter:ku</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmu</value>
+<value>Variable:/SBMLParameter:Kmu</value>
+<value>0</value>
+</value>
+<value>
+<value>kur</value>
+<value>Variable:/SBMLParameter:kur</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmur</value>
+<value>Variable:/SBMLParameter:Kmur</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="UbE2_Reaction">
+<property name="Name">
+<value>UbE2 production &amp; degradation</value>
+</property>
+<property name="Expression">
+<value>ku2.Value * MPF.NumberConc * UbE2B.NumberConc / (Kmu2.Value + UbE2B.NumberConc) - kur2.Value * UbE2.NumberConc / (Kmur2.Value + UbE2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbE2B</value>
+<value>Variable:/Cell:UbE2B</value>
+<value>-1</value>
+</value>
+<value>
+<value>UbE2</value>
+<value>Variable:/Cell:UbE2</value>
+<value>1</value>
+</value>
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>0</value>
+</value>
+<value>
+<value>ku2</value>
+<value>Variable:/SBMLParameter:ku2</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmu2</value>
+<value>Variable:/SBMLParameter:Kmu2</value>
+<value>0</value>
+</value>
+<value>
+<value>kur2</value>
+<value>Variable:/SBMLParameter:kur2</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmur2</value>
+<value>Variable:/SBMLParameter:Kmur2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Wee1_Reaction">
+<property name="Name">
+<value>Wee1 production &amp; degradation</value>
+</property>
+<property name="Expression">
+<value>kwr.Value * Wee1B.NumberConc / (Kmwr.Value + Wee1B.NumberConc) - kw.Value * MPF.NumberConc * Wee1.NumberConc / (Kmw.Value + Wee1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Wee1B</value>
+<value>Variable:/Cell:Wee1B</value>
+<value>-1</value>
+</value>
+<value>
+<value>Wee1</value>
+<value>Variable:/Cell:Wee1</value>
+<value>1</value>
+</value>
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>0</value>
+</value>
+<value>
+<value>kwr</value>
+<value>Variable:/SBMLParameter:kwr</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmwr</value>
+<value>Variable:/SBMLParameter:Kmwr</value>
+<value>0</value>
+</value>
+<value>
+<value>kw</value>
+<value>Variable:/SBMLParameter:kw</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmw</value>
+<value>Variable:/SBMLParameter:Kmw</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Cdc25_Reaction">
+<property name="Name">
+<value>Cdc25 production &amp; degradation</value>
+</property>
+<property name="Expression">
+<value>Cdc25B.NumberConc * kc.Value * MPF.NumberConc / (Cdc25B.NumberConc + Kmc.Value) - Cdc25.NumberConc * kcr.Value / (Cdc25.NumberConc + Kmcr.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc25B</value>
+<value>Variable:/Cell:Cdc25B</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cdc25</value>
+<value>Variable:/Cell:Cdc25</value>
+<value>1</value>
+</value>
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>0</value>
+</value>
+<value>
+<value>kc</value>
+<value>Variable:/SBMLParameter:kc</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmc</value>
+<value>Variable:/SBMLParameter:Kmc</value>
+<value>0</value>
+</value>
+<value>
+<value>kcr</value>
+<value>Variable:/SBMLParameter:kcr</value>
+<value>0</value>
+</value>
+<value>
+<value>Kmcr</value>
+<value>Variable:/SBMLParameter:Kmcr</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="UbE">
+<property name="Name">
+<value>ubiquitinProtease1</value>
+</property>
+<property name="Value">
+<value>0.11</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UbE2">
+<property name="Name">
+<value>ubiquitinProtease2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Wee1">
+<property name="Name">
+<value>Wee1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc25">
+<property name="Name">
+<value>Cdc25</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2K">
+<property name="Name">
+<value>Cdc13_Cdc2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>FreeRum1</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1K">
+<property name="Name">
+<value>Cig2_Cdc2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IE">
+<property name="Name">
+<value>IntermediaryEnzyme</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PG2">
+<property name="Name">
+<value>Cdc13_P-Cdc2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G1R">
+<property name="Name">
+<value>Cig2_Cdc2_Rum1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G2R">
+<property name="Name">
+<value>Cdc13_Cdc2_Rum1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PG2R">
+<property name="Name">
+<value>Cdc13_P-Cdc2_Rum1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SPF">
+<property name="Name">
+<value>S-phasePromotingFactor</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MPF">
+<property name="Name">
+<value>M-phasePromotingFactor</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IEB">
+<property name="Name">
+<value>BoundIntermediaryEnzyme</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UbEB">
+<property name="Name">
+<value>BoundUbiquitinProtease1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UbE2B">
+<property name="Name">
+<value>BoundUbiquitinProtease2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Wee1B">
+<property name="Name">
+<value>BoundWee1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc25B">
+<property name="Name">
+<value>BoundCdc25</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Rum1Total">
+<property name="Name">
+<value>TotalRum1</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdc13Total">
+<property name="Name">
+<value>TotalCdc13</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cig2Total">
+<property name="Name">
+<value>TotalCig2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="mu">
+<property name="Name">
+<value>mu</value>
+</property>
+<property name="Value">
+<value>0.00495</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Mass">
+<property name="Name">
+<value>Mass</value>
+</property>
+<property name="Value">
+<value>0.49</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.015</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2prime">
+<property name="Name">
+<value>k2'</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>0.09375</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>0.1875</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>0.00175</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6prime">
+<property name="Name">
+<value>k6'</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7r">
+<property name="Name">
+<value>k7r</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8r">
+<property name="Name">
+<value>k8r</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc">
+<property name="Name">
+<value>kc</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcr">
+<property name="Name">
+<value>kcr</value>
+</property>
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ki">
+<property name="Name">
+<value>ki</value>
+</property>
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kir">
+<property name="Name">
+<value>kir</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp">
+<property name="Name">
+<value>kp</value>
+</property>
+<property name="Value">
+<value>3.25</value>
+</property>
+</variable>
+<variable class="Variable" id="ku">
+<property name="Name">
+<value>ku</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kur">
+<property name="Name">
+<value>kur</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ku2">
+<property name="Name">
+<value>ku2</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kur2">
+<property name="Name">
+<value>kur2</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kw">
+<property name="Name">
+<value>kw</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kwr">
+<property name="Name">
+<value>kwr</value>
+</property>
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V2">
+<property name="Name">
+<value>V2</value>
+</property>
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V2prime">
+<property name="Name">
+<value>V2'</value>
+</property>
+<property name="Value">
+<value>0.0075</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V6">
+<property name="Name">
+<value>V6</value>
+</property>
+<property name="Value">
+<value>7.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V6prime">
+<property name="Name">
+<value>V6'</value>
+</property>
+<property name="Value">
+<value>0.0375</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V25">
+<property name="Name">
+<value>V25</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V25prime">
+<property name="Name">
+<value>V25'</value>
+</property>
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vw">
+<property name="Name">
+<value>Vw</value>
+</property>
+<property name="Value">
+<value>0.35</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vwprime">
+<property name="Name">
+<value>Vw'</value>
+</property>
+<property name="Value">
+<value>0.035</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmc">
+<property name="Name">
+<value>Kmc</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmcr">
+<property name="Name">
+<value>Kmcr</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmi">
+<property name="Name">
+<value>Kmi</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmir">
+<property name="Name">
+<value>Kmir</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmp">
+<property name="Name">
+<value>Kmp</value>
+</property>
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmu">
+<property name="Name">
+<value>Kmu</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmur">
+<property name="Name">
+<value>Kmur</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmu2">
+<property name="Name">
+<value>Kmu2</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmur2">
+<property name="Name">
+<value>Kmur2</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmw">
+<property name="Name">
+<value>Kmw</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kmwr">
+<property name="Name">
+<value>Kmwr</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha">
+<property name="Name">
+<value>alpha</value>
+</property>
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta">
+<property name="Name">
+<value>beta</value>
+</property>
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Cig1">
+<property name="Name">
+<value>Cig1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>0.034175</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>0.0375</value>
+</property>
+</variable>
+<variable class="Variable" id="kwee">
+<property name="Name">
+<value>kwee</value>
+</property>
+<property name="Value">
+<value>0.035</value>
+</property>
+</variable>
+<variable class="Variable" id="k25">
+<property name="Name">
+<value>k25</value>
+</property>
+<property name="Value">
+<value>0.025</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_Mass">
+<property name="Name">
+<value>Rate rule for 'Mass'</value>
+</property>
+<property name="Expression">
+<value>Mass.NumberConc * mu.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mass</value>
+<value>Variable:/SBMLParameter:Mass</value>
+<value>1</value>
+</value>
+<value>
+<value>mu</value>
+<value>Variable:/SBMLParameter:mu</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_IEB">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'IEB'</value>
+</property>
+<property name="Expression">
+<value>1 - IE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IEB</value>
+<value>Variable:/Cell:IEB</value>
+<value>1</value>
+</value>
+<value>
+<value>IE</value>
+<value>Variable:/Cell:IE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_UbEB">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'UbEB'</value>
+</property>
+<property name="Expression">
+<value>1 - UbE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbEB</value>
+<value>Variable:/Cell:UbEB</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_UbE2B">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'UbE2B'</value>
+</property>
+<property name="Expression">
+<value>1 - UbE2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbE2B</value>
+<value>Variable:/Cell:UbE2B</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE2</value>
+<value>Variable:/Cell:UbE2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Wee1B">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Wee1B'</value>
+</property>
+<property name="Expression">
+<value>1 - Wee1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Wee1B</value>
+<value>Variable:/Cell:Wee1B</value>
+<value>1</value>
+</value>
+<value>
+<value>Wee1</value>
+<value>Variable:/Cell:Wee1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Cdc25B">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Cdc25B'</value>
+</property>
+<property name="Expression">
+<value>1 - Cdc25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc25B</value>
+<value>Variable:/Cell:Cdc25B</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc25</value>
+<value>Variable:/Cell:Cdc25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Rum1Total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Rum1Total'</value>
+</property>
+<property name="Expression">
+<value>G1R.NumberConc + G2R.NumberConc + PG2R.NumberConc + R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Rum1Total</value>
+<value>Variable:/Cell:Rum1Total</value>
+<value>1</value>
+</value>
+<value>
+<value>G1R</value>
+<value>Variable:/Cell:G1R</value>
+<value>0</value>
+</value>
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>0</value>
+</value>
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>0</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Cdc13Total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Cdc13Total'</value>
+</property>
+<property name="Expression">
+<value>G2K.NumberConc + G2R.NumberConc + PG2.NumberConc + PG2R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdc13Total</value>
+<value>Variable:/Cell:Cdc13Total</value>
+<value>1</value>
+</value>
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>0</value>
+</value>
+<value>
+<value>G2R</value>
+<value>Variable:/Cell:G2R</value>
+<value>0</value>
+</value>
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>0</value>
+</value>
+<value>
+<value>PG2R</value>
+<value>Variable:/Cell:PG2R</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Cig2Total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Cig2Total'</value>
+</property>
+<property name="Expression">
+<value>G1K.NumberConc + G1R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cig2Total</value>
+<value>Variable:/Cell:Cig2Total</value>
+<value>1</value>
+</value>
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>0</value>
+</value>
+<value>
+<value>G1R</value>
+<value>Variable:/Cell:G1R</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k2'</value>
+</property>
+<property name="Expression">
+<value>UbE.NumberConc * V2.NumberConc + (1 - UbE.NumberConc) * V2prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>V2</value>
+<value>Variable:/SBMLParameter:V2</value>
+<value>0</value>
+</value>
+<value>
+<value>V2prime</value>
+<value>Variable:/SBMLParameter:V2prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k6">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k6'</value>
+</property>
+<property name="Expression">
+<value>UbE2.NumberConc * V6.NumberConc + (1 - UbE2.NumberConc) * V6prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE2</value>
+<value>Variable:/Cell:UbE2</value>
+<value>0</value>
+</value>
+<value>
+<value>V6</value>
+<value>Variable:/SBMLParameter:V6</value>
+<value>0</value>
+</value>
+<value>
+<value>V6prime</value>
+<value>Variable:/SBMLParameter:V6prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_kwee">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kwee'</value>
+</property>
+<property name="Expression">
+<value>Vwprime.NumberConc * (1 - Wee1.NumberConc) + Vw.NumberConc * Wee1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kwee</value>
+<value>Variable:/SBMLParameter:kwee</value>
+<value>1</value>
+</value>
+<value>
+<value>Vwprime</value>
+<value>Variable:/SBMLParameter:Vwprime</value>
+<value>0</value>
+</value>
+<value>
+<value>Wee1</value>
+<value>Variable:/Cell:Wee1</value>
+<value>0</value>
+</value>
+<value>
+<value>Vw</value>
+<value>Variable:/SBMLParameter:Vw</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k25">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k25'</value>
+</property>
+<property name="Expression">
+<value>Cdc25.NumberConc * V25.NumberConc + (1 - Cdc25.NumberConc) * V25prime.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>1</value>
+</value>
+<value>
+<value>Cdc25</value>
+<value>Variable:/Cell:Cdc25</value>
+<value>0</value>
+</value>
+<value>
+<value>V25</value>
+<value>Variable:/SBMLParameter:V25</value>
+<value>0</value>
+</value>
+<value>
+<value>V25prime</value>
+<value>Variable:/SBMLParameter:V25prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_MPF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'MPF'</value>
+</property>
+<property name="Expression">
+<value>G2K.NumberConc + beta.NumberConc * PG2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>1</value>
+</value>
+<value>
+<value>G2K</value>
+<value>Variable:/Cell:G2K</value>
+<value>0</value>
+</value>
+<value>
+<value>beta</value>
+<value>Variable:/SBMLParameter:beta</value>
+<value>0</value>
+</value>
+<value>
+<value>PG2</value>
+<value>Variable:/Cell:PG2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_SPF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'SPF'</value>
+</property>
+<property name="Expression">
+<value>Cig1.NumberConc + alpha.NumberConc * G1K.NumberConc + MPF.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SPF</value>
+<value>Variable:/Cell:SPF</value>
+<value>1</value>
+</value>
+<value>
+<value>Cig1</value>
+<value>Variable:/SBMLParameter:Cig1</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>G1K</value>
+<value>Variable:/Cell:G1K</value>
+<value>0</value>
+</value>
+<value>
+<value>MPF</value>
+<value>Variable:/Cell:MPF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="Start">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Start</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>kp</value>
+<value>kp.NumberConc / 2</value>
+</value>
+</property>
+<property name="Trigger">
+<value>geq(SPF.NumberConc, 0.1)</value>
+</property>
+<property name="Delay">
+<value>60</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>1</value>
+</value>
+<value>
+<value>SPF</value>
+<value>Variable:/Cell:SPF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="Division">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Division</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>kp</value>
+<value>2 * kp.NumberConc</value>
+</value>
+<value>
+<value>Mass</value>
+<value>Mass.NumberConc / 2</value>
+</value>
+</property>
+<property name="Trigger">
+<value>leq(UbE.NumberConc, 0.1)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>1</value>
+</value>
+<value>
+<value>Mass</value>
+<value>Variable:/SBMLParameter:Mass</value>
+<value>1</value>
+</value>
+<value>
+<value>UbE</value>
+<value>Variable:/Cell:UbE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

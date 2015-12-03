@@ -1,0 +1,2266 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="r1">
+<property name="Name">
+<value>-&gt; [IAAm]; { F1, F2, F3 };</value>
+</property>
+<property name="Expression">
+<value>phiIAAp.Value * (lambda1.Value * F1.NumberConc + F2.NumberConc + lambda3.Value * F3.NumberConc) - IAAm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IAAm</value>
+<value>Variable:/cell:IAAm</value>
+<value>1</value>
+</value>
+<value>
+<value>F1</value>
+<value>Variable:/cell:F1</value>
+<value>0</value>
+</value>
+<value>
+<value>F2</value>
+<value>Variable:/cell:F2</value>
+<value>0</value>
+</value>
+<value>
+<value>F3</value>
+<value>Variable:/cell:F3</value>
+<value>0</value>
+</value>
+<value>
+<value>phiIAAp</value>
+<value>Variable:/SBMLParameter:phiIAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>lambda1</value>
+<value>Variable:/SBMLParameter:lambda1</value>
+<value>0</value>
+</value>
+<value>
+<value>lambda3</value>
+<value>Variable:/SBMLParameter:lambda3</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; phiIAAp &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; lambda1 &lt;/ci&gt;#x0A          &lt;ci&gt; F1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; F2 &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; lambda3 &lt;/ci&gt;#x0A          &lt;ci&gt; F3 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; IAAm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r2">
+<property name="Name">
+<value>-&gt; [IAAp]; { IAAm, AuxTIR1, AuxTIAA, ARFIAA, ARF };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (deltaIAAp.Value * IAAm.NumberConc - la.Value * IAAp.NumberConc * AuxTIR1.NumberConc + ld.Value * AuxTIAA.NumberConc) + etaARFIAA.Value * (pd.Value * ARFIAA.NumberConc - pa.Value * IAAp.NumberConc * ARF.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>1</value>
+</value>
+<value>
+<value>IAAm</value>
+<value>Variable:/cell:IAAm</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIR1</value>
+<value>Variable:/cell:AuxTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIAA</value>
+<value>Variable:/cell:AuxTIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>deltaIAAp</value>
+<value>Variable:/SBMLParameter:deltaIAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>la</value>
+<value>Variable:/SBMLParameter:la</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>etaARFIAA</value>
+<value>Variable:/SBMLParameter:etaARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>pd</value>
+<value>Variable:/SBMLParameter:pd</value>
+<value>0</value>
+</value>
+<value>
+<value>pa</value>
+<value>Variable:/SBMLParameter:pa</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; eps &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; deltaIAAp &lt;/ci&gt;#x0A            &lt;ci&gt; IAAm &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; la &lt;/ci&gt;#x0A            &lt;ci&gt; IAAp &lt;/ci&gt;#x0A            &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ld &lt;/ci&gt;#x0A          &lt;ci&gt; AuxTIAA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; etaARFIAA &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; pd &lt;/ci&gt;#x0A          &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; pa &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r3">
+<property name="Name">
+<value>-&gt; [AuxTIR1]; { Aux, TIR1, AuxTIAA, IAAp };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (ka.Value * Aux.NumberConc * TIR1.NumberConc - kd.Value * AuxTIR1.NumberConc + (ld.Value + 1) * AuxTIAA.NumberConc - la.Value * AuxTIR1.NumberConc * IAAp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AuxTIR1</value>
+<value>Variable:/cell:AuxTIR1</value>
+<value>1</value>
+</value>
+<value>
+<value>Aux</value>
+<value>Variable:/cell:Aux</value>
+<value>0</value>
+</value>
+<value>
+<value>TIR1</value>
+<value>Variable:/cell:TIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIAA</value>
+<value>Variable:/cell:AuxTIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>kd</value>
+<value>Variable:/SBMLParameter:kd</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>la</value>
+<value>Variable:/SBMLParameter:la</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; ka &lt;/ci&gt;#x0A            &lt;ci&gt; Aux &lt;/ci&gt;#x0A            &lt;ci&gt; TIR1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; kd &lt;/ci&gt;#x0A            &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; ld &lt;/ci&gt;#x0A            &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; AuxTIAA &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; la &lt;/ci&gt;#x0A        &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A        &lt;ci&gt; IAAp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r4">
+<property name="Name">
+<value>-&gt; [AuxTIAA]; { AuxTIAA, IAAp, AuxTIR1 };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (la.Value * IAAp.NumberConc * AuxTIR1.NumberConc - (ld.Value + 1) * AuxTIAA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AuxTIAA</value>
+<value>Variable:/cell:AuxTIAA</value>
+<value>1</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIR1</value>
+<value>Variable:/cell:AuxTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>la</value>
+<value>Variable:/SBMLParameter:la</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; la &lt;/ci&gt;#x0A        &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;apply&gt;#x0A          &lt;plus/&gt;#x0A          &lt;ci&gt; ld &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; AuxTIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r5">
+<property name="Name">
+<value>-&gt; [IAAs]; { AuxTIAA };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (AuxTIAA.NumberConc - muIAAs.Value * IAAs.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IAAs</value>
+<value>Variable:/cell:IAAs</value>
+<value>1</value>
+</value>
+<value>
+<value>AuxTIAA</value>
+<value>Variable:/cell:AuxTIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>muIAAs</value>
+<value>Variable:/SBMLParameter:muIAAs</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; AuxTIAA &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; muIAAs &lt;/ci&gt;#x0A        &lt;ci&gt; IAAs &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r6">
+<property name="Name">
+<value>-&gt; [ARFIAA]; { ARF, IAAp };</value>
+</property>
+<property name="Expression">
+<value>pa.Value * ARF.NumberConc * IAAp.NumberConc - pd.Value * ARFIAA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>pa</value>
+<value>Variable:/SBMLParameter:pa</value>
+<value>0</value>
+</value>
+<value>
+<value>pd</value>
+<value>Variable:/SBMLParameter:pd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; pa &lt;/ci&gt;#x0A      &lt;ci&gt; ARF &lt;/ci&gt;#x0A      &lt;ci&gt; IAAp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; pd &lt;/ci&gt;#x0A      &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r7">
+<property name="Name">
+<value>-&gt; [ARF2]; { ARF };</value>
+</property>
+<property name="Expression">
+<value>qa.Value * pow(ARF.NumberConc, 2) - qd.Value * ARF2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>qa</value>
+<value>Variable:/SBMLParameter:qa</value>
+<value>0</value>
+</value>
+<value>
+<value>qd</value>
+<value>Variable:/SBMLParameter:qd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; qa &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;power/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; qd &lt;/ci&gt;#x0A      &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r8">
+<property name="Name">
+<value>-&gt; [Aux]; { TIR1, AuxTIR1 };</value>
+</property>
+<property name="Expression">
+<value>muAux.Value * (alphaAux.Value - Aux.NumberConc) - 1 / eps.Value * etaAuxTIR1.Value * (ka.Value * Aux.NumberConc * TIR1.NumberConc - kd.Value * AuxTIR1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Aux</value>
+<value>Variable:/cell:Aux</value>
+<value>1</value>
+</value>
+<value>
+<value>TIR1</value>
+<value>Variable:/cell:TIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIR1</value>
+<value>Variable:/cell:AuxTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>muAux</value>
+<value>Variable:/SBMLParameter:muAux</value>
+<value>0</value>
+</value>
+<value>
+<value>alphaAux</value>
+<value>Variable:/SBMLParameter:alphaAux</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>etaAuxTIR1</value>
+<value>Variable:/SBMLParameter:etaAuxTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>kd</value>
+<value>Variable:/SBMLParameter:kd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; muAux &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; alphaAux &lt;/ci&gt;#x0A        &lt;ci&gt; Aux &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;ci&gt; eps &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; etaAuxTIR1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ka &lt;/ci&gt;#x0A          &lt;ci&gt; Aux &lt;/ci&gt;#x0A          &lt;ci&gt; TIR1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; kd &lt;/ci&gt;#x0A          &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r9">
+<property name="Name">
+<value>-&gt; [PINm]; { F5a, F5b };</value>
+</property>
+<property name="Expression">
+<value>phiPINp.Value * (lambda1.Value * F5a.NumberConc + F5b.NumberConc) - PINm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PINm</value>
+<value>Variable:/cell:PINm</value>
+<value>1</value>
+</value>
+<value>
+<value>F5a</value>
+<value>Variable:/cell:F5a</value>
+<value>0</value>
+</value>
+<value>
+<value>F5b</value>
+<value>Variable:/cell:F5b</value>
+<value>0</value>
+</value>
+<value>
+<value>phiPINp</value>
+<value>Variable:/SBMLParameter:phiPINp</value>
+<value>0</value>
+</value>
+<value>
+<value>lambda1</value>
+<value>Variable:/SBMLParameter:lambda1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; phiPINp &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; lambda1 &lt;/ci&gt;#x0A          &lt;ci&gt; F5a &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; F5b &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; PINm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r10">
+<property name="Name">
+<value>-&gt; [PINp]; { PINm };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (deltaPINp.Value * PINm.NumberConc - PINp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PINp</value>
+<value>Variable:/cell:PINp</value>
+<value>1</value>
+</value>
+<value>
+<value>PINm</value>
+<value>Variable:/cell:PINm</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>deltaPINp</value>
+<value>Variable:/SBMLParameter:deltaPINp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; deltaPINp &lt;/ci&gt;#x0A        &lt;ci&gt; PINm &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; PINp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r11">
+<property name="Name">
+<value>-&gt; [ARm]; { F5a, F5b };</value>
+</property>
+<property name="Expression">
+<value>phiARp.Value * (lambda1.Value * F5a.NumberConc + F5b.NumberConc) - ARm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARm</value>
+<value>Variable:/cell:ARm</value>
+<value>1</value>
+</value>
+<value>
+<value>F5a</value>
+<value>Variable:/cell:F5a</value>
+<value>0</value>
+</value>
+<value>
+<value>F5b</value>
+<value>Variable:/cell:F5b</value>
+<value>0</value>
+</value>
+<value>
+<value>phiARp</value>
+<value>Variable:/SBMLParameter:phiARp</value>
+<value>0</value>
+</value>
+<value>
+<value>lambda1</value>
+<value>Variable:/SBMLParameter:lambda1</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; phiARp &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; lambda1 &lt;/ci&gt;#x0A          &lt;ci&gt; F5a &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; F5b &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; ARm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r12">
+<property name="Name">
+<value>-&gt; [ARp]; { ARm };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (deltaARp.Value * ARm.NumberConc - ARp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARp</value>
+<value>Variable:/cell:ARp</value>
+<value>1</value>
+</value>
+<value>
+<value>ARm</value>
+<value>Variable:/cell:ARm</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>deltaARp</value>
+<value>Variable:/SBMLParameter:deltaARp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; deltaARp &lt;/ci&gt;#x0A        &lt;ci&gt; ARm &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; ARp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r13">
+<property name="Name">
+<value>-&gt; [CRm]; { F4 };</value>
+</property>
+<property name="Expression">
+<value>phiCRp.Value * F4.NumberConc - CRm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CRm</value>
+<value>Variable:/cell:CRm</value>
+<value>1</value>
+</value>
+<value>
+<value>F4</value>
+<value>Variable:/cell:F4</value>
+<value>0</value>
+</value>
+<value>
+<value>phiCRp</value>
+<value>Variable:/SBMLParameter:phiCRp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; phiCRp &lt;/ci&gt;#x0A      &lt;ci&gt; F4 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; CRm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r14">
+<property name="Name">
+<value>-&gt; [CRp]; { CRm };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (deltaCRp.Value * CRm.NumberConc - CRp.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CRp</value>
+<value>Variable:/cell:CRp</value>
+<value>1</value>
+</value>
+<value>
+<value>CRm</value>
+<value>Variable:/cell:CRm</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>deltaCRp</value>
+<value>Variable:/SBMLParameter:deltaCRp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; deltaCRp &lt;/ci&gt;#x0A        &lt;ci&gt; CRm &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; CRp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r15">
+<property name="Name">
+<value>-&gt; [AHKph]; { CkAHKph, Ck };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (rd.Value * CkAHKph.NumberConc - ra.Value * AHKph.NumberConc * Ck.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AHKph</value>
+<value>Variable:/cell:AHKph</value>
+<value>1</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>Ck</value>
+<value>Variable:/cell:Ck</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>rd</value>
+<value>Variable:/SBMLParameter:rd</value>
+<value>0</value>
+</value>
+<value>
+<value>ra</value>
+<value>Variable:/SBMLParameter:ra</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; rd &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ra &lt;/ci&gt;#x0A        &lt;ci&gt; AHKph &lt;/ci&gt;#x0A        &lt;ci&gt; Ck &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r16">
+<property name="Name">
+<value>-&gt; [Ck]; { AHKph, CkAHKph };</value>
+</property>
+<property name="Expression">
+<value>muCk.Value * (alphaCk.Value - Ck.NumberConc) - etaCkPh.Value / eps.Value * (ra.Value * AHKph.NumberConc * Ck.NumberConc - rd.Value * CkAHKph.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ck</value>
+<value>Variable:/cell:Ck</value>
+<value>1</value>
+</value>
+<value>
+<value>AHKph</value>
+<value>Variable:/cell:AHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>muCk</value>
+<value>Variable:/SBMLParameter:muCk</value>
+<value>0</value>
+</value>
+<value>
+<value>alphaCk</value>
+<value>Variable:/SBMLParameter:alphaCk</value>
+<value>0</value>
+</value>
+<value>
+<value>etaCkPh</value>
+<value>Variable:/SBMLParameter:etaCkPh</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>ra</value>
+<value>Variable:/SBMLParameter:ra</value>
+<value>0</value>
+</value>
+<value>
+<value>rd</value>
+<value>Variable:/SBMLParameter:rd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; muCk &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; alphaCk &lt;/ci&gt;#x0A        &lt;ci&gt; Ck &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; etaCkPh &lt;/ci&gt;#x0A        &lt;ci&gt; eps &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ra &lt;/ci&gt;#x0A          &lt;ci&gt; AHKph &lt;/ci&gt;#x0A          &lt;ci&gt; Ck &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; rd &lt;/ci&gt;#x0A          &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r17">
+<property name="Name">
+<value>-&gt; [ARRBph]; { CkAHKph, CkAHK, ARRBp };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (ua.Value * CkAHKph.NumberConc * ARRBp.NumberConc - ud.Value * CkAHK.NumberConc * ARRBph.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>1</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHK</value>
+<value>Variable:/cell:CkAHK</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRBp</value>
+<value>Variable:/cell:ARRBp</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>ua</value>
+<value>Variable:/SBMLParameter:ua</value>
+<value>0</value>
+</value>
+<value>
+<value>ud</value>
+<value>Variable:/SBMLParameter:ud</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ua &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A        &lt;ci&gt; ARRBp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; ud &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHK &lt;/ci&gt;#x0A        &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r18">
+<property name="Name">
+<value>-&gt; [ARRAph]; { CkAHKph, ARRAp, CkAHK, ARRAph };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (sa.Value * CkAHKph.NumberConc * ARRAp.NumberConc - sd.Value * CkAHK.NumberConc * ARRAph.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARRAph</value>
+<value>Variable:/cell:ARRAph</value>
+<value>1</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRAp</value>
+<value>Variable:/cell:ARRAp</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHK</value>
+<value>Variable:/cell:CkAHK</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>sa</value>
+<value>Variable:/SBMLParameter:sa</value>
+<value>0</value>
+</value>
+<value>
+<value>sd</value>
+<value>Variable:/SBMLParameter:sd</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; sa &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A        &lt;ci&gt; ARRAp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; sd &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHK &lt;/ci&gt;#x0A        &lt;ci&gt; ARRAph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r19">
+<property name="Name">
+<value>-&gt; [ARRAm]; { F6 };</value>
+</property>
+<property name="Expression">
+<value>phiARRAp.Value * F6.NumberConc - ARRAm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARRAm</value>
+<value>Variable:/cell:ARRAm</value>
+<value>1</value>
+</value>
+<value>
+<value>F6</value>
+<value>Variable:/cell:F6</value>
+<value>0</value>
+</value>
+<value>
+<value>phiARRAp</value>
+<value>Variable:/SBMLParameter:phiARRAp</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; phiARRAp &lt;/ci&gt;#x0A      &lt;ci&gt; F6 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; ARRAm &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="r20">
+<property name="Name">
+<value>-&gt; [ARRAp]; { ARRAm, CkAHK, ARRAph, CkAHKph };</value>
+</property>
+<property name="Expression">
+<value>1 / eps.Value * (deltaARRAp.Value * ARRAm.NumberConc - ARRAp.NumberConc + etaAHKph.Value * (sd.Value * CkAHK.NumberConc * ARRAph.NumberConc - sa.Value * CkAHKph.NumberConc * ARRAp.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARRAp</value>
+<value>Variable:/cell:ARRAp</value>
+<value>1</value>
+</value>
+<value>
+<value>ARRAm</value>
+<value>Variable:/cell:ARRAm</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHK</value>
+<value>Variable:/cell:CkAHK</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRAph</value>
+<value>Variable:/cell:ARRAph</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>eps</value>
+<value>Variable:/SBMLParameter:eps</value>
+<value>0</value>
+</value>
+<value>
+<value>deltaARRAp</value>
+<value>Variable:/SBMLParameter:deltaARRAp</value>
+<value>0</value>
+</value>
+<value>
+<value>etaAHKph</value>
+<value>Variable:/SBMLParameter:etaAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>sd</value>
+<value>Variable:/SBMLParameter:sd</value>
+<value>0</value>
+</value>
+<value>
+<value>sa</value>
+<value>Variable:/SBMLParameter:sa</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;ci&gt; eps &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; deltaARRAp &lt;/ci&gt;#x0A          &lt;ci&gt; ARRAm &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; ARRAp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; etaAHKph &lt;/ci&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; sd &lt;/ci&gt;#x0A            &lt;ci&gt; CkAHK &lt;/ci&gt;#x0A            &lt;ci&gt; ARRAph &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; sa &lt;/ci&gt;#x0A            &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A            &lt;ci&gt; ARRAp &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="IAAm">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IAAp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AuxTIR1">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AuxTIAA">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IAAs">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARFIAA">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARF2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Aux">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PINm">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PINp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARm">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TIR1">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARF">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CRm">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CRp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AHKph">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ck">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARRBph">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARRAph">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARRAm">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARRAp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ARRBp">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CkAHKph">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CkAHK">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F1">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F3">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F4">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F5a">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F5b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="eps">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lambda1">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="lambda3">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaAux">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaTIR1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaARF">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phiIAAp">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phiARp">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phiPINp">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="deltaIAAp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="deltaARp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="deltaPINp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="muAux">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="muIAAs">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="etaAuxTIR1">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="etaARFIAA">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="la">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ld">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pa">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pd">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qa">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="qd">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thetaARF">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thetaARF2">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thARFIAA">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thetaIAAp">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thetaARp">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="psiARFIAA">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="psiARF">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaCk">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaARRB">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaAHK">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alphaPH">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phiCRp">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phiARRAp">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="deltaCRp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="deltaARRAp">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="muCk">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="etaAHKph">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="etaCkPh">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ra">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rd">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ua">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ud">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sa">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sd">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thARRAph">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="thARRBph">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_TIR1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'TIR1'</value>
+</property>
+<property name="Expression">
+<value>alphaTIR1.NumberConc - AuxTIR1.NumberConc - AuxTIAA.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; alphaTIR1 &lt;/ci&gt;#x0A      &lt;ci&gt; AuxTIR1 &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; AuxTIAA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TIR1</value>
+<value>Variable:/cell:TIR1</value>
+<value>1</value>
+</value>
+<value>
+<value>alphaTIR1</value>
+<value>Variable:/SBMLParameter:alphaTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIR1</value>
+<value>Variable:/cell:AuxTIR1</value>
+<value>0</value>
+</value>
+<value>
+<value>AuxTIAA</value>
+<value>Variable:/cell:AuxTIAA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ARF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ARF'</value>
+</property>
+<property name="Expression">
+<value>alphaARF.NumberConc - 2 * ARF2.NumberConc - ARFIAA.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; alphaARF &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>1</value>
+</value>
+<value>
+<value>alphaARF</value>
+<value>Variable:/SBMLParameter:alphaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_ARRBp">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'ARRBp'</value>
+</property>
+<property name="Expression">
+<value>alphaARRB.NumberConc - etaAHKph.NumberConc * ARRBph.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; alphaARRB &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; etaAHKph &lt;/ci&gt;#x0A      &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ARRBp</value>
+<value>Variable:/cell:ARRBp</value>
+<value>1</value>
+</value>
+<value>
+<value>alphaARRB</value>
+<value>Variable:/SBMLParameter:alphaARRB</value>
+<value>0</value>
+</value>
+<value>
+<value>etaAHKph</value>
+<value>Variable:/SBMLParameter:etaAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CkAHKph">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CkAHKph'</value>
+</property>
+<property name="Expression">
+<value>alphaPH.NumberConc - AHKph.NumberConc - ARRAph.NumberConc - ARRBph.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; alphaPH &lt;/ci&gt;#x0A        &lt;ci&gt; AHKph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; ARRAph &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>1</value>
+</value>
+<value>
+<value>alphaPH</value>
+<value>Variable:/SBMLParameter:alphaPH</value>
+<value>0</value>
+</value>
+<value>
+<value>AHKph</value>
+<value>Variable:/cell:AHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRAph</value>
+<value>Variable:/cell:ARRAph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_CkAHK">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CkAHK'</value>
+</property>
+<property name="Expression">
+<value>alphaAHK.NumberConc - etaAHKph.NumberConc * (AHKph.NumberConc + CkAHKph.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;ci&gt; alphaAHK &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; etaAHKph &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; AHKph &lt;/ci&gt;#x0A        &lt;ci&gt; CkAHKph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CkAHK</value>
+<value>Variable:/cell:CkAHK</value>
+<value>1</value>
+</value>
+<value>
+<value>alphaAHK</value>
+<value>Variable:/SBMLParameter:alphaAHK</value>
+<value>0</value>
+</value>
+<value>
+<value>etaAHKph</value>
+<value>Variable:/SBMLParameter:etaAHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>AHKph</value>
+<value>Variable:/cell:AHKph</value>
+<value>0</value>
+</value>
+<value>
+<value>CkAHKph</value>
+<value>Variable:/cell:CkAHKph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F1'</value>
+</property>
+<property name="Expression">
+<value>ARF.NumberConc / thetaARF.NumberConc / (1 + ARF.NumberConc / thetaARF.NumberConc + ARF2.NumberConc / thetaARF2.NumberConc + ARFIAA.NumberConc / thARFIAA.NumberConc + ARF.NumberConc * IAAp.NumberConc / psiARFIAA.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc + ARRBph.NumberConc / thARRBph.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ARF &lt;/ci&gt;#x0A      &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;ci&gt; thARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A        &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F1</value>
+<value>Variable:/cell:F1</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF</value>
+<value>Variable:/SBMLParameter:thetaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF2</value>
+<value>Variable:/SBMLParameter:thetaARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>thARFIAA</value>
+<value>Variable:/SBMLParameter:thARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARFIAA</value>
+<value>Variable:/SBMLParameter:psiARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARF</value>
+<value>Variable:/SBMLParameter:psiARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>thARRBph</value>
+<value>Variable:/SBMLParameter:thARRBph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F2'</value>
+</property>
+<property name="Expression">
+<value>(ARF2.NumberConc / thetaARF2.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc) / (1 + ARF.NumberConc / thetaARF.NumberConc + ARF2.NumberConc / thetaARF2.NumberConc + ARFIAA.NumberConc / thARFIAA.NumberConc + ARF.NumberConc * IAAp.NumberConc / psiARFIAA.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc + ARRBph.NumberConc / thARRBph.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;ci&gt; thARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A        &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F2</value>
+<value>Variable:/cell:F2</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF2</value>
+<value>Variable:/SBMLParameter:thetaARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARF</value>
+<value>Variable:/SBMLParameter:psiARF</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF</value>
+<value>Variable:/SBMLParameter:thetaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>thARFIAA</value>
+<value>Variable:/SBMLParameter:thARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARFIAA</value>
+<value>Variable:/SBMLParameter:psiARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>thARRBph</value>
+<value>Variable:/SBMLParameter:thARRBph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F3">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F3'</value>
+</property>
+<property name="Expression">
+<value>ARRBph.NumberConc / thARRBph.NumberConc / (1 + ARF.NumberConc / thetaARF.NumberConc + ARF2.NumberConc / thetaARF2.NumberConc + ARFIAA.NumberConc / thARFIAA.NumberConc + ARF.NumberConc * IAAp.NumberConc / psiARFIAA.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc + ARRBph.NumberConc / thARRBph.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A      &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;ci&gt; thARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A        &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F3</value>
+<value>Variable:/cell:F3</value>
+<value>1</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>thARRBph</value>
+<value>Variable:/SBMLParameter:thARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF</value>
+<value>Variable:/SBMLParameter:thetaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF2</value>
+<value>Variable:/SBMLParameter:thetaARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>thARFIAA</value>
+<value>Variable:/SBMLParameter:thARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARFIAA</value>
+<value>Variable:/SBMLParameter:psiARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARF</value>
+<value>Variable:/SBMLParameter:psiARF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F4">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F4'</value>
+</property>
+<property name="Expression">
+<value>ARRBph.NumberConc / thARRBph.NumberConc / (1 + ARRAph.NumberConc / thARRAph.NumberConc + ARRBph.NumberConc / thARRBph.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A      &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARRAph &lt;/ci&gt;#x0A        &lt;ci&gt; thARRAph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARRBph &lt;/ci&gt;#x0A        &lt;ci&gt; thARRBph &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F4</value>
+<value>Variable:/cell:F4</value>
+<value>1</value>
+</value>
+<value>
+<value>ARRBph</value>
+<value>Variable:/cell:ARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>thARRBph</value>
+<value>Variable:/SBMLParameter:thARRBph</value>
+<value>0</value>
+</value>
+<value>
+<value>ARRAph</value>
+<value>Variable:/cell:ARRAph</value>
+<value>0</value>
+</value>
+<value>
+<value>thARRAph</value>
+<value>Variable:/SBMLParameter:thARRAph</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F5a">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F5a'</value>
+</property>
+<property name="Expression">
+<value>ARF.NumberConc / thetaARF.NumberConc / (1 + ARF.NumberConc / thetaARF.NumberConc + ARF2.NumberConc / thetaARF2.NumberConc + ARFIAA.NumberConc / thARFIAA.NumberConc + ARF.NumberConc * IAAp.NumberConc / psiARFIAA.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ARF &lt;/ci&gt;#x0A      &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;ci&gt; thARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F5a</value>
+<value>Variable:/cell:F5a</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF</value>
+<value>Variable:/SBMLParameter:thetaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF2</value>
+<value>Variable:/SBMLParameter:thetaARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>thARFIAA</value>
+<value>Variable:/SBMLParameter:thARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARFIAA</value>
+<value>Variable:/SBMLParameter:psiARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARF</value>
+<value>Variable:/SBMLParameter:psiARF</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F5b">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F5b'</value>
+</property>
+<property name="Expression">
+<value>(ARF2.NumberConc / thetaARF2.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc) / (1 + ARF.NumberConc / thetaARF.NumberConc + ARF2.NumberConc / thetaARF2.NumberConc + ARFIAA.NumberConc / thARFIAA.NumberConc + ARF.NumberConc * IAAp.NumberConc / psiARFIAA.NumberConc + pow(ARF.NumberConc, 2) / psiARF.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARF2 &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARF2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARFIAA &lt;/ci&gt;#x0A        &lt;ci&gt; thARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;ci&gt; IAAp &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARFIAA &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;apply&gt;#x0A          &lt;power/&gt;#x0A          &lt;ci&gt; ARF &lt;/ci&gt;#x0A          &lt;cn type='integer'&gt; 2 &lt;/cn&gt;#x0A        &lt;/apply&gt;#x0A        &lt;ci&gt; psiARF &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F5b</value>
+<value>Variable:/cell:F5b</value>
+<value>1</value>
+</value>
+<value>
+<value>ARF2</value>
+<value>Variable:/cell:ARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF2</value>
+<value>Variable:/SBMLParameter:thetaARF2</value>
+<value>0</value>
+</value>
+<value>
+<value>ARF</value>
+<value>Variable:/cell:ARF</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARF</value>
+<value>Variable:/SBMLParameter:psiARF</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARF</value>
+<value>Variable:/SBMLParameter:thetaARF</value>
+<value>0</value>
+</value>
+<value>
+<value>ARFIAA</value>
+<value>Variable:/cell:ARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>thARFIAA</value>
+<value>Variable:/SBMLParameter:thARFIAA</value>
+<value>0</value>
+</value>
+<value>
+<value>IAAp</value>
+<value>Variable:/cell:IAAp</value>
+<value>0</value>
+</value>
+<value>
+<value>psiARFIAA</value>
+<value>Variable:/SBMLParameter:psiARFIAA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_F6">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F6'</value>
+</property>
+<property name="Expression">
+<value>ARp.NumberConc / thetaARp.NumberConc / (1 + ARp.NumberConc / thetaARp.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;divide/&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; ARp &lt;/ci&gt;#x0A      &lt;ci&gt; thetaARp &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;divide/&gt;#x0A        &lt;ci&gt; ARp &lt;/ci&gt;#x0A        &lt;ci&gt; thetaARp &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6</value>
+<value>Variable:/cell:F6</value>
+<value>1</value>
+</value>
+<value>
+<value>ARp</value>
+<value>Variable:/cell:ARp</value>
+<value>0</value>
+</value>
+<value>
+<value>thetaARp</value>
+<value>Variable:/SBMLParameter:thetaARp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,480 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="rPer">
+<property name="Name">
+<value>Per production</value>
+</property>
+<property name="Expression">
+<value>Vsp.Value * (dClkF_tau1.Value / (K1.Value + dClkF_tau1.Value)) * CELL.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/CELL:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>Per</value>
+<value>Variable:/CELL:Per</value>
+<value>1</value>
+</value>
+<value>
+<value>dClkF</value>
+<value>Variable:/CELL:dClkF</value>
+<value>0</value>
+</value>
+<value>
+<value>Vsp</value>
+<value>Variable:/SBMLParameter:Vsp</value>
+<value>0</value>
+</value>
+<value>
+<value>dClkF_tau1</value>
+<value>Variable:/SBMLParameter:dClkF_tau1</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+<value>
+<value>CELL</value>
+<value>Variable:/CELL:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; Vsp &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; dClkF_tau1 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K1 &lt;/ci&gt;#x0A        &lt;ci&gt; dClkF_tau1 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; CELL &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="rdClk">
+<property name="Name">
+<value>dClk production</value>
+</property>
+<property name="Expression">
+<value>CELL.Value * Vsc.Value * (K2.Value / (K2.Value + dClkF_tau2.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/CELL:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>dClk</value>
+<value>Variable:/CELL:dClk</value>
+<value>1</value>
+</value>
+<value>
+<value>dClkF</value>
+<value>Variable:/CELL:dClkF</value>
+<value>0</value>
+</value>
+<value>
+<value>CELL</value>
+<value>Variable:/CELL:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Vsc</value>
+<value>Variable:/SBMLParameter:Vsc</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+<value>
+<value>dClkF_tau2</value>
+<value>Variable:/SBMLParameter:dClkF_tau2</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; CELL &lt;/ci&gt;#x0A    &lt;ci&gt; Vsc &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;ci&gt; K2 &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;ci&gt; K2 &lt;/ci&gt;#x0A        &lt;ci&gt; dClkF_tau2 &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="rPerD">
+<property name="Name">
+<value>Per degradation</value>
+</property>
+<property name="Expression">
+<value>kdc.Value * Per.NumberConc * CELL.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Per</value>
+<value>Variable:/CELL:Per</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/CELL:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>kdc</value>
+<value>Variable:/SBMLParameter:kdc</value>
+<value>0</value>
+</value>
+<value>
+<value>CELL</value>
+<value>Variable:/CELL:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdc &lt;/ci&gt;#x0A    &lt;ci&gt; Per &lt;/ci&gt;#x0A    &lt;ci&gt; CELL &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="rdClkD">
+<property name="Name">
+<value>dClk degradation</value>
+</property>
+<property name="Expression">
+<value>kdp.Value * dClk.NumberConc * CELL.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dClk</value>
+<value>Variable:/CELL:dClk</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/CELL:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>kdp</value>
+<value>Variable:/SBMLParameter:kdp</value>
+<value>0</value>
+</value>
+<value>
+<value>CELL</value>
+<value>Variable:/CELL:SIZE</value>
+<value>0</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; kdp &lt;/ci&gt;#x0A    &lt;ci&gt; dClk &lt;/ci&gt;#x0A    &lt;ci&gt; CELL &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+</process>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/CELL">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Per">
+<property name="NumberConc">
+<value>5e-16</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dClk">
+<property name="NumberConc">
+<value>1e-16</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dClkF">
+<property name="Name">
+<value>free dClk</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="dClkF_tau1">
+<property name="Name">
+<value>dClkF_tau1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="dClkF_tau2">
+<property name="Name">
+<value>dClkF_tau2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="tau1">
+<property name="Name">
+<value>tau1</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="tau2">
+<property name="Name">
+<value>tau2</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vsp">
+<property name="Name">
+<value>Vsp</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Name">
+<value>K1</value>
+</property>
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vsc">
+<property name="Name">
+<value>Vsc</value>
+</property>
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2">
+<property name="Name">
+<value>K2</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdc">
+<property name="Name">
+<value>kdc</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdp">
+<property name="Name">
+<value>kdp</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentexProcess" id="Assignment_dClkF">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'dClkF'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0, lt(dClk.NumberConc - Per.NumberConc, 0), dClk.NumberConc - Per.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;ci&gt; dClk &lt;/ci&gt;#x0A          &lt;ci&gt; Per &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;ci&gt; dClk &lt;/ci&gt;#x0A        &lt;ci&gt; Per &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dClkF</value>
+<value>Variable:/CELL:dClkF</value>
+<value>1</value>
+</value>
+<value>
+<value>dClk</value>
+<value>Variable:/CELL:dClk</value>
+<value>0</value>
+</value>
+<value>
+<value>Per</value>
+<value>Variable:/CELL:Per</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_dClkF_tau1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'dClkF_tau1'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0, lt(delay(dClk.NumberConc, tau1.NumberConc) - delay(Per.NumberConc, tau1.NumberConc), 0), delay(dClk.NumberConc, tau1.NumberConc) - delay(Per.NumberConc, tau1.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A            &lt;ci&gt; dClk &lt;/ci&gt;#x0A            &lt;ci&gt; tau1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A            &lt;ci&gt; Per &lt;/ci&gt;#x0A            &lt;ci&gt; tau1 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A          &lt;ci&gt; dClk &lt;/ci&gt;#x0A          &lt;ci&gt; tau1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A          &lt;ci&gt; Per &lt;/ci&gt;#x0A          &lt;ci&gt; tau1 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dClkF_tau1</value>
+<value>Variable:/SBMLParameter:dClkF_tau1</value>
+<value>1</value>
+</value>
+<value>
+<value>dClk</value>
+<value>Variable:/CELL:dClk</value>
+<value>0</value>
+</value>
+<value>
+<value>tau1</value>
+<value>Variable:/SBMLParameter:tau1</value>
+<value>0</value>
+</value>
+<value>
+<value>Per</value>
+<value>Variable:/CELL:Per</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_dClkF_tau2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'dClkF_tau2'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0, lt(delay(dClk.NumberConc, tau2.NumberConc) - delay(Per.NumberConc, tau2.NumberConc), 0), delay(dClk.NumberConc, tau2.NumberConc) - delay(Per.NumberConc, tau2.NumberConc))</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;apply&gt;#x0A        &lt;lt/&gt;#x0A        &lt;apply&gt;#x0A          &lt;minus/&gt;#x0A          &lt;apply&gt;#x0A            &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A            &lt;ci&gt; dClk &lt;/ci&gt;#x0A            &lt;ci&gt; tau2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;apply&gt;#x0A            &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A            &lt;ci&gt; Per &lt;/ci&gt;#x0A            &lt;ci&gt; tau2 &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;cn&gt; 0 &lt;/cn&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A          &lt;ci&gt; dClk &lt;/ci&gt;#x0A          &lt;ci&gt; tau2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/delay'&gt; delay &lt;/csymbol&gt;#x0A          &lt;ci&gt; Per &lt;/ci&gt;#x0A          &lt;ci&gt; tau2 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dClkF_tau2</value>
+<value>Variable:/SBMLParameter:dClkF_tau2</value>
+<value>1</value>
+</value>
+<value>
+<value>dClk</value>
+<value>Variable:/CELL:dClk</value>
+<value>0</value>
+</value>
+<value>
+<value>tau2</value>
+<value>Variable:/SBMLParameter:tau2</value>
+<value>0</value>
+</value>
+<value>
+<value>Per</value>
+<value>Variable:/CELL:Per</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

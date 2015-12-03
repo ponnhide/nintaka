@@ -1,0 +1,709 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODE_DormandStepper" id="Default"/>
+<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="time">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="time">
+<property name="Expression">
+<value>1.0</value>
+</property>
+<property name="Priority">
+<value>10</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Gut">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Gut</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="X_gut">
+<property name="Name">
+<value>X_gut</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/C">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>C</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.31</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_p">
+<property name="Name">
+<value>C_p</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>P</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_per">
+<property name="Name">
+<value>C_per</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Tol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Tol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_t">
+<property name="Name">
+<value>C_t</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Eff">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Eff</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_e">
+<property name="Name">
+<value>C_e</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="CL">
+<property name="Name">
+<value>CL</value>
+</property>
+<property name="Value">
+<value>0.11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V_C">
+<property name="Name">
+<value>V_C</value>
+</property>
+<property name="Value">
+<value>0.32</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_a">
+<property name="Name">
+<value>k_a</value>
+</property>
+<property name="Value">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="t_lag">
+<property name="Name">
+<value>t_lag</value>
+</property>
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>0.34</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>1.64</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k21">
+<property name="Name">
+<value>k21</value>
+</property>
+<property name="Value">
+<value>1.19</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="t_half">
+<property name="Name">
+<value>t_half</value>
+</property>
+<property name="Value">
+<value>3.98</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F">
+<property name="Name">
+<value>F</value>
+</property>
+<property name="Value">
+<value>0.984</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_eo">
+<property name="Name">
+<value>k_eo</value>
+</property>
+<property name="Value">
+<value>2.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_tol">
+<property name="Name">
+<value>k_tol</value>
+</property>
+<property name="Value">
+<value>0.75</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E_0">
+<property name="Name">
+<value>E_0</value>
+</property>
+<property name="Value">
+<value>83.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="S">
+<property name="Name">
+<value>S</value>
+</property>
+<property name="Value">
+<value>19.07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="T_50">
+<property name="Name">
+<value>T_50</value>
+</property>
+<property name="Value">
+<value>0.26</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>MAP</value>
+</property>
+<property name="Value">
+<value>83.3</value>
+</property>
+</variable>
+<variable class="Variable" id="t_int">
+<property name="Name">
+<value>t_intervall</value>
+</property>
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cupsize">
+<property name="Name">
+<value>cupsize</value>
+</property>
+<property name="Value">
+<value>90.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="bodyweight">
+<property name="Name">
+<value>bodyweight</value>
+</property>
+<property name="Value">
+<value>80.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cups">
+<property name="Name">
+<value>cups</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxexProcess" id="Rate_X_gut">
+<property name="Name">
+<value>Rate rule for 'X_gut'</value>
+</property>
+<property name="Expression">
+<value>-k_a.NumberConc * X_gut.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; k_a &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;ci&gt; X_gut &lt;/ci&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X_gut</value>
+<value>Variable:/Gut:X_gut</value>
+<value>1</value>
+</value>
+<value>
+<value>k_a</value>
+<value>Variable:/SBMLParameter:k_a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_C_p">
+<property name="Name">
+<value>Rate rule for 'C_p'</value>
+</property>
+<property name="Expression">
+<value>k_a.NumberConc * F.NumberConc * X_gut.NumberConc / V_C.NumberConc - k12.NumberConc * C_p.NumberConc + k21.NumberConc * C_per.NumberConc - k10.NumberConc * C_p.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;minus/&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; k_a &lt;/ci&gt;#x0A            &lt;ci&gt; F &lt;/ci&gt;#x0A            &lt;ci&gt; X_gut &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A          &lt;ci&gt; V_C &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;times/&gt;#x0A          &lt;ci&gt; k12 &lt;/ci&gt;#x0A          &lt;ci&gt; C_p &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; k21 &lt;/ci&gt;#x0A        &lt;ci&gt; C_per &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k10 &lt;/ci&gt;#x0A      &lt;ci&gt; C_p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_p</value>
+<value>Variable:/C:C_p</value>
+<value>1</value>
+</value>
+<value>
+<value>k_a</value>
+<value>Variable:/SBMLParameter:k_a</value>
+<value>0</value>
+</value>
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>0</value>
+</value>
+<value>
+<value>X_gut</value>
+<value>Variable:/Gut:X_gut</value>
+<value>0</value>
+</value>
+<value>
+<value>V_C</value>
+<value>Variable:/SBMLParameter:V_C</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+<value>
+<value>k21</value>
+<value>Variable:/SBMLParameter:k21</value>
+<value>0</value>
+</value>
+<value>
+<value>C_per</value>
+<value>Variable:/P:C_per</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_C_per">
+<property name="Name">
+<value>Rate rule for 'C_per'</value>
+</property>
+<property name="Expression">
+<value>k12.NumberConc * C_p.NumberConc - k21.NumberConc * C_per.NumberConc</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;minus/&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k12 &lt;/ci&gt;#x0A      &lt;ci&gt; C_p &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A    &lt;apply&gt;#x0A      &lt;times/&gt;#x0A      &lt;ci&gt; k21 &lt;/ci&gt;#x0A      &lt;ci&gt; C_per &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_per</value>
+<value>Variable:/P:C_per</value>
+<value>1</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+<value>
+<value>C_p</value>
+<value>Variable:/C:C_p</value>
+<value>0</value>
+</value>
+<value>
+<value>k21</value>
+<value>Variable:/SBMLParameter:k21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_C_e">
+<property name="Name">
+<value>Rate rule for 'C_e'</value>
+</property>
+<property name="Expression">
+<value>k_eo.NumberConc * (C_p.NumberConc - C_e.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k_eo &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; C_p &lt;/ci&gt;#x0A      &lt;ci&gt; C_e &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_e</value>
+<value>Variable:/Eff:C_e</value>
+<value>1</value>
+</value>
+<value>
+<value>k_eo</value>
+<value>Variable:/SBMLParameter:k_eo</value>
+<value>0</value>
+</value>
+<value>
+<value>C_p</value>
+<value>Variable:/C:C_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxexProcess" id="Rate_C_t">
+<property name="Name">
+<value>Rate rule for 'C_t'</value>
+</property>
+<property name="Expression">
+<value>k_tol.NumberConc * (C_p.NumberConc - C_t.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;times/&gt;#x0A    &lt;ci&gt; k_tol &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;minus/&gt;#x0A      &lt;ci&gt; C_p &lt;/ci&gt;#x0A      &lt;ci&gt; C_t &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_t</value>
+<value>Variable:/Tol:C_t</value>
+<value>1</value>
+</value>
+<value>
+<value>k_tol</value>
+<value>Variable:/SBMLParameter:k_tol</value>
+<value>0</value>
+</value>
+<value>
+<value>C_p</value>
+<value>Variable:/C:C_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentexProcess" id="Assignment_E">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Priority">
+<value>1</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'E'</value>
+</property>
+<property name="Expression">
+<value>E_0.NumberConc + S.NumberConc * C_e.NumberConc / (1 + C_t.NumberConc / T_50.NumberConc)</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;plus/&gt;#x0A    &lt;ci&gt; E_0 &lt;/ci&gt;#x0A    &lt;apply&gt;#x0A      &lt;divide/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; S &lt;/ci&gt;#x0A        &lt;ci&gt; C_e &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;apply&gt;#x0A        &lt;plus/&gt;#x0A        &lt;cn type='integer'&gt; 1 &lt;/cn&gt;#x0A        &lt;apply&gt;#x0A          &lt;divide/&gt;#x0A          &lt;ci&gt; C_t &lt;/ci&gt;#x0A          &lt;ci&gt; T_50 &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>1</value>
+</value>
+<value>
+<value>E_0</value>
+<value>Variable:/SBMLParameter:E_0</value>
+<value>0</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>0</value>
+</value>
+<value>
+<value>C_e</value>
+<value>Variable:/Eff:C_e</value>
+<value>0</value>
+</value>
+<value>
+<value>C_t</value>
+<value>Variable:/Tol:C_t</value>
+<value>0</value>
+</value>
+<value>
+<value>T_50</value>
+<value>Variable:/SBMLParameter:T_50</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventRepeatableProcess" id="coffecup">
+<property name="Priority">
+<value>2</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>coffecup</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>cups</value>
+<value>cups.NumberConc + 1</value>
+</value>
+<value>
+<value>X_gut</value>
+<value>X_gut.NumberConc + cupsize.NumberConc / bodyweight.NumberConc</value>
+</value>
+</property>
+<property name="mathml">
+<value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;apply&gt;#x0A    &lt;geq/&gt;#x0A    &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A    &lt;apply&gt;#x0A      &lt;plus/&gt;#x0A      &lt;apply&gt;#x0A        &lt;times/&gt;#x0A        &lt;ci&gt; t_int &lt;/ci&gt;#x0A        &lt;ci&gt; cups &lt;/ci&gt;#x0A      &lt;/apply&gt;#x0A      &lt;ci&gt; t_lag &lt;/ci&gt;#x0A    &lt;/apply&gt;#x0A  &lt;/apply&gt;#x0A&lt;/math&gt;</value>
+</property>
+<property name="RepeatFlag">
+<value>false</value>
+</property>
+<property name="Trigger">
+<value>geq(time.Value, t_int.NumberConc * cups.NumberConc + t_lag.NumberConc)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cups</value>
+<value>Variable:/SBMLParameter:cups</value>
+<value>1</value>
+</value>
+<value>
+<value>X_gut</value>
+<value>Variable:/Gut:X_gut</value>
+<value>1</value>
+</value>
+<value>
+<value>cupsize</value>
+<value>Variable:/SBMLParameter:cupsize</value>
+<value>0</value>
+</value>
+<value>
+<value>bodyweight</value>
+<value>Variable:/SBMLParameter:bodyweight</value>
+<value>0</value>
+</value>
+<value>
+<value>t_int</value>
+<value>Variable:/SBMLParameter:t_int</value>
+<value>0</value>
+</value>
+<value>
+<value>t_lag</value>
+<value>Variable:/SBMLParameter:t_lag</value>
+<value>0</value>
+</value>
+<value>
+<value>time</value>
+<value>:/:time</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

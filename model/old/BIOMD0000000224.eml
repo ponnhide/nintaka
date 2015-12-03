@@ -1,0 +1,356 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="JChannel">
+<property name="Name">
+<value>[CaS] -&gt; [CaI]; { IP3, g };</value>
+</property>
+<property name="Expression">
+<value>(1 - g.NumberConc) * (A.Value * pow(IP3.NumberConc * 0.5, 4) / pow(IP3.NumberConc * 0.5 + k1.Value, 4) + L.Value) * CaS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>1</value>
+</value>
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>0</value>
+</value>
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>0</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/SBMLParameter:A</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="JPump">
+<property name="Name">
+<value>[CaI] -&gt; [CaS];</value>
+</property>
+<property name="Expression">
+<value>B.Value * pow(CaI.NumberConc * 0.01, 2) / (pow(CaI.NumberConc * 0.01, 2) + pow(k2.Value, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaS</value>
+<value>Variable:/cytosol/ER_store:CaS</value>
+<value>1</value>
+</value>
+<value>
+<value>B</value>
+<value>Variable:/SBMLParameter:B</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="kPLC">
+<property name="Name">
+<value>-&gt; [IP3]; { CaI };</value>
+</property>
+<property name="Expression">
+<value>C.Value * (1 - k3.Value / (CaI.NumberConc * 0.01 + k3.Value) * (1 / (1 + R.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/SBMLParameter:C</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/SBMLParameter:R</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="kPhosphatase">
+<property name="Name">
+<value>[IP3] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>D.Value * IP3.NumberConc * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IP3</value>
+<value>Variable:/cytosol:IP3</value>
+<value>-1</value>
+</value>
+<value>
+<value>D</value>
+<value>Variable:/SBMLParameter:D</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="inhibition_parameter1">
+<property name="Name">
+<value>-&gt; [g]; { CaI };</value>
+</property>
+<property name="Expression">
+<value>E.Value * pow(CaI.NumberConc * 0.01, 4) * (1 - g.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/SBMLParameter:E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="inhibition_parameter2">
+<property name="Name">
+<value>[g] -&gt; ; { CaI };</value>
+</property>
+<property name="Expression">
+<value>F.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>g</value>
+<value>Variable:/cytosol:g</value>
+<value>-1</value>
+</value>
+<value>
+<value>CaI</value>
+<value>Variable:/cytosol:CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CaI">
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IP3">
+<property name="NumberConc">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="g">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol/ER_store">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CaS">
+<property name="NumberConc">
+<value>1100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="A">
+<property name="Value">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="B">
+<property name="Value">
+<value>40.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="Value">
+<value>1.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="D">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Value">
+<value>0.09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>
