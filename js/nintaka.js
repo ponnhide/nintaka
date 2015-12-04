@@ -42,6 +42,7 @@ function init(){
     document.getElementById("modelName").textContent = modelName;
     document.getElementById("simulation").style.display = "inline";
     document.getElementById("graphbtn").style.display = "none";
+    document.getElementById("history").style.display = "none"; 
     graphdiv_change();
 }
 
@@ -507,7 +508,7 @@ function makeData(a, b){
 
 function setScale(dataset){
     //if(xS == 0 && step_num > 1){ //配列の中が空の時は何もしないstep()が100回動いたら更新 森
-    if(  step_num % ( interval * 1000 ) == 0 || connect_num == 2 || scaleChange == 1 ){
+    if(  step_num % ( interval * 1000 ) == 0 || connect_num == 2 ){
         //xL = Math.floor((model.time[model.time.length - 1] - model.time[0])) * model.time.length / 10;
         //平均ステップ幅を元に計算 森
         if( mode == "history"){
@@ -559,12 +560,15 @@ function makeLinechart(){
        d3.select("svg").remove();
     }
     
-    if( mode == "history")
+    if( mode == "history"){
         xMin = 0;
-    else
+    	xMax = model.time[model.time.length-1];
+    }else{
         xMin = xs;
+    	xMax = xS;
+     } 
      xScale = d3.scale.linear()
-         .domain([xMin, xS + (xS - xMin) * 0.01])
+         .domain([xMin, xMax + (xMax - xMin) * 0.01])
          .range([5, width]);
     
      yScale = d3.scale.linear()
@@ -775,7 +779,7 @@ function modeChange(viewmode){
     	    }
         }
     }
-    xS = model.time[model.time.length - 1];
+    //xS = model.time[timepoint];
     scaleChange = 1;
     yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
     yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
@@ -800,6 +804,7 @@ function strt(style){
     //var stepbtn = document.getElementById("stepbtn");
     var autobtn = document.getElementById("autobtn");
     var stopbtn = document.getElementById("stopbtn");
+    document.getElementById("history").style.display = "none"; 
     if(document.getElementById("interval").value > 0 && document.getElementById("interval").value.match(/^-?[0-9]+$/)){ // intervalのinputが正の整数の時
         if(interval != Number(document.getElementById("interval").value)){
             step_num = 0;
@@ -827,7 +832,7 @@ function strt(style){
             time = 10000;
         }
         end_time = start_time + time;
-        simulation();
+	simulation();
     }else{
         alert("正しい値を入力してください");
     }
@@ -842,6 +847,7 @@ function simulation(){
     //var stepbtn = document.getElementById("stepbtn");
     var autobtn = document.getElementById("autobtn");
     var stopbtn = document.getElementById("stopbtn");
+    modeChange("strip");
     if(sim_style == "run"){
         if(model.time[model.time.length - 1] - start_time < time){
             runSim();
@@ -893,6 +899,7 @@ function simulation(){
 }
 
 function stop_sim(){ // stopボタンをおした時
+    document.getElementById("history").style.display = "inline-block"; 
     if(sim_style == "auto"){
         run_flag = false;
     }
@@ -905,6 +912,7 @@ function stop_sim(){ // stopボタンをおした時
 //
     }
     document.getElementById("stopbtn").disabled = true;
+    document.getElementById("history").style.display = "inline-block"; 
 
 }
 
