@@ -9,7 +9,7 @@ var socket = io();
 // graphのDivサイズを調節する関数
 function graphdiv_change(){
     var divW = document.getElementById("graph").clientWidth;
-    var divH = divW * 5 / 9;
+    var divH = divW * 9 / 16;
     document.getElementById("graph").style.height = divH + "px";
 }
 
@@ -271,6 +271,7 @@ function changeValue(name){
 
 // グラフ描画
 var svg        = null; //森
+var svg2       = null;
 var yMax       = 1; //森 
 var yMin       = 0; //森 
 var xMax       = 1;
@@ -283,6 +284,8 @@ var xScale     = null;
 var yScale     = null;
 var xAxis      = null;
 var yAxis      = null;
+var zoom       = null;
+var zooming    = false;
 var line       = null;
 var city       = null;
 var lineList   = [] //multiline用のlineList
@@ -504,15 +507,16 @@ function makeData(a, b){
 
 function setScale(dataset){
     //if(xS == 0 && step_num > 1){ //配列の中が空の時は何もしないstep()が100回動いたら更新 森
-    if(  step_num % ( interval * 1000 ) == 0 || connect_num == 2 ){
+    if(  step_num % ( interval * 1000 ) == 0 || connect_num == 2 || scaleChange == 1 ){
         //xL = Math.floor((model.time[model.time.length - 1] - model.time[0])) * model.time.length / 10;
         //平均ステップ幅を元に計算 森
         if( mode == "history"){
-            xL =  Math.floor( 5000 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,2))); 
- 	
+	    //xS = xS - xL;
+	    xL =  Math.floor( 1000 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))); 
+	    //xS += xL;
 	}else{
-            xL =  Math.min(Math.floor( 50 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,2))),1000); 
-        }
+	    xL =  Math.min(Math.floor( 50 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))),1000); 
+	}
         if(xS == 1){
 　　　　　  xS      = xL;
             redbull = [[]];
@@ -550,33 +554,54 @@ function makeLinechart(){
     margin = {top: 20, right: 100, bottom: 50, left: 100};
     width = divW - margin.left - margin.right;
     height = divH - margin.top - margin.bottom;
+    
     if(svg != null ){
        d3.select("svg").remove();
     }
-    svg = d3.select("#graph").append("svg")
-	.attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+    if( mode == "history")
+        xMin = 0;
+    else
+        xMin = xs;
+     xScale = d3.scale.linear()
+         .domain([xMin, xS + (xS - xMin) * 0.01])
+         .range([5, width]);
+    
+     yScale = d3.scale.linear()
+         .domain([yMin,yMax])
+         .range([height, 0]);
+
+    line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) { return xScale(d.x); })
+        .y(function(d) { return yScale(d.y); }); 
+  
+    if(document.getElementById("stopbtn").disabled  == false){
+    	svg = d3.select("#graph").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    }else{
+
+	zoom = d3.behavior.zoom()
+	    .x(xScale)
+	    .y(yScale)
+	    .scaleExtent([1, 1000000])
+	    .on("zoom", zoomed);	
+	
+	svg = d3.select("#graph").append("svg")
+	    .call(zoom)
+	    .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    }
     //if( xs == 0 )
     //    xMax = model.time[model.time.length-1];
     //else
     //    xMax = xS;
 
-    if( mode == "history")
-        xMin = 0;
-    else
-        xMin = xs;
-    xScale = d3.scale.linear()
-        .domain([xMin, xS + (xS - xMin) * 0.01])
-        .range([5, width]);
-    
-    //yMin = d3.min(redbull, function(d){ return d.y })//森
-    //yMax = d3.max(redbull, function(d){ return d.y; })//森
-    
-    yScale = d3.scale.linear()
-        .domain([yMin,yMax])
-        .range([height, 0]);
 
     xAxis = d3.svg.axis()
         .scale(xScale)
@@ -596,10 +621,13 @@ function makeLinechart(){
         .attr("class", "y axis")
         .call(yAxis);
     
-    line = d3.svg.line()
-        .interpolate("basis")
-        .x(function(d) { return xScale(d.x); })
-        .y(function(d) { return yScale(d.y); }); 
+    svg.append("clipPath")
+	.attr("id", "clip")
+	.append("rect")
+	.attr("width", width)
+	.attr("height", height);
+    
+    
     /*
     city = svg.selectAll(".city")
         .data(redbull)
@@ -614,6 +642,59 @@ function makeLinechart(){
     for(var i = 0; i < redbull.length; i++){ 
         svg.append("path")
             .attr("class", "line")
+            .attr("clip-path", "url(#clip)")
+	    .attr("d", line(redbull[i]))
+            .style("stroke",colorList[i])
+	    .style("fill","none")
+            .style("stroke-width","1.8px");
+    }
+
+}
+
+function zoomed(){
+    if(xScale.domain()[0]<0){ 
+       xScale.domain([0,xScale.domain()[1]])
+       xAxis = d3.svg.axis()
+          .scale(xScale)
+          .orient("bottom");
+    }
+
+    /*var redbull2 = []
+    for(var i = 0; i < redbull.length; i++ ){
+	redbull2.push([]);
+	for( var j = 0; j < redbull[i].length; j++ ){
+	    console.log(redbull[i][j].x)
+	    if( redbull[i][j].x > xScale.domain()[0] ){
+	    	redbull2[i].push(redbull[i][j]) 
+	    }
+	    if( redbull[i][j].x > xScale.domain()[1] ){
+	    	break 
+	    }
+	}
+    }*/
+    //console.log(redbull2);
+    yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;} );});
+    yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;} );});
+    //console.log(yMin,yMax); 
+    yScale.domain([yMin,yMax])
+    yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+    //makeLinechart()
+    svg.select(".x.axis").call(xAxis);
+    svg.select(".y.axis").call(yAxis);   
+    svg.selectAll("path.line").remove() 
+    
+    line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) { return xScale(d.x); })
+        .y(function(d) { return yScale(d.y); }); 
+ 
+
+    for(var i = 0; i < redbull.length; i++){ 
+        svg.append("path")
+            .attr("class", "line")
+  	    .attr("clip-path", "url(#clip)")
             .attr("d", line(redbull[i]))
             .style("stroke",colorList[i])
 	    .style("fill","none")
@@ -648,21 +729,7 @@ function makeGraph(){
     valueChange = 0;
 }
 
-function zoomed() {
-    console.log(redbull)
-    console.log("zoom");
-    svg.select(".x.axis").call(xAxis);
-    svg.select(".y.axis").call(yAxis);    
 
-    for(var i = 0; i < redbull.length; i++){ 
-        svg.append("path")
-            .attr("class", "line")
-            .attr("d", line(redbull[i]))
-            .style("stroke",colorList[i])
-	    .style("fill","none")
-            .style("stroke-width","1.8px");
-    }
-}
 //discription表示用の関数 現時点ではsbml等がもともと持っているxhtml構造をベタ貼り 森
 function viewDiscription(){
     document.getElementById("graph").style.display = "none";
@@ -695,6 +762,7 @@ function modeChange(viewmode){
 	        redbull[j].push({"x": model.time[i], "y": viewValues[j][i]});
     	    }
         }
+    	console.log(model.time[model.time.length - 1])
     }else{
     	var bull=[]
 	for(var i = 0; i < redbull.length; i++ ){
@@ -706,7 +774,8 @@ function modeChange(viewmode){
 	        redbull[j].push({"x": model.time[i], "y": viewValues[j][i]});
     	    }
         }
-    } 
+    }
+    xS = model.time[model.time.length - 1];
     scaleChange = 1;
     yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
     yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
