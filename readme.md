@@ -1,4 +1,4 @@
-#WeBBSs
+#WeBBs
 WeBBSs is **W**eb **b**ased **b**io**s**imulator. Biological simulation is useful tool for understanding complex biological systems. In fact, until now, many type biological models such as motabolic, gene regulatory networks,cell signaling are developed. Howeveor, we still dont have the universal simulation environment. Therefore, if you want to run the published models, you should prepare suitable computer environment such as os type, memory capacity, cpu type. Also, you should install the simulation software and dependent module library which is suitable for the model you want to run. For these reason, non-experts for computer environment cannot handle the biological simualaion. To solve these problem, we are developing web based biological simulator(WeBBs). WeBBs is local envoronment independent simulation software. Users need only web browsers and can handle it with only click. 
 You can use alpha version from http://bit.ly/WeBBs.
 
