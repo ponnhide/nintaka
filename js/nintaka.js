@@ -301,7 +301,8 @@ var lookingValList = []
 var scaleChange    = 0; //森
 var valueChange    = 0;
 var addTime        = [];
-var colorList      = ["#DC143C","#4169E1","#FFD700","#32CD32","#8A2BE2"] //森
+//var colorList      = ["#4C72B0", "#55A868", "#C44E52", "#8172B2", "#CCB974", "#64B5CD"] //森
+var colorList = [ "#D55E00", "#0072B2", "#009E73", "#CC79A7", "#C4AD66", "#56B4E9"]
 var data;
 var viewFlag = false;
 var xS = 1;
@@ -322,7 +323,7 @@ function timeData(){
 
 // グラフ確認用関数
 function viewGraph(id, flag, model_l){
-    if((event.ctrlKey || event.metaKey) && model_l === "none"  && lookingValList.length < 5 && lookingValList.length > 0 )
+    if((event.ctrlKey || event.metaKey) && model_l === "none"  && lookingValList.length < colorList.length && lookingValList.length > 0 )
 	multiFlag = 1;
     else if( model_l === "none" ) 
         multiFlag = 0;
@@ -468,7 +469,10 @@ function makeData(a, b){
     
             xAxis = d3.svg.axis()
                      .scale(xScale)
-                     .orient("bottom");
+                     .orient("bottom")
+	    	     .innerTickSize(-height)  // 目盛線の長さ（内側）
+		     .outerTickSize(0) // 目盛線の長さ（外側）
+		     .tickPadding(10); // 目盛線とテキストの間の長さ
          
             yScale = d3.scale.linear()
                 .domain([yMin,yMax])
@@ -476,8 +480,11 @@ function makeData(a, b){
 
             yAxis = d3.svg.axis()
                 .scale(yScale)
-                .orient("left");
-            
+                .orient("left")
+            	.innerTickSize(-width)  // 目盛線の長さ（内側）
+		.outerTickSize(0) // 目盛線の長さ（外側）
+		.tickPadding(10); // 目盛線とテキストの間の長さ
+  
 	    line = d3.svg.line()
                    .interpolate("basis")
                    .x(function(d) { return xScale(d.x); })
@@ -569,7 +576,7 @@ function makeLinechart(){
      } 
      xScale = d3.scale.linear()
          .domain([xMin, xMax + (xMax - xMin) * 0.01])
-         .range([5, width]);
+         .range([0, width]);
     
      yScale = d3.scale.linear()
          .domain([yMin,yMax])
@@ -585,7 +592,8 @@ function makeLinechart(){
 	    .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	    .attr("class","graphMain")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     }else{
 
 	zoom = d3.behavior.zoom()
@@ -599,6 +607,7 @@ function makeLinechart(){
 	    .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
+	    .attr("class","graphMain")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     }
     //if( xs == 0 )
@@ -609,11 +618,18 @@ function makeLinechart(){
 
     xAxis = d3.svg.axis()
         .scale(xScale)
-        .orient("bottom");
+        .orient("bottom")
+ 	.innerTickSize(-height)  // 目盛線の長さ（内側）
+	.outerTickSize(0) // 目盛線の長さ（外側）
+	.tickPadding(10); // 目盛線とテキストの間の長さ
+         
 
     yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left");
+        .orient("left")
+  	.innerTickSize(-width)  // 目盛線の長さ（内側）
+	.outerTickSize(0) // 目盛線の長さ（外側）
+	.tickPadding(10); // 目盛線とテキストの間の長さ
     	
    
     svg.append("g")
@@ -660,7 +676,12 @@ function zoomed(){
        xScale.domain([0,xScale.domain()[1]])
        xAxis = d3.svg.axis()
           .scale(xScale)
-          .orient("bottom");
+          .orient("bottom")
+    	  .innerTickSize(-height)  // 目盛線の長さ（内側）
+	  .outerTickSize(0) // 目盛線の長さ（外側）
+	  .tickPadding(10); // 目盛線とテキストの間の長さ
+         
+
     }
 
     /*var redbull2 = []
@@ -683,7 +704,11 @@ function zoomed(){
     yScale.domain([yMin,yMax])
     yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left");
+        .orient("left")
+ 	.innerTickSize(-width)  // 目盛線の長さ（内側）
+	.outerTickSize(0) // 目盛線の長さ（外側）
+	.tickPadding(10); // 目盛線とテキストの間の長さ
+ 
     //makeLinechart()
     svg.select(".x.axis").call(xAxis);
     svg.select(".y.axis").call(yAxis);   
