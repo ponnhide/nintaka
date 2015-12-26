@@ -516,7 +516,7 @@ function setScale(dataset){
 	    xL =  Math.floor( 1000 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))); 
 	    //xS += xL;
 	}else{
-	    xL =  Math.min(Math.floor( 50 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))),1000); 
+	    xL =  Math.min(Math.floor( 100 / Math.exp(-50*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,1000))),1000); 
 	}
         if(xS == 1){
 　　　　　  xS      = xL;
@@ -804,6 +804,8 @@ function strt(style){
     //var stepbtn = document.getElementById("stepbtn");
     var autobtn = document.getElementById("autobtn");
     var stopbtn = document.getElementById("stopbtn");
+    if(connect_num > 2)
+    	modeChange("strip");
     document.getElementById("history").style.display = "none"; 
     if(document.getElementById("interval").value > 0 && document.getElementById("interval").value.match(/^-?[0-9]+$/)){ // intervalのinputが正の整数の時
         if(interval != Number(document.getElementById("interval").value)){
@@ -847,8 +849,7 @@ function simulation(){
     //var stepbtn = document.getElementById("stepbtn");
     var autobtn = document.getElementById("autobtn");
     var stopbtn = document.getElementById("stopbtn");
-    modeChange("strip");
-    if(sim_style == "run"){
+   if(sim_style == "run"){
         if(model.time[model.time.length - 1] - start_time < time){
             runSim();
         }else{

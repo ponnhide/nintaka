@@ -1,8 +1,8 @@
 import os
 import re 
 def makeModelRepo( ):
-    emlModelList  = os.listdir( "./Models" )
-    sbmlModelList = os.listdir( "./Models/sbml" ) 
+    emlModelList  = os.listdir( "./model/sbml" )
+    sbmlModelList = os.listdir( "./model/sbml" ) 
     repobody  = ( "<table id='Modelrepo'>\n"
                   "    <tr>\n"    
                   "         <th>Model ID</th>\n"
@@ -18,10 +18,10 @@ def makeModelRepo( ):
             #print asbml
             if asbml in emlModelList:
                 asbml      = asbml.replace(".eml",".xml")
-                asbmllines = open( "./Models/sbml/" + asbml, "r" ).readlines()
+                asbmllines = open( "./model/sbml/" + asbml, "r" ).readlines()
                 asbml      = asbml.replace(".xml",".eml") 
                 asbmlhtml  = ( "    <tr>\n"
-                               "          <td onclick=\"submitModel('%s')\">%s</td>\n"
+                               "          <td onclick=\"submitModel('%s','sbml')\">%s</td>\n"
                                "          <td>%s</td>\n"
                                "          <td>%s</td>\n" 
                                "    </tr>\n" )
@@ -52,7 +52,7 @@ def makeModelRepo( ):
     repobody =  repobody % modelrepo
     return repobody
 
-f   = open("index.html","w") 
+f   = open("index_new.html","w") 
 html = ( 
 "<html>\n"
 "<head>\n"
