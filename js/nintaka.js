@@ -410,7 +410,7 @@ function viewGraph(id, flag, model_l){
                     viewValues.push(obj["Activity"]);
                 }
             var len = viewValues[0].length;
-        var len2 = redbull.length;
+            var len2 = redbull.length;
             redbull = [];
             for( var i = 0; i < viewValues.length; i++ ){
                 var bull=[];
@@ -836,8 +836,12 @@ function changeTab( idName, target ){
     for(var i = 0; i < elements2.length; i++){
         if(elements2[i].id === target){
             elements2[i].style.display = "block";
-            if( target === "discription" ){
+            if(target === "discription"){
                 viewDiscription(); 
+            } else if(target === "graphAll"){
+                var w = document.getElementById("subContents").clientHeight;
+                document.getElementById("graphAll").style.height = 100 + "%";
+                document.getElementById("graph").style.height = 100 + "%";
             } 
         }else{
             elements2[i].style.display = "none";
