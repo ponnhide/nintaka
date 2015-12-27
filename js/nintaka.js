@@ -26,7 +26,9 @@ socket.on("load", function(model_l) {
 
 // stepを回すソケット
 socket.on("step", function(model_l){
+    //console.log("hoge"); 
     setValueAll(model_l);
+    //console.log("fuga");
 });
 
 // 変更した値をPythonに送るソケット
@@ -43,7 +45,7 @@ function init(){
     document.getElementById("modelName").textContent = modelName;
     document.getElementById("simulation").style.display = "inline";
     document.getElementById("history").style.display = "none"; 
-    document.getElementById("strip").style.display = "none"; 
+    document.getElementById("strip").style.display = "none";
 }
 
 // step回したあとのValue変更用関数
@@ -326,14 +328,15 @@ var ctrl  = false;
 var meta  = false;
 document.onkeydown = function(e) {
     // Mozilla(Firefox, NN) and Opera 
+    console.log("hoge")
     if (e != null) {
         keycode = e.which;
         ctrl    = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
         shift   = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK; 
         meta    = typeof e.modifiers == 'undefined' ? e.metaKey : e.modifiers & Event.META_MASK; 
         // イベントの上位伝播を防止 
-        e.preventDefault(); 
-        e.stopPropagation(); 
+        // e.preventDefault(); 
+        //e.stopPropagation(); 
         // Internet Explorer 
     } else { 
         keycode = event.keyCode; 
@@ -341,8 +344,8 @@ document.onkeydown = function(e) {
         shift   = event.shiftKey; 
         meta    = event.metaKey;
         // イベントの上位伝播を防止 
-        event.returnValue = false; 
-        event.cancelBubble = true; 
+        //event.returnValue = false; 
+        //event.cancelBubble = true; 
     }
 }
 
@@ -354,8 +357,8 @@ document.onkeyup = function(e) {
         shift   = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
         meta    = typeof e.modifiers == 'undefined' ? e.metaKey : e.modifiers & Event.META_MASK; 
         // イベントの上位伝播を防止 
-        e.preventDefault(); 
-        e.stopPropagation(); 
+        //e.preventDefault(); 
+        //e.stopPropagation(); 
         // Internet Explorer 
     } else { 
         keycode = event.keyCode; 
@@ -363,8 +366,8 @@ document.onkeyup = function(e) {
         shift   = event.shiftKey; 
         meta    = event.metaKey;
         // イベントの上位伝播を防止 
-        event.returnValue = false; 
-        event.cancelBubble = true; 
+        //event.returnValue = false; 
+        //event.cancelBubble = true; 
     }
 }
              
@@ -376,8 +379,8 @@ function viewGraph(id, flag, model_l){
         multiFlag = 0;
     lookingFlag = flag;
     var valueKeys = id.split("/");
-    changeTab("graphbtn","graphAll"); 
-    //if(model_l === "none" || connect_num == 1){
+    if(model_l === "none")
+        changeTab("graphbtn","graphAll"); 
     //    document.getElementById("graph").style.display = "block"; //森
     //    document.getElementById("discripbtn").style.display = "block";
     ////    document.getElementById("discription").style.display = "none";
@@ -387,7 +390,7 @@ function viewGraph(id, flag, model_l){
     if(multiFlag == 1){ 
         if( lookingVal != id ){ 
             lookingVal = id;
-        lookingValList.push([lookingVal,flag]);
+            lookingValList.push([lookingVal,flag]);
             document.getElementById("div:" + id).style.borderColor = colorList[lookingValList.length-1];
         }
 
@@ -423,10 +426,10 @@ function viewGraph(id, flag, model_l){
     
     }else if(multiFlag == 0){ 
     
-        if(  svg != null && id != lookingValList[0][0]){ 
+        if(svg != null && lookingValList.length > 0 && model_l === "none"){ 
             for(var i = 0; i < lookingValList.length; i++ ){
                 document.getElementById("div:" + lookingValList[i][0]).style.borderColor = "black";
-        }
+            }
         }
         lookingVal = id;
         lookingValList = [[lookingVal,flag]];
@@ -586,7 +589,7 @@ function setScale(dataset){
             startpoint  = timepoint
             scaleChange = 1;
         //stripモードの時だけ，redbullの中身を空に 森
-        console.log(redbull)
+        //console.log(redbull)
         if( redbull[0].length > 1 ){ 
                 yMin = redbull[0][redbull[0].length-1].y;
             yMax = redbull[0][redbull[0].length-1].y;
@@ -606,7 +609,7 @@ function makeLinechart(){
     //スケールが変わるごとにgraphのhtmlとsvgをからにする
 　　lineList = [];
     document.getElementById("graph").innerHTML = "";    
-    var divW = document.getElementById("graph").clientWidth;
+    var divW = document.getElementById("subContents").clientWidth;
     var divH = divW * 9/16;
     //divH = document.getElementById("graph").clientHeight;
  
@@ -641,10 +644,10 @@ function makeLinechart(){
   
     if(document.getElementById("stopbtn").disabled  == false){
         svg = d3.select("#graph").append("svg")
-        .attr("width", width + margin.left + margin.right)
+            .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-        .attr("class","graphMain")
+            .attr("class","graphMain")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     }else{
 
@@ -657,10 +660,10 @@ function makeLinechart(){
     svg = d3.select("#graph").append("svg")
         .call(zoom)
         .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
         .attr("class","graphMain")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     }
     //if( xs == 0 )
     //    xMax = model.time[model.time.length-1];
@@ -822,7 +825,6 @@ function changeTab( idName, target ){
         
     for(var i = 0; i < elements1.length; i++){
         if(elements1[i].id === idName){
-            console.log("change")
             elements1[i].style.backgroundColor = "#4c4c4c";
             elements1[i].style.color = "white";
         }else{
@@ -857,7 +859,7 @@ function modeChange(viewmode){
             redbull[j].push({"x": model.time[i], "y": viewValues[j][i]});
             }
         }
-        console.log(model.time[model.time.length - 1])
+        //console.log(model.time[model.time.length - 1])
     }else{
         var bull=[]
     for(var i = 0; i < redbull.length; i++ ){
@@ -896,7 +898,8 @@ function strt(style){
     var autobtn = document.getElementById("autobtn");
     var stopbtn = document.getElementById("stopbtn");
     if(connect_num > 2)
-        modeChange("strip");
+        if( svg != null )
+            modeChange("strip");
     document.getElementById("history").style.display = "none"; 
     document.getElementById("strip").style.display = "none"; 
     if(document.getElementById("interval").value > 0 && document.getElementById("interval").value.match(/^-?[0-9]+$/)){ // intervalのinputが正の整数の時
@@ -952,7 +955,8 @@ function simulation(){
             autobtn.disabled = false;
             stopbtn.disabled = true;
             scaleChange = 1;    
-            makeGraph();
+            if(svg != null) 
+                makeGraph();
             start_time = end_time;
            
     }
@@ -969,9 +973,10 @@ function simulation(){
             autobtn.disabled = false;
             stopbtn.disabled = true;
         	scaleChange = 1;
-            makeGraph();
+            if(svg != null)
+                makeGraph();
             start_time = Math.floor(model.time[model.time.length - 1]); 
-    }
+        }
     }else if(sim_style == "step"){
         if(step_num < time){
             if(time - step_num < interval){
@@ -981,7 +986,8 @@ function simulation(){
         }else{
             step_num = 0;
             time = 0;
-            makeGraph();
+            if(svg != null) 
+                makeGraph();
             start_time = Math.floor(model.time[model.time.length - 1]); // 変更 10/27
             runbtn.disabled = false;
             //stepbtn.disabled = false;
