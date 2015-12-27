@@ -321,10 +321,57 @@ function timeData(){
     }
 }
 
+var shift = false;
+var ctrl  = false;
+var meta  = false;
+document.onkeydown = function(e) {
+    // Mozilla(Firefox, NN) and Opera 
+    if (e != null) {
+        keycode = e.which;
+        ctrl    = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
+        shift   = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK; 
+        meta    = typeof e.modifiers == 'undefined' ? e.metaKey : e.modifiers & Event.META_MASK; 
+        // イベントの上位伝播を防止 
+        e.preventDefault(); 
+        e.stopPropagation(); 
+        // Internet Explorer 
+    } else { 
+        keycode = event.keyCode; 
+        ctrl    = event.ctrlKey; 
+        shift   = event.shiftKey; 
+        meta    = event.metaKey;
+        // イベントの上位伝播を防止 
+        event.returnValue = false; 
+        event.cancelBubble = true; 
+    }
+}
+
+document.onkeydown = function(e) {
+    // Mozilla(Firefox, NN) and Opera 
+    if (e != null) {
+        keycode = e.which;
+        ctrl    = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
+        shift   = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
+        meta    = typeof e.modifiers == 'undefined' ? e.metaKey : e.modifiers & Event.META_MASK; 
+        // イベントの上位伝播を防止 
+        e.preventDefault(); 
+        e.stopPropagation(); 
+        // Internet Explorer 
+    } else { 
+        keycode = event.keyCode; 
+        ctrl    = event.ctrlKey; 
+        shift   = event.shiftKey; 
+        meta    = event.metaKey;
+        // イベントの上位伝播を防止 
+        event.returnValue = false; 
+        event.cancelBubble = true; 
+    }
+}
+             
 // グラフ確認用関数
 function viewGraph(id, flag, model_l){
-    if((event.ctrlKey || event.metaKey) && model_l === "none"  && lookingValList.length < colorList.length && lookingValList.length > 0 )
-    multiFlag = 1;
+    if( ( ctrl || meta ) && model_l === "none"  && lookingValList.length < colorList.length && lookingValList.length > 0 )
+        multiFlag = 1;
     else if( model_l === "none" ) 
         multiFlag = 0;
     lookingFlag = flag;
