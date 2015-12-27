@@ -346,7 +346,7 @@ document.onkeydown = function(e) {
     }
 }
 
-document.onkeydown = function(e) {
+document.onkeyup = function(e) {
     // Mozilla(Firefox, NN) and Opera 
     if (e != null) {
         keycode = e.which;
