@@ -954,6 +954,8 @@ function simulation(){
             runSim();
         }else{
             time = 0;
+            document.getElementById("history").style.display = "inline-block"; 
+            document.getElementById("strip").style.display = "inline-block";
             // start_time = model.time[model.time.length - 1];
             runbtn.disabled = false;
             //stepbtn.disabled = false;
