@@ -5,7 +5,7 @@
 */
 
 var socket = io();
-
+var discription = null;
 // graphのDivサイズを調節する関数
 function graphdiv_change(){
     var divW = document.getElementById("graph").clientWidth;
@@ -18,6 +18,7 @@ socket.on("load", function(model_l) {
     connect_num += 1; //森
     console.log(model_l);
     model = model_l;
+    discription = model["discription"] 
     for(var i in model){
         makeDetails(model, i, i, "main"); // Detailを作る関数を呼ぶ。treeを作る
     }
@@ -816,7 +817,7 @@ function makeGraph(){
 
 //discription表示用の関数 現時点ではsbml等がもともと持っているxhtml構造をベタ貼り 森
 function viewDiscription(){
-    document.getElementById("discription").innerHTML = model["discription"];
+    document.getElementById("discription").innerHTML = discription;
 }
 
 function changeTab( idName, target ){
