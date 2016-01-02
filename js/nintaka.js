@@ -300,7 +300,9 @@ var time_len       = 1000;
 var redbull        = [[]]; //データ
 var lookingVal     = "";
 var lookingFlag    = "";
-var lookingValList = []
+var lookingValList = [];
+var invisibleList  = [];
+var index;
 var scaleChange    = 0; //森
 var valueChange    = 0;
 var addTime        = [];
@@ -327,6 +329,8 @@ function timeData(){
 var shift = false;
 var ctrl  = false;
 var meta  = false;
+
+
 document.onkeydown = function(e) {
     // Mozilla(Firefox, NN) and Opera 
     console.log("hoge")
@@ -371,10 +375,39 @@ document.onkeyup = function(e) {
         //event.cancelBubble = true; 
     }
 }
-             
+
+var onColor  = "";
+var offColor = "";
+$(function() {
+    $(document).on('mouseenter','.graphable',function(){ 
+        offColor = $(this).css("color");
+        $(this).css("color","red");
+        onColor = $(this).css("color");
+    });
+
+    $(document).on('mouseleave','.graphable',function(){
+        if( $(this).css("color") != onColor ){
+            console.log("hoge")
+            offColor = $(this).css("color"); 
+        }
+        $(this).css("color",offColor);
+    });
+});
+
+
+
+/*$(function() {
+    $("div").hover(function(){
+        $("div.graphable").css("color","red");
+    })(function(){
+        $("div.graphable").css("color","");
+    });
+    console.log("hoge"); 
+});*/
+
 // グラフ確認用関数
 function viewGraph(id, flag, model_l){
-    if( ( ctrl || meta ) && model_l === "none"  && lookingValList.length < colorList.length && lookingValList.length > 0 )
+    if( ( ctrl || meta ) && model_l === "none"  && lookingValList.length > 0 )
         multiFlag = 1;
     else if( model_l === "none" ) 
         multiFlag = 0;
@@ -388,19 +421,35 @@ function viewGraph(id, flag, model_l){
     //document.getElementById("") 
     //} 
     var obj = model["root"];
-    if(multiFlag == 1){ 
-        if( lookingVal != id ){ 
-            lookingVal = id;
-            lookingValList.push([lookingVal,flag]);
-            document.getElementById("div:" + id).style.borderColor = colorList[lookingValList.length-1];
-        }
-
-        if(connect_num > 0 && model_l === "none"){     
-　　　      valueChange = 1;
-            var strippoint = startpoint;
-            if( mode == "history"){
-                strippoint = 0;
-            } 
+    index1 = -1;
+    index2 = -1;
+    for(var i = 0; i < lookingValList.length; i++){
+        if( lookingValList[i][0] == id ) 
+            index1 = i; 
+    }
+    index2 = invisibleList.indexOf(id); 
+    if(multiFlag == 1 && lookingValList.length < colorList.length){ 
+        if(connect_num > 0 && model_l === "none"){   
+            if(index1 >= 0 && index2 < 0){
+                // if user click the button of displayed data as graph, the graph is erased.
+                invisibleList.push(id); 
+                document.getElementById("div:" + id).style.backgroundColor = "white";
+                document.getElementById("div:" + id).style.color = "black";
+            }else if( index2 >= 0 ){
+                invisibleList.splice( index2, 1 );  
+                document.getElementById("div:" + id).style.backgroundColor = colorList[index1];
+                document.getElementById("div:" + id).style.color = "white";
+            } else {
+                lookingVal = id;
+                lookingValList.push([lookingVal,flag]);
+                document.getElementById("div:" + id).style.borderColor = colorList[lookingValList.length-1];
+                document.getElementById("div:" + id).style.backgroundColor = colorList[lookingValList.length-1];
+    　　　      document.getElementById("div:" + id).style.color = "white";
+                valueChange = 1;
+                var strippoint = startpoint;
+                if(mode == "history"){
+                    strippoint = 0;
+                } 
                 var valueKeys = lookingValList[lookingValList.length-1][0].split("/");  
                 for(var j = 1; j < valueKeys.length; j++){
                     obj = obj[valueKeys[j]];
@@ -410,53 +459,69 @@ function viewGraph(id, flag, model_l){
                 }else{
                     viewValues.push(obj["Activity"]);
                 }
-            var len = viewValues[0].length;
-            var len2 = redbull.length;
-            redbull = [];
-            for( var i = 0; i < viewValues.length; i++ ){
-                var bull=[];
-                for( var j = 0; ( j + strippoint ) < len; j+=1 ){
-                    bull.push({"x":model.time[j+strippoint], "y":viewValues[i][j+strippoint]}); 
-        }
-                redbull.push(bull);
+                var len = viewValues[0].length;
+                var len2 = redbull.length;
+                redbull = [];
+                for(var i = 0; i < viewValues.length; i++){
+                    var bull=[];
+                    for(var j = 0; ( j + strippoint ) < len; j+=1){
+                        bull.push({"x":model.time[j+strippoint], "y":viewValues[i][j+strippoint]}); 
+                    }
+                    redbull.push(bull);
+                }
+                yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
+                yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
             }
-            yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
-            yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
         }
-
-    
     }else if(multiFlag == 0){ 
-    
-        if(svg != null && lookingValList.length > 0 && model_l === "none"){ 
-            for(var i = 0; i < lookingValList.length; i++ ){
-                document.getElementById("div:" + lookingValList[i][0]).style.borderColor = "black";
+        if( model_l == "none"){ 
+            if(svg != null && lookingValList.length > 1 ){ 
+                for(var i = 0; i < lookingValList.length; i++ ){
+                    document.getElementById("div:" + lookingValList[i][0]).style.borderColor     = "black";
+                    document.getElementById("div:" + lookingValList[i][0]).style.backgroundColor = "white";
+                    document.getElementById("div:" + lookingValList[i][0]).style.color           = "black";
+                }
+                lookingValList = [];
+                invisibleList  = [];
+                lookingVal = "";
+            }
+            if(id === lookingVal && invisibleList.indexOf(lookingVal) < 0){
+                invisibleList.push(lookingVal);
+                document.getElementById("div:" + lookingValList[0][0]).style.backgroundColor = "white"; 
+                document.getElementById("div:" + lookingValList[0][0]).style.color           = "black";
+            }else{
+                if( lookingVal != "" ){ 
+                    document.getElementById("div:" + lookingValList[0][0]).style.borderColor     = "black";
+                    document.getElementById("div:" + lookingValList[0][0]).style.backgroundColor = "white";
+                    document.getElementById("div:" + lookingValList[0][0]).style.color           = "black";
+                }
+                invisibleList  = [];
+                lookingVal    = id;
+                lookingValList = [[lookingVal,flag]];
+                for(var i = 1; i < valueKeys.length; i++){
+                    obj = obj[valueKeys[i]];
+                }
+                if(flag == "Variable"){
+                    viewValues = [obj["Value"]];
+                }else{
+                    viewValues = [obj["Activity"]];
+                }
+                document.getElementById("div:" + id).style.borderColor = colorList[0];
+                document.getElementById("div:" + id).style.backgroundColor = colorList[0];
+                document.getElementById("div:" + id).style.color = "white";
+                redbull=[[]];
+　　　　　　    valueChange = 1;
+                var strippoint = startpoint;
+                if( mode == "history"){
+                    strippoint = 0;
+                } 
+                for( var i = 0; ( i + strippoint ) < viewValues[0].length; i+=1 ){
+                    redbull[0].push({"x":model.time[i+strippoint], "y":viewValues[0][i+strippoint]}); 
+                }
+                yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
+                yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
             }
         }
-        lookingVal = id;
-        lookingValList = [[lookingVal,flag]];
-       if(model_l==="none"){
-        for(var i = 1; i < valueKeys.length; i++){
-               obj = obj[valueKeys[i]];
-            }
-            if(flag == "Variable"){
-                viewValues = [obj["Value"]];
-            }else{
-                viewValues = [obj["Activity"]];
-            }
-        document.getElementById("div:" + id).style.borderColor = colorList[0];
-        redbull=[[]];
-　　　　　　valueChange = 1;
-            var strippoint = startpoint;
-            if( mode == "history"){
-                strippoint = 0;
-            } 
-            for( var i = 0; ( i + strippoint ) < viewValues[0].length; i+=1 ){
-                redbull[0].push({"x":model.time[i+strippoint], "y":viewValues[0][i+strippoint]}); 
-            }
-        yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
-        yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
-    }
-
     } 
     //切り替えたときも同じ分グラフが表示されるようにする 森
     /*
@@ -511,21 +576,21 @@ function makeData(a, b){
     //グラフが表示されていたら
     if( lookingVal != ""  && connect_num%2 == 0 && multiFlag == 0 ){
         //もし，y軸の最大値と最小値が変わった時だけ,y軸のスケールをかえる，森
-    if( yMin > d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });}) || yMax < d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });})  || connect_num == 2){
+        if( yMin > d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });}) || yMax < d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });})  || connect_num == 2){
             lineList = [];
             yMin     = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
             yMax     = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
            
             xScale = d3.scale.linear()
-                     .domain([xMin, xS])
-                     .range([5, width]);
+                .domain([xMin, xS])
+                .range([5, width]);
     
             xAxis = d3.svg.axis()
-                     .scale(xScale)
-                     .orient("bottom")
-                 .innerTickSize(-height)  // 目盛線の長さ（内側）
-             .outerTickSize(0) // 目盛線の長さ（外側）
-             .tickPadding(10); // 目盛線とテキストの間の長さ
+                .scale(xScale)
+                .orient("bottom")
+                .innerTickSize(-height)  // 目盛線の長さ（内側）
+                .outerTickSize(0) // 目盛線の長さ（外側）
+                .tickPadding(10); // 目盛線とテキストの間の長さ
          
             yScale = d3.scale.linear()
                 .domain([yMin,yMax])
@@ -535,10 +600,10 @@ function makeData(a, b){
                 .scale(yScale)
                 .orient("left")
                 .innerTickSize(-width)  // 目盛線の長さ（内側）
-        .outerTickSize(0) // 目盛線の長さ（外側）
-        .tickPadding(10); // 目盛線とテキストの間の長さ
+                .outerTickSize(0) // 目盛線の長さ（外側）
+                .tickPadding(10); // 目盛線とテキストの間の長さ
   
-        line = d3.svg.line()
+            line = d3.svg.line()
                    .interpolate("basis")
                    .x(function(d) { return xScale(d.x); })
                    .y(function(d) { return yScale(d.y); });
@@ -552,9 +617,14 @@ function makeData(a, b){
         //city.selectAll(".line")
         //    .attr("d", function(d,i) { return line(redbull[i]); });
         for( var i = 0; i < redbull.length; i++){
-            svg.select("path.line")
-                .attr("d",line(redbull[i]));
-        //.style("stroke",colorList[i]);
+            if(invisibleList.indexOf(lookingValList[i][0]) < 0 ){
+                svg.select("path.line")
+                    .attr("d",line(redbull[i]));
+            }else{
+                svg.select("path.line")
+                    .attr("d",line([])); 
+            }
+            //.style("stroke",colorList[i]);
         }
     //}
     }
@@ -591,18 +661,18 @@ function setScale(dataset){
             scaleChange = 1;
         //stripモードの時だけ，redbullの中身を空に 森
         //console.log(redbull)
-        if( redbull[0].length > 1 ){ 
+            if( redbull[0].length > 1 ){ 
                 yMin = redbull[0][redbull[0].length-1].y;
-            yMax = redbull[0][redbull[0].length-1].y;
-        }
-        if(mode == "strip"){ 
+                yMax = redbull[0][redbull[0].length-1].y;
+            }
+            if(mode == "strip"){ 
                 var bull=[]
-            for(var i = 0; i < redbull.length; i++ ){
-                bull.push([])       
-            } 
-            redbull = bull;
+                for(var i = 0; i < redbull.length; i++ ){
+                    bull.push([])       
+                } 
+                redbull = bull;
+            }
         }
-    }
     }
 }  
 
@@ -629,14 +699,14 @@ function makeLinechart(){
     }else{
         xMin = xs;
         xMax = xS;
-     } 
-     xScale = d3.scale.linear()
-         .domain([xMin, xMax + (xMax - xMin) * 0.01])
-         .range([0, width]);
+    } 
+    xScale = d3.scale.linear()
+        .domain([xMin, xMax + (xMax - xMin) * 0.01])
+        .range([0, width]);
     
-     yScale = d3.scale.linear()
-         .domain([yMin,yMax])
-         .range([height, 0]);
+    yScale = d3.scale.linear()
+        .domain([yMin,yMax])
+        .range([height, 0]);
 
     line = d3.svg.line()
         .interpolate("basis")
@@ -651,20 +721,19 @@ function makeLinechart(){
             .attr("class","graphMain")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     }else{
-
-    zoom = d3.behavior.zoom()
-        .x(xScale)
-        .y(yScale)
-        .scaleExtent([1, 100000000])
-        .on("zoom", zoomed);    
+        zoom = d3.behavior.zoom()
+            .x(xScale)
+            .y(yScale)
+            .scaleExtent([1, 100000000])
+            .on("zoom", zoomed);    
     
-    svg = d3.select("#graph").append("svg")
-        .call(zoom)
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("class","graphMain")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        svg = d3.select("#graph").append("svg")
+            .call(zoom)
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("class","graphMain")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     }
     //if( xs == 0 )
     //    xMax = model.time[model.time.length-1];
@@ -675,17 +744,17 @@ function makeLinechart(){
     xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom")
-     .innerTickSize(-height)  // 目盛線の長さ（内側）
-    .outerTickSize(0) // 目盛線の長さ（外側）
-    .tickPadding(10); // 目盛線とテキストの間の長さ
+        .innerTickSize(-height)  // 目盛線の長さ（内側）
+        .outerTickSize(0) // 目盛線の長さ（外側）
+        .tickPadding(10); // 目盛線とテキストの間の長さ
          
 
     yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
-      .innerTickSize(-width)  // 目盛線の長さ（内側）
-    .outerTickSize(0) // 目盛線の長さ（外側）
-    .tickPadding(10); // 目盛線とテキストの間の長さ
+        .innerTickSize(-width)  // 目盛線の長さ（内側）
+        .outerTickSize(0) // 目盛線の長さ（外側）
+        .tickPadding(10); // 目盛線とテキストの間の長さ
         
    
     svg.append("g")
@@ -698,10 +767,10 @@ function makeLinechart(){
         .call(yAxis);
     
     svg.append("clipPath")
-    .attr("id", "clip")
-    .append("rect")
-    .attr("width", width)
-    .attr("height", height);
+        .attr("id", "clip")
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height);
     
     
     /*
@@ -716,26 +785,27 @@ function makeLinechart(){
         .style("stroke", function(d,i) { return colorList[i]; });
     */    
     for(var i = 0; i < redbull.length; i++){ 
-        svg.append("path")
-            .attr("class", "line")
-            .attr("clip-path", "url(#clip)")
-        .attr("d", line(redbull[i]))
-            .style("stroke",colorList[i])
-        .style("fill","none")
-            .style("stroke-width","1.8px");
+        if( invisibleList.indexOf( lookingValList[i][0] ) < 0 ){ 
+            svg.append("path")
+                .attr("class", "line")
+                .attr("clip-path", "url(#clip)")
+                .attr("d", line(redbull[i]))
+                .style("stroke",colorList[i])
+                .style("fill","none")
+                .style("stroke-width","1.8px");
+        }
     }
-
 }
 
 function zoomed(){
     if(xScale.domain()[0]<0){ 
        xScale.domain([0,xScale.domain()[1]])
        xAxis = d3.svg.axis()
-          .scale(xScale)
-          .orient("bottom")
-          .innerTickSize(-height)  // 目盛線の長さ（内側）
-      .outerTickSize(0) // 目盛線の長さ（外側）
-      .tickPadding(10); // 目盛線とテキストの間の長さ
+           .scale(xScale)
+           .orient("bottom")
+           .innerTickSize(-height)  // 目盛線の長さ（内側）
+           .outerTickSize(0) // 目盛線の長さ（外側）
+           .tickPadding(10); // 目盛線とテキストの間の長さ
          
 
     }
@@ -754,16 +824,31 @@ function zoomed(){
     }
     }*/
     //console.log(redbull2);
-    yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;} );});
-    yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;} );});
+    var j = 0;
+    console.log(invisibleList);
+    for( var i = 0; i < redbull.length; i++ ){ 
+        if( invisibleList.indexOf( lookingValList[i][0] ) < 0 ){
+            j += 1;
+            min = d3.min(redbull[i], function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
+            max = d3.max(redbull[i], function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
+            if( j == 1 ){
+                yMin = min;
+                yMax = max;
+            } else if(max > yMax) {
+                yMax = max;
+            } else if(min < yMin) {
+                yMin = min;
+            }
+        }
+    }
     //console.log(yMin,yMax); 
-    yScale.domain([yMin,yMax])
+    yScale.domain([yMin,yMax]);
     yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
-     .innerTickSize(-width)  // 目盛線の長さ（内側）
-    .outerTickSize(0) // 目盛線の長さ（外側）
-    .tickPadding(10); // 目盛線とテキストの間の長さ
+        .innerTickSize(-width)  // 目盛線の長さ（内側）
+        .outerTickSize(0) // 目盛線の長さ（外側）
+        .tickPadding(10); // 目盛線とテキストの間の長さ
  
     //makeLinechart()
     svg.select(".x.axis").call(xAxis);
@@ -775,15 +860,16 @@ function zoomed(){
         .x(function(d) { return xScale(d.x); })
         .y(function(d) { return yScale(d.y); }); 
  
-
     for(var i = 0; i < redbull.length; i++){ 
-        svg.append("path")
-            .attr("class", "line")
-          .attr("clip-path", "url(#clip)")
-            .attr("d", line(redbull[i]))
-            .style("stroke",colorList[i])
-        .style("fill","none")
-            .style("stroke-width","1.8px");
+        if( invisibleList.indexOf( lookingValList[i][0] ) < 0 ){ 
+            svg.append("path")
+                .attr("class", "line")
+                .attr("clip-path", "url(#clip)")
+                .attr("d", line(redbull[i]))
+                .style("stroke",colorList[i])
+                .style("fill","none")
+                .style("stroke-width","1.8px");
+        }
     }
 }
 
@@ -797,12 +883,12 @@ function makeGraph(){
                 makeLinechart();
             }
         makeData(model.time, viewValues);
-    }else{
+        }else{
             //現時点ではマルチの状態ではsvgごと更新しないと,グラフが表示されない 1森
-        setScale(redbull[0]);
+            setScale(redbull[0]);
             makeData(model.time, viewValues);
-        yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
-        yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
+            yMin = d3.min(redbull, function(s){return d3.min(s,function(d){ return d.y; });});
+            yMax = d3.max(redbull, function(s){return d3.max(s,function(d){ return d.y; });});
             makeLinechart();
         }
     }else{
