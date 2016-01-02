@@ -533,9 +533,9 @@ Real DormandStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
         Process* const aProcess( theProcessVector[ c ] );
         libecs::String className;
         className = aProcess->getPropertyInterface().getClassName();
-        theMaxStepInterval = normalMaxStepInterval;
 	if(className == "ExpressionEventRepeatableProcess" || className == "PiecewiseProcess" ){
             //std::cout<<aProcess->getProperty("FireFlag")<<aProcess->getProperty("TriggerFlag") <<std::endl;  
+            theMaxStepInterval = normalMaxStepInterval;
             if(aProcess->getProperty("FireFlag") == "true" && aProcess->getProperty("TriggerFlag") == "false" ){   
                 //std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl;  
                 theMaxStepInterval = EventStepInterval;
