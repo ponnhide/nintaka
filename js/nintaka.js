@@ -695,7 +695,7 @@ function makeLinechart(){
     
     if( mode == "history"){
         xMin = 0;
-        xMax = model.time[model.time.length-1];
+        xMax = redbull[0][ redbull[0].length -1 ].x;
     }else{
         xMin = xs;
         xMax = xS;
