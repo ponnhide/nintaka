@@ -1,7 +1,13 @@
 <?xml version="1.0" ?>
 <eml>
-<stepper class="ODE_DormandStepper" id="Default"/>
-<stepper class="DormandStepper" id="Radau_Dormmand"/>
+<stepper class="ODE45eventStepper" id="Default">
+<property name="MaxStepInterval">
+<value>1.0e-1</value> 
+</property>
+<property name="EventStepInterval">
+<value>1.0e-10</value> 
+</property>
+</stepper>
 <system class="System" id="/">
 <property name="StepperID">
 <value>Default</value>
@@ -312,18 +318,18 @@
 </value>
 </property>
 </process>
-<process class="ExpressionAssignmentexProcess" id="Assignment_Exposure">
+<process class="PiecewiseProcess" id="Assignment_Exposure">
 <property name="StepperID">
 <value>Default</value>
 </property>
 <property name="Priority">
-<value>1</value>
+<value>10</value>
 </property>
 <property name="Name">
 <value>Assignment rule for 'Exposure'</value>
 </property>
 <property name="Expression">
-<value>piecewise(Dose.NumberConc, and(lt(time.Value, Cycle_Int.NumberConc * N_Cycle.NumberConc), lt(Dose_Int1.NumberConc, rem_time.NumberConc), lt(rem_time.NumberConc, Dose_Length.NumberConc)), Dose.NumberConc, and(lt(time.Value, Cycle_Int.NumberConc * N_Cycle.NumberConc), lt(Dose_Int2.NumberConc, rem_time.NumberConc), lt(rem_time.NumberConc, Dose_Int2.NumberConc + Dose_Length.NumberConc)), 0)</value>
+<value>piecewise(Dose.NumberConc, and(and(lt(time.Value, Cycle_Int.NumberConc * N_Cycle.NumberConc), lt(Dose_Int1.NumberConc, rem_time.NumberConc)), lt(rem_time.NumberConc, Dose_Length.NumberConc)), Dose.NumberConc, and(and(lt(time.Value, Cycle_Int.NumberConc * N_Cycle.NumberConc), lt(Dose_Int2.NumberConc, rem_time.NumberConc)), lt(rem_time.NumberConc, Dose_Int2.NumberConc + Dose_Length.NumberConc)), 0)</value>
 </property>
 <property name="mathml">
 <value>&lt;?xml version='1.0' encoding='UTF-8'?&gt;#x0A&lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;#x0A  &lt;piecewise&gt;#x0A    &lt;piece&gt;#x0A      &lt;ci&gt; Dose &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;and/&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Cycle_Int &lt;/ci&gt;#x0A            &lt;ci&gt; N_Cycle &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;ci&gt; Dose_Int1 &lt;/ci&gt;#x0A          &lt;ci&gt; rem_time &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;ci&gt; rem_time &lt;/ci&gt;#x0A          &lt;ci&gt; Dose_Length &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;piece&gt;#x0A      &lt;ci&gt; Dose &lt;/ci&gt;#x0A      &lt;apply&gt;#x0A        &lt;and/&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;csymbol encoding='text' definitionURL='http://www.sbml.org/sbml/symbols/time'&gt; time &lt;/csymbol&gt;#x0A          &lt;apply&gt;#x0A            &lt;times/&gt;#x0A            &lt;ci&gt; Cycle_Int &lt;/ci&gt;#x0A            &lt;ci&gt; N_Cycle &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;ci&gt; Dose_Int2 &lt;/ci&gt;#x0A          &lt;ci&gt; rem_time &lt;/ci&gt;#x0A        &lt;/apply&gt;#x0A        &lt;apply&gt;#x0A          &lt;lt/&gt;#x0A          &lt;ci&gt; rem_time &lt;/ci&gt;#x0A          &lt;apply&gt;#x0A            &lt;plus/&gt;#x0A            &lt;ci&gt; Dose_Int2 &lt;/ci&gt;#x0A            &lt;ci&gt; Dose_Length &lt;/ci&gt;#x0A          &lt;/apply&gt;#x0A        &lt;/apply&gt;#x0A      &lt;/apply&gt;#x0A    &lt;/piece&gt;#x0A    &lt;otherwise&gt;#x0A      &lt;cn&gt; 0 &lt;/cn&gt;#x0A    &lt;/otherwise&gt;#x0A  &lt;/piecewise&gt;#x0A&lt;/math&gt;</value>
