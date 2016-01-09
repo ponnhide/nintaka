@@ -1230,6 +1230,11 @@ bool ODEeventStepper::calculate( Real aStepInterval )
 
 Real ODEeventStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
 {
+    Polymorph hoge; 
+    hoge = "false";
+    Polymorph fuga;
+    fuga = "false";
+
     for ( Integer i=0; i < theProcessVector.size(); ++i )
     {
         Process* const aProcess( theProcessVector[ i ] );
@@ -1238,15 +1243,20 @@ Real ODEeventStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
         theMaxStepInterval = normalMaxStepInterval;
 	if(className == "ExpressionEventRepeatableProcess" || className == "PiecewiseProcess" ){
             if(aProcess->getProperty("FireFlag") == "true" && aProcess->getProperty("TriggerFlag") == "false" ){     
-                theMaxStepInterval = theEventStepInterval;
-                if( aStepInterval>theMaxStepInterval){
-                    aStepInterval = theMaxStepInterval * 0.01;   
-                }//std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl;
+                    aStepInterval = theEventStepInterval;
+                    aProcess->setProperty("FireFlag",hoge);
+                    aProcess->setProperty("TriggerFlag",fuga);
+                    //theMaxStepInterval = EventStepInterval;
+                    //
+                    //std::cout<<aProcess->getProperty("Name")<<":"<<aStepInterval<<":"<<getCurrentTime()<<std::endl;
+                    //break;
             }
+           // std::cout<<aProcess->getProperty("FireFlag")<<aStepInterval<<std::endl;
         }
     }
     return aStepInterval;
 } 
+
 void ODEeventStepper::updateInternalState( Real aStepInterval )
 {
     // check the stiffness of this system by previous results

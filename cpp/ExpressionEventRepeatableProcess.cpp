@@ -62,7 +62,8 @@ public:
       : theFireTime( 0.0 ),
         theRepeatFlag( "true" ),         
         theFireFlag( "false" ), 
-   	theTriggerFlag( "false" )  
+   	theTriggerFlag( "false" ),
+        fired( 0 ) 
     {
         //FIXME: additional properties:
         // Unidirectional     -> call declareUnidirectional() in initialize()
@@ -351,7 +352,7 @@ protected:
     libecs::String  theRepeatFlag;
     libecs::String  theFireFlag;
     libecs::String  theTriggerFlag;
-    libecs::String  theMathml;
+    libecs::String  theMathml; 
     libecs::Integer fired; 
     EventAssignmentMap theEventAssignmentMap;
     EANameVector theEANameVector;
@@ -359,7 +360,6 @@ protected:
 private:
     VariableReference theVariableReference;
     libecs::Real previousTime;
-    
 };
 
 LIBECS_DM_INIT( ExpressionEventRepeatableProcess, Process );

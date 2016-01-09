@@ -39,6 +39,7 @@
 
 #include <libecs/Variable.hpp>
 #include <libecs/Process.hpp>
+#include <libecs/Model.hpp> 
 
 #include <libecs/AdaptiveDifferentialStepper.hpp>
 
@@ -176,7 +177,7 @@ public:
 protected:
 
     Real alpha, beta, gamma;
-
+  
     VariableVector::size_type theSystemSize;
 
     RealMatrix           theJacobian, theW;
@@ -210,7 +211,7 @@ protected:
     Real EventStepInterval;
     Real RadauMinStepInterval;
     Real DormandMinStepInterval;
-    Real normalMaxStepInterval;
+    Real normalMaxStepInterval; 
 };
 
 
@@ -242,11 +243,11 @@ ODE_DormandStepper::ODE_DormandStepper()
       theRejectedStepCounter( 0 ),
       CheckIntervalCount( 10 ),
       SwitchingCount( 200 ),
-      EventStepInterval( 1.0e-4 ),
-      RadauMinStepInterval( 1.0e-10 ),
-      DormandMinStepInterval( 1.0e-10 ),  
       theFirstStepFlag( true ),
-      theJacobianCalculateFlag( true ),
+      theJacobianCalculateFlag( true ), 
+      EventStepInterval( 1.0e-5 ),
+      RadauMinStepInterval( 1.0e-10 ),
+      DormandMinStepInterval( 1.0e-10 ),
       isStiff( true )
 {
     const Real pow913( pow( 9.0, 1.0 / 3.0 ) );
@@ -312,7 +313,6 @@ void ODE_DormandStepper::initializeStepper()
 {
     isStiff = static_cast<bool>( !isStiff );
     theStiffnessCounter = 0;
-
     const VariableVector::size_type aSize( getReadOnlyVariableOffset() );
 
     if ( isStiff )
@@ -977,6 +977,7 @@ void ODE_DormandStepper::updateInternalStateRadauIIA( Real aStepInterval )
         setCurrentTime( aCurrentTime );
         fireProcesses();
         setVariableVelocity( theTaylorSeries[0] ); 
+        DifferentialStepper::updateInternalState( aStepInterval );
     }else{
         setCurrentTime( aCurrentTime );
         fireProcesses();
@@ -1209,6 +1210,12 @@ bool ODE_DormandStepper::calculate( Real aStepInterval )
 }
 Real ODE_DormandStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
 {
+    Real modelTime = getModel()->getCurrentTime(); 
+    Polymorph hoge; 
+    hoge = "false";
+    Polymorph fuga;
+    fuga = "false";
+
     for ( Integer i=0; i < theProcessVector.size(); ++i )
     {
         Process* const aProcess( theProcessVector[ i ] );
@@ -1217,14 +1224,16 @@ Real ODE_DormandStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
         theMaxStepInterval = normalMaxStepInterval;
 	if(className == "ExpressionEventRepeatableProcess" || className == "PiecewiseProcess" ){
             if(aProcess->getProperty("FireFlag") == "true" && aProcess->getProperty("TriggerFlag") == "false" ){     
-                isStiff = 0;
-                theMaxStepInterval = EventStepInterval;
-                if( aStepInterval>theMaxStepInterval){
-                    aStepInterval = theMaxStepInterval * 0.01;   
+                    aStepInterval = EventStepInterval;
+                    //setCurrentTime( modelTime + aStepInterval ); 
+                    aProcess->setProperty("FireFlag",hoge);
+                    aProcess->setProperty("TriggerFlag",fuga);
+                    //theMaxStepInterval = EventStepInterval;
+                    //
                     //std::cout<<aProcess->getProperty("Name")<<":"<<aStepInterval<<":"<<getCurrentTime()<<std::endl;
-                }//std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl;
-                break;
+                    //break;
             }
+           // std::cout<<aProcess->getProperty("FireFlag")<<aStepInterval<<std::endl;
         }
     }
     return aStepInterval;

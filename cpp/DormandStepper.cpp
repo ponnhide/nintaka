@@ -224,7 +224,7 @@ DormandStepper::DormandStepper()
       theRejectedStepCounter( 0 ),
       CheckIntervalCount( 100 ),
       SwitchingCount( 20 ),
-      EventStepInterval(1.0e-2),
+      EventStepInterval(1.0e-4),
       theFirstStepFlag( true ),
       theJacobianCalculateFlag( true ),
       isStiff( true )
@@ -528,26 +528,33 @@ bool DormandStepper::calculate( Real aStepInterval )
 
 Real DormandStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
 {
+    Polymorph hoge; 
+    hoge = "false";
+    Polymorph fuga;
+    fuga = "false";
+
     for( ProcessVector::size_type c( 0 ); c < theProcessVector.size(); ++c )
     {
         Process* const aProcess( theProcessVector[ c ] );
-        libecs::String className;
+        String className;
         className = aProcess->getPropertyInterface().getClassName();
+        theMaxStepInterval = normalMaxStepInterval;
 	if(className == "ExpressionEventRepeatableProcess" || className == "PiecewiseProcess" ){
-            //std::cout<<aProcess->getProperty("FireFlag")<<aProcess->getProperty("TriggerFlag") <<std::endl;  
-            theMaxStepInterval = normalMaxStepInterval;
-            if(aProcess->getProperty("FireFlag") == "true" && aProcess->getProperty("TriggerFlag") == "false" ){   
-                //std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl;  
-                theMaxStepInterval = EventStepInterval;
-                isStiff = 0;
-                if( aStepInterval>theMaxStepInterval){  
-                    aStepInterval = theMaxStepInterval * 0.01;  
-                    //std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl; 
-                }//std::cout<<aProcess->getProperty("Name")<<getCurrentTime()<<std::endl;
+            if(aProcess->getProperty("FireFlag") == "true" && aProcess->getProperty("TriggerFlag") == "false" ){     
+                    aStepInterval = EventStepInterval;
+                    //setCurrentTime( modelTime + aStepInterval ); 
+                    aProcess->setProperty("FireFlag",hoge);
+                    aProcess->setProperty("TriggerFlag",fuga);
+                    //theMaxStepInterval = EventStepInterval;
+                    //
+                    //std::cout<<aProcess->getProperty("Name")<<":"<<aStepInterval<<":"<<getCurrentTime()<<std::endl;
+                    //break;
             }
+           // std::cout<<aProcess->getProperty("FireFlag")<<aStepInterval<<std::endl;
         }
     }
     return aStepInterval;
+    
 }
 
 void DormandStepper::updateInternalState( Real aStepInterval )
