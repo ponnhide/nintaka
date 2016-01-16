@@ -248,7 +248,7 @@ ODE_DormandStepper::ODE_DormandStepper()
       EventStepInterval( 1.0e-5 ),
       RadauMinStepInterval( 1.0e-10 ),
       DormandMinStepInterval( 1.0e-10 ),
-      isStiff( true )
+      isStiff( false )
 {
     const Real pow913( pow( 9.0, 1.0 / 3.0 ) );
 
@@ -1255,8 +1255,14 @@ void ODE_DormandStepper::updateInternalState( Real aStepInterval )
                 if ( theStiffnessCounter
                          > getCheckIntervalCount() * getSwitchingCount() )
                 {
+                    if( aStepInterval > 1.0e-10 ){  
+                        aStepInterval = 1.0e-10;
+                    }
                     setIntegrationType( !isStiff );
-                    aStepInterval = EventStepInterval;
+                    if( aStepInterval > 1.0e-10 ){  
+                        aStepInterval = 1.0e-10;
+                    }
+
                 }
             }
             else
