@@ -638,21 +638,24 @@ function makeData(a, b){
 
 function setScale(dataset){
     //if(xS == 0 && step_num > 1){ //配列の中が空の時は何もしないstep()が100回動いたら更新 森
-    if(  step_num % ( interval * 1000 ) == 0 || connect_num == 2 ){
+    if(  step_num % ( interval * 500 ) == 0 || connect_num == 2 ){
         //xL = Math.floor((model.time[model.time.length - 1] - model.time[0])) * model.time.length / 10;
         //平均ステップ幅を元に計算 森
         if( mode == "history"){
         //xS = xS - xL;
-        xL =  Math.floor( 1000 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))); 
+            xL =  Math.floor( 1000 / Math.exp(-30*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,100))); 
         //xS += xL;
-    }else{
-        xL =  Math.min(Math.floor( 100 / Math.exp(-50*Math.pow((model.time[model.time.length-1]-model.time[0]) / model.time.length,1000))),1000); 
-    }
+        }else{
+            xL =  1000 * (model.time[model.time.length-1]-model.time[0]) / model.time.length;
+            if( xL == 0 ){
+                xL = 1;
+            }
+        }
         if(xS == 1){
 　　　　　  xS      = xL;
             redbull = [[]];
-           scaleChange = 1;
         }
+        scaleChange = 1;
     }else if(xS != 0){
         while(xS < d3.max(dataset, function(d){ return d.x })){
             xS += xL;
