@@ -617,9 +617,10 @@ function makeData(a, b){
         //city.selectAll(".line")
         //    .attr("d", function(d,i) { return line(redbull[i]); });
         for( var i = 0; i < redbull.length; i++){
+            pathData = cull(redbull[i])
             if(invisibleList.indexOf(lookingValList[i][0]) < 0 ){
                 svg.select("path.line")
-                    .attr("d",line(redbull[i]));
+                    .attr("d",line(pathData));
             }else{
                 svg.select("path.line")
                     .attr("d",line([])); 
@@ -727,7 +728,7 @@ function makeLinechart(){
         zoom = d3.behavior.zoom()
             .x(xScale)
             .y(yScale)
-            .scaleExtent([1, 100000000])
+            .scaleExtent([1, 1.0e+200])
             .on("zoom", zoomed);    
     
         svg = d3.select("#graph").append("svg")
@@ -788,11 +789,12 @@ function makeLinechart(){
         .style("stroke", function(d,i) { return colorList[i]; });
     */    
     for(var i = 0; i < redbull.length; i++){ 
+        pathData = cull(redbull[i]);
         if( invisibleList.indexOf( lookingValList[i][0] ) < 0 ){ 
             svg.append("path")
                 .attr("class", "line")
                 .attr("clip-path", "url(#clip)")
-                .attr("d", line(redbull[i]))
+                .attr("d", line(pathData))
                 .style("stroke",colorList[i])
                 .style("fill","none")
                 .style("stroke-width","1.8px");
@@ -809,31 +811,17 @@ function zoomed(){
            .innerTickSize(-height)  // 目盛線の長さ（内側）
            .outerTickSize(0) // 目盛線の長さ（外側）
            .tickPadding(10); // 目盛線とテキストの間の長さ
-         
-
     }
-
-    /*var redbull2 = []
-    for(var i = 0; i < redbull.length; i++ ){
-    redbull2.push([]);
-    for( var j = 0; j < redbull[i].length; j++ ){
-        console.log(redbull[i][j].x)
-        if( redbull[i][j].x > xScale.domain()[0] ){
-            redbull2[i].push(redbull[i][j]) 
-        }
-        if( redbull[i][j].x > xScale.domain()[1] ){
-            break 
-        }
-    }
-    }*/
-    //console.log(redbull2);
     var j = 0;
+    var pathDataList = [];
     console.log(invisibleList);
     for( var i = 0; i < redbull.length; i++ ){ 
+        var pathData = cull(redbull[i]);
+        pathDataList.push(pathData);
         if( invisibleList.indexOf( lookingValList[i][0] ) < 0 ){
             j += 1;
-            min = d3.min(redbull[i], function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
-            max = d3.max(redbull[i], function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
+            min = d3.min(pathData, function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
+            max = d3.max(pathData, function(d){ if( d.x > xScale.domain()[0] && d.x < xScale.domain()[1] )return d.y;});
             if( j == 1 ){
                 yMin = min;
                 yMax = max;
@@ -868,7 +856,7 @@ function zoomed(){
             svg.append("path")
                 .attr("class", "line")
                 .attr("clip-path", "url(#clip)")
-                .attr("d", line(redbull[i]))
+                .attr("d", line(pathDataList[i]))
                 .style("stroke",colorList[i])
                 .style("fill","none")
                 .style("stroke-width","1.8px");
@@ -903,6 +891,17 @@ function makeGraph(){
     valueChange = 0;
 }
 
+function cull(data){  
+    culledData = [];
+    if(data.length > 2000){
+        for(var i = 0; i < data.length; i += Math.ceil(data.length/5000)){
+            culledData.push(data[i]); 
+        }
+        return culledData;
+    }else{
+        return data;
+    }
+}
 
 //discription表示用の関数 現時点ではsbml等がもともと持っているxhtml構造をベタ貼り 森
 function viewDiscription(){
