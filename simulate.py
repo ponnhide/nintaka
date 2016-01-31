@@ -37,10 +37,10 @@ def load( modelname, modeltype ): #args[0] = modelrepository
     StepperList = aSession.getStepperList()
     for Stepper in StepperList:
         aStub = aSession.createStepperStub( Stepper )
-        if "ODE" in aStub.getClassname() and "Dormand" not in aStub.getClassname() and "45" not in aStub.getClassname():
-            aStub.setProperty("MaxStepInterval",1); 
-        if "FixedODE" in aStub.getClassname():
-            mode = 0 
+        if "ODE" in aStub.getClassname() and "45" not in aStub.getClassname() and "Fixed" not in aStub.getClassname():
+            aStub.setProperty("MaxStepInterval",100); 
+        #if "FixedODE" in aStub.getClassname():
+        #    mode = 0 
     flag = 1	
 
 def getDiscription( modelname, modeltype ):
@@ -55,10 +55,13 @@ def getDiscription( modelname, modeltype ):
                 break 
             if flag == 1:
                 sbmlnote += aline 
-    sbmlnote = sbmlnote.replace("<body","<div id=\"discription\"")
-    sbmlnote = sbmlnote.replace("</body>","</div>") 
-    return sbmlnote
+        sbmlnote = sbmlnote.replace("<body","<div id=\"discription\"")
+        sbmlnote = sbmlnote.replace("</body>","</div>") 
+        return sbmlnote
     
+    if modeltype == "eml":
+        return "none"
+
     if modeltype == "cellml":
         cellmlfile          = open( "./model/" + modeltype + "/" +  modelname + "/" + modelname.replace("eml","sbml") )
         cellmldocumentation = ""
@@ -71,9 +74,9 @@ def getDiscription( modelname, modeltype ):
             if flag == 1:
                 cellmldocumentation += aline 
 
-    cellmldocumentation = cellmldocumentation.replace("<documentation","<div id=\"discription\"")
-    cellmldocumentation = cellmldocumentation.replace("</documentation>","</div>")
-    return cellmldocumentation
+        cellmldocumentation = cellmldocumentation.replace("<documentation","<div id=\"discription\"")
+        cellmldocumentation = cellmldocumentation.replace("</documentation>","</div>")
+        return cellmldocumentation
  
 
 

@@ -246,13 +246,13 @@ ODEeventStepper::ODEeventStepper()
       theAcceptedStepInterval( 0.0 ),
       theJacobianRecalculateTheta( 0.001 ),
       theSpectralRadius( 0.0 ),
+      theEventStepInterval( 0.001 ),
       theStiffnessCounter( 0 ),
       theRejectedStepCounter( 0 ),
       CheckIntervalCount( 100 ),
       SwitchingCount( 20 ),
       theFirstStepFlag( true ),
       theJacobianCalculateFlag( true ),
-      theEventStepInterval( 0.01 ),
       isStiff( true )
 {
     const Real pow913( pow( 9.0, 1.0 / 3.0 ) );

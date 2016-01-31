@@ -245,10 +245,10 @@ ODE_DormandStepper::ODE_DormandStepper()
       SwitchingCount( 200 ),
       theFirstStepFlag( true ),
       theJacobianCalculateFlag( true ), 
-      EventStepInterval( 1.0e-5 ),
+      isStiff( false ),
+      EventStepInterval( 1.0e-3 ),
       RadauMinStepInterval( 1.0e-10 ),
-      DormandMinStepInterval( 1.0e-10 ),
-      isStiff( false )
+      DormandMinStepInterval( 1.0e-10 )
 {
     const Real pow913( pow( 9.0, 1.0 / 3.0 ) );
 

@@ -648,7 +648,7 @@ function setScale(dataset){
         }else{
             xL =  1000 * (model.time[model.time.length-1]-model.time[0]) / model.time.length;
             if( xL == 0 ){
-                xL = 1;
+                xL = 10;
             }
         }
         if(xS == 1){

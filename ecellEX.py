@@ -452,7 +452,7 @@ class EX:
     '''
 
 if __name__ == '__builtin__':
-    loadModel('../Models/BIOMD0000000127.eml')
+    loadModel('./BIOMD0000000127.eml')
     EX = EX( self )
     print EX.getAllEntityList( '/' )
     EX.treeDictionary( '/' ) 
@@ -461,13 +461,13 @@ if __name__ == '__builtin__':
     EX.saveStatus() 
     EX.createAllLogger()
     print 'save' 
-    run( 100 )
-    EX.resetStatus() 
+    run( 500 )
+    #EX.resetStatus() 
     #self.theSimulator.initialize() 
-    EX.createAllLogger()  
-    run( 100 )
+    #EX.createAllLogger()  
+    #run( 100 )
     print 'reset'
-    EX.saveAllCSV( 'ALLData.csv',0,200,0.01 )
+    EX.saveAllCSV( 'ALLData_ODE.csv',0, 500,0.01 )
     print 'finish' 
     
         
