@@ -37,7 +37,7 @@ def load( modelname, modeltype ): #args[0] = modelrepository
     StepperList = aSession.getStepperList()
     for Stepper in StepperList:
         aStub = aSession.createStepperStub( Stepper )
-        if "ODE" in aStub.getClassname() and "45" not in aStub.getClassname() and "Fixed" not in aStub.getClassname():
+        if "ODE" in aStub.getClassname() and "45" not in aStub.getClassname() and "Fixed" not in aStub.getClassname() and "MaxStepInterval" not in aStub.getPropertyList():
             aStub.setProperty("MaxStepInterval",100); 
         #if "FixedODE" in aStub.getClassname():
         #    mode = 0 

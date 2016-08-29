@@ -39,6 +39,7 @@
 
 #include <libecs/Variable.hpp>
 #include <libecs/Process.hpp>
+#include <libecs/Model.hpp> 
 
 #include <libecs/AdaptiveDifferentialStepper.hpp>
 
@@ -1234,7 +1235,7 @@ Real ODEeventStepper::judgeEvent( Real aStepInterval, Real aCurrentTime )
     hoge = "false";
     Polymorph fuga;
     fuga = "false";
-
+    Real modelTime = getModel()->getCurrentTime(); 
     for ( Integer i=0; i < theProcessVector.size(); ++i )
     {
         Process* const aProcess( theProcessVector[ i ] );

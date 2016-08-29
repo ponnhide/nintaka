@@ -5,7 +5,7 @@ for afile in dirs:
         sbml     = afile.replace("eml","xml")
         emllines = open(afile).read()
         #lines    = open(sbml).read()
-        if "345600" in emllines:
+        if "tanh" in emllines or "sinh" in emllines or "cosh" in emllines:
         #if "Cycle" in lines or "cycle" in lines or "oscil" in lines or "Circ" in lines or "Spik" in lines:
             #emllines = emllines.replace("ODEevent","ODE_Dormand")
             #new = open(afile,"w") 
