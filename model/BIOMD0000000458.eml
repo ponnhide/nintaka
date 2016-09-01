@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="PDH">
+<property name="Name">
+<value>phosphoglycerate dehydrogenase</value>
+</property>
+<property name="kcatA">
+<value>0.55</value>
+</property>
+<property name="KAp3g">
+<value>1.2</value>
+</property>
+<property name="KAphp">
+<value>0.0032</value>
+</property>
+<property name="KiAser">
+<value>0.0038</value>
+</property>
+<property name="Expression">
+<value>cell.Value * serA.NumberConc * kcatA * (p3g.NumberConc / KAp3g) / (1 + p3g.NumberConc / KAp3g + php.NumberConc / KAphp) / (1 + ser.NumberConc / KiAser)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p3g</value>
+<value>Variable:/cell:p3g</value>
+<value>0</value>
+</value>
+<value>
+<value>php</value>
+<value>Variable:/cell:php</value>
+<value>1</value>
+</value>
+<value>
+<value>serA</value>
+<value>Variable:/cell:serA</value>
+<value>0</value>
+</value>
+<value>
+<value>ser</value>
+<value>Variable:/cell:ser</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PSA">
+<property name="Name">
+<value>phosphoserine aminotransferase</value>
+</property>
+<property name="kcatC">
+<value>1.75</value>
+</property>
+<property name="KCphp">
+<value>0.0015</value>
+</property>
+<property name="KCpser">
+<value>0.0017</value>
+</property>
+<property name="Expression">
+<value>cell.Value * serC.NumberConc * kcatC * (php.NumberConc / KCphp) / (1 + php.NumberConc / KCphp + pser.NumberConc / KCpser)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>php</value>
+<value>Variable:/cell:php</value>
+<value>-1</value>
+</value>
+<value>
+<value>pser</value>
+<value>Variable:/cell:pser</value>
+<value>1</value>
+</value>
+<value>
+<value>serC</value>
+<value>Variable:/cell:serC</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PSP">
+<property name="Name">
+<value>phosphoserine phosphatase</value>
+</property>
+<property name="kcatB">
+<value>1.43</value>
+</property>
+<property name="KBpser">
+<value>0.0015</value>
+</property>
+<property name="KBser">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>cell.Value * serB.NumberConc * kcatB * (pser.NumberConc / KBpser) / (1 + pser.NumberConc / KBpser + ser.NumberConc / KBser)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pser</value>
+<value>Variable:/cell:pser</value>
+<value>-1</value>
+</value>
+<value>
+<value>ser</value>
+<value>Variable:/cell:ser</value>
+<value>0</value>
+</value>
+<value>
+<value>serB</value>
+<value>Variable:/cell:serB</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p3g">
+<property name="Name">
+<value>3-phosphoglycerate</value>
+</property>
+<property name="NumberConc">
+<value>2.36</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="php">
+<property name="Name">
+<value>phosphohydroxypyruvate</value>
+</property>
+<property name="NumberConc">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pser">
+<property name="Name">
+<value>phosphoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.09</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ser">
+<property name="Name">
+<value>serine</value>
+</property>
+<property name="NumberConc">
+<value>4.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="serA">
+<property name="Name">
+<value>serA</value>
+</property>
+<property name="NumberConc">
+<value>1.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="serC">
+<property name="Name">
+<value>serC</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="serB">
+<property name="Name">
+<value>serB</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

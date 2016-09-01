@@ -1,0 +1,1146 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>EGF_binds_to_EGFR</value>
+</property>
+<property name="k1f">
+<value>0.003</value>
+</property>
+<property name="k1b">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>(k1f * R.NumberConc * EGF.NumberConc - k1b * Ra.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/compartment:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>EGF</value>
+<value>Variable:/compartment:EGF</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ra</value>
+<value>Variable:/compartment:Ra</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>association_of_2_Ra_into_dimer</value>
+</property>
+<property name="k2f">
+<value>0.01</value>
+</property>
+<property name="k2b">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>(k2f * Ra.NumberConc * Ra.NumberConc - k2b * R2.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ra</value>
+<value>Variable:/compartment:Ra</value>
+<value>-2</value>
+</value>
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>phosphorylation_of_R2</value>
+</property>
+<property name="k3f">
+<value>1.0</value>
+</property>
+<property name="k3b">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>(k3f * R2.NumberConc - k3b * RP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>dephosphorylation_of_RP</value>
+</property>
+<property name="V4">
+<value>450.0</value>
+</property>
+<property name="K4">
+<value>50.0</value>
+</property>
+<property name="Expression">
+<value>V4 * RP.NumberConc / (K4 + RP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>R2</value>
+<value>Variable:/compartment:R2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>binding_of_PLCg_to_RP</value>
+</property>
+<property name="k5f">
+<value>0.06</value>
+</property>
+<property name="k5b">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>(k5f * RP.NumberConc * PLCg.NumberConc - k5b * RPLCg.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PLCg</value>
+<value>Variable:/compartment:PLCg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPLCg</value>
+<value>Variable:/compartment:RPLCg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>phosphorylation_of_PLCg</value>
+</property>
+<property name="k6f">
+<value>1.0</value>
+</property>
+<property name="k6b">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>(k6f * RPLCg.NumberConc - k6b * RPLCgP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RPLCg</value>
+<value>Variable:/compartment:RPLCg</value>
+<value>-1</value>
+</value>
+<value>
+<value>RPLCgP</value>
+<value>Variable:/compartment:RPLCgP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7">
+<property name="Name">
+<value>dissociation_of_RPLCgP</value>
+</property>
+<property name="k7f">
+<value>0.3</value>
+</property>
+<property name="k7b">
+<value>0.006</value>
+</property>
+<property name="Expression">
+<value>(k7f * RPLCgP.NumberConc - k7b * RP.NumberConc * PLCgP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RPLCgP</value>
+<value>Variable:/compartment:RPLCgP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PLCgP</value>
+<value>Variable:/compartment:PLCgP</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v8">
+<property name="Name">
+<value>dephosphorylation_of_PLCgP</value>
+</property>
+<property name="V8">
+<value>1.0</value>
+</property>
+<property name="K8">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>V8 * PLCgP.NumberConc / (K8 + PLCgP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLCgP</value>
+<value>Variable:/compartment:PLCgP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PLCg</value>
+<value>Variable:/compartment:PLCg</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v9">
+<property name="Name">
+<value>binding_of_Grb2_to_RP</value>
+</property>
+<property name="k9f">
+<value>0.003</value>
+</property>
+<property name="k9b">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>(k9f * RP.NumberConc * Grb.NumberConc - k9b * RG.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Grb</value>
+<value>Variable:/compartment:Grb</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RG</value>
+<value>Variable:/compartment:RG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v10">
+<property name="Name">
+<value>binding_of_SOS_to_RG</value>
+</property>
+<property name="k10f">
+<value>0.01</value>
+</property>
+<property name="k10b">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>(k10f * RG.NumberConc * SOS.NumberConc - k10b * RGS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RG</value>
+<value>Variable:/compartment:RG</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/compartment:SOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>RGS</value>
+<value>Variable:/compartment:RGS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v11">
+<property name="Name">
+<value>dissociation_of_RGS</value>
+</property>
+<property name="k11f">
+<value>0.03</value>
+</property>
+<property name="k11b">
+<value>0.0045</value>
+</property>
+<property name="Expression">
+<value>(k11f * RGS.NumberConc - k11b * RP.NumberConc * GS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RGS</value>
+<value>Variable:/compartment:RGS</value>
+<value>-1</value>
+</value>
+<value>
+<value>GS</value>
+<value>Variable:/compartment:GS</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v12">
+<property name="Name">
+<value>dissociation_of_GS</value>
+</property>
+<property name="k12f">
+<value>0.0015</value>
+</property>
+<property name="k12b">
+<value>0.0001</value>
+</property>
+<property name="Expression">
+<value>(k12f * GS.NumberConc - k12b * Grb.NumberConc * SOS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GS</value>
+<value>Variable:/compartment:GS</value>
+<value>-1</value>
+</value>
+<value>
+<value>Grb</value>
+<value>Variable:/compartment:Grb</value>
+<value>1</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/compartment:SOS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v13">
+<property name="Name">
+<value>binding_of_Shc_to_RP</value>
+</property>
+<property name="k13f">
+<value>0.09</value>
+</property>
+<property name="k13b">
+<value>0.6</value>
+</property>
+<property name="Expression">
+<value>(k13f * RP.NumberConc * Shc.NumberConc - k13b * RSh.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Shc</value>
+<value>Variable:/compartment:Shc</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RSh</value>
+<value>Variable:/compartment:RSh</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v14">
+<property name="Name">
+<value>phosphorylation_of_RSh</value>
+</property>
+<property name="k14f">
+<value>6.0</value>
+</property>
+<property name="k14b">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>(k14f * RSh.NumberConc - k14b * RShP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RSh</value>
+<value>Variable:/compartment:RSh</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShP</value>
+<value>Variable:/compartment:RShP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v15">
+<property name="Name">
+<value>dissociation_of_RShp</value>
+</property>
+<property name="k15f">
+<value>0.3</value>
+</property>
+<property name="k15b">
+<value>0.0009</value>
+</property>
+<property name="Expression">
+<value>(k15f * RShP.NumberConc - k15b * ShP.NumberConc * RP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShP</value>
+<value>Variable:/compartment:RShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>ShP</value>
+<value>Variable:/compartment:ShP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v16">
+<property name="Name">
+<value>dephosphorylation_of_ShP</value>
+</property>
+<property name="V16">
+<value>1.7</value>
+</property>
+<property name="K16">
+<value>340.0</value>
+</property>
+<property name="Expression">
+<value>V16 * ShP.NumberConc / (K16 + ShP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShP</value>
+<value>Variable:/compartment:ShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Shc</value>
+<value>Variable:/compartment:Shc</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v17">
+<property name="Name">
+<value>binding_of_Grb2_to_RShP</value>
+</property>
+<property name="k17f">
+<value>0.003</value>
+</property>
+<property name="k17b">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>(k17f * RShP.NumberConc * Grb.NumberConc - k17b * RShG.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShP</value>
+<value>Variable:/compartment:RShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Grb</value>
+<value>Variable:/compartment:Grb</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShG</value>
+<value>Variable:/compartment:RShG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v18">
+<property name="Name">
+<value>dissociation_of_RShG</value>
+</property>
+<property name="k18f">
+<value>0.3</value>
+</property>
+<property name="k18b">
+<value>0.0009</value>
+</property>
+<property name="Expression">
+<value>(k18f * RShG.NumberConc - k18b * RP.NumberConc * ShG.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShG</value>
+<value>Variable:/compartment:RShG</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShG</value>
+<value>Variable:/compartment:ShG</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v19">
+<property name="Name">
+<value>binding_of_SOS_to_RShG</value>
+</property>
+<property name="k19f">
+<value>0.01</value>
+</property>
+<property name="k19b">
+<value>0.0214</value>
+</property>
+<property name="Expression">
+<value>(k19f * RShG.NumberConc * SOS.NumberConc - k19b * RShGS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>SOS</value>
+<value>Variable:/compartment:SOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShG</value>
+<value>Variable:/compartment:RShG</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment:RShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v20">
+<property name="Name">
+<value>dissociation_of_RShGS</value>
+</property>
+<property name="k20f">
+<value>0.12</value>
+</property>
+<property name="k20b">
+<value>0.00024</value>
+</property>
+<property name="Expression">
+<value>(k20f * RShGS.NumberConc - k20b * ShGS.NumberConc * RP.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment:RShGS</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment:ShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/compartment:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v21">
+<property name="Name">
+<value>binding_of_Grb2_to_ShP</value>
+</property>
+<property name="k21f">
+<value>0.003</value>
+</property>
+<property name="k21b">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>(k21f * ShP.NumberConc * Grb.NumberConc - k21b * ShG.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Grb</value>
+<value>Variable:/compartment:Grb</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShP</value>
+<value>Variable:/compartment:ShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShG</value>
+<value>Variable:/compartment:ShG</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v22">
+<property name="Name">
+<value>binding_of_SOS_to_ShG</value>
+</property>
+<property name="k22f">
+<value>0.03</value>
+</property>
+<property name="k22b">
+<value>0.064</value>
+</property>
+<property name="Expression">
+<value>(k22f * ShG.NumberConc * SOS.NumberConc - k22b * ShGS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShG</value>
+<value>Variable:/compartment:ShG</value>
+<value>-1</value>
+</value>
+<value>
+<value>SOS</value>
+<value>Variable:/compartment:SOS</value>
+<value>-1</value>
+</value>
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment:ShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v23">
+<property name="Name">
+<value>dissociation_of_ShGS</value>
+</property>
+<property name="k23f">
+<value>0.1</value>
+</property>
+<property name="k23b">
+<value>0.021</value>
+</property>
+<property name="Expression">
+<value>(k23f * ShGS.NumberConc - k23b * ShP.NumberConc * GS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ShGS</value>
+<value>Variable:/compartment:ShGS</value>
+<value>-1</value>
+</value>
+<value>
+<value>GS</value>
+<value>Variable:/compartment:GS</value>
+<value>1</value>
+</value>
+<value>
+<value>ShP</value>
+<value>Variable:/compartment:ShP</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v24">
+<property name="Name">
+<value>association_of_RShP_and_GS</value>
+</property>
+<property name="k24f">
+<value>0.009</value>
+</property>
+<property name="k24b">
+<value>0.0429</value>
+</property>
+<property name="Expression">
+<value>(k24f * RShP.NumberConc * GS.NumberConc - k24b * RShGS.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RShP</value>
+<value>Variable:/compartment:RShP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GS</value>
+<value>Variable:/compartment:GS</value>
+<value>-1</value>
+</value>
+<value>
+<value>RShGS</value>
+<value>Variable:/compartment:RShGS</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v25">
+<property name="Name">
+<value>translocation_of_PLCgP</value>
+</property>
+<property name="k25f">
+<value>1.0</value>
+</property>
+<property name="k25b">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>(k25f * PLCgP.NumberConc - k25b * PLCgl.NumberConc) * compartment.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PLCgP</value>
+<value>Variable:/compartment:PLCgP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PLCgl</value>
+<value>Variable:/compartment:PLCgl</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>3e-12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EGF">
+<property name="Name">
+<value>Epidermal_Growth_Factor</value>
+</property>
+<property name="NumberConc">
+<value>680.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>EGFR</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ra">
+<property name="Name">
+<value>EGF_EGFR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R2">
+<property name="Name">
+<value>(EGF_EGFR)2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RP">
+<property name="Name">
+<value>(EGF_EGFR)2-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLCg">
+<property name="Name">
+<value>PLCg</value>
+</property>
+<property name="NumberConc">
+<value>105.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPLCg">
+<property name="Name">
+<value>(EGF_EGFR)2_PLCg</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RPLCgP">
+<property name="Name">
+<value>(EGF_EGFR)2_PLCg-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLCgP">
+<property name="Name">
+<value>PLCg-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Grb">
+<property name="Name">
+<value>Grb2</value>
+</property>
+<property name="NumberConc">
+<value>85.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RG">
+<property name="Name">
+<value>(EGF_EGFR)2_Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="SOS">
+<property name="Name">
+<value>SOS</value>
+</property>
+<property name="NumberConc">
+<value>34.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RGS">
+<property name="Name">
+<value>(EGF_EGFR)2_Grb2_SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GS">
+<property name="Name">
+<value>Grb2_SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Shc">
+<property name="Name">
+<value>Shc</value>
+</property>
+<property name="NumberConc">
+<value>150.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RSh">
+<property name="Name">
+<value>(EGF_EGFR)2_Shc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShP">
+<property name="Name">
+<value>(EGF_EGFR)_Shc-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShP">
+<property name="Name">
+<value>Shc-P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShG">
+<property name="Name">
+<value>(EGF_EGFR)2_Shc_Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShG">
+<property name="Name">
+<value>Shc_Grb2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RShGS">
+<property name="Name">
+<value>(EGF_EGFR)2_Shc_Grb2_SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ShGS">
+<property name="Name">
+<value>Shc_Grb2_SOS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PLCgl">
+<property name="Name">
+<value>PLCgP-I</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

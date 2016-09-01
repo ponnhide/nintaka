@@ -1,0 +1,544 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/Compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x1">
+<property name="Name">
+<value>Osteoclasts</value>
+</property>
+<property name="NumberConc">
+<value>1.06066</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x2">
+<property name="Name">
+<value>Osteoblasts</value>
+</property>
+<property name="NumberConc">
+<value>212.132</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="z">
+<property name="Name">
+<value>BoneMass</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="y1">
+<property name="Name">
+<value>y1</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="y2">
+<property name="Name">
+<value>y2</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="x1_bar">
+<property name="Name">
+<value>x1_bar</value>
+</property>
+<property name="Value">
+<value>1.06066017178</value>
+</property>
+</variable>
+<variable class="Variable" id="x2_bar">
+<property name="Name">
+<value>x2_bar</value>
+</property>
+<property name="Value">
+<value>212.132034356</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha1">
+<property name="Name">
+<value>alpha1</value>
+</property>
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta1">
+<property name="Name">
+<value>beta1</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha2">
+<property name="Name">
+<value>alpha2</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta2">
+<property name="Name">
+<value>beta2</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>0.24</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>0.0017</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g11">
+<property name="Name">
+<value>g11</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g21">
+<property name="Name">
+<value>g21</value>
+</property>
+<property name="Value">
+<value>-0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g12">
+<property name="Name">
+<value>g12</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g22">
+<property name="Name">
+<value>g22</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma">
+<property name="Name">
+<value>gamma</value>
+</property>
+<property name="Value">
+<value>-1.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_x1">
+<property name="Name">
+<value>Rate rule for 'x1'</value>
+</property>
+<property name="Expression">
+<value>alpha1.NumberConc * pow(x1.NumberConc, g11.NumberConc) * pow(x2.NumberConc, g21.NumberConc) - beta1.NumberConc * x1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/Compartment:x1</value>
+<value>1</value>
+</value>
+<value>
+<value>alpha1</value>
+<value>Variable:/SBMLParameter:alpha1</value>
+<value>0</value>
+</value>
+<value>
+<value>g11</value>
+<value>Variable:/SBMLParameter:g11</value>
+<value>0</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/Compartment:x2</value>
+<value>0</value>
+</value>
+<value>
+<value>g21</value>
+<value>Variable:/SBMLParameter:g21</value>
+<value>0</value>
+</value>
+<value>
+<value>beta1</value>
+<value>Variable:/SBMLParameter:beta1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_x2">
+<property name="Name">
+<value>Rate rule for 'x2'</value>
+</property>
+<property name="Expression">
+<value>alpha2.NumberConc * pow(x1.NumberConc, g12.NumberConc) * pow(x2.NumberConc, g22.NumberConc) - beta2.NumberConc * x2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/Compartment:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>alpha2</value>
+<value>Variable:/SBMLParameter:alpha2</value>
+<value>0</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/Compartment:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>g12</value>
+<value>Variable:/SBMLParameter:g12</value>
+<value>0</value>
+</value>
+<value>
+<value>g22</value>
+<value>Variable:/SBMLParameter:g22</value>
+<value>0</value>
+</value>
+<value>
+<value>beta2</value>
+<value>Variable:/SBMLParameter:beta2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_z">
+<property name="Name">
+<value>Rate rule for 'z'</value>
+</property>
+<property name="Expression">
+<value>k2.NumberConc * y2.NumberConc - k1.NumberConc * y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>z</value>
+<value>Variable:/Compartment:z</value>
+<value>1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+<value>
+<value>y2</value>
+<value>Variable:/SBMLParameter:y2</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>y1</value>
+<value>Variable:/SBMLParameter:y1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_y1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'y1'</value>
+</property>
+<property name="Expression">
+<value>piecewise(x1.NumberConc - x1_bar.NumberConc, gt(x1.NumberConc, x1_bar.NumberConc), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y1</value>
+<value>Variable:/SBMLParameter:y1</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/Compartment:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>x1_bar</value>
+<value>Variable:/SBMLParameter:x1_bar</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_y2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'y2'</value>
+</property>
+<property name="Expression">
+<value>piecewise(x2.NumberConc - x2_bar.NumberConc, gt(x2.NumberConc, x2_bar.NumberConc), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y2</value>
+<value>Variable:/SBMLParameter:y2</value>
+<value>1</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/Compartment:x2</value>
+<value>0</value>
+</value>
+<value>
+<value>x2_bar</value>
+<value>Variable:/SBMLParameter:x2_bar</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_x1_bar">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'x1_bar'</value>
+</property>
+<property name="Expression">
+<value>pow(beta1.NumberConc / alpha1.NumberConc, (1 - g22.NumberConc) / gamma.NumberConc) * pow(beta2.NumberConc / alpha2.NumberConc, g21.NumberConc / gamma.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1_bar</value>
+<value>Variable:/SBMLParameter:x1_bar</value>
+<value>1</value>
+</value>
+<value>
+<value>beta1</value>
+<value>Variable:/SBMLParameter:beta1</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha1</value>
+<value>Variable:/SBMLParameter:alpha1</value>
+<value>0</value>
+</value>
+<value>
+<value>g22</value>
+<value>Variable:/SBMLParameter:g22</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>beta2</value>
+<value>Variable:/SBMLParameter:beta2</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha2</value>
+<value>Variable:/SBMLParameter:alpha2</value>
+<value>0</value>
+</value>
+<value>
+<value>g21</value>
+<value>Variable:/SBMLParameter:g21</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_x2_bar">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'x2_bar'</value>
+</property>
+<property name="Expression">
+<value>pow(beta1.NumberConc / alpha1.NumberConc, g12.NumberConc / gamma.NumberConc) * pow(beta2.NumberConc / alpha2.NumberConc, (1 - g11.NumberConc) / gamma.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2_bar</value>
+<value>Variable:/SBMLParameter:x2_bar</value>
+<value>1</value>
+</value>
+<value>
+<value>beta1</value>
+<value>Variable:/SBMLParameter:beta1</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha1</value>
+<value>Variable:/SBMLParameter:alpha1</value>
+<value>0</value>
+</value>
+<value>
+<value>g12</value>
+<value>Variable:/SBMLParameter:g12</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>beta2</value>
+<value>Variable:/SBMLParameter:beta2</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha2</value>
+<value>Variable:/SBMLParameter:alpha2</value>
+<value>0</value>
+</value>
+<value>
+<value>g11</value>
+<value>Variable:/SBMLParameter:g11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_gamma">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'gamma'</value>
+</property>
+<property name="Expression">
+<value>g12.NumberConc * g21.NumberConc - (1 - g11.NumberConc) * (1 - g22.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>1</value>
+</value>
+<value>
+<value>g12</value>
+<value>Variable:/SBMLParameter:g12</value>
+<value>0</value>
+</value>
+<value>
+<value>g21</value>
+<value>Variable:/SBMLParameter:g21</value>
+<value>0</value>
+</value>
+<value>
+<value>g11</value>
+<value>Variable:/SBMLParameter:g11</value>
+<value>0</value>
+</value>
+<value>
+<value>g22</value>
+<value>Variable:/SBMLParameter:g22</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

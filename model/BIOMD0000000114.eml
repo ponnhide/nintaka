@@ -1,0 +1,326 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_0000001">
+<property name="Name">
+<value>Ca flux into the cell</value>
+</property>
+<property name="Expression">
+<value>gamma.Value * cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/cytoplasm:y</value>
+<value>1</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000002">
+<property name="Name">
+<value>Ca translocation between cytoplasm and ER</value>
+</property>
+<property name="Expression">
+<value>k.Value * x.NumberConc * cytoplasm.Value - k1.Value * y.NumberConc * ER.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/ER:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/cytoplasm:y</value>
+<value>1</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>ER</value>
+<value>Variable:/ER:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000003">
+<property name="Name">
+<value>Ca pumped out of the cell</value>
+</property>
+<property name="Expression">
+<value>beta.Value * y.NumberConc * extracellular.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/cytoplasm:y</value>
+<value>-1</value>
+</value>
+<value>
+<value>beta</value>
+<value>Variable:/SBMLParameter:beta</value>
+<value>0</value>
+</value>
+<value>
+<value>extracellular</value>
+<value>Variable:/extracellular:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_0000004">
+<property name="Name">
+<value>InsP3 channel</value>
+</property>
+<property name="Expression">
+<value>alpha.Value * fy.Value * x.NumberConc * cytoplasm.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/ER:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/cytoplasm:y</value>
+<value>1</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>fy</value>
+<value>Variable:/SBMLParameter:fy</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="y">
+<property name="Name">
+<value>Ca_Cyt</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/ER">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>endoplasmic reticulum</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>Ca_ER</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/extracellular">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a">
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="fy">
+<property name="Value">
+<value>0.0121951219512</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_fy">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'fy'</value>
+</property>
+<property name="Expression">
+<value>pow(y.NumberConc, n.NumberConc) / (pow(a.NumberConc, n.NumberConc) + pow(y.NumberConc, n.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>fy</value>
+<value>Variable:/SBMLParameter:fy</value>
+<value>1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/cytoplasm:y</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,262 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>v1</value>
+</property>
+<property name="Expression">
+<value>IPTG.NumberConc * kbs.Value - kbd.Value * sigb.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IPTG</value>
+<value>Variable:/compartment:IPTG</value>
+<value>0</value>
+</value>
+<value>
+<value>sigb</value>
+<value>Variable:/compartment:sigb</value>
+<value>1</value>
+</value>
+<value>
+<value>kbs</value>
+<value>Variable:/SBMLParameter:kbs</value>
+<value>0</value>
+</value>
+<value>
+<value>kbd</value>
+<value>Variable:/SBMLParameter:kbd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>v2</value>
+</property>
+<property name="Expression">
+<value>kzs.Value * sigb.NumberConc - lacz.NumberConc * (kzd.Value + kzx.Value * x.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>sigb</value>
+<value>Variable:/compartment:sigb</value>
+<value>-1</value>
+</value>
+<value>
+<value>lacz</value>
+<value>Variable:/compartment:lacz</value>
+<value>1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>0</value>
+</value>
+<value>
+<value>kzs</value>
+<value>Variable:/SBMLParameter:kzs</value>
+<value>0</value>
+</value>
+<value>
+<value>kzd</value>
+<value>Variable:/SBMLParameter:kzd</value>
+<value>0</value>
+</value>
+<value>
+<value>kzx</value>
+<value>Variable:/SBMLParameter:kzx</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>v3</value>
+</property>
+<property name="Expression">
+<value>kxs.Value * sigb.NumberConc - kxd.Value * x.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>sigb</value>
+<value>Variable:/compartment:sigb</value>
+<value>-1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>1</value>
+</value>
+<value>
+<value>kxs</value>
+<value>Variable:/SBMLParameter:kxs</value>
+<value>0</value>
+</value>
+<value>
+<value>kxd</value>
+<value>Variable:/SBMLParameter:kxd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="IPTG">
+<property name="Name">
+<value>IPTG</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="sigb">
+<property name="Name">
+<value>sigb</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="lacz">
+<property name="Name">
+<value>lacz</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>x</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kbd">
+<property name="Name">
+<value>kbd</value>
+</property>
+<property name="Value">
+<value>0.0164812</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbs">
+<property name="Name">
+<value>kbs</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kxd">
+<property name="Name">
+<value>kxd</value>
+</property>
+<property name="Value">
+<value>1.08559e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kxs">
+<property name="Name">
+<value>kxs</value>
+</property>
+<property name="Value">
+<value>9.32517e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kzd">
+<property name="Name">
+<value>kzd</value>
+</property>
+<property name="Value">
+<value>1.34615e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kzs">
+<property name="Name">
+<value>kzs</value>
+</property>
+<property name="Value">
+<value>9.03538e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kzx">
+<property name="Name">
+<value>kzx</value>
+</property>
+<property name="Value">
+<value>0.00317772</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

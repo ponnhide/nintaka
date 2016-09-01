@@ -1,0 +1,442 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>vin</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vin.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vin</value>
+<value>Variable:/SBMLParameter:vin</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>Calcium export from cell</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kout.Value * X.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kout</value>
+<value>Variable:/SBMLParameter:kout</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>CICR</value>
+</property>
+<property name="Expression">
+<value>ER.Value * 4 * vM3.Value * pow(k_CaA.Value, n.Value) * (pow(X.NumberConc, n.Value) / ((pow(X.NumberConc, n.Value) + pow(k_CaA.Value, n.Value)) * (pow(X.NumberConc, n.Value) + pow(k_CaI.Value, n.Value)))) * (pow(Z.NumberConc, m.Value) / (pow(Z.NumberConc, m.Value) + pow(kip3.Value, m.Value))) * (Y.NumberConc - X.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y</value>
+<value>Variable:/ER:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>1</value>
+</value>
+<value>
+<value>Z</value>
+<value>Variable:/compartment:Z</value>
+<value>0</value>
+</value>
+<value>
+<value>ER</value>
+<value>Variable:/ER:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vM3</value>
+<value>Variable:/SBMLParameter:vM3</value>
+<value>0</value>
+</value>
+<value>
+<value>k_CaA</value>
+<value>Variable:/SBMLParameter:k_CaA</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>k_CaI</value>
+<value>Variable:/SBMLParameter:k_CaI</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/SBMLParameter:m</value>
+<value>0</value>
+</value>
+<value>
+<value>kip3</value>
+<value>Variable:/SBMLParameter:kip3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>serca</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vM2.Value * pow(X.NumberConc, 2) / (pow(X.NumberConc, 2) + pow(k2.Value, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>Y</value>
+<value>Variable:/ER:Y</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vM2</value>
+<value>Variable:/SBMLParameter:vM2</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>Leak flux</value>
+</property>
+<property name="Expression">
+<value>ER.Value * kf.Value * (Y.NumberConc - X.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y</value>
+<value>Variable:/ER:Y</value>
+<value>-1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>1</value>
+</value>
+<value>
+<value>ER</value>
+<value>Variable:/ER:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kf</value>
+<value>Variable:/SBMLParameter:kf</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>PLC</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vp.Value * pow(X.NumberConc, 2) / (pow(X.NumberConc, 2) + pow(kp.Value, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z</value>
+<value>Variable:/compartment:Z</value>
+<value>1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/compartment:X</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vp</value>
+<value>Variable:/SBMLParameter:vp</value>
+<value>0</value>
+</value>
+<value>
+<value>kp</value>
+<value>Variable:/SBMLParameter:kp</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>IP3 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * kdeg.Value * Z.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z</value>
+<value>Variable:/compartment:Z</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="Name">
+<value>Cytoplasmic Calcium</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Z">
+<property name="Name">
+<value>IP3</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/ER">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Endoplasmic Reticulum</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Y">
+<property name="Name">
+<value>Calcium in ER</value>
+</property>
+<property name="NumberConc">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="vin">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kout">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vM3">
+<property name="Value">
+<value>40.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CaA">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>2.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_CaI">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m">
+<property name="Value">
+<value>2.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kip3">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vM2">
+<property name="Value">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kf">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vp">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdeg">
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,962 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="GND">
+<property name="Name">
+<value>GND</value>
+</property>
+<property name="kcat_GND1">
+<value>28.0</value>
+</property>
+<property name="Kp6g_GND1">
+<value>0.062</value>
+</property>
+<property name="Knadp_GND1">
+<value>0.094</value>
+</property>
+<property name="Kru5p_GND1">
+<value>0.1</value>
+</property>
+<property name="Knadph_GND1">
+<value>0.055</value>
+</property>
+<property name="kcat_GND2">
+<value>27.3</value>
+</property>
+<property name="Kp6g_GND2">
+<value>0.115</value>
+</property>
+<property name="Knadp_GND2">
+<value>0.094</value>
+</property>
+<property name="Kru5p_GND2">
+<value>0.1</value>
+</property>
+<property name="Knadph_GND2">
+<value>0.055</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (GND1.NumberConc * kcat_GND1 * P6G.NumberConc * NADP.NumberConc / (Kp6g_GND1 * Knadp_GND1) / ((1 + P6G.NumberConc / Kp6g_GND1 + Ru5P.NumberConc / Kru5p_GND1) * (1 + NADP.NumberConc / Knadp_GND1 + NADPH.NumberConc / Knadph_GND1)) + GND2.NumberConc * kcat_GND2 * P6G.NumberConc * NADP.NumberConc / ((1 + P6G.NumberConc / Kp6g_GND2 + Ru5P.NumberConc / Kru5p_GND2) * (1 + NADP.NumberConc / Knadp_GND2 + NADPH.NumberConc / Knadph_GND2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P6G</value>
+<value>Variable:/cell:P6G</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/cell:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ru5P</value>
+<value>Variable:/cell:Ru5P</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/cell:NADPH</value>
+<value>1</value>
+</value>
+<value>
+<value>GND1</value>
+<value>Variable:/cell:GND1</value>
+<value>0</value>
+</value>
+<value>
+<value>GND2</value>
+<value>Variable:/cell:GND2</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="RKI">
+<property name="Name">
+<value>RKI</value>
+</property>
+<property name="kcat">
+<value>335.0</value>
+</property>
+<property name="Kru5p">
+<value>2.47</value>
+</property>
+<property name="Kr5p">
+<value>5.7</value>
+</property>
+<property name="Kiru5p">
+<value>9.88</value>
+</property>
+<property name="Keq">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * RKI1.NumberConc * kcat * (Ru5P.NumberConc - R5P.NumberConc / Keq) / Kru5p / (1 + Ru5P.NumberConc / Kru5p + R5P.NumberConc / Kr5p)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ru5P</value>
+<value>Variable:/cell:Ru5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>R5P</value>
+<value>Variable:/cell:R5P</value>
+<value>1</value>
+</value>
+<value>
+<value>RKI1</value>
+<value>Variable:/cell:RKI1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="RPE">
+<property name="Name">
+<value>RPE</value>
+</property>
+<property name="kcat">
+<value>4020.0</value>
+</property>
+<property name="Kru5p">
+<value>5.97</value>
+</property>
+<property name="Kx5p">
+<value>7.7</value>
+</property>
+<property name="Keq">
+<value>1.4</value>
+</property>
+<property name="Expression">
+<value>cell.Value * RPE1.NumberConc * kcat * (Ru5P.NumberConc - X5P.NumberConc / Keq) / Kru5p / (1 + Ru5P.NumberConc / Kru5p + X5P.NumberConc / Kx5p)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ru5P</value>
+<value>Variable:/cell:Ru5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>X5P</value>
+<value>Variable:/cell:X5P</value>
+<value>1</value>
+</value>
+<value>
+<value>RPE1</value>
+<value>Variable:/cell:RPE1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="SOL">
+<property name="Name">
+<value>SOL</value>
+</property>
+<property name="kcat">
+<value>4.3</value>
+</property>
+<property name="Kg6l">
+<value>0.8</value>
+</property>
+<property name="Kp6g">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>cell.Value * SOL3.NumberConc * kcat * G6L.NumberConc / Kg6l / (1 + G6L.NumberConc / Kg6l + P6G.NumberConc / Kp6g)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6L</value>
+<value>Variable:/cell:G6L</value>
+<value>-1</value>
+</value>
+<value>
+<value>P6G</value>
+<value>Variable:/cell:P6G</value>
+<value>1</value>
+</value>
+<value>
+<value>SOL3</value>
+<value>Variable:/cell:SOL3</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TAL">
+<property name="Name">
+<value>TAL</value>
+</property>
+<property name="kcat_TAL1">
+<value>0.694</value>
+</property>
+<property name="Kgap_TAL1">
+<value>0.272</value>
+</property>
+<property name="Ks7p_TAL1">
+<value>0.786</value>
+</property>
+<property name="Kf6p_TAL1">
+<value>1.44</value>
+</property>
+<property name="Ke4p_TAL1">
+<value>0.362</value>
+</property>
+<property name="kcat_NQM1">
+<value>0.694</value>
+</property>
+<property name="Kgap_NQM1">
+<value>0.272</value>
+</property>
+<property name="Ks7p_NQM1">
+<value>0.786</value>
+</property>
+<property name="Kf6p_NQM1">
+<value>1.04</value>
+</property>
+<property name="Ke4p_NQM1">
+<value>0.305</value>
+</property>
+<property name="Keq">
+<value>1.05</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (TAL1.NumberConc * kcat_TAL1 * (GAP.NumberConc * S7P.NumberConc - F6P.NumberConc * E4P.NumberConc / Keq) / (Kgap_TAL1 * Ks7p_TAL1) / ((1 + GAP.NumberConc / Kgap_TAL1 + F6P.NumberConc / Kf6p_TAL1) * (1 + S7P.NumberConc / Ks7p_TAL1 + E4P.NumberConc / Ke4p_TAL1)) + NQM1.NumberConc * kcat_NQM1 * (GAP.NumberConc * S7P.NumberConc - F6P.NumberConc * E4P.NumberConc / Keq) / (Kgap_NQM1 * Ks7p_NQM1) / ((1 + GAP.NumberConc / Kgap_NQM1 + F6P.NumberConc / Kf6p_NQM1) * (1 + S7P.NumberConc / Ks7p_NQM1 + E4P.NumberConc / Ke4p_NQM1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GAP</value>
+<value>Variable:/cell:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/cell:S7P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/cell:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/cell:E4P</value>
+<value>1</value>
+</value>
+<value>
+<value>TAL1</value>
+<value>Variable:/cell:TAL1</value>
+<value>0</value>
+</value>
+<value>
+<value>NQM1</value>
+<value>Variable:/cell:NQM1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TKL_E4P">
+<property name="Name">
+<value>TKL (E4P:F6P)</value>
+</property>
+<property name="kcat">
+<value>47.1</value>
+</property>
+<property name="Keq">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * TKL1.NumberConc * kcat * (X5P.NumberConc * E4P.NumberConc - GAP.NumberConc * F6P.NumberConc / Keq) / (Kx5p_TAL.Value * Ke4p_TAL.Value) / ((1 + X5P.NumberConc / Kx5p_TAL.Value + GAP.NumberConc / Kgap_TAL.Value) * (1 + E4P.NumberConc / Ke4p_TAL.Value + F6P.NumberConc / Kf6p_TAL.Value + R5P.NumberConc / Kr5p_TAL.Value + S7P.NumberConc / Ks7p_TAL.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X5P</value>
+<value>Variable:/cell:X5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/cell:E4P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/cell:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/cell:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>TKL1</value>
+<value>Variable:/cell:TKL1</value>
+<value>0</value>
+</value>
+<value>
+<value>R5P</value>
+<value>Variable:/cell:R5P</value>
+<value>0</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/cell:S7P</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Kx5p_TAL</value>
+<value>Variable:/SBMLParameter:Kx5p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Ke4p_TAL</value>
+<value>Variable:/SBMLParameter:Ke4p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kgap_TAL</value>
+<value>Variable:/SBMLParameter:Kgap_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kf6p_TAL</value>
+<value>Variable:/SBMLParameter:Kf6p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kr5p_TAL</value>
+<value>Variable:/SBMLParameter:Kr5p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Ks7p_TAL</value>
+<value>Variable:/SBMLParameter:Ks7p_TAL</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TKL_R5P">
+<property name="Name">
+<value>TKL (R5P:S7P)</value>
+</property>
+<property name="kcat">
+<value>40.5</value>
+</property>
+<property name="Keq">
+<value>1.2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * TKL1.NumberConc * kcat * (X5P.NumberConc * R5P.NumberConc - GAP.NumberConc * S7P.NumberConc / Keq) / (Kx5p_TAL.Value * Kr5p_TAL.Value) / ((1 + X5P.NumberConc / Kx5p_TAL.Value + GAP.NumberConc / Kgap_TAL.Value) * (1 + E4P.NumberConc / Ke4p_TAL.Value + F6P.NumberConc / Kf6p_TAL.Value + R5P.NumberConc / Kr5p_TAL.Value + S7P.NumberConc / Ks7p_TAL.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X5P</value>
+<value>Variable:/cell:X5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>R5P</value>
+<value>Variable:/cell:R5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/cell:GAP</value>
+<value>0</value>
+</value>
+<value>
+<value>S7P</value>
+<value>Variable:/cell:S7P</value>
+<value>1</value>
+</value>
+<value>
+<value>TKL1</value>
+<value>Variable:/cell:TKL1</value>
+<value>0</value>
+</value>
+<value>
+<value>E4P</value>
+<value>Variable:/cell:E4P</value>
+<value>0</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/cell:F6P</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Kx5p_TAL</value>
+<value>Variable:/SBMLParameter:Kx5p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kr5p_TAL</value>
+<value>Variable:/SBMLParameter:Kr5p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kgap_TAL</value>
+<value>Variable:/SBMLParameter:Kgap_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Ke4p_TAL</value>
+<value>Variable:/SBMLParameter:Ke4p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Kf6p_TAL</value>
+<value>Variable:/SBMLParameter:Kf6p_TAL</value>
+<value>0</value>
+</value>
+<value>
+<value>Ks7p_TAL</value>
+<value>Variable:/SBMLParameter:Ks7p_TAL</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ZWF">
+<property name="Name">
+<value>ZWF</value>
+</property>
+<property name="kcat">
+<value>189.0</value>
+</property>
+<property name="Kg6p">
+<value>0.042</value>
+</property>
+<property name="Knadp">
+<value>0.045</value>
+</property>
+<property name="Kg6l">
+<value>0.01</value>
+</property>
+<property name="Knadph">
+<value>0.017</value>
+</property>
+<property name="Expression">
+<value>cell.Value * ZWF1.NumberConc * kcat * G6P.NumberConc * NADP.NumberConc / (Kg6p * Knadp) / ((1 + G6P.NumberConc / Kg6p + G6L.NumberConc / Kg6l) * (1 + NADP.NumberConc / Knadp + NADPH.NumberConc / Knadph))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/cell:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/cell:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6L</value>
+<value>Variable:/cell:G6L</value>
+<value>1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/cell:NADPH</value>
+<value>1</value>
+</value>
+<value>
+<value>ZWF1</value>
+<value>Variable:/cell:ZWF1</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="NADPH_oxidase">
+<property name="Name">
+<value>NADPH oxidase</value>
+</property>
+<property name="k">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k * NADPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADPH</value>
+<value>Variable:/cell:NADPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/cell:NADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E4P_sink">
+<property name="Name">
+<value>E4P sink</value>
+</property>
+<property name="k">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k * E4P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E4P</value>
+<value>Variable:/cell:E4P</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5P_sink">
+<property name="Name">
+<value>R5P sink</value>
+</property>
+<property name="k">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k * R5P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R5P</value>
+<value>Variable:/cell:R5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="E4P">
+<property name="Name">
+<value>E4P</value>
+</property>
+<property name="NumberConc">
+<value>0.029</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6L">
+<property name="Name">
+<value>G6L</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="Name">
+<value>NADPH</value>
+</property>
+<property name="NumberConc">
+<value>0.16</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P6G">
+<property name="Name">
+<value>P6G</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R5P">
+<property name="Name">
+<value>R5P</value>
+</property>
+<property name="NumberConc">
+<value>0.118</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ru5P">
+<property name="Name">
+<value>Ru5P</value>
+</property>
+<property name="NumberConc">
+<value>0.033</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="S7P">
+<property name="Name">
+<value>S7P</value>
+</property>
+<property name="NumberConc">
+<value>0.082</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X5P">
+<property name="Name">
+<value>X5P</value>
+</property>
+<property name="NumberConc">
+<value>0.041</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADP">
+<property name="Name">
+<value>NADP</value>
+</property>
+<property name="NumberConc">
+<value>0.17</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="Name">
+<value>G6P</value>
+</property>
+<property name="NumberConc">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6P">
+<property name="Name">
+<value>F6P</value>
+</property>
+<property name="NumberConc">
+<value>0.325</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GAP">
+<property name="Name">
+<value>GAP</value>
+</property>
+<property name="NumberConc">
+<value>0.067</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GND1">
+<property name="Name">
+<value>GND1</value>
+</property>
+<property name="NumberConc">
+<value>0.013</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GND2">
+<property name="Name">
+<value>GND2</value>
+</property>
+<property name="NumberConc">
+<value>0.003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NQM1">
+<property name="Name">
+<value>NQM1</value>
+</property>
+<property name="NumberConc">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RKI1">
+<property name="Name">
+<value>RKI1</value>
+</property>
+<property name="NumberConc">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RPE1">
+<property name="Name">
+<value>RPE1</value>
+</property>
+<property name="NumberConc">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="SOL3">
+<property name="Name">
+<value>SOL3</value>
+</property>
+<property name="NumberConc">
+<value>0.0296</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TAL1">
+<property name="Name">
+<value>TAL1</value>
+</property>
+<property name="NumberConc">
+<value>0.144</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TKL1">
+<property name="Name">
+<value>TKL1</value>
+</property>
+<property name="NumberConc">
+<value>0.455</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ZWF1">
+<property name="Name">
+<value>ZWF1</value>
+</property>
+<property name="NumberConc">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="sum_NADP">
+<property name="Value">
+<value>0.33</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kx5p_TAL">
+<property name="Value">
+<value>0.67</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ke4p_TAL">
+<property name="Value">
+<value>0.946</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kr5p_TAL">
+<property name="Value">
+<value>0.235</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kgap_TAL">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kf6p_TAL">
+<property name="Value">
+<value>1.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Ks7p_TAL">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_G6P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'G6P'</value>
+</property>
+<property name="Expression">
+<value>0.9 + piecewise(44.1 * &lt;t&gt; / (48 + &lt;t&gt; + 0.45 * pow(&lt;t&gt;, 2)), geq(&lt;t&gt;, 0), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/cell:G6P</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_NADP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'NADP'</value>
+</property>
+<property name="Expression">
+<value>sum_NADP.NumberConc - NADPH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADP</value>
+<value>Variable:/cell:NADP</value>
+<value>1</value>
+</value>
+<value>
+<value>sum_NADP</value>
+<value>Variable:/SBMLParameter:sum_NADP</value>
+<value>0</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/cell:NADPH</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

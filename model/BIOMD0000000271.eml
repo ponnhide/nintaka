@@ -1,0 +1,543 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>-&gt; [EpoR];</value>
+</property>
+<property name="Expression">
+<value>kt.Value * Bmax.Value * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>kt</value>
+<value>Variable:/SBMLParameter:kt</value>
+<value>0</value>
+</value>
+<value>
+<value>Bmax</value>
+<value>Variable:/SBMLParameter:Bmax</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>[EpoR] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kt.Value * EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>kt</value>
+<value>Variable:/SBMLParameter:kt</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>[Epo] + [EpoR] -&gt; [Epo_EpoR];</value>
+</property>
+<property name="Expression">
+<value>kon.Value * Epo.NumberConc * EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo</value>
+<value>Variable:/medium:Epo</value>
+<value>-1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Epo_EpoR</value>
+<value>Variable:/cellsurface:Epo_EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>kon</value>
+<value>Variable:/SBMLParameter:kon</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>[Epo_EpoR] -&gt; [Epo] + [EpoR];</value>
+</property>
+<property name="Expression">
+<value>koff.Value * Epo_EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_EpoR</value>
+<value>Variable:/cellsurface:Epo_EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Epo</value>
+<value>Variable:/medium:Epo</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>koff</value>
+<value>Variable:/SBMLParameter:koff</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>[Epo_EpoR] -&gt; [Epo_EpoRi];</value>
+</property>
+<property name="Expression">
+<value>ke.Value * Epo_EpoR.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_EpoR</value>
+<value>Variable:/cellsurface:Epo_EpoR</value>
+<value>-1</value>
+</value>
+<value>
+<value>Epo_EpoRi</value>
+<value>Variable:/cell:Epo_EpoRi</value>
+<value>1</value>
+</value>
+<value>
+<value>ke</value>
+<value>Variable:/SBMLParameter:ke</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>[Epo_EpoRi] -&gt; [Epo] + [EpoR];</value>
+</property>
+<property name="Expression">
+<value>kex.Value * Epo_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_EpoRi</value>
+<value>Variable:/cell:Epo_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>Epo</value>
+<value>Variable:/medium:Epo</value>
+<value>1</value>
+</value>
+<value>
+<value>EpoR</value>
+<value>Variable:/cellsurface:EpoR</value>
+<value>1</value>
+</value>
+<value>
+<value>kex</value>
+<value>Variable:/SBMLParameter:kex</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>[Epo_EpoRi] -&gt; [dEpoi];</value>
+</property>
+<property name="Expression">
+<value>kdi.Value * Epo_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_EpoRi</value>
+<value>Variable:/cell:Epo_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>dEpoi</value>
+<value>Variable:/cell:dEpoi</value>
+<value>1</value>
+</value>
+<value>
+<value>kdi</value>
+<value>Variable:/SBMLParameter:kdi</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>[Epo_EpoRi] -&gt; [dEpoe];</value>
+</property>
+<property name="Expression">
+<value>kde.Value * Epo_EpoRi.NumberConc * cell.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_EpoRi</value>
+<value>Variable:/cell:Epo_EpoRi</value>
+<value>-1</value>
+</value>
+<value>
+<value>dEpoe</value>
+<value>Variable:/medium:dEpoe</value>
+<value>1</value>
+</value>
+<value>
+<value>kde</value>
+<value>Variable:/SBMLParameter:kde</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/medium">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>medium</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo">
+<property name="Name">
+<value>Epo</value>
+</property>
+<property name="NumberConc">
+<value>2030.19</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dEpoe">
+<property name="Name">
+<value>dEpoe</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cellsurface">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cellsurface</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EpoR">
+<property name="Name">
+<value>EpoR</value>
+</property>
+<property name="NumberConc">
+<value>516.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo_EpoR">
+<property name="Name">
+<value>Epo_EpoR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo_EpoRi">
+<property name="Name">
+<value>Epo_EpoRi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dEpoi">
+<property name="Name">
+<value>dEpoi</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="kt">
+<property name="Value">
+<value>0.0329366</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Bmax">
+<property name="Value">
+<value>516.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kon">
+<property name="Value">
+<value>0.00010496</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="koff">
+<property name="Value">
+<value>0.0172135</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ke">
+<property name="Value">
+<value>0.0748267</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kex">
+<property name="Value">
+<value>0.00993805</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdi">
+<property name="Value">
+<value>0.00317871</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kde">
+<property name="Value">
+<value>0.0164042</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo_medium">
+<property name="Name">
+<value>Epo_medium</value>
+</property>
+<property name="Value">
+<value>2030.19</value>
+</property>
+</variable>
+<variable class="Variable" id="Epo_cells">
+<property name="Name">
+<value>Epo_cells</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Epo_medium">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Epo_medium'</value>
+</property>
+<property name="Expression">
+<value>Epo.NumberConc + dEpoe.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_medium</value>
+<value>Variable:/SBMLParameter:Epo_medium</value>
+<value>1</value>
+</value>
+<value>
+<value>Epo</value>
+<value>Variable:/medium:Epo</value>
+<value>0</value>
+</value>
+<value>
+<value>dEpoe</value>
+<value>Variable:/medium:dEpoe</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Epo_cells">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Epo_cells'</value>
+</property>
+<property name="Expression">
+<value>Epo_EpoRi.NumberConc + dEpoi.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Epo_cells</value>
+<value>Variable:/SBMLParameter:Epo_cells</value>
+<value>1</value>
+</value>
+<value>
+<value>Epo_EpoRi</value>
+<value>Variable:/cell:Epo_EpoRi</value>
+<value>0</value>
+</value>
+<value>
+<value>dEpoi</value>
+<value>Variable:/cell:dEpoi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

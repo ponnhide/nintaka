@@ -1,0 +1,605 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="OATP1B3">
+<property name="Name">
+<value>OATP1B3 mediated import</value>
+</property>
+<property name="Expression">
+<value>p1.Value * x1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>-1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>1</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ABCC2">
+<property name="Name">
+<value>ABCC2 mediated export</value>
+</property>
+<property name="Expression">
+<value>p2.Value * x3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/apical:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="endo_in_bl">
+<property name="Name">
+<value>endogenous basolateral import</value>
+</property>
+<property name="Expression">
+<value>p3.Value * x1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>-1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>1</value>
+</value>
+<value>
+<value>p3</value>
+<value>Variable:/SBMLParameter:p3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="endo_ex_bl">
+<property name="Name">
+<value>endogenous basolateral export</value>
+</property>
+<property name="Expression">
+<value>p4.Value * x3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>-1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>1</value>
+</value>
+<value>
+<value>p4</value>
+<value>Variable:/SBMLParameter:p4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="endo_ex_ap">
+<property name="Name">
+<value>endogenous apical export</value>
+</property>
+<property name="Expression">
+<value>p5.Value * x3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/apical:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>p5</value>
+<value>Variable:/SBMLParameter:p5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="bl_BSP_binding">
+<property name="Name">
+<value>basolateral BSP binding</value>
+</property>
+<property name="Expression">
+<value>p6.Value * x1.NumberConc * (p8.Value - x2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>-1</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/basolat:x2</value>
+<value>1</value>
+</value>
+<value>
+<value>p6</value>
+<value>Variable:/SBMLParameter:p6</value>
+<value>0</value>
+</value>
+<value>
+<value>p8</value>
+<value>Variable:/SBMLParameter:p8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="bl_BSP_dissoc">
+<property name="Name">
+<value>basolateral BSP dissoc</value>
+</property>
+<property name="Expression">
+<value>p7.Value * x2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x2</value>
+<value>Variable:/basolat:x2</value>
+<value>-1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>1</value>
+</value>
+<value>
+<value>p7</value>
+<value>Variable:/SBMLParameter:p7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="cellular_BSP_binding">
+<property name="Name">
+<value>cellular BSP binding</value>
+</property>
+<property name="Expression">
+<value>p9.Value * x3.NumberConc * (p11.Value - x4.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>-1</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/cell:x4</value>
+<value>1</value>
+</value>
+<value>
+<value>p9</value>
+<value>Variable:/SBMLParameter:p9</value>
+<value>0</value>
+</value>
+<value>
+<value>p11</value>
+<value>Variable:/SBMLParameter:p11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="cellular_BSP_dissoc">
+<property name="Name">
+<value>cellular BSP dissoc</value>
+</property>
+<property name="Expression">
+<value>p10.Value * x4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x4</value>
+<value>Variable:/cell:x4</value>
+<value>-1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>1</value>
+</value>
+<value>
+<value>p10</value>
+<value>Variable:/SBMLParameter:p10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="paracell_transp">
+<property name="Name">
+<value>paracellular transport</value>
+</property>
+<property name="Expression">
+<value>p12.Value * (x1.NumberConc / basolat.Value - x5.NumberConc / apical.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>-1</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/apical:x5</value>
+<value>1</value>
+</value>
+<value>
+<value>p12</value>
+<value>Variable:/SBMLParameter:p12</value>
+<value>0</value>
+</value>
+<value>
+<value>basolat</value>
+<value>Variable:/basolat:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>apical</value>
+<value>Variable:/apical:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/basolat">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>basolateral extrocellular space</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x1">
+<property name="Name">
+<value>free basolateral BSP</value>
+</property>
+<property name="Value">
+<value>88.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x2">
+<property name="Name">
+<value>basolateral bound BSP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>intracellular</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x3">
+<property name="Name">
+<value>free intracellular BSP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="x4">
+<property name="Name">
+<value>bound intracellular BSP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BSP_cell">
+<property name="Name">
+<value>intracellular BSP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/apical">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>apical extracellular space</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x5">
+<property name="Name">
+<value>apical BSP</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BSP_tot">
+<property name="Name">
+<value>total BSP</value>
+</property>
+<property name="Value">
+<value>88.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="p1">
+<property name="Value">
+<value>0.0025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Value">
+<value>0.0784</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p3">
+<property name="Value">
+<value>0.0013</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p4">
+<property name="Value">
+<value>0.0827</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p5">
+<property name="Value">
+<value>0.0091</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p6">
+<property name="Value">
+<value>6.4e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p7">
+<property name="Value">
+<value>0.0397</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p8">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p9">
+<property name="Value">
+<value>0.0098</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p10">
+<property name="Value">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p11">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p12">
+<property name="Value">
+<value>0.0003</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_BSP_tot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'BSP_tot'</value>
+</property>
+<property name="Expression">
+<value>x1.NumberConc + x2.NumberConc + x3.NumberConc + x4.NumberConc + x5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>BSP_tot</value>
+<value>Variable:/apical:BSP_tot</value>
+<value>1</value>
+</value>
+<value>
+<value>x1</value>
+<value>Variable:/basolat:x1</value>
+<value>0</value>
+</value>
+<value>
+<value>x2</value>
+<value>Variable:/basolat:x2</value>
+<value>0</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>0</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/cell:x4</value>
+<value>0</value>
+</value>
+<value>
+<value>x5</value>
+<value>Variable:/apical:x5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_BSP_cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'BSP_cell'</value>
+</property>
+<property name="Expression">
+<value>x3.NumberConc + x4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>BSP_cell</value>
+<value>Variable:/cell:BSP_cell</value>
+<value>1</value>
+</value>
+<value>
+<value>x3</value>
+<value>Variable:/cell:x3</value>
+<value>0</value>
+</value>
+<value>
+<value>x4</value>
+<value>Variable:/cell:x4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

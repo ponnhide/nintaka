@@ -1,0 +1,300 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s1">
+<property name="Name">
+<value>Ep</value>
+</property>
+<property name="Value">
+<value>580000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s2">
+<property name="Name">
+<value>Eps</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s3">
+<property name="Name">
+<value>V</value>
+</property>
+<property name="Value">
+<value>1473.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s4">
+<property name="Name">
+<value>s4</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s5">
+<property name="Name">
+<value>s5</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s6">
+<property name="Name">
+<value>s6</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s7">
+<property name="Name">
+<value>s7</value>
+</property>
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="re1">
+<property name="Name">
+<value>[s1] -&gt; [s2]; { s3, s1, s3, s1, s3 };</value>
+</property>
+<property name="Expression">
+<value>beta_a.Value * s1.NumberConc * s3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s1</value>
+<value>Variable:/:s1</value>
+<value>-1</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/:s2</value>
+<value>1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/:s3</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_a</value>
+<value>Variable:/SBMLParameter:beta_a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re3">
+<property name="Name">
+<value>[s4] -&gt; [s1]; { s1, s1 };</value>
+</property>
+<property name="Expression">
+<value>rho_E.Value * s1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s4</value>
+<value>Variable:/:s4</value>
+<value>-1</value>
+</value>
+<value>
+<value>s1</value>
+<value>Variable:/:s1</value>
+<value>1</value>
+</value>
+<value>
+<value>rho_E</value>
+<value>Variable:/SBMLParameter:rho_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re5">
+<property name="Name">
+<value>[s2] -&gt; [s5]; { s2, s2 };</value>
+</property>
+<property name="Expression">
+<value>delta_Es.Value * s2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s2</value>
+<value>Variable:/:s2</value>
+<value>-1</value>
+</value>
+<value>
+<value>s5</value>
+<value>Variable:/:s5</value>
+<value>1</value>
+</value>
+<value>
+<value>delta_Es</value>
+<value>Variable:/SBMLParameter:delta_Es</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re6">
+<property name="Name">
+<value>[s3] -&gt; [s6]; { s3, s3 };</value>
+</property>
+<property name="Expression">
+<value>c_V.Value * s3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>s6</value>
+<value>Variable:/:s6</value>
+<value>1</value>
+</value>
+<value>
+<value>c_V</value>
+<value>Variable:/SBMLParameter:c_V</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="re7">
+<property name="Name">
+<value>[s7] -&gt; [s3]; { s2, s2, s2 };</value>
+</property>
+<property name="Expression">
+<value>pi_a.Value * s2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s7</value>
+<value>Variable:/:s7</value>
+<value>-1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/:s3</value>
+<value>1</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/:s2</value>
+<value>0</value>
+</value>
+<value>
+<value>pi_a</value>
+<value>Variable:/SBMLParameter:pi_a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="rho_E">
+<property name="Name">
+<value>rho_E</value>
+</property>
+<property name="Value">
+<value>6.2e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_a">
+<property name="Name">
+<value>beta_a</value>
+</property>
+<property name="Value">
+<value>2.4e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="delta_Es">
+<property name="Name">
+<value>delta_Es</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="pi_a">
+<property name="Name">
+<value>pi_a</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c_V">
+<property name="Name">
+<value>c_V</value>
+</property>
+<property name="Value">
+<value>4.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

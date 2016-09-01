@@ -1,0 +1,372 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+</system>
+<system class="System" id="/compartment_1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p">
+<property name="Name">
+<value>p</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mm">
+<property name="Name">
+<value>mm</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="m">
+<property name="Name">
+<value>m</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="pm">
+<property name="Name">
+<value>pm</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="S">
+<property name="Name">
+<value>S</value>
+</property>
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha">
+<property name="Name">
+<value>alpha</value>
+</property>
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_t">
+<property name="Name">
+<value>k_t</value>
+</property>
+<property name="Value">
+<value>0.03</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_tl">
+<property name="Name">
+<value>k_tl</value>
+</property>
+<property name="Value">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_b">
+<property name="Name">
+<value>k_b</value>
+</property>
+<property name="Value">
+<value>7200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k_f">
+<property name="Name">
+<value>k_f</value>
+</property>
+<property name="Value">
+<value>5000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta">
+<property name="Name">
+<value>beta</value>
+</property>
+<property name="Value">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="gamma">
+<property name="Name">
+<value>gamma</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="delta">
+<property name="Name">
+<value>delta</value>
+</property>
+<property name="Value">
+<value>11.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Rate_p">
+<property name="Name">
+<value>Rate rule for 'p'</value>
+</property>
+<property name="Expression">
+<value>S.NumberConc - k_f.NumberConc * p.NumberConc * m.NumberConc - alpha.NumberConc * p.NumberConc + (k_b.NumberConc + gamma.NumberConc) * pm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p</value>
+<value>Variable:/compartment_1:p</value>
+<value>1</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>0</value>
+</value>
+<value>
+<value>k_f</value>
+<value>Variable:/SBMLParameter:k_f</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/compartment_1:m</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha</value>
+<value>Variable:/SBMLParameter:alpha</value>
+<value>0</value>
+</value>
+<value>
+<value>k_b</value>
+<value>Variable:/SBMLParameter:k_b</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+<value>
+<value>pm</value>
+<value>Variable:/compartment_1:pm</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_mm">
+<property name="Name">
+<value>Rate rule for 'mm'</value>
+</property>
+<property name="Expression">
+<value>k_t.NumberConc * pow(p.NumberConc, 2) - beta.NumberConc * mm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mm</value>
+<value>Variable:/compartment_1:mm</value>
+<value>1</value>
+</value>
+<value>
+<value>k_t</value>
+<value>Variable:/SBMLParameter:k_t</value>
+<value>0</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/compartment_1:p</value>
+<value>0</value>
+</value>
+<value>
+<value>beta</value>
+<value>Variable:/SBMLParameter:beta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_m">
+<property name="Name">
+<value>Rate rule for 'm'</value>
+</property>
+<property name="Expression">
+<value>k_tl.NumberConc * mm.NumberConc - k_f.NumberConc * p.NumberConc * m.NumberConc + (k_b.NumberConc + delta.NumberConc) * pm.NumberConc - gamma.NumberConc * m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>m</value>
+<value>Variable:/compartment_1:m</value>
+<value>1</value>
+</value>
+<value>
+<value>k_tl</value>
+<value>Variable:/SBMLParameter:k_tl</value>
+<value>0</value>
+</value>
+<value>
+<value>mm</value>
+<value>Variable:/compartment_1:mm</value>
+<value>0</value>
+</value>
+<value>
+<value>k_f</value>
+<value>Variable:/SBMLParameter:k_f</value>
+<value>0</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/compartment_1:p</value>
+<value>0</value>
+</value>
+<value>
+<value>k_b</value>
+<value>Variable:/SBMLParameter:k_b</value>
+<value>0</value>
+</value>
+<value>
+<value>delta</value>
+<value>Variable:/SBMLParameter:delta</value>
+<value>0</value>
+</value>
+<value>
+<value>pm</value>
+<value>Variable:/compartment_1:pm</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Rate_pm">
+<property name="Name">
+<value>Rate rule for 'pm'</value>
+</property>
+<property name="Expression">
+<value>k_f.NumberConc * p.NumberConc * m.NumberConc - (k_b.NumberConc + delta.NumberConc) * pm.NumberConc - gamma.NumberConc * pm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>pm</value>
+<value>Variable:/compartment_1:pm</value>
+<value>1</value>
+</value>
+<value>
+<value>k_f</value>
+<value>Variable:/SBMLParameter:k_f</value>
+<value>0</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/compartment_1:p</value>
+<value>0</value>
+</value>
+<value>
+<value>m</value>
+<value>Variable:/compartment_1:m</value>
+<value>0</value>
+</value>
+<value>
+<value>k_b</value>
+<value>Variable:/SBMLParameter:k_b</value>
+<value>0</value>
+</value>
+<value>
+<value>delta</value>
+<value>Variable:/SBMLParameter:delta</value>
+<value>0</value>
+</value>
+<value>
+<value>gamma</value>
+<value>Variable:/SBMLParameter:gamma</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

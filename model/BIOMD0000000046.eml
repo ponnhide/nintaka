@@ -1,0 +1,668 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>[NADH] + [O2] -&gt; [H2O2] + [NAD];</value>
+</property>
+<property name="k1">
+<value>3e-06</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k1 * NADH.NumberConc * O2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADH</value>
+<value>Variable:/compartment:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>-1</value>
+</value>
+<value>
+<value>H2O2</value>
+<value>Variable:/compartment:H2O2</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>[per3] + [H2O2] -&gt; [coI];</value>
+</property>
+<property name="k2">
+<value>18.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k2 * H2O2.NumberConc * per3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>per3</value>
+<value>Variable:/compartment:per3</value>
+<value>-1</value>
+</value>
+<value>
+<value>H2O2</value>
+<value>Variable:/compartment:H2O2</value>
+<value>-1</value>
+</value>
+<value>
+<value>coI</value>
+<value>Variable:/compartment:coI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>[ArH] + [coI] -&gt; [Ar] + [coII];</value>
+</property>
+<property name="k3">
+<value>0.15</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k3 * coI.NumberConc * ArH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ArH</value>
+<value>Variable:/compartment:ArH</value>
+<value>-1</value>
+</value>
+<value>
+<value>coI</value>
+<value>Variable:/compartment:coI</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ar</value>
+<value>Variable:/compartment:Ar</value>
+<value>1</value>
+</value>
+<value>
+<value>coII</value>
+<value>Variable:/compartment:coII</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>[coII] + [ArH] -&gt; [per3] + [Ar];</value>
+</property>
+<property name="k4">
+<value>0.0052</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k4 * coII.NumberConc * ArH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>coII</value>
+<value>Variable:/compartment:coII</value>
+<value>-1</value>
+</value>
+<value>
+<value>ArH</value>
+<value>Variable:/compartment:ArH</value>
+<value>-1</value>
+</value>
+<value>
+<value>per3</value>
+<value>Variable:/compartment:per3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ar</value>
+<value>Variable:/compartment:Ar</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>[NADrad] + [O2] -&gt; [NAD] + [super];</value>
+</property>
+<property name="k5">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k5 * NADrad.NumberConc * O2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADrad</value>
+<value>Variable:/compartment:NADrad</value>
+<value>-1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>super</value>
+<value>Variable:/compartment:super</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>[per3] + [super] -&gt; [coIII];</value>
+</property>
+<property name="k6">
+<value>17.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k6 * super.NumberConc * per3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>per3</value>
+<value>Variable:/compartment:per3</value>
+<value>-1</value>
+</value>
+<value>
+<value>super</value>
+<value>Variable:/compartment:super</value>
+<value>-1</value>
+</value>
+<value>
+<value>coIII</value>
+<value>Variable:/compartment:coIII</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7">
+<property name="Name">
+<value>2 x [super] -&gt; [H2O2] + [O2];</value>
+</property>
+<property name="k7">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k7 * super.NumberConc * super.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>super</value>
+<value>Variable:/compartment:super</value>
+<value>-2</value>
+</value>
+<value>
+<value>H2O2</value>
+<value>Variable:/compartment:H2O2</value>
+<value>1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v8">
+<property name="Name">
+<value>[NADrad] + [coIII] -&gt; [NAD] + [coI];</value>
+</property>
+<property name="k8">
+<value>40.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k8 * coIII.NumberConc * NADrad.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADrad</value>
+<value>Variable:/compartment:NADrad</value>
+<value>-1</value>
+</value>
+<value>
+<value>coIII</value>
+<value>Variable:/compartment:coIII</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>coI</value>
+<value>Variable:/compartment:coI</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v9">
+<property name="Name">
+<value>2 x [NADrad] -&gt; [NAD2];</value>
+</property>
+<property name="k9">
+<value>60.0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k9 * NADrad.NumberConc * NADrad.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADrad</value>
+<value>Variable:/compartment:NADrad</value>
+<value>-2</value>
+</value>
+<value>
+<value>NAD2</value>
+<value>Variable:/compartment:NAD2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v10">
+<property name="Name">
+<value>[per3] + [NADrad] -&gt; [per2] + [NAD];</value>
+</property>
+<property name="k10">
+<value>1.8</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k10 * per3.NumberConc * NADrad.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>per3</value>
+<value>Variable:/compartment:per3</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADrad</value>
+<value>Variable:/compartment:NADrad</value>
+<value>-1</value>
+</value>
+<value>
+<value>per2</value>
+<value>Variable:/compartment:per2</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/compartment:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v11">
+<property name="Name">
+<value>[per2] + [O2] -&gt; [coIII];</value>
+</property>
+<property name="k11">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k11 * per2.NumberConc * O2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>per2</value>
+<value>Variable:/compartment:per2</value>
+<value>-1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>-1</value>
+</value>
+<value>
+<value>coIII</value>
+<value>Variable:/compartment:coIII</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v12">
+<property name="Name">
+<value>[NADHres] -&gt; [NADH];</value>
+</property>
+<property name="k12">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k12</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADHres</value>
+<value>Variable:/compartment:NADHres</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/compartment:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v131">
+<property name="Name">
+<value>[O2g] -&gt; [O2];</value>
+</property>
+<property name="k13f">
+<value>0.006</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k13f * O2g.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>O2g</value>
+<value>Variable:/compartment:O2g</value>
+<value>-1</value>
+</value>
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v132">
+<property name="Name">
+<value>[O2] -&gt; [O2g];</value>
+</property>
+<property name="k13b">
+<value>0.006</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k13b * O2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>O2</value>
+<value>Variable:/compartment:O2</value>
+<value>-1</value>
+</value>
+<value>
+<value>O2g</value>
+<value>Variable:/compartment:O2g</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v14">
+<property name="Name">
+<value>[NADH] + [Ar] -&gt; [NADrad] + [ArH];</value>
+</property>
+<property name="k14">
+<value>0.7</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k14 * Ar.NumberConc * NADH.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NADH</value>
+<value>Variable:/compartment:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ar</value>
+<value>Variable:/compartment:Ar</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADrad</value>
+<value>Variable:/compartment:NADrad</value>
+<value>1</value>
+</value>
+<value>
+<value>ArH</value>
+<value>Variable:/compartment:ArH</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="O2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="H2O2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="per3">
+<property name="NumberConc">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="coI">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ArH">
+<property name="NumberConc">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="coII">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ar">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADrad">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="super">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="coIII">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="per2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="O2g">
+<property name="NumberConc">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADHres">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

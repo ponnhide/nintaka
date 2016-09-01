@@ -5,57 +5,62 @@ var http = require("http").Server(app);
 var io = require("socket.io").listen( http );
 var spawn = require("child_process").spawn;
 var path = require('path')
-app.use(express.static( path.join( __dirname, '/' ) ) )
+
+app.use(express.static( path.join( __dirname, '/' )))
 //app.use('css', express.static(__dirname + '/css/'))  
+
 app.get('/', function (req, res) { 
    console.log('hoge')
    res.sendFile(__dirname + "/index.html");
 });
 
+
 http.listen(3000, function() {
     console.log("listening on *:3000");
 });
+
 
 io.on("connection", function(socket) {
     var child = spawn("python", ["simulate.py"] );
     var command = "";
     var data = ""
     child.stdout.on("data", function(chunk) {
-	//console.log(chunk);
+	    //console.log(chunk);
         data += chunk.toString();
     	try{ 
-	    obj = JSON.parse(data)
-	    if(command == "load"){
-	    	socket.emit("load", obj);
-	    }else if (command == "step"){
-		socket.emit("step", obj);
-	    }else if (command == "change"){
-	    	socket.emit("change", obj) 
-	    } 
-           data = "";
-	}catch(e){} 
+	        obj = JSON.parse(data);
+    	    if(command == "load"){
+	        	socket.emit("load", obj);
+	        }else if (command == "step"){
+		        socket.emit("step", obj);
+	        }else if (command == "change"){
+	    	    socket.emit("change", obj) 
+	        } 
+            data = "";
+	    }
+        catch(e){} 
     });
 
     socket.on("load", function(modelinfo) {
-	console.log("Load model file: " + modelinfo[0] + " " + modelinfo[1]);
-	child.stdin.write("load " + modelinfo[0] + " " + modelinfo[1] + "\n");
-    	command = "load";
+	    console.log("Load model file: " + modelinfo[0] + " " + modelinfo[1]);
+	    child.stdin.write("load " + modelinfo[0] + " " + modelinfo[1] + "\n");
+        command = "load";
     });
 
     socket.on("step", function(nums) {
-	console.log("Step simulation by: " + nums[0] + " steps");
-	child.stdin.write("step " + nums[0] + " " + nums[1] + "\n");
-    	command = "step";
+	    console.log("Step simulation by: " + nums[0] + " steps");
+	    child.stdin.write("step " + nums[0] + " " + nums[1] + "\n");
+        command = "step";
     });
 
     socket.on("change",function(values) {
-	console.log( values[0],values[1],values[2] ); 
-    	child.stdin.write("change " + values[0] + " " + values[1] + " " + values[2] + "\n")
-	command = "change";
+    	console.log( values[0],values[1],values[2] ); 
+        child.stdin.write("change " + values[0] + " " + values[1] + " " + values[2] + "\n");
+	    command = "change";
     });  
 
     socket.on("disconnect", function() {
-	console.log("Close session");
+	    console.log("Close session");
         child.stdin.end(); 
     });  
     

@@ -1,0 +1,417 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="U1">
+<property name="Name">
+<value>Passive ion influx</value>
+</property>
+<property name="Expression">
+<value>cell.Value * P.Value * J.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/cell:I</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>P</value>
+<value>Variable:/SBMLParameter:P</value>
+<value>0</value>
+</value>
+<value>
+<value>J</value>
+<value>Variable:/SBMLParameter:J</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="U2">
+<property name="Name">
+<value>ATP consumption by ion pump</value>
+</property>
+<property name="Expression">
+<value>cell.Value * W2.Value * I.NumberConc * T.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/cell:I</value>
+<value>-3</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>W2</value>
+<value>Variable:/SBMLParameter:W2</value>
+<value>0</value>
+</value>
+<value>
+<value>T</value>
+<value>Variable:/SBMLParameter:T</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="U3">
+<property name="Name">
+<value>ATP from glycolysis</value>
+</property>
+<property name="Expression">
+<value>cell.Value * W3.Value * pow(T.Value, 0.52) * pow(M.Value, 0.41)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>W3</value>
+<value>Variable:/SBMLParameter:W3</value>
+<value>0</value>
+</value>
+<value>
+<value>T</value>
+<value>Variable:/SBMLParameter:T</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/SBMLParameter:M</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="U6_plus_3U7">
+<property name="Name">
+<value>AMP synthesis de novo</value>
+</property>
+<property name="Expression">
+<value>cell.Value * 2 * U.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>U</value>
+<value>Variable:/SBMLParameter:U</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="U6_plus_U7_minus_U8">
+<property name="Name">
+<value>Adenylate pool</value>
+</property>
+<property name="Expression">
+<value>cell.Value * U.Value * (1 - W.Value * pow(T.Value, n.Value) * pow(M.Value, k.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>U</value>
+<value>Variable:/SBMLParameter:U</value>
+<value>0</value>
+</value>
+<value>
+<value>W</value>
+<value>Variable:/SBMLParameter:W</value>
+<value>0</value>
+</value>
+<value>
+<value>T</value>
+<value>Variable:/SBMLParameter:T</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/SBMLParameter:M</value>
+<value>0</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Erythrocyte</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="I">
+<property name="Name">
+<value>Ions</value>
+</property>
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>Energy pool</value>
+</property>
+<property name="NumberConc">
+<value>2.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="Name">
+<value>Adenylate pool</value>
+</property>
+<property name="NumberConc">
+<value>1.11</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="T">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>AMP</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+</variable>
+<variable class="Variable" id="P">
+<property name="Name">
+<value>Membrane permeability</value>
+</property>
+<property name="Value">
+<value>0.121</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="J">
+<property name="Name">
+<value>Extracellular ion concentration</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="W2">
+<property name="Name">
+<value>Ion pump activity</value>
+</property>
+<property name="Value">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="W3">
+<property name="Name">
+<value>Glycolytic activity</value>
+</property>
+<property name="Value">
+<value>13.48</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="U">
+<property name="Name">
+<value>de novo AMP synthesis</value>
+</property>
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="W">
+<property name="Name">
+<value>AMP degradation</value>
+</property>
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>Dependence of AMP degradation on ATP</value>
+</property>
+<property name="Value">
+<value>1.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k">
+<property name="Name">
+<value>Dependence of AMP degradation on AMP</value>
+</property>
+<property name="Value">
+<value>-1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_T">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'T'</value>
+</property>
+<property name="Expression">
+<value>(A.NumberConc + 3 * E.NumberConc - pow(6 * A.NumberConc * E.NumberConc - 3 * pow(E.NumberConc, 2) + pow(A.NumberConc, 2), 0.5)) / 6</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>T</value>
+<value>Variable:/SBMLParameter:T</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_M">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'M'</value>
+</property>
+<property name="Expression">
+<value>(7 * A.NumberConc - 3 * E.NumberConc - pow(6 * A.NumberConc * E.NumberConc - 3 * pow(E.NumberConc, 2) + pow(A.NumberConc, 2), 0.5)) / 6</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/SBMLParameter:M</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/cell:E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,604 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="l_dopa_absorption">
+<property name="Name">
+<value>L_Dopa absorption from gut</value>
+</property>
+<property name="Expression">
+<value>ka_b.Value * A_dopa.NumberConc * F_b.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_dopa</value>
+<value>Variable:/gut:A_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>1</value>
+</value>
+<value>
+<value>ka_b</value>
+<value>Variable:/SBMLParameter:ka_b</value>
+<value>0</value>
+</value>
+<value>
+<value>F_b</value>
+<value>Variable:/SBMLParameter:F_b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="l_dopa_blood_hepa_clearance">
+<property name="Name">
+<value>hepatic and blood L-Dopa clearance</value>
+</property>
+<property name="Expression">
+<value>ka_b.Value * A_dopa.NumberConc * (1 - F_b.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A_dopa</value>
+<value>Variable:/gut:A_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>ka_b</value>
+<value>Variable:/SBMLParameter:ka_b</value>
+<value>0</value>
+</value>
+<value>
+<value>F_b</value>
+<value>Variable:/SBMLParameter:F_b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AADC_clearance">
+<property name="Name">
+<value>L-Dopa clearance via AADC </value>
+</property>
+<property name="Expression">
+<value>CL_AADC.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="COMT_clearance">
+<property name="Name">
+<value>L-Dopa clearance via COMT</value>
+</property>
+<property name="Expression">
+<value>CL_COMT.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>C_OMD</value>
+<value>Variable:/V_3_OMD:C_OMD</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rest_clearance">
+<property name="Name">
+<value>rest clearance of L-Dopa</value>
+</property>
+<property name="Expression">
+<value>CL_rest.Value * C_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_dopa</value>
+<value>Variable:/Vdopa:C_dopa</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="_3_OMD_clearance">
+<property name="Name">
+<value>3-OMD clearance</value>
+</property>
+<property name="Expression">
+<value>CL_OMD.Value * C_OMD.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C_OMD</value>
+<value>Variable:/V_3_OMD:C_OMD</value>
+<value>-1</value>
+</value>
+<value>
+<value>CL_OMD</value>
+<value>Variable:/SBMLParameter:CL_OMD</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/gut">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="A_dopa">
+<property name="Value">
+<value>101.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Vdopa">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>V_L_Dopa</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.496</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_dopa">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/V_3_OMD">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>0.196</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="C_OMD">
+<property name="Name">
+<value>C_3-OMD</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="F_b">
+<property name="Value">
+<value>0.208988405797</value>
+</property>
+</variable>
+<variable class="Variable" id="F_H">
+<property name="Value">
+<value>0.870785024155</value>
+</property>
+</variable>
+<variable class="Variable" id="F_G">
+<property name="Value">
+<value>0.24</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_H">
+<property name="Value">
+<value>0.10699</value>
+</property>
+</variable>
+<variable class="Variable" id="Q">
+<property name="Value">
+<value>0.828</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_H">
+<property name="Value">
+<value>0.13</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dopa">
+<property name="Value">
+<value>0.823</value>
+</property>
+</variable>
+<variable class="Variable" id="f_rest">
+<property name="Value">
+<value>0.21</value>
+</property>
+</variable>
+<variable class="Variable" id="f_AADC">
+<property name="Value">
+<value>0.69</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f_COMT">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_AADC">
+<property name="Value">
+<value>0.56787</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_rest">
+<property name="Value">
+<value>0.17283</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_COMT">
+<property name="Value">
+<value>0.0823</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_dopa0">
+<property name="Value">
+<value>0.823</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka_b">
+<property name="Value">
+<value>2.11</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CL_OMD">
+<property name="Name">
+<value>CL_3_OMD</value>
+</property>
+<property name="Value">
+<value>0.012</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L_Dopa_per_kg_rat">
+<property name="Value">
+<value>404.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="rat_body_mass">
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_F_b">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F_b'</value>
+</property>
+<property name="Expression">
+<value>F_H.NumberConc * F_G.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F_b</value>
+<value>Variable:/SBMLParameter:F_b</value>
+<value>1</value>
+</value>
+<value>
+<value>F_H</value>
+<value>Variable:/SBMLParameter:F_H</value>
+<value>0</value>
+</value>
+<value>
+<value>F_G</value>
+<value>Variable:/SBMLParameter:F_G</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_F_H">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F_H'</value>
+</property>
+<property name="Expression">
+<value>1 - CL_H.NumberConc / Q.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F_H</value>
+<value>Variable:/SBMLParameter:F_H</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_H</value>
+<value>Variable:/SBMLParameter:CL_H</value>
+<value>0</value>
+</value>
+<value>
+<value>Q</value>
+<value>Variable:/SBMLParameter:Q</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CL_H">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_H'</value>
+</property>
+<property name="Expression">
+<value>f_H.NumberConc * CL_dopa.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_H</value>
+<value>Variable:/SBMLParameter:CL_H</value>
+<value>1</value>
+</value>
+<value>
+<value>f_H</value>
+<value>Variable:/SBMLParameter:f_H</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_dopa</value>
+<value>Variable:/SBMLParameter:CL_dopa</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CL_dopa">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_dopa'</value>
+</property>
+<property name="Expression">
+<value>CL_AADC.NumberConc + CL_rest.NumberConc + CL_COMT.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_dopa</value>
+<value>Variable:/SBMLParameter:CL_dopa</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>0</value>
+</value>
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_f_rest">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'f_rest'</value>
+</property>
+<property name="Expression">
+<value>1 - (f_AADC.NumberConc + f_COMT.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>f_rest</value>
+<value>Variable:/SBMLParameter:f_rest</value>
+<value>1</value>
+</value>
+<value>
+<value>f_AADC</value>
+<value>Variable:/SBMLParameter:f_AADC</value>
+<value>0</value>
+</value>
+<value>
+<value>f_COMT</value>
+<value>Variable:/SBMLParameter:f_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CL_AADC">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_AADC'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_AADC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_AADC</value>
+<value>Variable:/SBMLParameter:CL_AADC</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_AADC</value>
+<value>Variable:/SBMLParameter:f_AADC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CL_rest">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_rest'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_rest.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_rest</value>
+<value>Variable:/SBMLParameter:CL_rest</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_rest</value>
+<value>Variable:/SBMLParameter:f_rest</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_CL_COMT">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'CL_COMT'</value>
+</property>
+<property name="Expression">
+<value>CL_dopa0.NumberConc * f_COMT.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CL_COMT</value>
+<value>Variable:/SBMLParameter:CL_COMT</value>
+<value>1</value>
+</value>
+<value>
+<value>CL_dopa0</value>
+<value>Variable:/SBMLParameter:CL_dopa0</value>
+<value>0</value>
+</value>
+<value>
+<value>f_COMT</value>
+<value>Variable:/SBMLParameter:f_COMT</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,1326 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="HXT">
+<property name="Name">
+<value>HXT</value>
+</property>
+<property name="Vmax_1">
+<value>97.24</value>
+</property>
+<property name="Kglc_1">
+<value>1.1918</value>
+</property>
+<property name="Ki_1">
+<value>0.91</value>
+</property>
+<property name="Expression">
+<value>Vmax_1 * WGD_E.Value * (GLCo.NumberConc - GLCi.NumberConc) / Kglc_1 / (1 + (GLCo.NumberConc + GLCi.NumberConc) / Kglc_1 + Ki_1 * GLCo.NumberConc * GLCi.NumberConc / pow(Kglc_1, 2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLCo</value>
+<value>Variable:/cyto:GLCo</value>
+<value>-1</value>
+</value>
+<value>
+<value>GLCi</value>
+<value>Variable:/cyto:GLCi</value>
+<value>1</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="HXK">
+<property name="Name">
+<value>HXK</value>
+</property>
+<property name="Vmax_2">
+<value>236.7</value>
+</property>
+<property name="Kglc_2">
+<value>0.08</value>
+</property>
+<property name="Katp_2">
+<value>0.15</value>
+</property>
+<property name="Keq_2">
+<value>2000.0</value>
+</property>
+<property name="Kg6p_2">
+<value>30.0</value>
+</property>
+<property name="Kadp_2">
+<value>0.23</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * WGD_E.Value * Vmax_2 * (GLCi.NumberConc * ATP.NumberConc / (Kglc_2 * Katp_2) - G6P.NumberConc * ADP.NumberConc / (Kglc_2 * Katp_2 * Keq_2)) / ((1 + GLCi.NumberConc / Kglc_2 + G6P.NumberConc / Kg6p_2) * (1 + ATP.NumberConc / Katp_2 + ADP.NumberConc / Kadp_2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GLCi</value>
+<value>Variable:/cyto:GLCi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/cyto:G6P</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGI">
+<property name="Name">
+<value>PGI</value>
+</property>
+<property name="Vmax_3">
+<value>1056.0</value>
+</property>
+<property name="Kg6p_3">
+<value>1.4</value>
+</property>
+<property name="Keq_3">
+<value>0.29</value>
+</property>
+<property name="Kf6p_3">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_3 * WGD_E.Value * (G6P.NumberConc / Kg6p_3 - F6P.NumberConc / (Kg6p_3 * Keq_3)) / (1 + G6P.NumberConc / Kg6p_3 + F6P.NumberConc / Kf6p_3)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>G6P</value>
+<value>Variable:/cyto:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/cyto:F6P</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PFK">
+<property name="Name">
+<value>PFK</value>
+</property>
+<property name="Vmax_4">
+<value>110.0</value>
+</property>
+<property name="gR_4">
+<value>5.12</value>
+</property>
+<property name="Kf6p_4">
+<value>0.1</value>
+</property>
+<property name="Katp_4">
+<value>0.71</value>
+</property>
+<property name="L0_4">
+<value>0.66</value>
+</property>
+<property name="Ciatp_4">
+<value>100.0</value>
+</property>
+<property name="Kiatp_4">
+<value>0.65</value>
+</property>
+<property name="Camp_4">
+<value>0.0845</value>
+</property>
+<property name="Kamp_4">
+<value>0.0995</value>
+</property>
+<property name="Cf26_4">
+<value>0.0174</value>
+</property>
+<property name="Kf26_4">
+<value>0.000682</value>
+</property>
+<property name="Cf16_4">
+<value>0.397</value>
+</property>
+<property name="Kf16_4">
+<value>0.111</value>
+</property>
+<property name="Catp_4">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_4 * WGD_E.Value * (gR_4 * (F6P.NumberConc / Kf6p_4) * (ATP.NumberConc / Katp_4) * (1 + F6P.NumberConc / Kf6p_4 + ATP.NumberConc / Katp_4 + gR_4 * F6P.NumberConc / Kf6p_4 * ATP.NumberConc / Katp_4) / (pow(1 + F6P.NumberConc / Kf6p_4 + ATP.NumberConc / Katp_4 + gR_4 * F6P.NumberConc / Kf6p_4 * ATP.NumberConc / Katp_4, 2) + L0_4 * pow((1 + Ciatp_4 * ATP.NumberConc / Kiatp_4) / (1 + ATP.NumberConc / Kiatp_4), 2) * pow((1 + Camp_4 * AMP.NumberConc / Kamp_4) / (1 + AMP.NumberConc / Kamp_4), 2) * pow((1 + Cf26_4 * F26bP.NumberConc / Kf26_4 + Cf16_4 * F16bP.NumberConc / Kf16_4) / (1 + F26bP.NumberConc / Kf26_4 + F16bP.NumberConc / Kf16_4), 2) * pow(1 + Catp_4 * ATP.NumberConc / Katp_4, 2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>F6P</value>
+<value>Variable:/cyto:F6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>F16bP</value>
+<value>Variable:/cyto:F16bP</value>
+<value>1</value>
+</value>
+<value>
+<value>AMP</value>
+<value>Variable:/cyto:AMP</value>
+<value>0</value>
+</value>
+<value>
+<value>F26bP</value>
+<value>Variable:/cyto:F26bP</value>
+<value>0</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FBA">
+<property name="Name">
+<value>FBA</value>
+</property>
+<property name="Vmax_5">
+<value>94.69</value>
+</property>
+<property name="Kf16bp_5">
+<value>0.3</value>
+</property>
+<property name="Keq_5">
+<value>0.069</value>
+</property>
+<property name="Kdhap_5">
+<value>2.0</value>
+</property>
+<property name="Kgap_5">
+<value>2.4</value>
+</property>
+<property name="Kigap_5">
+<value>10.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_5 * WGD_E.Value * (F16bP.NumberConc / Kf16bp_5 - DHAP.NumberConc * GAP.NumberConc / (Kf16bp_5 * Keq_5)) / (1 + F16bP.NumberConc / Kf16bp_5 + DHAP.NumberConc / Kdhap_5 + GAP.NumberConc / Kgap_5 + F16bP.NumberConc * GAP.NumberConc / (Kf16bp_5 * Kigap_5) + DHAP.NumberConc * GAP.NumberConc / (Kdhap_5 * Kgap_5))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F16bP</value>
+<value>Variable:/cyto:F16bP</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHAP</value>
+<value>Variable:/cyto:DHAP</value>
+<value>1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/cyto:GAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TPI">
+<property name="Name">
+<value>TPI</value>
+</property>
+<property name="k1_6">
+<value>450000.0</value>
+</property>
+<property name="k2_6">
+<value>10000000.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * (k1_6 * DHAP.NumberConc - k2_6 * GAP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/cyto:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAP</value>
+<value>Variable:/cyto:GAP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TDH">
+<property name="Name">
+<value>TDH</value>
+</property>
+<property name="C_7">
+<value>1.0</value>
+</property>
+<property name="Vmaxf_7">
+<value>1152.0</value>
+</property>
+<property name="Kgap_7">
+<value>0.21</value>
+</property>
+<property name="Knad_7">
+<value>0.09</value>
+</property>
+<property name="Vmaxr_7">
+<value>6719.0</value>
+</property>
+<property name="Kbpg_7">
+<value>0.0098</value>
+</property>
+<property name="Knadh_7">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * C_7 * (Vmaxf_7 * WGD_E.Value * GAP.NumberConc * NAD.NumberConc / (Kgap_7 * Knad_7) - Vmaxr_7 * WGD_E.Value * BPG.NumberConc * NADH.NumberConc / (Kbpg_7 * Knadh_7)) / ((1 + GAP.NumberConc / Kgap_7 + BPG.NumberConc / Kbpg_7) * (1 + NAD.NumberConc / Knad_7 + NADH.NumberConc / Knadh_7))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GAP</value>
+<value>Variable:/cyto:GAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/cyto:NAD</value>
+<value>-1</value>
+</value>
+<value>
+<value>BPG</value>
+<value>Variable:/cyto:BPG</value>
+<value>1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cyto:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGK">
+<property name="Name">
+<value>PGK</value>
+</property>
+<property name="Vmax_8">
+<value>1288.0</value>
+</property>
+<property name="Keq_8">
+<value>3200.0</value>
+</property>
+<property name="Kp3g_8">
+<value>0.53</value>
+</property>
+<property name="Katp_8">
+<value>0.3</value>
+</property>
+<property name="Kbpg_8">
+<value>0.003</value>
+</property>
+<property name="Kadp_8">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_8 * WGD_E.Value * ((Keq_8 * BPG.NumberConc * ADP.NumberConc - P3G.NumberConc * ATP.NumberConc) / (Kp3g_8 * Katp_8)) / ((1 + BPG.NumberConc / Kbpg_8 + P3G.NumberConc / Kp3g_8) * (1 + ADP.NumberConc / Kadp_8 + ATP.NumberConc / Katp_8))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>BPG</value>
+<value>Variable:/cyto:BPG</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>P3G</value>
+<value>Variable:/cyto:P3G</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGM">
+<property name="Name">
+<value>PGM</value>
+</property>
+<property name="Vmax_9">
+<value>2585.0</value>
+</property>
+<property name="Kp3g_9">
+<value>1.2</value>
+</property>
+<property name="Keq_9">
+<value>0.19</value>
+</property>
+<property name="Kp2g_9">
+<value>0.08</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_9 * WGD_E.Value * (P3G.NumberConc / Kp3g_9 - P2G.NumberConc / (Kp3g_9 * Keq_9)) / (1 + P3G.NumberConc / Kp3g_9 + P2G.NumberConc / Kp2g_9)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P3G</value>
+<value>Variable:/cyto:P3G</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2G</value>
+<value>Variable:/cyto:P2G</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ENO">
+<property name="Name">
+<value>ENO</value>
+</property>
+<property name="Vmax_10">
+<value>201.6</value>
+</property>
+<property name="Kp2g_10">
+<value>0.04</value>
+</property>
+<property name="Keq_10">
+<value>6.7</value>
+</property>
+<property name="Kpep_10">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_10 * WGD_E.Value * (P2G.NumberConc / Kp2g_10 - PEP.NumberConc / (Kp2g_10 * Keq_10)) / (1 + P2G.NumberConc / Kp2g_10 + PEP.NumberConc / Kpep_10)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2G</value>
+<value>Variable:/cyto:P2G</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/cyto:PEP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PYK">
+<property name="Name">
+<value>PYK</value>
+</property>
+<property name="Vmax_11">
+<value>1000.0</value>
+</property>
+<property name="Kpep_11">
+<value>0.14</value>
+</property>
+<property name="Kadp_11">
+<value>0.53</value>
+</property>
+<property name="Keq_11">
+<value>6500.0</value>
+</property>
+<property name="Kpyr_11">
+<value>21.0</value>
+</property>
+<property name="Katp_11">
+<value>1.5</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_11 * WGD_E.Value * (PEP.NumberConc * ADP.NumberConc / (Kpep_11 * Kadp_11) - PYR.NumberConc * ATP.NumberConc / (Kpep_11 * Kadp_11 * Keq_11)) / ((1 + PEP.NumberConc / Kpep_11 + PYR.NumberConc / Kpyr_11) * (1 + ADP.NumberConc / Kadp_11 + ATP.NumberConc / Katp_11))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PEP</value>
+<value>Variable:/cyto:PEP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>PYR</value>
+<value>Variable:/cyto:PYR</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PDC">
+<property name="Name">
+<value>PDC</value>
+</property>
+<property name="Vmax_12">
+<value>857.8</value>
+</property>
+<property name="Kpyr_12">
+<value>4.33</value>
+</property>
+<property name="nH_12">
+<value>1.9</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_12 * WGD_E.Value * pow(PYR.NumberConc / Kpyr_12, nH_12) / (1 + pow(PYR.NumberConc / Kpyr_12, nH_12))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYR</value>
+<value>Variable:/cyto:PYR</value>
+<value>-1</value>
+</value>
+<value>
+<value>AcAld</value>
+<value>Variable:/cyto:AcAld</value>
+<value>1</value>
+</value>
+<value>
+<value>CO2</value>
+<value>Variable:/cyto:CO2</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ADH">
+<property name="Name">
+<value>ADH</value>
+</property>
+<property name="Vmax_13">
+<value>209.5</value>
+</property>
+<property name="Ketoh_13">
+<value>17.0</value>
+</property>
+<property name="Kinad_13">
+<value>0.92</value>
+</property>
+<property name="Keq_13">
+<value>6.9e-05</value>
+</property>
+<property name="Knad_13">
+<value>0.17</value>
+</property>
+<property name="Knadh_13">
+<value>0.11</value>
+</property>
+<property name="Kinadh_13">
+<value>0.031</value>
+</property>
+<property name="Kacald_13">
+<value>1.11</value>
+</property>
+<property name="Kiacald_13">
+<value>1.1</value>
+</property>
+<property name="Kietoh_13">
+<value>90.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_13 * WGD_E.Value * (EtOH.NumberConc * NAD.NumberConc / (Ketoh_13 * Kinad_13) - AcAld.NumberConc * NADH.NumberConc / (Ketoh_13 * Kinad_13 * Keq_13)) / (1 + NAD.NumberConc / Kinad_13 + EtOH.NumberConc * Knad_13 / (Kinad_13 * Ketoh_13) + AcAld.NumberConc * Knadh_13 / (Kinadh_13 * Kacald_13) + NADH.NumberConc / Kinadh_13 + EtOH.NumberConc * NAD.NumberConc / (Kinad_13 * Ketoh_13) + NAD.NumberConc * AcAld.NumberConc * Knadh_13 / (Kinad_13 * Kinadh_13 * Kacald_13) + EtOH.NumberConc * NADH.NumberConc * Knad_13 / (Kinad_13 * Kinadh_13 * Ketoh_13) + AcAld.NumberConc * NADH.NumberConc / (Kacald_13 * Kinadh_13) + EtOH.NumberConc * NAD.NumberConc * AcAld.NumberConc / (Kinad_13 * Kiacald_13 * Ketoh_13) + EtOH.NumberConc * AcAld.NumberConc * NADH.NumberConc / (Kietoh_13 * Kinadh_13 * Kacald_13))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NAD</value>
+<value>Variable:/cyto:NAD</value>
+<value>-1</value>
+</value>
+<value>
+<value>EtOH</value>
+<value>Variable:/cyto:EtOH</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cyto:NADH</value>
+<value>1</value>
+</value>
+<value>
+<value>AcAld</value>
+<value>Variable:/cyto:AcAld</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATPase">
+<property name="Name">
+<value>[ATP] -&gt; [ADP];</value>
+</property>
+<property name="Katpase_14">
+<value>39.5</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Katpase_14 * ATP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AK">
+<property name="Name">
+<value>adenylate_kinase</value>
+</property>
+<property name="k1_15">
+<value>45.0</value>
+</property>
+<property name="k2_15">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * (k1_15 * ADP.NumberConc * ADP.NumberConc - k2_15 * ATP.NumberConc * AMP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>-2</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>AMP</value>
+<value>Variable:/cyto:AMP</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="G3PDH">
+<property name="Name">
+<value>glycerol-3-phosphate_dehydrogenase</value>
+</property>
+<property name="Vmax_16">
+<value>47.11</value>
+</property>
+<property name="Kdhap_16">
+<value>0.4</value>
+</property>
+<property name="Knadh_16">
+<value>0.023</value>
+</property>
+<property name="Keq_16">
+<value>4300.0</value>
+</property>
+<property name="Kglycerol_16">
+<value>1.0</value>
+</property>
+<property name="Knad_16">
+<value>0.93</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Vmax_16 * WGD_E.Value * (DHAP.NumberConc / Kdhap_16 * (NADH.NumberConc / Knadh_16) - Glycerol.NumberConc / Kdhap_16 * (NAD.NumberConc / Knadh_16) * (1 / Keq_16)) / ((1 + DHAP.NumberConc / Kdhap_16 + Glycerol.NumberConc / Kglycerol_16) * (1 + NADH.NumberConc / Knadh_16 + NAD.NumberConc / Knad_16))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHAP</value>
+<value>Variable:/cyto:DHAP</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cyto:NADH</value>
+<value>-1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/cyto:NAD</value>
+<value>1</value>
+</value>
+<value>
+<value>Glycerol</value>
+<value>Variable:/cyto:Glycerol</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="glycogen_branch">
+<property name="Name">
+<value>glycogenbranch</value>
+</property>
+<property name="KGLYCOGEN_17">
+<value>6.0</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * KGLYCOGEN_17</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/cyto:G6P</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Glycogen</value>
+<value>Variable:/cyto:Glycogen</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="trehalose_synth">
+<property name="Name">
+<value>trehalose_synthesis</value>
+</property>
+<property name="Ktrehalose_18">
+<value>2.4</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * Ktrehalose_18</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATP</value>
+<value>Variable:/cyto:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>G6P</value>
+<value>Variable:/cyto:G6P</value>
+<value>-2</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cyto:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Trehalose</value>
+<value>Variable:/cyto:Trehalose</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="succinate_syn">
+<property name="Name">
+<value>succinate_synthesis</value>
+</property>
+<property name="k_19">
+<value>21.4</value>
+</property>
+<property name="Expression">
+<value>cyto.Value * k_19 * AcAld.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>NAD</value>
+<value>Variable:/cyto:NAD</value>
+<value>-3</value>
+</value>
+<value>
+<value>AcAld</value>
+<value>Variable:/cyto:AcAld</value>
+<value>-2</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cyto:NADH</value>
+<value>3</value>
+</value>
+<value>
+<value>Succinate</value>
+<value>Variable:/cyto:Succinate</value>
+<value>1</value>
+</value>
+<value>
+<value>cyto</value>
+<value>Variable:/cyto:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PYR_shut">
+<property name="Name">
+<value>pyruvate_shuttling</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="k2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>t_m.Value * (k1 * PYR.NumberConc - k2 * PYRmito.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYR</value>
+<value>Variable:/cyto:PYR</value>
+<value>-1</value>
+</value>
+<value>
+<value>PYRmito</value>
+<value>Variable:/mito:PYRmito</value>
+<value>1</value>
+</value>
+<value>
+<value>t_m</value>
+<value>Variable:/SBMLParameter:t_m</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PDH">
+<property name="Name">
+<value>pyruvate dehydrogenase</value>
+</property>
+<property name="Vmax_PDH">
+<value>379.2</value>
+</property>
+<property name="NADX_tot">
+<value>8.01</value>
+</property>
+<property name="K_PYR">
+<value>70.0</value>
+</property>
+<property name="K_NAD">
+<value>160.0</value>
+</property>
+<property name="Ki_NADH">
+<value>50.0</value>
+</property>
+<property name="Ki_PYR">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>mito.Value * WGD_E.Value * Vmax_PDH * PYRmito.NumberConc * (NADX_tot - NADX_tot / (1 + NAD.NumberConc / NADH.NumberConc)) / (NADX_tot * Ki_PYR * K_NAD / Ki_NADH / (1 + NAD.NumberConc / NADH.NumberConc) + K_PYR * (NADX_tot - NADX_tot / (1 + NAD.NumberConc / NADH.NumberConc)) + K_NAD * PYRmito.NumberConc + NADX_tot * K_NAD / Ki_NADH * PYRmito.NumberConc / (1 + NAD.NumberConc / NADH.NumberConc) + (NADX_tot - NADX_tot / (1 + NAD.NumberConc / NADH.NumberConc)) * PYRmito.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PYRmito</value>
+<value>Variable:/mito:PYRmito</value>
+<value>-1</value>
+</value>
+<value>
+<value>AcCoA</value>
+<value>Variable:/mito:AcCoA</value>
+<value>1</value>
+</value>
+<value>
+<value>CO2mito</value>
+<value>Variable:/mito:CO2mito</value>
+<value>1</value>
+</value>
+<value>
+<value>NAD</value>
+<value>Variable:/cyto:NAD</value>
+<value>0</value>
+</value>
+<value>
+<value>NADH</value>
+<value>Variable:/cyto:NADH</value>
+<value>0</value>
+</value>
+<value>
+<value>mito</value>
+<value>Variable:/mito:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>WGD_E</value>
+<value>Variable:/SBMLParameter:WGD_E</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cyto">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="GLCi">
+<property name="NumberConc">
+<value>0.0976522310646</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="NumberConc">
+<value>2.52512746499</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="G6P">
+<property name="NumberConc">
+<value>2.67504014045</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="NumberConc">
+<value>1.28198768169</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F6P">
+<property name="NumberConc">
+<value>0.624976405532</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F16bP">
+<property name="NumberConc">
+<value>6.22132076069</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="F26bP">
+<property name="Name">
+<value>Fru2,6-P2</value>
+</property>
+<property name="NumberConc">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AMP">
+<property name="NumberConc">
+<value>0.29288485332</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHAP">
+<property name="NumberConc">
+<value>1.004152549</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAP">
+<property name="NumberConc">
+<value>0.0451809175781</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NAD">
+<property name="NumberConc">
+<value>1.50329030202</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="BPG">
+<property name="NumberConc">
+<value>0.000736873499866</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADH">
+<property name="NumberConc">
+<value>0.0867096979847</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P3G">
+<property name="NumberConc">
+<value>0.885688538361</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2G">
+<property name="NumberConc">
+<value>0.127695817387</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PEP">
+<property name="NumberConc">
+<value>0.0632352144937</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PYR">
+<property name="NumberConc">
+<value>1.81531251193</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AcAld">
+<property name="NumberConc">
+<value>0.178140579851</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GLCo">
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CO2">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EtOH">
+<property name="NumberConc">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glycerol">
+<property name="NumberConc">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glycogen">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Trehalose">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Succinate">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/mito">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>mitochondrion</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PYRmito">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AcCoA">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CO2mito">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="t_m">
+<property name="Name">
+<value>toggle_transport</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="WGD_E">
+<property name="Name">
+<value>WGD enzyme conc change</value>
+</property>
+<property name="Value">
+<value>0.65</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

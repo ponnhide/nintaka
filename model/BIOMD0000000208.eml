@@ -1,0 +1,631 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>-&gt; [y1]; { y2 };</value>
+</property>
+<property name="Expression">
+<value>emax.Value * k1.Value * y1.NumberConc / (k1.Value * y1.NumberConc + (k1_prime.Value + k1_double_prime.Value * y1.NumberConc) * y2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y1</value>
+<value>Variable:/compartment:y1</value>
+<value>1</value>
+</value>
+<value>
+<value>y2</value>
+<value>Variable:/compartment:y2</value>
+<value>0</value>
+</value>
+<value>
+<value>emax</value>
+<value>Variable:/SBMLParameter:emax</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k1_prime</value>
+<value>Variable:/SBMLParameter:k1_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>k1_double_prime</value>
+<value>Variable:/SBMLParameter:k1_double_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>[y1] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi1.Value * y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y1</value>
+<value>Variable:/compartment:y1</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi1</value>
+<value>Variable:/SBMLParameter:phi1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>-&gt; [y2]; { y1 };</value>
+</property>
+<property name="Expression">
+<value>k2.Value * y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y2</value>
+<value>Variable:/compartment:y2</value>
+<value>1</value>
+</value>
+<value>
+<value>y1</value>
+<value>Variable:/compartment:y1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>[y2] -&gt; [y3]; { y5 };</value>
+</property>
+<property name="Expression">
+<value>k3.Value * y2.NumberConc * y5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y2</value>
+<value>Variable:/compartment:y2</value>
+<value>-1</value>
+</value>
+<value>
+<value>y3</value>
+<value>Variable:/compartment:y3</value>
+<value>1</value>
+</value>
+<value>
+<value>y5</value>
+<value>Variable:/compartment:y5</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>[y2] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi2.Value * y2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y2</value>
+<value>Variable:/compartment:y2</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi2</value>
+<value>Variable:/SBMLParameter:phi2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>[y3] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi3.Value * y3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y3</value>
+<value>Variable:/compartment:y3</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi3</value>
+<value>Variable:/SBMLParameter:phi3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>-&gt; [y4]; { y1 };</value>
+</property>
+<property name="Expression">
+<value>k4.Value * y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y4</value>
+<value>Variable:/compartment:y4</value>
+<value>1</value>
+</value>
+<value>
+<value>y1</value>
+<value>Variable:/compartment:y1</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>-&gt; [y4]; { y6 };</value>
+</property>
+<property name="Expression">
+<value>k4_double_prime.Value * y6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y4</value>
+<value>Variable:/compartment:y4</value>
+<value>1</value>
+</value>
+<value>
+<value>y6</value>
+<value>Variable:/compartment:y6</value>
+<value>0</value>
+</value>
+<value>
+<value>k4_double_prime</value>
+<value>Variable:/SBMLParameter:k4_double_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>[y4] -&gt; [y5];</value>
+</property>
+<property name="Expression">
+<value>k4i.Value * y4.NumberConc * y5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y4</value>
+<value>Variable:/compartment:y4</value>
+<value>-1</value>
+</value>
+<value>
+<value>y5</value>
+<value>Variable:/compartment:y5</value>
+<value>1</value>
+</value>
+<value>
+<value>k4i</value>
+<value>Variable:/SBMLParameter:k4i</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>[y5] -&gt; [y4];</value>
+</property>
+<property name="Expression">
+<value>k4a.Value * y5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y5</value>
+<value>Variable:/compartment:y5</value>
+<value>-1</value>
+</value>
+<value>
+<value>y4</value>
+<value>Variable:/compartment:y4</value>
+<value>1</value>
+</value>
+<value>
+<value>k4a</value>
+<value>Variable:/SBMLParameter:k4a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>[y4] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi4i.Value * y4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y4</value>
+<value>Variable:/compartment:y4</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi4i</value>
+<value>Variable:/SBMLParameter:phi4i</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>[y5] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi4a.Value * y5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y5</value>
+<value>Variable:/compartment:y5</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi4a</value>
+<value>Variable:/SBMLParameter:phi4a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>-&gt; [y6]; { y1 };</value>
+</property>
+<property name="Expression">
+<value>k6.Value * y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y6</value>
+<value>Variable:/compartment:y6</value>
+<value>1</value>
+</value>
+<value>
+<value>y1</value>
+<value>Variable:/compartment:y1</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>-&gt; [y6];</value>
+</property>
+<property name="Expression">
+<value>F6.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y6</value>
+<value>Variable:/compartment:y6</value>
+<value>1</value>
+</value>
+<value>
+<value>F6</value>
+<value>Variable:/SBMLParameter:F6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>[y6] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>phi6.Value * y6.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y6</value>
+<value>Variable:/compartment:y6</value>
+<value>-1</value>
+</value>
+<value>
+<value>phi6</value>
+<value>Variable:/SBMLParameter:phi6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="y1">
+<property name="Name">
+<value>E2F</value>
+</property>
+<property name="NumberConc">
+<value>0.014</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y2">
+<property name="Name">
+<value>pRB</value>
+</property>
+<property name="NumberConc">
+<value>0.006</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y3">
+<property name="Name">
+<value>Phosphorylated pRB</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y4">
+<property name="Name">
+<value>inactive cycE_cdk2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y5">
+<property name="Name">
+<value>active cycE_cdk2</value>
+</property>
+<property name="NumberConc">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y6">
+<property name="Name">
+<value>AP-1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="emax">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_prime">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1_double_prime">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi1">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi2">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi3">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Value">
+<value>0.09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4_double_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4i">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4a">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi4i">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="phi4a">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="F6">
+<property name="Value">
+<value>0.044</value>
+</property>
+</variable>
+<variable class="Variable" id="phi6">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_F6">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F6'</value>
+</property>
+<property name="Expression">
+<value>piecewise(0.044, leq(&lt;t&gt;, 60), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F6</value>
+<value>Variable:/SBMLParameter:F6</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

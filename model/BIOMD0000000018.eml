@@ -1,0 +1,2202 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="SHMT">
+<property name="Name">
+<value>[FH4] + [serine] -&gt; [CH2FH4];</value>
+</property>
+<property name="Vm">
+<value>18330.0</value>
+</property>
+<property name="Km1">
+<value>1.7</value>
+</property>
+<property name="Km2">
+<value>210.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * (serine.NumberConc / Km2 / (1 + serine.NumberConc / Km2)) * (FH4.NumberConc / Km1) / (1 + FH4.NumberConc / Km1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>serine</value>
+<value>Variable:/ext/cell:serine</value>
+<value>-1</value>
+</value>
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="SHMTr">
+<property name="Name">
+<value>[CH2FH4] -&gt; [FH4]; { glycine };</value>
+</property>
+<property name="Vm">
+<value>12200000.0</value>
+</property>
+<property name="Km1">
+<value>3200.0</value>
+</property>
+<property name="Km2">
+<value>10000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * (glycine.NumberConc / Km2 / (1 + glycine.NumberConc / Km2)) * (CH2FH4.NumberConc / Km1) / (1 + CH2FH4.NumberConc / Km1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>glycine</value>
+<value>Variable:/ext/cell:glycine</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="HCHOtoCH2FH4">
+<property name="Name">
+<value>[FH4] + [HCHO] -&gt; [CH2FH4];</value>
+</property>
+<property name="hp">
+<value>23.2</value>
+</property>
+<property name="Expression">
+<value>cell.Value * hp * FH4.NumberConc * HCHO.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>HCHO</value>
+<value>Variable:/ext/cell:HCHO</value>
+<value>-1</value>
+</value>
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="CH2FH4toHCHO">
+<property name="Name">
+<value>[CH2FH4] -&gt; [FH4] + [HCHO];</value>
+</property>
+<property name="hl">
+<value>0.3</value>
+</property>
+<property name="Expression">
+<value>cell.Value * hl * CH2FH4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>HCHO</value>
+<value>Variable:/ext/cell:HCHO</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTHFR">
+<property name="Name">
+<value>[CH2FH4] + [NADPH] -&gt; [CH3FH4]; { FH2f, MTX1, MTX2, MTX3, MTX4, MTX5 };</value>
+</property>
+<property name="Vm">
+<value>224.8</value>
+</property>
+<property name="Km1">
+<value>50.0</value>
+</property>
+<property name="Km2">
+<value>50.0</value>
+</property>
+<property name="Ki1">
+<value>0.4</value>
+</property>
+<property name="Ki21">
+<value>59.0</value>
+</property>
+<property name="Ki22">
+<value>21.3</value>
+</property>
+<property name="Ki23">
+<value>7.68</value>
+</property>
+<property name="Ki24">
+<value>2.77</value>
+</property>
+<property name="Ki25">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * CH2FH4.NumberConc * NADPH.NumberConc / (NADPH.NumberConc * CH2FH4.NumberConc + CH2FH4.NumberConc * Km2 + (NADPH.NumberConc + Km2) * Km1 * (1 + MTX1.NumberConc / Ki21 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADPH</value>
+<value>Variable:/ext/cell:NADPH</value>
+<value>-1</value>
+</value>
+<value>
+<value>CH3FH4</value>
+<value>Variable:/ext/cell:CH3FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTR">
+<property name="Name">
+<value>[CH3FH4] + [homocysteine] -&gt; [FH4];</value>
+</property>
+<property name="Vm">
+<value>22600.0</value>
+</property>
+<property name="Km1">
+<value>125.0</value>
+</property>
+<property name="Km2">
+<value>2900.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * (homocysteine.NumberConc / Km2 / (1 + homocysteine.NumberConc / Km2)) * (CH3FH4.NumberConc / Km1) / (1 + CH3FH4.NumberConc / Km1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH3FH4</value>
+<value>Variable:/ext/cell:CH3FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>homocysteine</value>
+<value>Variable:/ext/cell:homocysteine</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="HCOOHtoCHOFH4">
+<property name="Name">
+<value>[FH4] + [formate] + [ATP] -&gt; [CHOFH4];</value>
+</property>
+<property name="Vm">
+<value>3600.0</value>
+</property>
+<property name="Km1">
+<value>230.0</value>
+</property>
+<property name="Km2">
+<value>56.0</value>
+</property>
+<property name="Km3">
+<value>1600.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm / ((1 + Km1 / FH4.NumberConc) * (1 + Km2 / ATP.NumberConc) * (1 + Km3 / formate.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>formate</value>
+<value>Variable:/ext/cell:formate</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/ext/cell:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>CHOFH4</value>
+<value>Variable:/ext/cell:CHOFH4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GARFT">
+<property name="Name">
+<value>[CHOFH4] + [GAR] -&gt; [FGAR] + [FH4]; { FH2f, FFH2, MTX1, MTX2, MTX3, MTX4, MTX5 };</value>
+</property>
+<property name="Vm">
+<value>4126.0</value>
+</property>
+<property name="Km1">
+<value>4.9</value>
+</property>
+<property name="Km2">
+<value>52.0</value>
+</property>
+<property name="Ki1">
+<value>5.0</value>
+</property>
+<property name="Ki1f">
+<value>1.0</value>
+</property>
+<property name="Ki21">
+<value>84.0</value>
+</property>
+<property name="Ki22">
+<value>60.0</value>
+</property>
+<property name="Ki23">
+<value>43.0</value>
+</property>
+<property name="Ki24">
+<value>31.0</value>
+</property>
+<property name="Ki25">
+<value>22.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * CHOFH4.NumberConc * GAR.NumberConc / (GAR.NumberConc * CHOFH4.NumberConc + CHOFH4.NumberConc * Km2 + (GAR.NumberConc + Km2) * Km1 * (1 + MTX1.NumberConc / Ki21 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1 + FFH2.NumberConc / Ki1f)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CHOFH4</value>
+<value>Variable:/ext/cell:CHOFH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>GAR</value>
+<value>Variable:/ext/cell:GAR</value>
+<value>-1</value>
+</value>
+<value>
+<value>FGAR</value>
+<value>Variable:/ext/cell:FGAR</value>
+<value>1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>0</value>
+</value>
+<value>
+<value>FFH2</value>
+<value>Variable:/ext/cell:FFH2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATIC7">
+<property name="Name">
+<value>[CHOFH4] + [AICAR] -&gt; [FH4]; { FH2f, FFH2, MTX1, MTX2, MTX3, MTX4, MTX5 };</value>
+</property>
+<property name="Vm">
+<value>31675.0</value>
+</property>
+<property name="Km1">
+<value>5.5</value>
+</property>
+<property name="Km2">
+<value>24.0</value>
+</property>
+<property name="Ki1">
+<value>2.89</value>
+</property>
+<property name="Ki1f">
+<value>5.3</value>
+</property>
+<property name="Ki21">
+<value>40.0</value>
+</property>
+<property name="Ki22">
+<value>31.5</value>
+</property>
+<property name="Ki23">
+<value>2.33</value>
+</property>
+<property name="Ki24">
+<value>3.61</value>
+</property>
+<property name="Ki25">
+<value>5.89</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * CHOFH4.NumberConc * AICAR.NumberConc / (AICAR.NumberConc * CHOFH4.NumberConc + CHOFH4.NumberConc * Km2 + (AICAR.NumberConc + Km2) * Km1 * (1 + MTX1.NumberConc / Ki21 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1 + FFH2.NumberConc / Ki1f)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CHOFH4</value>
+<value>Variable:/ext/cell:CHOFH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>AICAR</value>
+<value>Variable:/ext/cell:AICAR</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>0</value>
+</value>
+<value>
+<value>FFH2</value>
+<value>Variable:/ext/cell:FFH2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTHFD">
+<property name="Name">
+<value>[CH2FH4] + [NADP] -&gt; [CHOFH4];</value>
+</property>
+<property name="Vm">
+<value>68500.0</value>
+</property>
+<property name="Km1">
+<value>3.0</value>
+</property>
+<property name="Km2">
+<value>21.8</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * (CH2FH4.NumberConc / Km1 / (1 + CH2FH4.NumberConc / Km1)) * (NADP.NumberConc / Km2 / (1 + NADP.NumberConc / Km2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>NADP</value>
+<value>Variable:/ext/cell:NADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>CHOFH4</value>
+<value>Variable:/ext/cell:CHOFH4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TYMS">
+<property name="Name">
+<value>[CH2FH4] + [dUMP] -&gt; [FH2f]; { FH2f, FFH2, MTX1, MTX2, MTX3, MTX4, MTX5 };</value>
+</property>
+<property name="Vm">
+<value>58.0</value>
+</property>
+<property name="Km1">
+<value>2.5</value>
+</property>
+<property name="Km2">
+<value>1.8</value>
+</property>
+<property name="Ki1">
+<value>3.0</value>
+</property>
+<property name="Ki1f">
+<value>1.6</value>
+</property>
+<property name="Ki21">
+<value>13.0</value>
+</property>
+<property name="Ki22">
+<value>0.08</value>
+</property>
+<property name="Ki23">
+<value>0.07</value>
+</property>
+<property name="Ki24">
+<value>0.065</value>
+</property>
+<property name="Ki25">
+<value>0.047</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * CH2FH4.NumberConc * dUMP.NumberConc / (dUMP.NumberConc * CH2FH4.NumberConc * (1 + MTX1.NumberConc / Ki21 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1) + Km1 * dUMP.NumberConc * (FFH2.NumberConc / Ki1f * (MTX1.NumberConc / Ki21) + (1 + FFH2.NumberConc / Ki1f) * (1 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1)) + Km1 * Km2 * (1 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CH2FH4</value>
+<value>Variable:/ext/cell:CH2FH4</value>
+<value>-1</value>
+</value>
+<value>
+<value>dUMP</value>
+<value>Variable:/ext/cell:dUMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>1</value>
+</value>
+<value>
+<value>FFH2</value>
+<value>Variable:/ext/cell:FFH2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DHFReductase">
+<property name="Name">
+<value>[FH2f] -&gt; [FH4]; { FH2b };</value>
+</property>
+<property name="kter">
+<value>2109.4</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kter * FH2b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH4</value>
+<value>Variable:/ext/cell:FH4</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2b</value>
+<value>Variable:/ext/cell:FH2b</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FFH2syn">
+<property name="Name">
+<value>[FH2f] -&gt; [FFH2];</value>
+</property>
+<property name="Vm">
+<value>65.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * FH2f.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>-1</value>
+</value>
+<value>
+<value>FFH2</value>
+<value>Variable:/ext/cell:FFH2</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATIC12">
+<property name="Name">
+<value>[FFH2] + [AICAR] -&gt; [FH2f]; { FH2f, MTX1, MTX2, MTX3, MTX4, MTX5 };</value>
+</property>
+<property name="Vm">
+<value>9503.0</value>
+</property>
+<property name="Km1">
+<value>5.3</value>
+</property>
+<property name="Km2">
+<value>24.0</value>
+</property>
+<property name="Ki1">
+<value>2.89</value>
+</property>
+<property name="Ki1f">
+<value>5.5</value>
+</property>
+<property name="Ki21">
+<value>40.0</value>
+</property>
+<property name="Ki22">
+<value>31.5</value>
+</property>
+<property name="Ki23">
+<value>2.33</value>
+</property>
+<property name="Ki24">
+<value>3.61</value>
+</property>
+<property name="Ki25">
+<value>5.89</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (Vm * FFH2.NumberConc * AICAR.NumberConc / (AICAR.NumberConc * FFH2.NumberConc + FFH2.NumberConc * Km2 + (AICAR.NumberConc + Km2) * Km1 * (1 + MTX1.NumberConc / Ki21 + MTX2.NumberConc / Ki22 + MTX3.NumberConc / Ki23 + MTX4.NumberConc / Ki24 + MTX5.NumberConc / Ki25 + FH2f.NumberConc / Ki1 + FFH2.NumberConc / Ki1f)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FFH2</value>
+<value>Variable:/ext/cell:FFH2</value>
+<value>-1</value>
+</value>
+<value>
+<value>AICAR</value>
+<value>Variable:/ext/cell:AICAR</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>1</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AICARsyn">
+<property name="Name">
+<value>[FGAR] -&gt; [AICAR]; { glutamine };</value>
+</property>
+<property name="Vm">
+<value>4656.0</value>
+</property>
+<property name="Km1">
+<value>100.0</value>
+</property>
+<property name="Km2">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * (glutamine.NumberConc / Km1 / (1 + glutamine.NumberConc / Km1)) * (FGAR.NumberConc / Km2 / (1 + FGAR.NumberConc / Km2))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FGAR</value>
+<value>Variable:/ext/cell:FGAR</value>
+<value>-1</value>
+</value>
+<value>
+<value>AICAR</value>
+<value>Variable:/ext/cell:AICAR</value>
+<value>1</value>
+</value>
+<value>
+<value>glutamine</value>
+<value>Variable:/ext/cell:glutamine</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FPGS12">
+<property name="Name">
+<value>[MTX1] -&gt; [MTX2];</value>
+</property>
+<property name="Vm">
+<value>0.129</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FPGS23">
+<property name="Name">
+<value>[MTX2] -&gt; [MTX3];</value>
+</property>
+<property name="Vm">
+<value>0.369</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FPGS34">
+<property name="Name">
+<value>[MTX3] -&gt; [MTX4];</value>
+</property>
+<property name="Vm">
+<value>0.118</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FPGS45">
+<property name="Name">
+<value>[MTX4] -&gt; [MTX5];</value>
+</property>
+<property name="Vm">
+<value>0.185</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GGH21">
+<property name="Name">
+<value>[MTX2] -&gt; [MTX1];</value>
+</property>
+<property name="Vm">
+<value>0.195</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GGH32">
+<property name="Name">
+<value>[MTX3] -&gt; [MTX2];</value>
+</property>
+<property name="Vm">
+<value>0.025</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GGH43">
+<property name="Name">
+<value>[MTX4] -&gt; [MTX3];</value>
+</property>
+<property name="Vm">
+<value>0.031</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GGH54">
+<property name="Name">
+<value>[MTX5] -&gt; [MTX4];</value>
+</property>
+<property name="Vm">
+<value>0.191</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="RFC">
+<property name="Name">
+<value>[EMTX] -&gt; [MTX1];</value>
+</property>
+<property name="Vm">
+<value>82.2</value>
+</property>
+<property name="Km">
+<value>8.2</value>
+</property>
+<property name="Expression">
+<value>ext.Value * (Vm * EMTX.NumberConc / (Km + EMTX.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EMTX</value>
+<value>Variable:/ext:EMTX</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>1</value>
+</value>
+<value>
+<value>ext</value>
+<value>Variable:/ext:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX1export">
+<property name="Name">
+<value>[MTX1] -&gt; ;</value>
+</property>
+<property name="Vm">
+<value>4.65</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX2export">
+<property name="Name">
+<value>[MTX2] -&gt; ;</value>
+</property>
+<property name="Vm">
+<value>0.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX3export">
+<property name="Name">
+<value>[MTX3] -&gt; ;</value>
+</property>
+<property name="Vm">
+<value>0.063</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX4export">
+<property name="Name">
+<value>[MTX4] -&gt; ;</value>
+</property>
+<property name="Vm">
+<value>0.063</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX5export">
+<property name="Name">
+<value>[MTX5] -&gt; ;</value>
+</property>
+<property name="Vm">
+<value>0.063</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX1on">
+<property name="Name">
+<value>[MTX1] + [DHFRf] -&gt; [MTX1b];</value>
+</property>
+<property name="Vm">
+<value>23100.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * DHFRf.NumberConc * MTX1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX1b</value>
+<value>Variable:/ext/cell:MTX1b</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX2on">
+<property name="Name">
+<value>[MTX2] + [DHFRf] -&gt; [MTX2b];</value>
+</property>
+<property name="Vm">
+<value>44300.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * DHFRf.NumberConc * MTX2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX2b</value>
+<value>Variable:/ext/cell:MTX2b</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX3on">
+<property name="Name">
+<value>[MTX3] + [DHFRf] -&gt; [MTX3b];</value>
+</property>
+<property name="Vm">
+<value>85100.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * DHFRf.NumberConc * MTX3.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX3b</value>
+<value>Variable:/ext/cell:MTX3b</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX4on">
+<property name="Name">
+<value>[MTX4] + [DHFRf] -&gt; [MTX4b];</value>
+</property>
+<property name="Vm">
+<value>163000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * DHFRf.NumberConc * MTX4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX4b</value>
+<value>Variable:/ext/cell:MTX4b</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX5on">
+<property name="Name">
+<value>[MTX5] + [DHFRf] -&gt; [MTX5b];</value>
+</property>
+<property name="Vm">
+<value>314000.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * DHFRf.NumberConc * MTX5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>-1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX5b</value>
+<value>Variable:/ext/cell:MTX5b</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX1off">
+<property name="Name">
+<value>[MTX1b] -&gt; [MTX1] + [DHFRf];</value>
+</property>
+<property name="Vm">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX1b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX1b</value>
+<value>Variable:/ext/cell:MTX1b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX2off">
+<property name="Name">
+<value>[MTX2b] -&gt; [MTX2] + [DHFRf];</value>
+</property>
+<property name="Vm">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX2b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2b</value>
+<value>Variable:/ext/cell:MTX2b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX3off">
+<property name="Name">
+<value>[MTX3b] -&gt; [MTX3] + [DHFRf];</value>
+</property>
+<property name="Vm">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX3b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3b</value>
+<value>Variable:/ext/cell:MTX3b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX4off">
+<property name="Name">
+<value>[MTX4b] -&gt; [MTX4] + [DHFRf];</value>
+</property>
+<property name="Vm">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX4b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4b</value>
+<value>Variable:/ext/cell:MTX4b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX5off">
+<property name="Name">
+<value>[MTX5b] -&gt; [MTX5] + [DHFRf];</value>
+</property>
+<property name="Vm">
+<value>0.42</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX5b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX5b</value>
+<value>Variable:/ext/cell:MTX5b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>1</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DHFRfsyn">
+<property name="Name">
+<value>-&gt; [DHFRf]; { EMTX };</value>
+</property>
+<property name="k0">
+<value>0.0192</value>
+</property>
+<property name="k1">
+<value>0.04416</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k0 + k1 * EMTX.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>1</value>
+</value>
+<value>
+<value>EMTX</value>
+<value>Variable:/ext:EMTX</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DHFRdeg">
+<property name="Name">
+<value>[DHFRf] -&gt; ; { FH2b };</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>Vm * cell.Value * (DHFRf.NumberConc + FH2b.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>-1</value>
+</value>
+<value>
+<value>FH2b</value>
+<value>Variable:/ext/cell:FH2b</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="FH2bdeg">
+<property name="Name">
+<value>-&gt; [FH2f]; { FH2b };</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * FH2b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2b</value>
+<value>Variable:/ext/cell:FH2b</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX1deg">
+<property name="Name">
+<value>[MTX1b] -&gt; [MTX1];</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX1b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX1b</value>
+<value>Variable:/ext/cell:MTX1b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX1</value>
+<value>Variable:/ext/cell:MTX1</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX2deg">
+<property name="Name">
+<value>[MTX2b] -&gt; [MTX2];</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX2b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX2b</value>
+<value>Variable:/ext/cell:MTX2b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX2</value>
+<value>Variable:/ext/cell:MTX2</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX3deg">
+<property name="Name">
+<value>[MTX3b] -&gt; [MTX3];</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX3b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX3b</value>
+<value>Variable:/ext/cell:MTX3b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX3</value>
+<value>Variable:/ext/cell:MTX3</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX4deg">
+<property name="Name">
+<value>[MTX4b] -&gt; [MTX4];</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX4b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX4b</value>
+<value>Variable:/ext/cell:MTX4b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX4</value>
+<value>Variable:/ext/cell:MTX4</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="MTX5deg">
+<property name="Name">
+<value>[MTX5b] -&gt; [MTX5];</value>
+</property>
+<property name="Vm">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * Vm * MTX5b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MTX5b</value>
+<value>Variable:/ext/cell:MTX5b</value>
+<value>-1</value>
+</value>
+<value>
+<value>MTX5</value>
+<value>Variable:/ext/cell:MTX5</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/ext/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/ext">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EMTX">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/ext/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="FH2f">
+<property name="Name">
+<value>dihydrofolate free</value>
+</property>
+<property name="NumberConc">
+<value>0.0012</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FH2b">
+<property name="Name">
+<value>dihydrofolate bound</value>
+</property>
+<property name="NumberConc">
+<value>0.0024</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHFRf">
+<property name="Name">
+<value>dihydrofolate reductase free</value>
+</property>
+<property name="NumberConc">
+<value>0.64</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHFRtot">
+<property name="Name">
+<value>dihydrofolate reductase total</value>
+</property>
+<property name="NumberConc">
+<value>0.64</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FH4">
+<property name="Name">
+<value>tetrahydrofolate</value>
+</property>
+<property name="NumberConc">
+<value>0.46</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CH2FH4">
+<property name="Name">
+<value>5,10-methylene-tetrahydrofolate</value>
+</property>
+<property name="NumberConc">
+<value>0.26</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CH3FH4">
+<property name="Name">
+<value>5-methyl-tetrahydrofolate</value>
+</property>
+<property name="NumberConc">
+<value>1.63</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CHOFH4">
+<property name="Name">
+<value>10-formyl-tetrahydrofolate</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FFH2">
+<property name="Name">
+<value>10-formyl-dihydrofolate</value>
+</property>
+<property name="NumberConc">
+<value>0.000332</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HCHO">
+<property name="NumberConc">
+<value>0.0074</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="FGAR">
+<property name="NumberConc">
+<value>16.49</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AICAR">
+<property name="NumberConc">
+<value>3.695</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX1">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX2">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX3">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX4">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX5">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX1b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX2b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX3b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX4b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MTX5b">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dUMP">
+<property name="NumberConc">
+<value>20.76</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GAR">
+<property name="NumberConc">
+<value>689.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="serine">
+<property name="NumberConc">
+<value>123.3</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="formate">
+<property name="NumberConc">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="NumberConc">
+<value>2980.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="glutamine">
+<property name="NumberConc">
+<value>7170.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="glycine">
+<property name="NumberConc">
+<value>1600.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADP">
+<property name="NumberConc">
+<value>6.73</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NADPH">
+<property name="NumberConc">
+<value>294.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="homocysteine">
+<property name="NumberConc">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Keq">
+<property name="Value">
+<value>0.32</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_FH2b">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'FH2b'</value>
+</property>
+<property name="Expression">
+<value>FH2f.NumberConc * DHFRf.NumberConc / Keq.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>FH2b</value>
+<value>Variable:/ext/cell:FH2b</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2f</value>
+<value>Variable:/ext/cell:FH2f</value>
+<value>0</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>0</value>
+</value>
+<value>
+<value>Keq</value>
+<value>Variable:/SBMLParameter:Keq</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_DHFRtot">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'DHFRtot'</value>
+</property>
+<property name="Expression">
+<value>FH2b.NumberConc + DHFRf.NumberConc + MTX1b.NumberConc + MTX2b.NumberConc + MTX3b.NumberConc + MTX4b.NumberConc + MTX5b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DHFRtot</value>
+<value>Variable:/ext/cell:DHFRtot</value>
+<value>1</value>
+</value>
+<value>
+<value>FH2b</value>
+<value>Variable:/ext/cell:FH2b</value>
+<value>0</value>
+</value>
+<value>
+<value>DHFRf</value>
+<value>Variable:/ext/cell:DHFRf</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX1b</value>
+<value>Variable:/ext/cell:MTX1b</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX2b</value>
+<value>Variable:/ext/cell:MTX2b</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX3b</value>
+<value>Variable:/ext/cell:MTX3b</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX4b</value>
+<value>Variable:/ext/cell:MTX4b</value>
+<value>0</value>
+</value>
+<value>
+<value>MTX5b</value>
+<value>Variable:/ext/cell:MTX5b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

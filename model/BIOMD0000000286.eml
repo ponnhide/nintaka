@@ -1,0 +1,3933 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="p53mRNASynthesis">
+<property name="Name">
+<value>[Source] -&gt; [p53_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynp53mRNA.Value * Source.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cell:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>p53_mRNA</value>
+<value>Variable:/cell:p53_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynp53mRNA</value>
+<value>Variable:/SBMLParameter:ksynp53mRNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53mRNADegradation">
+<property name="Name">
+<value>[p53_mRNA] -&gt; [Sink];</value>
+</property>
+<property name="Expression">
+<value>kdegp53mRNA.Value * p53_mRNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53_mRNA</value>
+<value>Variable:/cell:p53_mRNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegp53mRNA</value>
+<value>Variable:/SBMLParameter:kdegp53mRNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Synthesis">
+<property name="Name">
+<value>[Mdm2_mRNA] -&gt; [Mdm2_mRNA] + [Mdm2];</value>
+</property>
+<property name="Expression">
+<value>ksynMdm2.Value * Mdm2_mRNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynMdm2</value>
+<value>Variable:/SBMLParameter:ksynMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2mRNASynthesis1">
+<property name="Name">
+<value>[p53] -&gt; [p53] + [Mdm2_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynMdm2mRNA.Value * p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynMdm2mRNA</value>
+<value>Variable:/SBMLParameter:ksynMdm2mRNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2mRNASynthesis2">
+<property name="Name">
+<value>[p53_P] -&gt; [p53_P] + [Mdm2_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynMdm2mRNA.Value * p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynMdm2mRNA</value>
+<value>Variable:/SBMLParameter:ksynMdm2mRNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2mRNASynthesis3">
+<property name="Name">
+<value>[GSK3b_p53] -&gt; [GSK3b_p53] + [Mdm2_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynMdm2mRNAGSK3bp53.Value * GSK3b_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynMdm2mRNAGSK3bp53</value>
+<value>Variable:/SBMLParameter:ksynMdm2mRNAGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2mRNASynthesis4">
+<property name="Name">
+<value>[GSK3b_p53_P] -&gt; [GSK3b_p53_P] + [Mdm2_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynMdm2mRNAGSK3bp53.Value * GSK3b_p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynMdm2mRNAGSK3bp53</value>
+<value>Variable:/SBMLParameter:ksynMdm2mRNAGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2mRNADegradation">
+<property name="Name">
+<value>[Mdm2_mRNA] -&gt; [Sink];</value>
+</property>
+<property name="Expression">
+<value>kdegMdm2mRNA.Value * Mdm2_mRNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_mRNA</value>
+<value>Variable:/cell:Mdm2_mRNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegMdm2mRNA</value>
+<value>Variable:/SBMLParameter:kdegMdm2mRNA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="P53Mdm2Binding">
+<property name="Name">
+<value>[p53] + [Mdm2] -&gt; [Mdm2_p53];</value>
+</property>
+<property name="Expression">
+<value>kbinMdm2p53.Value * p53.NumberConc * Mdm2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinMdm2p53</value>
+<value>Variable:/SBMLParameter:kbinMdm2p53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="P53Mdm2Release">
+<property name="Name">
+<value>[Mdm2_p53] -&gt; [p53] + [Mdm2];</value>
+</property>
+<property name="Expression">
+<value>krelMdm2p53.Value * Mdm2_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>1</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>krelMdm2p53</value>
+<value>Variable:/SBMLParameter:krelMdm2p53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GSK3p53Binding">
+<property name="Name">
+<value>[GSK3b] + [p53] -&gt; [GSK3b_p53];</value>
+</property>
+<property name="Expression">
+<value>kbinGSK3bp53.Value * GSK3b.NumberConc * p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinGSK3bp53</value>
+<value>Variable:/SBMLParameter:kbinGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GSK3p53Release">
+<property name="Name">
+<value>[GSK3b_p53] -&gt; [GSK3b] + [p53];</value>
+</property>
+<property name="Expression">
+<value>krelGSK3bp53.Value * GSK3b_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>1</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>1</value>
+</value>
+<value>
+<value>krelGSK3bp53</value>
+<value>Variable:/SBMLParameter:krelGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GSK3p53PBinding">
+<property name="Name">
+<value>[GSK3b] + [p53_P] -&gt; [GSK3b_p53_P];</value>
+</property>
+<property name="Expression">
+<value>kbinGSK3bp53.Value * GSK3b.NumberConc * p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinGSK3bp53</value>
+<value>Variable:/SBMLParameter:kbinGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="GSK3_p53PRelease">
+<property name="Name">
+<value>[GSK3b_p53_P] -&gt; [GSK3b] + [p53_P];</value>
+</property>
+<property name="Expression">
+<value>krelGSK3bp53.Value * GSK3b_p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>1</value>
+</value>
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>1</value>
+</value>
+<value>
+<value>krelGSK3bp53</value>
+<value>Variable:/SBMLParameter:krelGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E1UbBinding">
+<property name="Name">
+<value>[E1] + [Ub] + [ATP] -&gt; [E1_Ub] + [AMP];</value>
+</property>
+<property name="Expression">
+<value>kbinE1Ub.Value * E1.NumberConc * Ub.NumberConc * ATP.NumberConc / (5000 + ATP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E1</value>
+<value>Variable:/cell:E1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cell:ATP</value>
+<value>0</value>
+</value>
+<value>
+<value>E1_Ub</value>
+<value>Variable:/cell:E1_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>AMP</value>
+<value>Variable:/cell:AMP</value>
+<value>0</value>
+</value>
+<value>
+<value>kbinE1Ub</value>
+<value>Variable:/SBMLParameter:kbinE1Ub</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E2UbBinding">
+<property name="Name">
+<value>[E2] + [E1_Ub] -&gt; [E2_Ub] + [E1];</value>
+</property>
+<property name="Expression">
+<value>kbinE2Ub.Value * E2.NumberConc * E1_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>-1</value>
+</value>
+<value>
+<value>E1_Ub</value>
+<value>Variable:/cell:E1_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>E1</value>
+<value>Variable:/cell:E1</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinE2Ub</value>
+<value>Variable:/SBMLParameter:kbinE2Ub</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Ubiquitination">
+<property name="Name">
+<value>[Mdm2] + [E2_Ub] -&gt; [Mdm2_Ub] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2Ub.Value * Mdm2.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_Ub</value>
+<value>Variable:/cell:Mdm2_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2Ub</value>
+<value>Variable:/SBMLParameter:kMdm2Ub</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2polyUbiquitination1">
+<property name="Name">
+<value>[Mdm2_Ub] + [E2_Ub] -&gt; [Mdm2_Ub2] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_Ub.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub</value>
+<value>Variable:/cell:Mdm2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_Ub2</value>
+<value>Variable:/cell:Mdm2_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2polyUbiquitination2">
+<property name="Name">
+<value>[Mdm2_Ub2] + [E2_Ub] -&gt; [Mdm2_Ub3] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_Ub2.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub2</value>
+<value>Variable:/cell:Mdm2_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_Ub3</value>
+<value>Variable:/cell:Mdm2_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2polyUbiquitination3">
+<property name="Name">
+<value>[Mdm2_Ub3] + [E2_Ub] -&gt; [Mdm2_Ub4] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_Ub3.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub3</value>
+<value>Variable:/cell:Mdm2_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_Ub4</value>
+<value>Variable:/cell:Mdm2_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Deubiquitination4">
+<property name="Name">
+<value>[Mdm2_Ub4] + [Mdm2DUB] -&gt; [Mdm2_Ub3] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_Ub4.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub4</value>
+<value>Variable:/cell:Mdm2_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub3</value>
+<value>Variable:/cell:Mdm2_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Deubiquitination3">
+<property name="Name">
+<value>[Mdm2_Ub3] + [Mdm2DUB] -&gt; [Mdm2_Ub2] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_Ub3.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub3</value>
+<value>Variable:/cell:Mdm2_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub2</value>
+<value>Variable:/cell:Mdm2_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Deubiquitination2">
+<property name="Name">
+<value>[Mdm2_Ub2] + [Mdm2DUB] -&gt; [Mdm2_Ub] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_Ub2.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub2</value>
+<value>Variable:/cell:Mdm2_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub</value>
+<value>Variable:/cell:Mdm2_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Deubiquitination1">
+<property name="Name">
+<value>[Mdm2_Ub] + [Mdm2DUB] -&gt; [Mdm2] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_Ub.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub</value>
+<value>Variable:/cell:Mdm2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2ProteasomeBinding1">
+<property name="Name">
+<value>[Mdm2_Ub4] + [Proteasome] -&gt; [Mdm2_Ub4_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kbinProt.Value * Mdm2_Ub4.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub4</value>
+<value>Variable:/cell:Mdm2_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_Ub4_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinProt</value>
+<value>Variable:/SBMLParameter:kbinProt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2Degradation">
+<property name="Name">
+<value>[Mdm2_Ub4_Proteasome] -&gt; [Proteasome] + 4 x [Ub];</value>
+</property>
+<property name="Expression">
+<value>kdegMdm2.Value * Mdm2_Ub4_Proteasome.NumberConc * kproteff.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_Ub4_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>4</value>
+</value>
+<value>
+<value>kdegMdm2</value>
+<value>Variable:/SBMLParameter:kdegMdm2</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Synthesis">
+<property name="Name">
+<value>[p53_mRNA] -&gt; [p53] + [p53_mRNA];</value>
+</property>
+<property name="Expression">
+<value>ksynp53.Value * p53_mRNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53_mRNA</value>
+<value>Variable:/cell:p53_mRNA</value>
+<value>0</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynp53</value>
+<value>Variable:/SBMLParameter:ksynp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Monoubiquitination">
+<property name="Name">
+<value>[E2_Ub] + [Mdm2_p53] -&gt; [Mdm2_p53_Ub] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kp53Ub.Value * E2_Ub.NumberConc * Mdm2_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kp53Ub</value>
+<value>Variable:/SBMLParameter:kp53Ub</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Polyubiquitination1">
+<property name="Name">
+<value>[Mdm2_p53_Ub] + [E2_Ub] -&gt; [Mdm2_p53_Ub2] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kp53PolyUb.Value * Mdm2_p53_Ub.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kp53PolyUb</value>
+<value>Variable:/SBMLParameter:kp53PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Polyubiquitination2">
+<property name="Name">
+<value>[Mdm2_p53_Ub2] + [E2_Ub] -&gt; [Mdm2_p53_Ub3] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kp53PolyUb.Value * Mdm2_p53_Ub2.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kp53PolyUb</value>
+<value>Variable:/SBMLParameter:kp53PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Polyubiquitination3">
+<property name="Name">
+<value>[Mdm2_p53_Ub3] + [E2_Ub] -&gt; [Mdm2_p53_Ub4] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kp53PolyUb.Value * Mdm2_p53_Ub3.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kp53PolyUb</value>
+<value>Variable:/SBMLParameter:kp53PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Deubiqutination4">
+<property name="Name">
+<value>[Mdm2_p53_Ub4] + [p53DUB] -&gt; [Mdm2_p53_Ub3] + [p53DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBp53.Value * Mdm2_p53_Ub4.NumberConc * p53DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53DUB</value>
+<value>Variable:/cell:p53DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBp53</value>
+<value>Variable:/SBMLParameter:kactDUBp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Deubiquitination3">
+<property name="Name">
+<value>[Mdm2_p53_Ub3] + [p53DUB] -&gt; [Mdm2_p53_Ub2] + [p53DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBp53.Value * Mdm2_p53_Ub3.NumberConc * p53DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53DUB</value>
+<value>Variable:/cell:p53DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBp53</value>
+<value>Variable:/SBMLParameter:kactDUBp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Deubiquitination2">
+<property name="Name">
+<value>[Mdm2_p53_Ub2] + [p53DUB] -&gt; [Mdm2_p53_Ub] + [p53DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBp53.Value * Mdm2_p53_Ub2.NumberConc * p53DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53DUB</value>
+<value>Variable:/cell:p53DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBp53</value>
+<value>Variable:/SBMLParameter:kactDUBp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53Deubiquitination1">
+<property name="Name">
+<value>[Mdm2_p53_Ub] + [p53DUB] -&gt; [Mdm2_p53] + [p53DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBp53.Value * Mdm2_p53_Ub.NumberConc * p53DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53DUB</value>
+<value>Variable:/cell:p53DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBp53</value>
+<value>Variable:/SBMLParameter:kactDUBp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2GSK3phosphorylation1">
+<property name="Name">
+<value>[Mdm2_p53_Ub4] + [GSK3b] -&gt; [Mdm2_P1_p53_Ub4] + [GSK3b];</value>
+</property>
+<property name="Expression">
+<value>kphosMdm2GSK3b.Value * Mdm2_p53_Ub4.NumberConc * GSK3b.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>kphosMdm2GSK3b</value>
+<value>Variable:/SBMLParameter:kphosMdm2GSK3b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2GSK3phosphorylation2">
+<property name="Name">
+<value>[Mdm2_p53_Ub4] + [GSK3b_p53] -&gt; [Mdm2_P1_p53_Ub4] + [GSK3b_p53];</value>
+</property>
+<property name="Expression">
+<value>kphosMdm2GSK3bp53.Value * Mdm2_p53_Ub4.NumberConc * GSK3b_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>kphosMdm2GSK3bp53</value>
+<value>Variable:/SBMLParameter:kphosMdm2GSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2GSK3phosphorylation3">
+<property name="Name">
+<value>[Mdm2_p53_Ub4] + [GSK3b_p53_P] -&gt; [Mdm2_P1_p53_Ub4] + [GSK3b_p53_P];</value>
+</property>
+<property name="Expression">
+<value>kphosMdm2GSK3bp53.Value * Mdm2_p53_Ub4.NumberConc * GSK3b_p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>kphosMdm2GSK3bp53</value>
+<value>Variable:/SBMLParameter:kphosMdm2GSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53ProteasomeBinding1">
+<property name="Name">
+<value>[Mdm2_P1_p53_Ub4] + [Proteasome] -&gt; [p53_Ub4_Proteasome] + [Mdm2];</value>
+</property>
+<property name="Expression">
+<value>kbinProt.Value * Mdm2_P1_p53_Ub4.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53_Ub4_Proteasome</value>
+<value>Variable:/cell:p53_Ub4_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinProt</value>
+<value>Variable:/SBMLParameter:kbinProt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Degradationp53_Ub4">
+<property name="Name">
+<value>[p53_Ub4_Proteasome] + [ATP] -&gt; 4 x [Ub] + [Proteasome] + [ADP];</value>
+</property>
+<property name="Expression">
+<value>kdegp53.Value * kproteff.Value * p53_Ub4_Proteasome.NumberConc * ATP.NumberConc / (5000 + ATP.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53_Ub4_Proteasome</value>
+<value>Variable:/cell:p53_Ub4_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/cell:ATP</value>
+<value>0</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>4</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/cell:ADP</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegp53</value>
+<value>Variable:/SBMLParameter:kdegp53</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauMTbinding">
+<property name="Name">
+<value>[Tau] -&gt; [MT_Tau];</value>
+</property>
+<property name="Expression">
+<value>kbinMTTau.Value * Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>MT_Tau</value>
+<value>Variable:/cell:MT_Tau</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinMTTau</value>
+<value>Variable:/SBMLParameter:kbinMTTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauMTrelease">
+<property name="Name">
+<value>[MT_Tau] -&gt; [Tau];</value>
+</property>
+<property name="Expression">
+<value>krelMTTau.Value * MT_Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MT_Tau</value>
+<value>Variable:/cell:MT_Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>1</value>
+</value>
+<value>
+<value>krelMTTau</value>
+<value>Variable:/SBMLParameter:krelMTTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation1">
+<property name="Name">
+<value>[GSK3b_p53] + [Tau] -&gt; [GSK3b_p53] + [Tau_P1];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3bp53.Value * GSK3b_p53.NumberConc * Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3bp53</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation2">
+<property name="Name">
+<value>[GSK3b_p53] + [Tau_P1] -&gt; [GSK3b_p53] + [Tau_P2];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3bp53.Value * GSK3b_p53.NumberConc * Tau_P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3bp53</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation3">
+<property name="Name">
+<value>[GSK3b_p53_P] + [Tau] -&gt; [GSK3b_p53_P] + [Tau_P1];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3bp53.Value * GSK3b_p53_P.NumberConc * Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3bp53</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation4">
+<property name="Name">
+<value>[GSK3b_p53_P] + [Tau_P1] -&gt; [GSK3b_p53_P] + [Tau_P2];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3bp53.Value * GSK3b_p53_P.NumberConc * Tau_P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3bp53</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3bp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation5">
+<property name="Name">
+<value>[GSK3b] + [Tau] -&gt; [GSK3b] + [Tau_P1];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3b.Value * GSK3b.NumberConc * Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3b</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tauphosphorylation6">
+<property name="Name">
+<value>[GSK3b] + [Tau_P1] -&gt; [GSK3b] + [Tau_P2];</value>
+</property>
+<property name="Expression">
+<value>kphospTauGSK3b.Value * GSK3b.NumberConc * Tau_P1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b</value>
+<value>Variable:/cell:GSK3b</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>1</value>
+</value>
+<value>
+<value>kphospTauGSK3b</value>
+<value>Variable:/SBMLParameter:kphospTauGSK3b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Taudephosphorylation1">
+<property name="Name">
+<value>[Tau_P2] + [PP1] -&gt; [Tau_P1] + [PP1];</value>
+</property>
+<property name="Expression">
+<value>kdephospTau.Value * Tau_P2.NumberConc * PP1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>PP1</value>
+<value>Variable:/cell:PP1</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>1</value>
+</value>
+<value>
+<value>kdephospTau</value>
+<value>Variable:/SBMLParameter:kdephospTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Taudephosphorylation2">
+<property name="Name">
+<value>[Tau_P1] + [PP1] -&gt; [Tau] + [PP1];</value>
+</property>
+<property name="Expression">
+<value>kdephospTau.Value * Tau_P1.NumberConc * PP1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>PP1</value>
+<value>Variable:/cell:PP1</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>1</value>
+</value>
+<value>
+<value>kdephospTau</value>
+<value>Variable:/SBMLParameter:kdephospTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauP1Aggregation1">
+<property name="Name">
+<value>2 x [Tau_P1] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTauP1.Value * Tau_P1.NumberConc * (Tau_P1.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>2</value>
+</value>
+<value>
+<value>kaggTauP1</value>
+<value>Variable:/SBMLParameter:kaggTauP1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauP1Aggregation2">
+<property name="Name">
+<value>[Tau_P1] + [AggTau] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTauP1.Value * Tau_P1.NumberConc * AggTau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P1</value>
+<value>Variable:/cell:Tau_P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggTauP1</value>
+<value>Variable:/SBMLParameter:kaggTauP1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauP2Aggregation1">
+<property name="Name">
+<value>2 x [Tau_P2] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTauP2.Value * Tau_P2.NumberConc * (Tau_P2.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>2</value>
+</value>
+<value>
+<value>kaggTauP2</value>
+<value>Variable:/SBMLParameter:kaggTauP2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauP2Aggregation2">
+<property name="Name">
+<value>[Tau_P2] + [AggTau] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTauP2.Value * Tau_P2.NumberConc * AggTau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau_P2</value>
+<value>Variable:/cell:Tau_P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggTauP2</value>
+<value>Variable:/SBMLParameter:kaggTauP2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauAggregation1">
+<property name="Name">
+<value>2 x [Tau] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTau.Value * Tau.NumberConc * (Tau.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>2</value>
+</value>
+<value>
+<value>kaggTau</value>
+<value>Variable:/SBMLParameter:kaggTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauAggregation2">
+<property name="Name">
+<value>[Tau] + [AggTau] -&gt; 2 x [AggTau];</value>
+</property>
+<property name="Expression">
+<value>kaggTau.Value * Tau.NumberConc * AggTau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggTau</value>
+<value>Variable:/SBMLParameter:kaggTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TangleFormation1">
+<property name="Name">
+<value>2 x [AggTau] -&gt; 2 x [NFT];</value>
+</property>
+<property name="Expression">
+<value>ktangfor.Value * AggTau.NumberConc * (AggTau.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>-2</value>
+</value>
+<value>
+<value>NFT</value>
+<value>Variable:/cell:NFT</value>
+<value>2</value>
+</value>
+<value>
+<value>ktangfor</value>
+<value>Variable:/SBMLParameter:ktangfor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TangleFormation2">
+<property name="Name">
+<value>[AggTau] + [NFT] -&gt; 2 x [NFT];</value>
+</property>
+<property name="Expression">
+<value>ktangfor.Value * AggTau.NumberConc * NFT.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>-1</value>
+</value>
+<value>
+<value>NFT</value>
+<value>Variable:/cell:NFT</value>
+<value>1</value>
+</value>
+<value>
+<value>ktangfor</value>
+<value>Variable:/SBMLParameter:ktangfor</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAggTau">
+<property name="Name">
+<value>[AggTau] + [Proteasome] -&gt; [AggTau_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhibprot.Value * AggTau.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggTau</value>
+<value>Variable:/cell:AggTau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggTau_Proteasome</value>
+<value>Variable:/cell:AggTau_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhibprot</value>
+<value>Variable:/SBMLParameter:kinhibprot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Abetaproduction1">
+<property name="Name">
+<value>[GSK3b_p53] -&gt; [Abeta] + [GSK3b_p53];</value>
+</property>
+<property name="Expression">
+<value>kprodAbeta.Value * GSK3b_p53.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53</value>
+<value>Variable:/cell:GSK3b_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kprodAbeta</value>
+<value>Variable:/SBMLParameter:kprodAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Abetaproduction2">
+<property name="Name">
+<value>[GSK3b_p53_P] -&gt; [Abeta] + [GSK3b_p53_P];</value>
+</property>
+<property name="Expression">
+<value>kprodAbeta.Value * GSK3b_p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>GSK3b_p53_P</value>
+<value>Variable:/cell:GSK3b_p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kprodAbeta</value>
+<value>Variable:/SBMLParameter:kprodAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ProteasomeInhibitionAbeta">
+<property name="Name">
+<value>[AggAbeta] + [Proteasome] -&gt; [AggAbeta_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kinhibprot.Value * AggAbeta.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggAbeta_Proteasome</value>
+<value>Variable:/cell:AggAbeta_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kinhibprot</value>
+<value>Variable:/SBMLParameter:kinhibprot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AbetaDegradation">
+<property name="Name">
+<value>[Abeta] -&gt; [Sink];</value>
+</property>
+<property name="Expression">
+<value>kdegAbeta.Value * Abeta.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegAbeta</value>
+<value>Variable:/SBMLParameter:kdegAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AbetaAggregation1">
+<property name="Name">
+<value>2 x [Abeta] -&gt; [AggAbeta];</value>
+</property>
+<property name="Expression">
+<value>kaggAbeta.Value * Abeta.NumberConc * (Abeta.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-2</value>
+</value>
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggAbeta</value>
+<value>Variable:/SBMLParameter:kaggAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AbetaAggregation2">
+<property name="Name">
+<value>[Abeta] + [AggAbeta] -&gt; 2 x [AggAbeta];</value>
+</property>
+<property name="Expression">
+<value>kaggAbeta.Value * Abeta.NumberConc * AggAbeta.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>1</value>
+</value>
+<value>
+<value>kaggAbeta</value>
+<value>Variable:/SBMLParameter:kaggAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AbetaPlaqueFormation1">
+<property name="Name">
+<value>2 x [AggAbeta] -&gt; 2 x [AbetaPlaque];</value>
+</property>
+<property name="Expression">
+<value>kpf.Value * AggAbeta.NumberConc * (AggAbeta.NumberConc - 1) * 0.5</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>-2</value>
+</value>
+<value>
+<value>AbetaPlaque</value>
+<value>Variable:/cell:AbetaPlaque</value>
+<value>2</value>
+</value>
+<value>
+<value>kpf</value>
+<value>Variable:/SBMLParameter:kpf</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AbetaPlaqueFormation2">
+<property name="Name">
+<value>[AggAbeta] + [AbetaPlaque] -&gt; 2 x [AbetaPlaque];</value>
+</property>
+<property name="Expression">
+<value>kpf.Value * AggAbeta.NumberConc * AbetaPlaque.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>-1</value>
+</value>
+<value>
+<value>AbetaPlaque</value>
+<value>Variable:/cell:AbetaPlaque</value>
+<value>1</value>
+</value>
+<value>
+<value>kpf</value>
+<value>Variable:/SBMLParameter:kpf</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53transcriptionViaAbeta">
+<property name="Name">
+<value>[Abeta] -&gt; [p53_mRNA] + [Abeta];</value>
+</property>
+<property name="Expression">
+<value>ksynp53mRNAAbeta.Value * Abeta.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Abeta</value>
+<value>Variable:/cell:Abeta</value>
+<value>0</value>
+</value>
+<value>
+<value>p53_mRNA</value>
+<value>Variable:/cell:p53_mRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynp53mRNAAbeta</value>
+<value>Variable:/SBMLParameter:ksynp53mRNAAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DNAdamage">
+<property name="Name">
+<value>-&gt; [damDNA]; { IR };</value>
+</property>
+<property name="Expression">
+<value>kdam.Value * IR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>damDNA</value>
+<value>Variable:/cell:damDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>IR</value>
+<value>Variable:/cell:IR</value>
+<value>0</value>
+</value>
+<value>
+<value>kdam</value>
+<value>Variable:/SBMLParameter:kdam</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DNArepair">
+<property name="Name">
+<value>[damDNA] -&gt; [Sink];</value>
+</property>
+<property name="Expression">
+<value>krepair.Value * damDNA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>damDNA</value>
+<value>Variable:/cell:damDNA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sink</value>
+<value>Variable:/cell:Sink</value>
+<value>0</value>
+</value>
+<value>
+<value>krepair</value>
+<value>Variable:/SBMLParameter:krepair</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATMactivation">
+<property name="Name">
+<value>[damDNA] + [ATMI] -&gt; [damDNA] + [ATMA];</value>
+</property>
+<property name="Expression">
+<value>kactATM.Value * damDNA.NumberConc * ATMI.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>damDNA</value>
+<value>Variable:/cell:damDNA</value>
+<value>0</value>
+</value>
+<value>
+<value>ATMI</value>
+<value>Variable:/cell:ATMI</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATMA</value>
+<value>Variable:/cell:ATMA</value>
+<value>1</value>
+</value>
+<value>
+<value>kactATM</value>
+<value>Variable:/SBMLParameter:kactATM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53phosphorylation">
+<property name="Name">
+<value>[p53] + [ATMA] -&gt; [p53_P] + [ATMA];</value>
+</property>
+<property name="Expression">
+<value>kphosp53.Value * p53.NumberConc * ATMA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATMA</value>
+<value>Variable:/cell:ATMA</value>
+<value>0</value>
+</value>
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>1</value>
+</value>
+<value>
+<value>kphosp53</value>
+<value>Variable:/SBMLParameter:kphosp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="p53dephosphorylation">
+<property name="Name">
+<value>[p53_P] -&gt; [p53];</value>
+</property>
+<property name="Expression">
+<value>kdephosp53.Value * p53_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>1</value>
+</value>
+<value>
+<value>kdephosp53</value>
+<value>Variable:/SBMLParameter:kdephosp53</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2phosphorylation">
+<property name="Name">
+<value>[Mdm2] + [ATMA] -&gt; [Mdm2_P] + [ATMA];</value>
+</property>
+<property name="Expression">
+<value>kphosMdm2.Value * Mdm2.NumberConc * ATMA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATMA</value>
+<value>Variable:/cell:ATMA</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P</value>
+<value>Variable:/cell:Mdm2_P</value>
+<value>1</value>
+</value>
+<value>
+<value>kphosMdm2</value>
+<value>Variable:/SBMLParameter:kphosMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2dephosphorylation">
+<property name="Name">
+<value>[Mdm2_P] -&gt; [Mdm2];</value>
+</property>
+<property name="Expression">
+<value>kdephosMdm2.Value * Mdm2_P.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P</value>
+<value>Variable:/cell:Mdm2_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>kdephosMdm2</value>
+<value>Variable:/SBMLParameter:kdephosMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PUbiquitination">
+<property name="Name">
+<value>[Mdm2_P] + [E2_Ub] -&gt; [Mdm2_P_Ub] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PUb.Value * Mdm2_P.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P</value>
+<value>Variable:/cell:Mdm2_P</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_P_Ub</value>
+<value>Variable:/cell:Mdm2_P_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PUb</value>
+<value>Variable:/SBMLParameter:kMdm2PUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PpolyUbiquitination1">
+<property name="Name">
+<value>[Mdm2_P_Ub] + [E2_Ub] -&gt; [Mdm2_P_Ub2] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_P_Ub.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub</value>
+<value>Variable:/cell:Mdm2_P_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_P_Ub2</value>
+<value>Variable:/cell:Mdm2_P_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PpolyUbiquitination2">
+<property name="Name">
+<value>[Mdm2_P_Ub2] + [E2_Ub] -&gt; [Mdm2_P_Ub3] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_P_Ub2.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub2</value>
+<value>Variable:/cell:Mdm2_P_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_P_Ub3</value>
+<value>Variable:/cell:Mdm2_P_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PpolyUbiquitination3">
+<property name="Name">
+<value>[Mdm2_P_Ub3] + [E2_Ub] -&gt; [Mdm2_P_Ub4] + [E2];</value>
+</property>
+<property name="Expression">
+<value>kMdm2PolyUb.Value * Mdm2_P_Ub3.NumberConc * E2_Ub.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub3</value>
+<value>Variable:/cell:Mdm2_P_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>E2_Ub</value>
+<value>Variable:/cell:E2_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_P_Ub4</value>
+<value>Variable:/cell:Mdm2_P_Ub4</value>
+<value>1</value>
+</value>
+<value>
+<value>E2</value>
+<value>Variable:/cell:E2</value>
+<value>1</value>
+</value>
+<value>
+<value>kMdm2PolyUb</value>
+<value>Variable:/SBMLParameter:kMdm2PolyUb</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PDeubiquitination4">
+<property name="Name">
+<value>[Mdm2_P_Ub4] + [Mdm2DUB] -&gt; [Mdm2_P_Ub3] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_P_Ub4.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub4</value>
+<value>Variable:/cell:Mdm2_P_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub3</value>
+<value>Variable:/cell:Mdm2_P_Ub3</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PDeubiquitination3">
+<property name="Name">
+<value>[Mdm2_P_Ub3] + [Mdm2DUB] -&gt; [Mdm2_P_Ub2] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_P_Ub3.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub3</value>
+<value>Variable:/cell:Mdm2_P_Ub3</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub2</value>
+<value>Variable:/cell:Mdm2_P_Ub2</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PDeubiquitination2">
+<property name="Name">
+<value>[Mdm2_P_Ub2] + [Mdm2DUB] -&gt; [Mdm2_P_Ub] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_P_Ub2.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub2</value>
+<value>Variable:/cell:Mdm2_P_Ub2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub</value>
+<value>Variable:/cell:Mdm2_P_Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PDeubiquitination1">
+<property name="Name">
+<value>[Mdm2_P_Ub] + [Mdm2DUB] -&gt; [Mdm2_P] + [Mdm2DUB] + [Ub];</value>
+</property>
+<property name="Expression">
+<value>kactDUBMdm2.Value * Mdm2_P_Ub.NumberConc * Mdm2DUB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub</value>
+<value>Variable:/cell:Mdm2_P_Ub</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2DUB</value>
+<value>Variable:/cell:Mdm2DUB</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P</value>
+<value>Variable:/cell:Mdm2_P</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>1</value>
+</value>
+<value>
+<value>kactDUBMdm2</value>
+<value>Variable:/SBMLParameter:kactDUBMdm2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PProteasomeBinding1">
+<property name="Name">
+<value>[Mdm2_P_Ub4] + [Proteasome] -&gt; [Mdm2_P_Ub4_Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kbinProt.Value * Mdm2_P_Ub4.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub4</value>
+<value>Variable:/cell:Mdm2_P_Ub4</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Mdm2_P_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_P_Ub4_Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinProt</value>
+<value>Variable:/SBMLParameter:kbinProt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Mdm2PDegradation">
+<property name="Name">
+<value>[Mdm2_P_Ub4_Proteasome] -&gt; [Proteasome] + 4 x [Ub];</value>
+</property>
+<property name="Expression">
+<value>kdegMdm2.Value * Mdm2_P_Ub4_Proteasome.NumberConc * kproteff.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Mdm2_P_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_P_Ub4_Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>Ub</value>
+<value>Variable:/cell:Ub</value>
+<value>4</value>
+</value>
+<value>
+<value>kdegMdm2</value>
+<value>Variable:/SBMLParameter:kdegMdm2</value>
+<value>0</value>
+</value>
+<value>
+<value>kproteff</value>
+<value>Variable:/SBMLParameter:kproteff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATMInactivation">
+<property name="Name">
+<value>[ATMA] -&gt; [ATMI];</value>
+</property>
+<property name="Expression">
+<value>kinactATM.Value * ATMA.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ATMA</value>
+<value>Variable:/cell:ATMA</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATMI</value>
+<value>Variable:/cell:ATMI</value>
+<value>1</value>
+</value>
+<value>
+<value>kinactATM</value>
+<value>Variable:/SBMLParameter:kinactATM</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AggAbetaROSproduction1">
+<property name="Name">
+<value>[AggAbeta] -&gt; [AggAbeta] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAbeta.Value * AggAbeta.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggAbeta</value>
+<value>Variable:/cell:AggAbeta</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cell:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAbeta</value>
+<value>Variable:/SBMLParameter:kgenROSAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AggAbetaROSproduction2">
+<property name="Name">
+<value>[AggAbeta_Proteasome] -&gt; [AggAbeta_Proteasome] + [ROS];</value>
+</property>
+<property name="Expression">
+<value>kgenROSAbeta.Value * AggAbeta_Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AggAbeta_Proteasome</value>
+<value>Variable:/cell:AggAbeta_Proteasome</value>
+<value>0</value>
+</value>
+<value>
+<value>ROS</value>
+<value>Variable:/cell:ROS</value>
+<value>1</value>
+</value>
+<value>
+<value>kgenROSAbeta</value>
+<value>Variable:/SBMLParameter:kgenROSAbeta</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ROSDNAdamage">
+<property name="Name">
+<value>[ROS] -&gt; [ROS] + [damDNA];</value>
+</property>
+<property name="Expression">
+<value>kdamROS.Value * ROS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ROS</value>
+<value>Variable:/cell:ROS</value>
+<value>0</value>
+</value>
+<value>
+<value>damDNA</value>
+<value>Variable:/cell:damDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kdamROS</value>
+<value>Variable:/SBMLParameter:kdamROS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="basalROSDNAdamage">
+<property name="Name">
+<value>[basalROS] -&gt; [basalROS] + [damDNA];</value>
+</property>
+<property name="Expression">
+<value>kdamBasalROS.Value * basalROS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>basalROS</value>
+<value>Variable:/cell:basalROS</value>
+<value>0</value>
+</value>
+<value>
+<value>damDNA</value>
+<value>Variable:/cell:damDNA</value>
+<value>1</value>
+</value>
+<value>
+<value>kdamBasalROS</value>
+<value>Variable:/SBMLParameter:kdamBasalROS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauSynthesis">
+<property name="Name">
+<value>[Source] -&gt; [Tau];</value>
+</property>
+<property name="Expression">
+<value>ksynTau.Value * Source.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Source</value>
+<value>Variable:/cell:Source</value>
+<value>0</value>
+</value>
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>1</value>
+</value>
+<value>
+<value>ksynTau</value>
+<value>Variable:/SBMLParameter:ksynTau</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TauProteasomeBinding">
+<property name="Name">
+<value>[Tau] + [Proteasome] -&gt; [Proteasome_Tau];</value>
+</property>
+<property name="Expression">
+<value>kbinTauProt.Value * Tau.NumberConc * Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Tau</value>
+<value>Variable:/cell:Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome_Tau</value>
+<value>Variable:/cell:Proteasome_Tau</value>
+<value>1</value>
+</value>
+<value>
+<value>kbinTauProt</value>
+<value>Variable:/SBMLParameter:kbinTauProt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Tau20SProteasomeDegradation">
+<property name="Name">
+<value>[Proteasome_Tau] -&gt; [Proteasome];</value>
+</property>
+<property name="Expression">
+<value>kdegTau20SProt.Value * Proteasome_Tau.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Proteasome_Tau</value>
+<value>Variable:/cell:Proteasome_Tau</value>
+<value>-1</value>
+</value>
+<value>
+<value>Proteasome</value>
+<value>Variable:/cell:Proteasome</value>
+<value>1</value>
+</value>
+<value>
+<value>kdegTau20SProt</value>
+<value>Variable:/SBMLParameter:kdegTau20SProt</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_p53">
+<property name="Value">
+<value>95.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_mRNA">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53_mRNA">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATMA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATMI">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53_P">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IR">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ROS">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="basalROS">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="damDNA">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E1">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E2">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E1_Ub">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E2_Ub">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Proteasome">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ub">
+<property name="Value">
+<value>4000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53DUB">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2DUB">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DUB">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_p53_Ub">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_p53_Ub2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_p53_Ub3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_p53_Ub4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P1_p53_Ub4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_Ub">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_Ub2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_Ub3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_Ub4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P_Ub">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P_Ub2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P_Ub3">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P_Ub4">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p53_Ub4_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_Ub4_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Mdm2_P_Ub4_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GSK3b">
+<property name="Value">
+<value>500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GSK3b_p53">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="GSK3b_p53_P">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Abeta">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggAbeta_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggAbeta">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AbetaPlaque">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tau">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tau_P1">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Tau_P2">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="MT_Tau">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggTau">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AggTau_Proteasome">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Proteasome_Tau">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PP1">
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="NFT">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Value">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AMP">
+<property name="Value">
+<value>1000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Source">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Sink">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="ksynp53mRNA">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegp53mRNA">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynMdm2mRNA">
+<property name="Value">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegMdm2mRNA">
+<property name="Value">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynMdm2mRNAGSK3bp53">
+<property name="Value">
+<value>0.0007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynp53">
+<property name="Value">
+<value>0.007</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegp53">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinMdm2p53">
+<property name="Value">
+<value>0.001155</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelMdm2p53">
+<property name="Value">
+<value>1.155e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinGSK3bp53">
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelGSK3bp53">
+<property name="Value">
+<value>0.002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynMdm2">
+<property name="Value">
+<value>0.000495</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegMdm2">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinE1Ub">
+<property name="Value">
+<value>0.0002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinE2Ub">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp53Ub">
+<property name="Value">
+<value>5e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kp53PolyUb">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinProt">
+<property name="Value">
+<value>2e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kactDUBp53">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kactDUBProtp53">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kactDUBMdm2">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kMdm2Ub">
+<property name="Value">
+<value>4.56e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kMdm2PUb">
+<property name="Value">
+<value>6.84e-06</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kMdm2PolyUb">
+<property name="Value">
+<value>0.00456</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdam">
+<property name="Value">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krepair">
+<property name="Value">
+<value>2e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kactATM">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kinactATM">
+<property name="Value">
+<value>0.0005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphosp53">
+<property name="Value">
+<value>0.0002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdephosp53">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphosMdm2">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdephosMdm2">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphosMdm2GSK3b">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphosMdm2GSK3bp53">
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphospTauGSK3bp53">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kphospTauGSK3b">
+<property name="Value">
+<value>0.0002</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdephospTau">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinMTTau">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="krelMTTau">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynTau">
+<property name="Value">
+<value>8e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbinTauProt">
+<property name="Value">
+<value>1.925e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegTau20SProt">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kaggTau">
+<property name="Value">
+<value>1e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kaggTauP1">
+<property name="Value">
+<value>1e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kaggTauP2">
+<property name="Value">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ktangfor">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kprodAbeta">
+<property name="Value">
+<value>5e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kinhibprot">
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegAbeta">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kaggAbeta">
+<property name="Value">
+<value>1e-08</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kpf">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksynp53mRNAAbeta">
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdamROS">
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdamBasalROS">
+<property name="Value">
+<value>1e-09</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kgenROSAbeta">
+<property name="Value">
+<value>1e-05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kproteff">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="tot_mdm2">
+<property name="Name">
+<value>tot_mdm2</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+</variable>
+<variable class="Variable" id="tot_p53">
+<property name="Name">
+<value>tot_p53</value>
+</property>
+<property name="Value">
+<value>100.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_IR">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'IR'</value>
+</property>
+<property name="Expression">
+<value>piecewise(25, and(geq(&lt;t&gt;, 3600), leq(&lt;t&gt;, 3660)), 0)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IR</value>
+<value>Variable:/cell:IR</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_tot_mdm2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'tot_mdm2'</value>
+</property>
+<property name="Expression">
+<value>Mdm2.NumberConc + Mdm2_p53.NumberConc + Mdm2_P.NumberConc + Mdm2_p53_Ub.NumberConc + Mdm2_p53_Ub2.NumberConc + Mdm2_p53_Ub3.NumberConc + Mdm2_p53_Ub4.NumberConc + Mdm2_P1_p53_Ub4.NumberConc + Mdm2_Ub.NumberConc + Mdm2_Ub2.NumberConc + Mdm2_Ub3.NumberConc + Mdm2_Ub4.NumberConc + Mdm2_P_Ub.NumberConc + Mdm2_P_Ub2.NumberConc + Mdm2_P_Ub3.NumberConc + Mdm2_P_Ub4.NumberConc + Mdm2_Ub4_Proteasome.NumberConc + Mdm2_P_Ub4_Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tot_mdm2</value>
+<value>Variable:/SBMLParameter:tot_mdm2</value>
+<value>1</value>
+</value>
+<value>
+<value>Mdm2</value>
+<value>Variable:/cell:Mdm2</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P</value>
+<value>Variable:/cell:Mdm2_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub</value>
+<value>Variable:/cell:Mdm2_Ub</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub2</value>
+<value>Variable:/cell:Mdm2_Ub2</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub3</value>
+<value>Variable:/cell:Mdm2_Ub3</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub4</value>
+<value>Variable:/cell:Mdm2_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub</value>
+<value>Variable:/cell:Mdm2_P_Ub</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub2</value>
+<value>Variable:/cell:Mdm2_P_Ub2</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub3</value>
+<value>Variable:/cell:Mdm2_P_Ub3</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub4</value>
+<value>Variable:/cell:Mdm2_P_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_Ub4_Proteasome</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P_Ub4_Proteasome</value>
+<value>Variable:/cell:Mdm2_P_Ub4_Proteasome</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_tot_p53">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'tot_p53'</value>
+</property>
+<property name="Expression">
+<value>p53.NumberConc + Mdm2_p53.NumberConc + p53_P.NumberConc + Mdm2_p53_Ub.NumberConc + Mdm2_p53_Ub2.NumberConc + Mdm2_p53_Ub3.NumberConc + Mdm2_p53_Ub4.NumberConc + Mdm2_P1_p53_Ub4.NumberConc + p53_Ub4_Proteasome.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>tot_p53</value>
+<value>Variable:/SBMLParameter:tot_p53</value>
+<value>1</value>
+</value>
+<value>
+<value>p53</value>
+<value>Variable:/cell:p53</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53</value>
+<value>Variable:/cell:Mdm2_p53</value>
+<value>0</value>
+</value>
+<value>
+<value>p53_P</value>
+<value>Variable:/cell:p53_P</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub</value>
+<value>Variable:/cell:Mdm2_p53_Ub</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub2</value>
+<value>Variable:/cell:Mdm2_p53_Ub2</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub3</value>
+<value>Variable:/cell:Mdm2_p53_Ub3</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_p53_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>Mdm2_P1_p53_Ub4</value>
+<value>Variable:/cell:Mdm2_P1_p53_Ub4</value>
+<value>0</value>
+</value>
+<value>
+<value>p53_Ub4_Proteasome</value>
+<value>Variable:/cell:p53_Ub4_Proteasome</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

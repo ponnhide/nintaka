@@ -1,0 +1,723 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1">
+<property name="Name">
+<value>v1</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k1.Value * s1.NumberConc * at.NumberConc / (1 + pow(at.NumberConc / ki.Value, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s1</value>
+<value>Variable:/compartment:s1</value>
+<value>-1</value>
+</value>
+<value>
+<value>at</value>
+<value>Variable:/compartment:at</value>
+<value>-2</value>
+</value>
+<value>
+<value>s2</value>
+<value>Variable:/compartment:s2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>ki</value>
+<value>Variable:/SBMLParameter:ki</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2">
+<property name="Name">
+<value>v2</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k2.Value * s2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s2</value>
+<value>Variable:/compartment:s2</value>
+<value>-1</value>
+</value>
+<value>
+<value>s3</value>
+<value>Variable:/compartment:s3</value>
+<value>2</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>v3</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ((k31.Value * k32.Value * s3.NumberConc * na.NumberConc * (atot.Value - at.NumberConc) - k33.Value * k34.Value * s4.NumberConc * at.NumberConc * (ntot.Value - na.NumberConc)) / (k33.Value * (ntot.Value - na.NumberConc) + k32.Value * (atot.Value - at.NumberConc)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/compartment:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>na</value>
+<value>Variable:/compartment:na</value>
+<value>-1</value>
+</value>
+<value>
+<value>s4</value>
+<value>Variable:/compartment:s4</value>
+<value>1</value>
+</value>
+<value>
+<value>at</value>
+<value>Variable:/compartment:at</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k31</value>
+<value>Variable:/SBMLParameter:k31</value>
+<value>0</value>
+</value>
+<value>
+<value>k32</value>
+<value>Variable:/SBMLParameter:k32</value>
+<value>0</value>
+</value>
+<value>
+<value>atot</value>
+<value>Variable:/SBMLParameter:atot</value>
+<value>0</value>
+</value>
+<value>
+<value>k33</value>
+<value>Variable:/SBMLParameter:k33</value>
+<value>0</value>
+</value>
+<value>
+<value>k34</value>
+<value>Variable:/SBMLParameter:k34</value>
+<value>0</value>
+</value>
+<value>
+<value>ntot</value>
+<value>Variable:/SBMLParameter:ntot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>v4</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k4.Value * s4.NumberConc * (atot.Value - at.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s4</value>
+<value>Variable:/compartment:s4</value>
+<value>-1</value>
+</value>
+<value>
+<value>s5</value>
+<value>Variable:/compartment:s5</value>
+<value>1</value>
+</value>
+<value>
+<value>at</value>
+<value>Variable:/compartment:at</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+<value>
+<value>atot</value>
+<value>Variable:/SBMLParameter:atot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>v5</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k5.Value * s5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s5</value>
+<value>Variable:/compartment:s5</value>
+<value>-1</value>
+</value>
+<value>
+<value>s6</value>
+<value>Variable:/compartment:s6</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7">
+<property name="Name">
+<value>v7</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k7.Value * at.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>at</value>
+<value>Variable:/compartment:at</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v8">
+<property name="Name">
+<value>v8</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k8.Value * s3.NumberConc * (ntot.Value - na.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s3</value>
+<value>Variable:/compartment:s3</value>
+<value>-1</value>
+</value>
+<value>
+<value>na</value>
+<value>Variable:/compartment:na</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+<value>
+<value>ntot</value>
+<value>Variable:/SBMLParameter:ntot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v9">
+<property name="Name">
+<value>v9</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k9.Value * s6o.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s6o</value>
+<value>Variable:/compartment:s6o</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v10">
+<property name="Name">
+<value>v10, ( denominatior = 10 )</value>
+</property>
+<property name="Expression">
+<value>1 / 10 * compartment.Value * k10.Value * (s6.NumberConc - s6o.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s6</value>
+<value>Variable:/compartment:s6</value>
+<value>-10</value>
+</value>
+<value>
+<value>s6o</value>
+<value>Variable:/compartment:s6o</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>v6</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k6.Value * s6.NumberConc * (ntot.Value - na.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s6</value>
+<value>Variable:/compartment:s6</value>
+<value>-1</value>
+</value>
+<value>
+<value>na</value>
+<value>Variable:/compartment:na</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+<value>
+<value>ntot</value>
+<value>Variable:/SBMLParameter:ntot</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v0">
+<property name="Name">
+<value>v0</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k0.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>s1</value>
+<value>Variable:/compartment:s1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k0</value>
+<value>Variable:/SBMLParameter:k0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>compartment</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="s1">
+<property name="Name">
+<value>Glucose</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="at">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s2">
+<property name="Name">
+<value>F16P</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s3">
+<property name="Name">
+<value>Triose_Gly3Phos_DHAP</value>
+</property>
+<property name="NumberConc">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="na">
+<property name="Name">
+<value>NAD</value>
+</property>
+<property name="NumberConc">
+<value>0.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s4">
+<property name="Name">
+<value>3PG</value>
+</property>
+<property name="NumberConc">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s5">
+<property name="Name">
+<value>Pyruvate</value>
+</property>
+<property name="NumberConc">
+<value>8.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s6">
+<property name="Name">
+<value>Acetaldehyde</value>
+</property>
+<property name="NumberConc">
+<value>0.08</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="s6o">
+<property name="Name">
+<value>extracellular acetaldehyde</value>
+</property>
+<property name="NumberConc">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="k0">
+<property name="Name">
+<value>k0</value>
+</property>
+<property name="Value">
+<value>50.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>550.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>9.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k31">
+<property name="Name">
+<value>k31</value>
+</property>
+<property name="Value">
+<value>323.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k33">
+<property name="Name">
+<value>k33</value>
+</property>
+<property name="Value">
+<value>57823.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k32">
+<property name="Name">
+<value>k32</value>
+</property>
+<property name="Value">
+<value>76411.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k34">
+<property name="Name">
+<value>k34</value>
+</property>
+<property name="Value">
+<value>23.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>80.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>9.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>2000.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>28.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>85.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>80.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>375.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="atot">
+<property name="Name">
+<value>atot</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ntot">
+<property name="Name">
+<value>ntot</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Name">
+<value>n</value>
+</property>
+<property name="Value">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ki">
+<property name="Name">
+<value>ki</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

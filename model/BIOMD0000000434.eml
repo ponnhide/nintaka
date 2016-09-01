@@ -1,0 +1,1436 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="reaction_1">
+<property name="Name">
+<value>Ingestion</value>
+</property>
+<property name="k1">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>k1 * species_1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_1</value>
+<value>Variable:/Intake:species_1</value>
+<value>0</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/Intestine:species_2</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_2">
+<property name="Name">
+<value>Intestinal Cholesterol Synthesis</value>
+</property>
+<property name="ICSmax">
+<value>100.0</value>
+</property>
+<property name="ICt">
+<value>3120.0</value>
+</property>
+<property name="IS">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>ICSmax / (1 + pow(species_2.NumberConc / ICt, IS))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_3</value>
+<value>Variable:/Intestine:species_3</value>
+<value>0</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/Intestine:species_2</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_3">
+<property name="Name">
+<value>Bile Salt Release</value>
+</property>
+<property name="k1">
+<value>6.0</value>
+</property>
+<property name="Expression">
+<value>k1 * species_4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_4</value>
+<value>Variable:/HepaticTissue:species_4</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/Intestine:species_5</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_4">
+<property name="Name">
+<value>Bile Salt Return</value>
+</property>
+<property name="k1">
+<value>4.29</value>
+</property>
+<property name="Expression">
+<value>k1 * species_5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_5</value>
+<value>Variable:/Intestine:species_5</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_4</value>
+<value>Variable:/HepaticTissue:species_4</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_5">
+<property name="Name">
+<value>Bile Salt Excretion</value>
+</property>
+<property name="k1">
+<value>0.856</value>
+</property>
+<property name="Expression">
+<value>k1 * species_5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_5</value>
+<value>Variable:/Intestine:species_5</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_6</value>
+<value>Variable:/Excreted:species_6</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_6">
+<property name="Name">
+<value>Bile Salt Synthesis</value>
+</property>
+<property name="k5">
+<value>2.66</value>
+</property>
+<property name="Expression">
+<value>k5 * species_7.NumberConc / species_4.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_4</value>
+<value>Variable:/HepaticTissue:species_4</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_7">
+<property name="Name">
+<value>Cholesterol Absorption</value>
+</property>
+<property name="k6">
+<value>0.0005286</value>
+</property>
+<property name="Expression">
+<value>k6 * species_2.NumberConc * species_5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/Intestine:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/Intestine:species_5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_8">
+<property name="Name">
+<value>Cholesterol Excretion</value>
+</property>
+<property name="k7">
+<value>0.0005286</value>
+</property>
+<property name="Expression">
+<value>k7 * species_2.NumberConc * species_5.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_2</value>
+<value>Variable:/Intestine:species_2</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_8</value>
+<value>Variable:/Excreted:species_8</value>
+<value>1</value>
+</value>
+<value>
+<value>species_5</value>
+<value>Variable:/Intestine:species_5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_9">
+<property name="Name">
+<value>Intestinal Nascent HDL Synthesis</value>
+</property>
+<property name="k8">
+<value>0.0005</value>
+</property>
+<property name="Expression">
+<value>k8 * species_11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_9</value>
+<value>Variable:/Plasma:species_9</value>
+<value>0</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/Plasma:species_10</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_10">
+<property name="Name">
+<value>Billary Cholesterol Release</value>
+</property>
+<property name="BCRmax">
+<value>2000.0</value>
+</property>
+<property name="BCRt">
+<value>55326.0</value>
+</property>
+<property name="BS">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>BCRmax / (1 + pow(BCRt / species_7.NumberConc, BS))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_2</value>
+<value>Variable:/Intestine:species_2</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_11">
+<property name="Name">
+<value>Hepatic Cholesterol Synthesis</value>
+</property>
+<property name="HCSmax">
+<value>500.0</value>
+</property>
+<property name="HCSt">
+<value>93925.0</value>
+</property>
+<property name="HS">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>HCSmax / (1 + pow(species_7.NumberConc / HCSt, HS))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_12</value>
+<value>Variable:/HepaticTissue:species_12</value>
+<value>0</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_12">
+<property name="Name">
+<value>Hepatic Cholesterol Storage</value>
+</property>
+<property name="k9">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>k9 * species_14.NumberConc * species_7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_13</value>
+<value>Variable:/HepaticTissue:species_13</value>
+<value>1</value>
+</value>
+<value>
+<value>species_14</value>
+<value>Variable:/HepaticTissue:species_14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_13">
+<property name="Name">
+<value>Release of Stored Cholesterol</value>
+</property>
+<property name="k10">
+<value>5.998</value>
+</property>
+<property name="Expression">
+<value>k10 * species_15.NumberConc * species_13.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_13</value>
+<value>Variable:/HepaticTissue:species_13</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+<value>
+<value>species_15</value>
+<value>Variable:/HepaticTissue:species_15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_14">
+<property name="Name">
+<value>Hepatic Nascent HDL Synthesis</value>
+</property>
+<property name="k11">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>k11 * species_11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_16</value>
+<value>Variable:/HepaticTissue:species_16</value>
+<value>0</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/Plasma:species_10</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_15">
+<property name="Name">
+<value>VLDL Cholesterol Formation</value>
+</property>
+<property name="k1">
+<value>0.016</value>
+</property>
+<property name="Expression">
+<value>k1 * species_7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_17</value>
+<value>Variable:/Plasma:species_17</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_16">
+<property name="Name">
+<value>Hepatic LDLR Synthesis</value>
+</property>
+<property name="khrs">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>khrs * species_19.NumberConc / species_7.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_19</value>
+<value>Variable:/HepaticTissue:species_19</value>
+<value>0</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/HepaticTissue:species_18</value>
+<value>1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_17">
+<property name="Name">
+<value>Hepatic LDL Receptor Degradation</value>
+</property>
+<property name="k1">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>k1 * species_18.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_18</value>
+<value>Variable:/HepaticTissue:species_18</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_20</value>
+<value>Variable:/HepaticTissue:species_20</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_18">
+<property name="Name">
+<value>VLDL Cholesterol ReUptake</value>
+</property>
+<property name="k1">
+<value>0.0496</value>
+</property>
+<property name="Expression">
+<value>k1 * species_17.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/Plasma:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_19">
+<property name="Name">
+<value>IDL Cholesterol Formation</value>
+</property>
+<property name="k15">
+<value>0.43</value>
+</property>
+<property name="Expression">
+<value>k15 * species_17.NumberConc * species_22.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_17</value>
+<value>Variable:/Plasma:species_17</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_21</value>
+<value>Variable:/Plasma:species_21</value>
+<value>1</value>
+</value>
+<value>
+<value>species_22</value>
+<value>Variable:/Plasma:species_22</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_20">
+<property name="Name">
+<value>IDL Cholesterol ReUptake</value>
+</property>
+<property name="k1">
+<value>0.054</value>
+</property>
+<property name="Expression">
+<value>k1 * species_21.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_21</value>
+<value>Variable:/Plasma:species_21</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_21">
+<property name="Name">
+<value>LDL Cholesterol Formation</value>
+</property>
+<property name="k17">
+<value>0.38</value>
+</property>
+<property name="Expression">
+<value>k17 * species_21.NumberConc * species_24.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_21</value>
+<value>Variable:/Plasma:species_21</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>1</value>
+</value>
+<value>
+<value>species_24</value>
+<value>Variable:/Plasma:species_24</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_22">
+<property name="Name">
+<value>Receptor Dependent Hepatic Uptake</value>
+</property>
+<property name="k18">
+<value>0.068</value>
+</property>
+<property name="Expression">
+<value>k18 * species_23.NumberConc * species_18.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+<value>
+<value>species_18</value>
+<value>Variable:/HepaticTissue:species_18</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_23">
+<property name="Name">
+<value>Receptor Independent Hepatic Uptake</value>
+</property>
+<property name="k1">
+<value>0.005</value>
+</property>
+<property name="Expression">
+<value>k1 * species_23.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_24">
+<property name="Name">
+<value>Receptor Dependent Peripheral Uptake</value>
+</property>
+<property name="k20">
+<value>0.00675</value>
+</property>
+<property name="Expression">
+<value>k20 * species_25.NumberConc * species_23.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>1</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/PeripheralTissue:species_25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_25">
+<property name="Name">
+<value>Receptor Independent Peripheral Uptake</value>
+</property>
+<property name="k1">
+<value>5e-06</value>
+</property>
+<property name="Expression">
+<value>k1 * species_23.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_26">
+<property name="Name">
+<value>Peripheral LDLR Synthesis</value>
+</property>
+<property name="kprs">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>kprs * species_26.NumberConc / species_11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_26</value>
+<value>Variable:/PeripheralTissue:species_26</value>
+<value>0</value>
+</value>
+<value>
+<value>species_25</value>
+<value>Variable:/PeripheralTissue:species_25</value>
+<value>1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_27">
+<property name="Name">
+<value>Peripheral LDL Receptor Degradation</value>
+</property>
+<property name="k1">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>k1 * species_25.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_25</value>
+<value>Variable:/PeripheralTissue:species_25</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_27</value>
+<value>Variable:/PeripheralTissue:species_27</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_28">
+<property name="Name">
+<value>Peripheral Cholesterol Storage</value>
+</property>
+<property name="k23">
+<value>0.017386</value>
+</property>
+<property name="Expression">
+<value>k23 * species_14.NumberConc * species_11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_28</value>
+<value>Variable:/PeripheralTissue:species_28</value>
+<value>1</value>
+</value>
+<value>
+<value>species_14</value>
+<value>Variable:/HepaticTissue:species_14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_29">
+<property name="Name">
+<value>Release of Stored Peripheral Cholesterol</value>
+</property>
+<property name="k24">
+<value>0.1068</value>
+</property>
+<property name="Expression">
+<value>k24 * species_15.NumberConc * species_28.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_28</value>
+<value>Variable:/PeripheralTissue:species_28</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>1</value>
+</value>
+<value>
+<value>species_15</value>
+<value>Variable:/HepaticTissue:species_15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_30">
+<property name="Name">
+<value>Peripheral Steroid Production</value>
+</property>
+<property name="k1">
+<value>0.0005</value>
+</property>
+<property name="Expression">
+<value>k1 * species_11.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_29</value>
+<value>Variable:/PeripheralTissue:species_29</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_31">
+<property name="Name">
+<value>HDL Cholesterol Formation</value>
+</property>
+<property name="k26">
+<value>1.5e-05</value>
+</property>
+<property name="Expression">
+<value>k26 * species_11.NumberConc * species_10.NumberConc * species_31.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_10</value>
+<value>Variable:/Plasma:species_10</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_30</value>
+<value>Variable:/Plasma:species_30</value>
+<value>1</value>
+</value>
+<value>
+<value>species_31</value>
+<value>Variable:/Plasma:species_31</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_32">
+<property name="Name">
+<value>Peripheral Cholesterol Synthesis</value>
+</property>
+<property name="PCSmax">
+<value>500.0</value>
+</property>
+<property name="PPCt">
+<value>80342.0</value>
+</property>
+<property name="PCSS">
+<value>5.0</value>
+</property>
+<property name="Expression">
+<value>PCSmax / (1 + pow(species_11.NumberConc / PPCt, PCSS))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_32</value>
+<value>Variable:/PeripheralTissue:species_32</value>
+<value>0</value>
+</value>
+<value>
+<value>species_11</value>
+<value>Variable:/PeripheralTissue:species_11</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_33">
+<property name="Name">
+<value>CETP Mediated Transfer To VLDL</value>
+</property>
+<property name="k27">
+<value>0.01</value>
+</property>
+<property name="Expression">
+<value>k27 * species_30.NumberConc * species_33.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_30</value>
+<value>Variable:/Plasma:species_30</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_17</value>
+<value>Variable:/Plasma:species_17</value>
+<value>1</value>
+</value>
+<value>
+<value>species_33</value>
+<value>Variable:/Plasma:species_33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_34">
+<property name="Name">
+<value>CETP Mediated TransferTo LDL</value>
+</property>
+<property name="k28">
+<value>0.001</value>
+</property>
+<property name="Expression">
+<value>k28 * species_30.NumberConc * species_33.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_30</value>
+<value>Variable:/Plasma:species_30</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_23</value>
+<value>Variable:/Plasma:species_23</value>
+<value>1</value>
+</value>
+<value>
+<value>species_33</value>
+<value>Variable:/Plasma:species_33</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="reaction_35">
+<property name="Name">
+<value>Reverse Cholesterol Transport</value>
+</property>
+<property name="k29">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>k29 * species_30.NumberConc * species_34.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>species_30</value>
+<value>Variable:/Plasma:species_30</value>
+<value>-1</value>
+</value>
+<value>
+<value>species_7</value>
+<value>Variable:/HepaticTissue:species_7</value>
+<value>1</value>
+</value>
+<value>
+<value>species_34</value>
+<value>Variable:/HepaticTissue:species_34</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Intake">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Intake</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_1">
+<property name="Name">
+<value>DC</value>
+</property>
+<property name="NumberConc">
+<value>304.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Intestine">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Intestine</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_2">
+<property name="Name">
+<value>IC</value>
+</property>
+<property name="NumberConc">
+<value>3150.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_3">
+<property name="Name">
+<value>ICS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_5">
+<property name="Name">
+<value>IBS</value>
+</property>
+<property name="NumberConc">
+<value>467.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/HepaticTissue">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>HepaticTissue</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_4">
+<property name="Name">
+<value>HBS</value>
+</property>
+<property name="NumberConc">
+<value>400.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_7">
+<property name="Name">
+<value>HFC</value>
+</property>
+<property name="NumberConc">
+<value>60000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_12">
+<property name="Name">
+<value>HCS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_13">
+<property name="Name">
+<value>HCE</value>
+</property>
+<property name="NumberConc">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_14">
+<property name="Name">
+<value>ACAT</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_15">
+<property name="Name">
+<value>CEH</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_16">
+<property name="Name">
+<value>HNHDLS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_18">
+<property name="Name">
+<value>HLDLRs</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_19">
+<property name="Name">
+<value>HLDLRsS</value>
+</property>
+<property name="NumberConc">
+<value>600.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_20">
+<property name="Name">
+<value>HLDLRD</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_34">
+<property name="Name">
+<value>SRB1</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/PeripheralTissue">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>PeripheralTissue</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_11">
+<property name="Name">
+<value>PFC</value>
+</property>
+<property name="NumberConc">
+<value>57516.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_25">
+<property name="Name">
+<value>PLDLRs</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_26">
+<property name="Name">
+<value>PLDLRsS</value>
+</property>
+<property name="NumberConc">
+<value>575.16</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_27">
+<property name="Name">
+<value>PLDLRD</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_28">
+<property name="Name">
+<value>PCE</value>
+</property>
+<property name="NumberConc">
+<value>9363.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_29">
+<property name="Name">
+<value>PSS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_32">
+<property name="Name">
+<value>PCS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Plasma">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Plasma</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_9">
+<property name="Name">
+<value>INHDLS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_10">
+<property name="Name">
+<value>NHDL</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_17">
+<property name="Name">
+<value>VLDLC</value>
+</property>
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_21">
+<property name="Name">
+<value>IDLC</value>
+</property>
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_22">
+<property name="Name">
+<value>LPL</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_23">
+<property name="Name">
+<value>LDLC</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_24">
+<property name="Name">
+<value>HSL</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_30">
+<property name="Name">
+<value>HDLC</value>
+</property>
+<property name="NumberConc">
+<value>45.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_31">
+<property name="Name">
+<value>LCAT</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_33">
+<property name="Name">
+<value>CETP</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Excreted">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Excreted</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="species_6">
+<property name="Name">
+<value>EBS</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="species_8">
+<property name="Name">
+<value>EC</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,522 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="RuBisCO">
+<property name="Name">
+<value>RuBisCO</value>
+</property>
+<property name="k">
+<value>0.504</value>
+</property>
+<property name="K">
+<value>0.04</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * k / 2 * (E_RuBisCO.NumberConc + totRuBP.NumberConc + K - sqrt(pow(E_RuBisCO.NumberConc + totRuBP.NumberConc + K, 2) - 4 * E_RuBisCO.NumberConc * totRuBP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>totRuBP</value>
+<value>Variable:/chloroplast:totRuBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>2</value>
+</value>
+<value>
+<value>E_RuBisCO</value>
+<value>Variable:/chloroplast:E_RuBisCO</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PGA_red">
+<property name="Name">
+<value>PGA reduction</value>
+</property>
+<property name="Vm">
+<value>3.49</value>
+</property>
+<property name="k">
+<value>14.0</value>
+</property>
+<property name="K1">
+<value>1.0</value>
+</property>
+<property name="K2">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * (PGA.NumberConc * ATP.NumberConc - ADP.NumberConc * TP.NumberConc * Pi.NumberConc / k) / (K1 + PGA.NumberConc * ATP.NumberConc * K1 / K2 + ADP.NumberConc * TP.NumberConc * Pi.NumberConc / k))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TP_red">
+<property name="Name">
+<value>TP reduction</value>
+</property>
+<property name="Vm">
+<value>1.06</value>
+</property>
+<property name="K">
+<value>0.4</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * TP.NumberConc / (TP.NumberConc + K))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-5</value>
+</value>
+<value>
+<value>Ru5P</value>
+<value>Variable:/chloroplast:Ru5P</value>
+<value>3</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>2</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="RuBP_reg">
+<property name="Name">
+<value>RuBP regeneration</value>
+</property>
+<property name="Vm">
+<value>4.81</value>
+</property>
+<property name="K1">
+<value>0.05</value>
+</property>
+<property name="K2">
+<value>0.5</value>
+</property>
+<property name="K3">
+<value>0.05</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (Vm * Ru5P.NumberConc * ATP.NumberConc / (K1 * K2 + K2 * ATP.NumberConc + Ru5P.NumberConc * ATP.NumberConc + K3 * Pi.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ru5P</value>
+<value>Variable:/chloroplast:Ru5P</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RuBP</value>
+<value>Variable:/chloroplast:RuBP</value>
+<value>1</value>
+</value>
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="TPT">
+<property name="Name">
+<value>TP translocator</value>
+</property>
+<property name="K2">
+<value>0.25</value>
+</property>
+<property name="K1">
+<value>0.08</value>
+</property>
+<property name="Vm">
+<value>3.3</value>
+</property>
+<property name="Expression">
+<value>Vm * (TP.NumberConc * Pic.NumberConc - TPc.NumberConc * Pi.NumberConc) / ((TP.NumberConc + TPc.NumberConc) * K2 + (Pic.NumberConc + Pi.NumberConc) * K1 + K1 * K2 * (TP.NumberConc / K1 + Pi.NumberConc / K2) * (Pic.NumberConc / K2 + TPc.NumberConc / K1))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pic</value>
+<value>Variable:/cytosol:Pic</value>
+<value>0</value>
+</value>
+<value>
+<value>TPc</value>
+<value>Variable:/cytosol:TPc</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ATP_S">
+<property name="Name">
+<value>ATP synthesis</value>
+</property>
+<property name="K1">
+<value>0.08</value>
+</property>
+<property name="K2">
+<value>0.5</value>
+</property>
+<property name="Expression">
+<value>chloroplast.Value * (V6.Value * ADP.NumberConc * Pi.NumberConc / ((ADP.NumberConc + K1) * (Pi.NumberConc + K2)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ADP</value>
+<value>Variable:/chloroplast:ADP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>-1</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>1</value>
+</value>
+<value>
+<value>chloroplast</value>
+<value>Variable:/chloroplast:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V6</value>
+<value>Variable:/SBMLParameter:V6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/chloroplast">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>chloroplast</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="RuBP">
+<property name="Name">
+<value>RuBP</value>
+</property>
+<property name="NumberConc">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PGA">
+<property name="Name">
+<value>PGA</value>
+</property>
+<property name="NumberConc">
+<value>2.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TP">
+<property name="Name">
+<value>TP</value>
+</property>
+<property name="NumberConc">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ru5P">
+<property name="Name">
+<value>Ru5P</value>
+</property>
+<property name="NumberConc">
+<value>0.0500747384155</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pi">
+<property name="Name">
+<value>Pi</value>
+</property>
+<property name="NumberConc">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ATP">
+<property name="Name">
+<value>ATP</value>
+</property>
+<property name="NumberConc">
+<value>0.68</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ADP">
+<property name="Name">
+<value>ADP</value>
+</property>
+<property name="NumberConc">
+<value>0.82</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E_RuBisCO">
+<property name="Name">
+<value>RuBisCo</value>
+</property>
+<property name="NumberConc">
+<value>3.56</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="totRuBP">
+<property name="Name">
+<value>totRuBP</value>
+</property>
+<property name="NumberConc">
+<value>3.68496263079</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytosol">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytosol</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TPc">
+<property name="Name">
+<value>TPc</value>
+</property>
+<property name="NumberConc">
+<value>0.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pic">
+<property name="Name">
+<value>Pic</value>
+</property>
+<property name="NumberConc">
+<value>1.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="V6">
+<property name="Name">
+<value>V6</value>
+</property>
+<property name="Value">
+<value>5.88012855888</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="P_0">
+<property name="Name">
+<value>P_0</value>
+</property>
+<property name="Value">
+<value>16.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_totRuBP">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'totRuBP'</value>
+</property>
+<property name="Expression">
+<value>1 / 2 * (P_0.NumberConc - (PGA.NumberConc + TP.NumberConc + Ru5P.NumberConc + Pi.NumberConc + ATP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>totRuBP</value>
+<value>Variable:/chloroplast:totRuBP</value>
+<value>1</value>
+</value>
+<value>
+<value>P_0</value>
+<value>Variable:/SBMLParameter:P_0</value>
+<value>0</value>
+</value>
+<value>
+<value>PGA</value>
+<value>Variable:/chloroplast:PGA</value>
+<value>0</value>
+</value>
+<value>
+<value>TP</value>
+<value>Variable:/chloroplast:TP</value>
+<value>0</value>
+</value>
+<value>
+<value>Ru5P</value>
+<value>Variable:/chloroplast:Ru5P</value>
+<value>0</value>
+</value>
+<value>
+<value>Pi</value>
+<value>Variable:/chloroplast:Pi</value>
+<value>0</value>
+</value>
+<value>
+<value>ATP</value>
+<value>Variable:/chloroplast:ATP</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

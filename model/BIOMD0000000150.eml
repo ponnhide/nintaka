@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Binding">
+<property name="Name">
+<value>[Cdk2] + [CyclinA] &lt;-&gt; [CDK2cycA];</value>
+</property>
+<property name="kf">
+<value>19000000.0</value>
+</property>
+<property name="kb">
+<value>25.0</value>
+</property>
+<property name="Expression">
+<value>kf * Cdk2.NumberConc * CyclinA.NumberConc * geometry.Value - kb * CDK2cycA.NumberConc * geometry.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Cdk2</value>
+<value>Variable:/geometry:Cdk2</value>
+<value>-1</value>
+</value>
+<value>
+<value>CyclinA</value>
+<value>Variable:/geometry:CyclinA</value>
+<value>-1</value>
+</value>
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>1</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Activation">
+<property name="Name">
+<value>[CDK2cycA] &lt;-&gt; [CDK2cycA_star_];</value>
+</property>
+<property name="kf">
+<value>0.813</value>
+</property>
+<property name="kb">
+<value>0.557</value>
+</property>
+<property name="Expression">
+<value>kf * CDK2cycA.NumberConc * geometry.Value - kb * CDK2cycA_star_.NumberConc * geometry.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>-1</value>
+</value>
+<value>
+<value>CDK2cycA_star_</value>
+<value>Variable:/geometry:CDK2cycA_star_</value>
+<value>1</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>geometry</value>
+<value>Variable:/geometry:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/geometry">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-12</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="CDK2cycA">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CyclinA">
+<property name="NumberConc">
+<value>4e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cdk2">
+<property name="NumberConc">
+<value>1e-07</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CDK2cycA_star_">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="basal_fluorescence">
+<property name="Value">
+<value>1.21210648148</value>
+</property>
+</variable>
+<variable class="Variable" id="total_fluorescence">
+<property name="Value">
+<value>1.21210648148</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_total_fluorescence">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'total_fluorescence'</value>
+</property>
+<property name="Expression">
+<value>CDK2cycA.NumberConc * 599990 * 1.000000e+06 / 43200 + CDK2cycA_star_.NumberConc * 599990 * 1.000000e+06 / 43200 + basal_fluorescence.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>total_fluorescence</value>
+<value>Variable:/SBMLParameter:total_fluorescence</value>
+<value>1</value>
+</value>
+<value>
+<value>CDK2cycA</value>
+<value>Variable:/geometry:CDK2cycA</value>
+<value>0</value>
+</value>
+<value>
+<value>CDK2cycA_star_</value>
+<value>Variable:/geometry:CDK2cycA_star_</value>
+<value>0</value>
+</value>
+<value>
+<value>basal_fluorescence</value>
+<value>Variable:/SBMLParameter:basal_fluorescence</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

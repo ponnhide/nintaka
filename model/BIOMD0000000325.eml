@@ -1,0 +1,526 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R_expression">
+<property name="Name">
+<value>-&gt; [R]; { A };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (BR.Value + Rs.Value * A.NumberConc / (KD.Value + A.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/cell:R</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>BR</value>
+<value>Variable:/SBMLParameter:BR</value>
+<value>0</value>
+</value>
+<value>
+<value>Rs</value>
+<value>Variable:/SBMLParameter:Rs</value>
+<value>0</value>
+</value>
+<value>
+<value>KD</value>
+<value>Variable:/SBMLParameter:KD</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_degradation">
+<property name="Name">
+<value>[R] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kdegR.Value * R.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegR</value>
+<value>Variable:/SBMLParameter:kdegR</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R_L_binding">
+<property name="Name">
+<value>[R] + [L] &lt;-&gt; [C];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kon.Value * L.NumberConc * R.NumberConc - koff.Value * C.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/cell:L</value>
+<value>-1</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/cell:C</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kon</value>
+<value>Variable:/SBMLParameter:kon</value>
+<value>0</value>
+</value>
+<value>
+<value>koff</value>
+<value>Variable:/SBMLParameter:koff</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="C_degradation">
+<property name="Name">
+<value>[C] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kdegC.Value * C.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C</value>
+<value>Variable:/cell:C</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegC</value>
+<value>Variable:/SBMLParameter:kdegC</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="C_I_binding">
+<property name="Name">
+<value>[C] + [I] &lt;-&gt; [X];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (k1.Value * C.NumberConc * I.NumberConc - k2.Value * X.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>C</value>
+<value>Variable:/cell:C</value>
+<value>-1</value>
+</value>
+<value>
+<value>I</value>
+<value>Variable:/cell:I</value>
+<value>-1</value>
+</value>
+<value>
+<value>X</value>
+<value>Variable:/cell:X</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="I_activation">
+<property name="Name">
+<value>[X] -&gt; [C] + [A];</value>
+</property>
+<property name="Expression">
+<value>cell.Value * k3.Value * X.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/cell:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>C</value>
+<value>Variable:/cell:C</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="X_degradation">
+<property name="Name">
+<value>[X] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kdegX.Value * X.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X</value>
+<value>Variable:/cell:X</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegX</value>
+<value>Variable:/SBMLParameter:kdegX</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="A_degradation">
+<property name="Name">
+<value>[A] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kdegA.Value * A.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegA</value>
+<value>Variable:/SBMLParameter:kdegA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="I_expression">
+<property name="Name">
+<value>-&gt; [I]; { A };</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (BI.Value + TFs.Value * A.NumberConc / (KD.Value + A.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/cell:I</value>
+<value>1</value>
+</value>
+<value>
+<value>A</value>
+<value>Variable:/cell:A</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>BI</value>
+<value>Variable:/SBMLParameter:BI</value>
+<value>0</value>
+</value>
+<value>
+<value>TFs</value>
+<value>Variable:/SBMLParameter:TFs</value>
+<value>0</value>
+</value>
+<value>
+<value>KD</value>
+<value>Variable:/SBMLParameter:KD</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="I_degradation">
+<property name="Name">
+<value>[I] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kdegI.Value * I.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>I</value>
+<value>Variable:/cell:I</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>kdegI</value>
+<value>Variable:/SBMLParameter:kdegI</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="C">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="I">
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="A">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="BR">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Rs">
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="KD">
+<property name="Value">
+<value>200.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegR">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kon">
+<property name="Value">
+<value>0.001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="koff">
+<property name="Value">
+<value>0.05</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegC">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>5.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>45.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegX">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegA">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="BI">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="TFs">
+<property name="Value">
+<value>3.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegI">
+<property name="Value">
+<value>0.005</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -1,0 +1,693 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="r1">
+<property name="Name">
+<value>-&gt; [MC];</value>
+</property>
+<property name="KS">
+<value>0.5</value>
+</property>
+<property name="kM">
+<value>1.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kM * S.Value / (KS + S.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MC</value>
+<value>Variable:/cell:MC</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r2">
+<property name="Name">
+<value>-&gt; [CD];</value>
+</property>
+<property name="KS">
+<value>0.5</value>
+</property>
+<property name="kkCDS">
+<value>0.45</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkCDS * S.Value / (KS + S.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CD</value>
+<value>Variable:/cell:CD</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r3">
+<property name="Name">
+<value>-&gt; [EF]; { MC };</value>
+</property>
+<property name="KEF">
+<value>0.15</value>
+</property>
+<property name="KMC">
+<value>0.15</value>
+</property>
+<property name="kkEF">
+<value>0.4</value>
+</property>
+<property name="kkb">
+<value>0.003</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkEF * MC.NumberConc * EF.NumberConc / ((KMC + MC.NumberConc) * (KEF + EF.NumberConc)) + kkb * MC.NumberConc / (KMC + MC.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EF</value>
+<value>Variable:/cell:EF</value>
+<value>1</value>
+</value>
+<value>
+<value>MC</value>
+<value>Variable:/cell:MC</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r4">
+<property name="Name">
+<value>-&gt; [CE]; { EF };</value>
+</property>
+<property name="KEF">
+<value>0.15</value>
+</property>
+<property name="kkCE">
+<value>0.35</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkCE * EF.NumberConc / (KEF + EF.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CE</value>
+<value>Variable:/cell:CE</value>
+<value>1</value>
+</value>
+<value>
+<value>EF</value>
+<value>Variable:/cell:EF</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r5">
+<property name="Name">
+<value>-&gt; [CD]; { MC };</value>
+</property>
+<property name="KMC">
+<value>0.15</value>
+</property>
+<property name="kkCD">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkCD * MC.NumberConc / (KMC + MC.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CD</value>
+<value>Variable:/cell:CD</value>
+<value>1</value>
+</value>
+<value>
+<value>MC</value>
+<value>Variable:/cell:MC</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r6">
+<property name="Name">
+<value>-&gt; [RB];</value>
+</property>
+<property name="kkRB">
+<value>0.18</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kkRB</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RB</value>
+<value>Variable:/cell:RB</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r7">
+<property name="Name">
+<value>[RE] -&gt; [EF] + [RP]; { CD, CE };</value>
+</property>
+<property name="KD">
+<value>0.92</value>
+</property>
+<property name="KE">
+<value>0.92</value>
+</property>
+<property name="kkRBPP">
+<value>18.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkRBPP * CD.NumberConc * RE.NumberConc / (KD + RE.NumberConc) + kkRBPP * CE.NumberConc * RE.NumberConc / (KE + RE.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RE</value>
+<value>Variable:/cell:RE</value>
+<value>-1</value>
+</value>
+<value>
+<value>EF</value>
+<value>Variable:/cell:EF</value>
+<value>1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/cell:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>CD</value>
+<value>Variable:/cell:CD</value>
+<value>0</value>
+</value>
+<value>
+<value>CE</value>
+<value>Variable:/cell:CE</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r8">
+<property name="Name">
+<value>[EF] + [RB] -&gt; [RE];</value>
+</property>
+<property name="kkRE">
+<value>180.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * kkRE * RB.NumberConc * EF.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EF</value>
+<value>Variable:/cell:EF</value>
+<value>-1</value>
+</value>
+<value>
+<value>RB</value>
+<value>Variable:/cell:RB</value>
+<value>-1</value>
+</value>
+<value>
+<value>RE</value>
+<value>Variable:/cell:RE</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r9">
+<property name="Name">
+<value>[RB] -&gt; [RP]; { CD, CE };</value>
+</property>
+<property name="KD">
+<value>0.92</value>
+</property>
+<property name="KE">
+<value>0.92</value>
+</property>
+<property name="kkRBP">
+<value>18.0</value>
+</property>
+<property name="kkRBP2">
+<value>18.0</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkRBP * CD.NumberConc * RB.NumberConc / (KD + RB.NumberConc) + kkRBP2 * CE.NumberConc * RB.NumberConc / (KE + RB.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RB</value>
+<value>Variable:/cell:RB</value>
+<value>-1</value>
+</value>
+<value>
+<value>RP</value>
+<value>Variable:/cell:RP</value>
+<value>1</value>
+</value>
+<value>
+<value>CD</value>
+<value>Variable:/cell:CD</value>
+<value>0</value>
+</value>
+<value>
+<value>CE</value>
+<value>Variable:/cell:CE</value>
+<value>0</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r10">
+<property name="Name">
+<value>[RP] -&gt; [RB];</value>
+</property>
+<property name="Kp">
+<value>0.01</value>
+</property>
+<property name="kkRBUP">
+<value>3.6</value>
+</property>
+<property name="Expression">
+<value>cell.Value * (kkRBUP * RP.NumberConc / (Kp + RP.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/cell:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>RB</value>
+<value>Variable:/cell:RB</value>
+<value>1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r11">
+<property name="Name">
+<value>[MC] -&gt; ;</value>
+</property>
+<property name="dMC">
+<value>0.7</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dMC * MC.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>MC</value>
+<value>Variable:/cell:MC</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r12">
+<property name="Name">
+<value>[EF] -&gt; ;</value>
+</property>
+<property name="dEF">
+<value>0.25</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dEF * EF.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EF</value>
+<value>Variable:/cell:EF</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r13">
+<property name="Name">
+<value>[CE] -&gt; ;</value>
+</property>
+<property name="dCE">
+<value>1.5</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dCE * CE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CE</value>
+<value>Variable:/cell:CE</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r14">
+<property name="Name">
+<value>[CD] -&gt; ;</value>
+</property>
+<property name="dCD">
+<value>1.5</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dCD * CD.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>CD</value>
+<value>Variable:/cell:CD</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r15">
+<property name="Name">
+<value>[RB] -&gt; ;</value>
+</property>
+<property name="dRB">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dRB * RB.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RB</value>
+<value>Variable:/cell:RB</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r16">
+<property name="Name">
+<value>[RP] -&gt; ;</value>
+</property>
+<property name="dRP">
+<value>0.06</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dRP * RP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RP</value>
+<value>Variable:/cell:RP</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="r17">
+<property name="Name">
+<value>[RE] -&gt; ;</value>
+</property>
+<property name="dRE">
+<value>0.03</value>
+</property>
+<property name="Expression">
+<value>cell.Value * dRE * RE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>RE</value>
+<value>Variable:/cell:RE</value>
+<value>-1</value>
+</value>
+<value>
+<value>cell</value>
+<value>Variable:/cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="MC">
+<property name="Name">
+<value>Myc</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="EF">
+<property name="Name">
+<value>E2F</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CD">
+<property name="Name">
+<value>CycD</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CE">
+<property name="Name">
+<value>CycE</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RB">
+<property name="Name">
+<value>Rb</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RE">
+<property name="Name">
+<value>Rb-E2F complex</value>
+</property>
+<property name="NumberConc">
+<value>0.55</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="RP">
+<property name="Name">
+<value>phosphorylated Rb</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="S">
+<property name="Name">
+<value>S</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="e1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>e1</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>S</value>
+<value>20</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(&lt;t&gt;, 0)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="e2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>e2</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>S</value>
+<value>1</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(&lt;t&gt;, 5)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>S</value>
+<value>Variable:/SBMLParameter:S</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

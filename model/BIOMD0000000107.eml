@@ -1,0 +1,1406 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>cyclin synthesis</value>
+</property>
+<property name="Expression">
+<value>k1AA.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cyclin</value>
+<value>Variable:/cytoplasm:cyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>k1AA</value>
+<value>Variable:/SBMLParameter:k1AA</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>cyclin degradation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * cyclin.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cyclin</value>
+<value>Variable:/cytoplasm:cyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>cyclin-cdc2 dimer formation</value>
+</property>
+<property name="Expression">
+<value>k3.Value * cyclin.NumberConc * cdc2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cyclin</value>
+<value>Variable:/cytoplasm:cyclin</value>
+<value>-1</value>
+</value>
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>1</value>
+</value>
+<value>
+<value>cdc2</value>
+<value>Variable:/cytoplasm:cdc2</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>Thr161 dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>kinh.Value * dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>1</value>
+</value>
+<value>
+<value>kinh</value>
+<value>Variable:/SBMLParameter:kinh</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>Tyr15 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>kwee.Value * dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>1</value>
+</value>
+<value>
+<value>kwee</value>
+<value>Variable:/SBMLParameter:kwee</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>Thr161 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>kcak.Value * dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>1</value>
+</value>
+<value>
+<value>kcak</value>
+<value>Variable:/SBMLParameter:kcak</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>cyclin degradation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>Tyr15 dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>k25.Value * p_dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>1</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>Thr161 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>kcak.Value * p_dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>1</value>
+</value>
+<value>
+<value>kcak</value>
+<value>Variable:/SBMLParameter:kcak</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>cyclin degradation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * p_dimer.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>Thr161 dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>kinh.Value * p_dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>1</value>
+</value>
+<value>
+<value>kinh</value>
+<value>Variable:/SBMLParameter:kinh</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>Tyr15 phosphorylation</value>
+</property>
+<property name="Expression">
+<value>kwee.Value * dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>1</value>
+</value>
+<value>
+<value>kwee</value>
+<value>Variable:/SBMLParameter:kwee</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>Tyr15 dephosphorylation</value>
+</property>
+<property name="Expression">
+<value>k25.Value * p_dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>1</value>
+</value>
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>cyclin degradation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * p_dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>cyclin degradation</value>
+</property>
+<property name="Expression">
+<value>k2.Value * dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R17">
+<property name="Name">
+<value>cdc25 activation</value>
+</property>
+<property name="Expression">
+<value>ka.Value * dimer_p.NumberConc * (total_cdc25.Value - cdc25_p.NumberConc) / (K_a.Value + total_cdc25.Value - cdc25_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdc25_p</value>
+<value>Variable:/cytoplasm:cdc25_p</value>
+<value>1</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>0</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+<value>
+<value>total_cdc25</value>
+<value>Variable:/SBMLParameter:total_cdc25</value>
+<value>0</value>
+</value>
+<value>
+<value>K_a</value>
+<value>Variable:/SBMLParameter:K_a</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R18">
+<property name="Name">
+<value>cdc25 deactivation</value>
+</property>
+<property name="Expression">
+<value>kbPPase.Value * cdc25_p.NumberConc / (K_b.Value + cdc25_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdc25_p</value>
+<value>Variable:/cytoplasm:cdc25_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>kbPPase</value>
+<value>Variable:/SBMLParameter:kbPPase</value>
+<value>0</value>
+</value>
+<value>
+<value>K_b</value>
+<value>Variable:/SBMLParameter:K_b</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R19">
+<property name="Name">
+<value>wee1 deactivation</value>
+</property>
+<property name="Expression">
+<value>ke.Value * dimer_p.NumberConc * (total_wee1.Value - wee1_p.NumberConc) / (K_e.Value + total_wee1.Value - wee1_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>wee1_p</value>
+<value>Variable:/cytoplasm:wee1_p</value>
+<value>1</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>0</value>
+</value>
+<value>
+<value>ke</value>
+<value>Variable:/SBMLParameter:ke</value>
+<value>0</value>
+</value>
+<value>
+<value>total_wee1</value>
+<value>Variable:/SBMLParameter:total_wee1</value>
+<value>0</value>
+</value>
+<value>
+<value>K_e</value>
+<value>Variable:/SBMLParameter:K_e</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R20">
+<property name="Name">
+<value>wee1 activation</value>
+</property>
+<property name="Expression">
+<value>kfPPase.Value * wee1_p.NumberConc / (K_f.Value + wee1_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>wee1_p</value>
+<value>Variable:/cytoplasm:wee1_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>kfPPase</value>
+<value>Variable:/SBMLParameter:kfPPase</value>
+<value>0</value>
+</value>
+<value>
+<value>K_f</value>
+<value>Variable:/SBMLParameter:K_f</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R21">
+<property name="Name">
+<value>intermediary enzyme activation</value>
+</property>
+<property name="Expression">
+<value>kg.Value * dimer_p.NumberConc * (total_IE.Value - IE_p.NumberConc) / (K_g.Value + total_IE.Value - IE_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IE_p</value>
+<value>Variable:/cytoplasm:IE_p</value>
+<value>1</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>0</value>
+</value>
+<value>
+<value>kg</value>
+<value>Variable:/SBMLParameter:kg</value>
+<value>0</value>
+</value>
+<value>
+<value>total_IE</value>
+<value>Variable:/SBMLParameter:total_IE</value>
+<value>0</value>
+</value>
+<value>
+<value>K_g</value>
+<value>Variable:/SBMLParameter:K_g</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R22">
+<property name="Name">
+<value>intermediary enzyme deactivation</value>
+</property>
+<property name="Expression">
+<value>khPPAse.Value * IE_p.NumberConc / (K_h.Value + IE_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IE_p</value>
+<value>Variable:/cytoplasm:IE_p</value>
+<value>-1</value>
+</value>
+<value>
+<value>khPPAse</value>
+<value>Variable:/SBMLParameter:khPPAse</value>
+<value>0</value>
+</value>
+<value>
+<value>K_h</value>
+<value>Variable:/SBMLParameter:K_h</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R23">
+<property name="Name">
+<value>ubiquitin conjugating enzyme activation</value>
+</property>
+<property name="Expression">
+<value>kc.Value * IE_p.NumberConc * (total_UbE.Value - UbE_star.NumberConc) / (K_c.Value + total_UbE.Value - UbE_star.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbE_star</value>
+<value>Variable:/cytoplasm:UbE_star</value>
+<value>1</value>
+</value>
+<value>
+<value>IE_p</value>
+<value>Variable:/cytoplasm:IE_p</value>
+<value>0</value>
+</value>
+<value>
+<value>kc</value>
+<value>Variable:/SBMLParameter:kc</value>
+<value>0</value>
+</value>
+<value>
+<value>total_UbE</value>
+<value>Variable:/SBMLParameter:total_UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>K_c</value>
+<value>Variable:/SBMLParameter:K_c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R24">
+<property name="Name">
+<value>ubiquitin conjugating enzyme deactivation</value>
+</property>
+<property name="Expression">
+<value>kd_anti_IE.Value * UbE_star.NumberConc / (K_d.Value + UbE_star.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbE_star</value>
+<value>Variable:/cytoplasm:UbE_star</value>
+<value>-1</value>
+</value>
+<value>
+<value>kd_anti_IE</value>
+<value>Variable:/SBMLParameter:kd_anti_IE</value>
+<value>0</value>
+</value>
+<value>
+<value>K_d</value>
+<value>Variable:/SBMLParameter:K_d</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cyclin">
+<property name="Name">
+<value>cyclin</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dimer">
+<property name="Name">
+<value>cyclin-cdc2 dimer</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="dimer_p">
+<property name="Name">
+<value>Thr161 phosphorylated dimer(active MPF)</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p_dimer">
+<property name="Name">
+<value>Tyr15 phosphorylated dimer</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="p_dimer_p">
+<property name="Name">
+<value>Thr161-Tyr15 phosphorylated dimer</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cdc25_p">
+<property name="Name">
+<value>phosphorylated cdc25</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="wee1_p">
+<property name="Name">
+<value>phosphorylated wee1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IE_p">
+<property name="Name">
+<value>phosphorylated intermediary enzyme</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UbE_star">
+<property name="Name">
+<value>ubiquitin conjugating enzyme</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cdc2">
+<property name="Name">
+<value>cdc2</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cdc25">
+<property name="Name">
+<value>cdc25</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="wee1">
+<property name="Name">
+<value>wee1</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IE">
+<property name="Name">
+<value>intermediary enzyme</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="UbE">
+<property name="Name">
+<value>ubiquitin conjugating enzyme</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="total_cdc2">
+<property name="Value">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="total_cdc25">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="total_wee1">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="total_IE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="total_UbE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k25">
+<property name="Value">
+<value>0.1</value>
+</property>
+</variable>
+<variable class="Variable" id="V25_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V25_double_prime">
+<property name="Value">
+<value>2.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kwee">
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Vwee_prime">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Vwee_double_prime">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Value">
+<value>0.015</value>
+</property>
+</variable>
+<variable class="Variable" id="V2_prime">
+<property name="Value">
+<value>0.015</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V2_double_prime">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1AA">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kinh">
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kcak">
+<property name="Value">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_a">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kbPPase">
+<property name="Value">
+<value>0.125</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_b">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ke">
+<property name="Value">
+<value>0.0133</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_e">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kfPPase">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_f">
+<property name="Value">
+<value>0.3</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kg">
+<property name="Value">
+<value>0.0065</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_g">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="khPPAse">
+<property name="Value">
+<value>0.087</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_h">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kc">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_c">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd_anti_IE">
+<property name="Value">
+<value>0.095</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K_d">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="total_cyclin">
+<property name="Value">
+<value>100.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Y15P">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_cdc2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cdc2'</value>
+</property>
+<property name="Expression">
+<value>total_cdc2.NumberConc - (dimer.NumberConc + p_dimer.NumberConc + p_dimer_p.NumberConc + dimer_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdc2</value>
+<value>Variable:/cytoplasm:cdc2</value>
+<value>1</value>
+</value>
+<value>
+<value>total_cdc2</value>
+<value>Variable:/SBMLParameter:total_cdc2</value>
+<value>0</value>
+</value>
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>0</value>
+</value>
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>0</value>
+</value>
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>0</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_cdc25">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'cdc25'</value>
+</property>
+<property name="Expression">
+<value>total_cdc25.NumberConc - cdc25_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cdc25</value>
+<value>Variable:/cytoplasm:cdc25</value>
+<value>1</value>
+</value>
+<value>
+<value>total_cdc25</value>
+<value>Variable:/SBMLParameter:total_cdc25</value>
+<value>0</value>
+</value>
+<value>
+<value>cdc25_p</value>
+<value>Variable:/cytoplasm:cdc25_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_wee1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'wee1'</value>
+</property>
+<property name="Expression">
+<value>total_wee1.NumberConc - wee1_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>wee1</value>
+<value>Variable:/cytoplasm:wee1</value>
+<value>1</value>
+</value>
+<value>
+<value>total_wee1</value>
+<value>Variable:/SBMLParameter:total_wee1</value>
+<value>0</value>
+</value>
+<value>
+<value>wee1_p</value>
+<value>Variable:/cytoplasm:wee1_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_IE">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'IE'</value>
+</property>
+<property name="Expression">
+<value>total_IE.NumberConc - IE_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>IE</value>
+<value>Variable:/cytoplasm:IE</value>
+<value>1</value>
+</value>
+<value>
+<value>total_IE</value>
+<value>Variable:/SBMLParameter:total_IE</value>
+<value>0</value>
+</value>
+<value>
+<value>IE_p</value>
+<value>Variable:/cytoplasm:IE_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_UbE">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'UbE'</value>
+</property>
+<property name="Expression">
+<value>total_UbE.NumberConc - UbE_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>UbE</value>
+<value>Variable:/cytoplasm:UbE</value>
+<value>1</value>
+</value>
+<value>
+<value>total_UbE</value>
+<value>Variable:/SBMLParameter:total_UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>UbE_star</value>
+<value>Variable:/cytoplasm:UbE_star</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k25">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k25'</value>
+</property>
+<property name="Expression">
+<value>V25_prime.NumberConc * (total_cdc25.NumberConc - cdc25_p.NumberConc) + V25_double_prime.NumberConc * cdc25_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k25</value>
+<value>Variable:/SBMLParameter:k25</value>
+<value>1</value>
+</value>
+<value>
+<value>V25_prime</value>
+<value>Variable:/SBMLParameter:V25_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>total_cdc25</value>
+<value>Variable:/SBMLParameter:total_cdc25</value>
+<value>0</value>
+</value>
+<value>
+<value>cdc25_p</value>
+<value>Variable:/cytoplasm:cdc25_p</value>
+<value>0</value>
+</value>
+<value>
+<value>V25_double_prime</value>
+<value>Variable:/SBMLParameter:V25_double_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_kwee">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kwee'</value>
+</property>
+<property name="Expression">
+<value>Vwee_prime.NumberConc * wee1_p.NumberConc + Vwee_double_prime.NumberConc * (total_wee1.NumberConc - wee1_p.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kwee</value>
+<value>Variable:/SBMLParameter:kwee</value>
+<value>1</value>
+</value>
+<value>
+<value>Vwee_prime</value>
+<value>Variable:/SBMLParameter:Vwee_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>wee1_p</value>
+<value>Variable:/cytoplasm:wee1_p</value>
+<value>0</value>
+</value>
+<value>
+<value>Vwee_double_prime</value>
+<value>Variable:/SBMLParameter:Vwee_double_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>total_wee1</value>
+<value>Variable:/SBMLParameter:total_wee1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_k2">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'k2'</value>
+</property>
+<property name="Expression">
+<value>V2_prime.NumberConc * (total_UbE.NumberConc - UbE_star.NumberConc) + V2_double_prime.NumberConc * UbE_star.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>1</value>
+</value>
+<value>
+<value>V2_prime</value>
+<value>Variable:/SBMLParameter:V2_prime</value>
+<value>0</value>
+</value>
+<value>
+<value>total_UbE</value>
+<value>Variable:/SBMLParameter:total_UbE</value>
+<value>0</value>
+</value>
+<value>
+<value>UbE_star</value>
+<value>Variable:/cytoplasm:UbE_star</value>
+<value>0</value>
+</value>
+<value>
+<value>V2_double_prime</value>
+<value>Variable:/SBMLParameter:V2_double_prime</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_total_cyclin">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'total_cyclin'</value>
+</property>
+<property name="Expression">
+<value>cyclin.NumberConc + dimer.NumberConc + dimer_p.NumberConc + p_dimer.NumberConc + p_dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>total_cyclin</value>
+<value>Variable:/SBMLParameter:total_cyclin</value>
+<value>1</value>
+</value>
+<value>
+<value>cyclin</value>
+<value>Variable:/cytoplasm:cyclin</value>
+<value>0</value>
+</value>
+<value>
+<value>dimer</value>
+<value>Variable:/cytoplasm:dimer</value>
+<value>0</value>
+</value>
+<value>
+<value>dimer_p</value>
+<value>Variable:/cytoplasm:dimer_p</value>
+<value>0</value>
+</value>
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>0</value>
+</value>
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Y15P">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Y15P'</value>
+</property>
+<property name="Expression">
+<value>p_dimer.NumberConc + p_dimer_p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y15P</value>
+<value>Variable:/SBMLParameter:Y15P</value>
+<value>1</value>
+</value>
+<value>
+<value>p_dimer</value>
+<value>Variable:/cytoplasm:p_dimer</value>
+<value>0</value>
+</value>
+<value>
+<value>p_dimer_p</value>
+<value>Variable:/cytoplasm:p_dimer_p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

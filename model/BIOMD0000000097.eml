@@ -1,0 +1,2936 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>Light dependent cLm production</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * ld.Value * q1.Value * cPn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLm</value>
+<value>Variable:/cytoplasm/nucleus:cLm</value>
+<value>1</value>
+</value>
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>q1</value>
+<value>Variable:/SBMLParameter:q1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>Light independent cLm production</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (n1.Value * pow(cXn.NumberConc, a.Value) / (pow(g1.Value, a.Value) + pow(cXn.NumberConc, a.Value))) * (pow(g7.Value, h.Value) / (pow(g7.Value, h.Value) + pow(cP7n.NumberConc, h.Value))) * (pow(g8.Value, i.Value) / (pow(g8.Value, i.Value) + pow(cP9n.NumberConc, i.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLm</value>
+<value>Variable:/cytoplasm/nucleus:cLm</value>
+<value>1</value>
+</value>
+<value>
+<value>cXn</value>
+<value>Variable:/cytoplasm/nucleus:cXn</value>
+<value>0</value>
+</value>
+<value>
+<value>cP7n</value>
+<value>Variable:/cytoplasm/nucleus:cP7n</value>
+<value>0</value>
+</value>
+<value>
+<value>cP9n</value>
+<value>Variable:/cytoplasm/nucleus:cP9n</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>n1</value>
+<value>Variable:/SBMLParameter:n1</value>
+<value>0</value>
+</value>
+<value>
+<value>a</value>
+<value>Variable:/SBMLParameter:a</value>
+<value>0</value>
+</value>
+<value>
+<value>g1</value>
+<value>Variable:/SBMLParameter:g1</value>
+<value>0</value>
+</value>
+<value>
+<value>g7</value>
+<value>Variable:/SBMLParameter:g7</value>
+<value>0</value>
+</value>
+<value>
+<value>h</value>
+<value>Variable:/SBMLParameter:h</value>
+<value>0</value>
+</value>
+<value>
+<value>g8</value>
+<value>Variable:/SBMLParameter:g8</value>
+<value>0</value>
+</value>
+<value>
+<value>i</value>
+<value>Variable:/SBMLParameter:i</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>cLm degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m1.Value * cLm.NumberConc / (k1.Value + cLm.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLm</value>
+<value>Variable:/cytoplasm/nucleus:cLm</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m1</value>
+<value>Variable:/SBMLParameter:m1</value>
+<value>0</value>
+</value>
+<value>
+<value>k1</value>
+<value>Variable:/SBMLParameter:k1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>cLc synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p1.Value * cLm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLc</value>
+<value>Variable:/cytoplasm:cLc</value>
+<value>1</value>
+</value>
+<value>
+<value>cLm</value>
+<value>Variable:/cytoplasm/nucleus:cLm</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p1</value>
+<value>Variable:/SBMLParameter:p1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>cLc transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r1.Value * cLc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLc</value>
+<value>Variable:/cytoplasm:cLc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r1</value>
+<value>Variable:/SBMLParameter:r1</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>cLn transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r2.Value * cLn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>-1</value>
+</value>
+<value>
+<value>cLc</value>
+<value>Variable:/cytoplasm:cLc</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r2</value>
+<value>Variable:/SBMLParameter:r2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>cLc degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * m2.Value * cLc.NumberConc / (k2.Value + cLc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLc</value>
+<value>Variable:/cytoplasm:cLc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m2</value>
+<value>Variable:/SBMLParameter:m2</value>
+<value>0</value>
+</value>
+<value>
+<value>k2</value>
+<value>Variable:/SBMLParameter:k2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>cLn degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m3.Value * cLn.NumberConc / (k3.Value + cLn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m3</value>
+<value>Variable:/SBMLParameter:m3</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>cTm transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (n2.Value * pow(cYn.NumberConc, b.Value) / (pow(g2.Value, b.Value) + pow(cYn.NumberConc, b.Value))) * (pow(g3.Value, c.Value) / (pow(g3.Value, c.Value) + pow(cLn.NumberConc, c.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTm</value>
+<value>Variable:/cytoplasm/nucleus:cTm</value>
+<value>1</value>
+</value>
+<value>
+<value>cYn</value>
+<value>Variable:/cytoplasm/nucleus:cYn</value>
+<value>0</value>
+</value>
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>n2</value>
+<value>Variable:/SBMLParameter:n2</value>
+<value>0</value>
+</value>
+<value>
+<value>b</value>
+<value>Variable:/SBMLParameter:b</value>
+<value>0</value>
+</value>
+<value>
+<value>g2</value>
+<value>Variable:/SBMLParameter:g2</value>
+<value>0</value>
+</value>
+<value>
+<value>g3</value>
+<value>Variable:/SBMLParameter:g3</value>
+<value>0</value>
+</value>
+<value>
+<value>c</value>
+<value>Variable:/SBMLParameter:c</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>cTm degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m4.Value * cTm.NumberConc / (k4.Value + cTm.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTm</value>
+<value>Variable:/cytoplasm/nucleus:cTm</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m4</value>
+<value>Variable:/SBMLParameter:m4</value>
+<value>0</value>
+</value>
+<value>
+<value>k4</value>
+<value>Variable:/SBMLParameter:k4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>cTc synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p2.Value * cTm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTc</value>
+<value>Variable:/cytoplasm:cTc</value>
+<value>1</value>
+</value>
+<value>
+<value>cTm</value>
+<value>Variable:/cytoplasm/nucleus:cTm</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p2</value>
+<value>Variable:/SBMLParameter:p2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>cTc transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r3.Value * cTc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTc</value>
+<value>Variable:/cytoplasm:cTc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cTn</value>
+<value>Variable:/cytoplasm/nucleus:cTn</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r3</value>
+<value>Variable:/SBMLParameter:r3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>cTn transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r4.Value * cTn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTn</value>
+<value>Variable:/cytoplasm/nucleus:cTn</value>
+<value>-1</value>
+</value>
+<value>
+<value>cTc</value>
+<value>Variable:/cytoplasm:cTc</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r4</value>
+<value>Variable:/SBMLParameter:r4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>cTc degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * ((lmax.Value - ld.Value) * m5.Value + m6.Value) * (cTc.NumberConc / (k5.Value + cTc.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTc</value>
+<value>Variable:/cytoplasm:cTc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>lmax</value>
+<value>Variable:/SBMLParameter:lmax</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>m5</value>
+<value>Variable:/SBMLParameter:m5</value>
+<value>0</value>
+</value>
+<value>
+<value>m6</value>
+<value>Variable:/SBMLParameter:m6</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>cTn degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * ((lmax.Value - ld.Value) * m7.Value + m8.Value) * (cTn.NumberConc / (k6.Value + cTn.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cTn</value>
+<value>Variable:/cytoplasm/nucleus:cTn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>lmax</value>
+<value>Variable:/SBMLParameter:lmax</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>m7</value>
+<value>Variable:/SBMLParameter:m7</value>
+<value>0</value>
+</value>
+<value>
+<value>m8</value>
+<value>Variable:/SBMLParameter:m8</value>
+<value>0</value>
+</value>
+<value>
+<value>k6</value>
+<value>Variable:/SBMLParameter:k6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R16">
+<property name="Name">
+<value>Species X transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * n3.Value * pow(cTn.NumberConc, d.Value) / (pow(g4.Value, d.Value) + pow(cTn.NumberConc, d.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXm</value>
+<value>Variable:/cytoplasm/nucleus:cXm</value>
+<value>1</value>
+</value>
+<value>
+<value>cTn</value>
+<value>Variable:/cytoplasm/nucleus:cTn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>n3</value>
+<value>Variable:/SBMLParameter:n3</value>
+<value>0</value>
+</value>
+<value>
+<value>d</value>
+<value>Variable:/SBMLParameter:d</value>
+<value>0</value>
+</value>
+<value>
+<value>g4</value>
+<value>Variable:/SBMLParameter:g4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R17">
+<property name="Name">
+<value>Species X degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m9.Value * cXm.NumberConc / (k7.Value + cXm.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXm</value>
+<value>Variable:/cytoplasm/nucleus:cXm</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m9</value>
+<value>Variable:/SBMLParameter:m9</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R18">
+<property name="Name">
+<value>cXc synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p3.Value * cXm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXc</value>
+<value>Variable:/cytoplasm:cXc</value>
+<value>1</value>
+</value>
+<value>
+<value>cXm</value>
+<value>Variable:/cytoplasm/nucleus:cXm</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p3</value>
+<value>Variable:/SBMLParameter:p3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R19">
+<property name="Name">
+<value>cXc transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r5.Value * cXc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXc</value>
+<value>Variable:/cytoplasm:cXc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cXn</value>
+<value>Variable:/cytoplasm/nucleus:cXn</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r5</value>
+<value>Variable:/SBMLParameter:r5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R20">
+<property name="Name">
+<value>cXn transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r6.Value * cXn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXn</value>
+<value>Variable:/cytoplasm/nucleus:cXn</value>
+<value>-1</value>
+</value>
+<value>
+<value>cXc</value>
+<value>Variable:/cytoplasm:cXc</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r6</value>
+<value>Variable:/SBMLParameter:r6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R21">
+<property name="Name">
+<value>cXc degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * m10.Value * cXc.NumberConc / (k8.Value + cXc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXc</value>
+<value>Variable:/cytoplasm:cXc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m10</value>
+<value>Variable:/SBMLParameter:m10</value>
+<value>0</value>
+</value>
+<value>
+<value>k8</value>
+<value>Variable:/SBMLParameter:k8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R22">
+<property name="Name">
+<value>cXn degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m11.Value * cXn.NumberConc / (k9.Value + cXn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cXn</value>
+<value>Variable:/cytoplasm/nucleus:cXn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m11</value>
+<value>Variable:/SBMLParameter:m11</value>
+<value>0</value>
+</value>
+<value>
+<value>k9</value>
+<value>Variable:/SBMLParameter:k9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R23">
+<property name="Name">
+<value>Species Y transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * ((ld.Value * n4.Value + n5.Value) * pow(g5.Value, e.Value) / (pow(g5.Value, e.Value) + pow(cTn.NumberConc, e.Value))) * (pow(g6.Value, f.Value) / (pow(g6.Value, f.Value) + pow(cLn.NumberConc, f.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYm</value>
+<value>Variable:/cytoplasm/nucleus:cYm</value>
+<value>1</value>
+</value>
+<value>
+<value>cTn</value>
+<value>Variable:/cytoplasm/nucleus:cTn</value>
+<value>0</value>
+</value>
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>0</value>
+</value>
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>n4</value>
+<value>Variable:/SBMLParameter:n4</value>
+<value>0</value>
+</value>
+<value>
+<value>n5</value>
+<value>Variable:/SBMLParameter:n5</value>
+<value>0</value>
+</value>
+<value>
+<value>g5</value>
+<value>Variable:/SBMLParameter:g5</value>
+<value>0</value>
+</value>
+<value>
+<value>e</value>
+<value>Variable:/SBMLParameter:e</value>
+<value>0</value>
+</value>
+<value>
+<value>g6</value>
+<value>Variable:/SBMLParameter:g6</value>
+<value>0</value>
+</value>
+<value>
+<value>f</value>
+<value>Variable:/SBMLParameter:f</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R24">
+<property name="Name">
+<value>cYm degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m12.Value * cYm.NumberConc / (k10.Value + cYm.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYm</value>
+<value>Variable:/cytoplasm/nucleus:cYm</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m12</value>
+<value>Variable:/SBMLParameter:m12</value>
+<value>0</value>
+</value>
+<value>
+<value>k10</value>
+<value>Variable:/SBMLParameter:k10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R25">
+<property name="Name">
+<value>cYc synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p4.Value * cYm.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYc</value>
+<value>Variable:/cytoplasm:cYc</value>
+<value>1</value>
+</value>
+<value>
+<value>cYm</value>
+<value>Variable:/cytoplasm/nucleus:cYm</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p4</value>
+<value>Variable:/SBMLParameter:p4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R26">
+<property name="Name">
+<value>cYc transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r7.Value * cYc.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYc</value>
+<value>Variable:/cytoplasm:cYc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cYn</value>
+<value>Variable:/cytoplasm/nucleus:cYn</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r7</value>
+<value>Variable:/SBMLParameter:r7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R27">
+<property name="Name">
+<value>cYn transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r8.Value * cYn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYn</value>
+<value>Variable:/cytoplasm/nucleus:cYn</value>
+<value>-1</value>
+</value>
+<value>
+<value>cYc</value>
+<value>Variable:/cytoplasm:cYc</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r8</value>
+<value>Variable:/SBMLParameter:r8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R28">
+<property name="Name">
+<value>cYc degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * m13.Value * cYc.NumberConc / (k11.Value + cYc.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYc</value>
+<value>Variable:/cytoplasm:cYc</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m13</value>
+<value>Variable:/SBMLParameter:m13</value>
+<value>0</value>
+</value>
+<value>
+<value>k11</value>
+<value>Variable:/SBMLParameter:k11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R29">
+<property name="Name">
+<value>cYn degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m14.Value * cYn.NumberConc / (k12.Value + cYn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cYn</value>
+<value>Variable:/cytoplasm/nucleus:cYn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m14</value>
+<value>Variable:/SBMLParameter:m14</value>
+<value>0</value>
+</value>
+<value>
+<value>k12</value>
+<value>Variable:/SBMLParameter:k12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R30">
+<property name="Name">
+<value>cPn synthesis</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * (lmax.Value - ld.Value) * p5.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>lmax</value>
+<value>Variable:/SBMLParameter:lmax</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>p5</value>
+<value>Variable:/SBMLParameter:p5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R31a">
+<property name="Name">
+<value>cPn degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m15.Value * cPn.NumberConc / (k13.Value + cPn.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m15</value>
+<value>Variable:/SBMLParameter:m15</value>
+<value>0</value>
+</value>
+<value>
+<value>k13</value>
+<value>Variable:/SBMLParameter:k13</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R31b">
+<property name="Name">
+<value>cPn light dependent degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * q3.Value * ld.Value * cPn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>q3</value>
+<value>Variable:/SBMLParameter:q3</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R32">
+<property name="Name">
+<value>cP7m transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * n6.Value * pow(cLn.NumberConc, j.Value) / (pow(g9.Value, j.Value) + pow(cLn.NumberConc, j.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7m</value>
+<value>Variable:/cytoplasm/nucleus:cP7m</value>
+<value>1</value>
+</value>
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>n6</value>
+<value>Variable:/SBMLParameter:n6</value>
+<value>0</value>
+</value>
+<value>
+<value>j</value>
+<value>Variable:/SBMLParameter:j</value>
+<value>0</value>
+</value>
+<value>
+<value>g9</value>
+<value>Variable:/SBMLParameter:g9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R33">
+<property name="Name">
+<value>cP7m degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m16.Value * cP7m.NumberConc / (k14.Value + cP7m.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7m</value>
+<value>Variable:/cytoplasm/nucleus:cP7m</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m16</value>
+<value>Variable:/SBMLParameter:m16</value>
+<value>0</value>
+</value>
+<value>
+<value>k14</value>
+<value>Variable:/SBMLParameter:k14</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R34">
+<property name="Name">
+<value>cP7c synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p6.Value * cP7m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7c</value>
+<value>Variable:/cytoplasm:cP7c</value>
+<value>1</value>
+</value>
+<value>
+<value>cP7m</value>
+<value>Variable:/cytoplasm/nucleus:cP7m</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p6</value>
+<value>Variable:/SBMLParameter:p6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R35">
+<property name="Name">
+<value>cP7c transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r9.Value * cP7c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7c</value>
+<value>Variable:/cytoplasm:cP7c</value>
+<value>-1</value>
+</value>
+<value>
+<value>cP7n</value>
+<value>Variable:/cytoplasm/nucleus:cP7n</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r9</value>
+<value>Variable:/SBMLParameter:r9</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R36">
+<property name="Name">
+<value>cP7n transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r10.Value * cP7n.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7n</value>
+<value>Variable:/cytoplasm/nucleus:cP7n</value>
+<value>-1</value>
+</value>
+<value>
+<value>cP7c</value>
+<value>Variable:/cytoplasm:cP7c</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r10</value>
+<value>Variable:/SBMLParameter:r10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R37">
+<property name="Name">
+<value>cP7c degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * m17.Value * cP7c.NumberConc / (k15.Value + cP7c.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7c</value>
+<value>Variable:/cytoplasm:cP7c</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m17</value>
+<value>Variable:/SBMLParameter:m17</value>
+<value>0</value>
+</value>
+<value>
+<value>k15</value>
+<value>Variable:/SBMLParameter:k15</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R38">
+<property name="Name">
+<value>cP7n degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m18.Value * cP7n.NumberConc / (k16.Value + cP7n.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP7n</value>
+<value>Variable:/cytoplasm/nucleus:cP7n</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m18</value>
+<value>Variable:/SBMLParameter:m18</value>
+<value>0</value>
+</value>
+<value>
+<value>k16</value>
+<value>Variable:/SBMLParameter:k16</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R39">
+<property name="Name">
+<value>cP9m transcription</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * ((ld.Value * q4.Value * cPn.NumberConc + n7.Value * ld.Value + n8.Value) * pow(cLn.NumberConc, k.Value) / (pow(g10.Value, k.Value) + pow(cLn.NumberConc, k.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9m</value>
+<value>Variable:/cytoplasm/nucleus:cP9m</value>
+<value>1</value>
+</value>
+<value>
+<value>cPn</value>
+<value>Variable:/cytoplasm/nucleus:cPn</value>
+<value>0</value>
+</value>
+<value>
+<value>cLn</value>
+<value>Variable:/cytoplasm/nucleus:cLn</value>
+<value>0</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>0</value>
+</value>
+<value>
+<value>q4</value>
+<value>Variable:/SBMLParameter:q4</value>
+<value>0</value>
+</value>
+<value>
+<value>n7</value>
+<value>Variable:/SBMLParameter:n7</value>
+<value>0</value>
+</value>
+<value>
+<value>n8</value>
+<value>Variable:/SBMLParameter:n8</value>
+<value>0</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+<value>
+<value>g10</value>
+<value>Variable:/SBMLParameter:g10</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R40">
+<property name="Name">
+<value>cP9m degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m19.Value * cP9m.NumberConc / (k17.Value + cP9m.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9m</value>
+<value>Variable:/cytoplasm/nucleus:cP9m</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m19</value>
+<value>Variable:/SBMLParameter:m19</value>
+<value>0</value>
+</value>
+<value>
+<value>k17</value>
+<value>Variable:/SBMLParameter:k17</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R41">
+<property name="Name">
+<value>cP9c synthesis</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * p7.Value * cP9m.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9c</value>
+<value>Variable:/cytoplasm:cP9c</value>
+<value>1</value>
+</value>
+<value>
+<value>cP9m</value>
+<value>Variable:/cytoplasm/nucleus:cP9m</value>
+<value>0</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>p7</value>
+<value>Variable:/SBMLParameter:p7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R42">
+<property name="Name">
+<value>cP9c transport to nucleus</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * r11.Value * cP9c.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9c</value>
+<value>Variable:/cytoplasm:cP9c</value>
+<value>-1</value>
+</value>
+<value>
+<value>cP9n</value>
+<value>Variable:/cytoplasm/nucleus:cP9n</value>
+<value>1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r11</value>
+<value>Variable:/SBMLParameter:r11</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R43">
+<property name="Name">
+<value>cP9n transport to cytoplasm</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * r12.Value * cP9n.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9n</value>
+<value>Variable:/cytoplasm/nucleus:cP9n</value>
+<value>-1</value>
+</value>
+<value>
+<value>cP9c</value>
+<value>Variable:/cytoplasm:cP9c</value>
+<value>1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>r12</value>
+<value>Variable:/SBMLParameter:r12</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R44">
+<property name="Name">
+<value>cP9c degradation</value>
+</property>
+<property name="Expression">
+<value>cytoplasm.Value * m20.Value * cP9c.NumberConc / (k18.Value + cP9c.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9c</value>
+<value>Variable:/cytoplasm:cP9c</value>
+<value>-1</value>
+</value>
+<value>
+<value>cytoplasm</value>
+<value>Variable:/cytoplasm:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m20</value>
+<value>Variable:/SBMLParameter:m20</value>
+<value>0</value>
+</value>
+<value>
+<value>k18</value>
+<value>Variable:/SBMLParameter:k18</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R45">
+<property name="Name">
+<value>cP9n degradation</value>
+</property>
+<property name="Expression">
+<value>nucleus.Value * m21.Value * cP9n.NumberConc / (k19.Value + cP9n.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>cP9n</value>
+<value>Variable:/cytoplasm/nucleus:cP9n</value>
+<value>-1</value>
+</value>
+<value>
+<value>nucleus</value>
+<value>Variable:/cytoplasm/nucleus:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>m21</value>
+<value>Variable:/SBMLParameter:m21</value>
+<value>0</value>
+</value>
+<value>
+<value>k19</value>
+<value>Variable:/SBMLParameter:k19</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/cytoplasm">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cytoplasm</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cLc">
+<property name="Name">
+<value>cLc</value>
+</property>
+<property name="NumberConc">
+<value>0.0659</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP7c">
+<property name="Name">
+<value>cP7c</value>
+</property>
+<property name="NumberConc">
+<value>0.0861</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP9c">
+<property name="Name">
+<value>cP9c</value>
+</property>
+<property name="NumberConc">
+<value>0.0077</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cTc">
+<property name="Name">
+<value>cTc</value>
+</property>
+<property name="NumberConc">
+<value>0.7852</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cXc">
+<property name="Name">
+<value>cXc</value>
+</property>
+<property name="NumberConc">
+<value>2.5615</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cYc">
+<property name="Name">
+<value>cYc</value>
+</property>
+<property name="NumberConc">
+<value>7.6795</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/cytoplasm/nucleus">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>nucleus</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="cLm">
+<property name="Name">
+<value>cLm</value>
+</property>
+<property name="NumberConc">
+<value>0.1951</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cLn">
+<property name="Name">
+<value>cLn</value>
+</property>
+<property name="NumberConc">
+<value>0.3952</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP7m">
+<property name="Name">
+<value>cP7m</value>
+</property>
+<property name="NumberConc">
+<value>0.0772</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP7n">
+<property name="Name">
+<value>cP7n</value>
+</property>
+<property name="NumberConc">
+<value>2.7182</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP9m">
+<property name="Name">
+<value>cP9m</value>
+</property>
+<property name="NumberConc">
+<value>0.0011</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cP9n">
+<property name="Name">
+<value>cP9n</value>
+</property>
+<property name="NumberConc">
+<value>0.0073</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cPn">
+<property name="Name">
+<value>cPn</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cTm">
+<property name="Name">
+<value>cTm</value>
+</property>
+<property name="NumberConc">
+<value>0.1234</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cTn">
+<property name="Name">
+<value>cTn</value>
+</property>
+<property name="NumberConc">
+<value>4.5209</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cXm">
+<property name="Name">
+<value>cXm</value>
+</property>
+<property name="NumberConc">
+<value>1.6104</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cXn">
+<property name="Name">
+<value>cXn</value>
+</property>
+<property name="NumberConc">
+<value>14.5474</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cYm">
+<property name="Name">
+<value>cYm</value>
+</property>
+<property name="NumberConc">
+<value>1.1149</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="cYn">
+<property name="Name">
+<value>cYn</value>
+</property>
+<property name="NumberConc">
+<value>9.7016</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="q1">
+<property name="Name">
+<value>q1</value>
+</property>
+<property name="Value">
+<value>13.4334</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n1">
+<property name="Name">
+<value>n1</value>
+</property>
+<property name="Value">
+<value>3.2016</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g1">
+<property name="Name">
+<value>g1</value>
+</property>
+<property name="Value">
+<value>9.041</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m1">
+<property name="Name">
+<value>m1</value>
+</property>
+<property name="Value">
+<value>6.8248</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k1">
+<property name="Name">
+<value>k1</value>
+</property>
+<property name="Value">
+<value>13.0594</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p1">
+<property name="Name">
+<value>p1</value>
+</property>
+<property name="Value">
+<value>0.6926</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r1">
+<property name="Name">
+<value>r1</value>
+</property>
+<property name="Value">
+<value>25.6818</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r2">
+<property name="Name">
+<value>r2</value>
+</property>
+<property name="Value">
+<value>3.9781</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m2">
+<property name="Name">
+<value>m2</value>
+</property>
+<property name="Value">
+<value>9.4099</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k2">
+<property name="Name">
+<value>k2</value>
+</property>
+<property name="Value">
+<value>30.5639</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m3">
+<property name="Name">
+<value>m3</value>
+</property>
+<property name="Value">
+<value>13.7795</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Name">
+<value>k3</value>
+</property>
+<property name="Value">
+<value>33.514</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n2">
+<property name="Name">
+<value>n2</value>
+</property>
+<property name="Value">
+<value>11.6086</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g2">
+<property name="Name">
+<value>g2</value>
+</property>
+<property name="Value">
+<value>16.6598</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g3">
+<property name="Name">
+<value>g3</value>
+</property>
+<property name="Value">
+<value>13.4112</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m4">
+<property name="Name">
+<value>m4</value>
+</property>
+<property name="Value">
+<value>12.1232</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k4">
+<property name="Name">
+<value>k4</value>
+</property>
+<property name="Value">
+<value>1.3722</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p2">
+<property name="Name">
+<value>p2</value>
+</property>
+<property name="Value">
+<value>0.5403</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p3">
+<property name="Name">
+<value>p3</value>
+</property>
+<property name="Value">
+<value>6.9124</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r5">
+<property name="Name">
+<value>r5</value>
+</property>
+<property name="Value">
+<value>29.4607</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r6">
+<property name="Name">
+<value>r6</value>
+</property>
+<property name="Value">
+<value>4.5034</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m10">
+<property name="Name">
+<value>m10</value>
+</property>
+<property name="Value">
+<value>8.5523</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k8">
+<property name="Name">
+<value>k8</value>
+</property>
+<property name="Value">
+<value>12.528</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m11">
+<property name="Name">
+<value>m11</value>
+</property>
+<property name="Value">
+<value>23.5996</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k9">
+<property name="Name">
+<value>k9</value>
+</property>
+<property name="Value">
+<value>15.0626</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n4">
+<property name="Name">
+<value>n4</value>
+</property>
+<property name="Value">
+<value>1.7832</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n5">
+<property name="Name">
+<value>n5</value>
+</property>
+<property name="Value">
+<value>7.4615</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g5">
+<property name="Name">
+<value>g5</value>
+</property>
+<property name="Value">
+<value>1.5987</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g6">
+<property name="Name">
+<value>g6</value>
+</property>
+<property name="Value">
+<value>16.489</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m12">
+<property name="Name">
+<value>m12</value>
+</property>
+<property name="Value">
+<value>5.9504</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k10">
+<property name="Name">
+<value>k10</value>
+</property>
+<property name="Value">
+<value>11.5688</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r3">
+<property name="Name">
+<value>r3</value>
+</property>
+<property name="Value">
+<value>51.1965</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r4">
+<property name="Name">
+<value>r4</value>
+</property>
+<property name="Value">
+<value>8.9147</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m5">
+<property name="Name">
+<value>m5</value>
+</property>
+<property name="Value">
+<value>7.2129</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m6">
+<property name="Name">
+<value>m6</value>
+</property>
+<property name="Value">
+<value>9.5754</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Name">
+<value>k5</value>
+</property>
+<property name="Value">
+<value>34.2078</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m7">
+<property name="Name">
+<value>m7</value>
+</property>
+<property name="Value">
+<value>1.1032</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m8">
+<property name="Name">
+<value>m8</value>
+</property>
+<property name="Value">
+<value>2.2006</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k6">
+<property name="Name">
+<value>k6</value>
+</property>
+<property name="Value">
+<value>56.7596</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n3">
+<property name="Name">
+<value>n3</value>
+</property>
+<property name="Value">
+<value>2.4751</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g4">
+<property name="Name">
+<value>g4</value>
+</property>
+<property name="Value">
+<value>20.5277</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m9">
+<property name="Name">
+<value>m9</value>
+</property>
+<property name="Value">
+<value>4.2193</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Name">
+<value>k7</value>
+</property>
+<property name="Value">
+<value>14.9114</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p4">
+<property name="Name">
+<value>p4</value>
+</property>
+<property name="Value">
+<value>6.0042</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r7">
+<property name="Name">
+<value>r7</value>
+</property>
+<property name="Value">
+<value>35.7842</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r8">
+<property name="Name">
+<value>r8</value>
+</property>
+<property name="Value">
+<value>27.9229</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m13">
+<property name="Name">
+<value>m13</value>
+</property>
+<property name="Value">
+<value>7.5959</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k11">
+<property name="Name">
+<value>k11</value>
+</property>
+<property name="Value">
+<value>26.9638</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m14">
+<property name="Name">
+<value>m14</value>
+</property>
+<property name="Value">
+<value>8.1796</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k12">
+<property name="Name">
+<value>k12</value>
+</property>
+<property name="Value">
+<value>21.8348</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p5">
+<property name="Name">
+<value>p5</value>
+</property>
+<property name="Value">
+<value>0.5</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k13">
+<property name="Name">
+<value>k13</value>
+</property>
+<property name="Value">
+<value>1.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="q3">
+<property name="Name">
+<value>q3</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m15">
+<property name="Name">
+<value>m15</value>
+</property>
+<property name="Value">
+<value>1.2</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g7">
+<property name="Name">
+<value>g7</value>
+</property>
+<property name="Value">
+<value>0.2778</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g8">
+<property name="Name">
+<value>g8</value>
+</property>
+<property name="Value">
+<value>0.9187</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n6">
+<property name="Name">
+<value>n6</value>
+</property>
+<property name="Value">
+<value>11.0924</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g9">
+<property name="Name">
+<value>g9</value>
+</property>
+<property name="Value">
+<value>20.3795</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m16">
+<property name="Name">
+<value>m16</value>
+</property>
+<property name="Value">
+<value>9.3186</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k14">
+<property name="Name">
+<value>k14</value>
+</property>
+<property name="Value">
+<value>51.261</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p6">
+<property name="Name">
+<value>p6</value>
+</property>
+<property name="Value">
+<value>9.8416</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r9">
+<property name="Name">
+<value>r9</value>
+</property>
+<property name="Value">
+<value>24.5689</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r10">
+<property name="Name">
+<value>r10</value>
+</property>
+<property name="Value">
+<value>0.5024</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m17">
+<property name="Name">
+<value>m17</value>
+</property>
+<property name="Value">
+<value>3.6143</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k15">
+<property name="Name">
+<value>k15</value>
+</property>
+<property name="Value">
+<value>32.939</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m18">
+<property name="Name">
+<value>m18</value>
+</property>
+<property name="Value">
+<value>6.7455</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k16">
+<property name="Name">
+<value>k16</value>
+</property>
+<property name="Value">
+<value>24.451</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n7">
+<property name="Name">
+<value>n7</value>
+</property>
+<property name="Value">
+<value>0.1031</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="g10">
+<property name="Name">
+<value>g10</value>
+</property>
+<property name="Value">
+<value>5.8418</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m19">
+<property name="Name">
+<value>m19</value>
+</property>
+<property name="Value">
+<value>1.9234</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k17">
+<property name="Name">
+<value>k17</value>
+</property>
+<property name="Value">
+<value>9.8065</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p7">
+<property name="Name">
+<value>p7</value>
+</property>
+<property name="Value">
+<value>1.5323</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r11">
+<property name="Name">
+<value>r11</value>
+</property>
+<property name="Value">
+<value>25.7542</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="r12">
+<property name="Name">
+<value>r12</value>
+</property>
+<property name="Value">
+<value>27.2451</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m20">
+<property name="Name">
+<value>m20</value>
+</property>
+<property name="Value">
+<value>3.7484</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k18">
+<property name="Name">
+<value>k18</value>
+</property>
+<property name="Value">
+<value>25.9739</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="m21">
+<property name="Name">
+<value>m21</value>
+</property>
+<property name="Value">
+<value>0.0193</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k19">
+<property name="Name">
+<value>k19</value>
+</property>
+<property name="Value">
+<value>21.6441</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="q4">
+<property name="Name">
+<value>q4</value>
+</property>
+<property name="Value">
+<value>6.274</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n8">
+<property name="Name">
+<value>n8</value>
+</property>
+<property name="Value">
+<value>3.5262</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="a">
+<property name="Name">
+<value>a</value>
+</property>
+<property name="Value">
+<value>1.2497</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="b">
+<property name="Name">
+<value>b</value>
+</property>
+<property name="Value">
+<value>4.2126</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="c">
+<property name="Name">
+<value>c</value>
+</property>
+<property name="Value">
+<value>1.4509</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="d">
+<property name="Name">
+<value>d</value>
+</property>
+<property name="Value">
+<value>1.3058</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="e">
+<property name="Name">
+<value>e</value>
+</property>
+<property name="Value">
+<value>2.4146</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="f">
+<property name="Name">
+<value>f</value>
+</property>
+<property name="Value">
+<value>2.1349</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="h">
+<property name="Name">
+<value>h</value>
+</property>
+<property name="Value">
+<value>1.4176</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="i">
+<property name="Name">
+<value>i</value>
+</property>
+<property name="Value">
+<value>2.0074</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="j">
+<property name="Name">
+<value>j</value>
+</property>
+<property name="Value">
+<value>1.7615</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k">
+<property name="Name">
+<value>k</value>
+</property>
+<property name="Value">
+<value>3.8877</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ld">
+<property name="Name">
+<value>ld</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+</variable>
+<variable class="Variable" id="lmax">
+<property name="Name">
+<value>lmax</value>
+</property>
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Day_in_hours">
+<property name="Value">
+<value>24.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="event_0000001">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000001</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Day_in_hours</value>
+<value>Day_in_hours.NumberConc + 24</value>
+</value>
+<value>
+<value>ld</value>
+<value>1</value>
+</value>
+</property>
+<property name="Trigger">
+<value>leq(Day_in_hours.NumberConc - &lt;t&gt;, 0)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Day_in_hours</value>
+<value>Variable:/SBMLParameter:Day_in_hours</value>
+<value>1</value>
+</value>
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionEventProcess" id="event_0000002">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>event_0000002</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>ld</value>
+<value>0</value>
+</value>
+</property>
+<property name="Trigger">
+<value>and(leq(Day_in_hours.NumberConc - &lt;t&gt;, 16), gt(Day_in_hours.NumberConc - &lt;t&gt;, 0))</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ld</value>
+<value>Variable:/SBMLParameter:ld</value>
+<value>1</value>
+</value>
+<value>
+<value>Day_in_hours</value>
+<value>Variable:/SBMLParameter:Day_in_hours</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

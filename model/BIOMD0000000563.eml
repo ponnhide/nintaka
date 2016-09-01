@@ -1,0 +1,591 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="FixedODE1Stepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="PAMP_recognition">
+<property name="Name">
+<value>PAMP recognition</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="k2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * PRR_0.NumberConc * PAMP.NumberConc - k2 * PRR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PRR_0</value>
+<value>Variable:/Apoplast:PRR_0</value>
+<value>-1</value>
+</value>
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>PRR</value>
+<value>Variable:/Apoplast:PRR</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Effector_recognition">
+<property name="Name">
+<value>Effector recognition</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="k2">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * (k1 * R.NumberConc * E_int.NumberConc - k2 * R_0.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>R</value>
+<value>Variable:/Cell:R</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_0</value>
+<value>Variable:/Cell:R_0</value>
+<value>1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Effector_removal">
+<property name="Name">
+<value>Effector removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * E.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PAMP_removal">
+<property name="Name">
+<value>PAMP removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * PAMP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Pathogen_arrival">
+<property name="Name">
+<value>Pathogen arrival</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path_bulk.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path_bulk</value>
+<value>Variable:/Apoplast:Path_bulk</value>
+<value>0</value>
+</value>
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Pathogen_removal">
+<property name="Name">
+<value>Pathogen removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PAMP_production">
+<property name="Name">
+<value>PAMP production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>0</value>
+</value>
+<value>
+<value>PAMP</value>
+<value>Variable:/Cell:PAMP</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Effector_production">
+<property name="Name">
+<value>Effector production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Apoplast.Value * k1 * Path.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>0</value>
+</value>
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>1</value>
+</value>
+<value>
+<value>Apoplast</value>
+<value>Variable:/Apoplast:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="E_int_removal">
+<property name="Name">
+<value>E_int removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * E_int.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="ETI">
+<property name="Name">
+<value>ETI</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc * R_0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>R_0</value>
+<value>Variable:/Cell:R_0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Effector_translocation">
+<property name="Name">
+<value>Effector translocation</value>
+</property>
+<property name="Km">
+<value>0.1</value>
+</property>
+<property name="V">
+<value>0.1</value>
+</property>
+<property name="Ki">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>V * E.NumberConc / (Km + E.NumberConc + Km * Callose.NumberConc / Ki)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>E</value>
+<value>Variable:/Apoplast:E</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>1</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Callose_production">
+<property name="Name">
+<value>Callose production</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * PRR.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PRR</value>
+<value>Variable:/Apoplast:PRR</value>
+<value>0</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>1</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Callose_removal">
+<property name="Name">
+<value>Callose removal</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * Callose.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="PTI">
+<property name="Name">
+<value>PTI</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>k1 * Path.NumberConc * Callose.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path</value>
+<value>Variable:/Apoplast:Path</value>
+<value>-1</value>
+</value>
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Callose_suppression">
+<property name="Name">
+<value>Callose suppression</value>
+</property>
+<property name="k1">
+<value>0.1</value>
+</property>
+<property name="Expression">
+<value>Cell.Value * k1 * Callose.NumberConc * E_int.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Callose</value>
+<value>Variable:/Cell:Callose</value>
+<value>-1</value>
+</value>
+<value>
+<value>E_int</value>
+<value>Variable:/Cell:E_int</value>
+<value>0</value>
+</value>
+<value>
+<value>Cell</value>
+<value>Variable:/Cell:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/Cell">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="PAMP">
+<property name="Name">
+<value>PAMP</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Name">
+<value>R</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="R_0">
+<property name="Name">
+<value>R*</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E_int">
+<property name="Name">
+<value>E_int</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Callose">
+<property name="Name">
+<value>Callose</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/Apoplast">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Apoplast</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Path">
+<property name="Name">
+<value>Path</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Path_bulk">
+<property name="Name">
+<value>Path_bulk</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PRR">
+<property name="Name">
+<value>PRR*</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PRR_0">
+<property name="Name">
+<value>PRR</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="E">
+<property name="Name">
+<value>E</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLEvent">
+<property name="Name">
+<value>System for SBML Event</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionEventProcess" id="Pathogen_introduced">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Pathogen_introduced</value>
+</property>
+<property name="EventAssignmentList">
+<value>
+<value>Path_bulk</value>
+<value>1</value>
+</value>
+</property>
+<property name="Trigger">
+<value>gt(&lt;t&gt;, 10)</value>
+</property>
+<property name="Delay">
+<value>0</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Path_bulk</value>
+<value>Variable:/Apoplast:Path_bulk</value>
+<value>1</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

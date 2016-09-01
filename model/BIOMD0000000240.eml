@@ -1,0 +1,789 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="AprEdeg">
+<property name="Name">
+<value>[AprE] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdeg.Value * AprE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AprE</value>
+<value>Variable:/univ:AprE</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="AprEsyn">
+<property name="Name">
+<value>-&gt; [AprE]; { mAprE };</value>
+</property>
+<property name="Expression">
+<value>ksyn.Value * mAprE.NumberConc * univ.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AprE</value>
+<value>Variable:/univ:AprE</value>
+<value>1</value>
+</value>
+<value>
+<value>mAprE</value>
+<value>Variable:/univ:mAprE</value>
+<value>0</value>
+</value>
+<value>
+<value>ksyn</value>
+<value>Variable:/SBMLParameter:ksyn</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DimerAss">
+<property name="Name">
+<value>2 x [DegUP] -&gt; [Dim];</value>
+</property>
+<property name="Expression">
+<value>ka.Value * pow(DegUP.NumberConc, 2)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>-2</value>
+</value>
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>1</value>
+</value>
+<value>
+<value>ka</value>
+<value>Variable:/SBMLParameter:ka</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="DimerDis">
+<property name="Name">
+<value>[Dim] -&gt; 2 x [DegUP];</value>
+</property>
+<property name="Expression">
+<value>kd.Value * Dim.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>-1</value>
+</value>
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>2</value>
+</value>
+<value>
+<value>kd</value>
+<value>Variable:/SBMLParameter:kd</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="degradation1">
+<property name="Name">
+<value>[DegU] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdeg.Value * DegU.NumberConc * univ.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegU</value>
+<value>Variable:/univ:DegU</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="degradation2">
+<property name="Name">
+<value>[DegUP] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdeg.Value * DegUP.NumberConc * univ.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="degradation3">
+<property name="Name">
+<value>[Dim] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdeg.Value * Dim.NumberConc * univ.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdeg</value>
+<value>Variable:/SBMLParameter:kdeg</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="degradationmRNA">
+<property name="Name">
+<value>[mDegU] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdegm.Value * mDegU.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mDegU</value>
+<value>Variable:/univ:mDegU</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdegm</value>
+<value>Variable:/SBMLParameter:kdegm</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="dephosphorylation">
+<property name="Name">
+<value>[DegUP] -&gt; [DegU];</value>
+</property>
+<property name="Expression">
+<value>kdephos.Value * DegUP.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>-1</value>
+</value>
+<value>
+<value>DegU</value>
+<value>Variable:/univ:DegU</value>
+<value>1</value>
+</value>
+<value>
+<value>kdephos</value>
+<value>Variable:/SBMLParameter:kdephos</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRNAAprEdeg">
+<property name="Name">
+<value>[mAprE] -&gt; ;</value>
+</property>
+<property name="Expression">
+<value>kdegm.Value * mAprE.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mAprE</value>
+<value>Variable:/univ:mAprE</value>
+<value>-1</value>
+</value>
+<value>
+<value>kdegm</value>
+<value>Variable:/SBMLParameter:kdegm</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="mRNAAprEsyn">
+<property name="Name">
+<value>-&gt; [mAprE]; { Dim };</value>
+</property>
+<property name="Expression">
+<value>Kr1.Value / (R.Value + Kr1.Value) * (Iro.Value * (Dim.NumberConc * univ.Value / Kdim.Value + 1) / (1 + Dim.NumberConc * univ.Value / Kdim.Value + pow(Dim.NumberConc * univ.Value, 2) / pow(Kdim.Value, 2) + R.Value / Kr.Value) + Irmax.Value * pow(Dim.NumberConc * univ.Value, 2) / (pow(Kdim.Value, 2) * (1 + Dim.NumberConc * univ.Value / Kdim.Value + pow(Dim.NumberConc * univ.Value, 2) / pow(Kdim.Value, 2) + R.Value / Kr.Value)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mAprE</value>
+<value>Variable:/univ:mAprE</value>
+<value>1</value>
+</value>
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>0</value>
+</value>
+<value>
+<value>Kr1</value>
+<value>Variable:/SBMLParameter:Kr1</value>
+<value>0</value>
+</value>
+<value>
+<value>R</value>
+<value>Variable:/SBMLParameter:R</value>
+<value>0</value>
+</value>
+<value>
+<value>Iro</value>
+<value>Variable:/SBMLParameter:Iro</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Kdim</value>
+<value>Variable:/SBMLParameter:Kdim</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Kr</value>
+<value>Variable:/SBMLParameter:Kr</value>
+<value>0</value>
+</value>
+<value>
+<value>Irmax</value>
+<value>Variable:/SBMLParameter:Irmax</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="phosphorylation">
+<property name="Name">
+<value>[DegU] -&gt; [DegUP];</value>
+</property>
+<property name="Expression">
+<value>kphos.Value * DegU.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegU</value>
+<value>Variable:/univ:DegU</value>
+<value>-1</value>
+</value>
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>1</value>
+</value>
+<value>
+<value>kphos</value>
+<value>Variable:/SBMLParameter:kphos</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="synthesisDegU">
+<property name="Name">
+<value>-&gt; [DegU]; { mDegU };</value>
+</property>
+<property name="Expression">
+<value>ksyn1.Value * mDegU.NumberConc * univ.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegU</value>
+<value>Variable:/univ:DegU</value>
+<value>1</value>
+</value>
+<value>
+<value>mDegU</value>
+<value>Variable:/univ:mDegU</value>
+<value>0</value>
+</value>
+<value>
+<value>ksyn1</value>
+<value>Variable:/SBMLParameter:ksyn1</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="synthesismRNA">
+<property name="Name">
+<value>-&gt; [mDegU]; { Dim };</value>
+</property>
+<property name="Expression">
+<value>Io.Value * K.Value / (Dim.NumberConc * univ.Value + K.Value) + Imax.Value * Dim.NumberConc * univ.Value / (Dim.NumberConc * univ.Value + K.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>mDegU</value>
+<value>Variable:/univ:mDegU</value>
+<value>1</value>
+</value>
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>0</value>
+</value>
+<value>
+<value>Io</value>
+<value>Variable:/SBMLParameter:Io</value>
+<value>0</value>
+</value>
+<value>
+<value>K</value>
+<value>Variable:/SBMLParameter:K</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>Imax</value>
+<value>Variable:/SBMLParameter:Imax</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>univ</value>
+<value>Variable:/univ:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/univ">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="AprE">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DegU">
+<property name="Value">
+<value>10.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DegUP">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Dim">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mAprE">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="mDegU">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Imax">
+<property name="Value">
+<value>0.048</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Io">
+<property name="Value">
+<value>0.004</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Irmax">
+<property name="Value">
+<value>0.4</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Iro">
+<property name="Value">
+<value>0.02</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K">
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kdim">
+<property name="Value">
+<value>12.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kr">
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kr1">
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="R">
+<property name="Value">
+<value>7.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="V">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ka">
+<property name="Value">
+<value>0.025</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kd">
+<property name="Value">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdeg">
+<property name="Value">
+<value>0.0004</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegA">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdegm">
+<property name="Value">
+<value>0.01</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="kdephos">
+<property name="Value">
+<value>0.149999998125</value>
+</property>
+</variable>
+<variable class="Variable" id="kphos">
+<property name="Value">
+<value>0.00400000005</value>
+</property>
+</variable>
+<variable class="Variable" id="ksyn">
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ksyn1">
+<property name="Value">
+<value>0.04</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="p">
+<property name="Value">
+<value>0.15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="q">
+<property name="Value">
+<value>0.004</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="ratio">
+<property name="Name">
+<value>kphosratiokdephos</value>
+</property>
+<property name="Value">
+<value>0.026666667</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="DegU_Total">
+<property name="Name">
+<value>DegU_Total</value>
+</property>
+<property name="Value">
+<value>10.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_kphos">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kphos'</value>
+</property>
+<property name="Expression">
+<value>ratio.NumberConc * p.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kphos</value>
+<value>Variable:/SBMLParameter:kphos</value>
+<value>1</value>
+</value>
+<value>
+<value>ratio</value>
+<value>Variable:/SBMLParameter:ratio</value>
+<value>0</value>
+</value>
+<value>
+<value>p</value>
+<value>Variable:/SBMLParameter:p</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_kdephos">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'kdephos'</value>
+</property>
+<property name="Expression">
+<value>q.NumberConc / ratio.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>kdephos</value>
+<value>Variable:/SBMLParameter:kdephos</value>
+<value>1</value>
+</value>
+<value>
+<value>q</value>
+<value>Variable:/SBMLParameter:q</value>
+<value>0</value>
+</value>
+<value>
+<value>ratio</value>
+<value>Variable:/SBMLParameter:ratio</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_DegU_Total">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'DegU_Total'</value>
+</property>
+<property name="Expression">
+<value>DegU.NumberConc + DegUP.NumberConc + 2 * Dim.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>DegU_Total</value>
+<value>Variable:/SBMLParameter:DegU_Total</value>
+<value>1</value>
+</value>
+<value>
+<value>DegU</value>
+<value>Variable:/univ:DegU</value>
+<value>0</value>
+</value>
+<value>
+<value>DegUP</value>
+<value>Variable:/univ:DegUP</value>
+<value>0</value>
+</value>
+<value>
+<value>Dim</value>
+<value>Variable:/univ:Dim</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

@@ -1,0 +1,318 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>p53 production</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * beta_x.Value * psi.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_x</value>
+<value>Variable:/SBMLParameter:beta_x</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>Mdm2 independent p53 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_x.Value * x.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_x</value>
+<value>Variable:/SBMLParameter:alpha_x</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>Mdm2 dependent p53 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_k.Value * y.NumberConc * x.NumberConc / (x.NumberConc + k.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>-1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_k</value>
+<value>Variable:/SBMLParameter:alpha_k</value>
+<value>0</value>
+</value>
+<value>
+<value>k</value>
+<value>Variable:/SBMLParameter:k</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>p53 dependent Mdm2 precursor production</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * beta_y.Value * x.NumberConc * psi.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y0</value>
+<value>Variable:/compartment:y0</value>
+<value>1</value>
+</value>
+<value>
+<value>x</value>
+<value>Variable:/compartment:x</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>beta_y</value>
+<value>Variable:/SBMLParameter:beta_y</value>
+<value>0</value>
+</value>
+<value>
+<value>psi</value>
+<value>Variable:/SBMLParameter:psi</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>Mdm2 synthesis from precursor</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_0.Value * y0.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y0</value>
+<value>Variable:/compartment:y0</value>
+<value>-1</value>
+</value>
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_0</value>
+<value>Variable:/SBMLParameter:alpha_0</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>Mdm2 degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * alpha_y.Value * y.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>y</value>
+<value>Variable:/compartment:y</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>alpha_y</value>
+<value>Variable:/SBMLParameter:alpha_y</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="x">
+<property name="Name">
+<value>p53</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y">
+<property name="Name">
+<value>Mdm2</value>
+</property>
+<property name="NumberConc">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="y0">
+<property name="Name">
+<value>precursor Mdm2</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="beta_x">
+<property name="Value">
+<value>0.9</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="psi">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_x">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="beta_y">
+<property name="Value">
+<value>1.1</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_y">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_0">
+<property name="Value">
+<value>0.8</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k">
+<property name="Value">
+<value>0.0001</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="alpha_k">
+<property name="Value">
+<value>1.7</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+</eml>

@@ -9,7 +9,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="js/d3-line-chart/d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/nintaka.js"></script>
-
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 <link href="./css/style.css" rel="stylesheet">
 
 </head>
@@ -37,15 +37,18 @@
 		    <button onclick="strt('auto')" id="autobtn">auto</button>
 		    <button onclick="stop_sim()" id="stopbtn">stop</button>
             <span>runtime:</span><input type="text" id="timeout"><span></span>
+	        <button onclick="MakeCSV()">CSV</button>
         </span>
         <div class="main">
             <div class="tree" id="main"></div>
 	        <div class="sub", id="subContents">
 		        <p id="tabs">
-		            <span onclick="changeTab('discripbtn','discription')" class="subtab" id="discripbtn">Model Discription</span> 
-		            <span onclick="changeTab('graphbtn','graphAll')" class="subtab" id="graphbtn">Graph</span> 
-		            <span onclick="changeTab('propertybtn','propertyList')" class="subtab" id="propertybtn" >Properties</span> 
-		        </p>
+		            <span onclick="changeTab('discripbtn','discription', 0)" class="subtab" id="discripbtn">Model Discription</span> 
+		            <span onclick="changeTab('graphbtn','graphAll', 0)" class="subtab" id="graphbtn">Graph</span> 
+                    <span onclick="changeTab('propertybtn','propertyList', 0)" class="subtab" id="propertybtn" >Property</span> 
+		            <div id="property_setting">
+		            </div>
+                </p>
                 <div id="graphAll" class="tabContent"> 
                     <div  id="graph"></div>
 		            <div  id="graph_setting">
@@ -54,7 +57,12 @@
 		            </div>
                 </div> 
 		        <div id="discription" class="tabContent"></div>
-                <div id="propertyList" class="tabContent"></div> 
+                <div id="propertyList" class="tabContent">
+                    <p id="propertyBtnList"></p> 
+                    <div id="viewProperty"></div>
+                    <div id="viewProperty2_key"></div>
+                    <div id="viewProperty2_val"></div>
+                </div>
 	        </div>
         </div>
     </div>

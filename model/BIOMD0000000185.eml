@@ -1,0 +1,944 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="R1">
+<property name="Name">
+<value>Transcription</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_1.Value * pow(K1.Value, n.Value) / (pow(K1.Value, n.Value) + pow(Z1.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>1</value>
+</value>
+<value>
+<value>Z1</value>
+<value>Variable:/compartment:Z1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_1</value>
+<value>Variable:/SBMLParameter:v_1</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R2">
+<property name="Name">
+<value>mRNA degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_2.Value * X1.NumberConc / (K2.Value + X1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_2</value>
+<value>Variable:/SBMLParameter:v_2</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R3">
+<property name="Name">
+<value>Neuropeptide dependent transcription activation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vc.Value * K.Value * F.Value / (Kc.Value + K.Value * F.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vc</value>
+<value>Variable:/SBMLParameter:vc</value>
+<value>0</value>
+</value>
+<value>
+<value>K</value>
+<value>Variable:/SBMLParameter:K</value>
+<value>0</value>
+</value>
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>0</value>
+</value>
+<value>
+<value>Kc</value>
+<value>Variable:/SBMLParameter:Kc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R4">
+<property name="Name">
+<value>Light dependent transcription activation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R5">
+<property name="Name">
+<value>Translation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k3.Value * X1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y1</value>
+<value>Variable:/compartment:Y1</value>
+<value>1</value>
+</value>
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R6">
+<property name="Name">
+<value>Protein degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_4.Value * Y1.NumberConc / (K4.Value + Y1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y1</value>
+<value>Variable:/compartment:Y1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_4</value>
+<value>Variable:/SBMLParameter:v_4</value>
+<value>0</value>
+</value>
+<value>
+<value>K4</value>
+<value>Variable:/SBMLParameter:K4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R7">
+<property name="Name">
+<value>Transcriptional repressor synthesis</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k5.Value * Y1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z1</value>
+<value>Variable:/compartment:Z1</value>
+<value>1</value>
+</value>
+<value>
+<value>Y1</value>
+<value>Variable:/compartment:Y1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R8">
+<property name="Name">
+<value>Transcriptional repressor degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_6.Value * Z1.NumberConc / (K6.Value + Z1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z1</value>
+<value>Variable:/compartment:Z1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_6</value>
+<value>Variable:/SBMLParameter:v_6</value>
+<value>0</value>
+</value>
+<value>
+<value>K6</value>
+<value>Variable:/SBMLParameter:K6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R9">
+<property name="Name">
+<value>Neuropeptide synthesis</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k7.Value * X1.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V1</value>
+<value>Variable:/compartment:V1</value>
+<value>1</value>
+</value>
+<value>
+<value>X1</value>
+<value>Variable:/compartment:X1</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R10">
+<property name="Name">
+<value>Neuropeptide degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_8.Value * V1.NumberConc / (K8.Value + V1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V1</value>
+<value>Variable:/compartment:V1</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_8</value>
+<value>Variable:/SBMLParameter:v_8</value>
+<value>0</value>
+</value>
+<value>
+<value>K8</value>
+<value>Variable:/SBMLParameter:K8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R11">
+<property name="Name">
+<value>Transcription</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_1.Value * pow(K1.Value, n.Value) / (pow(K1.Value, n.Value) + pow(Z2.NumberConc, n.Value))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>1</value>
+</value>
+<value>
+<value>Z2</value>
+<value>Variable:/compartment:Z2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_1</value>
+<value>Variable:/SBMLParameter:v_1</value>
+<value>0</value>
+</value>
+<value>
+<value>K1</value>
+<value>Variable:/SBMLParameter:K1</value>
+<value>0</value>
+</value>
+<value>
+<value>n</value>
+<value>Variable:/SBMLParameter:n</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R12">
+<property name="Name">
+<value>mRNA degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_2.Value * X2.NumberConc / (K2.Value + X2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_2</value>
+<value>Variable:/SBMLParameter:v_2</value>
+<value>0</value>
+</value>
+<value>
+<value>K2</value>
+<value>Variable:/SBMLParameter:K2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R13">
+<property name="Name">
+<value>Neuropeptide dependent transcription activation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * vc.Value * K.Value * F.Value / (Kc.Value + K.Value * F.Value)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>vc</value>
+<value>Variable:/SBMLParameter:vc</value>
+<value>0</value>
+</value>
+<value>
+<value>K</value>
+<value>Variable:/SBMLParameter:K</value>
+<value>0</value>
+</value>
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>0</value>
+</value>
+<value>
+<value>Kc</value>
+<value>Variable:/SBMLParameter:Kc</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R14">
+<property name="Name">
+<value>Light dependent transcription activation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * L.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>L</value>
+<value>Variable:/SBMLParameter:L</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R15">
+<property name="Name">
+<value>Translation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k3.Value * X2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y2</value>
+<value>Variable:/compartment:Y2</value>
+<value>1</value>
+</value>
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k3</value>
+<value>Variable:/SBMLParameter:k3</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R16">
+<property name="Name">
+<value>Protein degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_4.Value * Y2.NumberConc / (K4.Value + Y2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Y2</value>
+<value>Variable:/compartment:Y2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_4</value>
+<value>Variable:/SBMLParameter:v_4</value>
+<value>0</value>
+</value>
+<value>
+<value>K4</value>
+<value>Variable:/SBMLParameter:K4</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R17">
+<property name="Name">
+<value>Transcriptional repressor synthesis</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k5.Value * Y2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z2</value>
+<value>Variable:/compartment:Z2</value>
+<value>1</value>
+</value>
+<value>
+<value>Y2</value>
+<value>Variable:/compartment:Y2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k5</value>
+<value>Variable:/SBMLParameter:k5</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R18">
+<property name="Name">
+<value>Transcriptional repressor degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_6.Value * Z2.NumberConc / (K6.Value + Z2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Z2</value>
+<value>Variable:/compartment:Z2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_6</value>
+<value>Variable:/SBMLParameter:v_6</value>
+<value>0</value>
+</value>
+<value>
+<value>K6</value>
+<value>Variable:/SBMLParameter:K6</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R19">
+<property name="Name">
+<value>Neuropeptide synthesis</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k7.Value * X2.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V2</value>
+<value>Variable:/compartment:V2</value>
+<value>1</value>
+</value>
+<value>
+<value>X2</value>
+<value>Variable:/compartment:X2</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>k7</value>
+<value>Variable:/SBMLParameter:k7</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="R20">
+<property name="Name">
+<value>Neuropeptide degradation</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * v_8.Value * V2.NumberConc / (K8.Value + V2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V2</value>
+<value>Variable:/compartment:V2</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>v_8</value>
+<value>Variable:/SBMLParameter:v_8</value>
+<value>0</value>
+</value>
+<value>
+<value>K8</value>
+<value>Variable:/SBMLParameter:K8</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Cell</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="X1">
+<property name="Name">
+<value>clock gene mRNA</value>
+</property>
+<property name="NumberConc">
+<value>4.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Y1">
+<property name="Name">
+<value>clock protein</value>
+</property>
+<property name="NumberConc">
+<value>3.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Z1">
+<property name="Name">
+<value>Transcriptional repressor</value>
+</property>
+<property name="NumberConc">
+<value>2.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="V1">
+<property name="Name">
+<value>Neuropeptide</value>
+</property>
+<property name="NumberConc">
+<value>2.5</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="X2">
+<property name="Name">
+<value>clock gene mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Y2">
+<property name="Name">
+<value>clock protein</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Z2">
+<property name="Name">
+<value>Transcriptional repressor</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="V2">
+<property name="Name">
+<value>Neuropeptide</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="F">
+<property name="Value">
+<value>1.25</value>
+</property>
+</variable>
+<variable class="Variable" id="v_1">
+<property name="Value">
+<value>6.8355</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K1">
+<property name="Value">
+<value>2.7266</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="n">
+<property name="Value">
+<value>5.6645</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v_2">
+<property name="Value">
+<value>8.4297</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K2">
+<property name="Value">
+<value>0.291</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="vc">
+<property name="Value">
+<value>6.7924</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Kc">
+<property name="Value">
+<value>4.8283</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="L">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k3">
+<property name="Value">
+<value>0.1177</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v_4">
+<property name="Value">
+<value>1.0841</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K4">
+<property name="Value">
+<value>8.1343</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k5">
+<property name="Value">
+<value>0.3352</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v_6">
+<property name="Value">
+<value>4.6645</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K6">
+<property name="Value">
+<value>9.9849</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="k7">
+<property name="Value">
+<value>0.2282</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="v_8">
+<property name="Value">
+<value>3.5216</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="K8">
+<property name="Value">
+<value>7.4519</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_F">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'F'</value>
+</property>
+<property name="Expression">
+<value>1 / 2 * (V1.NumberConc + V2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>F</value>
+<value>Variable:/SBMLParameter:F</value>
+<value>1</value>
+</value>
+<value>
+<value>V1</value>
+<value>Variable:/compartment:V1</value>
+<value>0</value>
+</value>
+<value>
+<value>V2</value>
+<value>Variable:/compartment:V2</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

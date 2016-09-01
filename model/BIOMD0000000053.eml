@@ -1,0 +1,542 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="v1a">
+<property name="Name">
+<value>[Lysine] + [Glucose] -&gt; [Schiff];</value>
+</property>
+<property name="p1">
+<value>0.115</value>
+</property>
+<property name="k1a">
+<value>0.09</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * p1 * k1a * Glucose.NumberConc * Lysine.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lysine</value>
+<value>Variable:/compartment:Lysine</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glucose</value>
+<value>Variable:/compartment:Glucose</value>
+<value>-1</value>
+</value>
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v1b">
+<property name="Name">
+<value>[Schiff] -&gt; [Lysine] + [Glucose];</value>
+</property>
+<property name="k1b">
+<value>0.36</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k1b * Schiff.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lysine</value>
+<value>Variable:/compartment:Lysine</value>
+<value>1</value>
+</value>
+<value>
+<value>Glucose</value>
+<value>Variable:/compartment:Glucose</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2a">
+<property name="Name">
+<value>[Schiff] -&gt; [Amadori];</value>
+</property>
+<property name="p2">
+<value>0.75</value>
+</property>
+<property name="k2a">
+<value>0.033</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * p2 * k2a * Schiff.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>-1</value>
+</value>
+<value>
+<value>Amadori</value>
+<value>Variable:/compartment:Amadori</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v2b">
+<property name="Name">
+<value>[Amadori] -&gt; [Schiff];</value>
+</property>
+<property name="p2">
+<value>0.75</value>
+</property>
+<property name="k2b">
+<value>0.0012</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * p2 * k2b * Amadori.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Amadori</value>
+<value>Variable:/compartment:Amadori</value>
+<value>-1</value>
+</value>
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v3">
+<property name="Name">
+<value>[Glucose] -&gt; [Glyoxal];</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p3">
+<value>1.0</value>
+</property>
+<property name="k3">
+<value>7.92e-07</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ox * p3 * k3 * pow(Glucose.NumberConc / 0.25, 0.36)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glucose</value>
+<value>Variable:/compartment:Glucose</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glyoxal</value>
+<value>Variable:/compartment:Glyoxal</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v4">
+<property name="Name">
+<value>[Amadori] -&gt; [CML];</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p4">
+<value>1.0</value>
+</property>
+<property name="k4">
+<value>8.6e-05</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ox * p4 * k4 * Amadori.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Amadori</value>
+<value>Variable:/compartment:Amadori</value>
+<value>-1</value>
+</value>
+<value>
+<value>CML</value>
+<value>Variable:/compartment:CML</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5">
+<property name="Name">
+<value>[Lysine] + [Glyoxal] -&gt; [CML];</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p5">
+<value>1.0</value>
+</property>
+<property name="k5">
+<value>0.019</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ox * p5 * k5 * Glyoxal.NumberConc * Lysine.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lysine</value>
+<value>Variable:/compartment:Lysine</value>
+<value>-1</value>
+</value>
+<value>
+<value>Glyoxal</value>
+<value>Variable:/compartment:Glyoxal</value>
+<value>-1</value>
+</value>
+<value>
+<value>CML</value>
+<value>Variable:/compartment:CML</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v5b">
+<property name="Name">
+<value>[Glyoxal] -&gt; ;</value>
+</property>
+<property name="k5b">
+<value>0.0017</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * k5b * Glyoxal.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glyoxal</value>
+<value>Variable:/compartment:Glyoxal</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v6">
+<property name="Name">
+<value>[Schiff] -&gt; [CML];</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p6">
+<value>2.7</value>
+</property>
+<property name="k3">
+<value>7.92e-07</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ox * p6 * k3 * pow(Schiff.NumberConc / 0.25, 0.36)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>-1</value>
+</value>
+<value>
+<value>CML</value>
+<value>Variable:/compartment:CML</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7a">
+<property name="Name">
+<value>-&gt; [Lysine]; { Schiff };</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p7">
+<value>60.0</value>
+</property>
+<property name="k3">
+<value>7.92e-07</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * 0.05 * ox * p7 * k3 * pow(Schiff.NumberConc / 0.25, 0.36)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lysine</value>
+<value>Variable:/compartment:Lysine</value>
+<value>1</value>
+</value>
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7b">
+<property name="Name">
+<value>-&gt; [Glyoxal]; { Schiff };</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p7">
+<value>60.0</value>
+</property>
+<property name="k3">
+<value>7.92e-07</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * 0.005 * ox * p7 * k3 * pow(Schiff.NumberConc / 0.25, 0.36)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Glyoxal</value>
+<value>Variable:/compartment:Glyoxal</value>
+<value>1</value>
+</value>
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>0</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="v7c">
+<property name="Name">
+<value>[Schiff] -&gt; ;</value>
+</property>
+<property name="ox">
+<value>1.0</value>
+</property>
+<property name="p7">
+<value>60.0</value>
+</property>
+<property name="k3">
+<value>7.92e-07</value>
+</property>
+<property name="Expression">
+<value>compartment.Value * ox * p7 * k3 * pow(Schiff.NumberConc / 0.25, 0.36)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Schiff</value>
+<value>Variable:/compartment:Schiff</value>
+<value>-1</value>
+</value>
+<value>
+<value>compartment</value>
+<value>Variable:/compartment:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/compartment">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Glucose">
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Lysine">
+<property name="NumberConc">
+<value>0.0034</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Schiff">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Amadori">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Glyoxal">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CML">
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="Fraction_Amadori">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+<variable class="Variable" id="Fraction_CML">
+<property name="Value">
+<value>0.0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Fraction_Amadori">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Fraction_Amadori'</value>
+</property>
+<property name="Expression">
+<value>Amadori.NumberConc / 0.0034</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fraction_Amadori</value>
+<value>Variable:/SBMLParameter:Fraction_Amadori</value>
+<value>1</value>
+</value>
+<value>
+<value>Amadori</value>
+<value>Variable:/compartment:Amadori</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_Fraction_CML">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Fraction_CML'</value>
+</property>
+<property name="Expression">
+<value>CML.NumberConc / 0.0034</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Fraction_CML</value>
+<value>Variable:/SBMLParameter:Fraction_CML</value>
+<value>1</value>
+</value>
+<value>
+<value>CML</value>
+<value>Variable:/compartment:CML</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

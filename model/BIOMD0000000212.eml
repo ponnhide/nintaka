@@ -1,0 +1,1262 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<process class="ExpressionFluxProcess" id="Vak1">
+<property name="Name">
+<value>Aspartate kinase 1 react.</value>
+</property>
+<property name="AK1_kforward_app_exp">
+<value>5.65</value>
+</property>
+<property name="AK1_kreverse_app_exp">
+<value>1.6</value>
+</property>
+<property name="AK1_Lys_Ki_app_exp">
+<value>550.0</value>
+</property>
+<property name="AK1_AdoMet_Ka_app_exp">
+<value>3.5</value>
+</property>
+<property name="AK1_nH_exp">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * AK1.NumberConc * ((AK1_kforward_app_exp - AK1_kreverse_app_exp * AspP.NumberConc) / (1 + pow(Lys.NumberConc / (AK1_Lys_Ki_app_exp / (1 + AdoMet.NumberConc / AK1_AdoMet_Ka_app_exp)), AK1_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Asp</value>
+<value>Variable:/c1:Asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>AspP</value>
+<value>Variable:/c1:AspP</value>
+<value>1</value>
+</value>
+<value>
+<value>AK1</value>
+<value>Variable:/c1:AK1</value>
+<value>0</value>
+</value>
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>0</value>
+</value>
+<value>
+<value>AdoMet</value>
+<value>Variable:/c1:AdoMet</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vak2">
+<property name="Name">
+<value>Aspartate kinase 2 react.</value>
+</property>
+<property name="AK2_kforward_app_exp">
+<value>3.15</value>
+</property>
+<property name="AK2_kreverse_app_exp">
+<value>0.86</value>
+</property>
+<property name="AK2_Lys_Ki_app_exp">
+<value>22.0</value>
+</property>
+<property name="AK2_nH_exp">
+<value>1.1</value>
+</property>
+<property name="Expression">
+<value>c1.Value * AK2.NumberConc * ((AK2_kforward_app_exp - AK2_kreverse_app_exp * AspP.NumberConc) / (1 + pow(Lys.NumberConc / AK2_Lys_Ki_app_exp, AK2_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Asp</value>
+<value>Variable:/c1:Asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>AspP</value>
+<value>Variable:/c1:AspP</value>
+<value>1</value>
+</value>
+<value>
+<value>AK2</value>
+<value>Variable:/c1:AK2</value>
+<value>0</value>
+</value>
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VakI">
+<property name="Name">
+<value>aspartate kinase react. (AKI-HSDHI)</value>
+</property>
+<property name="AKI_kforward_app_exp">
+<value>0.36</value>
+</property>
+<property name="AKI_kreverse_app_exp">
+<value>0.15</value>
+</property>
+<property name="AKI_Thr_Ki_app_exp">
+<value>124.0</value>
+</property>
+<property name="AKI_nH_exp">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * AKHSDHI.NumberConc * ((AKI_kforward_app_exp - AKI_kreverse_app_exp * AspP.NumberConc) / (1 + pow(Thr.NumberConc / AKI_Thr_Ki_app_exp, AKI_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Asp</value>
+<value>Variable:/c1:Asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>AspP</value>
+<value>Variable:/c1:AspP</value>
+<value>1</value>
+</value>
+<value>
+<value>AKHSDHI</value>
+<value>Variable:/c1:AKHSDHI</value>
+<value>0</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VakII">
+<property name="Name">
+<value>aspartate kinase react. (AKII-HSDHII)</value>
+</property>
+<property name="AKII_kforward_app_exp">
+<value>1.35</value>
+</property>
+<property name="AKII_kreverse_app_exp">
+<value>0.22</value>
+</property>
+<property name="AKII_Thr_Ki_app_exp">
+<value>109.0</value>
+</property>
+<property name="AKII_nH_exp">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * AKHSDHII.NumberConc * ((AKII_kforward_app_exp - AKII_kreverse_app_exp * AspP.NumberConc) / (1 + pow(Thr.NumberConc / AKII_Thr_Ki_app_exp, AKII_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Asp</value>
+<value>Variable:/c1:Asp</value>
+<value>-1</value>
+</value>
+<value>
+<value>AspP</value>
+<value>Variable:/c1:AspP</value>
+<value>1</value>
+</value>
+<value>
+<value>AKHSDHII</value>
+<value>Variable:/c1:AKHSDHII</value>
+<value>0</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vasadh">
+<property name="Name">
+<value>Aspartate semialdehyde dehydrogenase react.</value>
+</property>
+<property name="ASADH_kforward_app_exp">
+<value>0.9</value>
+</property>
+<property name="ASADH_kreverse_app_exp">
+<value>0.23</value>
+</property>
+<property name="Expression">
+<value>c1.Value * ASADH.NumberConc * (ASADH_kforward_app_exp * AspP.NumberConc - ASADH_kreverse_app_exp * ASA.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>AspP</value>
+<value>Variable:/c1:AspP</value>
+<value>-1</value>
+</value>
+<value>
+<value>ASA</value>
+<value>Variable:/c1:ASA</value>
+<value>1</value>
+</value>
+<value>
+<value>ASADH</value>
+<value>Variable:/c1:ASADH</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vdhdps1">
+<property name="Name">
+<value>DHDPS1 react.</value>
+</property>
+<property name="DHDPS1_k_app_exp">
+<value>1.0</value>
+</property>
+<property name="DHDPS1_Lys_Ki_app_exp">
+<value>10.0</value>
+</property>
+<property name="DHDPS1_nH_exp">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * DHDPS1_k_app_exp * DHDPS1.NumberConc * ASA.NumberConc * (1 / (1 + pow(Lys.NumberConc / DHDPS1_Lys_Ki_app_exp, DHDPS1_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASA</value>
+<value>Variable:/c1:ASA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>1</value>
+</value>
+<value>
+<value>DHDPS1</value>
+<value>Variable:/c1:DHDPS1</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vdhdps2">
+<property name="Name">
+<value>DHDPS2 react.</value>
+</property>
+<property name="DHDPS2_k_app_exp">
+<value>1.0</value>
+</property>
+<property name="DHDPS2_Lys_Ki_app_exp">
+<value>33.0</value>
+</property>
+<property name="DHDPS2_nH_exp">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * DHDPS2_k_app_exp * DHDPS2.NumberConc * ASA.NumberConc * (1 / (1 + pow(Lys.NumberConc / DHDPS2_Lys_Ki_app_exp, DHDPS2_nH_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASA</value>
+<value>Variable:/c1:ASA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>1</value>
+</value>
+<value>
+<value>DHDPS2</value>
+<value>Variable:/c1:DHDPS2</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vhsdh1">
+<property name="Name">
+<value>homoserine dehydrogenase react. (AKI-HSDHI)</value>
+</property>
+<property name="HSDHI_kforward_app_exp">
+<value>0.84</value>
+</property>
+<property name="HSDHI_Thr_relative_residual_activity_app_exp">
+<value>0.14</value>
+</property>
+<property name="HSDHI_Thr_relative_inhibition_app_exp">
+<value>0.86</value>
+</property>
+<property name="HSDHI_Thr_Ki_app_exp">
+<value>400.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * HSDHI_kforward_app_exp * AKHSDHI.NumberConc * ASA.NumberConc * (HSDHI_Thr_relative_residual_activity_app_exp + HSDHI_Thr_relative_inhibition_app_exp / (1 + Thr.NumberConc / HSDHI_Thr_Ki_app_exp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASA</value>
+<value>Variable:/c1:ASA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Hser</value>
+<value>Variable:/c1:Hser</value>
+<value>1</value>
+</value>
+<value>
+<value>AKHSDHI</value>
+<value>Variable:/c1:AKHSDHI</value>
+<value>0</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vhsdh2">
+<property name="Name">
+<value>homoserine dehydrogenase react. (AKII-HSDHII)</value>
+</property>
+<property name="HSDHII_kforward_app_exp">
+<value>0.64</value>
+</property>
+<property name="HSDHII_Thr_relative_residual_activity_app_exp">
+<value>0.25</value>
+</property>
+<property name="HSDHII_Thr_relative_inhibition_app_exp">
+<value>0.75</value>
+</property>
+<property name="HSDHII_Thr_Ki_app_exp">
+<value>8500.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * HSDHII_kforward_app_exp * AKHSDHII.NumberConc * ASA.NumberConc * (HSDHII_Thr_relative_residual_activity_app_exp + HSDHII_Thr_relative_inhibition_app_exp / (1 + Thr.NumberConc / HSDHII_Thr_Ki_app_exp))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>ASA</value>
+<value>Variable:/c1:ASA</value>
+<value>-1</value>
+</value>
+<value>
+<value>Hser</value>
+<value>Variable:/c1:Hser</value>
+<value>1</value>
+</value>
+<value>
+<value>AKHSDHII</value>
+<value>Variable:/c1:AKHSDHII</value>
+<value>0</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vhsk">
+<property name="Name">
+<value>homoserine kinase react.</value>
+</property>
+<property name="HSK_kcat_app_exp">
+<value>2.8</value>
+</property>
+<property name="HSK_Hser_app_exp">
+<value>14.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * HSK_kcat_app_exp * HSK.NumberConc * Hser.NumberConc / (HSK_Hser_app_exp + Hser.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Hser</value>
+<value>Variable:/c1:Hser</value>
+<value>-1</value>
+</value>
+<value>
+<value>PHser</value>
+<value>Variable:/c1:PHser</value>
+<value>1</value>
+</value>
+<value>
+<value>HSK</value>
+<value>Variable:/c1:HSK</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vts1">
+<property name="Name">
+<value>Threonine synthase react. (TS1)</value>
+</property>
+<property name="TS1_kcatmin_exp">
+<value>0.42</value>
+</property>
+<property name="TS1_AdoMet_kcatmax_exp">
+<value>3.5</value>
+</property>
+<property name="TS1_AdoMet_Ka1_exp">
+<value>73.0</value>
+</property>
+<property name="TS1_nH_exp">
+<value>2.0</value>
+</property>
+<property name="TS1_Phosphate_Ki_exp">
+<value>1000.0</value>
+</property>
+<property name="TS1_AdoMEt_Km_no_AdoMet_exp">
+<value>250.0</value>
+</property>
+<property name="TS1_AdoMet_Ka2_exp">
+<value>0.5</value>
+</property>
+<property name="TS1_AdoMet_Ka3_exp">
+<value>1.09</value>
+</property>
+<property name="TS1_AdoMet_Ka4_exp">
+<value>140.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * TS1.NumberConc * PHser.NumberConc * ((TS1_kcatmin_exp + TS1_AdoMet_kcatmax_exp * (pow(AdoMet.NumberConc, TS1_nH_exp) / TS1_AdoMet_Ka1_exp)) / (1 + pow(AdoMet.NumberConc, TS1_nH_exp) / TS1_AdoMet_Ka1_exp) / (TS1_AdoMEt_Km_no_AdoMet_exp * ((1 + AdoMet.NumberConc / TS1_AdoMet_Ka2_exp) / (1 + AdoMet.NumberConc / TS1_AdoMet_Ka3_exp) / (1 + pow(AdoMet.NumberConc, TS1_nH_exp) / TS1_AdoMet_Ka4_exp)) * (1 + Phosphate.NumberConc / TS1_Phosphate_Ki_exp) + PHser.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PHser</value>
+<value>Variable:/c1:PHser</value>
+<value>-1</value>
+</value>
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>1</value>
+</value>
+<value>
+<value>TS1</value>
+<value>Variable:/c1:TS1</value>
+<value>0</value>
+</value>
+<value>
+<value>Phosphate</value>
+<value>Variable:/c1:Phosphate</value>
+<value>0</value>
+</value>
+<value>
+<value>AdoMet</value>
+<value>Variable:/c1:AdoMet</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vcgs">
+<property name="Name">
+<value>Cystathionine gamma synthase react.</value>
+</property>
+<property name="CGS_kcat_exp">
+<value>30.0</value>
+</property>
+<property name="CGS_Cys_Km_exp">
+<value>460.0</value>
+</property>
+<property name="CGS_Phser_Km_exp">
+<value>2500.0</value>
+</property>
+<property name="CGS_Phosphate_Ki_exp">
+<value>2000.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * CGS.NumberConc * PHser.NumberConc * (CGS_kcat_exp / (1 + CGS_Cys_Km_exp / Cys.NumberConc) / (CGS_Phser_Km_exp / (1 + CGS_Cys_Km_exp / Cys.NumberConc) * (1 + Phosphate.NumberConc / CGS_Phosphate_Ki_exp) + PHser.NumberConc))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>PHser</value>
+<value>Variable:/c1:PHser</value>
+<value>-1</value>
+</value>
+<value>
+<value>Cysta</value>
+<value>Variable:/c1:Cysta</value>
+<value>1</value>
+</value>
+<value>
+<value>CGS</value>
+<value>Variable:/c1:CGS</value>
+<value>0</value>
+</value>
+<value>
+<value>Cys</value>
+<value>Variable:/c1:Cys</value>
+<value>0</value>
+</value>
+<value>
+<value>Phosphate</value>
+<value>Variable:/c1:Phosphate</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vtd">
+<property name="Name">
+<value>Threonine deaminase react.</value>
+</property>
+<property name="TD_k_app_exp">
+<value>0.0124</value>
+</property>
+<property name="TD_Ile_Ki_no_Val_app_exp">
+<value>30.0</value>
+</property>
+<property name="TD_Val_Ka1_app_exp">
+<value>73.0</value>
+</property>
+<property name="TD_Val_Ka2_app_exp">
+<value>615.0</value>
+</property>
+<property name="TD_nH_app_exp">
+<value>3.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * TD.NumberConc * Thr.NumberConc * (TD_k_app_exp / (1 + pow(Ile.NumberConc / (TD_Ile_Ki_no_Val_app_exp + TD_Val_Ka1_app_exp * Val.NumberConc / (TD_Val_Ka2_app_exp + Val.NumberConc)), TD_nH_app_exp)))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Ile</value>
+<value>Variable:/c1:Ile</value>
+<value>1</value>
+</value>
+<value>
+<value>TD</value>
+<value>Variable:/c1:TD</value>
+<value>0</value>
+</value>
+<value>
+<value>Val</value>
+<value>Variable:/c1:Val</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VlysTRNA">
+<property name="Name">
+<value>Lys aminoacyl tRNA synthetase react.</value>
+</property>
+<property name="Lys_tRNAS_Lys_Km">
+<value>25.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * V_Lys_RS.Value * Lys.NumberConc / (Lys_tRNAS_Lys_Km + Lys.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>-1</value>
+</value>
+<value>
+<value>LysTRNA</value>
+<value>Variable:/c1:LysTRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V_Lys_RS</value>
+<value>Variable:/SBMLParameter:V_Lys_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VthrTRNA">
+<property name="Name">
+<value>Thr aminoacyl tRNA synthetase react.</value>
+</property>
+<property name="Thr_tRNAS_Thr_Km">
+<value>100.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * V_Thr_RS.Value * Thr.NumberConc / (Thr_tRNAS_Thr_Km + Thr.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>-1</value>
+</value>
+<value>
+<value>ThrTRNA</value>
+<value>Variable:/c1:ThrTRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V_Thr_RS</value>
+<value>Variable:/SBMLParameter:V_Thr_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VileTRNA">
+<property name="Name">
+<value>Ile aminoacyl tRNA synthetase react.</value>
+</property>
+<property name="Ile_tRNAS_Ile_Km">
+<value>20.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * V_Ile_RS.Value * Ile.NumberConc / (Ile_tRNAS_Ile_Km + Ile.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Ile</value>
+<value>Variable:/c1:Ile</value>
+<value>-1</value>
+</value>
+<value>
+<value>IleTRNA</value>
+<value>Variable:/c1:IleTRNA</value>
+<value>1</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+<value>
+<value>V_Ile_RS</value>
+<value>Variable:/SBMLParameter:V_Ile_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="VlysKR">
+<property name="Name">
+<value>Lys ketoglutarate reductase react.</value>
+</property>
+<property name="LKR_kcat_exp">
+<value>3.1</value>
+</property>
+<property name="LKR_Lys_Km_exp">
+<value>13000.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * LKR_kcat_exp * LKR.NumberConc * Lys.NumberConc / (LKR_Lys_Km_exp + Lys.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Lys</value>
+<value>Variable:/c1:Lys</value>
+<value>-1</value>
+</value>
+<value>
+<value>Sacc</value>
+<value>Variable:/c1:Sacc</value>
+<value>1</value>
+</value>
+<value>
+<value>LKR</value>
+<value>Variable:/c1:LKR</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="Vtha">
+<property name="Name">
+<value>Thr aldolase react.</value>
+</property>
+<property name="THA_kcat_exp">
+<value>1.7</value>
+</property>
+<property name="THA_Thr_Km_exp">
+<value>7100.0</value>
+</property>
+<property name="Expression">
+<value>c1.Value * THA_kcat_exp * THA.NumberConc * Thr.NumberConc / (THA_Thr_Km_exp + Thr.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Thr</value>
+<value>Variable:/c1:Thr</value>
+<value>-1</value>
+</value>
+<value>
+<value>Gly</value>
+<value>Variable:/c1:Gly</value>
+<value>1</value>
+</value>
+<value>
+<value>THA</value>
+<value>Variable:/c1:THA</value>
+<value>0</value>
+</value>
+<value>
+<value>c1</value>
+<value>Variable:/c1:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/c1">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>chl</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Asp">
+<property name="Name">
+<value>Aspartate</value>
+</property>
+<property name="NumberConc">
+<value>1500.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AK1">
+<property name="Name">
+<value>AK1</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Lys">
+<property name="Name">
+<value>Lysine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AdoMet">
+<property name="Name">
+<value>S-adenosyl-methionine</value>
+</property>
+<property name="NumberConc">
+<value>20.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AspP">
+<property name="Name">
+<value>Aspartyl_P</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AK2">
+<property name="Name">
+<value>AK2</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AKHSDHI">
+<property name="Name">
+<value>AKI-HSDHI</value>
+</property>
+<property name="NumberConc">
+<value>0.63</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="AKHSDHII">
+<property name="Name">
+<value>AKII-HSDHII</value>
+</property>
+<property name="NumberConc">
+<value>0.63</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Thr">
+<property name="Name">
+<value>Threonine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASADH">
+<property name="Name">
+<value>ASADH</value>
+</property>
+<property name="NumberConc">
+<value>11.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ASA">
+<property name="Name">
+<value>Aspartate semialdehyde</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHDPS1">
+<property name="Name">
+<value>DHDPS1</value>
+</property>
+<property name="NumberConc">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="DHDPS2">
+<property name="Name">
+<value>DHDPS2</value>
+</property>
+<property name="NumberConc">
+<value>1.6</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Hser">
+<property name="Name">
+<value>Homoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="PHser">
+<property name="Name">
+<value>Phosphohomoserine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="HSK">
+<property name="Name">
+<value>HSK</value>
+</property>
+<property name="NumberConc">
+<value>4.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TS1">
+<property name="Name">
+<value>TS1</value>
+</property>
+<property name="NumberConc">
+<value>7.4</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Phosphate">
+<property name="NumberConc">
+<value>10000.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cys">
+<property name="Name">
+<value>Cysteine</value>
+</property>
+<property name="NumberConc">
+<value>15.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="CGS">
+<property name="Name">
+<value>CGS</value>
+</property>
+<property name="NumberConc">
+<value>0.7</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Cysta">
+<property name="Name">
+<value>Cystathione</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="TD">
+<property name="Name">
+<value>TD</value>
+</property>
+<property name="NumberConc">
+<value>0.36</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Ile">
+<property name="Name">
+<value>Isoleucine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Val">
+<property name="Name">
+<value>Valine</value>
+</property>
+<property name="NumberConc">
+<value>100.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LysTRNA">
+<property name="Name">
+<value>Lys-tRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="ThrTRNA">
+<property name="Name">
+<value>Thr-tRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="IleTRNA">
+<property name="Name">
+<value>Ile-tRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="LKR">
+<property name="Name">
+<value>LKR</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Sacc">
+<property name="Name">
+<value>Saccharopine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="THA">
+<property name="Name">
+<value>THA</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Gly">
+<property name="Name">
+<value>Glycine</value>
+</property>
+<property name="NumberConc">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLParameter">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Global Parameter</value>
+</property>
+<variable class="Variable" id="V_Lys_RS">
+<property name="Value">
+<value>0.43</value>
+</property>
+</variable>
+<variable class="Variable" id="V_Thr_RS">
+<property name="Value">
+<value>0.43</value>
+</property>
+</variable>
+<variable class="Variable" id="V_Ile_RS">
+<property name="Value">
+<value>0.43</value>
+</property>
+</variable>
+<variable class="Variable" id="V_AA_RS">
+<property name="Name">
+<value>Vmax_AA_RS</value>
+</property>
+<property name="Value">
+<value>0.43</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_V_Lys_RS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'V_Lys_RS'</value>
+</property>
+<property name="Expression">
+<value>V_AA_RS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V_Lys_RS</value>
+<value>Variable:/SBMLParameter:V_Lys_RS</value>
+<value>1</value>
+</value>
+<value>
+<value>V_AA_RS</value>
+<value>Variable:/SBMLParameter:V_AA_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_V_Thr_RS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'V_Thr_RS'</value>
+</property>
+<property name="Expression">
+<value>V_AA_RS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V_Thr_RS</value>
+<value>Variable:/SBMLParameter:V_Thr_RS</value>
+<value>1</value>
+</value>
+<value>
+<value>V_AA_RS</value>
+<value>Variable:/SBMLParameter:V_AA_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionAssignmentProcess" id="Assignment_V_Ile_RS">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'V_Ile_RS'</value>
+</property>
+<property name="Expression">
+<value>V_AA_RS.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>V_Ile_RS</value>
+<value>Variable:/SBMLParameter:V_Ile_RS</value>
+<value>1</value>
+</value>
+<value>
+<value>V_AA_RS</value>
+<value>Variable:/SBMLParameter:V_AA_RS</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>

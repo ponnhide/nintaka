@@ -1,0 +1,498 @@
+<?xml version="1.0" ?>
+<eml>
+<stepper class="ODEStepper" id="Default"/>
+<system class="System" id="/">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="EmptySet">
+<property name="Value">
+<value>0.0</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<process class="ExpressionFluxProcess" id="rM">
+<property name="Name">
+<value>transcription of PER</value>
+</property>
+<property name="Vs">
+<value>0.76</value>
+</property>
+<property name="KI">
+<value>1.0</value>
+</property>
+<property name="n">
+<value>4.0</value>
+</property>
+<property name="Expression">
+<value>default.Value * Vs * pow(KI, n) / (pow(KI, n) + pow(Pn.NumberConc, n))</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>1</value>
+</value>
+<value>
+<value>Pn</value>
+<value>Variable:/CYTOPLASM/compartment_0000004:Pn</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rTL">
+<property name="Name">
+<value>translation of PER</value>
+</property>
+<property name="ks">
+<value>0.38</value>
+</property>
+<property name="Expression">
+<value>ks * M.NumberConc * default.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>P0</value>
+<value>Variable:/CYTOPLASM:P0</value>
+<value>1</value>
+</value>
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>0</value>
+</value>
+<value>
+<value>default</value>
+<value>Variable:/:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rP01">
+<property name="Name">
+<value>first phosphorylation of PER</value>
+</property>
+<property name="V1">
+<value>3.2</value>
+</property>
+<property name="K1">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * V1 * P0.NumberConc / (K1 + P0.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P0</value>
+<value>Variable:/CYTOPLASM:P0</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/CYTOPLASM:P1</value>
+<value>1</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rP10">
+<property name="Name">
+<value>removal of the first PER phosphate</value>
+</property>
+<property name="V2">
+<value>1.58</value>
+</property>
+<property name="K2">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * V2 * P1.NumberConc / (K2 + P1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/CYTOPLASM:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>P0</value>
+<value>Variable:/CYTOPLASM:P0</value>
+<value>1</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rP12">
+<property name="Name">
+<value>second phosphorylation of PER</value>
+</property>
+<property name="V3">
+<value>5.0</value>
+</property>
+<property name="K3">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * V3 * P1.NumberConc / (K3 + P1.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P1</value>
+<value>Variable:/CYTOPLASM:P1</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>1</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rP21">
+<property name="Name">
+<value>removal of the second PER phosphate</value>
+</property>
+<property name="V4">
+<value>2.5</value>
+</property>
+<property name="K4">
+<value>2.0</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * V4 * P2.NumberConc / (K4 + P2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/CYTOPLASM:P1</value>
+<value>1</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rP2n">
+<property name="Name">
+<value>translocation of PER to the nucleus</value>
+</property>
+<property name="k1">
+<value>1.9</value>
+</property>
+<property name="Expression">
+<value>k1 * P2.NumberConc * CYTOPLASM.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>Pn</value>
+<value>Variable:/CYTOPLASM/compartment_0000004:Pn</value>
+<value>1</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rPn2">
+<property name="Name">
+<value>translocation of PER to the cytoplasm</value>
+</property>
+<property name="k2">
+<value>1.3</value>
+</property>
+<property name="Expression">
+<value>k2 * Pn.NumberConc * compartment_0000004.Value</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pn</value>
+<value>Variable:/CYTOPLASM/compartment_0000004:Pn</value>
+<value>-1</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>1</value>
+</value>
+<value>
+<value>compartment_0000004</value>
+<value>Variable:/CYTOPLASM/compartment_0000004:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rmRNAd">
+<property name="Name">
+<value>degradation of PER mRNA</value>
+</property>
+<property name="Km">
+<value>0.5</value>
+</property>
+<property name="Vm">
+<value>0.65</value>
+</property>
+<property name="Expression">
+<value>Vm * M.NumberConc * CYTOPLASM.Value / (Km + M.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>M</value>
+<value>Variable:/CYTOPLASM:M</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+<process class="ExpressionFluxProcess" id="rVd">
+<property name="Name">
+<value>degradation of PER</value>
+</property>
+<property name="Vd">
+<value>0.95</value>
+</property>
+<property name="Kd">
+<value>0.2</value>
+</property>
+<property name="Expression">
+<value>CYTOPLASM.Value * Vd * P2.NumberConc / (Kd + P2.NumberConc)</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>-1</value>
+</value>
+<value>
+<value>EmptySet</value>
+<value>Variable:/:EmptySet</value>
+<value>0</value>
+</value>
+<value>
+<value>CYTOPLASM</value>
+<value>Variable:/CYTOPLASM:SIZE</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+<system class="System" id="/CYTOPLASM">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="M">
+<property name="Name">
+<value>PER mRNA</value>
+</property>
+<property name="NumberConc">
+<value>0.1</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P0">
+<property name="Name">
+<value>unphosphorylated PER</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P1">
+<property name="Name">
+<value>monophosphorylated PER</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="P2">
+<property name="Name">
+<value>biphosphorylated PER</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+<variable class="Variable" id="Pt">
+<property name="Name">
+<value>total PER</value>
+</property>
+<property name="NumberConc">
+<value>1.0</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/CYTOPLASM/compartment_0000004">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>NUCLEUS</value>
+</property>
+<variable class="Variable" id="Dimensions">
+<property name="Value">
+<value>3</value>
+</property>
+</variable>
+<variable class="Variable" id="SIZE">
+<property name="Value">
+<value>1e-15</value>
+</property>
+<property name="Fixed">
+<value>1</value>
+</property>
+</variable>
+<variable class="Variable" id="Pn">
+<property name="Name">
+<value>nuclear PER</value>
+</property>
+<property name="NumberConc">
+<value>0.25</value>
+</property>
+<property name="Fixed">
+<value>0</value>
+</property>
+</variable>
+</system>
+<system class="System" id="/SBMLRule">
+<property name="Name">
+<value>System for SBML Rule</value>
+</property>
+<property name="StepperID">
+<value>Default</value>
+</property>
+<process class="ExpressionAssignmentProcess" id="Assignment_Pt">
+<property name="StepperID">
+<value>Default</value>
+</property>
+<property name="Name">
+<value>Assignment rule for 'Pt'</value>
+</property>
+<property name="Expression">
+<value>P0.NumberConc + P1.NumberConc + P2.NumberConc + Pn.NumberConc</value>
+</property>
+<property name="VariableReferenceList">
+<value>
+<value>Pt</value>
+<value>Variable:/CYTOPLASM:Pt</value>
+<value>1</value>
+</value>
+<value>
+<value>P0</value>
+<value>Variable:/CYTOPLASM:P0</value>
+<value>0</value>
+</value>
+<value>
+<value>P1</value>
+<value>Variable:/CYTOPLASM:P1</value>
+<value>0</value>
+</value>
+<value>
+<value>P2</value>
+<value>Variable:/CYTOPLASM:P2</value>
+<value>0</value>
+</value>
+<value>
+<value>Pn</value>
+<value>Variable:/CYTOPLASM/compartment_0000004:Pn</value>
+<value>0</value>
+</value>
+</property>
+</process>
+</system>
+</eml>
