@@ -1,14 +1,14 @@
 /*
-    # D3.jsからのベタ書きに変更
-    # runした時、終わりの時間を調整
-    # 500秒ごとにグラフが切り替わる
-*/
+ *   # D3.jsからのベタ書きに変更
+ *   # runした時、終わりの時間を調整
+ *   # 500秒ごとにグラフが切り替わる
+ */
 
-var socket = io();
-var discription = null;
+var socket = io(); 
+var discription = null; 
 var property_sub_number = 0;
 
-// graphのDivサイズを調節する関数
+// graphのdivサイズを調節する関数
 function graphdiv_change(){
     var divW = document.getElementById("graph").clientWidth;
     var divH = divW * 9 / 16;
@@ -17,7 +17,7 @@ function graphdiv_change(){
 
 // load用関数.model_lにデータを格納するソケット
 socket.on("load", function(model_l) {
-    connect_num += 1; //森
+    connect_num += 1;
     console.log(model_l);
     model = model_l;
     discription = model["discription"]
@@ -39,9 +39,9 @@ socket.on("change", function(end) {
 
 // ページをロードした時に動く関数
 function init(){
-    document.getElementById("discription").style.display = "none"; //森
+    document.getElementById("discription").style.display = "none";
     var modelName = localStorage.getItem("modelName");
-    var modelType = localStorage.getItem("modelType"); // 森
+    var modelType = localStorage.getItem("modelType");
     socket.emit("load", [modelName, modelType]); // emlをloadする
     document.getElementById("modelName").textContent = modelName;
     document.getElementById("simulation").style.display = "inline";
@@ -156,17 +156,17 @@ function makeDetails(obj, key, id, parent){
 
 // セレクターを作る関数
 function makeValue(obj, flag, key,  id, parent){
-    var graph = 0;
+    // var graph = 0;
     if(key != null){
         var parentObj = document.getElementById(parent);
         var formId = flag + ":" + id;
-        var inp = "<form onsubmit='changeValue(\"" + formId + "\"); return false;' style='display:inline-block;'>";
+        var inp = "<form onsubmit='changeValue(\"" + formId + "\",0); return false;' style='display:inline-block;'>";
         inp += "<select id='select:" + formId + "' onchange='setValue(\"" + formId + "\")' style='width: 145px;'>";
 
         for(var i in obj[key]){
-            if(is("Array", obj[key][i]) && i !="VariableReferenceList"){
-                graph = 1; // 配列で返ってきて、なおかつVariableReferenceListじゃない場合はグラフ化できる
-            }
+            // if(is("Array", obj[key][i]) && i !="VariableReferenceList"){
+            //     graph = 1; // 配列で返ってきて、なおかつVariableReferenceListじゃない場合はグラフ化できる
+            // }
             if(i == "Value"){
                 inp += "<option value='" + i + "' selected='selected'>" + i + "</option>";
             }else{
@@ -174,11 +174,12 @@ function makeValue(obj, flag, key,  id, parent){
             }
             nameList.push(formId); // 変数のkeyが入ったlist
         }
-        if(graph == 1){ // グラフ化できるものは文字を赤色に表示
-            parentObj.innerHTML = "<div class=\"graphable\" id='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;' onclick='viewGraph(\"" + id + "\", \"" + flag + "\", \"none\")'>" + key + "</div>";
-        }else{ // それ以外は黒
-            parentObj.innerHTML = "<div class=\"static\" d='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;'>" + key + "</div>";
-        }
+        // if(graph == 1){ // グラフ化できるものは文字を赤色に表示
+        //     parentObj.innerHTML = "<div class=\"graphable\" id='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;' onclick='viewGraph(\"" + id + "\", \"" + flag + "\", \"none\")'>" + key + "</div>";
+        // }else{ // それ以外は黒
+        //     parentObj.innerHTML = "<div class=\"static\" d='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;'>" + key + "</div>";
+        // }
+        parentObj.innerHTML = "<div class=\"graphable\" id='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;' onclick='viewGraph(\"" + id + "\", \"" + flag + "\", \"none\")'>" + key + "</div>";
         inp += "</select><input type='text' id='" + formId + "'></form>";
         parentObj.innerHTML += inp;
         setValue(formId);
@@ -188,7 +189,6 @@ function makeValue(obj, flag, key,  id, parent){
 
 // Valueを入れる関数
 function setValue(name){
-    console.log(name);
     var value = document.getElementById("select:" + name).value;
     var valueKeys = name.split("/");
     valueKeys.splice(0, 1);
@@ -210,28 +210,65 @@ function setValue(name){
 
 
 // Valueを変更する関数
-function changeValue(name){
+function changeValue(name, select){
     /*
      * value: Activityなど
      * path: fullPath
-     * 値
+     * select: 0 = 左を直接変更、1 = Propertyで変えた値を反映
+     * 
+     * name: "Variable:/Cell/Variable/C"の形にする（左のidの末尾以外がこの形になっている。）
+     * valueKeys: ["Cell", "Variable", "C"]
+     * 上記2つの最後にvalue(select)をつけることで、値を操作できるようにした。
      */
-    var value = document.getElementById("select:" + name).value;
-    var valueKeys = name.split("/");
-    valueKeys.splice(0, 1);
+
+
+    var objM = model;
     var obj = model["root"];
-    var path = "";
-    for(var i = 0; i < valueKeys.length; i++){
-        obj = obj[valueKeys[i]];
+    var valueKeys = name.split("/");
+
+
+    if (select == 0){
+        var value = document.getElementById("select:" + name).value;
+        valueKeys.splice(0, 1);
+        for(var i = 0; i < valueKeys.length; i++){
+            obj = obj[valueKeys[i]];
+        }
+        var path = "";
+        path = obj["FullID"];
+        if(is("Array", obj[value])){
+            obj[value][obj[value].length - 1] = Number(document.getElementById(name).value);
+            socket.emit("change", [path, value, obj[value][obj[value].length - 1]]);
+            console.log(obj[value][obj[value].length - 1]);
+        }else{
+            obj[value] = Number(document.getElementById(name).value);
+            socket.emit("change", [path, value, obj[value]]);
+        }
+        document.getElementById("property_"+value).value = Number(document.getElementById(name).value);
+    }else{
+        name = valueKeys[0] + "/" + valueKeys[1].split(":")[0] + "/Variable/" + valueKeys[1].split(":")[1];
+        valueKeys = valueKeys[1].split(":")[0] + "/Variable/" + valueKeys[1].split(":")[1];
+        valueKeys = valueKeys.split("/");
+        for(var i = 0; i < valueKeys.length; i++){
+            obj = obj[valueKeys[i]];
+        }
+        document.getElementById(name).value = document.getElementById("property_"+select).value;
+        if(is("Array", obj[value])){
+            obj[value][obj[value].length - 1] = Number(document.getElementById(name).value);
+        }else{
+            obj[value] = Number(document.getElementById(name).value);
+        }
     }
-    path = obj["FullID"];
-    socket.emit("change", [path, value, Number(document.getElementById(name).value)]);
+    console.log(name);
+    console.log(valueKeys);
+    merge(model, objM);
 }
 
 function changePropertyValue(path, select){
     /*
      * property側で変更をした内容をデータに反映させる関数
      */
+    changeValue(path, select);
+    
     socket.emit("change", [path, select, Number(document.getElementById("property_" + select).value)]);
 }
 
@@ -848,11 +885,11 @@ function viewProperties(target, num){
                 }(document));
                 setTimeout(function(){
                     if (document.getElementsByClassName("MathJax_Error").length != 0){
-                        element.innerHTML = obj["Expression"]; 
+                        element.innerHTML = obj["Expression"];
                     }}, 500
                 ); // 気持ち悪いから後で直す。
 
-              
+
             }else if("Expression" in obj){ // mathmlがなければexpression
                 element.innerHTML += obj["Expression"];
             }
