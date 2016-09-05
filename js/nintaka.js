@@ -18,12 +18,12 @@ function graphdiv_change(){
 // load用関数.model_lにデータを格納するソケット
 socket.on("load", function(model_l) {
     connect_num += 1;
-    console.log(model_l);
     model = model_l;
     discription = model["discription"]
     for(var i in model){
         makeDetails(model, i, i, "main"); // Detailを作る関数を呼ぶ。treeを作る
     }
+    console.log(nameList);
     changeTab("discripbtn","discription", 0);
 });
 
@@ -51,6 +51,11 @@ function init(){
 
 // step回したあとのValue変更用関数
 function setValueAll(model_l){
+    /*
+     * model_l : socketを回して返ってきた値(Object)
+     * 
+     *
+     */
     merge(model, $.extend(true, {}, model_l)); //深いコピーをしないとmodel_lの構造が変わってしまう．
     for (var key in nameList){
         setValue(nameList[key]);
@@ -172,7 +177,9 @@ function makeValue(obj, flag, key,  id, parent){
             }else{
                 inp += "<option value='" + i + "'>" + i + "</option>";
             }
-            nameList.push(formId); // 変数のkeyが入ったlist
+            if(nameList.indexOf(formId) == -1){ // nameListにformIdがなかったら
+                nameList.push(formId); // 変数のkeyが入ったlist
+            }
         }
         // if(graph == 1){ // グラフ化できるものは文字を赤色に表示
         //     parentObj.innerHTML = "<div class=\"graphable\" id='div:" + id + "' style='display:inline-block; width:29%; overflow:scrole;' onclick='viewGraph(\"" + id + "\", \"" + flag + "\", \"none\")'>" + key + "</div>";
@@ -324,9 +331,9 @@ function timeData(){
     }
 }
 
-var shift = false;
-var ctrl  = false;
-var meta  = false;
+var shift = false; // shiftキーの判定
+var ctrl  = false; // ctrlキーの判定
+var meta  = false; // ???
 
 
 document.onkeydown = function(e) {
