@@ -1,11 +1,13 @@
 var socket = io();
 
 socket.on("getList", function(model_list){
-    var sbmlPar = document.getElementById("biomodels");
     var inp_str;
     var model_name;
     var model_title;
     var pubmed;
+
+    var sbmlPar = document.getElementById("biomodels");
+    sbmlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
     for(var i = 0; i < model_list["sbml"].length; i++){
         inp_str = "<tr>";
         model_name = model_list["sbml"][i];
@@ -17,7 +19,9 @@ socket.on("getList", function(model_list){
         inp_str += "</tr>";
         sbmlPar.innerHTML += inp_str;
     }
+
     var emlPar = document.getElementById("uploadmodels");
+    emlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
     for(var i = 0; i < model_list["eml"].length; i++){
         inp_str = "<tr>";
         model_name = model_list["eml"][i];
