@@ -11,6 +11,7 @@ import copy
 import json
 import os  
 import time 
+import re
 
 aSimulator = ecell.ecs.Simulator() 
 aSession   = None 
@@ -41,7 +42,7 @@ def load( modelname, modeltype ): #args[0] = modelrepository
             aStub.setProperty("MaxStepInterval",100); 
         #if "FixedODE" in aStub.getClassname():
         #    mode = 0 
-    flag = 1	
+    flag = 1
 
 def getDiscription( modelname, modeltype ):
     if modeltype == "sbml":
@@ -125,6 +126,48 @@ def changeEntityData( idpath, aproperty, newvalue ):
     exSession.convertDictJson( exSession.treeJson, "/" ) 
     exSession.treeJson["time"] = [ aSession.getCurrentTime() ] 
 
+def getModelList(): # return model list
+    model_dict = {}
+    model_dict["sbml"] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/sbml") if re.search("eml\Z", x)]
+    model_dict["sbml_data"] = {x: getModelTitle(x, "sbml") for x in model_dict["sbml"]}
+    model_dict["eml"] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/eml") if re.search("eml\Z", x)]
+    model_dict["eml_data"] = {x: getModelTitle(x, "eml") for x in model_dict["eml"]}
+    return model_dict
+
+def getModelTitle(model_name, model_type): # noko
+    return_data = ["", ""]
+    if model_type == "sbml":
+        try:
+            model_name = "model/sbml/" + model_name + ".xml"
+            pbmd = 0
+            with open(model_name, "r") as rf:
+                flag = 0
+                for line in rf:
+                    if re.search("<model[\w \"]", line): # get model title
+                        line = re.split("name=", line)
+                        line = re.split("\"", line[1])
+                        return_data[0] = line[1].strip()
+
+                    elif not return_data[1] and re.search("http://identifiers.org/pubmed/[0-9]*", line): # get pubmed id
+                        line = re.split("http://identifiers.org/pubmed/", line)
+                        line = re.split("\"", line[1])
+                        return_data[1] = line[0].strip()
+
+                    elif not return_data[1] and re.search("http://www.ncbi.nlm.nih.gov/pubmed/[0-9]*", line): # get pubmed id
+                        line = re.split("http://www.ncbi.nlm.nih.gov/pubmed/", line)
+                        line = re.split("\"", line[1])
+                        return_data[1] = line[0].strip()
+
+                    if return_data[0] and return_data[1]:
+                        break
+
+            return return_data
+
+        except:
+            return return_data
+    else:
+        return return_data
+
 def closeSession():
     sys.exit();
 
@@ -142,14 +185,16 @@ while 1:
             command = "init"
             exSession.treeJson = collections.OrderedDict()
             exSession.convertDictJson( exSession.treeJson, "/" ) 
-	    exSession.treeJson["time"] = [ aSession.getCurrentTime() ] 
+            exSession.treeJson["time"] = [ aSession.getCurrentTime() ] 
+
         elif line.split(" ")[0] == "load":
-	    command   =  "load"
+            command   =  "load"
             loaded    = 1
             modelname = line.split(" ")[1]
-	    modeltype = line.split(" ")[2].rstrip() 	
-	elif line.split(" ")[0] == "step":
-	    command = "step"
+            modeltype = line.split(" ")[2].rstrip() 	
+
+        elif line.split(" ")[0] == "step":
+            command = "step"
             n = int( line.split(" ")[1] )                               
             m = int( line.split(" ")[2] ) 
             #exSession.treeJson = collections.OrderedDict() 
@@ -159,18 +204,25 @@ while 1:
                 exSession.treeJson["time"] = []
             else:
                 loaded = 0
+
         elif line.split(" ")[0] == "change":
             line = line.rstrip()
             command = "change"
-	    path, aproperty, value = line.split(" ")[1], line.split(" ")[2], line.split(" ")[3]
+            path, aproperty, value = line.split(" ")[1], line.split(" ")[2], line.split(" ")[3]
+
+        elif line.split(" ")[0] == "getList":
+            command = "getList"
+
         elif line.split(" ")[0] == "exit":
             command = "exit"
+
     except:
         continue
 
     try:
-	if(command == "init"):
-	    pass
+        if(command == "init"):
+            pass
+
         elif(command == "step"):
             l = n/m 
             #time1 = time.time() 
@@ -181,30 +233,37 @@ while 1:
             #time2 = time.time() 
             result = exSession.treeJson
 
-	elif(command == "change"):
-	    changeEntityData( path, aproperty, value );   
-	    result = "{changed:1}"
+        elif(command == "change"):
+            changeEntityData( path, aproperty, value );   
+            result = "{changed:1}"
+
         elif(command == "load"):
             if flag == 1:
                 del aSimulator
                 del aSession
                 del exSession
                 aSimulator = ecell.ecs.Simulator()
-		aSession = None
+                aSession = None
                 exSession = None
-	    load( modelname, modeltype )  
+            load( modelname, modeltype )  
             result = exSession.treeJson
-	elif(command == "exit"):
-	    closeSession() 
-	else:
+
+        elif command == "getList":
+            result = getModelList()
+
+        elif(command == "exit"):
+            closeSession() 
+
+        else:
             pass
+
     except:
-	if command == "exit":
-	    sys.exit();
-	else:
+        if command == "exit":
+           sys.exit();
+        else:
             continue
 	 
-    sys.stdout.write(json.dumps( result ) )
+    sys.stdout.write(json.dumps( result ))
     sys.stdout.write("\n")
     sys.stdout.flush()
 

@@ -34,8 +34,10 @@ io.on("connection", function(socket) {
 	        }else if (command == "step"){
 		        socket.emit("step", obj);
 	        }else if (command == "change"){
-	    	    socket.emit("change", obj) 
-	        } 
+	    	    socket.emit("change", obj);
+	        }else if (command == "getList"){
+                socket.emit("getList", obj);    
+            } 
             data = "";
 	    }
         catch(e){} 
@@ -63,6 +65,12 @@ io.on("connection", function(socket) {
 	    console.log("Close session");
         child.stdin.end(); 
     });  
+    
+    socket.on("getList", function(values) { // get model list
+        console.log("get model list");
+        child.stdin.write("getList \n");
+        command = "getList";
+    });
     
 });
 
