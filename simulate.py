@@ -1,3 +1,4 @@
+# import modules
 import ecellEX
 import ecell 
 import ecell.emc
@@ -13,11 +14,15 @@ import os
 import time 
 import re
 
+# global variable
 aSimulator = ecell.ecs.Simulator() 
 aSession   = None 
 exSession  = None
 mode       = 0
 flag       = 0 
+modellists = [0, 0] # 0: sbml, 1: eml
+
+# functions
 def load( modelname, modeltype ): #args[0] = modelrepository 
     global aSimulator
     global aSession
@@ -127,10 +132,19 @@ def changeEntityData( idpath, aproperty, newvalue ):
     exSession.treeJson["time"] = [ aSession.getCurrentTime() ] 
 
 def getModelList(): # return model list
+    if modellists[0] == 0 and modellists[1] == 0:
+        modellists[0] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/sbml") if re.search("eml\Z", x)]
+        modellists[1] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/eml") if re.search("eml\Z", x)]
     model_dict = {}
-    model_dict["sbml"] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/sbml") if re.search("eml\Z", x)]
+    sbmllen = 50
+    emllen = 50
+    if len(modellists[0]) < sbmllen:
+        sbmllen = len(modellists[0])
+    if len(modellists[1]) < emllen:
+        emllen = len(modellists[1])
+    model_dict["sbml"] = [modellists[0].pop(0) for x in range(sbmllen)]
+    model_dict["eml"]  = [modellists[1].pop(0) for x in range(emllen)]
     model_dict["sbml_data"] = {x: getModelTitle(x, "sbml") for x in model_dict["sbml"]}
-    model_dict["eml"] = [x.rstrip(".eml") for x in os.listdir(os.getcwd() + "/model/eml") if re.search("eml\Z", x)]
     model_dict["eml_data"] = {x: getModelTitle(x, "eml") for x in model_dict["eml"]}
     return model_dict
 
@@ -170,6 +184,8 @@ def getModelTitle(model_name, model_type): # noko
 
 def closeSession():
     sys.exit();
+
+
 
 while 1:
     try:

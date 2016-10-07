@@ -1,13 +1,20 @@
 var socket = io();
+var commcount = 0;
 
 socket.on("getList", function(model_list){
     var inp_str;
     var model_name;
     var model_title;
     var pubmed;
-
+    var model_length = [model_list["sbml"].length, model_list["eml"].length];
     var sbmlPar = document.getElementById("biomodels");
-    sbmlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
+    var emlPar = document.getElementById("uploadmodels");
+
+    if(commcount == 0){ // 通信回数が０なら初期化
+        sbmlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
+        emlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
+    }
+
     for(var i = 0; i < model_list["sbml"].length; i++){
         inp_str = "<tr>";
         model_name = model_list["sbml"][i];
@@ -20,8 +27,6 @@ socket.on("getList", function(model_list){
         sbmlPar.innerHTML += inp_str;
     }
 
-    var emlPar = document.getElementById("uploadmodels");
-    emlPar.innerHTML = "<tr><th>Model ID</th><th>Model Title</th><th>PMID</th></tr>";
     for(var i = 0; i < model_list["eml"].length; i++){
         inp_str = "<tr>";
         model_name = model_list["eml"][i];
@@ -33,6 +38,13 @@ socket.on("getList", function(model_list){
         inp_str += "</tr>";
         emlPar.innerHTML += inp_str;
     }
+
+    commcount += 1;
+    
+    if(model_length[0] == 50 || model_length[1] == 50){
+        init();
+    }
+
 });
 
 function submitModel(name,repo){
@@ -43,7 +55,6 @@ function submitModel(name,repo){
 }
 
 function init(){
-    var model_list = "";
     socket.emit("getList", []);
 }
 
